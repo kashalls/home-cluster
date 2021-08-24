@@ -11,8 +11,8 @@ spec:
   cordon: true
   nodeSelector:
     matchExpressions:
-      - key: node-role.kubernetes.io/master
-        operator: In
+      - key: "node-role.kubernetes.io/master"
+        operator: "In"
         values:
           - "true"
   tolerations:
