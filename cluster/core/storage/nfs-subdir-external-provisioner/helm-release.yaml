@@ -4,6 +4,8 @@ kind: HelmRelease
 metadata:
   name: nfs-subdir-external-provisioner
   namespace: storage
+label:
+  kustomize.toolkit.fluxcd.io/substitute: disabled
 spec:
   chart:
     spec:
