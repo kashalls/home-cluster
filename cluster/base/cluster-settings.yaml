@@ -5,5 +5,8 @@ metadata:
   name: cluster-settings
   namespace: flux-system
 data:
+  # Home
+  NFS_SERVER: 10.0.0.20
+  #
   METALLB_LB_RANGE: 10.20.30.10-10.20.30.30
   INGRESS_NGINX_LB: 10.20.30.10
