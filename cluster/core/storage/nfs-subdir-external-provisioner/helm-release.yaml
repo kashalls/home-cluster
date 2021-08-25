@@ -17,7 +17,7 @@ spec:
   interval: 5m0s
   values:
     nfs:
-      server: "${NFS_SERVER}"
+      server: 10.0.0.20
       path: /volume1/Cluster
     storageClass:
       pathPattern: "${.PVC.namespace}-${.PVC.name}"
