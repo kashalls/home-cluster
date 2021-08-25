@@ -5,3 +5,4 @@ resources:
   - metallb-system
   - cert-manager
   - system-upgrade
+  - storage
