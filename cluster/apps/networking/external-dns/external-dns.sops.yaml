@@ -7,15 +7,15 @@ metadata:
     namespace: networking
 stringData:
     email: ENC[AES256_GCM,data://keZmJr+ngWACXbe1DDskH0euU=,iv:r8mxx51TLq02TRDrHzkGn0SyhWbK6cwJIj5IPv2NwwQ=,tag:gtaBLpUD2Fc1IHdC6netjA==,type:str]
-    api-key: ENC[AES256_GCM,data:MPb/KY8FMDlKfiool/uBTU+bVKAvZblEJz7tmVm5dSWVjYqknLQy0g==,iv:FbeXx+9BcWuM7O7/5YC2FyzKInynnZRxX4I8Oslfn2w=,tag:SAWwUPbqcVKSf1VH0DxRJQ==,type:str]
+    api-key: ENC[AES256_GCM,data:BmU3zwgbZHzolkDesLRxiVQJv0OrBq0J+Ouj62krFql/8A47wQ==,iv:PYwF7y0cbwU3UZ2QhK0nUCFj+bDJXt4V2iX7AG+JkI0=,tag:17J5tbnSbpkasPpum40JPA==,type:str]
 sops:
     kms: []
     gcp_kms: []
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2021-08-25T06:38:09Z"
-    mac: ENC[AES256_GCM,data:H964IoHNe9fHsW8L2BP3hp8zPx3R3pViEVZ3oTlPcwr/MAJKAvej3u1T8JT2DblnmuQRnVC9L5NZjWy7F2YDBXCzQWDaIjIwSV6up6DEKmZErn+C1KTmga8ZJDsYtd4YVjSl1z5SN1XY9DPOeFOd1vTT7CKFnR2D3Ivwai68PBU=,iv:aa27/Od4uJNwdm3PxpTOdcCsgnwAsEf0XWS5vI8Zpxs=,tag:c0c4wxPXMlAb97fQjE1qdQ==,type:str]
+    lastmodified: "2021-08-26T04:52:47Z"
+    mac: ENC[AES256_GCM,data:VKw6D+CYCKD+yGfsfNbGjFtWp8FkMvlowaPAjdXRjNdJ8K9zg6PxXnqb6gcUMl92/+mqtH/B46XHItpWZyEXHJz/8SkmfQf6Lc8xPvl2aBKJxMlJ2REVWks5QSq6sEFOeRtn5S3VhM2GkDkLSs6bki/QPsBvAZeRxFstYclbUcI=,iv:p9P4KwR3PulUDmzUQNxu+wnh1DGjPvPCRsxW/NjELhw=,tag:rV94Cfd0KBokH22a0uSm0g==,type:str]
     pgp:
         - created_at: "2021-08-25T06:38:08Z"
           enc: |
