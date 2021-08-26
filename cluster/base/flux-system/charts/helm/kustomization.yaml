@@ -9,3 +9,5 @@ resources:
   - k8s-at-home-charts.yaml
   - metallb-charts.yaml
   - nfs-subdir-external-provisioner-charts.yaml
+  - minecraft-server-charts.yaml
+  - traefik-charts.yaml
