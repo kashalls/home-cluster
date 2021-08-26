@@ -6,16 +6,15 @@ metadata:
     name: cloudflare-creds
     namespace: networking
 stringData:
-    email: ENC[AES256_GCM,data://keZmJr+ngWACXbe1DDskH0euU=,iv:r8mxx51TLq02TRDrHzkGn0SyhWbK6cwJIj5IPv2NwwQ=,tag:gtaBLpUD2Fc1IHdC6netjA==,type:str]
-    api-key: ENC[AES256_GCM,data:BmU3zwgbZHzolkDesLRxiVQJv0OrBq0J+Ouj62krFql/8A47wQ==,iv:PYwF7y0cbwU3UZ2QhK0nUCFj+bDJXt4V2iX7AG+JkI0=,tag:17J5tbnSbpkasPpum40JPA==,type:str]
+    api-token: ENC[AES256_GCM,data:/lBfJGxvWbcummOhdvIuS49rrDcYVr+YHmnAcKImgr8IYiHr4y1nzQ==,iv:e6mW78BoEYE/3RaRx5b9+q8McMMMrgKX0M5yHzgWIz4=,tag:mD29n90nJx0/wqlTRKioTQ==,type:str]
 sops:
     kms: []
     gcp_kms: []
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2021-08-26T04:52:47Z"
-    mac: ENC[AES256_GCM,data:VKw6D+CYCKD+yGfsfNbGjFtWp8FkMvlowaPAjdXRjNdJ8K9zg6PxXnqb6gcUMl92/+mqtH/B46XHItpWZyEXHJz/8SkmfQf6Lc8xPvl2aBKJxMlJ2REVWks5QSq6sEFOeRtn5S3VhM2GkDkLSs6bki/QPsBvAZeRxFstYclbUcI=,iv:p9P4KwR3PulUDmzUQNxu+wnh1DGjPvPCRsxW/NjELhw=,tag:rV94Cfd0KBokH22a0uSm0g==,type:str]
+    lastmodified: "2021-08-26T05:07:48Z"
+    mac: ENC[AES256_GCM,data:x3ZDs6FH4ry2ha02TrgWtkKXLPadebyHfU+IejjTxhCGVlniEOgzcRVrS29/q9C0eTv0jzshgfv0FXqj2XeaHad1Gkz9opH0TpWrNNSgH+OjdG8NeLRT1u1SVnU7I4lutoCjln5i6Ar0rQQC4/iCS9FnJFZF8sRIrGXoY+F7JJE=,iv:oOVdw5ozgErulPsIlyNNr23x4/VAnYpygC3nKaykp8Q=,tag:60oP6GiuUyP9JrfTZZLCig==,type:str]
     pgp:
         - created_at: "2021-08-25T06:38:08Z"
           enc: |
