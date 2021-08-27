@@ -4,7 +4,6 @@ resources:
   - bitnami-charts.yaml
   - external-dns-charts.yaml
   - hajimari-charts.yaml
-  - ingress-nginx-charts.yaml
   - jetstack-charts.yaml
   - k8s-at-home-charts.yaml
   - metallb-charts.yaml

@@ -6,7 +6,6 @@ metadata:
   namespace: flux-system
 data:
   METALLB_LB_RANGE: 10.20.30.10-10.20.30.30
-  INGRESS_NGINX_LB: 10.20.30.10
   #
   # Services
   #
