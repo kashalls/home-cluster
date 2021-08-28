@@ -2,9 +2,9 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
-  name: minecraft-server-charts
+  name: rook-ceph-charts
   namespace: flux-system
 spec:
   interval: 1h
-  url: https://itzg.github.io/minecraft-server-charts/
+  url: https://charts.rook.io/release
   timeout: 3m

@@ -2,9 +2,9 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
-  name: minecraft-server-charts
+  name: authentik-charts
   namespace: flux-system
 spec:
   interval: 1h
-  url: https://itzg.github.io/minecraft-server-charts/
+  url: https://docker.beryju.org/chartrepo/authentik
   timeout: 3m
