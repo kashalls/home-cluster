@@ -4,4 +4,4 @@ resources:
   - traefik
   - cloudflare-ddns
   - external-dns
-  - certificates
+  - wildcard-certificate
