@@ -38,7 +38,7 @@ spec:
         enabled: true
         ingressClassName: "traefik"
         annotations:
-          external-dns.alpha.kubernetes.io/target: "dynamic.${SECRET_DOMAIN}"
+          external-dns.alpha.kubernetes.io/target: "${SECRET_DOMAIN_SUBDOMAIN}.${SECRET_DOMAIN}"
           external-dns/is-public: "true"
           hajimari.io/enable: "true"
           hajimari.io/icon: "home-assistant"
