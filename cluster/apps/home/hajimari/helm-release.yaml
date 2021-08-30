@@ -84,8 +84,8 @@ spec:
                 pathType: Prefix
         tls:
           - hosts:
-              - "hajimari.${SECRET_DOMAIN}"
-          secretName: hajimari
+            - "hajimari.${SECRET_DOMAIN}"
+            secretName: hajimari
     persistence:
       data:
         enabled: true

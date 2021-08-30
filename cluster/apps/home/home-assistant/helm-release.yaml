@@ -51,7 +51,7 @@ spec:
                 pathType: Prefix
         tls:
           - hosts:
-              - "hass.${SECRET_DOMAIN}"
+            - "hass.${SECRET_DOMAIN}"
             secretName: hass
     probes:
       liveness:
@@ -92,7 +92,8 @@ spec:
                   pathType: Prefix
           tls:
             - hosts:
-                - "hass-config.${SECRET_DOMAIN}"
+              - "hass-config.${SECRET_DOMAIN}"
+              secretName: hass-config
         volumeMounts:
           - name: config
             mountPath: /config
