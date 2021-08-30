@@ -35,7 +35,7 @@ spec:
           url: "https://hass.jordanjones.org"
           icon: "robot-vacuum"
         - name: PiAware
-          url: "http://10.20.30.250:8080"
+          url: "http://10.20.30.8:8080"
           icon: "airplane"
       groups:
         - name: Communicate
