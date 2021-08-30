@@ -5,9 +5,10 @@ metadata:
   name: cluster-settings
   namespace: flux-system
 data:
-  METALLB_LB_RANGE: 10.20.30.10-10.20.30.30
+  COREDNS_ADDR: 10.0.5.53
   #
-  # Services
-  #
-  HOME_ASSISTANT_ADDR: 10.20.30.40
+  UNIFI_CONTROLLER: 10.0.0.1
   TRAEFIK_ADDR: 10.20.30.10
+  HOME_ASSISTANT_ADDR: 10.20.30.40
+  #
+  METALLB_LB_RANGE: 10.20.30.10-10.20.30.30
