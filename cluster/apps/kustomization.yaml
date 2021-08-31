@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - home
   - kube-system
+  - monitoring
   - networking
   - system-upgrade
