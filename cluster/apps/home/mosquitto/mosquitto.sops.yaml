@@ -1,0 +1,10 @@
+# yamllint disable
+kind: Secret
+apiVersion: v1
+type: Opaque
+metadata:
+    name: mosquitto-config
+    namespace: home
+stringData:
+    mqtt.conf: ENC[AES256_GCM,data:ofgbRyH9McPfizhfHFU11a0j3jwmtiADDxxKCqmjsc46bnFMxYuwa5w5laQ8biwzyMHahpYXSHjztTkipE8cQpvyVtyPyRFFtc8myZkpOUGlxqXFhtYdcCHhxe8fHy0=,iv:Cn2gBHQ1OvP6Rzs0OsPMeJRI2Ha0/lJdXePtRwt+u64=,tag:FTMlHkq106yqoPnxNhH7Ew==,type:str]
+    mosquitto_pwd: ENC[AES256_GCM,data:tFj/6I/UcX/9NCvxGvOCtanDSbXK483hyjPKlsOzzXUP8uLsh2qBgZETGj9N0k4w64NZ0vMxlsnnH/nWa6gC4drmFt4aZxHisOfKKGu3HElUrshmyAeWqr8WQ4yNaS6j5PG8GrqkU3CG9Z9WE0woN//aNnLK,iv:wN8jC9VVIQnMAKa9srft8CvKwpNIV5RXhXSyYwPO+hc=,tag:/kUVhwRqIc0GvdFWisJA4Q==,type:str]

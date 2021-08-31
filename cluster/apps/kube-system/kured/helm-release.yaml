@@ -22,7 +22,7 @@ spec:
       repository: ghcr.io/k8s-at-home/kured
     updateStrategy: RollingUpdate
     configuration:
-      timeZone: "America/New_York"
+      timeZone: "America/Los_Angeles"
       startTime: "12:00"
       endTime: "6:00"
       notifyUrl: "${SECRET_KURED_DISCORD_WEBHOOK}"
