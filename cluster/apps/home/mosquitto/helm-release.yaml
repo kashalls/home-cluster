@@ -26,7 +26,7 @@ spec:
         annotations:
           coredns.io/hostname: "mqtt.${SECRET_DOMAIN}"
         externalIPs:
-          - "${SVC_MOSQUITTO_ADDR}"
+          - "${MOSQUITTO_ADDR}"
         externalTrafficPolicy: Local
     auth:
       enabled: true
