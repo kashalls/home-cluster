@@ -32,7 +32,7 @@ spec:
       name: "jordan"
       customApps:
         - name: Home Assistant
-          url: "https://hass.jordanjones.org"
+          url: "https://10.20.30.12"
           icon: "robot-vacuum"
         - name: PiAware
           url: "http://10.20.30.8:8080"
