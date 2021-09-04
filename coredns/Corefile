@@ -1,0 +1,14 @@
+.:53 {
+  bind 10.0.5.3 127.0.0.1 ::1
+  errors
+  log
+  prometheus :9153
+  k8s_gateway yourdomain.org {
+    ttl 30
+    kubeconfig /config/kubeconfig
+    fallthrough
+  }
+  forward . tls://1.1.1.1 tls://1.0.0.1 {
+    tls_servername cloudflare-dns.com
+  }
+}
