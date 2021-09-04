@@ -6,4 +6,4 @@ resources:
   - kube-system
   - monitoring
   - networking
-  - system-upgrade
+  - system
