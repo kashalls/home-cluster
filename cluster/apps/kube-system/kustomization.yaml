@@ -6,3 +6,4 @@ resources:
   - kured
   - metrics-server
   - node-problem-detector
+  - reloader
