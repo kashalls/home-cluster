@@ -6,6 +6,7 @@ metadata:
   namespace: networking
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+    coredns.io/hostname: "traefik.${SECRET_DOMAIN}"
     hajimari.io/enable: "true"
     hajimari.io/icon: "web"
     hajimari.io/appName: "traefik"
