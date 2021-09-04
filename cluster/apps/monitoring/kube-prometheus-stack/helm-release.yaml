@@ -161,7 +161,7 @@ spec:
       thanosService:
         enabled: true
       prometheusSpec:
-        replicas: 1
+        replicas: 0
         replicaExternalLabelName: "replica"
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
