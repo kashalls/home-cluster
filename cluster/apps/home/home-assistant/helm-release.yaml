@@ -32,7 +32,6 @@ spec:
         type: LoadBalancer
         externalIPs:
           - "${HOME_ASSISTANT_ADDR}"
-          - "${IOT_HOME_ASS_ADDR}"
         externalTrafficPolicy: Local
     ingress:
       main:
