@@ -29,6 +29,6 @@ if echo "$update4" | grep -q '\"success\":false'; then
     printf "%s - Yikes - Updating IP Address '%s' has failed" "$(date -u)" "$ip4"
     exit 1
 else
-    printf "%s - Success - IP Address '%s' has been updated" "$(date -u)" "$ip4"
+    printf "%s - Success - IP Address '%s' has been updated on %s" "$(date -u)" "$ip4" "$CLOUDFLARE_RECORD_NAME.$CLOUDFLARE_ZONEID"
     exit 0
 fi
