@@ -5,3 +5,4 @@ resources:
   - home-dns
   - kured
   - metrics-server
+  - node-problem-detector
