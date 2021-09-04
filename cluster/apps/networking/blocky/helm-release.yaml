@@ -36,7 +36,7 @@ spec:
         enabled: true
         type: LoadBalancer
         externalIPs:
-          - "${BLOCKY_ADDR}"
+          - "${BLOCKY_ADDR}" 
         ports:
           tcp:
             enabled: true
