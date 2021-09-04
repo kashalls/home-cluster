@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/home-assistant/home-assistant
-      tag: 2021.9.2
+      tag: 2021.9.1
     env:
       TZ: "America/Los_Angeles"
     envFrom:
@@ -107,3 +107,4 @@ spec:
         memory: 100Mi
       limits:
         memory: 4000Mi
+        
