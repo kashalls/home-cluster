@@ -158,8 +158,6 @@ spec:
           - hosts:
               - "prometheus.${SECRET_DOMAIN}"
             secretName: prometheus
-      thanosService:
-        enabled: true
       prometheusSpec:
         replicas: 0
         replicaExternalLabelName: "replica"
@@ -177,12 +175,6 @@ spec:
               resources:
                 requests:
                   storage: 10Gi
-        thanos:
-          image: quay.io/thanos/thanos:v0.22.0
-          version: v0.22.0
-          objectStorageConfig:
-            name: thanos-objstore
-            key: objstore.yml
         additionalScrapeConfigs:
           - job_name: "node-exporter"
             honor_timestamps: true
