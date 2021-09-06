@@ -32,7 +32,6 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: "resistor-nodes"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
           - host: "node-red.${SECRET_DOMAIN}"
             paths:
@@ -41,7 +40,6 @@ spec:
         tls:
           - hosts:
             - "node-red.${SECRET_DOMAIN}"
-            secretName: hass
     persistence:
       config:
         enabled: true
