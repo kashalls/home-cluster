@@ -75,6 +75,7 @@ spec:
         enabled: true
         ingressClassName: "traefik"
         annotations:
+          coredns.io/hostname: "hajimari.${SECRET_DOMAIN}"
           cert-manager.io/cluster-issuer: letsencrypt-production
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
@@ -91,7 +92,7 @@ spec:
         enabled: true
         existingClaim: hajimari-config-v1
     podAnnotations:
-      configmap.reloader.stakater.com/reload: "hajimari-settings"
+      configmap.reloader.stakater.com/reload: "hajimari-config"
     resources:
       requests:
         cpu: 100m

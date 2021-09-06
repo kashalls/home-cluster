@@ -43,7 +43,7 @@ spec:
                   {{ end }}
           - name: "nodered"
             webhook_configs:
-              - url: "http://node-red.home:1880/power-outage"
+              - url: "http://node-red.${SECRET_DOMAIN}/power-outage"
                 send_resolved: true
         route:
           group_by: ["alertname", "job"]
