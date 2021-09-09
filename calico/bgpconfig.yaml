@@ -1,0 +1,13 @@
+---
+apiVersion: projectcalico.org/v3
+kind: BGPConfiguration
+metadata:
+  name: default
+spec:
+  logSeverityScreen: Info
+  nodeToNodeMeshEnabled: false
+  asNumber: 64535
+  serviceClusterIPs:
+    - cidr: "10.69.0.0/16"
+  serviceExternalIPs:
+    - cidr: "10.96.0.0/24"
