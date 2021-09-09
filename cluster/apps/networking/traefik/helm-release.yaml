@@ -29,7 +29,8 @@ spec:
       enabled: true
       type: LoadBalancer
       spec:
-        loadBalancerIP: "${TRAEFIK_ADDR}"
+        externalIPs:
+          - "${TRAEFIK_ADDR}"
         externalTrafficPolicy: Local
     logs:
       general:
