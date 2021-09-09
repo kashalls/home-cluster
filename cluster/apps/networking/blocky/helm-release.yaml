@@ -62,7 +62,7 @@ spec:
         - tcp-tls:1.0.0.1:853
       conditional:
         mapping:
-          ${SECRET_DOMAIN}: udp:${COREDNS_ADDR}
+          ${SECRET_DOMAIN}: tcp+udp:${COREDNS_ADDR}
       blocking:
         blackLists:
           ads:
@@ -75,7 +75,7 @@ spec:
           default:
           - ads
       clientLookup:
-        upstream: udp:${COREDNS_ADDR}
+        upstream: tcp+udp:${COREDNS_ADDR}
       prometheus:
         enable: true
         path: /metrics
