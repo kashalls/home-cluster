@@ -1,9 +1,0 @@
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: cluster-settings
-  namespace: flux-system
-data:
-  METALLB_LB_RANGE: ${BOOTSTRAP_METALLB_LB_RANGE}
-  TRAEFIK_ADDR: ${BOOTSTRAP_INGRESS_NGINX_LB}
