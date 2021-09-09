@@ -43,6 +43,7 @@ spec:
             port: 53
             protocol: TCP
             targetPort: 53
+        externalTrafficPolicy: Local
       dns-udp:
         enabled: true
         type: LoadBalancer
