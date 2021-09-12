@@ -32,8 +32,6 @@ k3s_server_manifests_templates:
    - "calico/calico-installation.yaml.j2"
    - "calico/calico-bgpconfiguration.yaml.j2"
    - "calico/calico-bgppeer.yaml.j2"
-#   - "kube-vip/kube-vip-rbac.yaml.j2"
-#   - "kube-vip/kube-vip-daemonset.yaml.j2"
 
 k3s_server_manifests_urls:
   - url: https://gist.githubusercontent.com/samip5/3d64319c0d196d7784df09a1c6e78cf3/raw/69d19979a6dd6a97c47ddfb15b10fd0ba339cc1b/calico.yaml
