@@ -32,25 +32,18 @@ spec:
         ports:
           http:
             port: 4000
-      dns-tcp:
+      dns:
         enabled: true
         type: LoadBalancer
         externalIPs:
           - "${BLOCKY_ADDR}"
         ports:
-          dns-tcp:
+          tcp:
             enabled: true
             port: 53
             protocol: TCP
             targetPort: 53
-        externalTrafficPolicy: Local
-      dns-udp:
-        enabled: true
-        type: LoadBalancer
-        externalIPs:
-          - "${BLOCKY_ADDR}"
-        ports:
-          dns-udp:
+          udp:
             enabled: true
             port: 53
             protocol: UDP
