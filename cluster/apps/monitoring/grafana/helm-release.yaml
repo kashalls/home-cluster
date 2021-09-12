@@ -33,7 +33,7 @@ spec:
       GF_DATE_FORMATS_INTERVAL_MONTH: "MM-YYYY"
       GF_DATE_FORMATS_INTERVAL_YEAR: "YYYY"
       VAR_BLOCKY_URL: "http://blocky.networking.svc.cluster.local:4000"
-    adminPassword: "${SECRET_GRAFANA_PASSWORD}"
+    adminPassword: "${SUPER_SECRET_GRAFANA_PASSWORD}"
     grafana.ini:
       server:
         root_url: "https://grafana.${SECRET_DOMAIN}"
@@ -136,11 +136,13 @@ spec:
       ingressClassName: "traefik"
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        cert-manager.io/cluster-issuer: letsencrypt-production
       hosts:
         - "grafana.${SECRET_DOMAIN}"
       tls:
         - hosts:
             - "grafana.${SECRET_DOMAIN}"
+              secretName: grafana
     serviceAccount:
       create: true
       autoMount: true
