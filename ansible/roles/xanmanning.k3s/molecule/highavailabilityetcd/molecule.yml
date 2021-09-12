@@ -1,0 +1,65 @@
+---
+
+dependency:
+  name: galaxy
+driver:
+  name: docker
+scenario:
+  test_sequence:
+    - dependency
+    - lint
+    - cleanup
+    - destroy
+    - syntax
+    - create
+    - prepare
+    - check
+    - converge
+    - idempotence
+    - side_effect
+    - verify
+    - cleanup
+    - destroy
+lint: |
+  set -e
+  yamllint -s .
+  ansible-lint --exclude molecule/
+platforms:
+  - name: node1
+    image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos8}-ansible:latest"
+    command: ${MOLECULE_DOCKER_COMMAND:-""}
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    pre_build_image: ${MOLECULE_PREBUILT:-true}
+    networks:
+      - name: k3snet
+  - name: node2
+    image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos8}-ansible:latest"
+    command: ${MOLECULE_DOCKER_COMMAND:-""}
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    pre_build_image: ${MOLECULE_PREBUILT:-true}
+    networks:
+      - name: k3snet
+  - name: node3
+    image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos8}-ansible:latest"
+    command: ${MOLECULE_DOCKER_COMMAND:-""}
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    pre_build_image: ${MOLECULE_PREBUILT:-true}
+    networks:
+      - name: k3snet
+  - name: loadbalancer
+    image: geerlingguy/docker-centos8-ansible:latest
+    pre_build_image: true
+    ports:
+      - "6443:6443"
+    networks:
+      - name: k3snet
+provisioner:
+  name: ansible
+  options:
+    verbose: true

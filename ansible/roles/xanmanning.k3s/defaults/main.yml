@@ -1,0 +1,144 @@
+---
+
+##
+# Global/Cluster Configuration
+##
+
+# k3s state, options: installed, started, stopped, restarted, uninstalled, validated
+# (default: installed)
+k3s_state: installed
+
+# Use a specific k3s version, if set to "false" we will get the latest
+# k3s_release_version: v1.19.3
+k3s_release_version: false
+
+# Location of the k3s configuration file
+k3s_config_file: "/etc/rancher/k3s/config.yaml"
+
+# Location of the k3s configuration directory
+k3s_config_yaml_d_dir: "/etc/rancher/k3s/config.yaml.d"
+
+# When multiple ansible_play_hosts are present, attempt to cluster the nodes.
+# Using false will create multiple standalone nodes.
+# (default: true)
+k3s_build_cluster: true
+
+# URL for GitHub project
+k3s_github_url: https://github.com/k3s-io/k3s
+
+# Skip all tasks that validate configuration
+k3s_skip_validation: false
+
+# Skip all tasks that check environment configuration
+k3s_skip_env_checks: false
+
+# Installation directory for k3s
+k3s_install_dir: /usr/local/bin
+
+# Install using hard links rather than symbolic links
+k3s_install_hard_links: false
+
+# A list of templates used for configuring the server.
+k3s_server_config_yaml_d_files: []
+
+# A list of templates used for configuring the agent.
+k3s_agent_config_yaml_d_files: []
+
+# A list of templates used for pre-configuring the cluster.
+k3s_server_manifests_templates: []
+
+# A list of URLs used for pre-configuring the cluster.
+k3s_server_manifests_urls: []
+#  - url: https://some/url/to/manifest.yml
+#    filename: manifest.yml
+
+# A list of templates used for installing static pod manifests on the control plane.
+k3s_server_pod_manifests_templates: []
+
+# A list of URLs used for installing static pod manifests on the control plane.
+k3s_server_pod_manifests_urls: []
+#  - url: https://some/url/to/manifest.yml
+#    filename: manifest.yml
+
+# Use experimental features in k3s?
+k3s_use_experimental: false
+
+# Allow for unsupported configurations in k3s?
+k3s_use_unsupported_config: false
+
+# Enable etcd embedded datastore
+k3s_etcd_datastore: false
+
+##
+# Systemd config
+##
+
+# Start k3s on system boot
+k3s_start_on_boot: true
+
+# List of required systemd units to k3s service unit.
+k3s_service_requires: []
+
+# List of "wanted" systemd unit to k3s (weaker than "requires").
+k3s_service_wants: []
+
+# Start k3s before a defined list of systemd units.
+k3s_service_before: []
+
+# Start k3s after a defined list of systemd units.
+k3s_service_after: []
+
+##
+# Server Configuration
+##
+
+k3s_server: {}
+# k3s_server:
+#  listen-port: 6443
+
+##
+# Agent Configuration
+##
+
+k3s_agent: {}
+# k3s_agent:
+#   node-label:
+#     - "foo=bar"
+#     - "bish=bosh"
+
+##
+# Ansible Controller configuration
+##
+
+# Use become privileges for
+k3s_become_for_all: false
+k3s_become_for_systemd: null
+k3s_become_for_install_dir: null
+k3s_become_for_directory_creation: null
+k3s_become_for_usr_local_bin: null
+k3s_become_for_package_install: null
+k3s_become_for_kubectl: null
+k3s_become_for_uninstall: null
+
+# Private registry configuration.
+# Rancher k3s documentation: https://rancher.com/docs/k3s/latest/en/installation/private-registry/
+k3s_registries:
+
+  mirrors:
+#    docker.io:
+#      endpoint:
+#        - "https://mycustomreg.com:5000"
+  configs:
+#    "mycustomreg:5000":
+#      auth:
+#        # this is the registry username
+#        username: xxxxxx
+#        # this is the registry password
+#        password: xxxxxx
+#      tls:
+#        # path to the cert file used in the registry
+#        cert_file:
+#        # path to the key file used in the registry
+#        key_file:
+#        # path to the ca file used in the registry
+#        ca_file:
