@@ -159,7 +159,7 @@ spec:
               - "prometheus.${SECRET_DOMAIN}"
             secretName: prometheus
       prometheusSpec:
-        replicas: 0
+        replicas: 1
         replicaExternalLabelName: "replica"
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
