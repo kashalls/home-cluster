@@ -4,6 +4,7 @@ kind: BGPConfiguration
 metadata:
   name: default
 spec:
+  asNumber: 64535
   serviceClusterIPs:
     - cidr: "{{ k3s_server['service-cidr'] }}"
   serviceExternalIPs:
