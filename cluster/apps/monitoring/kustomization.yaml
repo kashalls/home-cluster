@@ -3,5 +3,7 @@ kind: Kustomization
 resources:
   - grafana
   - kube-prometheus-stack
+  - loki
+  - promtail
   - speedtest-exporter
-# - unifi-poller
+  - thanos
