@@ -175,7 +175,7 @@ spec:
             honor_timestamps: true
             static_configs:
               - targets:
-                  - 10.0.5.53:9100
+                  - "${NAS_ADDR}:9100"
           - job_name: 'minio-job'
             bearer_token: "${SECRET_MINIO_PROMETHEUS_BEARER}"
             honor_timestamps: true
@@ -187,4 +187,4 @@ spec:
             honor_timestamps: true
             static_configs:
               - targets:
-                  - 10.0.5.53:9153
+                  - "${COREDNS_ADDR}:9153"
