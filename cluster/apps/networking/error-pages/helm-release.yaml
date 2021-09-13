@@ -22,7 +22,7 @@ spec:
       repository: ghcr.io/tarampampam/error-pages
       tag: 1.8.0
     controller:
-      replicas: 3
+      replicas: 1
     nameOverride: error-pages
     env:
       TEMPLATE_NAME: ghost
