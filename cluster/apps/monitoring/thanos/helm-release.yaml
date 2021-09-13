@@ -46,6 +46,9 @@ spec:
     storegateway:
       enabled: true
       persistence:
+        storageClass: "nfs-client"
+        accessModes: 
+          - ReadWriteMany
         enabled: true
         size: 5Gi
     ruler:
