@@ -33,8 +33,10 @@ spec:
       GF_DATE_FORMATS_INTERVAL_MONTH: "MM-YYYY"
       GF_DATE_FORMATS_INTERVAL_YEAR: "YYYY"
       VAR_BLOCKY_URL: "http://blocky.networking.svc.cluster.local:4000"
-    adminPassword: "${SUPER_SECRET_GRAFANA_PASSWORD}"
     grafana.ini:
+      security:
+        admin_user: admin
+        admin_password: "${SUPER_SECRET_GRAFANA_PASSWORD}"
       server:
         root_url: "https://grafana.${SECRET_DOMAIN}"
       paths:
@@ -49,7 +51,7 @@ spec:
       grafana_net:
         url: https://grafana.net
       auth.basic:
-        disable_login_form: false
+        disable_login_form: true
     dashboardProviders:
       dashboardproviders.yaml:
         apiVersion: 1
