@@ -1,0 +1,9 @@
+# yamllint disable
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+    name: velero-s3-creds
+    namespace: velero
+stringData:
+    cloud: 
