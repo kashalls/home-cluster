@@ -51,7 +51,7 @@ spec:
       grafana_net:
         url: https://grafana.net
       auth.basic:
-        disable_login_form: true
+        disable_login_form: false
     dashboardProviders:
       dashboardproviders.yaml:
         apiVersion: 1
