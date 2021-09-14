@@ -7,3 +7,4 @@ resources:
   - networking.yaml
   - storage.yaml
   - monitoring.yaml
+  - velero.yaml
