@@ -8,3 +8,4 @@ resources:
   - kube-system
   - monitoring
   - networking
+  - velero
