@@ -42,7 +42,8 @@ spec:
             protocol: TCP
             port: 3493
         type: LoadBalancer
-        loadBalancerIP: ${RACK_NUT_SERVER}
+        externalIPs:
+          - "${RACK_NUT_SERVER}"
         externalTrafficPolicy: Local
     # The main configuration files for network-ups-tools
     config:
