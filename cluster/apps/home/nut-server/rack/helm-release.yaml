@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: nut-server-hallway
+  name: rack-ups
   namespace: home
 spec:
   interval: 5m
@@ -21,7 +21,7 @@ spec:
     image:
       repository: ghcr.io/k8s-at-home/network-ups-tools
       tag: v2.7.4-2124-g9defa7a9
-    nameOverride: nut-server-hallway
+    nameOverride: rack-ups
     securityContext:
       privileged: true
     affinity:
