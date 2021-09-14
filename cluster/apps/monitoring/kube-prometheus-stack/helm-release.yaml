@@ -201,3 +201,10 @@ spec:
             static_configs:
               - targets:
                   - "${COREDNS_ADDR}:9153"
+#         - job_name: "airgradient"
+#           honor_timestamps: true
+#           static_configs:
+#             - targets:
+#                 - "${AIRGRADIENT_ADDR}:9926"
+#
+#
