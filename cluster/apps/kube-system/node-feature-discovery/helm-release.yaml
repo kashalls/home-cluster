@@ -52,6 +52,12 @@ spec:
             - "vendor"
             - "device"
           custom:
+          - name: "ups"
+            matchOn:
+            - usbId:
+                class: ["03"]
+                vendor: ["051d"]
+                device: ["0002"]
           - name: "zwave"
             matchOn:
             - usbId:
