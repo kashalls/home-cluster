@@ -7,3 +7,4 @@ resources:
   - promtail
   - speedtest-exporter
   - thanos
+  - unifi-poller
