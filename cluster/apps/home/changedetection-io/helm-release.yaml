@@ -44,8 +44,8 @@ spec:
                 pathType: Prefix
         tls:
           - hosts:
-              - "change-detection.${SECRET_DOMAIN}"
-              secretName: change-detection-tls
+            - "change-detection.${SECRET_DOMAIN}"
+            secretName: change-detection-tls
     persistence:
       config:
         enabled: true
