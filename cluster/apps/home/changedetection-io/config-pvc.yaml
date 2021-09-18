@@ -3,7 +3,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: changedetection-io-config-v1
-  namespace: tools
+  namespace: home
   labels:
     kasten.io/backup-volume: "enabled"
 spec:
