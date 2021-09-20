@@ -27,4 +27,4 @@ spec:
             name: weeb-services
         volumeMounts:
         - name: weeb-services-storage
-          mountPath: /opt/partyanimal/images
+          mountPath: /opt/partyanimal/dist/images
