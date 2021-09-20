@@ -6,17 +6,25 @@ metadata:
   namespace: etc
 spec:
   replicas: 1
-  volumes:
-    - name: weeb-services-storage
-      persistantVolumeClaim:
-        claimName: weeb-services-claim-v1
-  containers:
-  - name: whateveryouwant
-    image: ghcr.io/kashalls/weebservices:latest
-    imagePullPolicy: Always
-    envFrom:
-    - secretRef:
-        name: weeb-services
-    volumeMounts:
-    - name: weeb-services-storage
-      mountPath: /opt/partyanimal
+  selector:
+    matchLabels:
+      app: something
+  template:
+    metadata:
+      labels:
+        app: something
+    spec:
+      volumes:
+        - name: weeb-services-storage
+          persistantVolumeClaim:
+            claimName: weeb-services-claim-v1
+      containers:
+      - name: whateveryouwant
+        image: ghcr.io/kashalls/weebservices:latest
+        imagePullPolicy: Always
+        envFrom:
+        - secretRef:
+            name: weeb-services
+        volumeMounts:
+        - name: weeb-services-storage
+          mountPath: /opt/partyanimal
