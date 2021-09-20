@@ -8,3 +8,4 @@ resources:
   - speedtest-exporter
   - thanos
   - unifi-poller
+  - uptimerobot-heartbeat
