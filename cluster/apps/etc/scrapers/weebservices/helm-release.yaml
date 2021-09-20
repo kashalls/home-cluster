@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weebservices
+  namespace: etc
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - name: whateveryouwant
+        image: ghcr.io/kashalls/weebservices:latest
+        imagePullPolicy: Always
+        envFrom:
+        - secretRef:
+          name: weeb-services
+        volumeMounts:
+        - name: data
+          mountPath: /opt/partyanimal
+          persistantVolumeClaim:
+            claimName: weeb-services-storage-v1
