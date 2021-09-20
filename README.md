@@ -13,7 +13,7 @@
 </div>
 <div align="center">
 
-![Cluster Router](https://img.shields.io/uptimerobot/status/m789236355-59b4869737bfca044ffce63f?label=Home%20Internet&logo=cloudflare&logoColor=white&style=flat-square)
+![Cluster Router](https://img.shields.io/uptimerobot/status/m789236355-59b4869737bfca044ffce63f?label=Home%20Internet&logo=Ubiquiti&logoColor=white&style=flat-square)
 ![Cluster Networking](https://img.shields.io/uptimerobot/status/m789234791-6b5cfe5b7fa8676903c74062?label=Cluster&logo=googlecloud&logoColor=white&style=flat-square)
 ![Home Assistant](https://img.shields.io/uptimerobot/status/m789234975-ac1f1c01ba210902f51100da?label=Home%20Assistant&logo=homeassistant&logoColor=white&style=flat-square)
 
