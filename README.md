@@ -13,15 +13,17 @@
 </div>
 <div align="center">
 
-![Uptime Robot status](https://img.shields.io/uptimerobot/status/m789235004-af884cf55e2bcdcde89d5415?label=Home%20Internet&logo=cloudflare&logoColor=white&style=flat-square)
+![Cluster Router](https://img.shields.io/uptimerobot/status/m789236355-59b4869737bfca044ffce63f?label=Home%20Internet&logo=cloudflare&logoColor=white&style=flat-square)
 ![Cluster Networking](https://img.shields.io/uptimerobot/status/m789234791-6b5cfe5b7fa8676903c74062?label=Cluster&logo=googlecloud&logoColor=white&style=flat-square)
-![Uptime Robot status](https://img.shields.io/uptimerobot/status/m789234975-ac1f1c01ba210902f51100da?label=Home%20Assistant&logo=homeassistant&logoColor=white&style=flat-square)
+![Home Assistant](https://img.shields.io/uptimerobot/status/m789234975-ac1f1c01ba210902f51100da?label=Home%20Assistant&logo=homeassistant&logoColor=white&style=flat-square)
 
 </div>
 
 ---
 
 ## Overview
+
+I ended up pushing this README before I wrote this, so this is a placeholder. Thanks.
 
 ### Required Addons
 
