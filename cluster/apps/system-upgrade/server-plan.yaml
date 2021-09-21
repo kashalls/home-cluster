@@ -7,12 +7,16 @@ metadata:
 spec:
   serviceAccountName: system-upgrade
   concurrency: 1
-  channel: https://update.k3s.io/v1-release/channels/v1.20
+  channel: https://update.k3s.io/v1-release/channels/v1.21
   cordon: true
   nodeSelector:
     matchExpressions:
-      - key: "node-role.kubernetes.io/master"
-        operator: "In"
+      - key: node-role.kubernetes.io/master
+        operator: In
+        values:
+          - "true"
+      - key: k3s-upgrade
+        operator: In
         values:
           - "true"
   tolerations:
