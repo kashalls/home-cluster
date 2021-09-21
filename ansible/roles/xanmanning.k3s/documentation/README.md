@@ -21,24 +21,24 @@ Below are quickstart examples for a single node k3s server, a k3s cluster
 with a single control node and HA k3s cluster. These represent the bare
 minimum configuration.
 
-  - [Single node k3s](quickstart-single-node.md)
-  - [Simple k3s cluster](quickstart-cluster.md)
-  - [HA k3s cluster using embedded etcd](quickstart-ha-cluster.md)
+- [Single node k3s](quickstart-single-node.md)
+- [Simple k3s cluster](quickstart-cluster.md)
+- [HA k3s cluster using embedded etcd](quickstart-ha-cluster.md)
 
 ## Example configurations and operations
 
 ### Configuration
 
-  - [Setting up 2-node HA control plane with external datastore](configuration/2-node-ha-ext-datastore.md)
-  - [Provision multiple standalone k3s nodes](configuration/multiple-standalone-k3s-nodes.md)
-  - [Set node labels and component arguments](configuration/node-labels-and-component-args.md)
-  - [Use an alternate CNI](configuration/use-an-alternate-cni.md)
-  - [IPv4/IPv6 Dual-Stack config](configuration/ipv4-ipv6-dual-stack.md)
-  - [Start K3S after another service](configuration/systemd-config.md)
+- [Setting up 2-node HA control plane with external datastore](configuration/2-node-ha-ext-datastore.md)
+- [Provision multiple standalone k3s nodes](configuration/multiple-standalone-k3s-nodes.md)
+- [Set node labels and component arguments](configuration/node-labels-and-component-args.md)
+- [Use an alternate CNI](configuration/use-an-alternate-cni.md)
+- [IPv4/IPv6 Dual-Stack config](configuration/ipv4-ipv6-dual-stack.md)
+- [Start K3S after another service](configuration/systemd-config.md)
 
 ### Operations
 
-  - [Stop/Start a cluster](operations/stop-start-cluster.md)
-  - [Updating k3s](operations/updating-k3s.md)
-  - [Extending a cluster](operations/extending-a-cluster.md)
-  - [Shrinking a cluster](operations/shrinking-a-cluster.md)
+- [Stop/Start a cluster](operations/stop-start-cluster.md)
+- [Updating k3s](operations/updating-k3s.md)
+- [Extending a cluster](operations/extending-a-cluster.md)
+- [Shrinking a cluster](operations/shrinking-a-cluster.md)

@@ -1,7 +1,7 @@
 <div align="center">
 
- # Kashall's Home Kubernetes Cluster
-    
+# Kashall's Home Kubernetes Cluster
+
 **Join the [k8s@home](https://github.com/k8s-at-home) community!**
 
 </div>
@@ -28,8 +28,8 @@ I ended up pushing this README before I wrote this, so this is a placeholder. Th
 ### Required Addons
 
 I wrote a couple addons for this to work. These addons requires physical devices for them to work.
-- [AirGradient Prometheus Server](https://github.com/Kashalls/airgradient-prometheus-sensor)
 
+- [AirGradient Prometheus Server](https://github.com/Kashalls/airgradient-prometheus-sensor)
 
 ## Inspiration
 

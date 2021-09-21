@@ -12,15 +12,14 @@ The below is based on the
 
 Steps:
 
-  1. Download `tigera-operator.yaml` to the manifests directory.
-  1. Download `custom-resources.yaml` to the manifests directory.
-  1. Choose a `cluster-cidr` (we are using 192.168.0.0/16)
-  1. Set `k3s_server` and `k3s_server_manifest_templates` as per the below,
-     ensure the paths to manifests are correct for your project repo.
+1. Download `tigera-operator.yaml` to the manifests directory.
+1. Download `custom-resources.yaml` to the manifests directory.
+1. Choose a `cluster-cidr` (we are using 192.168.0.0/16)
+1. Set `k3s_server` and `k3s_server_manifest_templates` as per the below,
+   ensure the paths to manifests are correct for your project repo.
 
 ```yaml
 ---
-
 # K3S Server config, don't deploy flannel and set cluster pod CIDR.
 k3s_server:
   cluster-cidr: 192.168.0.0/16

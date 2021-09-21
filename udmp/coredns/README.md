@@ -6,26 +6,26 @@
 
 ## Customization
 
-* Feel free to change [53-coredns.conflist](./53-coredns.conflist) to change the IP and MAC address of the container.
-* Update [53-coredns.sh](./53-coredns.sh) with your own values.
+- Feel free to change [53-coredns.conflist](./53-coredns.conflist) to change the IP and MAC address of the container.
+- Update [53-coredns.sh](./53-coredns.sh) with your own values.
 
 ## Steps
 
 1. Copy [05-install-cni-plugins.sh](../cni-plugins/05-install-cni-plugins.sh) to /mnt/data/on_boot.d
 1. Execute /mnt/data/on_boot.d/05-install-cni-plugins.sh
 1. On your controller, make a Corporate network with no DHCP server and give it a VLAN. For this example we are using VLAN 5.
-1. Copy [53-coredns.conflist](./53-coredns.conflist) to /mnt/data/podman/cni.  This will create your podman macvlan network
+1. Copy [53-coredns.conflist](./53-coredns.conflist) to /mnt/data/podman/cni. This will create your podman macvlan network
 1. Copy [53-coredns.sh](./53-coredns.sh) to /mnt/data/on_boot.d and update its values to reflect your environment
 
 ```yaml
-   ...
-   VLAN=5
-   IPV4_IP="10.0.5.3"
-   IPV4_GW="10.0.5.1/24"
-   ...
-   CONTAINER=coredns
-   ...
-   ```
+...
+VLAN=5
+IPV4_IP="10.0.5.3"
+IPV4_GW="10.0.5.1/24"
+...
+CONTAINER=coredns
+...
+```
 
 1. Execute /mnt/data/on_boot.d/53-coredns.sh
 1. Create directories for persistent coredns configuration

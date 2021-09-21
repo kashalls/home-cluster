@@ -30,33 +30,31 @@ Below is our example inventory of 200 nodes (Truncated):
 
 ```yaml
 ---
-
 k3s_workers:
-   hosts:
-     kube-0:
-       ansible_user: ansible
-       ansible_host: 10.10.9.2
-       ansible_python_interpreter: /usr/bin/python3
-     kube-1:
-       ansible_user: ansible
-       ansible_host: 10.10.9.3
-       ansible_python_interpreter: /usr/bin/python3
-     kube-2:
-       ansible_user: ansible
-       ansible_host: 10.10.9.4
-       ansible_python_interpreter: /usr/bin/python3
+  hosts:
+    kube-0:
+      ansible_user: ansible
+      ansible_host: 10.10.9.2
+      ansible_python_interpreter: /usr/bin/python3
+    kube-1:
+      ansible_user: ansible
+      ansible_host: 10.10.9.3
+      ansible_python_interpreter: /usr/bin/python3
+    kube-2:
+      ansible_user: ansible
+      ansible_host: 10.10.9.4
+      ansible_python_interpreter: /usr/bin/python3
 
-     # ..... SNIP .....
+    # ..... SNIP .....
 
-     kube-199:
-       ansible_user: ansible
-       ansible_host: 10.10.9.201
-       ansible_python_interpreter: /usr/bin/python3
-     kube-200:
-       ansible_user: ansible
-       ansible_host: 10.10.9.202
-       ansible_python_interpreter: /usr/bin/python3
-
+    kube-199:
+      ansible_user: ansible
+      ansible_host: 10.10.9.201
+      ansible_python_interpreter: /usr/bin/python3
+    kube-200:
+      ansible_user: ansible
+      ansible_host: 10.10.9.202
+      ansible_python_interpreter: /usr/bin/python3
 ```
 
 In our `group_vars/` (or as `vars:` in our playbook), we will need to set the
@@ -66,6 +64,5 @@ node as as 200 standalone servers.
 
 ```yaml
 ---
-
 k3s_build_cluster: false
 ```

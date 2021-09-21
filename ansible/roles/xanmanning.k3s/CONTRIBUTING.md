@@ -6,14 +6,14 @@ There are a number of ways that you can contribute to this project, not all of
 them requiring you to be able to write code. Below is a list of suggested
 contributions welcomed by the community:
 
-  - Submit bug reports in GitHub issues
-  - Comment on bug reports with futher information or suggestions
-  - Suggest new features
-  - Create Pull Requests fixing bugs or adding new features
-  - Update and improve documentation
-  - Review the role on Ansible Galaxy
-  - Write a blog post reviewing the role
-  - Sponsor me.
+- Submit bug reports in GitHub issues
+- Comment on bug reports with futher information or suggestions
+- Suggest new features
+- Create Pull Requests fixing bugs or adding new features
+- Update and improve documentation
+- Review the role on Ansible Galaxy
+- Write a blog post reviewing the role
+- Sponsor me.
 
 ## Issue guidelines
 

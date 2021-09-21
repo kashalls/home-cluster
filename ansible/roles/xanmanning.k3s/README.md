@@ -14,24 +14,24 @@ and [CHANGELOG.md](CHANGELOG.md).
 
 The host you're running Ansible from requires the following Python dependencies:
 
-  - `ansible >= 2.9.16` or `ansible-base >= 2.10.4`
+- `ansible >= 2.9.16` or `ansible-base >= 2.10.4`
 
 You can install dependencies using the requirements.txt file in this repository:
 `pip3 install -r requirements.txt`.
 
 This role has been tested against the following Linux Distributions:
 
-  - Amazon Linux 2
-  - Archlinux
-  - CentOS 8
-  - CentOS 7
-  - Debian 10
-  - Fedora 31
-  - Fedora 32
-  - Fedora 33
-  - openSUSE Leap 15
-  - RockyLinux 8
-  - Ubuntu 20.04 LTS
+- Amazon Linux 2
+- Archlinux
+- CentOS 8
+- CentOS 7
+- Debian 10
+- Fedora 31
+- Fedora 32
+- Fedora 33
+- openSUSE Leap 15
+- RockyLinux 8
+- Ubuntu 20.04 LTS
 
 :warning: The v2 releases of this role only supports `k3s >= v1.19`, for
 `k3s < v1.19` please consider updating or use the v1.x releases of this role.
@@ -60,7 +60,7 @@ Below are variables that are set against all of the play hosts for environment
 consistency. These are generally cluster-level configuration.
 
 | Variable                             | Description                                                                                | Default Value                  |
-|--------------------------------------|--------------------------------------------------------------------------------------------|--------------------------------|
+| ------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------ |
 | `k3s_state`                          | State of k3s: installed, started, stopped, downloaded, uninstalled, validated.             | installed                      |
 | `k3s_release_version`                | Use a specific version of k3s, eg. `v0.2.0`. Specify `false` for stable.                   | `false`                        |
 | `k3s_config_file`                    | Location of the k3s configuration file.                                                    | `/etc/rancher/k3s/config.yaml` |
@@ -88,7 +88,7 @@ is run. Use this with caution, please refer to the [systemd documentation](https
 for more information.
 
 | Variable               | Description                                                    | Default Value |
-|------------------------|----------------------------------------------------------------|---------------|
+| ---------------------- | -------------------------------------------------------------- | ------------- |
 | `k3s_start_on_boot`    | Start k3s on boot.                                             | `true`        |
 | `k3s_service_requires` | List of required systemd units to k3s service unit.            | []            |
 | `k3s_service_wants`    | List of "wanted" systemd unit to k3s (weaker than "requires"). | []\*          |
@@ -103,11 +103,11 @@ for more information.
 Below are variables that are set against individual or groups of play hosts.
 Typically you'd set these at group level for the control plane or worker nodes.
 
-| Variable           | Description                                                       | Default Value                                     |
-|--------------------|-------------------------------------------------------------------|---------------------------------------------------|
-| `k3s_control_node` | Specify if a host (or host group) are part of the control plane.  | `false` (role will automatically delegate a node) |
-| `k3s_server`       | Server (control plane) configuration, see notes below.            | `{}`                                              |
-| `k3s_agent`        | Agent (worker) configuration, see notes below.                    | `{}`                                              |
+| Variable           | Description                                                      | Default Value                                     |
+| ------------------ | ---------------------------------------------------------------- | ------------------------------------------------- |
+| `k3s_control_node` | Specify if a host (or host group) are part of the control plane. | `false` (role will automatically delegate a node) |
+| `k3s_server`       | Server (control plane) configuration, see notes below.           | `{}`                                              |
+| `k3s_agent`        | Agent (worker) configuration, see notes below.                   | `{}`                                              |
 
 #### Server (Control Plane) Configuration
 
@@ -124,7 +124,7 @@ k3s_server:
   datastore-endpoint: postgres://postgres:verybadpass@database:5432/postgres?sslmode=disable
   docker: true
   cluster-cidr: 172.20.0.0/16
-  flannel-backend: 'none'  # This needs to be in quotes
+  flannel-backend: "none" # This needs to be in quotes
   disable:
     - traefik
     - coredns
@@ -174,7 +174,7 @@ The below variables are used to change the way the role executes in Ansible,
 particularly with regards to privilege escalation.
 
 | Variable                            | Description                                                         | Default Value |
-|-------------------------------------|---------------------------------------------------------------------|---------------|
+| ----------------------------------- | ------------------------------------------------------------------- | ------------- |
 | `k3s_skip_validation`               | Skip all tasks that validate configuration.                         | `false`       |
 | `k3s_skip_env_checks`               | Skip all tasks that check environment configuration.                | `false`       |
 | `k3s_become_for_all`                | Escalate user privileges for all tasks. Overrides all of the below. | `false`       |
@@ -263,11 +263,11 @@ standalone system and not a cluster of 25 nodes. To do this we'd use a playbook
 similar to the below:
 
 ```yaml
-- hosts: k3s_nodes  # eg. 25 RPi's defined in our inventory.
+- hosts: k3s_nodes # eg. 25 RPi's defined in our inventory.
   vars:
     k3s_build_cluster: false
   roles:
-     - xanmanning.k3s
+    - xanmanning.k3s
 ```
 
 #### Important note about `k3s_control_node` and High Availability (HA)
@@ -306,7 +306,6 @@ Tigera operator for Calico and kube-vip.
 
 ```yaml
 ---
-
 k3s_server_manifests_urls:
   - url: https://docs.projectcalico.org/archive/v3.19/manifests/tigera-operator.yaml
     filename: tigera-operator.yaml
@@ -314,7 +313,6 @@ k3s_server_manifests_urls:
 k3s_server_pod_manifests_urls:
   - url: https://raw.githubusercontent.com/kube-vip/kube-vip/main/example/deploy/0.1.4.yaml
     filename: kube-vip.yaml
-
 ```
 
 ## Dependencies
@@ -330,7 +328,7 @@ Example playbook, single control node running `testing` channel k3s:
   vars:
     k3s_release_version: testing
   roles:
-     - role: xanmanning.k3s
+    - role: xanmanning.k3s
 ```
 
 Example playbook, Highly Available with PostgreSQL database running the latest
@@ -339,7 +337,7 @@ stable release:
 ```yaml
 - hosts: k3s_nodes
   vars:
-    k3s_registration_address: loadbalancer  # Typically a load balancer.
+    k3s_registration_address: loadbalancer # Typically a load balancer.
     k3s_server:
       datastore-endpoint: "postgres://postgres:verybadpass@database:5432/postgres?sslmode=disable"
   pre_tasks:

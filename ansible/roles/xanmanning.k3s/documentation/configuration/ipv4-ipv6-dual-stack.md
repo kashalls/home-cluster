@@ -11,10 +11,9 @@ Below is a noddy example:
 
 ```yaml
 ---
-
 k3s_server:
   # Using Calico on k3s<1.23 so Flannel needs to be disabled.
-  flannel-backend: 'none'
+  flannel-backend: "none"
   # Format: ipv4/cidr,ipv6/cidr
   cluster-cidr: 10.42.0.0/16,fc00:a0::/64
   service-cidr: 10.43.0.0/16,fc00:a1::/64

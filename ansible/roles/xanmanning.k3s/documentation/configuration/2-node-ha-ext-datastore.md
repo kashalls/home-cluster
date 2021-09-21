@@ -42,10 +42,10 @@ Main guide: https://rancher.com/docs/k3s/latest/en/installation/ha/
 
 ### Required Components
 
-  - Load balancer
-  - 2 control plane nodes
-  - 1 or more worker nodes
-  - PostgreSQL Database (replicated, or Linux HA Cluster).
+- Load balancer
+- 2 control plane nodes
+- 1 or more worker nodes
+- PostgreSQL Database (replicated, or Linux HA Cluster).
 
 ## Configuration
 
@@ -61,7 +61,6 @@ https://rancher.com/docs/k3s/latest/en/installation/datastore/#datastore-endpoin
 
 ```yaml
 ---
-
 k3s_server:
   datastore-endpoint: postgres://postgres:verybadpass@database:5432/postgres?sslmode=disable
   node-taint:
@@ -74,6 +73,5 @@ the load balancer.
 
 ```yaml
 ---
-
 k3s_registration_address: control.examplek3s.com
 ```

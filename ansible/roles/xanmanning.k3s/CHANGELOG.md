@@ -18,13 +18,13 @@
 
 ### Notable changes
 
- - docs: example of IPv6 configuration
- - feat: checks for s3 backup configuration
- - feat: implement config.yaml.d
+- docs: example of IPv6 configuration
+- feat: checks for s3 backup configuration
+- feat: implement config.yaml.d
 
 ### Contributors
 
- - [onedr0p](https://github.com/onedr0p)
+- [onedr0p](https://github.com/onedr0p)
 
 ---
 
@@ -32,7 +32,7 @@
 
 ### Notable changes
 
- -  Fix: Define registration address from node-ip #142
+- Fix: Define registration address from node-ip #142
 
 ---
 
@@ -40,7 +40,7 @@
 
 ### Notable changes
 
- - Add advertised address #139
+- Add advertised address #139
 
 ### Contributors
 
@@ -111,8 +111,8 @@
 
 ### Notable changes
 
- - Documentation, remove references to deprecated configuration techniques #115
- - Bugfix: Templating issue.
+- Documentation, remove references to deprecated configuration techniques #115
+- Bugfix: Templating issue.
 
 ---
 
@@ -122,11 +122,11 @@
 
 ### Notable changes
 
- - Feature: Support k3s private registry configuration #114
+- Feature: Support k3s private registry configuration #114
 
 ### Contributors
 
- - [@anjia0532](https://github.com/anjia0532)
+- [@anjia0532](https://github.com/anjia0532)
 
 ---
 
@@ -134,11 +134,11 @@
 
 ### Notable changes
 
- - Bugfix: Unmount CSI plugin folder to avoid data lost on uninstall #113
+- Bugfix: Unmount CSI plugin folder to avoid data lost on uninstall #113
 
 ### Contributors
 
- - [@angelnu](https://github.com/angelnu)
+- [@angelnu](https://github.com/angelnu)
 
 ---
 
@@ -146,11 +146,11 @@
 
 ### Notable changes
 
- - Fixed issue with draining nodes #112
+- Fixed issue with draining nodes #112
 
 ### Contributors
 
- - [@anjia0532](https://github.com/anjia0532)
+- [@anjia0532](https://github.com/anjia0532)
 
 ---
 
@@ -158,14 +158,14 @@
 
 ### Notable changes
 
- - Typo fix in README.md #110
- - Fixed check mode for cgroup test #111
- - Added check mode into molecule test sequence
- - `inventory.yml` is now `blockinfile`
+- Typo fix in README.md #110
+- Fixed check mode for cgroup test #111
+- Added check mode into molecule test sequence
+- `inventory.yml` is now `blockinfile`
 
 ### Contributors
 
- - [@bdronneau](https://github.com/bdronneau)
+- [@bdronneau](https://github.com/bdronneau)
 
 ---
 
@@ -173,13 +173,13 @@
 
 ### Notable changes
 
- - #105 - Added Ansible v2.9.16 support
- - #102 - Pre-check for cgroup status
+- #105 - Added Ansible v2.9.16 support
+- #102 - Pre-check for cgroup status
 
 ### Known issues
 
- - As per README.md, you require `ansible` >= 2.9.16
-   or `ansible-base` >= 2.10.4. See [#105(comment)](https://github.com/PyratLabs/ansible-role-k3s/issues/105#issuecomment-817182233)
+- As per README.md, you require `ansible` >= 2.9.16
+  or `ansible-base` >= 2.10.4. See [#105(comment)](https://github.com/PyratLabs/ansible-role-k3s/issues/105#issuecomment-817182233)
 
 ---
 
@@ -187,11 +187,11 @@
 
 ### Notable changes
 
- - #100 - Fixed typo in README.md
+- #100 - Fixed typo in README.md
 
 ### Contributors
 
- - [@mbwmbw1337](https://github.com/mbwmbw1337)
+- [@mbwmbw1337](https://github.com/mbwmbw1337)
 
 ---
 
@@ -201,14 +201,14 @@ Happy π day!
 
 ### Notable changes
 
-  - Updated GitHub Actions, resolved linting errors.
-  - Renamed `k3s_control_node_address` -> `k3s_registration_address`
+- Updated GitHub Actions, resolved linting errors.
+- Renamed `k3s_control_node_address` -> `k3s_registration_address`
 
 ### Breaking changes
 
-  - A task has been added to rename `k3s_control_node_address` to
-    `k3s_registration_address` for any users still using this variable name,
-    however this might still break something.
+- A task has been added to rename `k3s_control_node_address` to
+  `k3s_registration_address` for any users still using this variable name,
+  however this might still break something.
 
 ---
 
@@ -216,7 +216,7 @@ Happy π day!
 
 ### Notable changes
 
-  - Bugfix, missing become on cluster token check.
+- Bugfix, missing become on cluster token check.
 
 ---
 
@@ -224,9 +224,9 @@ Happy π day!
 
 ### Notable changes
 
-  - Cluster init checks added.
-  - Tidy up of tasks, failed checks.
-  - Possible fix for #93 - force draining of nodes added.
+- Cluster init checks added.
+- Tidy up of tasks, failed checks.
+- Possible fix for #93 - force draining of nodes added.
 
 ---
 
@@ -234,8 +234,8 @@ Happy π day!
 
 ### Notable changes
 
-  - Bugfix: Templating error for single control plane nodes using Etcd.
-  - Bugfix: a number of typos fixed.
+- Bugfix: Templating error for single control plane nodes using Etcd.
+- Bugfix: a number of typos fixed.
 
 ---
 
@@ -243,12 +243,12 @@ Happy π day!
 
 ### Notable changes
 
-  - Tidy up of `when` params and `assert` tasks to be more readable.
-  - Added feature to tweak K3S service dependencies.
-  - Updated documentation:
-    - Node labels and component arguments
-    - systemd config
-    - Use alternate CNI (Calico example)
+- Tidy up of `when` params and `assert` tasks to be more readable.
+- Added feature to tweak K3S service dependencies.
+- Updated documentation:
+  - Node labels and component arguments
+  - systemd config
+  - Use alternate CNI (Calico example)
 
 ---
 
@@ -256,7 +256,7 @@ Happy π day!
 
 ### Notable changes
 
-  - Bugfix, missing update to minimum ansible version var #91.
+- Bugfix, missing update to minimum ansible version var #91.
 
 ---
 
@@ -264,7 +264,7 @@ Happy π day!
 
 ### Notable changes
 
-  - Bugfix, missing `k3s_start_on_boot` to control `systemd.enabled` added.
+- Bugfix, missing `k3s_start_on_boot` to control `systemd.enabled` added.
 
 ---
 
@@ -272,9 +272,9 @@ Happy π day!
 
 ### Notable changes
 
-  - Added uninstall task to remove hard-linked files #88
-  - Fixed missing become for `systemd` operations tasks. #89
-  - Added `k3s_start_on_boot` to control `systemd.enabled`.
+- Added uninstall task to remove hard-linked files #88
+- Fixed missing become for `systemd` operations tasks. #89
+- Added `k3s_start_on_boot` to control `systemd.enabled`.
 
 ---
 
@@ -282,7 +282,7 @@ Happy π day!
 
 ### Notable changes
 
-  - Added support for Ansible >= 2.9.17 #83
+- Added support for Ansible >= 2.9.17 #83
 
 ---
 
@@ -290,7 +290,7 @@ Happy π day!
 
 ### Notable changes
 
-  - Bufgix: Installation hangs on "Check that all nodes to be ready" #84
+- Bufgix: Installation hangs on "Check that all nodes to be ready" #84
 
 ---
 
@@ -298,7 +298,7 @@ Happy π day!
 
 ### Notable changes
 
-  - Bufgix: Docker check still failing on "false"
+- Bufgix: Docker check still failing on "false"
 
 ---
 
@@ -306,8 +306,8 @@ Happy π day!
 
 ### Notable changes
 
-  - Fixed issue with armv6l (Raspberry Pi Zero W)
-  - Added path for private repositories config to directory creation list.
+- Fixed issue with armv6l (Raspberry Pi Zero W)
+- Added path for private repositories config to directory creation list.
 
 ---
 
@@ -315,30 +315,30 @@ Happy π day!
 
 ### Notable changes
 
-  - `k3s_config_dir` derived from `k3s_config_file`, reused throughout the role
-    to allow for easy removal of "Rancher" references #73.
-  - `k3s_token_location` has moved to be in `k3s_config_dir`.
-  - Tasks for creating directories now looped to caputure configuration from
-    `k3s_server` and `k3s_agent` and ensure directories exist before k3s
-    starts, see #75.
-  - Server token collected directly from token file, not symlinked file
-    (node-token).
-  - `k3s_runtime_config` defined in `vars/` for validation and overwritten in
-    tasks for control plane and workers.
-  - Removed unused references to GitHub API.
-  - `set_fact` and `command` tasks now use FQCN.
-  - Check of `ansible_version` in environment check.
-  - Introduction of target environment checks for #72.
-  - Fixed bug with non-default listening port not being passed to workers.
-  - Added ability to put documentation links into validation checks #76.
-  - Removed the requirement for `jmespath` on the Ansible controller.
-  - Fixed bug with issue data collection tasks.
+- `k3s_config_dir` derived from `k3s_config_file`, reused throughout the role
+  to allow for easy removal of "Rancher" references #73.
+- `k3s_token_location` has moved to be in `k3s_config_dir`.
+- Tasks for creating directories now looped to caputure configuration from
+  `k3s_server` and `k3s_agent` and ensure directories exist before k3s
+  starts, see #75.
+- Server token collected directly from token file, not symlinked file
+  (node-token).
+- `k3s_runtime_config` defined in `vars/` for validation and overwritten in
+  tasks for control plane and workers.
+- Removed unused references to GitHub API.
+- `set_fact` and `command` tasks now use FQCN.
+- Check of `ansible_version` in environment check.
+- Introduction of target environment checks for #72.
+- Fixed bug with non-default listening port not being passed to workers.
+- Added ability to put documentation links into validation checks #76.
+- Removed the requirement for `jmespath` on the Ansible controller.
+- Fixed bug with issue data collection tasks.
 
 ### Breaking changes
 
-  - Ansible minimum version is hard set to v2.10.4
-  - `k3s_token_location` has moved to be in `k3s_config_dir` so re-running the
-    role will create a duplicate file here.
+- Ansible minimum version is hard set to v2.10.4
+- `k3s_token_location` has moved to be in `k3s_config_dir` so re-running the
+  role will create a duplicate file here.
 
 ---
 
@@ -346,8 +346,8 @@ Happy π day!
 
 ### Notable changes
 
-  - Updated k3s uninstall scripts #74
-  - Started moving Rancher references to `vars/` as per #73
+- Updated k3s uninstall scripts #74
+- Started moving Rancher references to `vars/` as per #73
 
 ---
 
@@ -355,8 +355,8 @@ Happy π day!
 
 ### Notable changes
 
-  - Fixed typos in documentation.
-  - Molecule testing pinned to v3.1 due to tests failing.
+- Fixed typos in documentation.
+- Molecule testing pinned to v3.1 due to tests failing.
 
 ---
 
@@ -364,13 +364,13 @@ Happy π day!
 
 ### Notable changes
 
-  - Re-working documentation
-  - Updated GitHub link, org changed from Rancher to k3s-io.
-  - Replace deprecated `play_hosts` variable.
+- Re-working documentation
+- Updated GitHub link, org changed from Rancher to k3s-io.
+- Replace deprecated `play_hosts` variable.
 
 ### Breaking changes
 
-  - Moving git branch from `master` to `main`.
+- Moving git branch from `master` to `main`.
 
 ---
 
@@ -378,15 +378,15 @@ Happy π day!
 
 ### Notable changes
 
-  - Use of FQCNs enforced, minimum Ansible version now v2.10
-  - `k3s_etcd_datastore` no longer experimental after K3s version v1.19.5+k3s1
-  - Docker marked as deprecated for K3s > v1.20.0+k3s1
+- Use of FQCNs enforced, minimum Ansible version now v2.10
+- `k3s_etcd_datastore` no longer experimental after K3s version v1.19.5+k3s1
+- Docker marked as deprecated for K3s > v1.20.0+k3s1
 
 ### Breaking changes
 
-  - Use of FQCNs enforced, minimum Ansible version now v2.10
-  - Use of Docker requires `k3s_use_unsupported_config` to be `true` after
-    v1.20.0+k3s1
+- Use of FQCNs enforced, minimum Ansible version now v2.10
+- Use of Docker requires `k3s_use_unsupported_config` to be `true` after
+  v1.20.0+k3s1
 
 ---
 
@@ -394,7 +394,7 @@ Happy π day!
 
 ### Notable changes
 
-  - Fixed link to documentation.
+- Fixed link to documentation.
 
 ---
 
@@ -402,24 +402,24 @@ Happy π day!
 
 ### Notable changes
 
-  - Deprecated configuration check built into validation steps.
-  - Removed duplicated tasks for single node cluster.
-  - Added documentation providing quickstart examples and common operations.
-  - Fixed data-dir configuration.
-  - Some tweaks to rootless.
-  - Fix draining and removing of nodes.
+- Deprecated configuration check built into validation steps.
+- Removed duplicated tasks for single node cluster.
+- Added documentation providing quickstart examples and common operations.
+- Fixed data-dir configuration.
+- Some tweaks to rootless.
+- Fix draining and removing of nodes.
 
 ### Breaking changes
 
-  - `k3s_token_location` now points to a file location, not a directory.
-  - `k3s_systemd_unit_directory` renamed to `k3s_systemd_unit_dir`
-  - Removed `k3s_node_data_dir` as this is now configured with `data-dir` in
-    `k3s_server` and/or `k3s_agent`.
+- `k3s_token_location` now points to a file location, not a directory.
+- `k3s_systemd_unit_directory` renamed to `k3s_systemd_unit_dir`
+- Removed `k3s_node_data_dir` as this is now configured with `data-dir` in
+  `k3s_server` and/or `k3s_agent`.
 
 ### Known issues
 
-  - Rootless is still broken, this is still not supported as a method for
-    running k3s using this role.
+- Rootless is still broken, this is still not supported as a method for
+  running k3s using this role.
 
 ---
 
@@ -427,7 +427,7 @@ Happy π day!
 
 ### Notable changes
 
-  - Updated issue template and information collection tasks.
+- Updated issue template and information collection tasks.
 
 ---
 
@@ -435,8 +435,8 @@ Happy π day!
 
 ### Notable changes
 
-  - Fixed a number of typos in the README.md
-  - Updated the meta/main.yml to put quotes around minimum Ansible version.
+- Fixed a number of typos in the README.md
+- Updated the meta/main.yml to put quotes around minimum Ansible version.
 
 ---
 
@@ -444,14 +444,14 @@ Happy π day!
 
 ### Notable changes
 
-  - #64 - Initial release of v2.0.0 of
-    [ansible-role-k3s](https://github.com/PyratLabs/ansible-role-k3s).
-  - Minimum supported k3s version now: v1.19.1+k3s1
-  - Minimum supported Ansible version now: v2.10.0
-  - #62 - Remove all references to the word "master".
-  - #53 - Move to file-based configuration.
-  - Refactored to avoid duplication in code and make contribution easier.
-  - Validation checks moved to using variables defined in `vars/`
+- #64 - Initial release of v2.0.0 of
+  [ansible-role-k3s](https://github.com/PyratLabs/ansible-role-k3s).
+- Minimum supported k3s version now: v1.19.1+k3s1
+- Minimum supported Ansible version now: v2.10.0
+- #62 - Remove all references to the word "master".
+- #53 - Move to file-based configuration.
+- Refactored to avoid duplication in code and make contribution easier.
+- Validation checks moved to using variables defined in `vars/`
 
 ### Breaking changes
 

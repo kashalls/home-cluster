@@ -37,7 +37,6 @@ Here's a YAML based example inventory for our servers called `inventory.yml`:
 
 ```yaml
 ---
-
 k3s_cluster:
   hosts:
     kube-0:
@@ -52,7 +51,6 @@ k3s_cluster:
       ansible_user: ansible
       ansible_host: 10.10.9.4
       ansible_python_interpreter: /usr/bin/python3
-
 ```
 
 We can test this works with `ansible -i inventory.yml -m ping all`, expected
@@ -80,7 +78,6 @@ Here is our playbook for the k3s cluster (`cluster.yml`):
 
 ```yaml
 ---
-
 - name: Build a cluster with a single control node
   hosts: k3s_cluster
   vars:
@@ -113,8 +110,8 @@ After logging into kube-0, we can test that k3s is running across the cluster,
 that all nodes are ready and that everything is ready to execute our Kubernetes
 workloads by running the following:
 
-  - `sudo kubectl get nodes -o wide`
-  - `sudo kubectl get pods -o wide --all-namespaces`
+- `sudo kubectl get nodes -o wide`
+- `sudo kubectl get pods -o wide --all-namespaces`
 
 :hand: Note we are using `sudo` because we need to be root to access the
 kube config for this node. This behavior can be changed with specifying

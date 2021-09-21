@@ -11,15 +11,14 @@ cluster.
 
 Below, our example inventory and playbook are as follows:
 
-  - inventory: `inventory.yml`
-  - playbook: `cluster.yml`
+- inventory: `inventory.yml`
+- playbook: `cluster.yml`
 
 Currently your `inventory.yml` looks like this, it has three nodes defined,
 `kube-0` (control node) and `kube-1`, `kube-2` (worker nodes).
 
 ```yaml
 ---
-
 k3s_cluster:
   hosts:
     kube-0:
@@ -44,7 +43,6 @@ will set `kube-2` node to `k3s_state: uninstalled` in our inventory.
 
 ```yaml
 ---
-
 k3s_cluster:
   hosts:
     kube-0:

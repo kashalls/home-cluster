@@ -11,15 +11,14 @@ cluster.
 
 Below, our example inventory and playbook are as follows:
 
-  - inventory: `inventory.yml`
-  - playbook: `cluster.yml`
+- inventory: `inventory.yml`
+- playbook: `cluster.yml`
 
 Currently your `inventory.yml` looks like this, it has two nodes defined,
 `kube-0` (control node) and `kube-1` (worker node).
 
 ```yaml
 ---
-
 k3s_cluster:
   hosts:
     kube-0:
@@ -40,7 +39,6 @@ new node to our inventory.
 
 ```yaml
 ---
-
 k3s_cluster:
   hosts:
     kube-0:
