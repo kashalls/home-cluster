@@ -47,7 +47,7 @@ spec:
       enabled: true
       persistence:
         storageClass: "nfs-client"
-        accessModes: 
+        accessModes:
           - ReadWriteOnce
         enabled: true
         size: 5Gi

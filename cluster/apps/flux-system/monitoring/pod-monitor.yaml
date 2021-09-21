@@ -1,4 +1,3 @@
-
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
@@ -24,7 +23,7 @@ spec:
   podMetricsEndpoints:
     - port: http-prom
       relabelings:
-        - sourceLabels: ['namespace', 'job']
+        - sourceLabels: ["namespace", "job"]
           regex: ".+/(.*)"
           targetLabel: "job"
           replacement: "$1"

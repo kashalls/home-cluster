@@ -1,5 +1,4 @@
 ---
-
 - name: Ensure docker is uninstalled using Pacman
   community.general.pacman:
     name: docker

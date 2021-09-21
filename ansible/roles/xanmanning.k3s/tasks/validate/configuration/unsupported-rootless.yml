@@ -1,5 +1,4 @@
 ---
-
 - name: Check if newuidmap is available
   ansible.builtin.command:
     cmd: which newuidmap
@@ -41,9 +40,11 @@
 
 - name: Get current user subuid and subgid values
   ansible.builtin.set_fact:
-    k3s_current_user_subuid: "{{ (k3s_get_subuid['content'] | b64decode).split('\n')
+    k3s_current_user_subuid:
+      "{{ (k3s_get_subuid['content'] | b64decode).split('\n')
       | select('search', ansible_user_id) | first | default('UserNotFound:0:0') }}"
-    k3s_current_user_subgid: "{{ (k3s_get_subgid['content'] | b64decode).split('\n')
+    k3s_current_user_subgid:
+      "{{ (k3s_get_subgid['content'] | b64decode).split('\n')
       | select('search', ansible_user_id) | first | default('UserNotFound:0:0') }}"
 
 - name: Check user namespaces kernel parameters are adequate

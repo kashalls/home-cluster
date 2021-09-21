@@ -1,5 +1,4 @@
 ---
-
 - name: Ensure python-dnf is installed
   ansible.builtin.package:
     name: "{{ 'python-dnf' if ansible_python_version is version_compare('3.0.0', '<') else 'python3-dnf' }}"

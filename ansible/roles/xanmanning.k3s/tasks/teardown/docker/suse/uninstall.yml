@@ -1,5 +1,4 @@
 ---
-
 - name: Ensure docker is uninstalled using Zypper
   community.general.zypper:
     name: docker

@@ -1,5 +1,4 @@
 ---
-
 - name: Check to see if k3s-killall.sh exits
   ansible.builtin.stat:
     path: /usr/local/bin/k3s-killall.sh

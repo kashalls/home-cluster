@@ -1,5 +1,4 @@
 ---
-
 - name: Ensure docker is uninstalled
   ansible.builtin.package:
     name:

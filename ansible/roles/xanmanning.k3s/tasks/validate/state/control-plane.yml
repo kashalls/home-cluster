@@ -1,5 +1,4 @@
 ---
-
 - name: Check that the control plane is available to accept connections
   ansible.builtin.wait_for:
     port: "{{ k3s_runtime_config['https-listen-port'] | default('6443') }}"

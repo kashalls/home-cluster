@@ -1,5 +1,4 @@
 ---
-
 - name: "Check that k3s_release_version >= {{ k3s_min_version }}"
   ansible.builtin.assert:
     that:
@@ -35,7 +34,7 @@
   loop: "{{ k3s_deprecated_config }}"
   when:
     - (item.when is not defined
-       or (item.when is defined and (k3s_release_version | replace('v', '')) is version_compare(item.when, '>=')))
+      or (item.when is defined and (k3s_release_version | replace('v', '')) is version_compare(item.when, '>=')))
     - not k3s_use_unsupported_config
 
 - name: Check configuration in k3s_server and k3s_agent against release version

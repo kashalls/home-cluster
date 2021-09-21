@@ -1,5 +1,4 @@
 ---
-
 - name: Ensure that the config.yaml.d directory exists
   ansible.builtin.file:
     state: directory

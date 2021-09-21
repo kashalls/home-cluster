@@ -1,5 +1,4 @@
 ---
-
 - name: Ensure Docker repository is removed
   ansible.builtin.yum_repository:
     name: docker-ce

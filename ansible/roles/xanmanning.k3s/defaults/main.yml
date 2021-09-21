@@ -1,5 +1,4 @@
 ---
-
 ##
 # Global/Cluster Configuration
 ##
@@ -123,11 +122,10 @@ k3s_become_for_uninstall: null
 # Private registry configuration.
 # Rancher k3s documentation: https://rancher.com/docs/k3s/latest/en/installation/private-registry/
 k3s_registries:
-
   mirrors:
-#    docker.io:
-#      endpoint:
-#        - "https://mycustomreg.com:5000"
+  #    docker.io:
+  #      endpoint:
+  #        - "https://mycustomreg.com:5000"
   configs:
 #    "mycustomreg:5000":
 #      auth:

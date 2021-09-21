@@ -1,5 +1,4 @@
 ---
-
 - name: Check that k3s_state is a supported value
   ansible.builtin.assert:
     that:

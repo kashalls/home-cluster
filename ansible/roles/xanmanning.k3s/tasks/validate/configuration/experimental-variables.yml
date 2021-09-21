@@ -1,5 +1,4 @@
 ---
-
 - name: Check if embedded etcd datastore is enabled and marked as experimental
   ansible.builtin.assert:
     that:
@@ -28,4 +27,4 @@
   when:
     - (item.setting in k3s_runtime_config and k3s_runtime_config[item.setting])
     - ((item.until is not defined) or
-        (item.until is defined and (k3s_release_version | replace('v', '')) is version_compare(item.until, '<')))
+      (item.until is defined and (k3s_release_version | replace('v', '')) is version_compare(item.until, '<')))

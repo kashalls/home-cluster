@@ -133,14 +133,14 @@ spec:
       enabled: true
       endpoints:
         - 10.20.30.3
-#    kubeEtcd:
-#      enabled: true
-#      endpoints:
-#        - 10.20.30.3
-#      service:
-#        enabled: true
-#        port: 2381
-#        targetPort: 2381
+    #    kubeEtcd:
+    #      enabled: true
+    #      endpoints:
+    #        - 10.20.30.3
+    #      service:
+    #        enabled: true
+    #        port: 2381
+    #        targetPort: 2381
     # Setting this option to 0 disabled CPU limits
     prometheusOperator:
       configReloaderCpu: 0
@@ -189,7 +189,7 @@ spec:
             static_configs:
               - targets:
                   - "${NAS_ADDR}:9100"
-          - job_name: 'minio-job'
+          - job_name: "minio-job"
             bearer_token: "${SECRET_MINIO_PROMETHEUS_BEARER}"
             honor_timestamps: true
             metrics_path: /minio/v2/metrics/cluster

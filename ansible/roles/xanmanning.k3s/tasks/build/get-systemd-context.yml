@@ -1,5 +1,4 @@
 ---
-
 - name: Ensure systemd context is correct if we are running k3s rootless
   ansible.builtin.set_fact:
     k3s_systemd_context: user

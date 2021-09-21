@@ -19,12 +19,12 @@ spec:
           persistentVolumeClaim:
             claimName: weeb-services-claim-v1
       containers:
-      - name: whateveryouwant
-        image: ghcr.io/kashalls/weebservices:latest
-        imagePullPolicy: Always
-        envFrom:
-        - secretRef:
-            name: weeb-services
-        volumeMounts:
-        - name: weeb-services-storage
-          mountPath: /opt/partyanimal/dist/images
+        - name: whateveryouwant
+          image: ghcr.io/kashalls/weebservices:latest
+          imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+                name: weeb-services
+          volumeMounts:
+            - name: weeb-services-storage
+              mountPath: /opt/partyanimal/dist/images

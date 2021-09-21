@@ -21,8 +21,7 @@ spec:
   typhaMetricsPort: 9093
 ---
 apiVersion: operator.tigera.io/v1
-kind: APIServer 
-metadata: 
-  name: default 
+kind: APIServer
+metadata:
+  name: default
 spec: {}
-

@@ -1,13 +1,12 @@
 ---
-
 - import_tasks: build/preconfigure-k3s.yml
 
 - import_tasks: teardown/drain-and-remove-nodes.yml
 
 - import_tasks: build/get-version.yml
   when: k3s_release_version is not defined
-        or not k3s_release_version
-        or k3s_release_version is not regex('\\+k3s[1-9]$')
+    or not k3s_release_version
+    or k3s_release_version is not regex('\\+k3s[1-9]$')
 
 - import_tasks: validate/main.yml
   when: not k3s_skip_validation
@@ -16,7 +15,6 @@
 
 - name: Ensure docker installation tasks are run
   block:
-
     - include_tasks: build/docker/{{ ansible_os_family | lower }}/install-prerequisites.yml
 
     - import_tasks: build/docker/install.yml

@@ -1,5 +1,4 @@
 ---
-
 - name: Ensure k3s is linked into the installation destination
   ansible.builtin.file:
     src: "{{ k3s_install_dir }}/k3s-{{ k3s_release_version }}"

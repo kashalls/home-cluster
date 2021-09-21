@@ -1,5 +1,4 @@
 ---
-
 - name: Ensure docker is uninstalled using amazon-linux-extras
   ansible.builtin.command:
     cmd: amazon-linux-extras uninstall docker

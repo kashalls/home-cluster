@@ -40,7 +40,7 @@ spec:
                 pathType: Prefix
         tls:
           - hosts:
-            - "node-red.${SECRET_DOMAIN}"
+              - "node-red.${SECRET_DOMAIN}"
             secretName: node-red
     persistence:
       config:

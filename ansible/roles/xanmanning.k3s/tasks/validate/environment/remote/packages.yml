@@ -1,5 +1,4 @@
 ---
-
 - name: Check that {{ package.name }} is installed
   ansible.builtin.command:
     cmd: "which {{ package.name }}"
@@ -19,6 +18,6 @@
       {% endif %}
   when:
     - (package.until is not defined
-       or k3s_release_version is version_compare(package.until, '>='))
+      or k3s_release_version is version_compare(package.until, '>='))
     - (package.from is not defined
-       or k3s_release_version is version_compare(package.from, '>='))
+      or k3s_release_version is version_compare(package.from, '>='))

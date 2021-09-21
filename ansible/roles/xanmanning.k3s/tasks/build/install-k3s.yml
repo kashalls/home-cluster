@@ -1,5 +1,4 @@
 ---
-
 - include_tasks: install-k3s-directories.yml
   loop: "{{ k3s_ensure_directories_exist }}"
   loop_control:
@@ -8,7 +7,7 @@
 - include_tasks: install-k3s-node.yml
   when:
     - ((k3s_control_node and k3s_controller_list | length == 1)
-        or (k3s_primary_control_node and k3s_controller_list | length > 1))
+      or (k3s_primary_control_node and k3s_controller_list | length > 1))
     - not ansible_check_mode
 
 - name: Flush Handlers
@@ -28,5 +27,5 @@
     - k3s_systemd_start_k3s is not succeeded
     - not ansible_check_mode
   when: (k3s_control_node and k3s_controller_list | length == 1)
-        or (k3s_primary_control_node and k3s_controller_list | length > 1)
+    or (k3s_primary_control_node and k3s_controller_list | length > 1)
   become: "{{ k3s_become_for_systemd | ternary(true, false, k3s_become_for_all) }}"
