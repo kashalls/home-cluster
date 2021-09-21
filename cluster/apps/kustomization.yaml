@@ -9,4 +9,5 @@ resources:
   - kube-system
   - monitoring
   - networking
+  - system-upgrade
   - velero

@@ -4,5 +4,4 @@ kind: Kustomization
 resources:
   - monitoring
   - notifications
-  - system-upgrade-controller
   - webhook
