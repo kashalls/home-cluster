@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - blocky
   - traefik
-#  - cloudflare-ddns
+  - cloudflare-ddns
   - error-pages
   - external-dns
   - wildcard-certificate
