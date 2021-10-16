@@ -20,8 +20,10 @@ spec:
     image:
       repository: ghcr.io/miguelndecarvalho/speedtest-exporter
       tag: v3.3.3
-    prometheus:
-      podMonitor:
-        enabled: true
-        interval: 1h
+    metrics:
+      enabled: true
+      serviceMonitor:
+        interval: 60m
         scrapeTimeout: 1m
+      prometheusRule:
+        enabled: false
