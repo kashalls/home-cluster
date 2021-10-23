@@ -25,6 +25,31 @@
 
 I ended up pushing this README before I wrote this, so this is a placeholder. Thanks.
 
+### Hardware
+
+    - [Unifi Dream Machine Pro](https://store.ui.com/collections/unifi-network-unifi-os-consoles/products/udm-pro) configured with [Boostchickens's UDM Utilties](https://github.com/boostchicken/udm-utilities) and [My Util Scripts](https://github.com/Kashalls/udmp-utils).
+    - 2x Dell Optiplex 790's w/ Intel i3-2320, 8GB Ram, 2x Samsung 860 Pro (256GB)
+    - 1x Synology NAS DS412+ with 4GB Ram and 4x Seagate ST2000DM008-2FR102's with minio running in docker.
+
+### Production
+    Fiji
+    - Ryzen 9 3900x
+    - X470D4U
+    - 2x F4-2666C19-32GNT (32GB ea.)
+    - 2x CT1000P1SSD8 (ZFS-1)
+
+    Poseidon
+    - 2x Intel Xeon L5640 (2.27GHz)
+    - Dell R710
+    - 18x M393B5273CH0-YH9 (4GB ea.)
+    - 
+
+    Aquafina
+    -
+    -
+
+
+ 
 ### Required Addons
 
 I wrote a couple addons for this to work. These addons requires physical devices for them to work.

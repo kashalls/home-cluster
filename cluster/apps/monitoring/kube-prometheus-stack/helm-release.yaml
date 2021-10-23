@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack
-      version: 19.1.0
+      version: 19.2.2
       sourceRef:
         kind: HelmRepository
         name: prometheus-community-charts
@@ -201,10 +201,10 @@ spec:
             static_configs:
               - targets:
                   - "${COREDNS_ADDR}:9153"
-#         - job_name: "airgradient"
-#           honor_timestamps: true
-#           static_configs:
-#             - targets:
-#                 - "${AIRGRADIENT_ADDR}:9926"
-#
-#
+          - job_name: "airgradient"
+            honor_timestamps: true
+            static_configs:
+              - targets:
+                 - "${AIRGRADIENT_ADDR}:9926"
+
+
