@@ -1,0 +1,76 @@
+---
+# Project Information
+site_name: kashalls — home cluster
+site_description: My k3s cluster backed by flux2 in my house!
+site_author: Jordan Jones
+site_url: https://kashalls.github.io/home-cluster
+
+# Repository
+repo_name: kashalls/home-cluster
+repo_url: https://github.com/kashalls/home-cluster
+edit_uri: "edit/main/docs/"
+
+theme:
+  name: material
+  icon:
+    repo: fontawesome/brands/github-alt
+  language: enabled
+  features:
+    - navigation.sections
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+  palette:
+    - scheme: default
+      primary: blue
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: blue
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto mono
+
+docs_dir: ./docs
+
+# Customization
+extra_css:
+  - _static/custom.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/kashalls
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/sTMX7Vh
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/kashalls
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - attr_list
+  - toc:
+      permalink: true
+
+# Navigation structure
+nav:
+  - Introduction: index.md
+  - Installation:
+      - Guidelines: installation/guidelines.md
+      - Preparing Nodes: installation/preparing-nodes.md
+      - Installing Kubernetes: installation/installing-kubernetes.md
+      - Bootstrap Applications: installation/bootstrap-applications.md
+  - Networking:
+      - General: networking/general.md
+      - DNS: networking/dns.md
+  - Storage:
+      - Rook PVC Backup: storage/rook-pvc-backup.md
+      - Rook PVC Restore: storage/rook-pvc-restore.md
