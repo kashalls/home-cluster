@@ -63,14 +63,3 @@ markdown_extensions:
 # Navigation structure
 nav:
   - Introduction: index.md
-  - Installation:
-      - Guidelines: installation/guidelines.md
-      - Preparing Nodes: installation/preparing-nodes.md
-      - Installing Kubernetes: installation/installing-kubernetes.md
-      - Bootstrap Applications: installation/bootstrap-applications.md
-  - Networking:
-      - General: networking/general.md
-      - DNS: networking/dns.md
-  - Storage:
-      - Rook PVC Backup: storage/rook-pvc-backup.md
-      - Rook PVC Restore: storage/rook-pvc-restore.md
