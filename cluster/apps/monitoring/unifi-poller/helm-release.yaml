@@ -26,7 +26,7 @@ spec:
       UP_UNIFI_DEFAULT_URL: "https://10.0.0.1"
       UP_UNIFI_DEFAULT_VERIFY_SSL: false
       UP_UNIFI_DEFAULT_USER: "unifipoller"
-      UP_UNIFI_DEFAULT_PASS: "unifipoller"
+      UP_UNIFI_DEFAULT_PASS: "Un1fiP@ller"
       UP_UNIFI_DEFAULT_SAVE_SITES: true
       UP_UNIFI_DEFAULT_SAVE_DPI: false
       UP_INFLUXDB_DISABLE: true
