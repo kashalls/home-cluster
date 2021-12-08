@@ -120,8 +120,9 @@ spec:
         flux-control-plane:
           url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/control-plane.json
           datasource: Prometheus
-        blocky:
-          url: https://raw.githubusercontent.com/0xERR0R/blocky/master/docs/blocky-grafana.json
+        calico-felix:
+          gnetId: 12175
+          revision: 5
           datasource: Prometheus
     sidecar:
       dashboards:
