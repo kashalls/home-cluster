@@ -21,7 +21,7 @@ spec:
     alertmanager:
       config:
         global:
-          slack_api_url: "${SECRET_ALERT_MANAGER_DISCORD_WEBHOOK}"
+          slack_api_url: "${SECRET_PROMETHEUS_DISCORD_WEBHOOK}"
           resolve_timeout: 5m
         receivers:
           - name: "null"
@@ -45,7 +45,7 @@ spec:
                   {{ end }}
           - name: "nodered"
             webhook_configs:
-              - url: "http://node-red.home:1880/power-outage"
+              - url: "http://node-red.${SECRET_DOMAIN}:1880/power-outage"
                 send_resolved: true
         route:
           group_by: ["alertname", "job"]
@@ -74,7 +74,7 @@ spec:
       ingress:
         enabled: true
         pathType: Prefix
-        ingressClassName: "nginx"
+        ingressClassName: "traefik"
         hosts:
           - "alert-manager.${SECRET_DOMAIN}"
         tls:
@@ -84,7 +84,7 @@ spec:
         storage:
           volumeClaimTemplate:
             spec:
-              storageClassName: "ceph-block"
+              storageClassName: "nfs-client"
               resources:
                 requests:
                   storage: 1Gi
@@ -122,9 +122,7 @@ spec:
     kubeControllerManager:
       enabled: true
       endpoints:
-        - 192.168.42.10
-        - 192.168.42.11
-        - 192.168.42.12
+        - 10.20.30.3
       service:
         enabled: true
         port: 10257
@@ -136,9 +134,7 @@ spec:
     kubeScheduler:
       enabled: true
       endpoints:
-        - 192.168.42.10
-        - 192.168.42.11
-        - 192.168.42.12
+        - 10.20.30.3
       service:
         enabled: true
         port: 10259
@@ -150,15 +146,11 @@ spec:
     kubeProxy:
       enabled: true
       endpoints:
-        - 192.168.42.10
-        - 192.168.42.11
-        - 192.168.42.12
+        - 10.20.30.3
     kubeEtcd:
       enabled: true
       endpoints:
-        - 192.168.42.10
-        - 192.168.42.11
-        - 192.168.42.12
+        - 10.20.30.3
       service:
         enabled: true
         port: 2381
@@ -170,7 +162,7 @@ spec:
       ingress:
         enabled: true
         pathType: Prefix
-        ingressClassName: "nginx"
+        ingressClassName: "traefik"
         hosts:
           - "prometheus.${SECRET_DOMAIN}"
         tls:
@@ -193,7 +185,7 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: "ceph-block"
+              storageClassName: "nfs-client"
               resources:
                 requests:
                   storage: 10Gi
