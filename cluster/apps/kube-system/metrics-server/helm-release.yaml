@@ -8,9 +8,9 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://kubernetes-sigs.github.io/metrics-server
+      # renovate: registryUrl=https://kubernetes-sigs.github.io/metrics-server/
       chart: metrics-server
-      version: 3.7.0
+      version: 3.5.0
       sourceRef:
         kind: HelmRepository
         name: metrics-server-charts
@@ -18,7 +18,9 @@ spec:
       interval: 5m
   values:
     args:
+      - --cert-dir=/tmp
       - --kubelet-insecure-tls
       - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
       - --kubelet-use-node-status-port
       - --metric-resolution=15s
+      - --secure-port=443
