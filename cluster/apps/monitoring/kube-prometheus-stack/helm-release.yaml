@@ -133,6 +133,14 @@ spec:
       enabled: true
       endpoints:
         - 10.20.30.3
+      service:
+        enabled: true
+        port: 10259
+        targetPort: 10259
+      serviceMonitor:
+        enabled: true
+        https: true
+        insecureSkipVerify: true
     #    kubeEtcd:
     #      enabled: true
     #      endpoints:
