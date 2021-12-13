@@ -21,7 +21,7 @@ spec:
     alertmanager:
       config:
         global:
-          slack_api_url: "${SECRET_PROMETHEUS_DISCORD_WEBHOOK}"
+          slack_api_url: "${SECRET_ALERT_MANAGER_DISCORD_WEBHOOK}"
           resolve_timeout: 5m
         receivers:
           - name: "null"
@@ -36,14 +36,16 @@ spec:
                 text: >-
                   {{ range .Alerts -}}
                     **Alert:** {{ .Annotations.title }}{{ if .Labels.severity }} - `{{ .Labels.severity }}`{{ end }}
+
                   **Description:** {{ if ne .Annotations.description ""}}{{ .Annotations.description }}{{else}}N/A{{ end }}
+
                   **Details:**
                     {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
                     {{ end }}
                   {{ end }}
           - name: "nodered"
             webhook_configs:
-              - url: "http://node-red.${SECRET_DOMAIN}/power-outage"
+              - url: "http://node-red.home:1880/power-outage"
                 send_resolved: true
         route:
           group_by: ["alertname", "job"]
@@ -61,7 +63,7 @@ spec:
               continue: true
             - receiver: "nodered"
               match:
-                alertname: UPSLowOnBattery
+                alertname: UPSOnBattery
               continue: true
         inhibit_rules:
           - source_match:
@@ -72,21 +74,17 @@ spec:
       ingress:
         enabled: true
         pathType: Prefix
-        ingressClassName: "traefik"
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-production
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        ingressClassName: "nginx"
         hosts:
           - "alert-manager.${SECRET_DOMAIN}"
         tls:
           - hosts:
               - "alert-manager.${SECRET_DOMAIN}"
-            secretName: alert-manager
       alertmanagerSpec:
         storage:
           volumeClaimTemplate:
             spec:
-              storageClassName: "nfs-client"
+              storageClassName: "ceph-block"
               resources:
                 requests:
                   storage: 1Gi
@@ -124,15 +122,23 @@ spec:
     kubeControllerManager:
       enabled: true
       endpoints:
-        - 10.20.30.3
+        - 192.168.42.10
+        - 192.168.42.11
+        - 192.168.42.12
+      service:
+        enabled: true
+        port: 10257
+        targetPort: 10257
+      serviceMonitor:
+        enabled: true
+        https: true
+        insecureSkipVerify: true
     kubeScheduler:
       enabled: true
       endpoints:
-        - 10.20.30.3
-    kubeProxy:
-      enabled: true
-      endpoints:
-        - 10.20.30.3
+        - 192.168.42.10
+        - 192.168.42.11
+        - 192.168.42.12
       service:
         enabled: true
         port: 10259
@@ -141,14 +147,22 @@ spec:
         enabled: true
         https: true
         insecureSkipVerify: true
-    #    kubeEtcd:
-    #      enabled: true
-    #      endpoints:
-    #        - 10.20.30.3
-    #      service:
-    #        enabled: true
-    #        port: 2381
-    #        targetPort: 2381
+    kubeProxy:
+      enabled: true
+      endpoints:
+        - 192.168.42.10
+        - 192.168.42.11
+        - 192.168.42.12
+    kubeEtcd:
+      enabled: true
+      endpoints:
+        - 192.168.42.10
+        - 192.168.42.11
+        - 192.168.42.12
+      service:
+        enabled: true
+        port: 2381
+        targetPort: 2381
     # Setting this option to 0 disabled CPU limits
     prometheusOperator:
       configReloaderCpu: 0
@@ -156,17 +170,15 @@ spec:
       ingress:
         enabled: true
         pathType: Prefix
-        ingressClassName: "traefik"
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-production
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        ingressClassName: "nginx"
         hosts:
           - "prometheus.${SECRET_DOMAIN}"
         tls:
           - hosts:
               - "prometheus.${SECRET_DOMAIN}"
-            secretName: prometheus
       thanosService:
+        enabled: true
+      thanosServiceMonitor:
         enabled: true
       prometheusSpec:
         replicas: 1
@@ -181,7 +193,7 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: "nfs-client"
+              storageClassName: "ceph-block"
               resources:
                 requests:
                   storage: 10Gi
