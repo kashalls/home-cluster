@@ -18,7 +18,7 @@ spec:
       interval: 5m
   values:
     image:
-      repository: ghcr.io/k8s-at-home/kured
+      repository: ghcr.io/weaveworks/kured
     updateStrategy: RollingUpdate
     configuration:
       timeZone: "America/Los_Angeles"
