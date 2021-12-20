@@ -16,7 +16,7 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
       interval: 5m
-  dependson:
+  dependsOn:
     - name: mosquitto
       namespace: home
   values:
@@ -45,8 +45,9 @@ spec:
         enabled: true
         existingClaim: zigbee2mqtt-config-v1
         mountPath: "/data"
-    podAnnotations:
-      backup.velero.io/backup-volumes: config
+    # These config values are not what is my current state of zigbee2mqtt
+    # It's merely a guide for the initial start up on a fresh install
+    # Everything after the first start is managed in the UI
     config:
       homeassistant: true
       device_options:
@@ -62,6 +63,23 @@ spec:
       advanced:
         log_output:
           - console
+        network_key:
+          - 204
+          - 61
+          - 75
+          - 23
+          - 44
+          - 230
+          - 24
+          - 203
+          - 53
+          - 5
+          - 248
+          - 32
+          - 50
+          - 84
+          - 44
+          - 159
       frontend:
         port: 8080
       experimental:
