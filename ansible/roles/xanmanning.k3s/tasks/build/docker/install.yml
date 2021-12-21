@@ -1,4 +1,5 @@
 ---
+
 - name: Ensure docker is installed
   ansible.builtin.package:
     name:

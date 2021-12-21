@@ -1,4 +1,5 @@
 ---
+
 - name: Ensure Docker repository is uninstalled
   ansible.builtin.apt_repository:
     filename: docker-ce

@@ -1,4 +1,5 @@
 ---
+
 - name: Check if kubectl exists
   ansible.builtin.stat:
     path: "{{ k3s_install_dir }}/kubectl"
@@ -7,6 +8,7 @@
 
 - name: Clean up nodes that are in an uninstalled state
   block:
+
     - name: Gather a list of nodes
       ansible.builtin.command:
         cmd: "{{ k3s_install_dir }}/kubectl get nodes"
@@ -22,7 +24,7 @@
         cmd: >-
           {{ k3s_install_dir }}/kubectl drain {{ item }}
             --ignore-daemonsets
-            --delete-local-data
+            --{{ k3s_drain_command[ansible_version.string is version_compare('1.22', '>=')] }}
             --force
       delegate_to: "{{ k3s_control_delegate }}"
       run_once: true

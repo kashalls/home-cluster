@@ -1,4 +1,5 @@
 ---
+
 node-label:
   - "foo=bar"
   - "hello=world"

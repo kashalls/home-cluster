@@ -1,4 +1,5 @@
 ---
+
 - name: Check that Ansible v{{ ansible_version.string }} is supported by this role
   ansible.builtin.assert:
     that:

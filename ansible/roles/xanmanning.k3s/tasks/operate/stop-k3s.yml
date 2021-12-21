@@ -1,4 +1,5 @@
 ---
+
 - name: Ensure k3s service is stopped
   ansible.builtin.systemd:
     name: k3s

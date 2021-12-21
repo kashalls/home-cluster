@@ -1,4 +1,5 @@
 ---
+
 - name: Check that k3s is not running
   ansible.builtin.command:
     cmd: pgrep k3s

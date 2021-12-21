@@ -9,7 +9,6 @@
 ### Issue type
 
 <!-- Pick one below and delete the rest -->
-
 - Bugfix
 - Documentation
 - Feature

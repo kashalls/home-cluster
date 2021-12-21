@@ -1,4 +1,5 @@
 ---
+
 - name: Ensure Docker prerequisites are installed
   ansible.builtin.apt:
     name:

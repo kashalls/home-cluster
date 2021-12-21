@@ -1,4 +1,5 @@
 ---
+
 - import_tasks: build/get-version.yml
   when: k3s_release_version is not defined or not k3s_release_version
 

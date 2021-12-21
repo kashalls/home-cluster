@@ -1,4 +1,5 @@
 ---
+
 # Minimum supported versions
 k3s_min_version: 1.19.3
 k3s_ansible_min_version: 2.9.16
@@ -123,7 +124,7 @@ k3s_config_exclude:
 # Config items and the versions that they were introduced
 k3s_config_version_check:
   - setting: etcd-s3-bucket
-    version: 1.20.6 # Prior to this there was very buggy support!
+    version: 1.20.6  # Prior to this there was very buggy support!
 
 # Config items that should be marked as experimental
 k3s_experimental_config:
@@ -158,3 +159,8 @@ k3s_cgroup_subsys:
     documentation: |
       If you are running Alpine Linux, see:
       https://rancher.com/docs/k3s/latest/en/advanced/#additional-preparation-for-alpine-linux-setup
+
+# Drain command
+k3s_drain_command:
+  true: delete-emptydir-data
+  false: delete-local-data

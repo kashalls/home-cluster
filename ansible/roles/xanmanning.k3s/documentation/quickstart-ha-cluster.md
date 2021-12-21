@@ -38,6 +38,7 @@ Here's a YAML based example inventory for our servers called `inventory.yml`:
 
 ```yaml
 ---
+
 # We're adding k3s_control_node to each host, this can be done in host_vars/
 # or group_vars/ as well - but for simplicity we are setting it here.
 k3s_cluster:
@@ -57,6 +58,7 @@ k3s_cluster:
       ansible_host: 10.10.9.4
       ansible_python_interpreter: /usr/bin/python3
       k3s_control_node: true
+
 ```
 
 We can test this works with `ansible -i inventory.yml -m ping all`, expected
@@ -84,12 +86,13 @@ Here is our playbook for the k3s cluster (`ha_cluster.yml`):
 
 ```yaml
 ---
+
 - name: Build a cluster with HA control plane
   hosts: k3s_cluster
   vars:
     k3s_become_for_all: true
     k3s_etcd_datastore: true
-    k3s_use_experimental: true # Note this is required for k3s < v1.19.5+k3s1
+    k3s_use_experimental: true  # Note this is required for k3s < v1.19.5+k3s1
   roles:
     - role: xanmanning.k3s
 ```
@@ -118,12 +121,12 @@ After logging into any of the servers (it doesn't matter), we can test that k3s
 is running across the cluster, that all nodes are ready and that everything is
 ready to execute our Kubernetes workloads by running the following:
 
-- `sudo kubectl get nodes -o wide`
-- `sudo kubectl get pods -o wide --all-namespaces`
+  - `sudo kubectl get nodes -o wide`
+  - `sudo kubectl get pods -o wide --all-namespaces`
 
 :hand: Note we are using `sudo` because we need to be root to access the
 kube config for this node. This behavior can be changed with specifying
-`write-kubeconfig-mode: 0644` in `k3s_server`.
+`write-kubeconfig-mode: '0644'` in `k3s_server`.
 
 **Get Nodes**:
 

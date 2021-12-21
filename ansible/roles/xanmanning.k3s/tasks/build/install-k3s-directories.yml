@@ -1,4 +1,5 @@
 ---
+
 - name: Ensure {{ directory.name }} exists
   ansible.builtin.file:
     path: "{{ directory.path }}"

@@ -1,4 +1,5 @@
 ---
+
 - name: Ensure k3s_release_version is set to default if false
   ansible.builtin.set_fact:
     k3s_release_version: "{{ k3s_release_channel }}"

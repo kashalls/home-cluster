@@ -1,4 +1,5 @@
 ---
+
 - name: Ensure that the pod-manifests directory exists
   ansible.builtin.file:
     state: directory

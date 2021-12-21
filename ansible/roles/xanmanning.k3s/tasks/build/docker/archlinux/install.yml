@@ -1,4 +1,5 @@
 ---
+
 - name: Ensure docker is installed using Pacman
   community.general.pacman:
     name: docker
