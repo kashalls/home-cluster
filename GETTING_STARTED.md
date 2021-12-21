@@ -384,29 +384,29 @@ Show the health of your main Flux `GitRepository`
 
 ```sh
 flux --kubeconfig=./kubeconfig get sources git
-# NAME           READY	MESSAGE                                                            REVISION                                         SUSPENDED
-# flux-system    True 	Fetched revision: main/943e4126e74b273ff603aedab89beb7e36be4998    main/943e4126e74b273ff603aedab89beb7e36be4998    False
+# NAME           READY    MESSAGE                                                            REVISION                                         SUSPENDED
+# flux-system    True     Fetched revision: main/943e4126e74b273ff603aedab89beb7e36be4998    main/943e4126e74b273ff603aedab89beb7e36be4998    False
 ```
 
 Show the health of your `HelmRelease`s
 
 ```sh
 flux --kubeconfig=./kubeconfig get helmrelease -A
-# NAMESPACE   	    NAME                  	READY	MESSAGE                         	REVISION	SUSPENDED
-# cert-manager	    cert-manager          	True 	Release reconciliation succeeded	v1.3.0  	False
-# default        	homer                 	True 	Release reconciliation succeeded	4.2.0   	False
-# networking  	    ingress-nginx       	True 	Release reconciliation succeeded	3.29.0  	False
+# NAMESPACE           NAME                      READY    MESSAGE                             REVISION    SUSPENDED
+# cert-manager        cert-manager              True     Release reconciliation succeeded    v1.3.0      False
+# default            homer                     True     Release reconciliation succeeded    4.2.0       False
+# networking          ingress-nginx           True     Release reconciliation succeeded    3.29.0      False
 ```
 
 Show the health of your `HelmRepository`s
 
 ```sh
 flux --kubeconfig=./kubeconfig get sources helm -A
-# NAMESPACE  	NAME                 READY	MESSAGE                                                   	REVISION                                	SUSPENDED
-# flux-system	bitnami-charts       True 	Fetched revision: 0ec3a3335ff991c45735866feb1c0830c4ed85cf	0ec3a3335ff991c45735866feb1c0830c4ed85cf	False
-# flux-system	ingress-nginx-charts True 	Fetched revision: 45669a3117fc93acc09a00e9fb9b4445e8990722	45669a3117fc93acc09a00e9fb9b4445e8990722	False
-# flux-system	jetstack-charts      True 	Fetched revision: 7bad937cc82a012c9ee7d7a472d7bd66b48dc471	7bad937cc82a012c9ee7d7a472d7bd66b48dc471	False
-# flux-system	k8s-at-home-charts   True 	Fetched revision: 1b24af9c5a1e3da91618d597f58f46a57c70dc13	1b24af9c5a1e3da91618d597f58f46a57c70dc13	False
+# NAMESPACE      NAME                 READY    MESSAGE                                                       REVISION                                    SUSPENDED
+# flux-system    bitnami-charts       True     Fetched revision: 0ec3a3335ff991c45735866feb1c0830c4ed85cf    0ec3a3335ff991c45735866feb1c0830c4ed85cf    False
+# flux-system    ingress-nginx-charts True     Fetched revision: 45669a3117fc93acc09a00e9fb9b4445e8990722    45669a3117fc93acc09a00e9fb9b4445e8990722    False
+# flux-system    jetstack-charts      True     Fetched revision: 7bad937cc82a012c9ee7d7a472d7bd66b48dc471    7bad937cc82a012c9ee7d7a472d7bd66b48dc471    False
+# flux-system    k8s-at-home-charts   True     Fetched revision: 1b24af9c5a1e3da91618d597f58f46a57c70dc13    1b24af9c5a1e3da91618d597f58f46a57c70dc13    False
 ```
 
 Flux has a wide range of CLI options available be sure to run `flux --help` to view more!

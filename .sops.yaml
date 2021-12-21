@@ -5,7 +5,7 @@ creation_rules:
     # personal
     pgp: >-
       AF3D8C1E0EC5C65F713609D9401F0F07454134DC
-  - path_regex: cluster/.*\.ya?ml 
+  - path_regex: cluster/.*\.ya?ml
     encrypted_regex: "^(data|stringData)$"
     # flux, personal
     pgp: >-

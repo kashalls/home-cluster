@@ -42,14 +42,14 @@ I ended up pushing this README before I wrote this, so this is a placeholder. Th
     - 2x Intel Xeon L5640 (2.27GHz)
     - Dell R710
     - 18x M393B5273CH0-YH9 (4GB ea.)
-    - 
+    -
 
     Aquafina
     -
     -
 
 
- 
+
 ### Required Addons
 
 I wrote a couple addons for this to work. These addons requires physical devices for them to work.

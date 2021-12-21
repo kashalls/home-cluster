@@ -218,5 +218,3 @@ spec:
             static_configs:
               - targets:
                  - "${AIRGRADIENT_ADDR}:9926"
-
-
