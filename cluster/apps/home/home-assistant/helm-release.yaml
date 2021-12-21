@@ -39,6 +39,7 @@ spec:
         ingressClassName: "traefik"
         annotations:
           external-dns.alpha.kubernetes.io/target: "${SECRET_DOMAIN_SUBDOMAIN}.${SECRET_DOMAIN}"
+          coredns.io/hostname: "hass.${SECRET_DOMAIN}"
           external-dns/is-public: "true"
           hajimari.io/enable: "true"
           hajimari.io/icon: "home-assistant"
@@ -89,6 +90,7 @@ spec:
           annotations:
             cert-manager.io/cluster-issuer: letsencrypt-production
             traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+            coredns.io/hostname: "hass-config.${SECRET_DOMAIN}"
           hosts:
             - host: "hass-config.${SECRET_DOMAIN}"
               paths:
