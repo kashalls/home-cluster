@@ -125,7 +125,7 @@ k3s_become_for_uninstall: null
 k3s_registries:
 
   mirrors:
-#    docker.io:
+#  docker.io:
 #      endpoint:
 #        - "https://mycustomreg.com:5000"
   configs:

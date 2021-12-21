@@ -147,14 +147,14 @@ spec:
       enabled: true
       endpoints:
         - 10.20.30.3
-    #kubeEtcd:
-    #  enabled: true
-    #  endpoints:
-    #    - 10.20.30.3
-    #  service:
-    #    enabled: true
-    #    port: 2381
-    #    targetPort: 2381
+#   kubeEtcd:
+#     enabled: true
+#     endpoints:
+#       - 10.20.30.3
+#     service:
+#       enabled: true
+#       port: 2381
+#       targetPort: 2381
     # Setting this option to 0 disabled CPU limits
     prometheusOperator:
       configReloaderCpu: 0
@@ -217,4 +217,4 @@ spec:
             honor_timestamps: true
             static_configs:
               - targets:
-                 - "${AIRGRADIENT_ADDR}:9926"
+                  - "${AIRGRADIENT_ADDR}:9926"
