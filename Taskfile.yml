@@ -12,7 +12,6 @@ env:
 
 includes:
   ansible: .taskfiles/ansible.yml
-  blocky: .taskfiles/blocky.yml
   flux: .taskfiles/flux.yml
   format: .taskfiles/format.yml
   lint: .taskfiles/lint.yml
