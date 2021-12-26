@@ -108,7 +108,7 @@ spec:
         dashboards:
           multicluster:
             etcd:
-              enabled: true
+              enabled: false
     kubelet:
       enabled: true
       serviceMonitor:
