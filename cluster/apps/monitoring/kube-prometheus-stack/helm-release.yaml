@@ -147,7 +147,7 @@ spec:
       enabled: true
       endpoints:
         - 10.20.30.3
-#   kubeEtcd:
+#   kubeEtcd: #
 #     enabled: true
 #     endpoints:
 #       - 10.20.30.3
