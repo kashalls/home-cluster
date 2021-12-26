@@ -42,3 +42,4 @@ spec:
         volumeSpec:
           secret:
             secretName: mosquitto-config
+#
