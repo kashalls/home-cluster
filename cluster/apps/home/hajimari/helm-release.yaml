@@ -27,7 +27,7 @@ spec:
       namespaceSelector:
         matchNames:
           - home
-          - media
+          - networking
           - monitoring
       name: "Jordan"
       customApps:
