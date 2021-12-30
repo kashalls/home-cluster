@@ -31,11 +31,8 @@ spec:
           - monitoring
       name: "Jordan"
       customApps:
-        - name: Home Assistant
-          url: "https://10.20.30.12"
-          icon: "robot-vacuum"
         - name: PiAware
-          url: "http://10.20.30.8:8080"
+          url: "http://10.42.42.90"
           icon: "airplane"
       groups:
         - name: Communicate
