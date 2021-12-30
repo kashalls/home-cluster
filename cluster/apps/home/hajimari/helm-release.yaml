@@ -23,13 +23,13 @@ spec:
     env:
       TZ: "America/Los_Angeles"
     hajimari:
-      defaultEnable: false
+      defaultEnable: true
       namespaceSelector:
         matchNames:
           - home
           - media
           - monitoring
-      name: "jordan"
+      name: "Jordan"
       customApps:
         - name: Home Assistant
           url: "https://10.20.30.12"
