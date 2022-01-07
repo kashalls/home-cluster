@@ -21,9 +21,7 @@
 
 ---
 
-## Overview
-
-I ended up pushing this README before I wrote this, so this is a placeholder. Thanks.
+> 🖳 In-house kubernetes cluster built with k3s and managed by flux (gitops).
 
 ### Hardware
 
@@ -42,11 +40,6 @@ I ended up pushing this README before I wrote this, so this is a placeholder. Th
     - 2x Intel Xeon L5640 (2.27GHz)
     - Dell R710
     - 18x M393B5273CH0-YH9 (4GB ea.)
-    -
-
-    Aquafina
-    -
-    -
 
 
 
