@@ -1,7 +1,7 @@
 ---
 roles:
   - src: xanmanning.k3s
-    version: v3.0.0
+    version: v3.0.1
 collections:
   - name: community.docker
     version: 2.1.1
