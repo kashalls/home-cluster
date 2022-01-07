@@ -1,6 +1,7 @@
 <div align="center">
 
 # Kashall's Home Kubernetes Cluster
+🖳 In-house kubernetes cluster built with k3s and managed by flux (gitops).
 
 **Join the [k8s@home](https://github.com/k8s-at-home) community!**
 
@@ -20,8 +21,6 @@
 </div>
 
 ---
-
-> 🖳 In-house kubernetes cluster built with k3s and managed by flux (gitops).
 
 ### Hardware
 
