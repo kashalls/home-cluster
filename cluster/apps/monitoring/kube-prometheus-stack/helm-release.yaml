@@ -218,3 +218,11 @@ spec:
             static_configs:
               - targets:
                   - "${AIRGRADIENT_ADDR}:9926"
+          - job_name: "pve"
+            honor_timestamps: true
+            static_configs:
+              - targets:
+                  - "10.10.0.10:9221"
+            metrics_path: /pve
+            params:
+              module: [default]
