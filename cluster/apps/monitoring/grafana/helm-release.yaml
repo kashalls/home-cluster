@@ -107,6 +107,16 @@ spec:
           revision: 8
           datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/13665
+        proxmox:
+          gnetId: 10347
+          revision: 3
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/10347
+        idrac-snmp:
+          gnetId: 14395
+          revision: 1
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/14395
         speedtest:
           gnetId: 13665
           revision: 1

@@ -14,6 +14,68 @@
 ---
 -->
 
+## 2022-01-06, v3.0.1
+
+### Notable changes
+
+  - fix: adding become to pre checks packages #173
+
+### Contributors
+
+  - [xlejo](https://github.com/xlejo)
+
+## 2022-01-02, v3.0.0
+
+### Notable changes
+
+  - feat: Flattened task filesystem
+  - feat: Moved some tasks into `vars/` as templated variables
+  - feat: Airgap installation method added #165
+
+### Breaking changes
+
+  - Minimum `python` version on targets is 3.6
+  - `k3s_become_for_all` renamed to `k3s_become`
+  - `k3s_become_for_*` removed.
+
+### Contributors
+
+  - [crutonjohn](https://github.com/crutonjohn)
+
+---
+
+## 2021-12-23, v2.12.1
+
+### Notable changes
+
+  - Fix typo in systemd unit file
+
+### Contributors
+
+  - [andrewchen5678](https://github.com/andrewchen5678)
+
+---
+
+## 2021-12-20, v2.12.0
+
+### Notable changes
+
+  - Fix RockyLinux HA etcd tests
+  - add Debian 11 test
+  - Fix Snapshotter in Molecule tests
+  - Added missing documentation for `k3s_api_url`
+  - Added option to change K3s updates API url
+  - Custom environment variables in systemd unit files
+  - Debian Bullseye support
+  - Fix HA etcd cluster startup
+  - Fix rootless for Debian
+
+### Contributors
+
+  - [janar153](https://github.com/janar153)
+
+---
+
 ## 2021-10-10, v2.11.1
 
 ### Notable changes

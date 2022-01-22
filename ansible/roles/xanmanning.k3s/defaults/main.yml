@@ -26,6 +26,12 @@ k3s_build_cluster: true
 # URL for GitHub project
 k3s_github_url: https://github.com/k3s-io/k3s
 
+# URL for K3s updates API
+k3s_api_url: https://update.k3s.io
+
+# Install K3s in Air Gapped scenarios
+k3s_airgap: false
+
 # Skip all tasks that validate configuration
 k3s_skip_validation: false
 
@@ -88,6 +94,17 @@ k3s_service_before: []
 # Start k3s after a defined list of systemd units.
 k3s_service_after: []
 
+# Dictionary of environment variables to use within systemd unit file
+# Some examples below
+k3s_service_env_vars: {}
+#  PATH: /opt/k3s/bin
+#  GOGC: 10
+
+# Location on host of a environment file to include. This must already exist on
+# the target as this role will not populate this file.
+k3s_service_env_file: false
+
+
 ##
 # Server Configuration
 ##
@@ -110,22 +127,15 @@ k3s_agent: {}
 # Ansible Controller configuration
 ##
 
-# Use become privileges for
-k3s_become_for_all: false
-k3s_become_for_systemd: null
-k3s_become_for_install_dir: null
-k3s_become_for_directory_creation: null
-k3s_become_for_usr_local_bin: null
-k3s_become_for_package_install: null
-k3s_become_for_kubectl: null
-k3s_become_for_uninstall: null
+# Use become privileges?
+k3s_become: false
 
 # Private registry configuration.
 # Rancher k3s documentation: https://rancher.com/docs/k3s/latest/en/installation/private-registry/
 k3s_registries:
 
   mirrors:
-#  docker.io:
+#    docker.io:
 #      endpoint:
 #        - "https://mycustomreg.com:5000"
   configs:

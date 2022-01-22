@@ -28,8 +28,6 @@ jobs:
             scenario: default
           - distro: amazonlinux2
             scenario: default
-          - distro: centos7
-            scenario: default
           - distro: ubuntu1804
             scenario: default
           - distro: fedora33
@@ -38,7 +36,7 @@ jobs:
             scenario: highavailabilitydb
           - distro: fedora31
             scenario: autodeploy
-          - distro: debian9
+          - distro: debian11
             scenario: highavailabilityetcd
           - distro: rockylinux8
             scenario: highavailabilityetcd
@@ -59,6 +57,7 @@ jobs:
 
       - name: Run Molecule tests
         run: molecule test --scenario-name "${{ matrix.scenario }}"
+        # continue-on-error: true
         env:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'

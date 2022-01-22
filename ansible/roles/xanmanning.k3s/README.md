@@ -1,9 +1,16 @@
-# Ansible Role: k3s (v2.x)
+# Ansible Role: k3s (v3.x)
 
 Ansible role for installing [K3S](https://k3s.io/) ("Lightweight
 Kubernetes") as either a standalone server or cluster.
 
 [![CI](https://github.com/PyratLabs/ansible-role-k3s/workflows/CI/badge.svg?event=push)](https://github.com/PyratLabs/ansible-role-k3s/actions?query=workflow%3ACI)
+
+## Help Wanted!
+
+Hi! :wave: [@xanmanning](https://github.com/xanmanning) is looking for a new
+maintainer to work on this Ansible role. This is because I don't have as much
+free time any more and I no longer write Ansible regularly as part of my day
+job. If you're interested, get in touch.
 
 ## Release notes
 
@@ -14,6 +21,7 @@ and [CHANGELOG.md](CHANGELOG.md).
 
 The host you're running Ansible from requires the following Python dependencies:
 
+  - `python >= 3.6.0` - [See Notes below](#important-note-about-python).
   - `ansible >= 2.9.16` or `ansible-base >= 2.10.4`
 
 You can install dependencies using the requirements.txt file in this repository:
@@ -24,8 +32,7 @@ This role has been tested against the following Linux Distributions:
   - Amazon Linux 2
   - Archlinux
   - CentOS 8
-  - CentOS 7
-  - Debian 10
+  - Debian 11
   - Fedora 31
   - Fedora 32
   - Fedora 33
@@ -33,7 +40,7 @@ This role has been tested against the following Linux Distributions:
   - RockyLinux 8
   - Ubuntu 20.04 LTS
 
-:warning: The v2 releases of this role only supports `k3s >= v1.19`, for
+:warning: The v3 releases of this role only supports `k3s >= v1.19`, for
 `k3s < v1.19` please consider updating or use the v1.x releases of this role.
 
 Before upgrading, see [CHANGELOG](CHANGELOG.md) for notifications of breaking
@@ -63,10 +70,12 @@ consistency. These are generally cluster-level configuration.
 |--------------------------------------|--------------------------------------------------------------------------------------------|--------------------------------|
 | `k3s_state`                          | State of k3s: installed, started, stopped, downloaded, uninstalled, validated.             | installed                      |
 | `k3s_release_version`                | Use a specific version of k3s, eg. `v0.2.0`. Specify `false` for stable.                   | `false`                        |
+| `k3s_airgap`                         | Boolean to enable air-gapped installations                                                 | `false`                        |
 | `k3s_config_file`                    | Location of the k3s configuration file.                                                    | `/etc/rancher/k3s/config.yaml` |
 | `k3s_build_cluster`                  | When multiple play hosts are available, attempt to cluster. Read notes below.              | `true`                         |
 | `k3s_registration_address`           | Fixed registration address for nodes. IP or FQDN.                                          | NULL                           |
 | `k3s_github_url`                     | Set the GitHub URL to install k3s from.                                                    | https://github.com/k3s-io/k3s  |
+| `k3s_api_url`                        | URL for K3S updates API.                                                                   | https://update.k3s.io          |
 | `k3s_install_dir`                    | Installation directory for k3s.                                                            | `/usr/local/bin`               |
 | `k3s_install_hard_links`             | Install using hard links rather than symbolic links.                                       | `false`                        |
 | `k3s_server_config_yaml_d_files`     | A flat list of templates to supplement the `k3s_server` configuration.                     | []                             |
@@ -87,16 +96,22 @@ The below variables change how and when the systemd service unit file for K3S
 is run. Use this with caution, please refer to the [systemd documentation](https://www.freedesktop.org/software/systemd/man/systemd.unit.html#%5BUnit%5D%20Section%20Options)
 for more information.
 
-| Variable               | Description                                                    | Default Value |
-|------------------------|----------------------------------------------------------------|---------------|
-| `k3s_start_on_boot`    | Start k3s on boot.                                             | `true`        |
-| `k3s_service_requires` | List of required systemd units to k3s service unit.            | []            |
-| `k3s_service_wants`    | List of "wanted" systemd unit to k3s (weaker than "requires"). | []\*          |
-| `k3s_service_before`   | Start k3s before a defined list of systemd units.              | []            |
-| `k3s_service_after`    | Start k3s after a defined list of systemd units.               | []\*          |
+| Variable               | Description                                                          | Default Value |
+|------------------------|----------------------------------------------------------------------|---------------|
+| `k3s_start_on_boot`    | Start k3s on boot.                                                   | `true`        |
+| `k3s_service_requires` | List of required systemd units to k3s service unit.                  | []            |
+| `k3s_service_wants`    | List of "wanted" systemd unit to k3s (weaker than "requires").       | []\*          |
+| `k3s_service_before`   | Start k3s before a defined list of systemd units.                    | []            |
+| `k3s_service_after`    | Start k3s after a defined list of systemd units.                     | []\*          |
+| `k3s_service_env_vars` | Dictionary of environment variables to use within systemd unit file. | {}            |
+| `k3s_service_env_file` | Location on host of a environment file to include.                   | `false`\*\*   |
 
 \* The systemd unit template **always** specifies `network-online.target` for
 `wants` and `after`.
+
+\*\* The file must already exist on the target host, this role will not create
+nor manage the file. You can manage this file outside of the role with
+pre-tasks in your Ansible playbook.
 
 ### Group/Host Variables
 
@@ -122,7 +137,6 @@ The `k3s_server` dictionary variable will contain flags from the above
 ```yaml
 k3s_server:
   datastore-endpoint: postgres://postgres:verybadpass@database:5432/postgres?sslmode=disable
-  docker: true
   cluster-cidr: 172.20.0.0/16
   flannel-backend: 'none'  # This needs to be in quotes
   disable:
@@ -173,18 +187,41 @@ configuration.
 The below variables are used to change the way the role executes in Ansible,
 particularly with regards to privilege escalation.
 
-| Variable                            | Description                                                         | Default Value |
-|-------------------------------------|---------------------------------------------------------------------|---------------|
-| `k3s_skip_validation`               | Skip all tasks that validate configuration.                         | `false`       |
-| `k3s_skip_env_checks`               | Skip all tasks that check environment configuration.                | `false`       |
-| `k3s_become_for_all`                | Escalate user privileges for all tasks. Overrides all of the below. | `false`       |
-| `k3s_become_for_systemd`            | Escalate user privileges for systemd tasks.                         | NULL          |
-| `k3s_become_for_install_dir`        | Escalate user privileges for creating installation directories.     | NULL          |
-| `k3s_become_for_directory_creation` | Escalate user privileges for creating application directories.      | NULL          |
-| `k3s_become_for_usr_local_bin`      | Escalate user privileges for writing to `/usr/local/bin`.           | NULL          |
-| `k3s_become_for_package_install`    | Escalate user privileges for installing k3s.                        | NULL          |
-| `k3s_become_for_kubectl`            | Escalate user privileges for running `kubectl`.                     | NULL          |
-| `k3s_become_for_uninstall`          | Escalate user privileges for uninstalling k3s.                      | NULL          |
+| Variable              | Description                                                    | Default Value |
+|-----------------------|----------------------------------------------------------------|---------------|
+| `k3s_skip_validation` | Skip all tasks that validate configuration.                    | `false`       |
+| `k3s_skip_env_checks` | Skip all tasks that check environment configuration.           | `false`       |
+| `k3s_become`          | Escalate user privileges for tasks that need root permissions. | `false`       |
+
+#### Important note about Python
+
+From v3 of this role, Python 3 is required on the target system as well as on
+the Ansible controller. This is to ensure consistent behaviour for Ansible
+tasks as Python 2 is now EOL.
+
+If target systems have both Python 2 and Python 3 installed, it is most likely
+that Python 2 will be selected by default. To ensure Python 3 is used on a
+target with both versions of Python, ensure `ansible_python_interpreter` is
+set in your inventory. Below is an example inventory:
+
+```yaml
+---
+
+k3s_cluster:
+  hosts:
+    kube-0:
+      ansible_user: ansible
+      ansible_host: 10.10.9.2
+      ansible_python_interpreter: /usr/bin/python3
+    kube-1:
+      ansible_user: ansible
+      ansible_host: 10.10.9.3
+      ansible_python_interpreter: /usr/bin/python3
+    kube-2:
+      ansible_user: ansible
+      ansible_host: 10.10.9.4
+      ansible_python_interpreter: /usr/bin/python3
+```
 
 #### Important note about `k3s_release_version`
 
@@ -316,6 +353,10 @@ k3s_server_pod_manifests_urls:
     filename: kube-vip.yaml
 
 ```
+
+#### Important note about `k3s_airgap`
+
+When deploying k3s in an air gapped environment you should provide the `k3s` binary in `./files/`. The binary will not be downloaded from Github and will subsequently not be verified using the provided sha256 sum, nor able to verify the version that you are running. All risks and burdens associated are assumed by the user in this scenario.
 
 ## Dependencies
 
