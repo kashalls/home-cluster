@@ -222,7 +222,9 @@ spec:
             honor_timestamps: true
             static_configs:
               - targets:
-                  - "10.10.0.10:9221"
+                  - "10.10.0.8:9221" # Aquafina
+#                 - "10.10.0.9:9221" # Fiji // Disabled because host is under maint.
+                  - "10.10.0.10:9221" # Poseidon
             metrics_path: /pve
             params:
               module: [default]
