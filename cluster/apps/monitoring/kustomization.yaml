@@ -8,6 +8,7 @@ resources:
   - loki
   - promtail
   - speedtest-exporter
+  - snmp-exporter
   - thanos
   - unifi-poller
   - uptimerobot-heartbeat
