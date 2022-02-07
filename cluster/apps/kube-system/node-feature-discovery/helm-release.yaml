@@ -8,29 +8,19 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://kubernetes-sigs.github.io/node-feature-discovery/charts
       chart: node-feature-discovery
       version: 0.10.0
       sourceRef:
         kind: HelmRepository
         name: node-feature-discovery-charts
         namespace: flux-system
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
   values:
-    master:
-      tolerations:
-        - key: "node-role.kubernetes.io/master"
-          operator: "Equal"
-          value: "true"
-          effect: "NoSchedule"
-      affinity:
-        nodeAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 1
-              preference:
-                matchExpressions:
-                  - key: "node-role.kubernetes.io/master"
-                    operator: In
-                    values: [""]
+    nodeFeatureRule:
+      createCRD: true
     worker:
       config: |-
         core:
@@ -73,12 +63,6 @@ spec:
             matchOn:
             - usbId:
                 vendor: ["1a6e", "18d1"]
-          - name: "flight-aware"
-            matchOn:
-            - usbId:
-                class: ["ff"]
-                vendor: ["0bda"]
-                device: ["2832"]
           - name: "zigbee"
             matchOn:
             - usbId:
@@ -87,8 +71,3 @@ spec:
                 device: ["7523"]
       annotations:
         configmap.reloader.stakater.com/reload: "nfd-worker-conf"
-      tolerations:
-        - effect: "NoExecute"
-          operator: "Exists"
-        - effect: "NoSchedule"
-          operator: "Exists"
