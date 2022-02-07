@@ -5,7 +5,7 @@ metadata:
   name: my-spotify-db-claim
   namespace: default
 spec:
-  storageClassName: longhorn 
+  storageClassName: "nfs-client"
   accessModes:
     - ReadWriteOnce
   resources:
