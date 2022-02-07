@@ -15,6 +15,7 @@ spec:
         name: node-feature-discovery-charts
         namespace: flux-system
   install:
+    createNamespace: true
     crds: CreateReplace
   upgrade:
     crds: CreateReplace
@@ -22,7 +23,11 @@ spec:
     nodeFeatureRule:
       createCRD: true
     worker:
-      config: |-
+      annotations:
+        configmap.reloader.stakater.com/reload: node-feature-discovery-worker-conf
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
+      config:
         core:
           sources:
           - custom
@@ -69,5 +74,3 @@ spec:
                 class: ["ff"]
                 vendor: ["1a86"]
                 device: ["7523"]
-      annotations:
-        configmap.reloader.stakater.com/reload: "nfd-worker-conf"
