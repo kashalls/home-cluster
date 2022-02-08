@@ -5,7 +5,7 @@ metadata:
   name: my-spotify-db-claim
   namespace: etc
 spec:
-  storageClassName: "nfs-client"
+  storageClassName: nfs-client
   accessModes:
     - ReadWriteOnce
   resources:
