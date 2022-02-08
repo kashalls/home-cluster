@@ -15,7 +15,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: your-spotify-frontend
-  namespace: default
+  namespace: etc
 spec:
   selector:
     matchLabels:
