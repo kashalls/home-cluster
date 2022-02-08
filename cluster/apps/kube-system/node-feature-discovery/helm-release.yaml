@@ -37,6 +37,7 @@ spec:
           usb:
             deviceClassWhitelist:
             - "02"
+            - "fa"
             - "03"
             - "0e"
             - "ef"
