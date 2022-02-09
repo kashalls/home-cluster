@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - my-spotify
   - scrapers
-  - trinitycore
+  #- trinitycore
