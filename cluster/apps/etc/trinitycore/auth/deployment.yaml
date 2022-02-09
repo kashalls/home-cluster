@@ -18,7 +18,13 @@ metadata:
   namespace: etc
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: trinity-auth
   template:
+    metadata:
+      labels:
+        app: trinity-auth
     spec:
       containers:
         - name: trinity-auth
