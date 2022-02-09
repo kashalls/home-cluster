@@ -29,15 +29,14 @@ spec:
       containers:
         - name: trinity-auth
           image: docker.io/timothystewart6/botsplusplus-authserver:latest
-          imagePullPolicy: Always
           ports:
             - containerPort: 3724
           env:
             DB_HOST: "mariadb.databases.svc.cluster.local"
             DB_PORT: 3306
           volumeMounts:
-            - mountPath: /opt/trinitycore
-              name: auth-server-storage
+            - name: auth-server-storage
+              mountPath: /opt/trinitycore
       volumes:
         - name: auth-server-storage
           persistentVolumeClaim:
