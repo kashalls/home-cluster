@@ -11,14 +11,19 @@ spec:
   selector:
     app: trinity-world-service
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: trinitycore-world
   namespace: etc
 spec:
-  replicas: 1
+  selector:
+    matchLabels:
+      app: trinity-world
   template:
+    metadata:
+      labels:
+        app: trinity-world
     spec:
       containers:
         - name: trinity-world
