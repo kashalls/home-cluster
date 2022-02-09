@@ -18,13 +18,7 @@ metadata:
   namespace: etc
 spec:
   replicas: 1
-  selector:
-    matchLabels:
-      app: trinity-world
   template:
-    metadata:
-      labels:
-        app: trinity-world
     spec:
       containers:
         - name: trinity-world
@@ -33,8 +27,10 @@ spec:
           ports:
             - containerPort: 8085
           env:
-            DB_HOST: "mariadb.databases.svc.cluster.local"
-            DB_PORT: 3306
+            - name: DB_HOST
+              value: "mariadb.databases.svc.cluster.local"
+            - name: DB_PORT
+              value: "3306"
           volumeMounts:
             - mountPath: /opt/trinitycore
               name: world-server-storage

@@ -18,13 +18,7 @@ metadata:
   namespace: etc
 spec:
   replicas: 1
-  selector:
-    matchLabels:
-      app: trinity-auth
   template:
-    metadata:
-      labels:
-        app: trinity-auth
     spec:
       containers:
         - name: trinity-auth
@@ -32,8 +26,10 @@ spec:
           ports:
             - containerPort: 3724
           env:
-            DB_HOST: "mariadb.databases.svc.cluster.local"
-            DB_PORT: 3306
+            - name: DB_HOST
+              value: "mariadb.databases.svc.cluster.local"
+            - name: DB_PORT
+              value: "3306"
           volumeMounts:
             - name: auth-server-storage
               mountPath: /opt/trinitycore
