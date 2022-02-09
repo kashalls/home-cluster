@@ -1,0 +1,44 @@
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: trinity-world-service
+  namespace: etc
+spec:
+  ports:
+    - port: 8085
+      targetPort: 8085
+  selector:
+    app: trinity-world-service
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: Deployment
+metadata:
+  name: trinitycore-world
+  namespace: etc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: trinity-world
+  template:
+    metadata:
+      labels:
+        app: trinity-world
+    spec:
+      containers:
+        - name: trinity-world
+          image: docker.io/timothystewart6/botsplusplus-worldserver:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8085
+          env:
+            DB_HOST: "${MYSQL_SERVER}"
+            DB_PORT: 3306
+          volumeMounts:
+            - mountPath: /opt/trinitycore
+              name: world-server-storage
+      volumes:
+        - name: world-server-storage
+          persistentVolumeClaim:
+            claimName: trinitycore-world-claim-v1
