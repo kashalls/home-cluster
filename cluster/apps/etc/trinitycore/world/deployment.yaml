@@ -33,7 +33,7 @@ spec:
           ports:
             - containerPort: 8085
           env:
-            DB_HOST: "${MYSQL_SERVER}"
+            DB_HOST: "mariadb.databases.svc.cluster.local"
             DB_PORT: 3306
           volumeMounts:
             - mountPath: /opt/trinitycore
