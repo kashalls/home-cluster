@@ -39,6 +39,7 @@ spec:
           volumeMounts:
             - name: auth-server-storage
               mountPath: /opt/trinitycore
+          entrypoint: "/bin/bash"
       volumes:
         - name: auth-server-storage
           persistentVolumeClaim:
