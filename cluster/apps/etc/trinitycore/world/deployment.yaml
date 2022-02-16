@@ -37,9 +37,39 @@ spec:
             - name: DB_PORT
               value: "3306"
           volumeMounts:
-            - mountPath: /opt/trinitycore
-              name: world-server-storage
+            - name: world-server-storage
+              mountPath: /opt/trinitycore/etc
+            - name: world-cameras-storage
+              mountPath: /opt/trinitycore/bin/cameras
+            - name: world-dbc-storage
+              mountPath: /opt/trinitycore/bin/dbc
+            - name: world-maps-storage
+              mountPath: /opt/trinitycore/bin/maps
+            - name: world-mmaps-storage
+              mountPath: /opt/trinitycore/bin/mmaps
+            - name: world-vmaps-storage
+              mountPath: /opt/trinitycore/bin/vmaps
+            - name: world-logs-storage
+              mountPath: /opt/trinitycore/logs
       volumes:
         - name: world-server-storage
           persistentVolumeClaim:
-            claimName: trinitycore-world-claim-v1
+            claimName: trinitycore-world-etc-claim-v1
+        - name: world-cameras-storage
+          persistentVolumeClaim:
+            claimName: trinitycore-world-cameras-claim-v1
+        - name: world-dbc-storage
+          persistentVolumeClaim:
+            claimName: trinitycore-world-dbc-claim-v1
+        - name: world-maps-storage
+          persistentVolumeClaim:
+            claimName: trinitycore-world-maps-claim-v1
+        - name: world-maps-storage
+          persistentVolumeClaim:
+            claimName: trinitycore-world-mmaps-claim-v1
+        - name: world-maps-storage
+          persistentVolumeClaim:
+            claimName: trinitycore-world-vmaps-claim-v1
+        - name: world-maps-storage
+          persistentVolumeClaim:
+            claimName: trinitycore-world-logs-claim-v1
