@@ -38,9 +38,13 @@ spec:
               value: "3306"
           volumeMounts:
             - name: auth-server-storage
-              mountPath: /opt/trinitycore
-          entrypoint: "/bin/bash"
+              mountPath: /opt/trinitycore/etc
+            - name: log-storage
+              mountPath: /opt/trinitycore/logs
       volumes:
         - name: auth-server-storage
           persistentVolumeClaim:
-            claimName: trinitycore-auth-claim-v1
+            claimName: trinitycore-auth-etc-claim-v1
+        - name: log-storage
+          persistentVolumeClaim:
+            claimName: trinitycore-auth-logs-claim-v1
