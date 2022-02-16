@@ -45,7 +45,7 @@ spec:
               mountPath: /opt/trinitycore/bin/dbc
             - name: world-maps-storage
               mountPath: /opt/trinitycore/bin/maps
-            - name: world-mmaps-storage
+            - name: world-vmaps-storage
               mountPath: /opt/trinitycore/bin/mmaps
             - name: world-vmaps-storage
               mountPath: /opt/trinitycore/bin/vmaps
@@ -64,12 +64,12 @@ spec:
         - name: world-maps-storage
           persistentVolumeClaim:
             claimName: trinitycore-world-maps-claim-v1
-        - name: world-maps-storage
+        - name: world-vmaps-storage
           persistentVolumeClaim:
             claimName: trinitycore-world-mmaps-claim-v1
-        - name: world-maps-storage
+        - name: world-vmaps-storage
           persistentVolumeClaim:
             claimName: trinitycore-world-vmaps-claim-v1
-        - name: world-maps-storage
+        - name: world-logs-storage
           persistentVolumeClaim:
             claimName: trinitycore-world-logs-claim-v1
