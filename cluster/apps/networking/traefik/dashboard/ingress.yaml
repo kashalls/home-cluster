@@ -6,6 +6,7 @@ metadata:
   namespace: networking
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+    cert-manager.io/cluster-issuer: letsencrypt-production
     coredns.io/hostname: "traefik.${SECRET_DOMAIN}"
     hajimari.io/enable: "true"
     hajimari.io/icon: "web"
@@ -14,7 +15,7 @@ spec:
   tls:
     - hosts:
         - "traefik.${SECRET_DOMAIN}"
-      secretName: "${SECRET_DOMAIN/./-}-tls"
+      secretName: "traefik"
   rules:
     - host: "traefik.${SECRET_DOMAIN}"
       http:
