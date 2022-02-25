@@ -16,7 +16,7 @@ spec:
         app: mariadb
     spec:
       containers:
-      - image: mariadb:10.7-focal
+      - image: mariadb:10.8-focal
         name: mariadb
         env:
         - name: MARIADB_ROOT_PASSWORD
