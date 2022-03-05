@@ -64,7 +64,7 @@ spec:
         - name: world-maps-storage
           persistentVolumeClaim:
             claimName: trinitycore-world-maps-claim-v1
-        - name: world-vmaps-storage
+        - name: world-mmaps-storage
           persistentVolumeClaim:
             claimName: trinitycore-world-mmaps-claim-v1
         - name: world-vmaps-storage
