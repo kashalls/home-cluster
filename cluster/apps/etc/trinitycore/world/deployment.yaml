@@ -45,7 +45,7 @@ spec:
               mountPath: /opt/trinitycore/bin/dbc
             - name: world-maps-storage
               mountPath: /opt/trinitycore/bin/maps
-            - name: world-vmaps-storage
+            - name: world-mmaps-storage
               mountPath: /opt/trinitycore/bin/mmaps
             - name: world-vmaps-storage
               mountPath: /opt/trinitycore/bin/vmaps
