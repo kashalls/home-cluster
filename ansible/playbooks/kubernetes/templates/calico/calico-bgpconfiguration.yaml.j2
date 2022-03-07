@@ -5,6 +5,7 @@ metadata:
   name: default
 spec:
   asNumber: 64535
+  nodeToNodeMeshEnabled: true
   serviceClusterIPs:
     - cidr: "{{ k3s_server['service-cidr'] }}"
   serviceExternalIPs:
