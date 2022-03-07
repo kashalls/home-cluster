@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack
-      version: 33.0.0
+      version: 33.2.0
       sourceRef:
         kind: HelmRepository
         name: prometheus-community-charts
@@ -190,7 +190,7 @@ spec:
                 requests:
                   storage: 10Gi
         thanos:
-          image: quay.io/thanos/thanos:v0.24.0
+          image: quay.io/thanos/thanos:v0.25.0
           version: v0.22.0
           objectStorageConfig:
             name: thanos-objstore
