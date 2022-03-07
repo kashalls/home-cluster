@@ -34,6 +34,7 @@ k3s_server_manifests_templates:
   - "calico/calico-installation.yaml.j2"
   - "calico/calico-bgpconfiguration.yaml.j2"
   - "calico/calico-bgppeer.yaml.j2"
+  - "calico/calico-ippool.yaml.j2"
 
 # Custom manifest URLs
 k3s_server_manifests_urls:
