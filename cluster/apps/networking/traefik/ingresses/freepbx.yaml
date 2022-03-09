@@ -36,6 +36,6 @@ metadata:
 spec:
   ports:
     - name: http
-      port: 443
+      port: 80
   type: ExternalName
   externalName: 10.20.30.190
