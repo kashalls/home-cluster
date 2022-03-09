@@ -5,7 +5,6 @@ metadata:
   name: freepbx
   namespace: networking
   annotations:
-    external-dns.alpha.kubernetes.io/target: "${SECRET_DOMAIN_SUBDOMAIN}.${SECRET_DOMAIN}"
     coredns.io/hostname: "nezuko.${SECRET_DOMAIN}"
     cert-manager.io/cluster-issuer: letsencrypt-production
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
