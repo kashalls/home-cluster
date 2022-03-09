@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: freepbx
+  name: nezuko
   namespace: networking
   annotations:
     coredns.io/hostname: "nezuko.${SECRET_DOMAIN}"
