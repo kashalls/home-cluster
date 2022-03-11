@@ -35,10 +35,6 @@ metadata:
   namespace: networking
 spec:
   ports:
-    - name: http
-      protocol: TCP
-      port: 80
-      targetPort: http
     - name: https
       protocol: TCP
       port: 443
@@ -53,9 +49,6 @@ subsets:
   - addresses:
       - ip: "${FREEPBX_ADDR}"
     ports:
-      - name: http
-        port: 80
-        protocol: TCP
       - name: https
         port: 443
         protocol: TCP
