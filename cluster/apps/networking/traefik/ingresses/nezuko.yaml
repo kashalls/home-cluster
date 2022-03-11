@@ -11,6 +11,7 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
   ingressClassName: traefik
+  insecureSkipVerify: true
   rules:
     - host: "nezuko.${SECRET_DOMAIN}"
       http:
@@ -34,7 +35,20 @@ metadata:
   namespace: networking
 spec:
   ports:
-    - name: http
+    - name: https
       port: 8006
-  type: ExternalName
-  externalName: "${NEZUKO_ADDR}"
+      protocol: TCP
+      targetPort: https
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: nezuko
+  namespace: networking
+subsets:
+  - addresses:
+      - ip: "${NEZUKO_ADDR}"
+    ports:
+      - name: https
+        port: 8006
+        protocol: TCP
