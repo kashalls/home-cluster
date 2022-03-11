@@ -20,7 +20,7 @@ spec:
               service:
                name: freepbx
                port:
-                 number: 443
+                 number: 80
             path: /
             pathType: Prefix
   tls:
@@ -35,10 +35,10 @@ metadata:
   namespace: networking
 spec:
   ports:
-    - name: https
+    - name: http
       protocol: TCP
-      port: 443
-      targetPort: https
+      port: 80
+      targetPort: http
 ---
 apiVersion: v1
 kind: Endpoints
@@ -49,7 +49,6 @@ subsets:
   - addresses:
       - ip: "${FREEPBX_ADDR}"
     ports:
-      - name: https
-        port: 443
+      - name: http
+        port: 80
         protocol: TCP
-
