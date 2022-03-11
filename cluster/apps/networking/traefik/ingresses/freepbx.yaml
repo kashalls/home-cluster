@@ -9,9 +9,8 @@ metadata:
     coredns.io/hostname: "pbx.${SECRET_DOMAIN}"
     cert-manager.io/cluster-issuer: letsencrypt-production
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    kubernetes.io/ingress.class: traefik
 spec:
-  ingressClassName: traefik
   rules:
     - host: "pbx.${SECRET_DOMAIN}"
       http:
@@ -20,7 +19,7 @@ spec:
               service:
                name: freepbx
                port:
-                 number: 80
+                 number: 443
             path: /
             pathType: Prefix
   tls:
@@ -35,7 +34,7 @@ metadata:
   namespace: networking
 spec:
   ports:
-    - name: http
-      port: 80
+    - name: https
+      port: 443
   type: ExternalName
-  externalName: 10.20.30.190
+  externalName: "${FREEPBX_ADDR}"
