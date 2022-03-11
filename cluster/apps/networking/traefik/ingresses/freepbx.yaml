@@ -11,6 +11,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     kubernetes.io/ingress.class: traefik
 spec:
+  ingressClassName: traefik
   rules:
     - host: "pbx.${SECRET_DOMAIN}"
       http:
