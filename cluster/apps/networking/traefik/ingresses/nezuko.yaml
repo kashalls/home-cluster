@@ -11,7 +11,6 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
   ingressClassName: traefik
-  insecureSkipVerify: true
   rules:
     - host: "nezuko.${SECRET_DOMAIN}"
       http:
