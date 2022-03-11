@@ -17,7 +17,7 @@ spec:
         paths:
           - backend:
               service:
-               name: nezuko
+               name: http
                port:
                  number: 8006
             path: /
