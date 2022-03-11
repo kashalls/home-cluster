@@ -20,7 +20,7 @@ spec:
               service:
                name: freepbx
                port:
-                 number: 443
+                 number: 80
             path: /
             pathType: Prefix
   tls:
