@@ -8,6 +8,8 @@ k3s_control_node: false
 # k3s settings for all worker nodes
 k3s_agent:
   node-ip: "{{ ansible_default_ipv4.address }}"
+  node-label:
+    - "worker=true"
   kubelet-arg:
     - "feature-gates=GracefulNodeShutdown=true"
     - "feature-gates=MixedProtocolLBService=true"
