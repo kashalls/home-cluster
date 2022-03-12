@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - helm-release.yaml
   - ingresses
+  - middlewares
   - tls-store
-  - dashboard
