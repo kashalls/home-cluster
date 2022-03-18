@@ -87,7 +87,7 @@ spec:
               storageClassName: "nfs-client"
               resources:
                 requests:
-                  storage: 1Gi
+                  storage: 2Gi
     nodeExporter:
       serviceMonitor:
         relabelings:
@@ -122,7 +122,7 @@ spec:
     kubeControllerManager:
       enabled: true
       endpoints:
-        - 10.20.30.3
+        - 10.20.30.6
       service:
         enabled: true
         port: 10257
@@ -134,7 +134,7 @@ spec:
     kubeScheduler:
       enabled: true
       endpoints:
-        - 10.20.30.3
+        - 10.20.30.6
       service:
         enabled: true
         port: 10259
@@ -146,11 +146,11 @@ spec:
     kubeProxy:
       enabled: true
       endpoints:
-        - 10.20.30.3
+        - 10.20.30.6
     kubeEtcd:
       enabled: false
       endpoints:
-        - 10.20.30.3
+        - 10.20.30.6
       service:
         enabled: true
         port: 2381
@@ -173,7 +173,7 @@ spec:
       thanosServiceMonitor:
         enabled: true
       prometheusSpec:
-        replicas: 1
+        replicas: 2
         replicaExternalLabelName: "replica"
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
@@ -222,8 +222,10 @@ spec:
             honor_timestamps: true
             static_configs:
               - targets:
+                  - "10.20.30.5:9221" # Nezuko
+                  - "10.20.30.4:9221" # Tanjiro
+                  - "10.20.30.3:9221" # Zenitsu
                   - "10.10.0.8:9221" # Aquafina
-                  #                 - "10.10.0.9:9221" # Fiji // Disabled because host is under maint.
                   - "10.10.0.10:9221" # Poseidon
             metrics_path: /pve
             params:
