@@ -21,6 +21,8 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 9221
+          name: exporter
+          protocol: TCP
         volumeMounts:
           - name: pve
             readOnly: true
