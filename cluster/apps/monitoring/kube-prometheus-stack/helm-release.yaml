@@ -222,11 +222,18 @@ spec:
             honor_timestamps: true
             static_configs:
               - targets:
-                  - "10.20.30.5:9221" # Nezuko
-                  - "10.20.30.4:9221" # Tanjiro
-                  - "10.20.30.3:9221" # Zenitsu
-                  - "10.10.0.8:9221" # Aquafina
-                  - "10.10.0.10:9221" # Poseidon
+                  - "10.20.30.5" # Nezuko
+                  - "10.20.30.4" # Tanjiro
+                  - "10.20.30.3" # Zenitsu
+                  - "10.10.0.8" # Aquafina
+                  - "10.10.0.10" # Poseidon
             metrics_path: /pve
             params:
               module: [default]
+            relabel_configs:
+            - source_labels: [__address__]
+              target_label: __param_target
+            - source_labels: [__param_target]
+              target_label: instance
+            - target_label: __address__
+              replacement: "pve-exporter.monitoring.svc.cluster.local:9221"
