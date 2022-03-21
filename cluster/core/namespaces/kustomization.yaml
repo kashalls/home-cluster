@@ -6,6 +6,7 @@ resources:
   - cert-manager.yaml
   - databases.yaml
   - home.yaml
+  - longhorn-system.yaml
   - metallb-system.yaml
   - networking.yaml
   - storage.yaml
