@@ -5,7 +5,7 @@ metadata:
   name: mariadb-pvc-claim
   namespace: databases
 spec:
-  storageClassName: nfs-client 
+  storageClassName: longhorn 
   accessModes:
     - ReadWriteOnce
   resources:
