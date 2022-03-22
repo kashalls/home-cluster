@@ -29,9 +29,6 @@ spec:
       defaultDataLocality: best-effort
       nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
       concurrentAutomaticEngineUpgradePerNodeLimit: 1
-      defaultDataPath: /var/lib/longhorn
-      defaultReplicaCount: 3
-      replicaSoftAntiAffinity: false
       storageMinimalAvailablePercentage: 10
     ingress:
       enabled: true
