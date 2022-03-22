@@ -23,6 +23,7 @@ apt_install_packages:
   - software-properties-common
   - unattended-upgrades
   - unzip
+  - python3-pip
 
 apt_remove_packages:
   - apparmor
