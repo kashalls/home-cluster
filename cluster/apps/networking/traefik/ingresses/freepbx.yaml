@@ -9,8 +9,8 @@ metadata:
     coredns.io/hostname: "pbx.${SECRET_DOMAIN}"
     cert-manager.io/cluster-issuer: letsencrypt-production
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-    kubernetes.io/ingress.class: traefik
 spec:
+  ingressClassName: traefik
   rules:
     - host: "pbx.${SECRET_DOMAIN}"
       http:
