@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - dashboard
   - config-map.yaml
-  - helm-release.yaml
+  # - helm-release.yaml
