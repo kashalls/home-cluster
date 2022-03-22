@@ -30,6 +30,8 @@ spec:
       nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
       concurrentAutomaticEngineUpgradePerNodeLimit: 1
       storageMinimalAvailablePercentage: 10
+      defaultReplicaCount: 2
+      defaultLonghornStaticStorageClass: longhorn
     ingress:
       enabled: true
       host: "longhorn.${SECRET_DOMAIN}"
