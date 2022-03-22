@@ -223,8 +223,9 @@ spec:
             static_configs:
               - targets:
                   - "10.20.30.5" # Nezuko
-                  - "10.10.0.8" # Aquafina
-                  - "10.10.0.10" # Poseidon
+                  # Internal routing does not allow BGP networks to access internal wireguard tunnels.
+                  # - "10.10.0.8" # Aquafina
+                  # - "10.10.0.10" # Poseidon
             metrics_path: /pve
             params:
               module: [default]
@@ -234,4 +235,4 @@ spec:
             - source_labels: [__param_target]
               target_label: instance
             - target_label: __address__
-              replacement: "pve-exporter.monitoring.svc.cluster.local:9221"
+              replacement: "${PVE_EXPORTER}:9221"
