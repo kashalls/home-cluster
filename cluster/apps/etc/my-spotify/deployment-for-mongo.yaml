@@ -71,7 +71,7 @@ spec:
       volumes:
         - name: mongodb-persistent-storage
           persistentVolumeClaim:
-            claimName: my-spotify-db-claim
+            claimName: my-spotify-db-longhorn
         - name: mongodb-configuration-file
           configMap:
             name: my-spotify-mongodb-config-file
