@@ -119,7 +119,7 @@ spec:
         dashboards:
           multicluster:
             etcd:
-              enabled: false
+              enabled: true
     kubelet:
       enabled: true
       serviceMonitor:
@@ -143,7 +143,7 @@ spec:
       endpoints:
         - 10.20.30.6
     kubeEtcd:
-      enabled: false
+      enabled: true
       endpoints:
         - 10.20.30.6
       service:
