@@ -223,8 +223,6 @@ spec:
             static_configs:
               - targets:
                   - "10.20.30.5" # Nezuko
-                  - "10.20.30.4" # Tanjiro
-                  - "10.20.30.3" # Zenitsu
                   - "10.10.0.8" # Aquafina
                   - "10.10.0.10" # Poseidon
             metrics_path: /pve
