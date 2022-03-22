@@ -33,4 +33,4 @@ spec:
       volumes:
       - name: mariadb-persistent-storage
         persistentVolumeClaim:
-          claimName: mariadb-pvc-claim
+          claimName: mariadb-longhorn
