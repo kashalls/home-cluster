@@ -5,9 +5,23 @@ metadata:
   name: my-spotify-db-claim
   namespace: etc
 spec:
-  storageClassName: longhorn
+  storageClassName: nfs-client
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 6Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-spotify-db-longhorn
+  namespace: etc
+spec:
+  storageClassName: longhorn
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 4Gi
+
