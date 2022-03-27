@@ -6,6 +6,7 @@ resources:
   - grafana
   - kube-prometheus-stack
   - loki
+  - nut-exporter
   - promtail
   - pve-exporter
   - speedtest-exporter
