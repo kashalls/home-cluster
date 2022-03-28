@@ -76,3 +76,9 @@ spec:
                 class: ["ff"]
                 vendor: ["1a86"]
                 device: ["7523"]
+          - name: "aircard"
+            matchOn:
+            - usbId:
+                class: ["ff"]
+                vendor: ["1199"]
+                device: ["9053"]
