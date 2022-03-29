@@ -1,0 +1,21 @@
+---
+
+- name: haproxy - create haproxy data directory
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+  loop:
+    - "{{ unifi_onboot_directory }}/haproxy"
+
+- name: haproxy - create haproxy boot script
+  ansible.builtin.template:
+    src: 10-onboot-haproxy.j2
+    dest: /mnt/data/on_boot.d/10-onboot-haproxy.sh
+    mode: 0755
+
+- name: haproxy - deploy configuration file
+  ansible.builtin.template:
+    src: haproxy.j2
+    dest: "{{ unifi_onboot_directory }}/haproxy/haproxy.cfg"
+    mode: 0755

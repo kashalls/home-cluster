@@ -2,6 +2,8 @@
 roles:
   - src: xanmanning.k3s
     version: v3.1.1
+  - src: mabunixda.ansible_udmp
+    version: v1.1.0
 collections:
   - name: community.docker
     version: 2.2.1

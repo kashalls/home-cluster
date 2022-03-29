@@ -1,0 +1,20 @@
+{
+        "cniVersion": "0.4.0",
+        "name": "coredns",
+        "plugins": [{
+                "type": "macvlan",
+                "mode": "bridge",
+                "master": "br5",
+                "mac": "A6:DD:AD:74:CA:6C",
+                "ipam": {
+                        "type": "static",
+                        "addresses": [{
+                                "address": "10.0.5.53/24",
+                                "gateway": "10.0.5.1"
+                        }],
+                        "routes": [{
+                                "dst": "0.0.0.0/0"
+                        }]
+                }
+        }]
+}

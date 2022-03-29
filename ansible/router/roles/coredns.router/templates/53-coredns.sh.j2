@@ -1,0 +1,11 @@
+#!/bin/sh
+CONTAINER=coredns
+
+if podman container exists "$CONTAINER"; then
+  podman start "$CONTAINER"
+else
+podman run -d --net=host --restart always \
+  --name "$CONTAINER" \
+  --hostname "$CONTAINER" \
+  -v "/mnt/data/haproxy/:/usr/local/etc/haproxy/" \
+  ghcr.io/k8s-at-home/coredns:latest
