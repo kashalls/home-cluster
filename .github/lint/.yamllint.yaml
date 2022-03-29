@@ -1,5 +1,10 @@
 ---
 ignore: |
+  charts/
+  docs/
+  .private/
+  .terraform/
+  .vscode/
   *.sops.*
   gotk-components.yaml
 extends: default
