@@ -24,7 +24,3 @@ terraform.tfstate*
 *.agekey
 # Kubernetes
 kubeconfig*
-talosconfig*
-
-# Folder Structure v3
-/storage
