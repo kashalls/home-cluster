@@ -19,10 +19,10 @@ k3s_become: true
 k3s_debug: false
 
 # Enabled embedded etcd
-k3s_etcd_datastore: false
+k3s_etcd_datastore: true
 
 # -- Enable for single or even number of masters
-k3s_use_unsupported_config: false
+k3s_use_unsupported_config: true
 
 # Control Plane registration address
 # this is set to my haproxy address running on my router.
@@ -38,9 +38,9 @@ k3s_server_manifests_templates:
   - "calico/calico-installation.yaml.j2"
   - "calico/calico-bgpconfiguration.yaml.j2"
   - "calico/calico-bgppeer.yaml.j2"
-  - "calico/calico-ippool.yaml.j2"
+#  - "calico/calico-ippool.yaml.j2"
 
 # Custom manifest URLs
 k3s_server_manifests_urls:
-  - url: https://projectcalico.docs.tigera.io/manifests/calico.yaml
-    filename: calico.yaml
+  - url: https://projectcalico.docs.tigera.io/manifests/tigera-operator.yaml
+    filename: tigera-operator.yaml
