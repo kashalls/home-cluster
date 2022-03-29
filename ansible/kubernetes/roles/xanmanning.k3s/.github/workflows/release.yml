@@ -1,10 +1,9 @@
 ---
-
 name: Release
-'on':
+"on":
   push:
     tags:
-      - '*'
+      - "*"
 
 defaults:
   run:

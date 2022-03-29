@@ -1,5 +1,4 @@
 ---
-
 - name: "haproxy - pull latest version"
   raw: "podman pull haproxy:latest"
 

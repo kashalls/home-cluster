@@ -6,7 +6,7 @@ metadata:
   namespace: databases
 spec:
   ports:
-  - port: 3306
+    - port: 3306
   selector:
     app: mariadb
   clusterIP: None

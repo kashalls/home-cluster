@@ -13,22 +13,22 @@ spec:
         app: pve-exporter
     spec:
       containers:
-      - name: pve-exporter
-        image: docker.io/prompve/prometheus-pve-exporter:latest
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-        ports:
-        - containerPort: 9221
-          name: exporter
-          protocol: TCP
-        volumeMounts:
-          - name: pve
-            readOnly: true
-            mountPath: /etc/pve.yml
-            subPath: pve.yml
+        - name: pve-exporter
+          image: docker.io/prompve/prometheus-pve-exporter:latest
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 9221
+              name: exporter
+              protocol: TCP
+          volumeMounts:
+            - name: pve
+              readOnly: true
+              mountPath: /etc/pve.yml
+              subPath: pve.yml
       volumes:
-      - name: pve
-        secret:
-          secretName: pve-exporter-pve-yml
+        - name: pve
+          secret:
+            secretName: pve-exporter-pve-yml

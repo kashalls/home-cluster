@@ -1,5 +1,4 @@
 ---
-
 - name: haproxy - create haproxy data directory
   ansible.builtin.file:
     path: "{{ item }}"

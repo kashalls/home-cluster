@@ -1,5 +1,4 @@
 ---
-
 - name: Check if kubectl exists
   ansible.builtin.stat:
     path: "{{ k3s_install_dir }}/kubectl"
@@ -8,7 +7,6 @@
 
 - name: Clean up nodes that are in an uninstalled state
   block:
-
     - name: Gather a list of nodes
       ansible.builtin.command:
         cmd: "{{ k3s_install_dir }}/kubectl get nodes"

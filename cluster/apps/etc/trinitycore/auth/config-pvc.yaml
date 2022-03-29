@@ -24,4 +24,3 @@ spec:
     requests:
       storage: 6Gi
   storageClassName: nfs-client
-

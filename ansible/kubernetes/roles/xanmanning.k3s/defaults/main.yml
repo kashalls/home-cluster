@@ -1,5 +1,4 @@
 ---
-
 ##
 # Global/Cluster Configuration
 ##
@@ -104,7 +103,6 @@ k3s_service_env_vars: {}
 # the target as this role will not populate this file.
 k3s_service_env_file: false
 
-
 ##
 # Server Configuration
 ##
@@ -133,11 +131,10 @@ k3s_become: false
 # Private registry configuration.
 # Rancher k3s documentation: https://rancher.com/docs/k3s/latest/en/installation/private-registry/
 k3s_registries:
-
   mirrors:
-#    docker.io:
-#      endpoint:
-#        - "https://mycustomreg.com:5000"
+  #    docker.io:
+  #      endpoint:
+  #        - "https://mycustomreg.com:5000"
   configs:
 #    "mycustomreg:5000":
 #      auth:

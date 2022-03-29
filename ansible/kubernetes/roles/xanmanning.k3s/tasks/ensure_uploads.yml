@@ -1,5 +1,4 @@
 ---
-
 - name: Ensure installation directory exists
   ansible.builtin.file:
     path: "{{ k3s_install_dir }}"

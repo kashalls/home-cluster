@@ -1,5 +1,4 @@
 ---
-
 - name: Check that k3s_state is a supported value
   ansible.builtin.assert:
     that:
@@ -41,8 +40,8 @@
 - include_tasks: pre_checks_version.yml
   when:
     - (k3s_release_version is not defined
-        or not k3s_release_version
-        or k3s_release_version is not regex('\\+k3s[1-9]$'))
+      or not k3s_release_version
+      or k3s_release_version is not regex('\\+k3s[1-9]$'))
     - not k3s_airgap
 
 - include_tasks: pre_checks_cgroups.yml

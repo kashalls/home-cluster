@@ -17,9 +17,9 @@ spec:
         paths:
           - backend:
               service:
-               name: freepbx
-               port:
-                 number: 80
+                name: freepbx
+                port:
+                  number: 80
             path: /
             pathType: Prefix
   tls:

@@ -1,6 +1,5 @@
 ---
-
-flannel-backend: 'none'
+flannel-backend: "none"
 disable-scheduler: true
 disable-cloud-controller: true
 disable-network-policy: true

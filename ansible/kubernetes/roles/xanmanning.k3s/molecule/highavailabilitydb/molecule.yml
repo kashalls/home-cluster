@@ -1,5 +1,4 @@
 ---
-
 dependency:
   name: galaxy
 driver:

@@ -13,7 +13,6 @@
       delegate_to: localhost
       run_once: true
       block:
-
         - name: Ensure files directory exists
           ansible.builtin.file:
             path: ./files

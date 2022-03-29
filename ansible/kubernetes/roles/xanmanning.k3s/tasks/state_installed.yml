@@ -1,5 +1,4 @@
 ---
-
 - import_tasks: ensure_drain_and_remove_nodes.yml
 
 - import_tasks: determine_systemd_context.yml

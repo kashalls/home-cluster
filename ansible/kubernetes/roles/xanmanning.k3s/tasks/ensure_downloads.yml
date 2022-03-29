@@ -1,5 +1,4 @@
 ---
-
 - name: Ensure target host architecture information is set as a fact
   ansible.builtin.set_fact:
     k3s_arch: "{{ k3s_arch_lookup[ansible_architecture].arch }}"

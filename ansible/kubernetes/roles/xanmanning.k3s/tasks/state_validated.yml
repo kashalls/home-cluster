@@ -1,5 +1,4 @@
 ---
-
 - import_tasks: post_checks_control_plane.yml
 
 - import_tasks: post_checks_nodes.yml

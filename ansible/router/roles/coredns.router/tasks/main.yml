@@ -1,5 +1,4 @@
 ---
-
 - name: coredns - create coredns data directory
   ansible.builtin.file:
     path: "{{ item }}"

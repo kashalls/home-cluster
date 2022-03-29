@@ -17,9 +17,9 @@ spec:
         paths:
           - backend:
               service:
-               name: nezuko
-               port:
-                 number: 8006
+                name: nezuko
+                port:
+                  number: 8006
             path: /
             pathType: Prefix
   tls:

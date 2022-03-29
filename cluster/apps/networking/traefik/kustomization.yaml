@@ -6,4 +6,3 @@ resources:
   - helm-release.yaml
   - middlewares
   - tls-store
-

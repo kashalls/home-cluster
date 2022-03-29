@@ -1,5 +1,4 @@
 ---
-
 - import_tasks: pre_checks.yml
 
 - include_tasks: state_{{ (k3s_state | lower) | default('installed') }}.yml

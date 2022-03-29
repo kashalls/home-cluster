@@ -1,5 +1,4 @@
 ---
-
 - name: Ensure facts are gathered
   ansible.builtin.setup:
 
