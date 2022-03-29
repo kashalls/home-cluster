@@ -1,9 +1,30 @@
-# Editors
-.vscode/
 # Trash
 .DS_Store
 Thumbs.db
-# k8s
-kubeconfig
-# vscode-sops
-.decrypted~*.yaml
+# Binaries
+bin
+/flux
+*.iso
+# Temp folders
+.temp*
+.private/
+.logs/
+.task/
+# Ansible
+xanmanning.k3s*
+mrlesmithjr.zfs*
+geerlingguy.docker*
+geerlingguy.pip*
+# Terraform
+.terraform
+.terraform.tfstate*
+terraform.tfstate*
+# Sops
+.decrypted~*
+*.agekey
+# Kubernetes
+kubeconfig*
+talosconfig*
+
+# Folder Structure v3
+/storage
