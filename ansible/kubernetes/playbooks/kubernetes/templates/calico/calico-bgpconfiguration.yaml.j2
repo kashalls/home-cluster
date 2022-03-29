@@ -6,7 +6,7 @@ metadata:
 spec:
   logSeverityScreen: Info
   nodeToNodeMeshEnabled: true
-  asNumber: {{calico_bgp_as_number}}
+  asNumber: {{ calico_bgp_as_number }}
   serviceClusterIPs:
     - cidr: "{{ k3s_server['service-cidr'] }}"
   serviceExternalIPs:
