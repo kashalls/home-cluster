@@ -2,11 +2,15 @@
 version: "3"
 
 env:
-  ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/ansible/kubernetesansible.cfg"
+  ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/ansible/kubernetes/ansible.cfg"
 
 vars:
   ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
   ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
+
+  K3S_PRIMARY_MASTER_NODE_USERNAME: "kashall"
+  K3S_PRIMARY_MASTER_NODE_ADDR: "10.20.30.6"
+  K3S_LB_ADDR: "10.0.0.1"
 
 tasks:
   deps:
@@ -93,3 +97,10 @@ tasks:
     cmds:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/kubernetes/k3s-nuke.yml"
     silent: true
+
+  kubeconfig:
+    desc: Remotely fetch kubeconfig from k3s
+    cmds:
+      - rsync --verbose --progress --partial --rsync-path="sudo rsync" {{.K3S_PRIMARY_MASTER_NODE_USERNAME}}@{{.K3S_PRIMARY_MASTER_NODE_ADDR}}:/etc/rancher/k3s/k3s.yaml ./cluster/kubeconfig
+      - sed -i '' 's/127.0.0.1/{{.K3S_LB_ADDR}}/g' ./cluster/kubeconfig
+      - chmod go-r ./cluster/kubeconfig
