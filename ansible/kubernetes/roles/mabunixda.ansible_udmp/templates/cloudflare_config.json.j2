@@ -1,0 +1,24 @@
+
+
+{
+  "cloudflare": [
+    {
+      "authentication": {
+          "api_token": "{{ cloudflare_api_token | default('') }}",
+          "api_key": {
+              "api_key": "{{ cloudflare_api_key | default('') }}",
+              "account_email": "{{ cloudflare_account_email | default('') }}"
+	        }
+      },
+      "zone_id": "{{ cloudflare_zone_id }}",
+      "subdomains": [
+        {{ cloudflare_subdomains }}
+      ],
+      "proxied": false,
+      "ttl": 120
+    }
+  ],
+  "a": true,
+  "aaaa": false,
+  "purgeUnknownRecords": false
+}
