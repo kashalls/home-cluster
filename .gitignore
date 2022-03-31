@@ -15,6 +15,7 @@ xanmanning.k3s*
 mrlesmithjr.zfs*
 geerlingguy.docker*
 geerlingguy.pip*
+mabunixda.ansible_udmp*
 # Terraform
 .terraform
 .terraform.tfstate*
