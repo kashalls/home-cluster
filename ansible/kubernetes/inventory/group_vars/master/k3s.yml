@@ -8,6 +8,8 @@ k3s_control_node: true
 # k3s settings for all control-plane nodes
 k3s_server:
   node-ip: "{{ ansible_host }}"
+  node-label:
+    - "node.longhorn.io/create-default-disk=true"
   tls-san:
     - "{{ ansible_host }}"
     - "{{ k3s_registration_address }}"
