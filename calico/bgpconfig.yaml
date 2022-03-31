@@ -6,7 +6,7 @@ metadata:
 spec:
   logSeverityScreen: Info
   nodeToNodeMeshEnabled: false
-  asNumber: 64512
+  asNumber: 64535
   serviceClusterIPs:
     - cidr: "10.69.0.0/16"
   serviceExternalIPs:

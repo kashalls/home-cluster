@@ -5,4 +5,4 @@ metadata:
   name: global
 spec:
   peerIP: 10.0.0.1
-  asNumber: 64512
+  asNumber: 64535
