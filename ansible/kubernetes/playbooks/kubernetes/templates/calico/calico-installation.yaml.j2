@@ -19,3 +19,12 @@ spec:
         - "{{ calico_node_cidr }}"
   nodeMetricsPort: 9091
   typhaMetricsPort: 9093
+
+---
+# This section configures the Calico API server.
+# For more information, see: https://projectcalico.docs.tigera.io/v3.22/reference/installation/api#operator.tigera.io/v1.APIServer
+apiVersion: operator.tigera.io/v1
+kind: APIServer 
+metadata: 
+  name: default 
+spec: {}
