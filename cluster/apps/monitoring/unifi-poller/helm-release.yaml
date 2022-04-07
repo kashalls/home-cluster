@@ -32,6 +32,14 @@ spec:
       UP_INFLUXDB_DISABLE: true
       UP_PROMETHEUS_DISABLE: false
       UP_PROMETHEUS_NAMESPACE: "unifipoller"
-    prometheus:
-      serviceMonitor:
+    metrics:
+      enabled: true
+      prometheusRule:
         enabled: true
+    resources:
+      requests:
+        cpu: 300m
+        memory: 100Mi
+      limits:
+        cpu: 300m
+        memory: 100Mi
