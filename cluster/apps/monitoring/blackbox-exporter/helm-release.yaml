@@ -26,13 +26,14 @@ spec:
       enabled: true
       className: traefik
       hosts:
-        - host: &host "blackbox.${SECRET_DOMAIN}"
+        - host: "blackbox.${SECRET_DOMAIN}"
           paths:
             - path: /
               pathType: Prefix
       tls:
         - hosts:
-            - *host
+            - "blackbox.${SECRET_DOMAIN}"
+          secretName: blackbox
     allowIcmp: true
     config:
       modules:
@@ -56,9 +57,6 @@ spec:
         interval: 2m
         scrapeTimeout: 30s
       targets:
-        - module: http_2xx
-          name: unifi-http
-          url: "https://unifi.${SECRET_PRIVATE_DOMAIN}"
         - module: icmp
           name: unifi-icmp
           url: unifi
