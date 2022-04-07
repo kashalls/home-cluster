@@ -16,12 +16,11 @@ spec:
         name: grafana-charts
         namespace: flux-system
       interval: 5m
+  install:
+    createNamespace: true
   values:
-    image:
-      repository: ghcr.io/k8s-at-home/loki
     ingress:
       enabled: true
-      # ingressClassName: "traefik"
       annotations:
         kubernetes.io/ingress.class: "traefik"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
@@ -32,18 +31,31 @@ spec:
       tls:
         - hosts:
             - "loki.${SECRET_DOMAIN}"
+          secretName: loki
     serviceMonitor:
       enabled: true
     config:
+      limits_config:
+        enforce_metric_name: false
+        reject_old_samples: true
+        reject_old_samples_max_age: 168h
+        ingestion_rate_mb: 16
+        ingestion_burst_size_mb: 24
       storage_config:
         aws:
-          s3: "s3://${SECRET_MINIO_ACCESS_KEY}:${SECRET_MINIO_SECRET_KEY}@${NAS_ADDR}:9000/loki"
+          bucketnames: loki
+          endpoint: "s3.${SECRET_DOMAIN}"
+          access_key_id: "${SECRET_MINIO_ACCESS_KEY}"
+          secret_access_key: "${SECRET_MINIO_SECRET_KEY}"
           s3forcepathstyle: true
+          insecure: false
         boltdb_shipper:
           active_index_directory: /data/loki/index
           cache_location: /data/loki/index_cache
           resync_interval: 5s
           shared_store: s3
+      compactor:
+        retention_enabled: true
       ruler:
         storage:
           type: local
@@ -56,6 +68,34 @@ spec:
             store: inmemory
         enable_api: true
     alerting_groups:
+      #
+      # SMART Failures
+      #
+      - name: smart-failure
+        rules:
+          - alert: SmartFailures
+            expr: |
+              sum by (hostname) (count_over_time({hostname=~".+"} | json | _SYSTEMD_UNIT = "smartmontools.service" !~ "(?i)previous self-test completed without error" !~ "(?i)Prefailure" |~ "(?i)(error|fail)"[2m])) > 0
+            for: 2m
+            labels:
+              severity: critical
+              category: logs
+            annotations:
+              summary: "SMART has reported failures on host {{ $labels.hostname }}"
+      #
+      # zigbee2mqtt
+      #
+      - name: zigbee2mqtt
+        rules:
+          - alert: ZigbeeUnableToReachMQTT
+            expr: |
+              sum(count_over_time({app="zigbee2mqtt"} |~ "(?i)not connected to mqtt server"[2m])) > 0
+            for: 2m
+            labels:
+              severity: critical
+              category: logs
+            annotations:
+              summary: "Zigbee2mqtt is unable to reach MQTT"
       #
       # home-assistant
       #
@@ -70,3 +110,17 @@ spec:
               category: logs
             annotations:
               summary: "Home Assistant is unable to connect to postgresql"
+      #
+      # node-red
+      #
+      - name: node-red
+        rules:
+          - alert: NodeRedUnableToReachHomeAssistant
+            expr: |
+              sum by (app) (count_over_time({app="node-red"} |~ "(?i)home assistant.*connecting to undefined"[2m])) > 0
+            for: 2m
+            labels:
+              severity: critical
+              category: logs
+            annotations:
+              summary: "Node-Red is unable to connect to Home Assistant"
