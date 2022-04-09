@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gammu-sms-gateway
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: gammu-sms-gateway
+  template:
+    metadata:
+      labels:
+        app: gammu-sms-gateway
+    spec:
+      containers:
+      - name: gammu-sms-gateway
+        image: ghcr.io/kashalls/gammu-sms-gateway:main
+        imagePullPolicy: Always
+        securityContext:
+          privileged: true
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                  - key: feature.node.kubernetes.io/custom-aircard
+                    operator: In
+                    values:
+                      - "true"
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+          - mountPath: /dev/modem0
+            name: sierra-aircard
+      volumes:
+        - name: sierra-aircard
+          hostPath:
+            path: /dev/bus/usb/002/003
+          # In the future, select by serial id?
