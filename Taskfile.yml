@@ -14,6 +14,7 @@ includes:
   ansible: .taskfiles/ansible.yml
   flux: .taskfiles/flux.yml
   format: .taskfiles/format.yml
+  kiosk: .taskfiles/kiosk.yml
   kubernetes: .taskfiles/kubernetes.yml
   lint: .taskfiles/lint.yml
   pre-commit: .taskfiles/pre-commit.yml

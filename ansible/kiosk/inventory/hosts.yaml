@@ -1,0 +1,8 @@
+grafana_kiosk:
+  hosts:
+    grafana_kiosk_rpi_tv:
+      ansible_host: "10.0.0.79"
+
+all:
+  children:
+    grafana_kiosk:

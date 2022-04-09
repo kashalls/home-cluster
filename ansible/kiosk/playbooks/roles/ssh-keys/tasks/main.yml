@@ -1,0 +1,20 @@
+---
+# tasks file for rpi-grafana-kiosk
+- name: Deploy SSH Key
+  ansible.posix.authorized_key:
+    user: pi
+    state: present
+    key: https://github.com/kashalls.keys
+    validate_certs: False
+  notify:
+    - Restart sshd
+
+- name: Disable Password Authentication
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^PasswordAuthentication'
+    line: "PasswordAuthentication no"
+    state: present
+    backup: yes
+  notify:
+    - Restart sshd

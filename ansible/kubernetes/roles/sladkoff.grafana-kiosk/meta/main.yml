@@ -1,0 +1,21 @@
+galaxy_info:
+  author: sladkoff
+  description: Installs grafana-kiosk on a raspberry pi
+  license: MIT
+  min_ansible_version: 2.1
+
+
+  platforms:
+  - name: Debian
+    versions:
+      - all
+
+  galaxy_tags:
+    - raspberry
+    - pi
+    - grafana
+    - kiosk
+    - chrome
+
+dependencies: []
+

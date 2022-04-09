@@ -1,0 +1,4 @@
+xset dpms 0 0 0
+xset s noblank
+xset s off
+screen -d -m bash -c "/home/{{ grafana_kiosk_user }}/grafana-kiosk/grafana-kiosk.linux.armv7 -c /home/{{ grafana_kiosk_user }}/grafana-kiosk/grafana-kiosk-config.yaml"

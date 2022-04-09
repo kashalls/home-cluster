@@ -1,0 +1,12 @@
+general:
+  kiosk-mode: full
+  autofit: true
+  lxde: false
+
+target:
+  login-method: anon
+  username: pi-grafana-kiosk
+  password: pi-grafana-kiosk-password
+  playlist: false
+  URL: https://play.grafana.org?kiosk&autofitpanels
+  ignore-certificate-errors: false

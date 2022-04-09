@@ -1,0 +1,16 @@
+name: CI
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Publish Ansible role to Galaxy
+        uses: robertdebock/galaxy-action@1.1.1
+        with:
+          galaxy_api_key: ${{ secrets.GALAXY_API_KEY }}

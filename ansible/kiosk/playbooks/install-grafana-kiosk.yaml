@@ -1,0 +1,7 @@
+---
+- name: “Install Grafana Kiosk”
+  hosts: all
+  become: true
+  roles:
+    - roles/ssh-keys
+    - sladkoff.grafana-kiosk

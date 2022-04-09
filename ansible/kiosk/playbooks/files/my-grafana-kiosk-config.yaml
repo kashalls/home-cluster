@@ -1,0 +1,12 @@
+general:
+  kiosk-mode: tv
+  autofit: true
+  lxde: false
+
+target:
+  login-method: local
+  username: kiosk
+  password: k!osk
+  playlists: true
+  URL: https://grafana.kami.gg/playlists/play/1?kiosk=tv&autofitpanels
+  ignore-certificate-errors: false
