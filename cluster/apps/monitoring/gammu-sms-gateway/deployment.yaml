@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: gammu-sms-gateway
-        image: ghcr.io/kashalls/gammu-sms-gateway:latest
+        image: ghcr.io/kashalls/gammu-sms-gateway:v1.0.0
         imagePullPolicy: Always
         securityContext:
           privileged: true
@@ -36,9 +36,16 @@ spec:
         volumeMounts:
           - mountPath: /dev/modem0
             name: sierra-aircard
+          - name: smsgateway
+            readOnly: true
+            mountPath: /etc/smsgateway.yml
+            subPath: smsgateway.yml
       volumes:
+        - name: smsgateway
+          secret:
+            secretName: smsgateway
         - name: sierra-aircard
           hostPath:
             path: /dev/bus/usb/002/003
           # In the future, select by serial id?
-         # internal screaming
+          # internal screaming
