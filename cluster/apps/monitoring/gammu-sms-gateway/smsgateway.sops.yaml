@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Secret
 metadata:
     name: smsgateway
+    namespace: monitoring
 type: Opaque
 data:
     smsgateway.yml: ENC[AES256_GCM,data:Xm9gc054aVYBRT/O2HMsO6fDTP6BAwtS0aExmx50dg4N4vPYliC0EtDAdOI5YA08o/cgbeTxQ2lIx/5ooisgrMd7ybB5rJA0b18qBgAfyinEyLQcjQvHRt11DhWyM4t2CLU2wWwpnbY45GzHKH/dqgga5CKzn4UYs9aWIT8jkrSVFfPBWypreETJ/95sVex//P5VMpP7UmR0AcDxnrF/vH6iAQ3uGngHe02a9kJf18ZI4jhBYXxZm0RO3CGtxm+QVQUQ0RHC2i7/fRyZgIpZjQGCr/yTpMP4U/RITCis/QhW8uraa77Ml0d7USR9Ze1wGuXqE4Yuge6/nveajzmdPRqlKMpY7if355s0OyU/UWzFHftpbS+opt3Ai+zi5nWiwHe5Psf8FBro2i3nLMKtsk4OxbwqDrON93dmjHVY7XlHPvIF3Ce/OwtkbTdmtk5UckpWlHPg/vgmVRirTUfBcnyxE6PdXIapdDy1p5sx2y9tSGLM+vxjzdhVXpjQgsiuHU585VBpKsHm0ZjmoRVO7w5HaX5W3lehCxBaaZAe52usRBGFl71F8TDbq0msbVeJZO6zwwNiUVsCvnWWdTvzpfcx7Px2XW3rT8fsTBpKEam+3kMf0NC2QVQFDyghza+6fCRlIy9gQ4QTiHEtujltjIuYSQSGqhJ6gN0n9IrOiUMseRay48Nw3HZjZ/1NSogDwOYLpIMipzzBZjHVy+ivDi2Qe1FNajgo/kKBZVlR1zPAxAk3jpF44QIcoiaR5Zm6JSSLEaEvXBfaFrbk0h01hhja230BZiNuU/KGkEjnjqM3RsXrrrA/Vk0LfPCVYwognZfErhzdmQ==,iv:DOZ8o5n/PEOv4WcVryyRVAG4OjZS9cQ0mruowcyPiZk=,tag:POW36FzMzrT5z0La8bq2lQ==,type:str]
@@ -11,8 +12,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2022-04-09T04:30:18Z"
-    mac: ENC[AES256_GCM,data:USiQN+yHkdCWmNelKQc9pyJOdZtvTBt2kRSELAt/LOhJAYtyIScdIp3Uk3LWlPHfFE7VnPxuGzyVQFdShehU4T02LyIlIagpWeNkjXoV+xKxVGfyZiQtiri5cLqoA1nFcFRK4pkAgQZDRkG6U9KCxCoZcXgZ8TSiiJwGeaRUdqg=,iv:lCp+eFS0MW/Z6ZI22yJzmjXYJtmmYSKQGlzlZiCzltI=,tag:DDyPc0x/5eUEke+/TZ/kiw==,type:str]
+    lastmodified: "2022-04-09T05:30:38Z"
+    mac: ENC[AES256_GCM,data:kkyWCPhYNprnMnNdvOQ30DMSu/V8eQeJE9BSCXV6BatPvAukN01l3goYgFYaupJxkY800kWSrcWEfJO1wKXongRaUVGrXXDnjCtteUfBHNu9wHxNcUGKc1/buPgBF3g0CMRsbAw4Xz1BMUjn45IHZXDmM/dn2XDpcwQ2BCngxnY=,iv:bPJP06SGASpvBC5gj/fF/5dxzxEZrc/nVxKQywPRAIA=,tag:hHJigioAcd8IRxyvX7KlnQ==,type:str]
     pgp:
         - created_at: "2022-04-09T04:30:17Z"
           enc: |
