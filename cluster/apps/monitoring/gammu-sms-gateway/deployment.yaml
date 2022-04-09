@@ -48,4 +48,4 @@ spec:
           hostPath:
             path: /dev/bus/usb/002/003
           # In the future, select by serial id?
-          # internal screaming
+          # internal screaming x2
