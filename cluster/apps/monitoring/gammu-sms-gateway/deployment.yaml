@@ -12,34 +12,34 @@ spec:
       labels:
         app: gammu-sms-gateway
     spec:
-      containers:
-      - name: gammu-sms-gateway
-        image: ghcr.io/kashalls/gammu-sms-gateway:dev
-        imagePullPolicy: Always
-        securityContext:
-          privileged: true
-        affinity:
-          nodeAffinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
-              nodeSelectorTerms:
-                - matchExpressions:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
                   - key: feature.node.kubernetes.io/custom-aircard
                     operator: In
                     values:
                       - "true"
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-        ports:
-        - containerPort: 8080
-        volumeMounts:
-          - mountPath: /dev/modem0
-            name: sierra-aircard
-          - name: smsgateway
-            readOnly: true
-            mountPath: /etc/smsgateway.yml
-            subPath: smsgateway.yml
+      containers:
+        - name: gammu-sms-gateway
+          image: ghcr.io/kashalls/gammu-sms-gateway:dev
+          imagePullPolicy: Always
+          securityContext:
+            privileged: true
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: /dev/modem0
+              name: sierra-aircard
+            - name: smsgateway
+              readOnly: true
+              mountPath: /etc/smsgateway.yml
+              subPath: smsgateway.yml
       volumes:
         - name: smsgateway
           secret:
