@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: gammu-sms-gateway
-        image: ghcr.io/kashalls/gammu-sms-gateway:1.0.0
+        image: ghcr.io/kashalls/gammu-sms-gateway:dev
         imagePullPolicy: Always
         securityContext:
           privileged: true
