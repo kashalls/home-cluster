@@ -46,6 +46,6 @@ spec:
             secretName: smsgateway
         - name: sierra-aircard
           hostPath:
-            path: /dev/bus/usb/002/003
+            path: /dev/ttyUSB0
           # In the future, select by serial id?
           # internal screaming x2
