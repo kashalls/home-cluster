@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -47,5 +48,3 @@ spec:
         - name: sierra-aircard
           hostPath:
             path: /dev/ttyUSB0
-          # In the future, select by serial id?
-          # internal screaming x2

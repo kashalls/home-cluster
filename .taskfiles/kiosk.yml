@@ -10,13 +10,11 @@ tasks:
   install:
     desc: Install Grafana Kiosk
     cmds:
-      - "echo '{{.ANSIBLE_CONFIG}}'"
-      - "ansible-galaxy install -r {{.ANSIBLE_DIR}}/kiosk/requirements.yml --force"
+      - task: :ansible:deps
       - "ansible-playbook {{.KIOSK_PLAYBOOK_DIR}}/install-grafana-kiosk.yaml -i {{.KIOSK_INVENTORY_DIR}}/hosts.yaml --ask-pass"
 
   update:
-    desc: Install Grafana Kiosk
+    desc: Update Grafana Kiosk
     cmds:
-      - "echo '{{.ANSIBLE_CONFIG}}'"
-      - "ansible-galaxy install -r {{.ANSIBLE_DIR}}/kiosk/requirements.yml --force"
+      - task: :ansible:deps
       - "ansible-playbook {{.KIOSK_PLAYBOOK_DIR}}/install-grafana-kiosk.yaml -i {{.KIOSK_INVENTORY_DIR}}/hosts.yaml"

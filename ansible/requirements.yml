@@ -4,6 +4,7 @@ roles:
     version: v3.1.1
   - src: mabunixda.ansible_udmp
     version: v1.1.0
+  - src: sladkoff.ansible_role_grafana_kiosk
 collections:
   - name: community.docker
     version: 2.3.0

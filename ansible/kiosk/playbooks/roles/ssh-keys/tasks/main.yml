@@ -5,7 +5,7 @@
     user: pi
     state: present
     key: https://github.com/kashalls.keys
-    validate_certs: False
+    validate_certs: true
   notify:
     - Restart sshd
 
@@ -15,6 +15,6 @@
     regexp: '^PasswordAuthentication'
     line: "PasswordAuthentication no"
     state: present
-    backup: yes
+    backup: true
   notify:
     - Restart sshd

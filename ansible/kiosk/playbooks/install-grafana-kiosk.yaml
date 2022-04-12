@@ -1,5 +1,5 @@
 ---
-- name: “Install Grafana Kiosk”
+- name: "Install Grafana Kiosk"
   hosts: all
   become: true
   roles:

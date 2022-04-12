@@ -4,7 +4,7 @@
   gather_facts: false
   roles:
     - role: mabunixda.ansible_udmp
-      nodeexporter_enabled: yes
+      nodeexporter_enabled: on
       # force_external_dns: yes
       # udmp_external_dns_server_ipv4: "192.168.99.100" # e.g. pihole
       # udmp_external_dns_devices:

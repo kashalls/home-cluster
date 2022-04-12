@@ -26,7 +26,7 @@ resolvers homenetwork
     nameserver pihole {{ PIHOLE_SERVER }}:53
 
 frontend k8s-master-server
-    bind :6443 
+    bind :6443
     mode tcp
     default_backend k8s-pool-server
     timeout client 4h
@@ -38,7 +38,7 @@ backend k8s-pool-server
     mode tcp
     balance source
     # stickiness
-    stick-table type ip size 50k expire 30m  
+    stick-table type ip size 50k expire 30m
     stick on src
     # tuning options
     timeout connect 10s

@@ -1,3 +1,4 @@
+---
 grafana_kiosk:
   hosts:
     grafana_kiosk_rpi_tv:

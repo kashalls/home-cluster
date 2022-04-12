@@ -16,6 +16,7 @@ mrlesmithjr.zfs*
 geerlingguy.docker*
 geerlingguy.pip*
 mabunixda.ansible_udmp*
+sladkoff.grafana-kiosk*
 # Terraform
 .terraform
 .terraform.tfstate*
