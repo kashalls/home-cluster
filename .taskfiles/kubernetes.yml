@@ -10,36 +10,6 @@ vars:
   K3S_LB_ADDR: "10.0.0.1"
 
 tasks:
-  deps:
-    desc: Upgrade Ansible galaxy deps
-    dir: ansible
-    cmds:
-      - "ansible-galaxy install -r requirements.yml --force"
-      - "ansible-galaxy collection install -r requirements.yml --force"
-      - "pip3 install -r requirements.txt"
-    silent: true
-
-  list:
-    desc: List all the hosts
-    dir: ansible
-    cmds:
-      - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml --list-hosts"
-    silent: true
-
-  ping:
-    desc: Ping all the hosts
-    dir: ansible
-    cmds:
-      - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml --one-line -m 'ping'"
-    silent: true
-
-  uptime:
-    desc: Uptime of all the hosts
-    dir: ansible
-    cmds:
-      - ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml --one-line -a 'uptime'
-    silent: true
-
   clean-images:
     desc: Clean up stale container images
     dir: ansible
