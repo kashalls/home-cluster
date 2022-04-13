@@ -83,3 +83,14 @@ spec:
         # -- Optional path for ups to mount in the container.
         mountPath: /dev/bus/usb/002/003
         readOnly: false
+    metrics:
+      enabled: true
+      serviceMonitor:
+        interval: 15s
+        scrapeTimeout: 10s
+      prometheusRule:
+        enabled: true
+      exporter:
+        image:
+          repository: hon95/prometheus-nut-exporter
+          tag: 1.1.1
