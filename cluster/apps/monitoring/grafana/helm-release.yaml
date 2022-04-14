@@ -134,6 +134,10 @@ spec:
           gnetId: 12175
           revision: 5
           datasource: Prometheus
+        nut:
+          gnetId: 14104
+          revision: 2
+          datasource: Prometheus
     sidecar:
       dashboards:
         enabled: true
