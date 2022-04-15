@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: mqtt-exporter
-          image: docker.io/kpetremann/mqtt-exporter:latest
+          image: docker.io/kpetrem/mqtt-exporter:latest
           imagePullPolicy: Always
           env:
             - name: MQTT_IGNORED_TOPICS
