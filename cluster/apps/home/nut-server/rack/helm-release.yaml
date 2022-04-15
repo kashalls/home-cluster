@@ -90,7 +90,3 @@ spec:
         scrapeTimeout: 10s
       prometheusRule:
         enabled: true
-      exporter:
-        image:
-          repository: hon95/prometheus-nut-exporter
-          tag: 1.1.1
