@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mqtt-explorer
+  name: mqtt-exporter
   namespace: monitoring
 spec:
   ports:
@@ -10,4 +10,4 @@ spec:
     - port: 9000
       targetPort: 9000
   selector:
-    app: mqtt-explorer
+    app: mqtt-exporter
