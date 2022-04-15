@@ -55,21 +55,21 @@ spec:
           receiver: "discord"
           routes:
             - receiver: "null"
-              match:
-                alertname: Watchdog
-            - receiver: "discord"
-              match_re:
-                severity: critical
+              matchers:
+                - alertname =~ "InfoInhibitor|Watchdog"
+            - receiver: "pushover"
+              matchers:
+                - severity = "critical"
               continue: true
             - receiver: "nodered"
-              match:
-                alertname: UPSOnBattery
+              matchers:
+                - alertname = "UPSOnBattery"
               continue: true
         inhibit_rules:
-          - source_match:
-              severity: "critical"
-            target_match:
-              severity: "warning"
+          - source_matchers:
+              - severity = "critical"
+            target_matchers:
+              - severity = "warning"
             equal: ["alertname", "namespace"]
       ingress:
         enabled: true
@@ -233,3 +233,11 @@ spec:
                 target_label: instance
               - target_label: __address__
                 replacement: "pve-exporter.monitoring.svc.cluster.local:9221"
+          - job_name: mqtt-exporter
+            static_configs:
+              - targets: ["mqtt-exporter.monitoring.svc.cluster.local:9000"]
+            metric_relabel_configs:
+              - source_labels: [sensor]
+                regex: 'zigbee2mqtt_(.*)'
+                replacement: '$1'
+                target_label: sensor
