@@ -223,9 +223,6 @@ spec:
             static_configs:
               - targets:
                   - "10.20.30.5" # Nezuko
-                  # Internal routing does not allow BGP networks to access internal wireguard tunnels.
-                  # - "10.10.0.8" # Aquafina
-                  # - "10.10.0.10" # Poseidon
             metrics_path: /pve
             params:
               module: [default]
