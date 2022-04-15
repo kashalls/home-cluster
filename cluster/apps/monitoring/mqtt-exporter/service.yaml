@@ -6,6 +6,7 @@ metadata:
   namespace: monitoring
 spec:
   ports:
+    # Force update?
     - port: 9000
       targetPort: 9000
   selector:
