@@ -53,10 +53,11 @@ spec:
       # See https://github.com/networkupstools/nut/tree/master/conf for config sample files
       files:
         ups.conf: |
-          [ups]
+          [rack]
             driver = usbhid-ups
             port = auto
-            pollfreq = 15
+            pollinterval = 15
+            desc = Rack UPS
 
         upsmon.conf: |
           DEADTIME 25
