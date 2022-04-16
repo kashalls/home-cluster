@@ -46,7 +46,7 @@ spec:
     storegateway:
       enabled: true
       persistence:
-        storageClass: "nfs-client"
+        storageClass: "longhorn"
         accessModes:
           - ReadWriteOnce
         enabled: true

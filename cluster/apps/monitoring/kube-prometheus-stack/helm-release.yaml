@@ -84,7 +84,7 @@ spec:
         storage:
           volumeClaimTemplate:
             spec:
-              storageClassName: "nfs-client"
+              storageClassName: "longhorn"
               resources:
                 requests:
                   storage: 2Gi
@@ -185,7 +185,7 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: "nfs-client"
+              storageClassName: "longhorn"
               resources:
                 requests:
                   storage: 10Gi
