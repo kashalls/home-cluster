@@ -87,9 +87,9 @@ spec:
     persistence:
       data:
         enabled: true
-        existingClaim: hajimari-config
+        existingClaim: hajimari-config-longhorn
     podAnnotations:
-      configmap.reloader.stakater.com/reload: "hajimari-config"
+      configmap.reloader.stakater.com/reload: "hajimari-config-longhorn"
     resources:
       requests:
         cpu: 100m
