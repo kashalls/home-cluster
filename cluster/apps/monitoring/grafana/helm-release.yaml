@@ -19,7 +19,6 @@ spec:
   values:
     image:
       repository: ghcr.io/k8s-at-home/grafana
-    replicas: 1
     env:
       GF_EXPLORE_ENABLED: true
       GF_PANELS_DISABLE_SANITIZE_HTML: true
@@ -32,7 +31,6 @@ spec:
       GF_DATE_FORMATS_INTERVAL_DAY: "DD/MM"
       GF_DATE_FORMATS_INTERVAL_MONTH: "MM-YYYY"
       GF_DATE_FORMATS_INTERVAL_YEAR: "YYYY"
-      VAR_BLOCKY_URL: "http://blocky.networking.svc.cluster.local:4000"
     adminPassword: "${SUPER_SECRET_GRAFANA_PASSWORD}"
     grafana.ini:
       server:
@@ -112,17 +110,12 @@ spec:
           revision: 3
           datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/10347
-        idrac-snmp:
-          gnetId: 14395
-          revision: 1
-          datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/14395
         speedtest:
           gnetId: 13665
           revision: 1
           datasource: Prometheus
         air-gradient:
-          url: https://raw.githubusercontent.com/Kashalls/home-cluster/main/cluster/apps/monitoring/grafana/airgradient-grafana.json
+          url: https://raw.githubusercontent.com/Kashalls/home-cluster/main/cluster/apps/monitoring/grafana/dashboard/airgradient-grafana.json
           datasource: Prometheus
         flux-cluster:
           url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/cluster.json
@@ -138,6 +131,18 @@ spec:
           gnetId: 14104
           revision: 2
           datasource: Prometheus
+        synology-nas:
+          gnetId: 14284
+          revision: 9
+          datasource: Prometheus
+        traefik-ingress:
+          datasource: Prometheus
+          gnetId: 4475
+          revision: 5
+        longhorn:
+          datasource: Prometheus
+          gnetId: 13032
+          revision: 6
     sidecar:
       dashboards:
         enabled: true
@@ -152,6 +157,7 @@ spec:
       - vonage-status-panel
       - grafana-worldmap-panel
       - grafana-clock-panel
+      - cloudflare-app
     serviceMonitor:
       enabled: true
     ingress:
@@ -170,4 +176,6 @@ spec:
       create: true
       autoMount: true
     persistence:
-      enabled: false
+      enabled: true
+      size: 4Gi
+      storageClassName: longhorn
