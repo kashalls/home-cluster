@@ -241,3 +241,10 @@ spec:
                 regex: 'zigbee2mqtt_(.*)'
                 replacement: '$1'
                 target_label: sensor
+          - job_name: 'homeassistant'
+            scrape_interval: 60s
+            metrics_path: /api/prometheus
+            bearer_token: ${HASS_PROMETHEUS_TOKEN}
+            static_configs:
+              - targets:
+                  - "hass.${SECRET_DOMAIN}"
