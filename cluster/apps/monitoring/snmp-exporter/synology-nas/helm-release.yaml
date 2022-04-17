@@ -31,17 +31,11 @@ spec:
         defaultMode: 420
     serviceMonitor:
       enabled: true
-      namespace: monitoring
       params:
-        enabled: true
-        conf:
-          module:
-            - synology
-          target:
-            - "${NAS_ADDR}"
-      path: /snmp
-      # interval: 60s
-      scrapeTimeout: 10s
+        module:
+          - synology
+        name: synology-nas
+        target: 10.0.0.20
       relabelings:
         - sourceLabels: [__param_target]
           targetLabel: instance
