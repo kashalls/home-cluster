@@ -34,10 +34,10 @@ spec:
     serviceMonitor:
       enabled: true
       params:
-        module:
-          - synology
-        name: synology-nas
-        target: 10.0.0.20
+        - name: synology-nas
+          target: 10.0.0.20
+          module:
+            - synology
       relabelings:
         - sourceLabels: [__param_target]
           targetLabel: instance
