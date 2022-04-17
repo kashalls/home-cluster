@@ -5,6 +5,7 @@ metadata:
   name: thanos
   namespace: monitoring
 spec:
+  # FORCE
   interval: 5m
   chart:
     spec:
