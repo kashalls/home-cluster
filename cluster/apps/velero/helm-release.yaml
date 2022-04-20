@@ -60,7 +60,7 @@ spec:
     kubectl:
       image:
         repository: ghcr.io/k8s-at-home/kubectl
-        tag: v1.23.5
+        tag: v1.23.6
     deployRestic: true
     restic:
       podVolumePath: /var/lib/kubelet/pods
