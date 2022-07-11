@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/home-assistant/home-assistant
-      tag: 2022.6.6
+      tag: 2022.7.3
     env:
       TZ: "America/Los_Angeles"
     envFrom:
