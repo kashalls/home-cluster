@@ -18,7 +18,7 @@ spec:
           restartPolicy: Never
           containers:
             - name: cloudflare-ddns
-              image: ghcr.io/k8s-at-home/kubectl:v1.25.0
+              image: ghcr.io/k8s-at-home/kubectl:v1.25.4
               envFrom:
                 - secretRef:
                     name: cloudflare-ddns
