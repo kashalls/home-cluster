@@ -7,7 +7,7 @@ roles:
   - src: sladkoff.ansible_role_grafana_kiosk
 collections:
   - name: community.docker
-    version: 3.2.0
+    version: 3.2.1
   - name: community.general
     version: 6.0.0
   - name: community.kubernetes
