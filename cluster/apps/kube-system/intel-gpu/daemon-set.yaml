@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: *app
-          image: docker.io/intel/intel-gpu-plugin:0.25.0
+          image: docker.io/intel/intel-gpu-plugin:0.25.1
           imagePullPolicy: IfNotPresent
           args:
             - -shared-dev-num
