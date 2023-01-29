@@ -1,6 +1,6 @@
 export default defineAppConfig({
   docus: {
-    title: 'Home Ops',
+    title: 'Kashalls\'s Home Cluster',
     description: 'Basic documentation for my home ops cluster.',
     image: 'https://jordanjones.org/_nuxt/img/jordanjones-colored.94409ff.svg',
     socials: {
@@ -13,16 +13,17 @@ export default defineAppConfig({
     },
     aside: {
       level: 0,
+      collapsed: false,
       exclude: []
     },
     header: {
-      logo: true,
+      logo: false,
       showLinkIcon: true,
       exclude: []
     },
     footer: {
       credits: {
-        "icon": "",
+        "icon": "ic:twotone-money",
         "text": "Maintained by Kashalls",
         "href": "https://kashall.dev"
       },
@@ -32,6 +33,13 @@ export default defineAppConfig({
           icon: 'IconNuxtLabs'
         }
       ]
+    },
+    github: {
+      dir: '/docs',
+      repo: 'home-cluster',
+      owner: 'kashalls',
+      edit: true,
+      branch: 'main'
     }
   }
 })
