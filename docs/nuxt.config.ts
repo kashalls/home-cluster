@@ -1,4 +1,6 @@
 export default defineNuxtConfig({
-  ssr: false,
-  extends: '@nuxt-themes/docus'
+  extends: '@nuxt-themes/docus',
+  nitro: {
+    preset: 'cloudflare_pages'
+  }
 })
