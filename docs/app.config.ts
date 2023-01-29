@@ -23,14 +23,14 @@ export default defineAppConfig({
     },
     footer: {
       credits: {
-        "icon": "ic:twotone-money",
+        "icon": "la:money-bill-wave-alt",
         "text": "Maintained by Kashalls",
         "href": "https://kashall.dev"
       },
       iconLinks: [
         {
-          href: 'https://nuxt.com',
-          icon: 'IconNuxtLabs'
+          href: 'https://discord.gg/k8s-at-home',
+          icon: 'ic:baseline-discord'
         }
       ]
     },
