@@ -2,7 +2,7 @@ export default defineAppConfig({
   docus: {
     title: 'Kashalls\'s Home Cluster',
     description: 'Basic documentation for my home ops cluster.',
-    image: 'https://jordanjones.org/_nuxt/img/jordanjones-colored.94409ff.svg',
+    image: '/preview.jpg',
     socials: {
       twitter: 'kashalls',
       github: 'kashalls/home-cluster',
