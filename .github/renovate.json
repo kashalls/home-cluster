@@ -1,0 +1,63 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base",
+    "docker:enableMajor",
+    ":disableRateLimiting",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":enablePreCommit",
+    ":automergeDigest",
+    ":automergeBranch",
+    "github>kashalls/home-cluster//.github/renovate/auto-merge.json",
+    "github>kashalls/home-cluster//.github/renovate/commit-message.json",
+    "github>kashalls/home-cluster//.github/renovate/groups.json",
+    "github>kashalls/home-cluster//.github/renovate/labels.json",
+    "github>kashalls/home-cluster//.github/renovate/semantic-commits.json",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "platform": "github",
+  "onboarding": false,
+  "requireConfig": "optional",
+  "dependencyDashboardTitle": "Renovate Dashboard",
+  "suppressNotifications": ["prIgnoreNotification"],
+  "rebaseWhen": "conflicted",
+  "commitBodyTable": true,
+  "flux": {
+    "fileMatch": ["kubernetes/.+\\.ya?ml$"]
+  },
+  "helm-values": {
+    "fileMatch": ["kubernetes/.+\\.ya?ml$"]
+  },
+  "kubernetes": {
+    "fileMatch": ["kubernetes/.+\\.ya?ml$"]
+  },
+  "regexManagers": [
+    {
+      "description": "Process custom dependencies",
+      "fileMatch": [
+        "ansible/.+\\.ya?ml$",
+        "kubernetes/.+\\.ya?ml$"
+      ],
+      "matchStrings": [
+        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?\"(?<currentValue>.*)\"\n"
+      ],
+      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+    }
+  ],
+  "packageRules": [
+    {
+      "description": "Loose versioning for non-semver packages",
+      "matchDatasources": ["docker"],
+      "versioning": "loose",
+      "matchPackagePatterns": ["changedetection", "plex", "qbittorrent"]
+    },
+    {
+      "description": "Use custom versioning for Minio",
+      "matchDatasources": ["docker"],
+      "versioning": "regex:^RELEASE\\.(?<major>\\d+)-(?<minor>\\d+)-(?<patch>\\d+)T.*Z$",
+      "matchPackagePatterns": ["minio"]
+    }
+  ]
+}
