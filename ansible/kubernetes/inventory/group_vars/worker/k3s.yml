@@ -14,3 +14,5 @@ k3s_agent:
   kubelet-arg:
     - "feature-gates=GracefulNodeShutdown=true"
     - "feature-gates=MixedProtocolLBService=true"
+    # https://github.com/k3s-io/k3s/issues/1264
+    - "node-status-update-frequency=4s"

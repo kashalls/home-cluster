@@ -1,4 +1,0 @@
----
-- name: Set timezone
-  community.general.timezone:
-    name: "{{ timezone | default('America/Los_Angeles') }}"

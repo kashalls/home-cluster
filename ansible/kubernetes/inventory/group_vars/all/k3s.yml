@@ -1,0 +1,63 @@
+---
+#
+# Below vars are for the xanmanning.k3s role
+# ...see https://github.com/PyratLabs/ansible-role-k3s#globalcluster-variables
+#
+
+# Use a specific version of k3s
+# renovate: datasource=github-releases depName=k3s-io/k3s
+k3s_release_version: "v1.26.1+k3s1"
+
+# Install using hard links rather than symbolic links.
+# ...if you are using the system-upgrade-controller you will need to use hard links rather than symbolic links as the controller will not be able to follow symbolic links.
+k3s_install_hard_links: true
+
+# Escalate user privileges for all tasks.
+k3s_become: true
+
+# Enable debugging
+k3s_debug: false
+
+# Enabled embedded etcd
+k3s_etcd_datastore: true
+
+# -- Enable for single or even number of masters
+k3s_use_unsupported_config: true
+
+# Control Plane registration address
+# this is set to my haproxy address running on my router.
+# If you want to use kube-vip only
+# set this to "{{ kubevip_address }}"
+k3s_registration_address: 10.0.0.1
+
+#
+# /var/lib/rancher/k3s/server/manifests
+#
+
+k3s_server_manifests_templates:
+  - "calico-ebpf.yaml.j2"
+  - "calico-installation.yaml.j2"
+  - "calico-bgpconfiguration.yaml.j2"
+  - "calico-bgppeer.yaml.j2"
+  - "calico-ippool.yaml.j2"
+
+# Custom manifest URLs
+k3s_server_manifests_urls:
+  - url: https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/tigera-operator.yaml
+    filename: calico-tigera-operator.yaml
+  - url: https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.61.1/example/prometheus-operator-crd/monitoring.coreos.com_alertmanagerconfigs.yaml
+    filename: prometheus-alertmanagerconfigs.yaml
+  - url: https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.61.1/example/prometheus-operator-crd/monitoring.coreos.com_alertmanagers.yaml
+    filename: prometheus-alertmanagers.yaml
+  - url: https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.61.1/example/prometheus-operator-crd/monitoring.coreos.com_podmonitors.yaml
+    filename: prometheus-podmonitors.yaml
+  - url: https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.61.1/example/prometheus-operator-crd/monitoring.coreos.com_probes.yaml
+    filename: prometheus-probes.yaml
+  - url: https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.61.1/example/prometheus-operator-crd/monitoring.coreos.com_prometheuses.yaml
+    filename: prometheus-prometheuses.yaml
+  - url: https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.61.1/example/prometheus-operator-crd/monitoring.coreos.com_prometheusrules.yaml
+    filename: prometheus-prometheusrules.yaml
+  - url: https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.61.1/example/prometheus-operator-crd/monitoring.coreos.com_servicemonitors.yaml
+    filename: prometheus-servicemonitors.yaml
+  - url: https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.61.1/example/prometheus-operator-crd/monitoring.coreos.com_thanosrulers.yaml
+    filename: prometheus-thanosrulers.yaml

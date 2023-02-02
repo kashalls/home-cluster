@@ -9,3 +9,35 @@ ssh_authorized_keys:
   # WSL / Arch
   - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPZh6Rn2tQ5jbxP/TJXQTdxFymMuwSySThx/Xv6B40uv jordpjones@gmail.com"
   - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDPHzHcvDM04mwhHIaxdsILzn9qAPpJNoLCMXvMbHglK5yOJU1em4lsSdgav8hrC7k2TpIdbRZmSDlXgq8AwLAwniNRwP16rVkPsH5uJHcLCI0qnsip8rKQUOQn5JpkthuOrGL2HAnvdkTjrhL9QB+WT+OnWTgIQlxKYSuuw/Vacki7OFzOh+EtFhjfZUnAlSO+ekP4mwOGrpGgF/U8qhIN5txsPBxJNRSk4JkqBpYOtfjRN4Bt5OhbmM4Ia7nELu2vbwcPSY3/aCzn3glEcJ5Ots2sXh46ihs3DBW0drt+qiMDKZ5HKtih7xkiqQ0NhZ8mJrjMkSP5Ri4EPmW5p0jB jordp@Senko"
+
+packages_install:
+  - apt-transport-https
+  - arptables
+  - ca-certificates
+  - curl
+  - ebtables
+  - fish
+  - fzf
+  - gdisk
+  - hdparm
+  - htop
+  - iputils-ping
+  - ipvsadm
+  - lm-sensors
+  - lvm2
+  - nano
+  - net-tools
+  - nfs-common
+  - ntpdate
+  - nvme-cli
+  - open-iscsi
+  - psmisc
+  - python3-kubernetes
+  - python3-yaml
+  - smartmontools
+  - socat
+  - software-properties-common
+  - unzip
+packages_remove:
+  - apparmor
+  - ufw
