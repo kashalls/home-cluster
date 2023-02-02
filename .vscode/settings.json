@@ -1,26 +1,20 @@
 {
-    "ansible.ansibleLint.arguments": "-c .github/linters/.ansible-lint",
-    "discord.enabled": true,
-    "files.associations": {
-        "*.json5": "jsonc",
-        "**/ansible/**/*.yml": "ansible",
-        "**/ansible/**/*.sops.yml": "yaml",
-        "**/ansible/**/inventory/**/*.yml": "yaml",
-        "**/terraform/**/*.tf": "terraform"
-    },
-    "material-icon-theme.folders.associations": {
-        ".taskfiles": "utils",
-        "hack": "scripts"
-    },
-    "prettier.configPath": ".github/linters/.prettierrc.yaml",
-    "prettier.ignorePath": ".github/linters/.prettierignore",
-    "yaml.schemas": {
-        "Kubernetes": "cluster/*.yaml"
-    },
-    "editor.fontFamily": "FiraCode Nerd Font",
-    "editor.fontLigatures": true,
-    "editor.bracketPairColorization.enabled": true,
-    "editor.guides.bracketPairs":"active",
-    "editor.hover.delay": 1500,
-    "explorer.autoReveal": false
+  "files.associations": {
+      "*.json5": "jsonc",
+      "**/ansible/**/*.yml": "ansible",
+      "**/ansible/**/*.sops.yml": "yaml",
+      "**/ansible/**/inventory/**/*.yml": "yaml",
+      "**/terraform/**/*.tf": "terraform",
+      "**/kubernetes/**/*.sops.toml": "plaintext"
+  },
+  "yaml.schemas": {
+      "ansible": "ansible/*.yml",
+      "Kubernetes": "kubernetes/*.yaml"
+  },
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+  "editor.guides.bracketPairsHorizontal": true,
+  "editor.guides.highlightActiveBracketPair": true,
+  "editor.hover.delay": 1500,
+  "files.trimTrailingWhitespace": true,
 }
