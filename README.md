@@ -10,7 +10,7 @@
 
 Arisu is the name of the kubernetes cluster I deployed at home. It features a couple of low power consumer machines running [Ubuntu Server](https://ubuntu.com/server) with [k3s](https://k3s.io/) deployed using my [ansible configuration](/ansible/).
 
-This repo serves as the "roadmap" that is automatically updated and deployed thanks to [renovate](https://renovatebot.com/) and [fluxcd](https://fluxcd.io/).
+This repo serves as the "roadmap" that is automatically updated and deployed thanks to [renovate](https://www.mend.io/renovate/) and [fluxcd](https://fluxcd.io/).
 
 ## How did you do this?
 
