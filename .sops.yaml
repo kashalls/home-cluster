@@ -1,13 +1,11 @@
 ---
 creation_rules:
-  - path_regex: ansible/.*\.sops\.ya?ml
-    unencrypted_regex: "^(kind)$"
-    # personal
-    pgp: >-
-      AF3D8C1E0EC5C65F713609D9401F0F07454134DC
-  - path_regex: cluster/.*\.ya?ml
+  - path_regex: kubernetes/.*\.sops\.ya?ml
     encrypted_regex: "^(data|stringData)$"
-    # flux, personal
-    pgp: >-
-      0FDCB6725CDC2E9EFC647D95158E6CE58CC276A3,
-      AF3D8C1E0EC5C65F713609D9401F0F07454134DC
+    key_groups:
+      - age:
+          - age19963x2afvcsek4p5sas5n05thusjvzz7gpfknp20666u69jw44lsu5w4u5
+  - path_regex: ansible/.*\.sops\.ya?ml
+    key_groups:
+      - age:
+          - age19963x2afvcsek4p5sas5n05thusjvzz7gpfknp20666u69jw44lsu5w4u5
