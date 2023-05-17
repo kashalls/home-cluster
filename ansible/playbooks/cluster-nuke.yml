@@ -1,0 +1,43 @@
+---
+- hosts:
+    - master
+    - worker
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  vars_prompt:
+    - name: nuke
+      prompt: |-
+        Are you sure you want to nuke this cluster?
+        Type YES I WANT TO DESTROY THIS CLUSTER to proceed
+      default: "n"
+      private: false
+  pre_tasks:
+    - name: Check for confirmation
+      ansible.builtin.fail:
+        msg: Aborted nuking the cluster
+      when: nuke != 'YES I WANT TO DESTROY THIS CLUSTER'
+
+    - name: Pausing for 5 seconds...
+      ansible.builtin.pause:
+        seconds: 5
+  tasks:
+    - name: Uninstall k3s
+      ansible.builtin.include_role:
+        name: xanmanning.k3s
+        public: true
+      vars:
+        k3s_state: uninstalled
+
+    - name: Gather list of CNI files
+      ansible.builtin.find:
+        paths: /etc/cni/net.d
+        patterns: "*"
+        hidden: true
+      register: directory_contents
+
+    - name: Delete CNI files
+      ansible.builtin.file:
+        path: "{{ item.path }}"
+        state: absent
+      loop: "{{ directory_contents.files }}"
