@@ -5,12 +5,12 @@ collections:
   - name: community.sops
     version: 1.6.1
   - name: ansible.posix
-    version: 1.5.2
+    version: 1.5.4
   - name: ansible.utils
-    version: 2.10.1
+    version: 2.10.3
   - name: kubernetes.core
     version: 2.4.0
 roles:
   - name: xanmanning.k3s
     src: https://github.com/PyratLabs/ansible-role-k3s.git
-    version: v3.3.1
+    version: v3.4.1
