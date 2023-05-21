@@ -6,7 +6,6 @@ dotenv: [".config.env"]
 vars:
   KUBERNETES_DIR: "{{.ROOT_DIR}}/kubernetes"
   ANSIBLE_DIR: "{{.ROOT_DIR}}/ansible"
-  TERRAFORM_DIR: "{{.ROOT_DIR}}/terraform"
 
 env:
   KUBECONFIG: "{{.ROOT_DIR}}/kubeconfig"
@@ -16,7 +15,6 @@ includes:
   ansible: .taskfiles/AnsibleTasks.yml
   cluster: .taskfiles/ClusterTasks.yml
   precommit: .taskfiles/PrecommitTasks.yml
-  terraform: .taskfiles/TerraformTasks.yml
   kiosk: .taskfiles/GrafanaKioskTasks.yml
 
 tasks:
