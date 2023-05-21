@@ -17,4 +17,5 @@
   "editor.guides.highlightActiveBracketPair": true,
   "editor.hover.delay": 1500,
   "files.trimTrailingWhitespace": true,
+  "ansible.python.interpreterPath": "/bin/python3",
 }
