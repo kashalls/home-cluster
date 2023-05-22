@@ -6,3 +6,4 @@ resources:
   - ./grafana/ks.yaml
   - ./kube-prometheus-stack/ks.yaml
   - ./thanos/ks.yaml
+  - ./unpoller/ks.yaml
