@@ -50,6 +50,8 @@ spec:
         keep-alive-requests: 10000
         proxy-body-size: "100M"
         ssl-protocols: "TLSv1.3 TLSv1.2"
+        use-forwarded-headers: "true"
+        enable-real-ip: "true"
       metrics:
         enabled: true
         serviceMonitor:
