@@ -3,17 +3,17 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: onepassword-connect
+  name: external-secrets
   namespace: kube-system
 spec:
   interval: 15m
   chart:
     spec:
-      chart: app-template
-      version: 1.5.0
+      chart: external-secrets
+      version: 0.8.2
       sourceRef:
         kind: HelmRepository
-        name: bjw-s
+        name: external-secrets
         namespace: flux-system
   maxHistory: 2
   install:
@@ -27,100 +27,15 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    controller:
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: docker.io/1password/connect-api
-      tag: 1.7.0
-    env:
-      OP_BUS_PORT: "11220"
-      OP_BUS_PEERS: "localhost:11221"
-      OP_HTTP_PORT: &port 8080
-      OP_SESSION:
-        valueFrom:
-          secretKeyRef:
-            name: onepassword-connect-secret
-            key: 1password-credentials.json
-    service:
-      main:
-        ports:
-          http:
-            port: *port
-    probes:
-      liveness:
+    installCRDs: true
+    serviceMonitor:
+      enabled: true
+      interval: 1m
+    webhook:
+      serviceMonitor:
         enabled: true
-        custom: true
-        spec:
-          httpGet:
-            path: /heartbeat
-            port: *port
-          initialDelaySeconds: 15
-          periodSeconds: 30
-          failureThreshold: 3
-      readiness:
+        interval: 1m
+    certController:
+      serviceMonitor:
         enabled: true
-        custom: true
-        spec:
-          httpGet:
-            path: /health
-            port: *port
-          initialDelaySeconds: 15
-      startup:
-        enabled: false
-    ingress:
-      main:
-        enabled: true
-        ingressClassName: nginx
-        annotations:
-          hajimari.io/enable: "false"
-        hosts:
-          - host: &host "{{ .Release.Name }}.kashall.dev"
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *host
-    podSecurityContext:
-      runAsUser: 999
-      runAsGroup: 999
-    persistence:
-      shared:
-        enabled: true
-        type: emptyDir
-        mountPath: /home/opuser/.op/data
-    resources:
-      requests:
-        cpu: 5m
-        memory: 10Mi
-      limits:
-        cpu: 20m
-        memory: 100Mi
-    sidecars:
-      sync:
-        image: docker.io/1password/connect-sync:1.7.0
-        imagePullPolicy: IfNotPresent
-        env:
-          - { name: OP_HTTP_PORT, value: &port 8081 }
-          - { name: OP_BUS_PORT, value: "11221" }
-          - { name: OP_BUS_PEERS, value: "localhost:11220" }
-          - name: OP_SESSION
-            valueFrom:
-              secretKeyRef:
-                name: onepassword-connect-secret
-                key: 1password-credentials.json
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: *port
-          initialDelaySeconds: 15
-        livenessProbe:
-          httpGet:
-            path: /heartbeat
-            port: *port
-          failureThreshold: 3
-          periodSeconds: 30
-          initialDelaySeconds: 15
-        volumeMounts:
-          - { name: shared, mountPath: /home/opuser/.op/data }
+        interval: 1m
