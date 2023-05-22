@@ -35,10 +35,10 @@ spec:
         global:
           resolve_timeout: 5m
         receivers:
-          - name: heartbeat
-            webhook_configs:
-              - url: "https://heartbeat.uptimerobot.com/${SECRET_ALERTMANAGER_UPTIMEROBOT_HEARTBEAT_TOKEN}"
-                send_resolved: true
+          #- name: heartbeat
+          #  webhook_configs:
+          #    - url: "https://heartbeat.uptimerobot.com/${SECRET_ALERTMANAGER_UPTIMEROBOT_HEARTBEAT_TOKEN}"
+          #      send_resolved: true
           - name: "null" # quote
           - name: pushover
             pushover_configs:
