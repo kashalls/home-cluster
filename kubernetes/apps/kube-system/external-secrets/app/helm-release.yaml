@@ -95,6 +95,7 @@ spec:
         cpu: 5m
         memory: 10Mi
       limits:
+        cpu: 20m
         memory: 100Mi
     sidecars:
       sync:
