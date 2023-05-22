@@ -115,10 +115,9 @@ spec:
             activeStandby: true
             resources:
               requests:
-                cpu: 800m
-                memory: 2Gi
+                cpu: 1000m
+                memory: 4Gi
               limits:
-                cpu: 1200m
                 memory: 4Gi
         storageClass:
           enabled: true
@@ -152,11 +151,10 @@ spec:
             port: 80
             resources:
               requests:
-                cpu: 800m
+                cpu: 1000m
                 memory: 1Gi
               limits:
-                cpu: 1200m
-                memory: 1200m
+                memory: 2Gi
             instances: 2
           healthCheck:
             bucket:
