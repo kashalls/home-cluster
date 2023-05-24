@@ -4,8 +4,6 @@ kind: HelmRelease
 metadata:
   name: prismarine-controller
   namespace: prismarine-controller
-  labels:
-    k8s.kashall.dev/controller: "true"
 spec:
   interval: 15m
   chart:
@@ -31,8 +29,9 @@ spec:
     controller:
       strategy: RollingUpdate
     image:
-      repository: ghcr.io/kashalls/prismarine-k8s-master
-      tag: main-5a1da502-1684963062
+      repository: ghcr.io/kashalls/prismarine-k8s-master:main-5a1da502-1684963062 # {"$imagepolicy": "flux-system:prismarine-controller"}
+    podLabels:
+      k8s.kashall.dev/controller: "true"
     service:
       main:
         ports:
