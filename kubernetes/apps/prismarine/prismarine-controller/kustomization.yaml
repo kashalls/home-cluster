@@ -5,4 +5,5 @@ resources:
   - ./namespace.yaml
   - ./image-repository.yaml
   - ./image-policy.yaml
+  - ./image-update-automation.yaml
   - ./helm-release.yaml
