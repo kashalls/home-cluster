@@ -9,6 +9,8 @@ spec:
   ref:
     branch: main
   url: "https://github.com/Kashalls/home-cluster"
+  secretRef:
+    name: github-deploy-key
   ignore: |
     # exclude all
     /*
