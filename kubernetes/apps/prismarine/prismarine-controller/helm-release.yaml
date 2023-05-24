@@ -2,8 +2,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: echo-server
-  namespace: default
+  name: prismarine-controller
+  namespace: prismarine-controller
   labels:
     k8s.kashall.dev/controller: "true"
 spec:
@@ -67,10 +67,10 @@ spec:
         tls:
           - hosts:
               - *host
-    resources:
-      requests:
-        cpu: 50m
-        memory: 10Mi
-      limits:
-        cpu: 100m
-        memory: 50Mi
+#    resources:
+#      requests:
+#        cpu: 50m
+#        memory: 10Mi
+#      limits:
+#        cpu: 100m
+#        memory: 50Mi
