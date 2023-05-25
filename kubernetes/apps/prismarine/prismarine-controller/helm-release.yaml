@@ -28,7 +28,8 @@ spec:
     controller:
       strategy: RollingUpdate
     image:
-      repository: ghcr.io/kashalls/prismarine-k8s-master:main-5ea43bab-1684964818 # {"$imagepolicy": "flux-system:prismarine-controller"}
+      repository: ghcr.io/kashalls/prismarine-k8s-master
+      tag: main-5ea43bab-1684964818 # {"$imagepolicy": "flux-system:prismarine-controller"}
     podLabels:
       k8s.kashall.dev/controller: "true"
     service:
