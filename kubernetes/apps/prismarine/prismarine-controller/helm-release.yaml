@@ -1,3 +1,4 @@
+---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -72,6 +73,9 @@ spec:
         tls:
           - hosts:
               - *host
+    serviceAccount:
+      create: true
+      name: prismarine-controller
 #    resources:
 #      requests:
 #        cpu: 50m
@@ -79,3 +83,8 @@ spec:
 #      limits:
 #        cpu: 100m
 #        memory: 50Mi
+
+#
+# pods is forbidden: User "system:serviceaccount:prismarine-controller:default"
+# cannot create resource "pods" in API group "" in the namespace
+# "prismarine-client"

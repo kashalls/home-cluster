@@ -7,4 +7,5 @@ resources:
   - ./image-repository.yaml
   - ./image-policy.yaml
   - ./image-update-automation.yaml
+  - ./rbac.yaml
   - ./helm-release.yaml
