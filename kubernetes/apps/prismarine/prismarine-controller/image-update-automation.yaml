@@ -13,10 +13,7 @@ spec:
       author:
         email: fluxcdbot@users.noreply.github.com
         name: fluxcdbot
-      messageTemplate: |
-        Prismarine Controller Update:
-
-        {{range .Updated.Images}}{{println .}}{{end}}
+      messageTemplate: "chore(`apps`): update controller image to {{range .Updated.Images}}{{println .}}{{end}}"
     push:
       branch: main
   interval: 1m0s
