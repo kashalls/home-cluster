@@ -14,7 +14,7 @@ spec:
         email: fluxcdbot@users.noreply.github.com
         name: fluxcdbot
       messageTemplate: |
-        Automated Image update:
+        Prismarine Controller Update:
 
         {{range .Updated.Images}}{{println .}}{{end}}
     push:
