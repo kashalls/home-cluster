@@ -45,6 +45,7 @@ spec:
         tls:
           - hosts:
               - *host
+            secretName: rook-dashboard-tls
     toolbox:
       enabled: true
     configOverride: |
