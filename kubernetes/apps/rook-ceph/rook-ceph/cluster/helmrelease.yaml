@@ -86,21 +86,21 @@ spec:
         mgr:
           requests:
             cpu: "500m"
-            memory: "500M"
+            memory: "512Mi"
           limits:
-            memory: "2Gi"
+            memory: "1024Mi"
         mon:
           requests:
-            cpu: "1"
-            memory: "1Gi"
+            cpu: "500m"
+            memory: "512Mi"
           limits:
-            memory: "2Gi"
+            memory: "1024Mi"
         osd:
           requests:
-            cpu: "1"
-            memory: "2Gi"
+            cpu: "500m"
+            memory: "512Mi"
           limits:
-            memory: "4Gi"
+            memory: "1024Mi"
         prepareosd:
           requests:
             cpu: "500m"
