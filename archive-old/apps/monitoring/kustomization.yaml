@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - blackbox-exporter
   - botkube
-  #- gammu-sms-gateway
   - grafana
   - kube-prometheus-stack
   - loki
