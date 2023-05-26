@@ -36,6 +36,9 @@ spec:
         annotations:
           hajimari.io/appName: "Rook"
           hajimari.io/icon: mdi:chess-rook
+          nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          external-dns.alpha.kubernetes.io/target: ipv4.${SECRET_DOMAIN}
         host:
           name: &host rook.kashall.dev
           path: /
@@ -77,6 +80,57 @@ spec:
           - name: miah
             devices:
               - name: /dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1E249
+
+      resources:
+        mgr:
+          requests:
+            cpu: "500m"
+            memory: "549M"
+          limits:
+            memory: "2Gi"
+        mon:
+          requests:
+            cpu: "1"
+            memory: "1Gi"
+          limits:
+            memory: "2Gi"
+        osd:
+          requests:
+            cpu: "1"
+            memory: "4Gi"
+          limits:
+            memory: "5944M"
+        prepareosd:
+          requests:
+            cpu: "500m"
+            memory: "50Mi"
+          limits:
+            memory: "300Mi"
+        mgr-sidecar:
+          requests:
+            cpu: "100m"
+            memory: "94M"
+          limits:
+            memory: "208M"
+        crashcollector:
+          requests:
+            cpu: "100m"
+            memory: "64M"
+          limits:
+            memory: "64M"
+        logcollector:
+          requests:
+            cpu: "100m"
+            memory: "100M"
+          limits:
+            memory: "1G"
+        cleanup:
+          requests:
+            cpu: "500m"
+            memory: "100M"
+          limits:
+            memory: "1G"
+
     cephBlockPools:
       - name: ceph-blockpool
         spec:
@@ -115,10 +169,10 @@ spec:
             activeStandby: true
             resources:
               requests:
-                cpu: 1000m
-                memory: 4Gi
+                cpu: 35m
+                memory: 64M
               limits:
-                memory: 4Gi
+                memory: 128M
         storageClass:
           enabled: true
           isDefault: false
@@ -151,8 +205,8 @@ spec:
             port: 80
             resources:
               requests:
-                cpu: 1000m
-                memory: 1Gi
+                cpu: 100m
+                memory: 128M
               limits:
                 memory: 2Gi
             instances: 2
