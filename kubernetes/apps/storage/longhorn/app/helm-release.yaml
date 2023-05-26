@@ -1,0 +1,37 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: longhorn
+  namespace: storage
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://charts.longhorn.io
+      chart: longhorn
+      version: 1.4.2
+      sourceRef:
+        kind: HelmRepository
+        name: longhorn
+        namespace: flux-system
+      interval: 5m
+  values:
+    persistence:
+      defaultClassReplicaCount: 2
+      defaultFsType: xfs
+    defaultSettings:
+      defaultReplicaCount: 2
+      backupTarget: s3://longhorn@us-east-1/
+      backupTargetCredentialSecret: longhorn-secret
+    longhornUI:
+      nodeSelector:
+        kubernetes.io/arch: amd64
+    pspEnable: false
+    ingress:
+      enabled: true
+      ingressClassName: "nginx"
+      annotations:
+        nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,158.101.199.148/32,2603:c022:c002:4800::10/128,2001:14ba:16e5:fa00::/56,185.218.193.134/32,2001:67c:1104::/48,2001:67c:1be8::/48"
+      tls: true
+      host: "longhorn.${SECRET_DOMAIN}"
