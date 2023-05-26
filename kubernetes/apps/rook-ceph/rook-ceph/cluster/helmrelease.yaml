@@ -86,7 +86,7 @@ spec:
         mgr:
           requests:
             cpu: "500m"
-            memory: "549M"
+            memory: "500M"
           limits:
             memory: "2Gi"
         mon:
@@ -98,9 +98,9 @@ spec:
         osd:
           requests:
             cpu: "1"
-            memory: "4Gi"
+            memory: "2Gi"
           limits:
-            memory: "5944M"
+            memory: "4Gi"
         prepareosd:
           requests:
             cpu: "500m"
@@ -110,9 +110,9 @@ spec:
         mgr-sidecar:
           requests:
             cpu: "100m"
-            memory: "94M"
+            memory: "100M"
           limits:
-            memory: "208M"
+            memory: "200M"
         crashcollector:
           requests:
             cpu: "100m"
