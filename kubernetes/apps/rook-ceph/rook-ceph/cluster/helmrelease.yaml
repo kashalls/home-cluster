@@ -131,6 +131,13 @@ spec:
             memory: "100M"
           limits:
             memory: "1G"
+        api:
+          requests:
+            cpu: "500m"
+            memory: "512Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
 
     cephBlockPools:
       - name: ceph-blockpool
