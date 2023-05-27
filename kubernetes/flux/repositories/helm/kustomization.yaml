@@ -16,6 +16,7 @@ resources:
   - ./metallb.yaml
   - ./metrics-server.yaml
   - ./node-feature-discovery.yaml
+  - ./onepassword.yaml
   - ./prometheus-community.yaml
   - ./redis-operator.yaml
   - ./rook-ceph.yaml
