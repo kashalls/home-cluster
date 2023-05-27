@@ -18,7 +18,6 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    namespace: kube-system
     connect:
       credentialsName: op-credentials
       credentialsKey: 1password-credentials.json
