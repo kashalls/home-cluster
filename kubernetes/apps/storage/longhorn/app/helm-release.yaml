@@ -27,9 +27,6 @@ spec:
       concurrentAutomaticEngineUpgradePerNodeLimit: 1
       createDefaultDiskLabeledNodes: true
       defaultDataLocality: best-effort
-    longhornUI:
-      nodeSelector:
-        kubernetes.io/arch: amd64
     pspEnable: false
     ingress:
       enabled: true
