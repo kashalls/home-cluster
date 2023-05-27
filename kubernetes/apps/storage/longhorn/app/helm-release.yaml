@@ -24,6 +24,9 @@ spec:
       defaultReplicaCount: 2
       backupTarget: s3://longhorn@us-east-1/
       backupTargetCredentialSecret: longhorn-secret
+      concurrentAutomaticEngineUpgradePerNodeLimit: 1
+      createDefaultDiskLabeledNodes: true
+      defaultDataLocality: best-effort
     longhornUI:
       nodeSelector:
         kubernetes.io/arch: amd64
