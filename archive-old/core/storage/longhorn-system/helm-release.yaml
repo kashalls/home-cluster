@@ -24,7 +24,7 @@ spec:
       reclaimPolicy: Retain
     defaultSettings:
       backupstorePollInterval: 300
-      backupTarget: nfs://${NAS_ADDR}:/volume1/LonghornBackupstore
+      backupTarget: nfs://${SYNOLOGY_NAS}:/volume1/LonghornBackupstore
       createDefaultDiskLabeledNodes: true
       defaultDataLocality: best-effort
       nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
