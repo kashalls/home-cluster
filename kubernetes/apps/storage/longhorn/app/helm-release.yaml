@@ -22,7 +22,7 @@ spec:
       defaultFsType: xfs
     defaultSettings:
       defaultReplicaCount: 2
-      backupTarget: s3://longhorn@us-east-1/
+      backupTarget: nfs://${SYNOLOGY_NAS}:/volume1/LonghornBackupstore
       backupTargetCredentialSecret: longhorn-secret
       concurrentAutomaticEngineUpgradePerNodeLimit: 1
       createDefaultDiskLabeledNodes: true
