@@ -15,47 +15,9 @@ includes:
   ansible: .taskfiles/AnsibleTasks.yml
   cluster: .taskfiles/ClusterTasks.yml
   precommit: .taskfiles/PrecommitTasks.yml
-  kiosk: .taskfiles/GrafanaKioskTasks.yml
+  es: .taskfiles/ExternalSecrets/Tasks.yml
 
 tasks:
-
-  init:
-    desc: Initialize workstation dependencies with Brew
-    cmds:
-      - brew install {{.DEPS}} {{.CLI_ARGS}}
-    preconditions:
-      - sh: command -v brew
-        msg: |
-          Homebrew is not installed. Using MacOS, Linux or WSL?
-          Head over to https://brew.sh to get up and running.
-    vars:
-      DEPS: >-
-        age
-        ansible
-        direnv
-        fluxcd/tap/flux
-        go-task/tap/go-task
-        helm
-        ipcalc
-        jq
-        kubernetes-cli
-        kustomize
-        pre-commit
-        prettier
-        sops
-        stern
-        terraform
-        tflint
-        weaveworks/tap/gitops
-        yamllint
-        yq
-
-  verify:
-    desc: Verify env settings
-    cmds:
-      - ./configure --verify
-
-  configure:
-    desc: Configure repository from env settings
-    cmds:
-      - ./configure
+  default:
+    silent: true
+    cmds: ["task -l"]
