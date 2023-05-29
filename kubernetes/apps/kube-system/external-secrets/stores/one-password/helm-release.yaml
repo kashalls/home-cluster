@@ -76,7 +76,7 @@ spec:
           nginx.ingress.kubernetes.io/whitelist-source-range: |
             10.0.0.0/8,192.168.0.0/24
         hosts:
-          - host: &host "1password.${SECRET_DOMAIN}"
+          - host: &host "onepassword-connect.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
