@@ -66,10 +66,6 @@ spec:
                       </small>
                     {{- end }}
                   {{- end }}
-          #           - name: heartbeat
-          #  webhook_configs:
-          #    - url: "https://heartbeat.uptimerobot.com/${SECRET_ALERTMANAGER_UPTIMEROBOT_HEARTBEAT_TOKEN}"
-          #      send_resolved: true
         route:
           group_by: ["alertname", "job"]
           group_wait: 1m
