@@ -47,7 +47,7 @@ spec:
                 priority: |-
                   {{ if eq .Status "firing" }}1{{ else }}0{{ end }}
                 title: |-
-                   {{ .CommonLabels.alertname }} [{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}]
+                    {{ .CommonLabels.alertname }} [{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}]
                 message: |-
                   {{- range .Alerts }}
                     {{- if ne .Annotations.description "" }}
