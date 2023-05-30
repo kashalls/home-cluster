@@ -1,0 +1,64 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: protonmail-bridge
+  namespace: default
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+      interval: 5m
+  values:
+    controller:
+      type: statefulset
+    image:
+      repository: ghcr.io/larivierec/protonmail-bridge-docker
+      tag: v3.0.0-1
+    env:
+      TZ: "${TIMEZONE}"
+    ingress:
+      imap:
+        enabled: true
+        ingressClassName: "nginx"
+        hosts:
+          - host: &imap-host "imap.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  name: imap-tcp
+                  port: 143
+        tls:
+          - hosts:
+              *imap-host
+      smtp:
+        enabled: true
+        ingressClassName: "nginx"
+        hosts:
+          - host: &smtp-host "smtp.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  name: smtp-tcp
+                  port: 25
+        tls:
+          - hosts:
+              *smtp-host
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+    persistence:
+      config:
+        enabled: true
+        existingClaim: protonmail-bridge-config-v1
+        mountPath: /root

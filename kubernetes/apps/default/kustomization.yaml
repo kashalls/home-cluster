@@ -5,3 +5,4 @@ resources:
   - ./namespace.yaml
   - ./echo-server/ks.yaml
   - ./hajimari/ks.yaml
+  - ./protonmail-bridge/ks.yaml
