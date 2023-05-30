@@ -27,6 +27,8 @@ metadata:
   name: cluster-apps-longhorn-storage-classes
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: cluster-apps-longhorn
   path: ./kubernetes/apps/storage/longhorn/storage-classes
   prune: false
   sourceRef:
