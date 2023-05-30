@@ -57,4 +57,3 @@ spec:
         enabled: true
         existingClaim: protonmail-bridge-config-v1
         mountPath: /root
-#
