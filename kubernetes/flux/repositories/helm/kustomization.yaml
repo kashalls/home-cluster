@@ -18,6 +18,5 @@ resources:
   - ./node-feature-discovery.yaml
   - ./prometheus-community.yaml
   - ./redis-operator.yaml
-  - ./rook-ceph.yaml
   - ./stakater.yaml
   - ./weave-gitops.yaml
