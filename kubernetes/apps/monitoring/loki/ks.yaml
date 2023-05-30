@@ -9,7 +9,7 @@ spec:
   dependsOn:
     - name: cluster-apps-external-secrets-stores
     - name: cluster-apps-local-path-provisioner
-    - name: cluster-apps-rook-ceph-cluster
+    - name: cluster-apps-longhorn
   path: ./kubernetes/apps/monitoring/loki/app
   prune: true
   sourceRef:

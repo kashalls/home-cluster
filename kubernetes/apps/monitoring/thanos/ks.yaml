@@ -8,7 +8,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-local-path-provisioner
-    - name: cluster-apps-rook-ceph-cluster
+    - name: cluster-apps-longhorn
   path: ./kubernetes/apps/monitoring/thanos/app
   prune: true
   sourceRef:
