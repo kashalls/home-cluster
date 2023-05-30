@@ -23,35 +23,30 @@ spec:
       tag: v3.0.0-1
     env:
       TZ: "${TIMEZONE}"
-    ingress:
+    service:
+      main:
+        enabled: false
       imap:
         enabled: true
-        ingressClassName: "nginx"
-        hosts:
-          - host: &imap-host "imap.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  name: imap-tcp
-                  port: 143
-        tls:
-          - hosts:
-              *imap-host
+        type: LoadBalancer
+        loadBalancerIP: "${METALLB_SMTP_ADDR}"
+        annotations:
+        externalTrafficPolicy: Local
+        ports:
+          imap-tcp:
+            enabled: true
+            port: 143
       smtp:
         enabled: true
-        ingressClassName: "nginx"
-        hosts:
-          - host: &smtp-host "smtp.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  name: smtp-tcp
-                  port: 25
-        tls:
-          - hosts:
-              *smtp-host
+        type: LoadBalancer
+        loadBalancerIP: "${METALLB_SMTP_ADDR}"
+        annotations:
+          coredns.io/hostname: "smtp.${SECRET_DOMAIN}"
+        externalTrafficPolicy: Local
+        ports:
+          smtp-tcp:
+            enabled: true
+            port: 25
     probes:
       liveness:
         enabled: false
