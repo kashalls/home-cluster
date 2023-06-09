@@ -12,20 +12,11 @@
         "separateMinorPatch": true
       },
       {
-        "description": "Immich images",
-        "groupName": "Immich",
-        "matchPackagePatterns": ["immich"],
-        "matchDatasources": ["docker"],
-        "group": {
-          "commitMessageTopic": "{{{groupName}}} group"
-        },
-        "separateMinorPatch": true
-      },
-      {
-        "description": "Rook-Ceph image and chart",
-        "groupName": "Rook-Ceph",
-        "matchPackagePatterns": ["rook.ceph"],
-        "matchDatasources": ["docker", "helm"],
+        "description": "Flux Group",
+        "groupName": "Flux",
+        "matchPackagePatterns": ["flux"],
+        "matchDatasources": ["docker", "github-tags"],
+        "versioning": "semver",
         "group": {
           "commitMessageTopic": "{{{groupName}}} group"
         },
