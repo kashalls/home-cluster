@@ -5,11 +5,11 @@ metadata:
   name: cluster-settings
   namespace: flux-system
 data:
+  # Cluster Settings
   TIMEZONE: "America/Los_Angeles"
-  AIRGRADIENT_ADDR: "192.168.0.99"
-  KUBE_VIP_ADDR: "192.168.0.254"
-  METALLB_LB_RANGE: "192.168.0.240-192.168.0.253"
-  METALLB_K8S_GATEWAY_ADDR: "192.168.0.253"
-  METALLB_INGRESS_ADDR: "192.168.0.252"
-  METALLB_SMTP_ADDR: "192.168.0.250"
-  SYNOLOGY_NAS: "192.168.0.20"
+  CLUSTER_CIDR: "10.98.0.0/16"
+  SERVICE_CIDR: "10.99.0.0/16"
+  # Static Mappings
+  SYNOLOGY_NAS: "10.0.0.20"
+  AIRGRADIENT_ADDR: "10.42.42.10"
+  KUBE_VIP_ADDR: "10.69.69.2"

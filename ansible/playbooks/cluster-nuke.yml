@@ -9,7 +9,7 @@
     - name: nuke
       prompt: |-
         Are you sure you want to nuke this cluster?
-        Type YES I WANT TO DESTROY THIS CLUSTER to proceed
+        Type 'YES I WANT TO DESTROY THIS CLUSTER' to proceed
       default: "n"
       private: false
   pre_tasks:
@@ -22,6 +22,25 @@
       ansible.builtin.pause:
         seconds: 5
   tasks:
+    - name: Uninstall Cilium
+      when:
+        - k3s_control_node is defined
+        - k3s_control_node
+      ansible.builtin.shell: |
+        cilium uninstall --wait
+      environment:
+        KUBECONFIG: /etc/rancher/k3s/k3s.yaml
+
+    - name: Prevent k3s from starting on reboot
+      ansible.builtin.systemd:
+        name: k3s
+        enabled: false
+
+    - name: Reboot
+      ansible.builtin.reboot:
+        msg: Rebooting nodes
+        reboot_timeout: 3600
+
     - name: Uninstall k3s
       ansible.builtin.include_role:
         name: xanmanning.k3s

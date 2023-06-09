@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - ./bitnami.yaml
   - ./bjw-s.yaml
+  - ./cilium.yaml
   - ./external-dns.yaml
   - ./external-secrets.yaml
   - ./grafana.yaml
