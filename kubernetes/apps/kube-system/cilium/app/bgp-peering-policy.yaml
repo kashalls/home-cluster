@@ -14,7 +14,7 @@ spec:
       kubernetes.io/os: "linux" # match all Linux nodes, change this to match more granularly if more than 1 PeeringPolicy is to be used throughout cluster
   virtualRouters:
     - localASN: 64512
-      exportPodCIDR: false
+      exportPodCIDR: true
       serviceSelector: # this replaces address-pools, instead of defining the range of IPs that can be assigned to LoadBalancer services, now services have to match below selectors for their LB IPs to be announced
         matchExpressions:
           - {
