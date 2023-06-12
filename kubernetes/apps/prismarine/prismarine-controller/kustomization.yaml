@@ -8,4 +8,4 @@ resources:
   - ./image-policy.yaml
   - ./image-update-automation.yaml
   - ./rbac.yaml
-  - ./helm-release.yaml
+  # - ./helm-release.yaml
