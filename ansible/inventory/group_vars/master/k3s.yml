@@ -32,7 +32,7 @@ k3s_server:
   # Network CIDR to use for pod IPs
   cluster-cidr: "10.252.0.0/16,fd39:51b5:537d::/48"
   # Network CIDR to use for service IPs
-  service-cidr: "10.253.0.0/16,fda6:7cd9:892d::/48"
+  service-cidr: "10.253.0.0/16,fda6:7cd9:892d::/112"
   kube-controller-manager-arg:
     # Required to monitor kube-controller-manager with kube-prometheus-stack
     - "bind-address=0.0.0.0"
