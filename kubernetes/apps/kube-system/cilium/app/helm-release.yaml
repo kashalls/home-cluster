@@ -76,6 +76,8 @@ spec:
     ipv6NativeRoutingCIDR: "fddf:f7bc:9670::/48"
     kubeProxyReplacement: strict
     kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
+    ipv6:
+      enabled: true
     operator:
       replicas: 1
       rollOutPods: true
