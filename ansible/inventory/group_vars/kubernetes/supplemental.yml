@@ -1,5 +1,2 @@
 ---
 timezone: "America/Los_Angeles"
-kubevip_address: "10.69.69.2"
-cluster_cidr: "10.98.0.0/16"
-service_cidr: "10.99.0.0/16"

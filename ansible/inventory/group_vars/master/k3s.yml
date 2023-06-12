@@ -7,9 +7,10 @@ k3s_control_node: true
 
 # (dict) k3s settings for all control-plane nodes
 k3s_server:
-  node-ip: "{{ ansible_host }}"
+  node-ip: "{{ ansible_host }},{{ ansible_default_ipv6.address }}"
   tls-san:
-    - "{{ kubevip_address }}"
+    - "{{ k3s_registration_address }}"
+    - "{{ ansible_default_ipv6.address }}"
   # Disable Docker - this will use the default containerd CRI
   docker: false
   flannel-backend: "none" # This needs to be in quotes
@@ -29,9 +30,9 @@ k3s_server:
   disable-kube-proxy: true
   write-kubeconfig-mode: "644"
   # Network CIDR to use for pod IPs
-  cluster-cidr: "{{ cluster_cidr }}"
+  cluster-cidr: "10.252.0.0/16,fd39:51b5:537d::/48"
   # Network CIDR to use for service IPs
-  service-cidr: "{{ service_cidr }}"
+  service-cidr: "10.253.0.0/16,fda6:7cd9:892d::/48"
   kube-controller-manager-arg:
     # Required to monitor kube-controller-manager with kube-prometheus-stack
     - "bind-address=0.0.0.0"
