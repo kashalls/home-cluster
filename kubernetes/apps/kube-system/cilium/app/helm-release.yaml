@@ -78,6 +78,7 @@ spec:
     kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
     ipv6:
       enabled: true
+    enableIPv6Masquerade: false
     operator:
       replicas: 1
       rollOutPods: true
