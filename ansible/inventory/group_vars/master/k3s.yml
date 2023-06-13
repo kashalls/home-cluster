@@ -15,7 +15,7 @@ k3s_server:
   docker: false
   flannel-backend: "none" # This needs to be in quotes
   disable:
-    # Disable flannel - replaced with Calico
+    # Disable flannel - replaced with cilium
     - flannel
     # Disable local-path-provisioner - installed with Flux
     - local-storage

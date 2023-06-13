@@ -32,9 +32,9 @@ spec:
           value: "${TIMEZONE}"
       service:
         annotations:
+          io.cilium/lb-ipam-ips: "10.100.100.10"
           external-dns.alpha.kubernetes.io/hostname: "ingress.${SECRET_DOMAIN}"
-        loadBalancerIP: "10.100.100.10"
-        externalTrafficPolicy: Local
+        externalTrafficPolicy: Cluster
       publishService:
         enabled: true
       ingressClassResource:

@@ -33,5 +33,5 @@ spec:
       type: LoadBalancer
       port: 53
       annotations:
-        metallb.universe.tf/loadBalancerIPs: "${METALLB_K8S_GATEWAY_ADDR}"
+        io.cilium/lb-ipam-ips: "10.100.100.53"
       externalTrafficPolicy: Local

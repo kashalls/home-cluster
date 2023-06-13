@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: cluster-apps-metallb-config
+    - name: cluster-apps-cilium
   path: ./kubernetes/apps/networking/k8s-gateway/app
   prune: true
   sourceRef:
