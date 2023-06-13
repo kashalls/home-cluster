@@ -8,10 +8,12 @@ spec:
   repo: https://helm.cilium.io/
   chart: cilium
     # renovate: datasource=helm depName=cilium registryUrl=https://helm.cilium.io/
-  version: 1.13.3
+  version: 1.14.0-snapshot.3
   targetNamespace: kube-system
   bootstrap: true
   valuesContent: |-
+    bgpControlPlane:
+      enabled: true
     bpf:
       masquerade: true
     cluster:
