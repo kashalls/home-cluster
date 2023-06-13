@@ -7,4 +7,4 @@ metadata:
   namespace: monitoring
 spec:
   bucketName: thanos-v1
-  storageClassName: ceph-bucket
+  storageClassName: longhorn
