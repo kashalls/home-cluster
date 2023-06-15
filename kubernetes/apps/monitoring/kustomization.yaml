@@ -8,5 +8,5 @@ resources:
   - ./kubernetes-dashboard/ks.yaml
   #- ./loki/ks.yaml
   - ./smartctl-exporter/ks.yaml
-  #- ./thanos/ks.yaml
+  - ./thanos/ks.yaml
   - ./unpoller/ks.yaml
