@@ -18,6 +18,7 @@ resources:
   - ./metallb.yaml
   - ./metrics-server.yaml
   - ./node-feature-discovery.yaml
+  - ./piraeus.yaml
   - ./prometheus-community.yaml
   - ./redis-operator.yaml
   - ./stakater.yaml
