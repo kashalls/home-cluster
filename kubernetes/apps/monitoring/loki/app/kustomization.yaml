@@ -5,4 +5,4 @@ kind: Kustomization
 namespace: monitoring
 resources:
   - ./config-map.yaml
-#- ./helm-release.yaml
+  - ./helm-release.yaml
