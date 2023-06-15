@@ -8,7 +8,7 @@ metadata:
     external-dns.alpha.kubernetes.io/hostname: "postgres.${SECRET_DOMAIN}"
 spec:
   type: LoadBalancer
-  externalTrafficPolicy: Local
+  externalTrafficPolicy: Cluster
   externalIPs: ["10.100.100.133"]
   ports:
     - name: postgres
