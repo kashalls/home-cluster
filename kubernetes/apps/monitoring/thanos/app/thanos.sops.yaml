@@ -5,15 +5,15 @@ metadata:
     name: thanos-objstore
     namespace: monitoring
 stringData:
-    objstore.yml: ENC[AES256_GCM,data:/3bjKeLaYgAwhoSZBsOqvoPuoT6DnufoQANlZ/dIV4IajM886QHwPy2rsl1+NKCyE8RzptvZqNvDt+Yy5dteDS59+ymkGeonyCcv0HFjauOOC5uXRqbea4mFrUnj0z+T0EY6LQdckTwvPuYGdYkHdlb4eJwZtt39uby7,iv:Dhx1cWOHQZ/vlu0/pBUc/J5Uh+3fxz6jWGOjhDx4RBg=,tag:bQGqR1g/x5bPYXJ4JHTnZg==,type:str]
+    objstore.yml: ENC[AES256_GCM,data:VYtLTtBh1YmzuhXcB2IjIN3kE+KmJO9P4KIdSwoyA0js7HxyyDYsgS/rwASo2fCZ6zNEomdjrQPt2Ui7i7tLYy8trh93Ip555GR7/Qx8+FsiQBloGWZ/4aJjoMYAw53wqpM6YKxF7cRAXTNke88khBEHFegSRR10rkMuPOe09SJKOJfZvqEaWxr8fVHSBbbm+JaEdIbcYi5gOsgiEqHoGjbJ9CKT1fp5azvw,iv:PhYY0GuP5/QMlV9KfTfYs464qGeiZ436kXSJhgo8vBc=,tag:mHlrBrCbKpoRHzAmXSm4mQ==,type:str]
 sops:
     kms: []
     gcp_kms: []
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2021-09-13T03:40:29Z"
-    mac: ENC[AES256_GCM,data:+VXyRUwl4jzRsl0OllzRF5i0kvpkEIf8PhBUFPeqb+Qaf50mp3d942omVxNPTOhQH2doG8lqpKfzJJ/WZLQKTJYY0dqLgsNMnsN1mKdBDtrTtR7Zjvm59Y7HaBQzq4A1NTk9btmjH+3FTdc2XgNRfbCKvKaQ9tFjQtg6ecw39DE=,iv:4Lh48ByPmblrW1iqrp3jcntAm0nRdILl+qqX51l7FRA=,tag:bUIkuHehLu1nQr5Bk3WFag==,type:str]
+    lastmodified: "2023-06-15T02:07:23Z"
+    mac: ENC[AES256_GCM,data:RsOPuJ0ej3+1ZFAWjZE6O1qkeRosci8rXcjydwS9BKXjJrFZ+94NlAIJ5DDQ3lV82/eWchGYP/RUH8JOrLb2txHp/lTnbf3BJDo4g5H/m/zQnpPrAEShy2Rmq6o4TNhsUu/gS22jffu0bo+Ms85IWdlyChxj2Fj/qeq21B7U13w=,iv:/oEMLQUHSj65KhydyUB5y1+yNIifm/mlOc9Dp30c6tM=,tag:YriIBY4/Pt+FRgDLuKwO3Q==,type:str]
     pgp:
         - created_at: "2021-09-13T03:40:28Z"
           enc: |
@@ -56,4 +56,4 @@ sops:
             -----END PGP MESSAGE-----
           fp: AF3D8C1E0EC5C65F713609D9401F0F07454134DC
     encrypted_regex: ^(data|stringData)$
-    version: 3.7.1
+    version: 3.7.3
