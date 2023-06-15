@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./changedetection/ks.yaml
-  - ./cloudnative-pg/ks.yaml
+  #- ./cloudnative-pg/ks.yaml
   - ./echo-server/ks.yaml
   - ./hajimari/ks.yaml
   #- ./protonmail-bridge/ks.yaml
