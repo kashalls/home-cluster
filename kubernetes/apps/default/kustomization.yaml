@@ -10,3 +10,4 @@ resources:
   - ./home-assistant/ks.yaml
   - ./mosquitto/ks.yaml
   - ./protonmail-bridge/ks.yaml
+  - ./zigbee2mqtt/ks.yaml
