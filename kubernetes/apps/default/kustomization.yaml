@@ -8,4 +8,4 @@ resources:
   - ./echo-server/ks.yaml
   - ./hajimari/ks.yaml
   - ./home-assistant/ks.yaml
-  #- ./protonmail-bridge/ks.yaml
+  - ./mosquitto/ks.yaml
