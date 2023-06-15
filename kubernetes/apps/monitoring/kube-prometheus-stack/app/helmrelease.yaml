@@ -217,7 +217,7 @@ spec:
         thanos:
           image: quay.io/thanos/thanos:v0.31.0
           objectStorageConfig:
-            name: thanos-objstore-secret
+            name: thanos-objstore
             key: objstore.yml
         retention: 2d
         retentionSize: 15GB
