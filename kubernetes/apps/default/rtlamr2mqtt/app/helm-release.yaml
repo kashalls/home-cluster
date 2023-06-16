@@ -30,10 +30,10 @@ spec:
       config-file:
         enabled: true
         type: secret
-        name: rtlamr2mqtt-secret
+        name: rtlamr2mqtt-config
         defaultMode: 400
         subPath:
-          - path: RT_LAMR_CONFIG_FILE
+          - path: rtlamr2mqtt.yaml
             mountPath: /etc/rtlamr2mqtt.yaml
     securityContext:
       privileged: true
