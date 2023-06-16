@@ -10,5 +10,5 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: cluster
-  wait: true
+    name: home-kubernetes
+  wait: false
