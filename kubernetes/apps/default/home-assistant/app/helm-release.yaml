@@ -82,7 +82,7 @@ spec:
       - name: config
         mountPath: /config
         accessMode: ReadWriteOnce
-        size: 5Gi
+        size: 15Gi
         storageClass: longhorn
     resources:
       requests:
