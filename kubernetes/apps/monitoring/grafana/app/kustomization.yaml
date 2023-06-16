@@ -6,4 +6,4 @@ namespace: monitoring
 resources:
   - ./gatus.yaml
   - ./external-secrets.yaml
-  #- ./helm-release.yaml
+  - ./helm-release.yaml

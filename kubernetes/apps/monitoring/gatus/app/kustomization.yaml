@@ -6,7 +6,7 @@ namespace: monitoring
 resources:
   - ./external-secrets.yaml
   - ./rbac.yaml
-  #- ./helm-release.yaml
+  - ./helm-release.yaml
 configMapGenerator:
   - name: gatus-configmap
     files:
