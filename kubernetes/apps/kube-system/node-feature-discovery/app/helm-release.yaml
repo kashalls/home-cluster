@@ -21,16 +21,10 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
-    nodeFeatureRule:
-      createCRD: true
-    master:
-      crdController: true
     worker:
-      annotations:
-        configmap.reloader.stakater.com/reload: node-feature-discovery-worker-conf
-      nodeSelector:
-        node-role.kubernetes.io/worker: "true"
-      config:
-        core:
-          sources:
-            - cpu
+      resources:
+        requests:
+          cpu: 15m
+          memory: 64M
+        limits:
+          memory: 64M
