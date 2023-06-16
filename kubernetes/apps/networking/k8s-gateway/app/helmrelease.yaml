@@ -34,4 +34,4 @@ spec:
       port: 53
       annotations:
         io.cilium/lb-ipam-ips: "10.100.100.53"
-      externalTrafficPolicy: Local
+      externalTrafficPolicy: Cluster
