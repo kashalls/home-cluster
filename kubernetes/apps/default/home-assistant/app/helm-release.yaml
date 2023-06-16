@@ -51,7 +51,7 @@ spec:
         ports:
           http:
             port: 8123
-    ingress:
+    ingress: #
       main:
         enabled: true
         ingressClassName: nginx
