@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: minecraft
-  namespace: prismarine-controller
+  namespace: prismarine-client
 spec:
   interval: 15m
   chart:
@@ -31,7 +31,7 @@ spec:
       pvp: true
       memory: 3000M
       serviceType: LoadBalancer
-      externalTrafficPolicy: Local
+      externalTrafficPolicy: Cluster
       externalIPs:
         - "10.100.100.241"
       motd: "Kubernetes now comes with Minecraft! On-demand!\nUwU >.<"
