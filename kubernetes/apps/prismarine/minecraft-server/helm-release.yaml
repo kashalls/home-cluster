@@ -1,0 +1,40 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: minecraft
+  namespace: prismarine-controller
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: minecraft
+      version: 4.9.0
+      sourceRef:
+        kind: HelmRepository
+        name: minecraft
+        namespace: flux-system
+  values:
+    serviceAnnotations:
+      io.cilium/lb-ipam-ips: "10.100.100.241"
+    resources:
+      requests:
+        cpu: 1
+        memory: 4G
+      limits:
+        memory: 4G
+    minecraftServer:
+      eula: "TRUE"
+      version: "1.19.2"
+      ops: Kashall
+      spawnProtection: 16
+      pvp: true
+      memory: 3000M
+      serviceType: LoadBalancer
+      rcon:
+        enabled: true
+    persistence:
+      dataDir:
+        enabled: true
+        storageClass: longhorn-nvme
+        Size: 20Gi

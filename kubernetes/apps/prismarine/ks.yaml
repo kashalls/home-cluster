@@ -2,6 +2,22 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
+  name: cluster-prismarine-test-server
+  namespace: flux-system
+spec:
+  path: ./kubernetes/apps/prismarine/minecraft-server
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: home-kubernetes
+  wait: true
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
   name: cluster-prismarine-controller
   namespace: flux-system
 spec:
