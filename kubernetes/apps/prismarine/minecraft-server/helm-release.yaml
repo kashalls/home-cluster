@@ -31,6 +31,10 @@ spec:
       pvp: true
       memory: 3000M
       serviceType: LoadBalancer
+      externalTrafficPolicy: Local
+      externalIPs:
+        - "10.100.100.241"
+      motd: "Kubernetes now comes with Minecraft! On-demand!\nUwU >.<"
       onlineMode: false
       rcon:
         enabled: true
