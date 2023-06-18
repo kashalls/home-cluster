@@ -31,6 +31,7 @@ spec:
       pvp: true
       memory: 3000M
       serviceType: LoadBalancer
+      onlineMode: false
       rcon:
         enabled: true
     persistence:
