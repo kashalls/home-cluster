@@ -17,6 +17,8 @@ spec:
         name: bjw-s
         namespace: flux-system
   values:
+    annotations:
+      reloader.stakater.com/auto: "true"
     image:
       repository: allangood/rtlamr2mqtt
       tag: 2.3.3
