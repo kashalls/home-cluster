@@ -73,12 +73,6 @@ spec:
           repeat_interval: 12h
           receiver: pushover
           routes:
-            - receiver: heartbeat
-              group_wait: 0s
-              group_interval: 2m
-              repeat_interval: 2m
-              matchers:
-                - alertname =~ "Watchdog"
             - receiver: "null" # quote
               matchers:
                 - alertname =~ "InfoInhibitor"
