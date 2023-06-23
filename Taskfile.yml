@@ -16,6 +16,7 @@ includes:
   cluster: .taskfiles/ClusterTasks.yml
   precommit: .taskfiles/PrecommitTasks.yml
   es: .taskfiles/ExternalSecrets/Tasks.yml
+  volsync: .taskfiles/VolSync/Tasks.yml
 
 tasks:
   default:
