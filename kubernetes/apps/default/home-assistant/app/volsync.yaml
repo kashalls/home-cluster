@@ -37,6 +37,13 @@ spec:
     copyMethod: Snapshot
     pruneIntervalDays: 7
     repository: home-assistant-restic-secret
+    cacheCapacity: 2Gi
+    volumeSnapshotClassName: longhorn
+    storageClassName: longhorn-nvme
+    moverSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
     retain:
       daily: 7
       within: 3d
