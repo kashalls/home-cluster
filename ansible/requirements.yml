@@ -10,6 +10,8 @@ collections:
     version: 2.10.3
   - name: kubernetes.core
     version: 2.4.0
+  - name: onepassword.connect
+    version: 2.2.1
 roles:
   - name: githubixx.cilium_cli
     version: 2.7.0+0.14.6
