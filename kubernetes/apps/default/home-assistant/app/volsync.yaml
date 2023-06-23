@@ -34,7 +34,7 @@ spec:
   trigger:
     schedule: "0 7 * * *"
   restic:
-    copyMethod: Snapshot
+    copyMethod: Clone
     pruneIntervalDays: 7
     repository: home-assistant-restic-secret
     cacheCapacity: 2Gi
