@@ -39,7 +39,7 @@ spec:
     repository: home-assistant-restic-secret
     cacheCapacity: 2Gi
     volumeSnapshotClassName: longhorn
-    storageClassName: longhorn-nvme
+    storageClassName: longhorn
     moverSecurityContext:
       runAsUser: 568
       runAsGroup: 568
