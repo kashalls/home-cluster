@@ -42,7 +42,7 @@ spec:
       repository: ghcr.io/onedr0p/home-assistant
       tag: 2023.6.2@sha256:cb6d2e3c82a657cd5e7714d4813035e21c1547a74257bdc260af75f4283bbfba
     env:
-      TZ: America/New_York
+      TZ: America/Los_Angeles
       POSTGRES_HOST: postgres-rw.default.svc.cluster.local
       POSTGRES_DB: home_assistant
     envFrom: *envFrom
