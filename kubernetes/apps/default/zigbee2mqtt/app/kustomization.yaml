@@ -5,5 +5,6 @@ kind: Kustomization
 namespace: default
 resources:
   - ./external-secrets.yaml
+  - ./volsync.yaml
   - ./helm-release.yaml
   - ./gatus.yaml
