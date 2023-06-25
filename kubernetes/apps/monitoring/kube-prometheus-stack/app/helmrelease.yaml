@@ -66,6 +66,7 @@ spec:
                       </small>
                     {{- end }}
                   {{- end }}
+          - name: "null" # quote
         route:
           group_by: ["alertname", "job"]
           group_wait: 1m
