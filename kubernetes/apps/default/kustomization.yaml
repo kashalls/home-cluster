@@ -10,6 +10,7 @@ resources:
   - ./home-assistant/ks.yaml
   - ./kubernetes-schemas/ks.yaml
   - ./mosquitto/ks.yaml
+  - ./opnsense/ks.yaml
   - ./protonmail-bridge/ks.yaml
   - ./redis/ks.yaml
   - ./rtlamr2mqtt/ks.yaml
