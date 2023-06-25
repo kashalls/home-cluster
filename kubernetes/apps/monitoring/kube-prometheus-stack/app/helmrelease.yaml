@@ -28,6 +28,11 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+  dependsOn:
+    - name: local-path-provisioner
+      namespace: kube-system
+    - name: thanos
+      namespace: monitoring
   values:
     cleanPrometheusOperatorObjectNames: true
     alertmanager:
