@@ -19,7 +19,6 @@ spec:
   values:
     persistence:
       defaultClassReplicaCount: 2
-      defaultFsType: xfs
     defaultSettings:
       defaultReplicaCount: 2
       backupTarget: nfs://${SYNOLOGY_NAS}:/volume1/LonghornBackupstore
