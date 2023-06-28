@@ -1,4 +1,5 @@
 {
+  "ansible.validation.lint.arguments": "-c .ansible-lint",
   "files.associations": {
       "*.json5": "jsonc",
       "**/ansible/**/*.yml": "ansible",
@@ -7,9 +8,26 @@
       "**/terraform/**/*.tf": "terraform",
       "**/kubernetes/**/*.sops.toml": "plaintext"
   },
+  "material-icon-theme.folders.associations": {
+    ".taskfiles": "utils",
+    "bootstrap": "import",
+    "charts": "kubernetes",
+    "hack": "scripts",
+    "repositories": "database",
+    "terraforms": "terraform",
+    "vars": "other",
+    // namespaces
+    "cert-manager": "guard",
+    "external-secrets": "keys",
+    "kube-system": "kubernetes",
+    "monitoring": "event",
+    "networking": "connection",
+    "rook-ceph": "dump",
+  },
+  "yaml.schemaStore.enable": true,
   "yaml.schemas": {
       "ansible": "ansible/*.yml",
-      "Kubernetes": "kubernetes/*.yaml"
+      "kubernetes": "kubernetes/**/*.yaml"
   },
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": true,
@@ -17,5 +35,9 @@
   "editor.guides.highlightActiveBracketPair": true,
   "editor.hover.delay": 1500,
   "files.trimTrailingWhitespace": true,
-  "ansible.python.interpreterPath": "/bin/python3",
+  "editor.fontFamily": "FiraCode Nerd Font",
+  "editor.fontLigatures": true,
+  "editor.stickyScroll.enabled": false,
+  "explorer.autoReveal": false,
+  "ansible.python.interpreterPath": "/usr/bin/python3",
 }
