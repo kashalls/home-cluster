@@ -104,6 +104,11 @@ spec:
       fsGroup: 568
       fsGroupChangePolicy: OnRootMismatch
     volumeClaimTemplates:
+      - name: data
+        mountPath: /config-1
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        storageClass: ceph-block
       - name: config
         mountPath: /config
         accessMode: ReadWriteOnce
