@@ -40,6 +40,7 @@ spec:
         global:
           resolve_timeout: 5m
         receivers:
+          - name: "null" # quote
           - name: pushover
             pushover_configs:
               - url_title: View in Alertmanager
@@ -71,7 +72,6 @@ spec:
                       </small>
                     {{- end }}
                   {{- end }}
-          - name: "null" # quote
         route:
           group_by: ["alertname", "job"]
           group_wait: 1m
