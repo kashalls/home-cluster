@@ -38,7 +38,7 @@ spec:
       tag: 3.18.2@sha256:4b666f73ee079b4feac9527fae3b0e60b0e9883213758bdb28af852c9acb4efe
     command: ["/bin/bash", "/app/opnsense-backup.sh"]
     env:
-      OPNSENSE_URL: "http://10.0.0.1"
+      OPNSENSE_URL: "https://10.0.0.1"
       S3_URL: "http://10.0.0.20:9000"
     envFrom:
       - secretRef:
