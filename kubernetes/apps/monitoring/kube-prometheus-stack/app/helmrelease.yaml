@@ -229,8 +229,18 @@ spec:
                 requests:
                   storage: 20Gi
         additionalScrapeConfigs:
-          - job_name: "airgradient"
-            honor_timestamps: true
+          - job_name: "hass"
+            scrape_interval: 60s
+            metrics_path: /api/prometheus
+            bearer_token: "${SECRET_PROMETHEUS_HOMEASSISTANT_TOKEN}"
+            scheme: https
             static_configs:
-              - targets:
-                  - "${AIRGRADIENT_ADDR}:9926"
+              - targets: ['home-assistant.default.svc.cluster.local:8123']
+          - job_name: minio
+            metrics_path: /minio/v2/metrics/cluster
+            static_configs:
+              - targets: ["10.0.0.20:9000"] # nas
+          - job_name: synology-nas
+            metrics_path: /metrics
+            static_configs:
+              - targets: ["10.0.0.20:9100"] # nas
