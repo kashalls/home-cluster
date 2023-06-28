@@ -7,7 +7,7 @@ metadata:
   namespace: rook-ceph
 spec:
   interval: 30m
-  releaseName: rook-ceph
+  timeout: 15m
   chart:
     spec:
       chart: rook-ceph
@@ -17,16 +17,7 @@ spec:
         name: rook-ceph
         namespace: flux-system
   values:
-    crds:
-      enabled: true
     csi:
-      kubeletDirPath: /var/lib/kubelet
-      enableCSIHostNetwork: true
-      pluginTolerations:
-        - effect: "NoExecute"
-          operator: "Exists"
-        - effect: "NoSchedule"
-          operator: "Exists"
       csiRBDProvisionerResource: |
         - name : csi-provisioner
           resource:
@@ -122,7 +113,6 @@ spec:
               memory: 256Mi
     monitoring:
       enabled: true
-    pspEnable: false
     resources:
       requests:
         cpu: 109m
