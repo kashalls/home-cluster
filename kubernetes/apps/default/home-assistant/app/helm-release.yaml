@@ -84,6 +84,11 @@ spec:
         accessMode: ReadWriteOnce
         size: 15Gi
         storageClass: longhorn
+      - name: data
+        mountPath: /config-1
+        accessMode: ReadWriteOnce
+        size: 15Gi
+        storageClass: ceph-block
     resources:
       requests:
         cpu: 10m
