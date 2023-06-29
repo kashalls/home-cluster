@@ -101,13 +101,13 @@ spec:
         config:
           osdsPerDevice: "1"
         nodes:
-          - name: "jera"
+          - name: "k8s-jera"
             devices:
               - name: "/dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1EDC2"
-          - name: "leafions"
+          - name: "k8s-leafions"
             devices:
               - name: "/dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1E1A3"
-          - name: "miah"
+          - name: "k8s-miah"
             devices:
               - name: "/dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1E249"
     ingress:
