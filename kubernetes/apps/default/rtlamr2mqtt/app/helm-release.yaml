@@ -26,19 +26,16 @@ spec:
       main:
         primary: true
         type: LoadBalancer
+        externalTrafficPolicy: Cluster
         annotations:
           io.cilium/lb-ipam-ips: "10.100.100.223"
         ports:
           http:
             enabled: false
           tcp:
-            primary: true
             protocol: TCP
             port: 1234
             targetPort: 1234
-    ingress:
-      main:
-        enabled: false
     persistence:
       config-file:
         enabled: true
