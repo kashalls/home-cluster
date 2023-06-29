@@ -24,6 +24,8 @@ spec:
       tag: 2.3.3
     service:
       main:
+        primary: true
+        type: LoadBalancer
         annotations:
           io.cilium/lb-ipam-ips: "10.100.100.223"
         ports:
@@ -33,6 +35,7 @@ spec:
             primary: true
             protocol: TCP
             port: 1234
+            targetPort: 1234
     ingress:
       main:
         enabled: false
