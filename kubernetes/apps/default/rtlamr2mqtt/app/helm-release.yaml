@@ -24,18 +24,7 @@ spec:
       tag: 2.3.3
     service:
       main:
-        primary: true
-        type: LoadBalancer
-        externalTrafficPolicy: Cluster
-        annotations:
-          io.cilium/lb-ipam-ips: "10.100.100.223"
-        ports:
-          http:
-            enabled: false
-          tcp:
-            protocol: TCP
-            port: 1234
-            targetPort: 1234
+        enabled: false
     persistence:
       config-file:
         enabled: true
