@@ -96,10 +96,10 @@ spec:
       mode: "dsr"
     l2NeighDiscovery:
       enabled: false
-    tunnel: "disabled"
     endpointRoutes:
       enabled: true
     encryption:
       enabled: false
     securityContext:
       privileged: true
+    tunnel: "disabled"
