@@ -47,4 +47,3 @@ spec:
         memory: 36M
       limits:
         memory: 36M
-#
