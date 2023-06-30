@@ -25,7 +25,7 @@ spec:
       neighbors:
         - peerAddress: "10.69.69.1/24"
           peerASN: 64512
-        - peerAddress: "fe80:aaa1:59ff:fec0:3c32/64"
+        - peerAddress: "fe80::aaa1:59ff:fec0:3c32/64"
           peerASN: 64512
 ---
 apiVersion: "cilium.io/v2alpha1"
