@@ -35,3 +35,4 @@ metadata:
 spec:
   cidrs:
     - cidr: 10.100.100.0/24
+    - cidr: fd61:bb96:b8f0::/112
