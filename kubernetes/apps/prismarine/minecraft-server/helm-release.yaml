@@ -41,5 +41,5 @@ spec:
     persistence:
       dataDir:
         enabled: true
-        storageClass: longhorn-nvme
+        storageClass: ceph-block
         Size: 20Gi
