@@ -77,7 +77,7 @@ spec:
     kubeProxyReplacement: strict
     kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
     ipv6:
-      enabled: true
+      enabled: false
     enableIPv6Masquerade: false
     operator:
       replicas: 1
@@ -101,3 +101,4 @@ spec:
     securityContext:
       privileged: true
     tunnel: "disabled"
+#
