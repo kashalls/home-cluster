@@ -98,8 +98,6 @@ spec:
       enabled: false
     endpointRoutes:
       enabled: true
-    encryption:
-      enabled: false
     securityContext:
       privileged: true
     tunnel: "disabled"
