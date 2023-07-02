@@ -245,3 +245,7 @@ spec:
             metrics_path: /metrics
             static_configs:
               - targets: ["10.0.0.20:9100"] # nas
+          - job_name: opnsense-prometheus
+            metrics_path: /metrics
+            static_configs:
+              - targets: ["10.0.0.1:9100"] # router
