@@ -16,7 +16,7 @@ spec:
         namespace: flux-system
   values:
     serviceAnnotations:
-      io.cilium/lb-ipam-ips: "10.100.100.241"
+      io.cilium/lb-ipam-ips: "10.69.69.241"
     resources:
       requests:
         cpu: 1
@@ -33,7 +33,7 @@ spec:
       serviceType: LoadBalancer
       externalTrafficPolicy: Cluster
       externalIPs:
-        - "10.100.100.241"
+        - "10.69.69.241"
       motd: "Kubernetes now comes with Minecraft! On-demand!\nUwU >.<"
       onlineMode: false
       rcon:
