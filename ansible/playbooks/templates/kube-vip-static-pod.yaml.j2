@@ -15,7 +15,7 @@ spec:
       args: ["manager"]
       env:
         - name: address
-          value: "10.69.69.2"
+          value: "{{ k3s_registration_address }}"
         - name: vip_arp
           value: "true"
         - name: port

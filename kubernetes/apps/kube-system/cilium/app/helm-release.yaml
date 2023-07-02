@@ -27,17 +27,18 @@ spec:
     keepHistory: false
   values:
     autoDirectNodeRoutes: true
-    localRedirectPolicy: true
     bpf:
       masquerade: true
-    bgpControlPlane:
-      enabled: true
+    bgp:
+      enabled: false
     cluster:
       name: home-cluster
       id: 1
     containerRuntime:
       integration: containerd
       socketPath: /var/run/k3s/containerd/containerd.sock
+    endpointRoutes:
+      enabled: true
     hubble:
       enabled: true
       metrics:
@@ -73,14 +74,9 @@ spec:
     k8sServiceHost: "10.69.69.1"
     k8sServicePort: 6443
     ipv4NativeRoutingCIDR: "10.254.0.0/16"
-    ipv6NativeRoutingCIDR: "fddf:f7bc:9670::/48"
     kubeProxyReplacement: strict
     kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
-    ipv6:
-      enabled: false
-    enableIPv6Masquerade: false
     operator:
-      replicas: 1
       rollOutPods: true
       prometheus:
         enabled: true
@@ -91,14 +87,13 @@ spec:
       serviceMonitor:
         enabled: true
     rollOutCiliumPods: true
+    l2announcements:
+      enabled: true
     loadBalancer:
       algorithm: "maglev"
       mode: "dsr"
     l2NeighDiscovery:
-      enabled: false
-    endpointRoutes:
       enabled: true
     securityContext:
       privileged: true
     tunnel: "disabled"
-#

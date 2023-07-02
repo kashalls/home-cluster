@@ -1,4 +1,5 @@
 ---
+# https://docs.k3s.io/helm
 apiVersion: helm.cattle.io/v1
 kind: HelmChart
 metadata:
@@ -7,31 +8,42 @@ metadata:
 spec:
   repo: https://helm.cilium.io/
   chart: cilium
-    # renovate: datasource=helm depName=cilium registryUrl=https://helm.cilium.io/
-  version: 1.13.4
+  # renovate: datasource=helm depName=cilium registryUrl=https://helm.cilium.io
+  version: "1.14.0-rc.0"
   targetNamespace: kube-system
   bootstrap: true
   valuesContent: |-
-    bgpControlPlane:
-      enabled: true
+    autoDirectNodeRoutes: true
     bpf:
       masquerade: true
+    bgp:
+      enabled: false
     cluster:
-      name: home-cluster
+      name: home-ops
       id: 1
     containerRuntime:
       integration: containerd
       socketPath: /var/run/k3s/containerd/containerd.sock
+    endpointRoutes:
+      enabled: true
     hubble:
       enabled: false
     ipam:
       mode: kubernetes
-    k8sServiceHost: "10.69.69.2"
+    ipv4NativeRoutingCIDR: "{{ k3s_server['cluster-cidr'] }}"
+    k8sServiceHost: "{{ k3s_registration_address }}"
     k8sServicePort: 6443
     kubeProxyReplacement: strict
     kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
-    operator:
+    l2announcements:
       enabled: true
-      replicas: 1
+    loadBalancer:
+      algorithm: maglev
+      mode: dsr
+    localRedirectPolicy: true
+    operator:
       rollOutPods: true
     rollOutCiliumPods: true
+    securityContext:
+      privileged: true
+    tunnel: disabled
