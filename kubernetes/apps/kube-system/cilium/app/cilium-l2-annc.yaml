@@ -18,4 +18,4 @@ metadata:
   name: default
 spec:
   cidrs:
-    - cidr: "{{ (ansible_default_ipv4.network + '/' + ansible_default_ipv4.netmask) | ansible.utils.ipaddr('network/prefix') }}"
+    - cidr: "10.69.69.0/24"
