@@ -29,7 +29,7 @@ spec:
       imap:
         enabled: true
         type: LoadBalancer
-        loadBalancerIP: "${METALLB_SMTP_ADDR}"
+        loadBalancerIP: "10.69.69.200"
         annotations:
         externalTrafficPolicy: Local
         ports:
@@ -39,7 +39,7 @@ spec:
       smtp:
         enabled: true
         type: LoadBalancer
-        loadBalancerIP: "${METALLB_SMTP_ADDR}"
+        loadBalancerIP: "10.69.69.200"
         annotations:
           coredns.io/hostname: "smtp.${SECRET_DOMAIN}"
         externalTrafficPolicy: Local
