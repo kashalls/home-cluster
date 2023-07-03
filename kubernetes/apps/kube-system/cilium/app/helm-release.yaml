@@ -92,8 +92,6 @@ spec:
     loadBalancer:
       algorithm: "maglev"
       mode: "dsr"
-    l2NeighDiscovery:
-      enabled: true
     securityContext:
       privileged: true
     tunnel: "disabled"

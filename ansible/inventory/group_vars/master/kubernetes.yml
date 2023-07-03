@@ -14,6 +14,8 @@ k3s_server:
   docker: false
   flannel-backend: "none" # This needs to be in quotes
   disable:
+    # Disable coredns - installed with Flux
+    - coredns
     # Disable flannel - replaced with cilium
     - flannel
     # Disable local-path-provisioner - installed with Flux
@@ -27,13 +29,13 @@ k3s_server:
   disable-network-policy: true
   disable-cloud-controller: true
   disable-kube-proxy: true
-  # Required to monitor etcd with kube-prometheus-stack
-  etcd-expose-metrics: true
   write-kubeconfig-mode: "0644"
   # Network CIDR to use for pod IPs
-  cluster-cidr: "10.252.0.0/16"
+  cluster-cidr: 172.30.0.0/16
   # Network CIDR to use for service IPs
-  service-cidr: "10.253.0.0/16"
+  service-cidr: 172.31.0.0/16
+  # Required to monitor etcd with kube-prometheus-stack
+  etcd-expose-metrics: true
   kube-controller-manager-arg:
     # Required to monitor kube-controller-manager with kube-prometheus-stack
     - "bind-address=0.0.0.0"
