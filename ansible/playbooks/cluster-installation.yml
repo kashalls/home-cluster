@@ -73,6 +73,7 @@
         - { name: podmonitors.monitoring.coreos.com, kind: CustomResourceDefinition }
         - { name: prometheusrules.monitoring.coreos.com, kind: CustomResourceDefinition }
         - { name: servicemonitors.monitoring.coreos.com, kind: CustomResourceDefinition }
+
         - name: Custom manifests (1) | Wait for custom manifests to rollout
           kubernetes.core.k8s_info:
             kubeconfig: /etc/rancher/k3s/k3s.yaml
@@ -164,4 +165,4 @@
       ansible.builtin.include_tasks: tasks/cruft.yml
 
     - name: Stale Containers
-      ansible.builtin.include_tasks: tasks/stale_containers.yml
+      ansible.builtin.include_tasks: tasks/stale-containers.yml
