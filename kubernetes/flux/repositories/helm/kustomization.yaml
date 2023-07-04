@@ -7,6 +7,7 @@ resources:
   - ./bjw-s.yaml
   - ./cilium.yaml
   - ./cloudnative-pg.yaml
+  - ./coredns.yaml
   - ./external-dns.yaml
   - ./external-secrets.yaml
   - ./grafana.yaml
