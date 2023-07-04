@@ -164,9 +164,9 @@ spec:
     kubeControllerManager:
       enabled: true
       endpoints: &cp
-        - 10.69.69.10
-        - 10.69.69.11
-        - 10.69.69.12
+        - 10.69.69.2
+        - 10.69.69.3
+        - 10.69.69.4
       serviceMonitor:
         metricRelabelings:
           # Remove duplicate metrics
