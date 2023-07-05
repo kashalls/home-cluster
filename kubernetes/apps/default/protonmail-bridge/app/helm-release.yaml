@@ -31,7 +31,7 @@ spec:
         type: LoadBalancer
         loadBalancerIP: "10.69.69.200"
         annotations:
-        externalTrafficPolicy: Local
+        externalTrafficPolicy: Cluster
         ports:
           imap-tcp:
             enabled: true
@@ -42,7 +42,7 @@ spec:
         loadBalancerIP: "10.69.69.200"
         annotations:
           coredns.io/hostname: "smtp.${SECRET_DOMAIN}"
-        externalTrafficPolicy: Local
+        externalTrafficPolicy: Cluster
         ports:
           smtp-tcp:
             enabled: true
