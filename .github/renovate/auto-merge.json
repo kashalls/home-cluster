@@ -8,7 +8,7 @@
         "automergeType": "branch",
         "ignoreTests": true,
         "matchUpdateTypes": ["digest"],
-        "matchPackagePattern": ["ghcr.io/kashalls"]
+        "matchPackagePattern": ["ghcr.io/kashalls", "ghcr.io/bjw-s", "ghcr.io/onedr0p"]
       },
       {
         "description": "Auto merge containers",

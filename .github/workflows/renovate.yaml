@@ -1,0 +1,56 @@
+---
+name: "Renovate"
+
+on:
+  workflow_dispatch:
+    inputs:
+      dryRun:
+        description: Dry-Run
+        default: "false"
+        required: false
+      logLevel:
+        description: Log-Level
+        default: debug
+        required: false
+  schedule:
+    - cron: "0 * * * *"
+  push:
+    branches: ["main"]
+    paths:
+      - .github/renovate-bot.json5
+      - .github/renovate.json5
+      - .github/renovate/**.json5
+
+env:
+  LOG_LEVEL: debug
+  RENOVATE_DRY_RUN: false
+  RENOVATE_CONFIG_FILE: .github/renovate-bot.json5
+
+jobs:
+  renovate:
+    name: Renovate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate Token
+        uses: tibdex/github-app-token@b62528385c34dbc9f38e5f4225ac829252d1ea92 # v1.8.0
+        id: generate-token
+        with:
+          app_id: "${{ secrets.BOT_APP_ID }}"
+          private_key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
+
+      - name: Checkout
+        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+        with:
+          token: "${{ steps.generate-token.outputs.token }}"
+
+      - name: Override default config from dispatch variables
+        shell: bash
+        run: |
+          echo "RENOVATE_DRY_RUN=${{ github.event.inputs.dryRun || env.RENOVATE_DRY_RUN }}" >> "${GITHUB_ENV}"
+          echo "LOG_LEVEL=${{ github.event.inputs.logLevel || env.LOG_LEVEL }}" >> "${GITHUB_ENV}"
+
+      - name: Renovate
+        uses: renovatebot/github-action@96a5122bb4c10a5b16d944b3a27398c5d75d2064 # v38.1.9
+        with:
+          configurationFile: "${{ env.RENOVATE_CONFIG_FILE }}"
+          token: "${{ steps.generate-token.outputs.token }}"

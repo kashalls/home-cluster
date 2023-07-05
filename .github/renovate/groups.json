@@ -23,6 +23,16 @@
         "separateMinorPatch": true
       },
       {
+        "description": "Rook-Ceph Group",
+        "groupName": "Rook-Ceph",
+        "matchPackagePatterns": ["rook.ceph"],
+        "matchDatasources": ["helm"],
+        "group": {
+          "commitMessageTopic": "{{{groupName}}} group"
+        },
+        "separateMinorPatch": true
+      },
+      {
         "description": "External Snapshotter charts",
         "groupName": "External Snapshotter",
         "matchPackageNames": ["snapshot-controller", "snapshot-validation-webhook"],
