@@ -1,4 +1,7 @@
 ---
+originRequest:
+  http2Origin: true
+
 # The `ingress` block tells cloudflared which local service to route incoming
 # requests to. For more about ingress rules, see
 # https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/ingress

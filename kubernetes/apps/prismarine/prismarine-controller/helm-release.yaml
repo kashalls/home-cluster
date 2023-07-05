@@ -4,7 +4,7 @@ metadata:
   name: prismarine-controller
   namespace: prismarine-controller
 spec:
-  interval: 15m
+  interval: 30m
   chart:
     spec:
       chart: app-template
