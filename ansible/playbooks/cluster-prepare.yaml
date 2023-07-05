@@ -1,0 +1,118 @@
+---
+- name: Prepare System
+  hosts: all
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  pre_tasks:
+    - name: Pausing for 5 seconds...
+      ansible.builtin.pause:
+        seconds: 5
+  tasks:
+    - name: Locale
+      block:
+        - name: Locale | Set timezone
+          community.general.timezone:
+            name: "{{ timezone | default('Etc/UTC') }}"
+
+    - name: Networking
+      notify: Restart systemd-networkd
+      block:
+        - name: Networking | Set hostname to inventory hostname
+          ansible.builtin.hostname:
+            name: "{{ inventory_hostname }}"
+        - name: Networking | Update hosts file to include inventory hostname
+          ansible.builtin.blockinfile:
+            path: /etc/hosts
+            block: |
+              127.0.1.1   {{ inventory_hostname }}
+        # https://github.com/cilium/cilium/issues/18706
+        - name: Networking | Cilium (1)
+          ansible.builtin.lineinfile:
+            dest: /etc/systemd/networkd.conf
+            regexp: ManageForeignRoutingPolicyRules
+            line: ManageForeignRoutingPolicyRules=no
+        - name: Networking | Cilium (2)
+          ansible.builtin.lineinfile:
+            dest: /etc/systemd/networkd.conf
+            regexp: ManageForeignRoutes
+            line: ManageForeignRoutes=no
+
+    - name: Packages
+      block:
+        - name: Packages | Install required packages
+          ansible.builtin.apt:
+            name: hdparm,htop,ipvsadm,lm-sensors,nano,nfs-common,nvme-cli,
+              socat,python3-kubernetes,python3-yaml
+            state: present
+            update_cache: true
+        - name: Packages | RasPi packages
+          ansible.builtin.apt:
+            name: ["linux-modules-extra-raspi"]
+            install_recommends: false
+          notify: Reboot
+          when: "'raspi' in ansible_kernel"
+
+    - name: System Configuration (1)
+      block:
+        - name: System Configuration (1) | Disable ufw
+          ansible.builtin.systemd:
+            service: ufw.service
+            enabled: false
+            masked: true
+            state: stopped
+          register: stop_service
+          failed_when:
+            - stop_service.failed == true
+            - '"Could not find the requested service" not in stop_service.msg'
+        - name: System Configuration (1) | Enable fstrim
+          ansible.builtin.systemd:
+            service: fstrim.timer
+            enabled: true
+
+    - name: System Configuration (2)
+      notify: Reboot
+      block:
+        - name: System Configuration (2) | Enable kernel modules now
+          community.general.modprobe:
+            name: "{{ item }}"
+            state: present
+          loop: ["br_netfilter", "ceph", "ip_vs", "ip_vs_rr", "nbd", "overlay", "rbd"]
+        - name: System Configuration (2) | Enable kernel modules on boot
+          ansible.builtin.copy:
+            mode: "0644"
+            content: "{{ item }}"
+            dest: "/etc/modules-load.d/{{ item }}.conf"
+          loop: ["br_netfilter", "ceph", "ip_vs", "ip_vs_rr", "nbd", "overlay", "rbd"]
+        - name: System Configuration (2) | Set sysctls
+          ansible.posix.sysctl:
+            name: "{{ item.key }}"
+            value: "{{ item.value }}"
+            sysctl_file: /etc/sysctl.d/99-kubernetes.conf
+            reload: true
+          with_dict: "{{ sysctl_config }}"
+          vars:
+            sysctl_config:
+              fs.inotify.max_queued_events: 65536
+              fs.inotify.max_user_watches: 524288
+              fs.inotify.max_user_instances: 8192
+        - name: System Configuration (2) | Disable swap at runtime
+          ansible.builtin.command: swapoff -a
+          when: ansible_swaptotal_mb > 0
+        - name: System Configuration (2) | Disable swap at boot
+          ansible.posix.mount:
+            name: "{{ item }}"
+            fstype: swap
+            state: absent
+          loop: ["none", "swap"]
+
+  handlers:
+    - name: Restart systemd-networkd
+      ansible.builtin.systemd:
+        service: systemd-networkd
+        state: restarted
+    - name: Reboot
+      ansible.builtin.reboot:
+        msg: Rebooting nodes
+        reboot_timeout: 3600
+        post_reboot_delay: 60
