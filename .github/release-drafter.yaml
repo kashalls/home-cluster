@@ -12,8 +12,6 @@ categories:
     labels: ["area/github"]
   - title: "Ansible"
     labels: ["area/ansible"]
-  - title: "Terraform"
-    labels: ["area/terraform"]
   - title: "Maintenance"
     labels: ["docs"]
 version-resolver:
@@ -26,5 +24,7 @@ version-resolver:
   default: patch
 template: |
   ## What's Changed
+
   $CHANGES
+
   **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
