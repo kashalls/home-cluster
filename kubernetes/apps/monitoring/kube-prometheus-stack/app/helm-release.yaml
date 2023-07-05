@@ -220,14 +220,14 @@ spec:
             name: thanos-objstore
             key: objstore.yml
         retention: 2d
-        retentionSize: 15GB
+        retentionSize: 8GB
         storageSpec:
           volumeClaimTemplate:
             spec:
               storageClassName: local-path
               resources:
                 requests:
-                  storage: 20Gi
+                  storage: 10Gi
         additionalScrapeConfigs:
           - job_name: "hass"
             scrape_interval: 60s
