@@ -3,7 +3,7 @@
 apiVersion: cilium.io/v2alpha1
 kind: CiliumL2AnnouncementPolicy
 metadata:
-  name: default
+  name: policy
 spec:
   loadBalancerIPs: true
   interfaces:
@@ -15,7 +15,7 @@ spec:
 apiVersion: cilium.io/v2alpha1
 kind: CiliumLoadBalancerIPPool
 metadata:
-  name: default
+  name: pool
 spec:
   cidrs:
     - cidr: "10.69.69.0/24"

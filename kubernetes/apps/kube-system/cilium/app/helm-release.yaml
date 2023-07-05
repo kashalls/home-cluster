@@ -5,11 +5,11 @@ metadata:
   name: cilium
   namespace: kube-system
 spec:
-  interval: 15m
+  interval: 30m
   chart:
     spec:
       chart: cilium
-      version: 1.14.0-snapshot.4
+      version: 1.14.0-rc.0
       sourceRef:
         kind: HelmRepository
         name: cilium
@@ -64,6 +64,8 @@ spec:
         ingress:
           enabled: true
           className: nginx
+          annotations:
+            hajimari.io/icon: simple-icons:cilium
           hosts:
             - &host "hubble.${SECRET_DOMAIN}"
           tls:
@@ -89,9 +91,13 @@ spec:
     rollOutCiliumPods: true
     l2announcements:
       enabled: true
+      leaseDuration: 30s
+      leaseRenewDeadline: 10s
+      leaseRetryPeriod: 4s
     loadBalancer:
       algorithm: "maglev"
       mode: "dsr"
+    localRedirectPolicy: true
     securityContext:
       privileged: true
     tunnel: "disabled"
