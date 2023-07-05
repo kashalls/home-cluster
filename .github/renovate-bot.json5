@@ -1,0 +1,6 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "username": "moonami-bot[bot]",
+  "gitAuthor": "moonami-bot <moonami-bot[bot]@users.noreply.github.com>",
+  "repositories": ["kashalls/home-cluster"]
+}
