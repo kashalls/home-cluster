@@ -27,8 +27,9 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    fullnameOverride: kube-dns
-    k8sAppLabelOverride: "kube-dns"
+    k8sAppLabelOverride: kube-dns
+    service:
+      name: kube-dns
     image:
       repository: registry.k8s.io/coredns/coredns
       tag: v1.10.1
