@@ -1,8 +1,6 @@
 ---
 version: "3"
 
-dotenv: [".config.env"]
-
 vars:
   KUBERNETES_DIR: "{{.ROOT_DIR}}/kubernetes"
   ANSIBLE_DIR: "{{.ROOT_DIR}}/ansible"
@@ -14,7 +12,6 @@ env:
 includes:
   ansible: .taskfiles/AnsibleTasks.yml
   cluster: .taskfiles/ClusterTasks.yml
-  precommit: .taskfiles/PrecommitTasks.yml
   es: .taskfiles/ExternalSecrets/Tasks.yml
   volsync: .taskfiles/VolSync/Tasks.yml
 
