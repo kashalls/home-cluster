@@ -28,7 +28,7 @@ spec:
     keepHistory: false
   values:
     runnerScaleSetName: arc-runner-set-home-ops
-    githubConfigUrl: https://github.com/onedr0p/home-ops
+    githubConfigUrl: https://github.com/kashalls/home-cluster
     minRunners: 1
     maxRunners: 3
     containerMode:
