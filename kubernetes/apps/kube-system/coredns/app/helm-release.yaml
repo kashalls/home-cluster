@@ -27,13 +27,13 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    fullnameOverride: coredns
+    fullnameOverride: kube-dns
     image:
       repository: registry.k8s.io/coredns/coredns
       tag: v1.10.1
     replicaCount: 3
-    service:
-      clusterIP: #TODO: Fill out clusterIP
+#    service:
+#      clusterIP: #TODO: Fill out clusterIP
     serviceAccount:
       create: true
     deployment:
