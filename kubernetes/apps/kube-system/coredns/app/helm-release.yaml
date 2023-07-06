@@ -28,6 +28,7 @@ spec:
     keepHistory: false
   values:
     fullnameOverride: kube-dns
+    k8sAppLabelOverride: "kube-dns"
     image:
       repository: registry.k8s.io/coredns/coredns
       tag: v1.10.1
