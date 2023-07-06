@@ -24,7 +24,7 @@ k3s_etcd_datastore: true
 k3s_use_unsupported_config: false
 
 # (string) Control Plane registration address
-k3s_registration_address: "10.69.69.2"
+k3s_registration_address: "10.69.69.10"
 
 # (list) A list of URLs to deploy on the primary control plane. Read notes below.
 k3s_server_manifests_urls:
