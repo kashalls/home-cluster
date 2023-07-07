@@ -30,12 +30,11 @@ spec:
     k8sAppLabelOverride: kube-dns
     service:
       name: kube-dns
+      clusterIP: 172.31.0.10
     image:
       repository: registry.k8s.io/coredns/coredns
       tag: v1.10.1
     replicaCount: 3
-#    service:
-#      clusterIP: #TODO: Fill out clusterIP
     serviceAccount:
       create: true
     deployment:
