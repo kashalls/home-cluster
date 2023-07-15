@@ -871,16 +871,19 @@ __metadata:
   linkType: hard
 
 "@nuxt-themes/docus@npm:^1.6.0":
-  version: 1.13.1
-  resolution: "@nuxt-themes/docus@npm:1.13.1"
+  version: 1.14.3
+  resolution: "@nuxt-themes/docus@npm:1.14.3"
   dependencies:
     "@nuxt-themes/elements": ^0.9.4
     "@nuxt-themes/tokens": ^1.9.1
     "@nuxt-themes/typography": ^0.11.0
     "@nuxt/content": ^2.7.0
-    "@nuxthq/studio": ^0.13.3
+    "@nuxthq/studio": ^0.13.4
+    "@vueuse/integrations": ^10.2.1
     "@vueuse/nuxt": ^10.2.1
-  checksum: b65ec6c714ae98d57916861864b6bee1dc55f54b86758dd0b4a59a2a40921318a2a615d584855606625610ec5efc44411feda844f525ef6408c385cb5ba63af5
+    focus-trap: ^7.5.2
+    fuse.js: ^6.6.2
+  checksum: 967ac5dc8ad3f33bccabc3b2c286e96dc35222de6d106add2a62de8f8bab1ed7e28fb7b13f3dc35a6859695fcdbbe3fd48b3f1946a8184fcc04b8ee7e301dda6
   languageName: node
   linkType: hard
 
@@ -1177,9 +1180,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxthq/studio@npm:^0.13.3":
-  version: 0.13.3
-  resolution: "@nuxthq/studio@npm:0.13.3"
+"@nuxthq/studio@npm:^0.13.4":
+  version: 0.13.4
+  resolution: "@nuxthq/studio@npm:0.13.4"
   dependencies:
     "@nuxt/kit": ^3.4.3
     defu: ^6.1.2
@@ -1187,7 +1190,7 @@ __metadata:
     nuxt-config-schema: ^0.4.6
     socket.io-client: ^4.6.1
     ufo: ^1.1.2
-  checksum: 980326b2c91a26bfb8439d3723f4e05d1bcdb99bb8d7fb4a61c2cd0cff484103084e4051bf03438656632604f2c82fe4543cabf8a437ae764591252cbf5e27cf
+  checksum: 4d90a6758aacd1b7b3ade3e0cf370e4b9eec71e54775a9c2a2e745aa346f2ebf0a813061a9b956b412b74deced31c76d6a22941565de4a2fca2215b35f05efba
   languageName: node
   linkType: hard
 
@@ -1826,6 +1829,55 @@ __metadata:
     "@vueuse/shared": 9.13.0
     vue-demi: "*"
   checksum: 2b19d8ec4305f6c65650813c0fa9c15af6b322fc253ad656eb1c4bc8d7617a2ddd46a46d7ea359c4cdc5a5724aa5fc152fa7a3816ed6ebeaec4f7e58defb7153
+  languageName: node
+  linkType: hard
+
+"@vueuse/integrations@npm:^10.2.1":
+  version: 10.2.1
+  resolution: "@vueuse/integrations@npm:10.2.1"
+  dependencies:
+    "@vueuse/core": 10.2.1
+    "@vueuse/shared": 10.2.1
+    vue-demi: ">=0.14.5"
+  peerDependencies:
+    async-validator: "*"
+    axios: "*"
+    change-case: "*"
+    drauu: "*"
+    focus-trap: "*"
+    fuse.js: "*"
+    idb-keyval: "*"
+    jwt-decode: "*"
+    nprogress: "*"
+    qrcode: "*"
+    sortablejs: "*"
+    universal-cookie: "*"
+  peerDependenciesMeta:
+    async-validator:
+      optional: true
+    axios:
+      optional: true
+    change-case:
+      optional: true
+    drauu:
+      optional: true
+    focus-trap:
+      optional: true
+    fuse.js:
+      optional: true
+    idb-keyval:
+      optional: true
+    jwt-decode:
+      optional: true
+    nprogress:
+      optional: true
+    qrcode:
+      optional: true
+    sortablejs:
+      optional: true
+    universal-cookie:
+      optional: true
+  checksum: 6f7258e4f52f70f30e13bfb5d40d1dd8b48e23b94d338cb2b6e6d3fa8a3dc4e3a71a8677af4228548086238442e9737305dc7c855c2e8818b6bab39bea9b994c
   languageName: node
   linkType: hard
 
@@ -3672,6 +3724,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"focus-trap@npm:^7.5.2":
+  version: 7.5.2
+  resolution: "focus-trap@npm:7.5.2"
+  dependencies:
+    tabbable: ^6.2.0
+  checksum: 1eee29d18c152ef08849a5cfd6d462a6741ec15f08938a9d87336d47807f07dbfff2e6405b16b5ce96745eb86b60f3dcdd87b63f0ad240e47252254d2c248d40
+  languageName: node
+  linkType: hard
+
 "follow-redirects@npm:^1.0.0":
   version: 1.15.2
   resolution: "follow-redirects@npm:1.15.2"
@@ -3771,6 +3832,13 @@ __metadata:
   version: 1.1.1
   resolution: "function-bind@npm:1.1.1"
   checksum: b32fbaebb3f8ec4969f033073b43f5c8befbb58f1a79e12f1d7490358150359ebd92f49e72ff0144f65f2c48ea2a605bff2d07965f548f6474fd8efd95bf361a
+  languageName: node
+  linkType: hard
+
+"fuse.js@npm:^6.6.2":
+  version: 6.6.2
+  resolution: "fuse.js@npm:6.6.2"
+  checksum: 17ae758ce205276ebd88bd9c9f088a100be0b4896abac9f6b09847151269d1690f41d7f98ff5813d4a58973162dbd99d0072ce807020fee6f9de60170f6b08eb
   languageName: node
   linkType: hard
 
@@ -8071,6 +8139,13 @@ __metadata:
   bin:
     svgo: bin/svgo
   checksum: 381ba14aa782e71ab7033227634a3041c11fa3e2769aeaf0df43a08a615de61925108e34f55af6e7c5146f4a3109e78deabb4fa9d687e36d45d1f848b4e23d17
+  languageName: node
+  linkType: hard
+
+"tabbable@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "tabbable@npm:6.2.0"
+  checksum: f8440277d223949272c74bb627a3371be21735ca9ad34c2570f7e1752bd646ccfc23a9d8b1ee65d6561243f4134f5fbbf1ad6b39ac3c4b586554accaff4a1300
   languageName: node
   linkType: hard
 
