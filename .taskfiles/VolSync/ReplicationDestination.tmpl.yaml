@@ -12,9 +12,14 @@ spec:
     destinationPVC: "${claim}"
     copyMethod: Direct
     storageClassName: ceph-block
+    moverSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: OnRootMismatch
     # IMPORTANT NOTE:
     #   Set to the last X number of snapshots to restore from
-    previous: 2
+    previous: 6
     # OR;
     # IMPORTANT NOTE:
     #   On bootstrap set `restoreAsOf` to the time the old cluster was destroyed.
