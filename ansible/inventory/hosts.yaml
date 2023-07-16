@@ -9,10 +9,16 @@ kubernetes:
       hosts:
         k8s-astro:
           ansible_host: 10.69.69.2
+          rook_block_devices:
+            - /dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1809D
         k8s-august:
           ansible_host: 10.69.69.3
+          rook_block_devices:
+            - /dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1804E
         k8s-delta:
           ansible_host: 10.69.69.4
+          rook_block_devices:
+            - /dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1804C
     worker:
       hosts:
         k8s-jera:
