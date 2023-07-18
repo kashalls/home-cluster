@@ -43,6 +43,7 @@ spec:
   externalClusters:
     - name: *previousCluster
       barmanObjectStore:
+        serverName: **previousCluster
         wal:
           compression: bzip2
           maxParallel: 8
