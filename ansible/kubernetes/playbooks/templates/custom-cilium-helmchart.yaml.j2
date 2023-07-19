@@ -19,8 +19,8 @@ spec:
     bgp:
       enabled: false
     cluster:
-      name: home-ops
-      id: 1
+      name: {{ cilium_cluster_name }}
+      id: {{ cilium_cluster_id }}
     containerRuntime:
       integration: containerd
       socketPath: /var/run/k3s/containerd/containerd.sock

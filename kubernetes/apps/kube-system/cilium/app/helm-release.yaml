@@ -33,7 +33,7 @@ spec:
     bgp:
       enabled: false
     cluster:
-      name: home-cluster
+      name: arisu-cluster
       id: 1
     containerRuntime:
       integration: containerd
