@@ -1,19 +1,20 @@
 ---
 kubernetes:
   vars:
-    ansible_user:
+    ansible_user: kashall
     ansible_ssh_port: 22
     ansible_ssh_common_args: "-o StrictHostKeyChecking=no"
+    kube_vip_addr: 10.42.42.49
+    cluster_cidr: "172.32.0.0/16"
+    service_cidr: "172.33.0.0/16"
   children:
     master:
       hosts:
-        rasb-01:
+        rpi-one:
           ansible_host: 10.42.42.50
     worker:
       hosts:
-        rasb-02:
+        rpi-two:
           ansible_host: 10.42.42.51
-        rasb-03:
+        rpi-three:
           ansible_host: 10.42.42.52
-        rasb-04:
-          ansible_host: 10.42.42.53

@@ -4,6 +4,9 @@ kubernetes:
     ansible_user: kashall
     ansible_ssh_port: 22
     ansible_ssh_common_args: "-o StrictHostKeyChecking=no"
+    kube_vip_addr: 10.69.69.10
+    cluster_cidr: "172.30.0.0/16"
+    service_cidr: "172.31.0.0/16"
   children:
     master:
       hosts:
