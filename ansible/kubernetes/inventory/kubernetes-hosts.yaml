@@ -6,7 +6,7 @@ kubernetes:
     ansible_ssh_port: 22
     ansible_ssh_common_args: "-o StrictHostKeyChecking=no"
     # Cluster-specific networking details.
-    kube_vip_addr: 10.69.69.10
+    kube_vip_addr: 10.69.0.2
     # Cluster and Service CIDR must be unique amongst all clusters in mesh.
     cluster_cidr: "172.30.0.0/16"
     service_cidr: "172.31.0.0/16"
@@ -21,28 +21,28 @@ kubernetes:
     master:
       hosts:
         k8s-astro:
-          ansible_host: 10.69.69.2
+          ansible_host: 10.69.0.3
           rook_block_devices:
             - /dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1809D
         k8s-august:
-          ansible_host: 10.69.69.3
+          ansible_host: 10.69.0.4
           rook_block_devices:
             - /dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1804E
         k8s-delta:
-          ansible_host: 10.69.69.4
+          ansible_host: 10.69.0.5
           rook_block_devices:
             - /dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1804C
     worker:
       hosts:
         k8s-jera:
-          ansible_host: 10.69.69.5
+          ansible_host: 10.69.0.6
           rook_block_devices:
             - /dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1EDC2
         k8s-leafions:
-          ansible_host: 10.69.69.6
+          ansible_host: 10.69.0.7
           rook_block_devices:
             - /dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1E1A3
         k8s-miah:
-          ansible_host: 10.69.69.7
+          ansible_host: 10.69.0.8
           rook_block_devices:
             - /dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1E249

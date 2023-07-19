@@ -6,7 +6,7 @@ kubernetes:
     ansible_ssh_port: 22
     ansible_ssh_common_args: "-o StrictHostKeyChecking=no"
     # Cluster-specific networking details.
-    kube_vip_addr: 10.42.42.49
+    kube_vip_addr: 10.69.0.10
     # Cluster and Service CIDR must be unique amongst all clusters in mesh.
     cluster_cidr: "172.32.0.0/16"
     service_cidr: "172.33.0.0/16"
@@ -21,10 +21,10 @@ kubernetes:
     master:
       hosts:
         rpi-one:
-          ansible_host: 10.42.42.50
+          ansible_host: 10.69.0.11
     worker:
       hosts:
         rpi-two:
-          ansible_host: 10.42.42.51
+          ansible_host: 10.69.0.12
         rpi-three:
-          ansible_host: 10.42.42.52
+          ansible_host: 10.69.0.13
