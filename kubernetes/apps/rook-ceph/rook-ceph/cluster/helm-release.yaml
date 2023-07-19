@@ -101,6 +101,15 @@ spec:
         config:
           osdsPerDevice: "1"
         nodes:
+          - name: "k8s-astro"
+            devices:
+              - name: "/dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1809D"
+          - name: "k8s-august"
+            devices:
+              - name: "/dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1804E"
+          - name: "k8s-delta"
+            devices:
+              - name: "/dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1804C"
           - name: "k8s-jera"
             devices:
               - name: "/dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1EDC2"
