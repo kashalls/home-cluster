@@ -8,6 +8,7 @@ spec:
   loadBalancerIPs: true
   interfaces:
     - ^eno[0-9]+
+    - ^eth[0-9]+
   nodeSelector:
     matchLabels:
       kubernetes.io/os: linux
@@ -18,4 +19,4 @@ metadata:
   name: pool
 spec:
   cidrs:
-    - cidr: "{{ (ansible_default_ipv4.network + '/' + ansible_default_ipv4.netmask) | ansible.utils.ipaddr('network/prefix') }}"
+    - cidr: "{{ cilium_loadbalancer_pool }}"

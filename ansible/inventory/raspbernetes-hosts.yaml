@@ -1,0 +1,30 @@
+---
+kubernetes:
+  vars:
+    # Base OS Details for SSH
+    ansible_user: kashall
+    ansible_ssh_port: 22
+    ansible_ssh_common_args: "-o StrictHostKeyChecking=no"
+    # Cluster-specific networking details.
+    kube_vip_addr: 10.69.0.10
+    # Cluster and Service CIDR must be unique amongst all clusters in mesh.
+    cluster_cidr: "172.32.0.0/16"
+    service_cidr: "172.33.0.0/16"
+    # Required for cluster mesh (and cilium)
+    # https://docs.cilium.io/en/latest/network/clustermesh/clustermesh/#specify-the-cluster-name-and-id
+    # Name and ID must be unique.
+    cilium_cluster_name: "rpi-cluster"
+    cilium_cluster_id: 2
+    # Expects a full cidr
+    cilium_loadbalancer_pool: "10.69.101.0/24"
+  children:
+    master:
+      hosts:
+        rpi-one:
+          ansible_host: 10.69.0.11
+    worker:
+      hosts:
+        rpi-two:
+          ansible_host: 10.69.0.12
+        rpi-three:
+          ansible_host: 10.69.0.13
