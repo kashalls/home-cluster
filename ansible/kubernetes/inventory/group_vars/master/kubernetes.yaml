@@ -23,8 +23,8 @@ k3s_server:
   disable-cloud-controller: true
   disable-kube-proxy: true            # Cilium uses eBPF
   write-kubeconfig-mode: "0644"
-  cluster-cidr: 172.30.0.0/16         # Network CIDR to use for pod IPs
-  service-cidr: 172.31.0.0/16         # Network CIDR to use for service IPs
+  cluster-cidr: "{{ cluster_cidr }}"         # Network CIDR to use for pod IPs
+  service-cidr: "{{ service_cidr }}"         # Network CIDR to use for service IPs
   etcd-expose-metrics: true           # Required to monitor etcd with kube-prometheus-stack
   kube-controller-manager-arg:
     - "bind-address=0.0.0.0"          # Required to monitor kube-controller-manager with kube-prometheus-stack
