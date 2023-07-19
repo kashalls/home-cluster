@@ -21,7 +21,7 @@ spec:
     k8sAppLabelOverride: kube-dns
     service:
       name: kube-dns
-      clusterIP: 172.31.0.10
+      clusterIP: {{ service_cidr.split(',')[0] | ansible.utils.nthhost(10) }}
     serviceAccount:
       create: true
     deployment:
