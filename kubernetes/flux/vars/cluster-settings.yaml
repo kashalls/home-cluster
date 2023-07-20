@@ -12,4 +12,4 @@ data:
   # Static Mappings
   SYNOLOGY_NAS: "10.0.0.20"
   AIRGRADIENT_ADDR: "10.42.42.10"
-  KUBE_VIP_ADDR: "10.69.69.2"
+  KUBE_VIP_ADDR: "10.69.0.2"
