@@ -2,7 +2,9 @@
 version: "3"
 
 vars:
-  KUBERNETES_DIR: "{{.ROOT_DIR}}/kubernetes"
+  KUBERNETES_CONTEXT:
+    sh: kubectl config current-context
+  KUBERNETES_DIR: "{{.ROOT_DIR}}/kubernetes/{{.KUBERNETES_CONTEXT}}"
   ANSIBLE_DIR: "{{.ROOT_DIR}}/ansible"
 
 env:
