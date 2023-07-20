@@ -10,7 +10,7 @@ spec:
     - name: cluster-apps-local-path-provisioner
     - name: cluster-apps-rook-ceph-cluster
     - name: cluster-apps-thanos
-  path: ./kubernetes/apps/monitoring/kube-prometheus-stack/app
+  path: ./kubernetes/arisu/apps/monitoring/kube-prometheus-stack/app
   prune: true
   sourceRef:
     kind: GitRepository

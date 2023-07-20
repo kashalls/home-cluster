@@ -10,7 +10,7 @@ spec:
     - name: cluster-apps-node-feature-discovery
     - name: cluster-apps-mosquitto
     - name: cluster-apps-external-secrets-stores
-  path: ./kubernetes/apps/default/rtlamr2mqtt/app
+  path: ./kubernetes/arisu/apps/default/rtlamr2mqtt/app
   prune: true
   sourceRef:
     kind: GitRepository

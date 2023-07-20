@@ -9,7 +9,7 @@ spec:
   dependsOn:
     - name: cluster-apps-cloudnative-pg
     - name: cluster-apps-external-secrets-stores
-  path: ./kubernetes/apps/monitoring/grafana/app
+  path: ./kubernetes/arisu/apps/monitoring/grafana/app
   prune: true
   sourceRef:
     kind: GitRepository

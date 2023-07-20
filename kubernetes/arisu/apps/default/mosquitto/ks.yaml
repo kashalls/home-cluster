@@ -8,7 +8,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-external-secrets-stores
-  path: ./kubernetes/apps/default/mosquitto/app
+  path: ./kubernetes/arisu/apps/default/mosquitto/app
   prune: true
   sourceRef:
     kind: GitRepository

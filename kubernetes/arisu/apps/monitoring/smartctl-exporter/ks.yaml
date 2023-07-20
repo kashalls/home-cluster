@@ -6,7 +6,7 @@ metadata:
   name: cluster-apps-smartctl-exporter
   namespace: flux-system
 spec:
-  path: ./kubernetes/apps/monitoring/smartctl-exporter/app
+  path: ./kubernetes/arisu/apps/monitoring/smartctl-exporter/app
   prune: true
   sourceRef:
     kind: GitRepository

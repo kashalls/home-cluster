@@ -15,7 +15,7 @@ spec:
     # exclude all
     /*
     # include kubernetes directory
-    !/kubernetes
+    !/kubernetes/arisu
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -24,7 +24,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30m
-  path: ./kubernetes/flux
+  path: ./kubernetes/arisu/flux
   prune: true
   wait: true
   sourceRef:

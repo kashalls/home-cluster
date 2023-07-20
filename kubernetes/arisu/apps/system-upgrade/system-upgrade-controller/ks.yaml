@@ -5,7 +5,7 @@ metadata:
   name: cluster-apps-system-upgrade-controller
   namespace: flux-system
 spec:
-  path: ./kubernetes/apps/system-upgrade/system-upgrade-controller/app
+  path: ./kubernetes/arisu/apps/system-upgrade/system-upgrade-controller/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -23,7 +23,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-system-upgrade-controller
-  path: ./kubernetes/apps/system-upgrade/system-upgrade-controller/plans
+  path: ./kubernetes/arisu/apps/system-upgrade/system-upgrade-controller/plans
   prune: true
   sourceRef:
     kind: GitRepository

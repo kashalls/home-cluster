@@ -5,7 +5,7 @@ metadata:
   name: cluster-prismarine-test-server
   namespace: flux-system
 spec:
-  path: ./kubernetes/apps/prismarine/minecraft-server
+  path: ./kubernetes/arisu/apps/prismarine/minecraft-server
   prune: true
   sourceRef:
     kind: GitRepository
@@ -21,7 +21,7 @@ metadata:
   name: cluster-prismarine-controller
   namespace: flux-system
 spec:
-  path: ./kubernetes/apps/prismarine/prismarine-controller
+  path: ./kubernetes/arisu/apps/prismarine/prismarine-controller
   prune: true
   sourceRef:
     kind: GitRepository
@@ -39,7 +39,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-prismarine-controller
-  path: ./kubernetes/apps/prismarine/prismarine-client
+  path: ./kubernetes/arisu/apps/prismarine/prismarine-client
   prune: true
   sourceRef:
     kind: GitRepository

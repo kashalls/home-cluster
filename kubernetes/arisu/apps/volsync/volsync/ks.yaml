@@ -8,7 +8,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-snapshot-controller
-  path: ./kubernetes/apps/volsync/volsync/app
+  path: ./kubernetes/arisu/apps/volsync/volsync/app
   prune: true
   sourceRef:
     kind: GitRepository

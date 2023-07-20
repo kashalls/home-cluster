@@ -8,7 +8,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-external-secrets-stores
-  path: ./kubernetes/apps/actions-runner-system/actions-runner-controller/app
+  path: ./kubernetes/arisu/apps/actions-runner-system/actions-runner-controller/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -27,7 +27,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-actions-runner-controller
-  path: ./kubernetes/apps/actions-runner-system/actions-runner-controller/runners
+  path: ./kubernetes/arisu/apps/actions-runner-system/actions-runner-controller/runners
   prune: true
   sourceRef:
     kind: GitRepository

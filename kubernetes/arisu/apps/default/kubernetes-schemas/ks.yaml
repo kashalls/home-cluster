@@ -6,7 +6,7 @@ metadata:
   name: cluster-apps-kubernetes-schemas
   namespace: flux-system
 spec:
-  path: ./kubernetes/apps/default/kubernetes-schemas/app
+  path: ./kubernetes/arisu/apps/default/kubernetes-schemas/app
   prune: true
   sourceRef:
     kind: GitRepository

@@ -10,7 +10,7 @@ spec:
     - name: cluster-apps-external-secrets-stores
     - name: cluster-apps-local-path-provisioner
     - name: cluster-apps-rook-ceph-cluster
-  path: ./kubernetes/apps/monitoring/loki/app
+  path: ./kubernetes/arisu/apps/monitoring/loki/app
   prune: true
   sourceRef:
     kind: GitRepository

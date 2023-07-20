@@ -5,7 +5,7 @@ metadata:
   name: cluster-apps-kubernetes-dashboard
   namespace: flux-system
 spec:
-  path: ./kubernetes/apps/monitoring/kubernetes-dashboard/app
+  path: ./kubernetes/arisu/apps/monitoring/kubernetes-dashboard/app
   prune: true
   sourceRef:
     kind: GitRepository

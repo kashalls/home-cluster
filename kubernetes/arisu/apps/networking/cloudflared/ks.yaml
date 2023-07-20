@@ -7,7 +7,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-external-dns
-  path: ./kubernetes/apps/networking/cloudflared/app
+  path: ./kubernetes/arisu/apps/networking/cloudflared/app
   prune: true
   sourceRef:
     kind: GitRepository

@@ -6,7 +6,7 @@ metadata:
   name: cluster-apps-snapshot-controller
   namespace: flux-system
 spec:
-  path: ./kubernetes/apps/kube-system/snapshot-controller/app
+  path: ./kubernetes/arisu/apps/kube-system/snapshot-controller/app
   prune: true
   sourceRef:
     kind: GitRepository

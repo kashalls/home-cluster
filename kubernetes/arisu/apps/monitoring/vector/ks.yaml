@@ -6,7 +6,7 @@ metadata:
   name: cluster-apps-vector
   namespace: flux-system
 spec:
-  path: ./kubernetes/apps/monitoring/vector/app
+  path: ./kubernetes/arisu/apps/monitoring/vector/app
   prune: true
   sourceRef:
     kind: GitRepository
