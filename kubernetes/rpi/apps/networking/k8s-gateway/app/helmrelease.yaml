@@ -35,4 +35,3 @@ spec:
       annotations:
         io.cilium/lb-ipam-ips: "172.33.0.53"
       externalTrafficPolicy: Cluster
-#
