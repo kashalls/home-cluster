@@ -48,8 +48,8 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       # https://github.com/vectordotdev/vector/issues/6715
-      repository: ghcr.io/onedr0p/vector
-      tag: 0.31.0-debian
+      repository: ghcr.io/kashalls/vector-but-its-using-bookwork
+      tag: latest
     args: ["--config", "/etc/vector/vector.yaml"]
     service:
       main:
