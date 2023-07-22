@@ -9,13 +9,13 @@ spec:
     matchLabels:
       kubernetes.io/os: "linux"
   virtualRouters:
-    - localASN: 64502
+    - localASN: 64512
       exportPodCIDR: false
       serviceSelector:
         matchExpressions:
           - { key: thisFakeSelector, operator: NotIn, values: [ 'will-match-and-announce-all-services' ] }
       neighbors:
         - peerAddress: "10.69.0.1/32"
-          peerASN: 64502
+          peerASN: 64512
         - peerAddress: "2601:1c0:cb00:6206:aaa1:59ff:fec0:3c32/64"
-          peerASN: 64502
+          peerASN: 64512
