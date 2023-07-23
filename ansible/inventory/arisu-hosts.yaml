@@ -16,7 +16,7 @@ kubernetes:
     cilium_cluster_name: "arisu-cluster"
     cilium_cluster_id: 1
     # Expects a full cidr
-    cilium_loadbalancer_pool: "10.69.100.0/24"
+    cilium_loadbalancer_pool: "10.69.69.0/24"
   children:
     master:
       hosts:
