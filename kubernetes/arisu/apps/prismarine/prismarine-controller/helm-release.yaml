@@ -38,7 +38,7 @@ spec:
         valueFrom:
           secretKeyRef:
             name: prismarine-controller-secret
-            key: MONGODB_URL
+            key: MONGO_CONNECTION_STRING
     podLabels:
       k8s.kashall.dev/controller: "true"
     service:
