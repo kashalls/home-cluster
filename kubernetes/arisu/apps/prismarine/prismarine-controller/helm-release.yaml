@@ -30,15 +30,13 @@ spec:
     image:
       repository: ghcr.io/kashalls/prismarine-k8s-master # {"$imagepolicy": "flux-system:prismarine-controller:name"}
       tag: main-46e34057-1690308528 # {"$imagepolicy": "flux-system:prismarine-controller:tag"}
-    args:
-      - --runner-image
-      - ghcr.io/kashalls/prismarine-k8s-runner:main-c436f4e7-1690303591
     env:
       MONGO_CONNECTION_STRING:
         valueFrom:
           secretKeyRef:
             name: prismarine-controller-secret
             key: MONGO_CONNECTION_STRING
+      RUNNER_IMAGE: ghcr.io/kashalls/prismarine-k8s-runner:main-c436f4e7-1690303591 # {"$imagepolicy": "flux-system:prismarine-runner"}
     podLabels:
       k8s.kashall.dev/controller: "true"
     service:
