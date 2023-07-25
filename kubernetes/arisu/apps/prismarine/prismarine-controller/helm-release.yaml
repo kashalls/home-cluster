@@ -31,8 +31,7 @@ spec:
       repository: ghcr.io/kashalls/prismarine-k8s-master # {"$imagepolicy": "flux-system:prismarine-controller:name"}
       tag: main-2182f9ad-1690308324 # {"$imagepolicy": "flux-system:prismarine-controller:tag"}
     args:
-      - --runner-image=
-      - ghcr.io/kashalls/prismarine-k8s-runner:main-c436f4e7-1690303591 # {"$imagepolicy": "flux-system:prismarine-runner"}
+      - --runner-image=ghcr.io/kashalls/prismarine-k8s-runner:main-c436f4e7-1690303591
     env:
       MONGODB_URL:
         valueFrom:
