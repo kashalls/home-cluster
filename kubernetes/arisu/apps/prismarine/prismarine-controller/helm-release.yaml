@@ -37,7 +37,7 @@ spec:
         valueFrom:
           secretKeyRef:
             name: prismarine-controller-secret
-            key: MONGO_CONNECTION_STRING
+            key: MONGODB_URL
       RUNNER_IMAGE: ghcr.io/kashalls/prismarine-k8s-runner:main-f801aa7f-1690312050 # {"$imagepolicy": "flux-system:prismarine-runner"}
     podLabels:
       k8s.kashall.dev/controller: "true"
