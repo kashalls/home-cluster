@@ -3,6 +3,8 @@ kind: HelmRelease
 metadata:
   name: prismarine-controller
   namespace: prismarine-controller
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
   interval: 30m
   chart:
