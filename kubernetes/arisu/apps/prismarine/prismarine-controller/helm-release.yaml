@@ -78,15 +78,3 @@ spec:
     serviceAccount:
       create: true
       name: prismarine-controller
-#    resources:
-#      requests:
-#        cpu: 50m
-#        memory: 10Mi
-#      limits:
-#        cpu: 100m
-#        memory: 50Mi
-
-#
-# pods is forbidden: User "system:serviceaccount:prismarine-controller:default"
-# cannot create resource "pods" in API group "" in the namespace
-# "prismarine-client"
