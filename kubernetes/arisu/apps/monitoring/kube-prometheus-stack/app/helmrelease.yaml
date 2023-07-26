@@ -41,7 +41,7 @@ spec:
         pathType: Prefix
         ingressClassName: internal
         hosts:
-          - &host alertmanager.${SECRET_DOMAIN}
+          - &host alert-manager.${SECRET_DOMAIN}
         tls:
           - hosts:
               - *host
