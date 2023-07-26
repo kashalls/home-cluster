@@ -31,7 +31,7 @@ spec:
       registry: quay.io
       repository: thanos/thanos
       tag: v0.31.0
-    existingObjstoreSecret: thanos-objstore
+    existingObjstoreSecret: thanos-objstore-secret
     queryFrontend:
       enabled: true
       replicaCount: 3
