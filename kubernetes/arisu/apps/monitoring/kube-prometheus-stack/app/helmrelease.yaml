@@ -1,13 +1,3 @@
-
-        additionalScrapeConfigs:
-          - job_name: "hass"
-            scrape_interval: 60s
-            metrics_path: /api/prometheus
-            authorization:
-              credentials: kube-prometheus-stack
-            scheme: https
-            static_configs:
-              - targets: ['home-assistant.default.svc.cluster.local:8123']
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.kashall.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
