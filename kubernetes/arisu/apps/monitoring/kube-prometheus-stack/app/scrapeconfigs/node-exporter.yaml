@@ -1,0 +1,13 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.kashall.dev/monitoring.coreos.com/scrapeconfig_v1alpha1.json
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: node-exporter
+  namespace: monitoring
+spec:
+  staticConfigs:
+    - targets:
+        - nas.outsideour.casa:9100
+        - dreamweaver.outsideour.casa:9100
+  metricsPath: /metrics

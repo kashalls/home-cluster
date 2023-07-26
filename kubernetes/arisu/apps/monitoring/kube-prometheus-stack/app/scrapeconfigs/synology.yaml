@@ -1,0 +1,11 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.kashall.dev/monitoring.coreos.com/scrapeconfig_v1alpha1.json
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: synology
+  namespace: monitoring
+spec:
+  staticConfigs:
+    - targets: ["nas.outsideour.casa:9000"]
+  metricsPath: /minio/v2/metrics/cluster
