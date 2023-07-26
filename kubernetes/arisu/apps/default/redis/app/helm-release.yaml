@@ -28,15 +28,17 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    global:
+      storageClass: ceph-block
     auth:
       enabled: false
       sentinel: false
     master:
       persistence:
-        enabled: false
+        enabled: true
     replica:
       persistence:
-        enabled: false
+        enabled: true
     sentinel:
       enabled: true
       masterSet: redis-master
