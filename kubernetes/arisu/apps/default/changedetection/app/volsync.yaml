@@ -30,7 +30,7 @@ metadata:
   name: changedetection
   namespace: default
 spec:
-  sourcePVC: config-change-detection-0
+  sourcePVC: config-changedetection-0
   trigger:
     schedule: "0 7 * * *"
   restic:
