@@ -170,4 +170,3 @@ spec:
       enabled: false
     kubeStateMetrics:
       enabled: false
-#

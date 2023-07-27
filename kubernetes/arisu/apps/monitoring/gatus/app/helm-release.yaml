@@ -64,7 +64,7 @@ spec:
         enabled: true
         ingressClassName: nginx
         annotations:
-          external-dns.alpha.kubernetes.io/target: ingress.kashall.dev
+          external-dns.alpha.kubernetes.io/target: external.kashall.dev
         hosts:
           - host: &host status.kashall.dev
             paths:

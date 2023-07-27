@@ -193,7 +193,7 @@ spec:
       enabled: true
       ingressClassName: nginx
       annotations:
-        external-dns.alpha.kubernetes.io/target: ingress.kashall.dev
+        external-dns.alpha.kubernetes.io/target: internal.kashall.dev
         hajimari.io/icon: simple-icons:grafana
       hosts:
         - &host grafana.kashall.dev

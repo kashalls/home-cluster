@@ -56,7 +56,7 @@ spec:
         enabled: true
         ingressClassName: nginx
         annotations:
-          external-dns.alpha.kubernetes.io/target: ingress.kashall.dev
+          external-dns.alpha.kubernetes.io/target: external.kashall.dev
           hajimari.io/icon: mdi:home-assistant
         hosts:
           - host: &host hass.kashall.dev
