@@ -30,8 +30,8 @@ spec:
     controller:
       strategy: RollingUpdate
     image:
-      repository: ghcr.io/kashalls/prismarine-k8s-master # {"$imagepolicy": "flux-system:prismarine-wss:name"}
-      tag: main-b8607a1d-1690316640 # {"$imagepolicy": "flux-system:prismarine-wss:tag"}
+      repository: ghcr.io/kashalls/prismarine-k8s-wss # {"$imagepolicy": "flux-system:prismarine-wss:name"}
+      tag: main-3560fe84-1690423526 # {"$imagepolicy": "flux-system:prismarine-wss:tag"}
     env:
       MONGODB_CONNECTION_STRING:
         valueFrom:
