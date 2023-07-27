@@ -7,5 +7,5 @@ metadata:
   namespace: monitoring
 spec:
   staticConfigs:
-    - targets: ["nas.outsideour.casa:9000"]
+    - targets: ["synology-nas.outsideour.casa:9000"]
   metricsPath: /minio/v2/metrics/cluster
