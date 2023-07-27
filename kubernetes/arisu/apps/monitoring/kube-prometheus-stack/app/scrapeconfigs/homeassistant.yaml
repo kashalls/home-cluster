@@ -3,7 +3,7 @@
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: ScrapeConfig
 metadata:
-  name: synology
+  name: home-assistant
   namespace: monitoring
 spec:
   authorization:
