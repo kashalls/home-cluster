@@ -37,7 +37,7 @@ spec:
       replicaCount: 3
       ingress:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: internal
         annotations:
           hajimari.io/enable: "false"
         hostname: &host thanos-query-frontend.kashall.dev

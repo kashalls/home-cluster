@@ -191,7 +191,7 @@ spec:
       enabled: true
     ingress:
       enabled: true
-      ingressClassName: nginx
+      ingressClassName: internal
       annotations:
         external-dns.alpha.kubernetes.io/target: internal.kashall.dev
         hajimari.io/icon: simple-icons:grafana

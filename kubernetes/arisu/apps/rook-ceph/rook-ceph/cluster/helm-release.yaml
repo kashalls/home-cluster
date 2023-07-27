@@ -121,7 +121,7 @@ spec:
               - name: "/dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1E249"
     ingress:
       dashboard:
-        ingressClassName: nginx
+        ingressClassName: internal
         host:
           name: &host "rook.${SECRET_DOMAIN}"
           path: "/"
