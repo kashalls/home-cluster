@@ -11,7 +11,7 @@ stringData:
     DATABASE_NAME: ENC[AES256_GCM,data:NdtHSgD/GVHSCrU=,iv:0/8iJ/2vm9Khlm//GPOsDFsmf/dBmw53KiNXv2ZHjzA=,tag:VeMBuHAv6cqJsCY8A/sp8w==,type:str]
     DATABASE_HOST: ENC[AES256_GCM,data:l+bmhGg5WBHb7YARWBN+vWIpzbDTjaK1WcULCkuIyyR2ctAqH38ZhVP9R8PFx5Q=,iv:BfAaPrEzCuiWIJsfUDn4Tya6W+zQxi+ARKyY2bjgpbE=,tag:/y5omDqpLI/9h+XOkHR/qQ==,type:str]
     REDIS_PASSWORD: ENC[AES256_GCM,data:TMBtsY5f29ncMGiSorgRKisBzV+2ml/85WCFG4bF9sI=,iv:oyYkpbcFzdW+D4fDCZbhM0Yrap5HEdSual/EosTWBkQ=,tag:ejPNKQ9vQYo2WY6CQ+BZmA==,type:str]
-    REDIS_HOST: ENC[AES256_GCM,data:Xnyb7NtksPEIWPB2gf8Qzx7HNE9Df3GNSxR4QRgSTbqN,iv:o/W5Tzt0F5gi7dUcy02FGJIMTV9KOXGqPcuOi3IVFgo=,tag:zTIxiBkXUlGnL7a1TGZtWQ==,type:str]
+    REDIS_HOST: ENC[AES256_GCM,data:cuvgbZbb53jUOPama1rpTCcOqI6skkQcH4s2oLs314xWJ21ibz/eAnOx,iv:Usf8nOM1iYwt2TCT02CkZI0KW5sZ/uhUNa48FB3dXvY=,tag:Dk0EnWu5zwwXMZrO0qgTHw==,type:str]
     REDIS_PORT: ENC[AES256_GCM,data:7L1yrg==,iv:q9awO5mBl6tvOb2vcBMrNssmsMuSVwFHRDZA8nmc7s8=,tag:Xfxyp5MjD+qizKJDh7XkqQ==,type:str]
     ENCRYPTION_SECRET: ENC[AES256_GCM,data:i8G3UsR2aDmG5oVVnfuIKMMgyNBci+tdVyKwEE6kM64=,iv:v/PjdUftbXCl5Vgbh9wku6icyTd4iB05r85ZBjABpig=,tag:hlWXwFB99OT9GlVY/1ZWNg==,type:str]
     DISABLE_SIGNUP: ENC[AES256_GCM,data:avoAZg==,iv:meSIqeUVFmevbSImGYWjapGMX6gleR1j3SDSQRAafwQ=,tag:zxQewVWuH82Z+u7lVITcmg==,type:str]
@@ -41,8 +41,8 @@ sops:
             OFNKcDZDekN3SGgxR0NsWXdjdmtFYzAKS8dbhyMi+tTMBsF0niIinTY3MT22foRN
             QgxYv9jANawDSdGyq5Hp1RPV/Hrl2X26Mpt7f4aB3JaC4G5fkAXDoA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-07-28T14:12:57Z"
-    mac: ENC[AES256_GCM,data:gnxVbI6M9XA1gBnywikzzoPVuF/UlSBxT3YFaU/4bXLcE4JH9Bj0T/s0TlFduu2sY3lrQgVFLwZrxLsxut+efe4ysISJlUIkntU2o7anKOyvgo004Gss1m8rg8brpkQxv6BdKkLFBCVAffQTIBg2HXYISiiAyqmSctPVSscEoaA=,iv:wQv4odtQr7LHAFao5puv3/Jzr0Vjk/sLXADIROXxX0c=,tag:wvxqPKqCuqGeMCdoc8LAcg==,type:str]
+    lastmodified: "2023-07-28T15:15:22Z"
+    mac: ENC[AES256_GCM,data:b60/OGYSx3UVYe/s/WYRXEF9Kcqd3Jxg0WtT/z24W0aPDxXvmvCQ9N+P74wxvG1/4s3MXGgLOLnq5KgIYNPCxtK1ToM5xWeSb65178Qs1zFbAzpOu/eIfVbZqWKS+7GrrOdP7UdlUIUlkjNzuzL82aTlvh70xfHHRSu4A0+4vqw=,iv:0D8lwaULUJ2joZOVXWT+0w1unOthzQC/Hk1eMEY6/7g=,tag:0BGONeylG2hxnKzVwpo2kw==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3
