@@ -20,6 +20,7 @@ resources:
   - ./probe-1
   - ./probe-2
   - ./probe-api
+  - ./redis
   - ./status-page
   - ./workers
   - ./workflow
