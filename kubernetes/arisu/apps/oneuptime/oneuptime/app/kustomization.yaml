@@ -1,0 +1,25 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ./accounts
+  - ./api-reference
+  - ./clickhouse
+  - ./common
+  - ./dashboard
+  - ./dashboard-api
+  - ./file
+  - ./haraka
+  - ./home
+  - ./identity
+  - ./ingress-nginx
+  - ./link-shortner
+  - ./notification
+  - ./postgres
+  - ./probe-1
+  - ./probe-2
+  - ./probe-api
+  - ./status-page
+  - ./workers
+  - ./workflow
