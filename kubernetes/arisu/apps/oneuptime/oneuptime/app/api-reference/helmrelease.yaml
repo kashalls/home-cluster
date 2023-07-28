@@ -34,7 +34,7 @@ spec:
       PORT: &port 1445
     envFrom:
       - secretRef:
-        name: common-ui-secrets
+          name: common-ui-secrets
       - secretRef:
           name: common-secrets
     service:
