@@ -29,7 +29,7 @@ spec:
     global:
       postgresql:
         auth:
-          postgresPassword: "${DATABASE_PASSWORD}"
+          postgresPassword: "${SUPER_DATABASE_PASSWORD}"
           username: oneuptime
           password: "${DATABASE_PASSWORD}"
           database: oneuptime
