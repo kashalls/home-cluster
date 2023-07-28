@@ -4,6 +4,8 @@ kind: HelmRelease
 metadata:
   name: postgres
   namespace: oneuptime
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
   interval: 10m
   chart:

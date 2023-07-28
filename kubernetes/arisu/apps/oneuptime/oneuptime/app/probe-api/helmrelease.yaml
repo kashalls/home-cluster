@@ -5,6 +5,8 @@ kind: HelmRelease
 metadata:
   name: probe-api
   namespace: oneuptime
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
   interval: 30m
   chart:
