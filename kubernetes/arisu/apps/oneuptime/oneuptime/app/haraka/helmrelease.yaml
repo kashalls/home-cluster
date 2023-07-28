@@ -31,7 +31,7 @@ spec:
       repository: docker.io/oneuptime/haraka
       tag: release
     env:
-      PORT: &port 2525
+      PORT: &port 25
     envFrom:
       - secretRef:
           name: haraka-secret
