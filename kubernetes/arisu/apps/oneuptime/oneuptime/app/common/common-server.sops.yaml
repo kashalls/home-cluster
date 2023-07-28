@@ -3,7 +3,6 @@ kind: Secret
 metadata:
     name: common-server-secrets
     namespace: oneuptime
-type: Opaque
 stringData:
     ONEUPTIME_SECRET: ENC[AES256_GCM,data:JWGdx2TIvC6cGlfqCRWvWBUSHHPmqTjLcY5CUfyDh5E=,iv:8k4/5DRsjVQIkeYV9QfS1ZKXShp/KAeE1/FsfMpuu5k=,tag:+qgKYrwDJXllrlnqc5GU1w==,type:str]
     DATABASE_PORT: ENC[AES256_GCM,data:4quY3g==,iv:ZIFJDaJZavawBArxrLPShPicE9wszg4lpsYw6PzjAtA=,tag:RnEz26r6GmlbUIlK9+t9vw==,type:str]
@@ -59,8 +58,8 @@ sops:
             OFNKcDZDekN3SGgxR0NsWXdjdmtFYzAKS8dbhyMi+tTMBsF0niIinTY3MT22foRN
             QgxYv9jANawDSdGyq5Hp1RPV/Hrl2X26Mpt7f4aB3JaC4G5fkAXDoA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-07-28T08:08:34Z"
-    mac: ENC[AES256_GCM,data:ckFoqj6bIacSNuzufae+tXX+qhQW5L+vD0NGejgHw3isW1yaQafdDLFpmaamBLtxPGZa7D/onsaFLOEgjJxcWx3zvrDxzI3WCjCN3zOZ9lygWPM1P0HeC/uL1oB11zPDywrV09RSmp0RuUPVmt0q1q2XJyalXRwC76/0MWzamEY=,iv:OzxsyJ77P5krpdWWwQWxqgQXnRqYCFW2A4bYXl0QHe8=,tag:Hls5jD3xcBSXQMmVwJbhiQ==,type:str]
+    lastmodified: "2023-07-28T08:14:08Z"
+    mac: ENC[AES256_GCM,data:iuB15NPFjcOYR31Mk1JPMM/na0YMF6yn/agsrR3nS7HnNlhTIoiTcY94w8kL1jvjUkaWfdo3BggNJscJUALxmGM2s7mRLlsX7Sx6AC9Q6FD1HefZ2B6/HPU8k8iuqyaxNr9XaDQFymyZnEOiDiTE5r5CNIHNWr6bqOnYD/CxDWc=,iv:T1yXKOJ56lle0KtMw79iFXx5128aqI03Yv/nZWxLKL8=,tag:z4Xuo9Jpc9uaD1a3OfgcvQ==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3
