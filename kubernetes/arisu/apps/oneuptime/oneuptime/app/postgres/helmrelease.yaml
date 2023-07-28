@@ -31,7 +31,10 @@ spec:
     global:
       postgresql:
         auth:
-          existingSecret: postgres-secret
+          postgresPassword: 3RMmpMjGBHX0wVb2BBHri3N0eGNNJL
+          username: oneuptimedb
+          password: 3RMmpMjGBHX0wVb2BBHri3N0eGNNJL
+          database: oneuptimedb
     image:
       registry: docker.io
       repository: bitnami/postgresql
@@ -44,4 +47,3 @@ spec:
       enabled: true
       serviceMonitor:
         enabled: true
-#
