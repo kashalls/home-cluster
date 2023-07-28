@@ -42,7 +42,7 @@ spec:
       ENVIRONMENT: production
     envFrom:
       - secretRef:
-        name: common-server-secrets
+          name: common-server-secrets
       - secretRef:
           name: common-secrets
     service:

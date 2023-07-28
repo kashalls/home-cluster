@@ -43,7 +43,7 @@ spec:
       PORT: &port 3099
     envFrom:
       - secretRef:
-        name: common-server-secrets
+          name: common-server-secrets
       - secretRef:
           name: common-secrets
     service:
