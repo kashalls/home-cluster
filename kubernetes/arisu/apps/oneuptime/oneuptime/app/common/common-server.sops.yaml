@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Secret
 metadata:
     name: common-server-secrets
+    namespace: oneuptime
 type: Opaque
 data:
     ONEUPTIME_SECRET: ENC[AES256_GCM,data:ygESgbXofeo/+Jlq/UUX+Fv1f6i3f+W1GDP4L/jmPpY=,iv:2BbaNRaX/XxlXPT/Sg7G+KrL3HbFODeW0AEo5HGo0uc=,tag:ypRm98VMe2D7Q9+s8ELsBA==,type:str]
@@ -58,8 +59,8 @@ sops:
             OFNKcDZDekN3SGgxR0NsWXdjdmtFYzAKS8dbhyMi+tTMBsF0niIinTY3MT22foRN
             QgxYv9jANawDSdGyq5Hp1RPV/Hrl2X26Mpt7f4aB3JaC4G5fkAXDoA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-07-28T07:19:54Z"
-    mac: ENC[AES256_GCM,data:FLfBKo8aU1y95x6+hSrQBUBSxQ5me7laZP8nfFqtKAkxE6B0enMsUCtL/Cosk2g59xks9wRlEe4h0ALZx0JQt03T9Z/OsSWKkGAmCZWn2PXsJuSOF+snb1b/78HBz5AR4kADorLr56oIUPBdj5VdjtCruX89b3eRBj6Rjvk7YZo=,iv:HhC7Rq9nehVV08UWovw/00HBkUNwN1TLX+ws3zjW73Y=,tag:os2RpK5Wz0ImwaL56jY/NA==,type:str]
+    lastmodified: "2023-07-28T08:06:12Z"
+    mac: ENC[AES256_GCM,data:XhFOynF6/e0WXDEsP8JvzayqRLf5CY8QG7WQpe2+VItXZGsaUB88Qyv4WYFUdOMpDyoazeU2IfNujmUo1UMRCvmp3t5yzeLMcW1vAfmFA70QJ6iQgde0Dzc4AIOGVqaXW3lTOWp/Pq9NRMxvUKWBExl3V4bJu25IMZ0Qj1OGvXs=,iv:8S1rpDR0GbmlicRpnzu4FxkYonYu4yzYFiap09nnaZ4=,tag:uDvKO7yxRZbbKx2mNZ4bWA==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3

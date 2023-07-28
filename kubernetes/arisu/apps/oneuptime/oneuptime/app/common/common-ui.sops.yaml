@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Secret
 metadata:
     name: common-ui-secrets
+    namespace: oneuptime
 type: Opaque
 data:
     REALTIME_ROUTE: ENC[AES256_GCM,data:N88EiEpwJJ2Y,iv:HnfpMDLYEtGRNu+MD7KJo8gXNaGWwg0C9RyGZd1hbtU=,tag:anV/ag2DemXr6XpOm43W4Q==,type:str]
@@ -35,8 +36,8 @@ sops:
             QmJrMmRkTzFvaHViQWw0K3R6SzU0Z1UKTaKHuSNAdXOK4/ZoOHIuUUjSF/5tCzVj
             BgQ5Be451jvMcaVTdUpmaZ6JfxORnNLWHOKA8v25iVD6L8vA9gGg7g==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-07-28T07:19:59Z"
-    mac: ENC[AES256_GCM,data:D98oQkAJJVgpCF172a6Ph3PDJpYEwyOAJwn8evA9xSa5oLtFm0Kz6fRmKeOZBQRMVmhJxRzuWJsQilTiT5sfpAUeJDUGG3v15eCKWpZ6xvNHPadimfQQtaizAQKLCm26/D85A1iyHCpjPOYO8RQp/GwEimHp7GDzOuF8oJ31ey0=,iv:N8Qnfmjb04MprxMU9np8psZxAPg8gUwsPPVBgFSOsM8=,tag:UnNh45T7hk3ohnrkA1t2kA==,type:str]
+    lastmodified: "2023-07-28T08:06:19Z"
+    mac: ENC[AES256_GCM,data:DnppR5O8zdeQEfk49B7QPAjWfWXzI79LwaWwKM5vTIkXZm7mHv9oQNQ2r3NPmYPlyNOU00rulyGncx2rxzuz9DUD3GKudxT7VrBYl5SwfK5qiOpE51CWzhuFNnK7OTZIc3Zn+7wgDhA0kxINSj4A2dov0ii26AzyXE9p91Jj5+8=,iv:yeOuGGqRF29OpBlYDqVNxYI0TeTyK3HqGyf/aSLOhBM=,tag:lrBMcfobVplWDgkTiOrj/g==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3
