@@ -15,7 +15,7 @@ stringData:
     SUBSCRIPTION_PLAN_SCALE: ENC[AES256_GCM,data:Xl94A4rzWFtarf+2/6xmzc9vgWblFrHsQBXq8AUu2Bd0SllP9tcXJQCT,iv:m+4eDCbzMVQgYifjlWu5sgx0Z2M9mZqspG9KppDNiV0=,tag:WdMeV7zBXl4ApFuO2YKXWA==,type:str]
     SUBSCRIPTION_PLAN_ENTERPRISE: ENC[AES256_GCM,data:sVibHPS9ccYy3xnIz9CoKBCxDv2UVNm3+qM1jpf5B9PyH2SEZk6UCaaBS0I62CBlyZ8=,iv:YPQ6uixpvGS4ljhrsmOq//+nSqV8frugocOYc5PetuA=,tag:fxwIc71t1bjIguHnZDvrCw==,type:str]
     METERED_PLAN_ACTIVE_MONITORING: ENC[AES256_GCM,data:9bJdEheJVyJgbDimYY4TqyOYjP3uHtrFeF3caF9UqVeG9xwICWZ9lSFZWY/Z8lhGvTAe,iv:DP4wiGl5x3FjudQKIvONv2wudL3DRuuduhkA4s4BFis=,tag:rf7jcRmuGZtWY/CRtmlXoQ==,type:str]
-    DOMAIN: ENC[AES256_GCM,data:z3YqAEcz/r9gMUy9z0/KwDFz,iv:BP5jg08HPeNm2mGCq5qNygFxuRYRAZvTa3jicpQl0xE=,tag:d0qQ/Y3qf2msq2jMzetGmg==,type:str]
+    DOMAIN: ENC[AES256_GCM,data:WJ5YZTDPK5h8YsGTGSKjCwO1USen,iv:wo6J4cTG/8fRVrn9qTORcHXWjiyW3mjqWk1tzt1VP0k=,tag:Ebrap2g4g6CoKnkTJPHzYw==,type:str]
     ANALYTICS_KEY: ""
     ANALYTICS_HOST: ""
     HTTP_PROTOCOL: ENC[AES256_GCM,data:APsro+U=,iv:vr2ly0W4sBUIBKQ9l/dI+vWYfWGRQsg6axxrWKI/cgA=,tag:tahbC/0r4DH7mtPaAy6baQ==,type:str]
@@ -34,8 +34,8 @@ sops:
             MVhLZGlCWDQ4bUE1by9KMTJsUXRSajgKjgnidKLxH1S9pOuxdFV3D/fxnV4Xgxim
             w1PFNRdf+ukeRyfoIP4pVd7hdNe9AHTJElLkboO/85wvkQ9uvIjczg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-07-28T12:50:49Z"
-    mac: ENC[AES256_GCM,data:B9vNCjdJeqSqdNCFp6FUzHn9zKvIGwSY6ibGi2vIEZ6rSvs4G183ngOPN0z1rYBhCMScUI7owHex5W9rbbk8l3u2FJyoyyOi+3Z4vx/lW0FhNX3ffzctKJOzjAEK/4tkVo/Ixl/C0G1OaJMxKQgWzcWmb9917kFMmdH8i0gj8Zo=,iv:GOTNgl3AEdcTO78JV7GMuB4AdMuGbR7baoo25DI6y40=,tag:lWlyIGYvIeKYbuIBIkU8Vg==,type:str]
+    lastmodified: "2023-07-28T17:04:49Z"
+    mac: ENC[AES256_GCM,data:6OvQoE8NGGeXFeVuEEGnz7qXb/0tLv1zanx8D+nx+/7nWE6eyQDUfnZGrlcC27oWkSTbmpLk1FGE7GiI56ScV2ufags2lMDM1bAflszxRJm2SvrRir9bndm8eDhPbahKDg7taBDzOMts3/vLKtZ1UUmsbGnON0XvDYwZekLirIA=,iv:4/WuqtYDUwQ2wEi06lUhT+BZE+RfSomqwNcotw7jmyI=,tag:ZM2W0EqxkEXh3ggSMNtqfQ==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3
