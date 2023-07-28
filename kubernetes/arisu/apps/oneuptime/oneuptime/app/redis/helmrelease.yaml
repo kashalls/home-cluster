@@ -29,8 +29,10 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    global:
+      redis:
+        password: "bCkS5vFS0HgAFwgxGu88On3m46AMqN1o"
     auth:
-      enabled: false
       sentinel: false
     master:
       persistence:
