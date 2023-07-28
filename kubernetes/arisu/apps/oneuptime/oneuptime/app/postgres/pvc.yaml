@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: postgresql-data
-  namespace: databases
+  namespace: oneuptime
   labels:
     snapshot.home.arpa/enabled: "true"
     app.kubernetes.io/instance: postgresql
