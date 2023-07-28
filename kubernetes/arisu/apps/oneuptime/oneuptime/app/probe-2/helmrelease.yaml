@@ -39,6 +39,8 @@ spec:
       - secretRef:
           name: common-server-secrets
       - secretRef:
+          name: common-secrets
+      - secretRef:
           name: probe-config-2
     service:
       main:
