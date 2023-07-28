@@ -52,3 +52,14 @@ spec:
         accessMode: ReadWriteMany
         size: 10Gi
         storageClass: ceph-block
+    service:
+      main:
+        ports:
+          http:
+            port: 8123
+          clickhouse:
+            port: 9000
+          ipc:
+            port: 9009
+          ssl:
+            port: 9440
