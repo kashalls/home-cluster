@@ -41,13 +41,7 @@ spec:
       persistence:
         enabled: false
     sentinel:
-      enabled: true
-      masterSet: redis-master
-      getMasterTimeout: 10
-      startupProbe:
-        failureThreshold: 2
-      persistence:
-        enabled: false
+      enabled: false
     metrics:
       enabled: true
       serviceMonitor:
