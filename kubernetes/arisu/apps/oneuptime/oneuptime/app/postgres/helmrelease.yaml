@@ -37,13 +37,10 @@ spec:
       repository: bitnami/postgresql
       tag: "15.2.0"
     primary:
-      service:
-        annotations:
-          io.cilium/lb-ipam-ips: 10.69.69.234
       persistence:
         enabled: true
         existingClaim: postgresql-data
     metrics:
       enabled: true
       serviceMonitor:
-        enabled: true
+        enabled: true-
