@@ -37,8 +37,10 @@ spec:
     envFrom:
       - secretRef:
           name: common-ui-secrets
+          namespace: oneuptime
       - secretRef:
           name: common-secrets
+          namespace: oneuptime
     service:
       main:
         ports:
