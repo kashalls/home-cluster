@@ -6,4 +6,3 @@ resources:
   - ./common.sops.yaml
   - ./common-ui.sops.yaml
   - ./common-server.sops.yaml
-  - ./helmrelease.yaml
