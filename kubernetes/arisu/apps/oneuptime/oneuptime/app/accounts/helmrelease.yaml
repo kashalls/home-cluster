@@ -39,7 +39,7 @@ spec:
       PORT: &port 3003
     envFrom:
       - secretRef:
-        name: common-ui-secrets
+          name: common-ui-secrets
       - secretRef:
           name: common-secrets
     service:
