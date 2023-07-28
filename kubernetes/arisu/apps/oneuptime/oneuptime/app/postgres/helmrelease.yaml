@@ -31,10 +31,10 @@ spec:
     global:
       postgresql:
         auth:
-          postgresPassword: "${SUPER_DATABASE_PASSWORD}"
-          username: "${DATABASE_USERNAME}"
-          password: "${DATABASE_PASSWORD}"
-          database: "${DATABASE_NAME}"
+          postgresPassword: "3UD0eADYK8"
+          username: "oneuptimedb"
+          password: "6CIlzwfbWn"
+          database: "oneuptimedb"
     image:
       registry: docker.io
       repository: bitnami/postgresql
