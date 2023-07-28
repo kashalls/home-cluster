@@ -32,9 +32,9 @@ spec:
       postgresql:
         auth:
           postgresPassword: "${SUPER_DATABASE_PASSWORD}"
-          username: oneuptime
+          username: "${DATABASE_USERNAME}"
           password: "${DATABASE_PASSWORD}"
-          database: oneuptime
+          database: "${DATABASE_NAME}"
     image:
       registry: docker.io
       repository: bitnami/postgresql
