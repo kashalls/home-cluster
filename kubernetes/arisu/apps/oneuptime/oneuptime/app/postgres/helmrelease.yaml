@@ -47,4 +47,3 @@ spec:
       enabled: true
       serviceMonitor:
         enabled: true
-        #
