@@ -34,7 +34,7 @@ spec:
   values:
     image:
       repository: docker.io/clickhouse/clickhouse-server
-      tag: 23.2
+      tag: 23.7
     envFrom:
       - secretRef:
           name: clickhouse-secret
