@@ -44,6 +44,6 @@ spec:
         enabled: true
         existingClaim: postgresql-data
     metrics:
-      enabled: true
+      enabled: false
       serviceMonitor:
-        enabled: true
+        enabled: false
