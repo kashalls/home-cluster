@@ -32,6 +32,7 @@ spec:
     image:
       repository: docker.io/binwiederhier/ntfy
       tag: v2.6.2
+    args: ["serve"]
     env:
       TIMEZONE: "UTC"
       NTFY_DEBUG: false
@@ -59,11 +60,8 @@ spec:
             - *host
     resources:
       requests:
-        cpu: 150m
-        memory: 150Mi
-      limits:
-        cpu: 200m
-        memory: 500Mi
+        cpu: 500m
+        memory: 250Mi
     volumeMounts:
       - name: config-volume
         subPath: server.yml
