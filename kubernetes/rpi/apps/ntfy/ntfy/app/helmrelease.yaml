@@ -37,7 +37,7 @@ spec:
       TIMEZONE: "UTC"
       NTFY_DEBUG: false
       NTFY_LOG_LEVEL: "INFO"
-      NTFY_BASE_URL: &host "nfty.ok8.sh"
+      NTFY_BASE_URL: "https://nfty.ok8.sh"
       PORT: &port 80
     service:
       main:
@@ -51,7 +51,7 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/target: "ingress.${SECRET_DOMAIN}"
         hosts:
-          - host: *host
+          - host: &host "nfty.ok8.sh"
             paths:
               - path: /
                 pathType: Prefix
