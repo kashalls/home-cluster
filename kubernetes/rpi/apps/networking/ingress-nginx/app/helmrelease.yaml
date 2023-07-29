@@ -36,7 +36,7 @@ spec:
       service:
         annotations:
           external-dns.alpha.kubernetes.io/hostname: "ingress.${SECRET_DOMAIN}"
-          io.cilium/lb-ipam-ips: "{{ bootstrap_ingress_nginx_addr }}"
+          io.cilium/lb-ipam-ips: "10.69.101.80"
         externalTrafficPolicy: Cluster
       publishService:
         enabled: true

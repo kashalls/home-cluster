@@ -1,0 +1,82 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.kashall.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: ntfy
+  namespace: ntfy
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    image:
+      repository: docker.io/binwiederhier/ntfy
+      tag: v2.6.2
+    env:
+      TIMEZONE: "UTC"
+      NTFY_DEBUG: false
+      NTFY_LOG_LEVEL: "INFO"
+      NTFY_BASE_URL: &host "up.ok8.sh"
+      PORT: &port 80
+    service:
+      main:
+        ports:
+          http:
+            port: *port
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: nginx
+        hosts:
+          - host: *host
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+            - *host
+    resources:
+      requests:
+        cpu: 150m
+        memory: 150Mi
+      limits:
+        cpu: 200m
+        memory: 500Mi
+    volumeMounts:
+      - name: config-volume
+        subPath: server.yml
+        mountPath: /etc/ntfy/server.yml
+      - name: cache-volume
+        mountPath: /var/cache/ntfy
+    persistance:
+      config:
+        enabled: true
+        type: configMap
+        subPath: ./config/server.yml
+        mountPath: /etc/ntfy/server.yml
+      cache:
+        enabled: true
+        type: pvc
+        mountPath: /var/cache/ntfy
+        storageClass: local-path
+
