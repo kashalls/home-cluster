@@ -36,7 +36,7 @@ spec:
       TIMEZONE: "UTC"
       NTFY_DEBUG: false
       NTFY_LOG_LEVEL: "INFO"
-      NTFY_BASE_URL: &host "up.ok8.sh"
+      NTFY_BASE_URL: &host "nfty.ok8.sh"
       PORT: &port 80
     service:
       main:
