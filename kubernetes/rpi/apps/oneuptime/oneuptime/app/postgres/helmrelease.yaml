@@ -47,3 +47,4 @@ spec:
       enabled: false
       serviceMonitor:
         enabled: false
+        #
