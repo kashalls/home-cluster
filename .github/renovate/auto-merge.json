@@ -8,7 +8,7 @@
         "automergeType": "branch",
         "ignoreTests": true,
         "matchUpdateTypes": ["digest"],
-        "matchPackagePattern": ["ghcr.io/kashalls", "ghcr.io/bjw-s", "ghcr.io/onedr0p"]
+        "matchPackagePattern": ["ghcr.io/kashalls", "ghcr.io/bjw-s", "ghcr.io/onedr0p", "ghcr.io/oneuptime"]
       },
       {
         "description": "Auto merge containers",
@@ -17,7 +17,7 @@
         "automergeType": "branch",
         "ignoreTests": true,
         "matchUpdateTypes": ["minor", "patch"],
-        "matchPackageNames": ["ghcr.io/kashalls"]
+        "matchPackageNames": ["ghcr.io/kashalls", "ghcr.io/onedr0p"]
       },
       {
         "description": "Auto merge GitHub Actions",
