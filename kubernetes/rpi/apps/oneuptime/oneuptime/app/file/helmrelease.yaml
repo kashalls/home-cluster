@@ -28,9 +28,6 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  dependsOn:
-    - name: postgres
-      namespace: oneuptime
   values:
     image:
       repository: docker.io/oneuptime/file

@@ -31,8 +31,6 @@ spec:
   dependsOn:
     - name: redis
       namespace: oneuptime
-    - name: postgres
-      namespace: oneuptime
   values:
     image:
       repository: docker.io/oneuptime/link-shortner

@@ -29,8 +29,6 @@ spec:
   uninstall:
     keepHistory: false
   dependsOn:
-    - name: postgres
-      namespace: oneuptime
     - name: notification
       namespace: oneuptime
   values:
