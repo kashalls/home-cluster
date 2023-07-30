@@ -34,7 +34,7 @@ spec:
   values:
     image:
       repository: ghcr.io/oneuptime/link-shortner
-      tag: 7.0.378
+      tag: 7.0.384
     env:
       PORT: &port 3521
     envFrom:
