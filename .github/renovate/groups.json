@@ -52,6 +52,16 @@
           "commitMessageTopic": "{{{groupName}}} group"
         },
         "separateMinorPatch": false
+      },
+      {
+        "description": "OneUptime Images",
+        "groupName": "OneUptime",
+        "matchPackagePatterns": ["oneuptime"],
+        "matchDatasources": ["docker", "ghcr.io"],
+        "group": {
+          "commitMessageTopic": "{{{groupName}}} group"
+        },
+        "separateMinorPatch": true
       }
     ]
   }
