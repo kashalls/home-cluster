@@ -35,8 +35,8 @@ spec:
       namespace: oneuptime
   values:
     image:
-      repository: docker.io/oneuptime/probe-api
-      tag: release
+      repository: ghcr.io/oneuptime/probe-api
+      tag: 7.0.378
     env:
       PORT: &port 3400
     envFrom:

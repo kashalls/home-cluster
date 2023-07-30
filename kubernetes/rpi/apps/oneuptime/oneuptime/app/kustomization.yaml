@@ -15,7 +15,7 @@ resources:
   - ./identity
   - ./link-shortner
   - ./notification
- # - ./postgres
+ # - ./postgres$
   - ./probe-1
   - ./probe-2
   - ./probe-api

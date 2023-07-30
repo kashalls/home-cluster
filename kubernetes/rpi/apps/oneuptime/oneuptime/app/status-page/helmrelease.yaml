@@ -35,8 +35,8 @@ spec:
       namespace: oneuptime
   values:
     image:
-      repository: docker.io/oneuptime/status-page
-      tag: release
+      repository: ghcr.io/oneuptime/status-page
+      tag: 7.0.378
     env:
       PORT: &port 3105
     envFrom:

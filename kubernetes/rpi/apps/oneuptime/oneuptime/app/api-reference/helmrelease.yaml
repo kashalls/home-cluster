@@ -30,8 +30,8 @@ spec:
     keepHistory: false
   values:
     image:
-      repository: docker.io/oneuptime/api-reference
-      tag: release
+      repository: ghcr.io/oneuptime/api-reference
+      tag: 7.0.378
     env:
       PORT: &port 1445
     envFrom:

@@ -35,8 +35,8 @@ spec:
       namespace: oneuptime
   values:
     image:
-      repository: docker.io/oneuptime/identity
-      tag: release
+      repository: ghcr.io/oneuptime/identity
+      tag: 7.0.378
     env:
       PORT: &port 3087
     envFrom:
