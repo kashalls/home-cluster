@@ -20,7 +20,7 @@ stringData:
     FILE_ROUTE: ENC[AES256_GCM,data:iBvy/I0=,iv:al+L6ipkz2IHww++nfWWw3EZcftGilbHlukgN+9Zg3o=,tag:IcF++MxVi4GapPe2dlQtwg==,type:str]
     STATUS_PAGE_ROUTE: ENC[AES256_GCM,data:OyeUCmyNY6Egy+41,iv:j4q7XbZisWjrgX7Db7r3S0FeOoNuJwPIYXp0bIvVWK4=,tag:pz7fCCPokKgTYNwzZ/Zxhw==,type:str]
     IS_SERVER: ENC[AES256_GCM,data:Px8nvbI=,iv:RL6nDI+0lGR9LXnV3TsFi9Uz/rlEzKVO8sR2dhfbsPc=,tag:OLJKoQk7wkqS/RXQu/hMmQ==,type:str]
-    STATUS_PAGE_CNAME_RECORD: ENC[AES256_GCM,data:NaFglFfJ/AKuQTLoyA==,iv:IbfIxCyU+f+A1RCkGmCOXrcWrvhKyMA99RMvJ76SOrg=,tag:L16Kl13MwdZg43+wpjXCOA==,type:str]
+    STATUS_PAGE_CNAME_RECORD: ENC[AES256_GCM,data:hwNS4pVtgAIKZ+pWlK2MXA==,iv:7AEAyEL2nwYtohzPRCrzdW7/dStrf17a+opwYK/XSts=,tag:ydkSd3Cif3WCgsLU3O63Fg==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -36,8 +36,8 @@ sops:
             QmJrMmRkTzFvaHViQWw0K3R6SzU0Z1UKTaKHuSNAdXOK4/ZoOHIuUUjSF/5tCzVj
             BgQ5Be451jvMcaVTdUpmaZ6JfxORnNLWHOKA8v25iVD6L8vA9gGg7g==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-07-31T15:53:39Z"
-    mac: ENC[AES256_GCM,data:94PwH1JQXta9gR+dDpc+Di7G/wbyBqbdlbaTf5PXn1F6HWzgzNJdGuCDXo1ywmETYkJSkUVWUjfJ1GwxoS8twBSRJu0ab4FkG1tI8wYIispGAG46LDbSCvM/IjE4LanWTXrboQS5mFQRq5Vc5b1QFAA2T+s9gGRXzgkhkbzUtmA=,iv:gAs6g9LdI/qInHFNuKerMJoYQmcShtjI9zaZqcBZOkM=,tag:7b+rO+LdNOGs4aEKjMWOWA==,type:str]
+    lastmodified: "2023-07-31T17:18:40Z"
+    mac: ENC[AES256_GCM,data:NXnGhdnWUlFBfFvE0bErtWDdQ2Yw9nZrj1i2FDM3ItdA9GluPqIFMkW/XY7Ar+1i3rIoxNj74FLHhtKtlBTw/Ach/XO23hBwB4gI0AjL4wHCOxi0+gw9hdSUAw69D76yrb4FsPpk0MyHuGhIab/YYakDvhITjEReYEUs47jR17Y=,iv:jGHZ/BsXm4D4TPx/NIF8M4Wd9V+UKC+anjDbHfGXYYM=,tag:138XjirUsvxHe4OgUQ0KMw==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3
