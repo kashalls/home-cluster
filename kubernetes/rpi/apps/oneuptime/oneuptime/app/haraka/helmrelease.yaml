@@ -31,7 +31,7 @@ spec:
   values:
     image:
       repository: ghcr.io/oneuptime/haraka
-      tag: 7.0.404
+      tag: 7.0.407
     env:
       PORT: &port 25
     envFrom:
