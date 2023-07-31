@@ -6,7 +6,7 @@ metadata:
   name: link-shortener
   namespace: oneuptime
   annotations:
-    reloader.stakater.com/auto: "true"
+    secret.reloader.stakater.com/reload: "common-secrets,common-server-secrets"
 spec:
   interval: 30m
   chart:
