@@ -15,7 +15,7 @@ stringData:
     SUBSCRIPTION_PLAN_SCALE: ENC[AES256_GCM,data:Xl94A4rzWFtarf+2/6xmzc9vgWblFrHsQBXq8AUu2Bd0SllP9tcXJQCT,iv:m+4eDCbzMVQgYifjlWu5sgx0Z2M9mZqspG9KppDNiV0=,tag:WdMeV7zBXl4ApFuO2YKXWA==,type:str]
     SUBSCRIPTION_PLAN_ENTERPRISE: ENC[AES256_GCM,data:sVibHPS9ccYy3xnIz9CoKBCxDv2UVNm3+qM1jpf5B9PyH2SEZk6UCaaBS0I62CBlyZ8=,iv:YPQ6uixpvGS4ljhrsmOq//+nSqV8frugocOYc5PetuA=,tag:fxwIc71t1bjIguHnZDvrCw==,type:str]
     METERED_PLAN_ACTIVE_MONITORING: ENC[AES256_GCM,data:9bJdEheJVyJgbDimYY4TqyOYjP3uHtrFeF3caF9UqVeG9xwICWZ9lSFZWY/Z8lhGvTAe,iv:DP4wiGl5x3FjudQKIvONv2wudL3DRuuduhkA4s4BFis=,tag:rf7jcRmuGZtWY/CRtmlXoQ==,type:str]
-    DOMAIN: ENC[AES256_GCM,data:WJ5YZTDPK5h8YsGTGSKjCwO1USen,iv:wo6J4cTG/8fRVrn9qTORcHXWjiyW3mjqWk1tzt1VP0k=,tag:Ebrap2g4g6CoKnkTJPHzYw==,type:str]
+    DOMAIN: ENC[AES256_GCM,data:pxFiSiNComgo,iv:+G/FXCeHK6ggYpptbMfKchfTpZErgmqSfTukBFFzHvo=,tag:/9sFirIKG4Wd6t3UoRuwPQ==,type:str]
     ANALYTICS_KEY: ""
     ANALYTICS_HOST: ""
     HTTP_PROTOCOL: ENC[AES256_GCM,data:APsro+U=,iv:vr2ly0W4sBUIBKQ9l/dI+vWYfWGRQsg6axxrWKI/cgA=,tag:tahbC/0r4DH7mtPaAy6baQ==,type:str]
@@ -34,8 +34,8 @@ sops:
             MVhLZGlCWDQ4bUE1by9KMTJsUXRSajgKjgnidKLxH1S9pOuxdFV3D/fxnV4Xgxim
             w1PFNRdf+ukeRyfoIP4pVd7hdNe9AHTJElLkboO/85wvkQ9uvIjczg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-07-28T17:04:49Z"
-    mac: ENC[AES256_GCM,data:6OvQoE8NGGeXFeVuEEGnz7qXb/0tLv1zanx8D+nx+/7nWE6eyQDUfnZGrlcC27oWkSTbmpLk1FGE7GiI56ScV2ufags2lMDM1bAflszxRJm2SvrRir9bndm8eDhPbahKDg7taBDzOMts3/vLKtZ1UUmsbGnON0XvDYwZekLirIA=,iv:4/WuqtYDUwQ2wEi06lUhT+BZE+RfSomqwNcotw7jmyI=,tag:ZM2W0EqxkEXh3ggSMNtqfQ==,type:str]
+    lastmodified: "2023-07-31T15:53:07Z"
+    mac: ENC[AES256_GCM,data:8PCFpQEiYIFJ0/DC7z30CgOvsiZeDZ/cuQ2Gv5/Z7bWPWxOAE0c6UKZ/AKA7x9D1wqi9PN2mZhkFZOJMUn7MAK4AWFi8fT417WjE6eSbNEoyQO4W8jhRoTWt5Mlc+DUMr8ZW2rO/W/AlDOQxJAM7rydejfTWrbQZM9tJUdgldoU=,iv:D7x0ZkIKjHorG6VL3MVA4F+y/c6bOyyWe3eiZO8YOIo=,tag:TdYNyGXe6h9ANuYq5ns0ZQ==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3
