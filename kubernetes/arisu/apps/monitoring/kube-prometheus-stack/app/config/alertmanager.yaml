@@ -1,6 +1,5 @@
 ---
 global:
-  scrape_interval: 1m
   resolve_timeout: 5m
 route:
   group_by: ["alertname", "job"]
