@@ -36,7 +36,7 @@ spec:
   values:
     image:
       repository: ghcr.io/oneuptime/identity
-      tag: 7.0.384
+      tag: 7.0.393
     env:
       PORT: &port 3087
     envFrom:
