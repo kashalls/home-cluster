@@ -13,7 +13,7 @@ resources:
   - ./haraka
   - ./home
   - ./identity
-  - ./link-shortner
+  - ./link-shortener
   - ./notification
  # - ./postgres$
   - ./probe-1
