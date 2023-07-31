@@ -27,6 +27,7 @@ stringData:
     WORKER_HOSTNAME: ENC[AES256_GCM,data:HSpBGYS671nO5axPfnNOE5epHX4CMatcaxy60lhvNlmD/aPh2Wvp,iv:6lYa+7rCmu7Q6sHhRjWJNzz0af82yJqJZkDcaFPAUgM=,tag:NpG4dp1KG1ruPwp25AleHQ==,type:str]
     WORKFLOW_HOSTNAME: ENC[AES256_GCM,data:L4Us1PGoLVDqrh1GjHFWkiUhvuDRcUEsCx4i6FCARAXGGqrgVpfOTTo=,iv:SjsKzIvl3eM6gQzHJfxL5pKBtak8+io1uZP1xzDow60=,tag:7V/dwRqg4/ZGeDCdvVGTfQ==,type:str]
     IS_SERVER: ENC[AES256_GCM,data:m4KRhQ==,iv:9yGiOAoP0rK820wELeptNgtBJpZsb+O5pZeOIklebeE=,tag:w4f7anrrutCUxDLIk2FDIw==,type:str]
+    COMPLETELYUSELESSENV: ENC[AES256_GCM,data:hC6mEQ==,iv:ju9Paa1dwGY/arBLVkiaOiovnXTfBbmrR2Rc3MwWAVQ=,tag:YZaNMcN4irLqFpb30k3N8g==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -42,8 +43,8 @@ sops:
             OFNKcDZDekN3SGgxR0NsWXdjdmtFYzAKS8dbhyMi+tTMBsF0niIinTY3MT22foRN
             QgxYv9jANawDSdGyq5Hp1RPV/Hrl2X26Mpt7f4aB3JaC4G5fkAXDoA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-07-31T15:17:06Z"
-    mac: ENC[AES256_GCM,data:GevuDWqumSrdmD2WSBdUuxwr5h8u8rE/rE/VJWPkBbZ5G3/jpsuKCVDCmOd884SNNL4z/JqXL4DjjkUNR+W+i/SRJ+M0dILWjGcPqtuOBlVT0SJtCt3Hhon6ZSUjSFWKvpvfD5nr1rES1F4SJKGRz7okmvpkRdJbgLKnTNNLBnw=,iv:ODXElA+DGdCF2HFvrc2DsQzWkFi8E5087ORFSI3RMC0=,tag:6jiXsOarjX0eaK5GbFUNCw==,type:str]
+    lastmodified: "2023-07-31T23:18:33Z"
+    mac: ENC[AES256_GCM,data:adwm4LqzrByW+FzwHCE14CPgb3+DOHOuTJlx9WzkM93aQ9oiccp6UbfxTVrVh1XNwPT/u/tFIzYbPpO31ho8qO8WiL4w3DIJSIt0xii+0/VxUeBv94PSDSjnV5+MeUSb+f5qaDHGxPtA0xEQGtYRk/d1vq0VHkUEleM5NzxqMQA=,iv:2KGULW8QF11HJIP2nwbmJQ4+A8/AWqoLJaNMCuOmXQk=,tag:WyJA3BQpM3bWYzClII++uQ==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3
