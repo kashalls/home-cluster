@@ -35,7 +35,7 @@ spec:
   values:
     image:
       repository: ghcr.io/oneuptime/probe
-      tag: 7.0.410
+      tag: 7.0.413
     env:
       PORT: &port 3500
     envFrom:
