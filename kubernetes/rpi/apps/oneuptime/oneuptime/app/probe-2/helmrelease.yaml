@@ -44,7 +44,7 @@ spec:
       - secretRef:
           name: common-secrets
       - secretRef:
-          name: probe-config-2
+          name: probe-2-config
     service:
       main:
         ports:
