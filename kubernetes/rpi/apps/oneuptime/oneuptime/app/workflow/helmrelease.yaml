@@ -37,7 +37,7 @@ spec:
   values:
     image:
       repository: ghcr.io/oneuptime/workflow
-      tag: 7.0.409
+      tag: 7.0.410
     env:
       PORT: &port 3099
     envFrom:
