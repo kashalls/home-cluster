@@ -31,7 +31,7 @@ spec:
   values:
     image:
       repository: ghcr.io/oneuptime/home
-      tag: 7.0.413
+      tag: 7.0.414
     env:
       PORT: &port 1444
     envFrom:
