@@ -34,6 +34,8 @@ spec:
     - name: accounts
       namespace: oneuptime
   values:
+    controller:
+      strategy: RollingUpdate
     image:
       repository: ghcr.io/oneuptime/dashboard
       tag: 7.0.422

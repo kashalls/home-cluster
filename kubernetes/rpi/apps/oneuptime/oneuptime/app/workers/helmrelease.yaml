@@ -33,6 +33,8 @@ spec:
     - name: notification
       namespace: oneuptime
   values:
+    controller:
+      strategy: RollingUpdate
     image:
       repository: ghcr.io/oneuptime/workers
       tag: 7.0.423

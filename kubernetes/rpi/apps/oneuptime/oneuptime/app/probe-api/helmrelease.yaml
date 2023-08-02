@@ -35,6 +35,8 @@ spec:
     - name: notification
       namespace: oneuptime
   values:
+    controller:
+      strategy: RollingUpdate
     image:
       repository: ghcr.io/oneuptime/probe-api
       tag: 7.0.423

@@ -33,6 +33,8 @@ spec:
     - name: probe-api
       namespace: oneuptime
   values:
+    controller:
+      strategy: RollingUpdate
     image:
       repository: ghcr.io/oneuptime/probe
       tag: 7.0.423

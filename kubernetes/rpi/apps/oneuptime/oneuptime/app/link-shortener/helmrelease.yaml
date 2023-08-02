@@ -32,6 +32,8 @@ spec:
     - name: redis
       namespace: oneuptime
   values:
+    controller:
+      strategy: RollingUpdate
     image:
       repository: ghcr.io/oneuptime/link-shortener
       tag: 7.0.423

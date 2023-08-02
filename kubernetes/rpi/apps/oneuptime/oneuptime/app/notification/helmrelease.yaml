@@ -32,6 +32,8 @@ spec:
     - name: haraka
       namespace: oneuptime
   values:
+    controller:
+      strategy: RollingUpdate
     image:
       repository: ghcr.io/oneuptime/notification
       tag: 7.0.423

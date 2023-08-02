@@ -35,6 +35,8 @@ spec:
     - name: dashboard-api
       namespace: oneuptime
   values:
+    controller:
+      strategy: RollingUpdate
     image:
       repository: ghcr.io/oneuptime/status-page
       tag: 7.0.422

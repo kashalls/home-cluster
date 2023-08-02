@@ -32,6 +32,8 @@ spec:
     - name: identity
       namespace: oneuptime
   values:
+    controller:
+      strategy: RollingUpdate
     image:
       repository: ghcr.io/oneuptime/accounts
       tag: 7.0.422
