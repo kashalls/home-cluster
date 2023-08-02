@@ -37,7 +37,7 @@ spec:
   values:
     image:
       repository: ghcr.io/oneuptime/status-page
-      tag: 7.0.416
+      tag: 7.0.419
     env:
       PORT: &port 3105
     envFrom:
