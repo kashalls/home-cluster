@@ -5,12 +5,12 @@ metadata:
   name: alertmanager-gatus-ep
   namespace: monitoring
   labels:
-    gatus.io/internal: "true"
+    gatus.io/enabled: "true"
 data:
   config.yaml: |
     endpoints:
       - name: alertmanager
-        group: guarded
+        group: internal
         url: 1.1.1.1
         interval: 1m
         dns:
@@ -27,12 +27,12 @@ metadata:
   name: prometheus-gatus-ep
   namespace: monitoring
   labels:
-    gatus.io/internal: "true"
+    gatus.io/enabled: "true"
 data:
   config.yaml: |
     endpoints:
       - name: prometheus
-        group: guarded
+        group: internal
         url: 1.1.1.1
         interval: 1m
         dns:

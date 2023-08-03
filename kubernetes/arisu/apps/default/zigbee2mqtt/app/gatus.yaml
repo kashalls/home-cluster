@@ -5,7 +5,7 @@ metadata:
   name: zigbee2mqtt-gatus-ep
   namespace: default
   labels:
-    gatus.io/internal: "true"
+    gatus.io/enabled: "true"
 data:
   config.yaml: |
     endpoints:

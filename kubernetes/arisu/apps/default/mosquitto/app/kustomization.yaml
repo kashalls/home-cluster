@@ -6,6 +6,7 @@ namespace: default
 resources:
   - ./external-secrets.yaml
   - ./helm-release.yaml
+  - ./gatus.yaml
 configMapGenerator:
   - name: mosquitto-configmap
     files:
