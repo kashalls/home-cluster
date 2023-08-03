@@ -5,7 +5,7 @@ metadata:
   name: kubernetes-schemas-gatus-ep
   namespace: default
   labels:
-    gatus.io/external: "true"
+    gatus.io/enabled: "true"
 data:
   config.yaml: |
     endpoints:

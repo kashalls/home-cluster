@@ -5,12 +5,12 @@ metadata:
   name: changedetection-gatus-ep
   namespace: default
   labels:
-    gatus.io/external: "true"
+    gatus.io/enabled: "true"
 data:
   config.yaml: |
     endpoints:
       - name: changedetection
-        group: guarded
+        group: internal
         url: 1.1.1.1
         interval: 1m
         dns:
