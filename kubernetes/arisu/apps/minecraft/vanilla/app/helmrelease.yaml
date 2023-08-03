@@ -2,8 +2,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: minecraft
-  namespace: prismarine-client
+  name: vanilla
+  namespace: minecraft
 spec:
   interval: 30m
   chart:
