@@ -3,10 +3,9 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: workflow
+  name: identity
   namespace: oneuptime
   annotations:
-    reloader.stakater.com/auto: "true"
     secret.reloader.stakater.com/reload: "common-secrets,common-server-secrets"
 spec:
   interval: 30m
@@ -30,18 +29,16 @@ spec:
   uninstall:
     keepHistory: false
   dependsOn:
-    - name: redis
-      namespace: oneuptime
     - name: notification
       namespace: oneuptime
   values:
     controller:
       strategy: RollingUpdate
     image:
-      repository: ghcr.io/oneuptime/workflow
+      repository: ghcr.io/oneuptime/identity
       tag: 7.0.432
     env:
-      PORT: &port 3099
+      PORT: &port 3087
     envFrom:
       - secretRef:
           name: common-server-secrets
@@ -57,12 +54,11 @@ spec:
         enabled: true
         ingressClassName: nginx
         annotations:
-          nginx.ingress.kubernetes.io/proxy-body-size: 50M
           external-dns.alpha.kubernetes.io/target: "ingress.${SECRET_DOMAIN}"
         hosts:
           - host: &host "up.ok8.sh"
             paths:
-              - path: /workflow
+              - path: /identity
                 pathType: Prefix
         tls:
           - hosts:

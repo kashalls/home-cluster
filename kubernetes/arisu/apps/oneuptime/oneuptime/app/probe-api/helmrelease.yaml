@@ -3,9 +3,10 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: link-shortener
+  name: probe-api
   namespace: oneuptime
   annotations:
+    reloader.stakater.com/auto: "true"
     secret.reloader.stakater.com/reload: "common-secrets,common-server-secrets"
 spec:
   interval: 30m
@@ -29,16 +30,16 @@ spec:
   uninstall:
     keepHistory: false
   dependsOn:
-    - name: redis
+    - name: notification
       namespace: oneuptime
   values:
     controller:
       strategy: RollingUpdate
     image:
-      repository: ghcr.io/oneuptime/link-shortener
+      repository: ghcr.io/oneuptime/probe-api
       tag: 7.0.432
     env:
-      PORT: &port 3521
+      PORT: &port 3400
     envFrom:
       - secretRef:
           name: common-server-secrets
@@ -59,15 +60,8 @@ spec:
         hosts:
           - host: &host "up.ok8.sh"
             paths:
-              - path: /l
+              - path: /probe-api
                 pathType: Prefix
         tls:
           - hosts:
             - *host
-    resources:
-      requests:
-        cpu: 10m
-        memory: 100Mi
-      limits:
-        memory: 500Mi
-

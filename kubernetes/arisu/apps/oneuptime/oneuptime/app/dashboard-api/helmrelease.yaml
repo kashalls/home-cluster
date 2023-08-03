@@ -29,8 +29,6 @@ spec:
   uninstall:
     keepHistory: false
   dependsOn:
-    - name: redis
-      namespace: oneuptime
     - name: notification
       namespace: oneuptime
   values:
