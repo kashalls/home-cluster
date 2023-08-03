@@ -9,7 +9,7 @@ metadata:
 data:
   config.yaml: |
     endpoints:
-      - name: Vanilla MC
+      - name: vanilla-minecraft
         group: internal
         url: tcp://vanilla-minecraft.default.svc.cluster.local:25565
         interval: 1m
