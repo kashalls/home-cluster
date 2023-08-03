@@ -5,7 +5,7 @@ metadata:
   name: changedetection-gatus-ep
   namespace: default
   labels:
-    gatus.io/enabled: "true"
+    gatus.io/external: "true"
 data:
   config.yaml: |
     endpoints:
@@ -14,7 +14,7 @@ data:
         url: 1.1.1.1
         interval: 1m
         dns:
-          query-name: changedetection.kashall.dev
+          query-name: cd.kashall.dev
           query-type: A
         conditions:
           - "len([BODY]) == 0"

@@ -5,7 +5,7 @@ metadata:
   name: alertmanager-gatus-ep
   namespace: monitoring
   labels:
-    gatus.io/enabled: "true"
+    gatus.io/internal: "true"
 data:
   config.yaml: |
     endpoints:
@@ -27,7 +27,7 @@ metadata:
   name: prometheus-gatus-ep
   namespace: monitoring
   labels:
-    gatus.io/enabled: "true"
+    gatus.io/internal: "true"
 data:
   config.yaml: |
     endpoints:

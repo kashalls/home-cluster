@@ -5,7 +5,7 @@ metadata:
   name: grafana-gatus-ep
   namespace: monitoring
   labels:
-    gatus.io/enabled: "true"
+    gatus.io/external: "true"
 data:
   config.yaml: |
     endpoints:
