@@ -11,12 +11,11 @@ data:
     endpoints:
       - name: echo-server
         group: external
-        url: 1.1.1.1
+        url: https://echo.kashall.dev
         interval: 1m
-        dns:
-          query-name: echo.kashall.dev
-          query-type: A
+        client:
+          dns-resolver: tcp://1.1.1.1:53
         conditions:
-          - "len([BODY]) == 0"
+          - "[STATUS] == 200"
         alerts:
           - type: pushover
