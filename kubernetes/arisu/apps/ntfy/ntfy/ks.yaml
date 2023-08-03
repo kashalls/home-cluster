@@ -6,11 +6,11 @@ metadata:
   name: cluster-apps-ntfy
   namespace: flux-system
 spec:
-  path: ./kubernetes/rpi/apps/ntfy/ntfy/app
+  path: ./kubernetes/arisu/apps/ntfy/ntfy/app
   prune: true
   sourceRef:
     kind: GitRepository
-    name: raspbernetes
+    name: home-kubernetes
   wait: false
   interval: 30m
   retryInterval: 1m

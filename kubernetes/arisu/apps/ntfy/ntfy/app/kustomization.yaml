@@ -6,6 +6,7 @@ namespace: ntfy
 resources:
   - ./helmrelease.yaml
   - ./horizontalpodautoscaler.yaml
+  - ./gatus.yaml
 configMapGenerator:
     - name: server-config
       files:
