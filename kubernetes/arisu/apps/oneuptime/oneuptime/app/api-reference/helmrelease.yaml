@@ -63,7 +63,7 @@ spec:
         tls:
           - hosts:
             - *host
-            secretName: networking/ok8-sh-tls
+
     resources:
       requests:
         cpu: 10m
