@@ -10,12 +10,20 @@ originRequest:
 # from the internet to cloudflared, run `cloudflared tunnel route dns <tunnel> <hostname>`.
 # E.g. `cloudflared tunnel route dns example-tunnel tunnel.example.com`.
 ingress:
-  - hostname: "${SECRET_DOMAIN}"
+  - hostname: "kashall.dev"
     service: https://nginx-external-controller.networking.svc.cluster.local:443
     originRequest:
-      originServerName: "external.${SECRET_DOMAIN}"
-  - hostname: "*.${SECRET_DOMAIN}"
+      originServerName: "external.kashall.dev"
+  - hostname: "*.kashall.dev"
     service: https://nginx-external-controller.networking.svc.cluster.local:443
     originRequest:
-      originServerName: "external.${SECRET_DOMAIN}"
+      originServerName: "external.kashall.dev"
+  - hostname: "ok8.sh"
+    service: https://nginx-external-controller.networking.svc.cluster.local:443
+    originRequest:
+      originServerName: "external.ok8.sh"
+  - hostname: "*.ok8.sh"
+    service: https://nginx-external-controller.networking.svc.cluster.local:443
+    originRequest:
+      originServerName: "external.ok8.sh"
   - service: http_status:404

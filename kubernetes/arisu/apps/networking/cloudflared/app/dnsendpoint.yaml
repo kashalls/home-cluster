@@ -2,12 +2,25 @@
 apiVersion: externaldns.k8s.io/v1alpha1
 kind: DNSEndpoint
 metadata:
-  name: cloudflared
+  name: kashall-dev
   namespace: networking
   annotations:
-    external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+    external-dns.alpha.kubernetes.io/target: "external.kashall.dev"
 spec:
   endpoints:
-    - dnsName: "external.${SECRET_DOMAIN}"
+    - dnsName: "external.kashall.dev"
+      recordType: CNAME
+      targets: ["${SECRET_CLOUDFLARE_TUNNEL_ID}.cfargotunnel.com"]
+---
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: ok8-sh
+  namespace: networking
+  annotations:
+    external-dns.alpha.kubernetes.io/target: "external.ok8.sh"
+spec:
+  endpoints:
+    - dnsName: "external.ok8.sh"
       recordType: CNAME
       targets: ["${SECRET_CLOUDFLARE_TUNNEL_ID}.cfargotunnel.com"]
