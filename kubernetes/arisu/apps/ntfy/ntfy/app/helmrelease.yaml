@@ -49,7 +49,6 @@ spec:
         enabled: true
         ingressClassName: external
         annotations:
-          external-dns.alpha.kubernetes.io/target: "external.ok8.sh"
         hosts:
           - host: &host "ntfy.ok8.sh"
             paths:
