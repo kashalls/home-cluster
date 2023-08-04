@@ -11,7 +11,7 @@ spec:
     solvers:
       - dns01:
           cloudflare:
-            apiTokenSecretRef:
+            apiKeySecretRef:
               name: cert-manager-secret
               key: api-key
 ---
@@ -28,6 +28,6 @@ spec:
     solvers:
       - dns01:
           cloudflare:
-            apiTokenSecretRef:
+            apiKeySecretRef:
               name: cert-manager-secret
               key: api-key
