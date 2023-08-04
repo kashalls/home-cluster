@@ -6,11 +6,11 @@ metadata:
   name: cluster-apps-oneuptime
   namespace: flux-system
 spec:
-  path: ./kubernetes/rpi/apps/oneuptime/oneuptime/app
+  path: ./kubernetes/arisu/apps/oneuptime/oneuptime/app
   prune: true
   sourceRef:
     kind: GitRepository
-    name: raspbernetes
+    name: home-kubernetes
   wait: false
   interval: 30m
   retryInterval: 1m
