@@ -56,7 +56,7 @@ spec:
         ingressClassName: nginx
         annotations:
           nginx.ingress.kubernetes.io/proxy-body-size: 50M
-          external-dns.alpha.kubernetes.io/target: "ingress.${SECRET_DOMAIN}"
+          external-dns.alpha.kubernetes.io/target: "external.ok8.sh"
         hosts:
           - host: &host "up.ok8.sh"
             paths:
