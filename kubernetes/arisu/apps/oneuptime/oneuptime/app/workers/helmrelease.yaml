@@ -65,4 +65,4 @@ spec:
         tls:
           - hosts:
             - *host
-            secretName: ok8-sh-tls
+            secretName: networking/ok8-sh-tls

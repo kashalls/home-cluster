@@ -66,7 +66,7 @@ spec:
         tls:
           - hosts:
             - *host
-            secretName: ok8-sh-tls
+            secretName: networking/ok8-sh-tls
       oneuptime:
         enabled: true
         ingressClassName: nginx
@@ -80,7 +80,7 @@ spec:
         tls:
           - hosts:
             - *host
-            secretName: ok8-sh-tls
+            secretName: networking/ok8-sh-tls
     resources:
       requests:
         cpu: 10m
