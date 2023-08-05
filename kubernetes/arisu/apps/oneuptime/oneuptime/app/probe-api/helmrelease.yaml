@@ -70,11 +70,11 @@ spec:
         ingressClassName: external
         annotations:
           nginx.ingress.kubernetes.io/proxy-body-size: 50M
-          nginx.ingress.kubernetes.io/rewrite-target: /incoming-request
+          nginx.ingress.kubernetes.io/rewrite-target: /incoming-request/$2
         hosts:
           - host: *host
             paths:
-              - path: /heartbeat
+              - path: /heartbeat(/|$)(.*)
                 pathType: Prefix
         tls:
           - hosts:
