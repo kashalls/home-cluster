@@ -65,4 +65,17 @@ spec:
         tls:
           - hosts:
             - *host
-
+      heartbeat:
+        enabled: true
+        ingressClassName: external
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-body-size: 50M
+          nginx.ingress.kubernetes.io/rewrite-target: /heartbeat
+        hosts:
+          - host: *host
+            paths:
+              - path: /heartbeat
+                pathType: Prefix
+        tls:
+          - hosts:
+            - *host
