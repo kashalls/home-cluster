@@ -17,14 +17,10 @@ spec:
       target:
         type: Utilization
         averageUtilization: 50
-  - type: Object
-    object:
-      metric:
-        name: requests-per-second
-      describedObject:
-        apiVersion: networking.k8s.io/v1
-        kind: Ingress
-        name: ntfy
+  - type: Resource
+    resource:
+      name: memory
       target:
-        type: Value
-        value: 10k
+        type: Utilization
+        averageUtilization: 70
+
