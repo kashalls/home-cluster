@@ -11,5 +11,5 @@ spec:
       name: alertmanager-secret
       key: HOME_ASSISTANT_TOKEN
   staticConfigs:
-    - targets: ["https://home-assistant.default.svc.cluster.local:8123"]
+    - targets: ["home-assistant.default.svc.cluster.local:8123"]
   metricsPath: /api/prometheus
