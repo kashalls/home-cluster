@@ -5,5 +5,5 @@ kind: Kustomization
 namespace: monitoring
 resources:
   - ./gatus.yaml
-  - ./external-secrets.yaml
-  - ./helm-release.yaml
+  - ./externalsecret.yaml
+  - ./helmrelease.yaml
