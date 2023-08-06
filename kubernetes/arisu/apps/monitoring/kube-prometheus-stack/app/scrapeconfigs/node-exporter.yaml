@@ -8,6 +8,6 @@ metadata:
 spec:
   staticConfigs:
     - targets:
-        - nas.outsideour.casa:9100
+        - synology-nas.outsideour.casa:9100
         - dreamweaver.outsideour.casa:9100
   metricsPath: /metrics
