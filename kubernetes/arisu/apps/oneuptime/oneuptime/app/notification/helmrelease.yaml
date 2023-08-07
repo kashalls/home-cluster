@@ -36,7 +36,7 @@ spec:
       strategy: RollingUpdate
     image:
       repository: ghcr.io/oneuptime/notification
-      tag: 7.0.549
+      tag: 7.0.551
     env:
       PORT: &port 3191
     envFrom:
