@@ -69,9 +69,9 @@ spec:
       AUTHELIA_LOG_LEVEL: info
       AUTHELIA_NOTIFIER_DISABLE_STARTUP_CHECK: "true"
       AUTHELIA_NOTIFIER_SMTP_DISABLE_REQUIRE_TLS: "true"
-      AUTHELIA_NOTIFIER_SMTP_HOST: smtp-relay.turbo.ac
+      AUTHELIA_NOTIFIER_SMTP_HOST: smtp-relay.default.svc.cluster.local
       AUTHELIA_NOTIFIER_SMTP_PORT: 25
-      AUTHELIA_NOTIFIER_SMTP_SENDER: Authelia <authelia@buhl.casa>
+      AUTHELIA_NOTIFIER_SMTP_SENDER: Authelia <authelia@outsideour.casa>
       AUTHELIA_SERVER_DISABLE_HEALTHCHECK: "true"
       AUTHELIA_SERVER_PORT: &port 80
       AUTHELIA_SESSION_DOMAIN: kashall.dev
