@@ -77,7 +77,7 @@ spec:
       AUTHELIA_SESSION_DOMAIN: kashall.dev
       AUTHELIA_SESSION_NAME: authelia-home-ops
       AUTHELIA_SESSION_REDIS_DATABASE_INDEX: 14
-      AUTHELIA_SESSION_REDIS_HOST: redis.default.svc.cluster.local
+      AUTHELIA_SESSION_REDIS_HOST: redis-headless.default.svc.cluster.local
       AUTHELIA_TELEMETRY_METRICS_ADDRESS: tcp://0.0.0.0:8080
       AUTHELIA_TELEMETRY_METRICS_ENABLED: "true"
       AUTHELIA_THEME: dark
