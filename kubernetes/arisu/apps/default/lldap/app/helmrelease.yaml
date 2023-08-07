@@ -43,7 +43,7 @@ spec:
       # TODO: Switch to release tag on next release
       tag: latest-alpine@sha256:03605d80db32d4041d74547851e20136d4c5d551de759ee88c74bcc7155edbc1
     env:
-      TZ: America/New_York
+      TZ: America/Los_Angeles
       LLDAP_HTTP_PORT: &port 80
       LLDAP_HTTP_URL: https://lldap.kashall.dev
       LLDAP_LDAP_PORT: &ldapPort 389
