@@ -37,7 +37,7 @@ spec:
       strategy: RollingUpdate
     image:
       repository: ghcr.io/oneuptime/workers
-      tag: 7.0.537
+      tag: 7.0.538
     env:
       PORT: &port 3452
       ENVIRONMENT: production
