@@ -33,7 +33,7 @@ spec:
       strategy: RollingUpdate
     image:
       repository: ghcr.io/oneuptime/home
-      tag: 7.0.538
+      tag: 7.0.542
     env:
       PORT: &port 1444
     envFrom:
