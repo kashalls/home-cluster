@@ -6,7 +6,7 @@ log:
 
 server:
   disable_healthcheck: true
-  port: 80
+  address: "0.0.0.0:80"
 
 duo_api:
   disable: true
@@ -22,7 +22,7 @@ totp:
 notifier:
   disable_startup_check: true
   smtp:
-    host: smtp-relay.default.svc.cluster.local
+    address: "smtp-relay.default.svc.cluster.local:2525"
     port: 2525
     sender: "Authelia <authelia@outsideour.casa>"
     disable_require_tls: true
@@ -43,21 +43,22 @@ session:
         - host: redis-node-2.redis-headless.default.svc.cluster.local
           port: 26379
 
-ldap:
-  implementation: custom
-  url: ldap://lldap.default.svc.cluster.local:389
-  timeout: 5s
-  start_tls: false
-  base_dn: dc=home,DC=arpa
-  additional_users_dn: OU=people
-  additional_groups_dn: OU=groups
-  display_name_attribute: displayName
-  users_filter: (&({username_attribute}={input})(objectClass=person))
-  groups_filter: (member={dn})
-  username_attribute: uid
-  group_name_attribute: cn
-  mail_attribute: mail
-  user: UID=admin,OU=people,DC=home,DC=arpa
+authentication_backend:
+  ldap:
+    implementation: custom
+    url: ldap://lldap.default.svc.cluster.local:389
+    timeout: 5s
+    start_tls: false
+    base_dn: dc=home,DC=arpa
+    additional_users_dn: OU=people
+    additional_groups_dn: OU=groups
+    display_name_attribute: displayName
+    users_filter: (&({username_attribute}={input})(objectClass=person))
+    groups_filter: (member={dn})
+    username_attribute: uid
+    group_name_attribute: cn
+    mail_attribute: mail
+    user: UID=admin,OU=people,DC=home,DC=arpa
 
 access_control:
   default_policy: two_factor
@@ -79,4 +80,4 @@ identity_providers:
         pre_configured_consent_duration: 1y
         scopes: ["openid", "profile", "groups", "email"]
         redirect_uris: ["https://grafana.kashall.dev/login/generic_oauth"]
-        userinfo_signing_algorithm: none
+        userinfo_signing_alg: none
