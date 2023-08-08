@@ -45,18 +45,20 @@ session:
 authentication_backend:
   ldap:
     implementation: custom
-    url: ldap://lldap.default.svc.cluster.local:389
+    address: ldap://lldap.default.svc.cluster.local:389
     timeout: 5s
     start_tls: false
+    attributes:
+      username: uid
+      display_name: displayName
+      group_name: cn
+      mail: mail
     base_dn: dc=home,DC=arpa
     additional_users_dn: OU=people
     additional_groups_dn: OU=groups
     display_name_attribute: displayName
     users_filter: (&({username_attribute}={input})(objectClass=person))
     groups_filter: (member={dn})
-    username_attribute: uid
-    group_name_attribute: cn
-    mail_attribute: mail
     user: UID=admin,OU=people,DC=home,DC=arpa
 
 access_control:
