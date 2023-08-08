@@ -23,7 +23,8 @@ totp:
 notifier:
   disable_startup_check: true
   smtp:
-    address: "smtp-relay.default.svc.cluster.local:2525"
+    host: smtp-relay.default.svc.cluster.local
+    port: 2525
     sender: "Authelia <authelia@outsideour.casa>"
     disable_require_tls: true
 
@@ -52,14 +53,13 @@ authentication_backend:
     disable: true
   ldap:
     implementation: custom
-    address: ldap://lldap.default.svc.cluster.local:389
+    url: ldap://lldap.default.svc.cluster.local:389
     timeout: 5s
     start_tls: false
-    attributes:
-      username: uid
-      display_name: displayName
-      group_name: cn
-      mail: mail
+    username_attribute: uid
+    display_name_attribute: displayName
+    group_name_attribute: cn
+    mail_attribute: mail
     base_dn: dc=home,DC=arpa
     additional_users_dn: OU=people
     additional_groups_dn: OU=groups
