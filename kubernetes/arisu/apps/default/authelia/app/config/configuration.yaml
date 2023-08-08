@@ -23,7 +23,6 @@ notifier:
   disable_startup_check: true
   smtp:
     address: "smtp-relay.default.svc.cluster.local:2525"
-    port: 2525
     sender: "Authelia <authelia@outsideour.casa>"
     disable_require_tls: true
 
