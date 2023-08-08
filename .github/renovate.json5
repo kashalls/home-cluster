@@ -8,6 +8,7 @@
     ":semanticCommits",
     ":automergeDigest",
     ":automergeBranch",
+    "github>kashalls/home-cluster//.github/renovate/allowedVersions.json5",
     "github>kashalls/home-cluster//.github/renovate/auto-merge.json",
     "github>kashalls/home-cluster//.github/renovate/commit-message.json",
     "github>kashalls/home-cluster//.github/renovate/groups.json",
