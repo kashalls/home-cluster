@@ -1,7 +1,38 @@
 # yaml-language-server: $schema=https://gist.githubusercontent.com/james-d-elliott/756de37a4398b3445072a60d674905c6/raw/ce90833b1ce145cb701184557dd964fa7546f19a/jsonschema.json
 ---
+default_redirection_url: https://auth.kashall.dev
+log:
+  level: trace
+
+server:
+  disable_healthcheck: true
+  port: 80
+
+duo_api:
+  disable: true
+
+telemetry:
+  metrics:
+    enabled: true
+    address: "tcp://0.0.0.0:8080"
+
+totp:
+  issuer: authelia.com
+
+notifier:
+  disable_startup_check: true
+  smtp:
+    host: smtp-relay.default.svc.cluster.local
+    port: 2525
+    sender: "Authelia <authelia@outsideour.casa>"
+    disable_require_tls: true
+
 session:
+  name: authelia-home-ops
+  domain: kashall.dev
   redis:
+    host: redis.default.svc.cluster.local
+    database_index: 14
     high_availability:
       sentinel_name: redis-master
       nodes:
@@ -11,6 +42,22 @@ session:
           port: 26379
         - host: redis-node-2.redis-headless.default.svc.cluster.local
           port: 26379
+
+ldap:
+  implementation: custom
+  url: ldap://lldap.default.svc.cluster.local:389
+  timeout: 5s
+  start_tls: false
+  base_dn: dc=home,DC=arpa
+  additional_users_dn: OU=people
+  additional_groups_dn: OU=groups
+  display_name_attribute: displayName
+  users_filter: (&({username_attribute}={input})(objectClass=person))
+  groups_filter: (member={dn})
+  username_attribute: uid
+  group_name_attribute: cn
+  mail_attribute: mail
+  user: UID=admin,OU=people,DC=home,DC=arpa
 
 access_control:
   default_policy: two_factor
