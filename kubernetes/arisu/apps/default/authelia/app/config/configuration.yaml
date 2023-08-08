@@ -1,6 +1,7 @@
 # yaml-language-server: $schema=https://gist.githubusercontent.com/james-d-elliott/756de37a4398b3445072a60d674905c6/raw/ce90833b1ce145cb701184557dd964fa7546f19a/jsonschema.json
 ---
 default_redirection_url: https://auth.kashall.dev
+theme: dark
 log:
   level: trace
 
@@ -42,7 +43,13 @@ session:
         - host: redis-node-2.redis-headless.default.svc.cluster.local
           port: 26379
 
+webauthn:
+  disable: true
+
 authentication_backend:
+  refresh_interval: 1m
+  password_reset:
+    disable: true
   ldap:
     implementation: custom
     address: ldap://lldap.default.svc.cluster.local:389

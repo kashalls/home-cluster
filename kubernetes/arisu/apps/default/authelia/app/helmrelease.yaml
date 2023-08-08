@@ -47,11 +47,6 @@ spec:
       repository: ghcr.io/authelia/authelia
       tag: master@sha256:f10c2b33dcb1f9d291513cc0efd3650b0600d6924edfe2854d92db2b5f5b73cd
     args: ["--config", "/config/configuration.yaml", "--config.experimental.filters", "expand-env"]
-    env:
-      AUTHELIA_AUTHENTICATION_BACKEND_PASSWORD_RESET_DISABLE: "true"
-      AUTHELIA_AUTHENTICATION_BACKEND_REFRESH_INTERVAL: 1m
-      AUTHELIA_THEME: dark
-      AUTHELIA_WEBAUTHN_DISABLE: "true"
     envFrom: *envFrom
     enableServiceLinks: false
     service:
