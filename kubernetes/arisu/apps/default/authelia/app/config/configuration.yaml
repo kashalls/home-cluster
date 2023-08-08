@@ -56,7 +56,6 @@ authentication_backend:
     base_dn: dc=home,DC=arpa
     additional_users_dn: OU=people
     additional_groups_dn: OU=groups
-    display_name_attribute: displayName
     users_filter: (&({username_attribute}={input})(objectClass=person))
     groups_filter: (member={dn})
     user: UID=admin,OU=people,DC=home,DC=arpa
