@@ -1,4 +1,3 @@
----
 # yaml-language-server: $schema=https://kubernetes-schemas.kashall.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
@@ -32,8 +31,8 @@ spec:
     controller:
       strategy: Recreate
     image:
-      repository: ghcr.io/kashalls/prismarine-k8s-master # {"$imagepolicy": "flux-system:mineflayer-container:name"}
-      tag: main-b8607a1d-1690316640 # {"$imagepolicy": "flux-system:mineflayer-container:tag"}
+      repository: ghcr.io/kashalls/mineflayer-container # {"$imagepolicy": "flux-system:mineflayer-container:name"}
+      tag: main-3206bc58-1691687051 # {"$imagepolicy": "flux-system:mineflayer-container:tag"}
     env:
       PORT: &port 8080
     envFrom:
@@ -55,7 +54,7 @@ spec:
                 pathType: Prefix
         tls:
           - hosts:
-            - *host
+              - *host
     resources:
       requests:
         cpu: 10m
