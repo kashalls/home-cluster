@@ -6,7 +6,7 @@ metadata:
   name: user
   namespace: minecraft
   annotations:
-    secret.reloader.stakater.com/reload: "user-secret,details"
+    secret.reloader.stakater.com/reload: true
 spec:
   interval: 30m
   chart:
@@ -37,8 +37,6 @@ spec:
     env:
       PORT: &port 8080
     envFrom:
-      - secretRef:
-          name: details
       - secretRef:
           name: user-secrets
     service:
