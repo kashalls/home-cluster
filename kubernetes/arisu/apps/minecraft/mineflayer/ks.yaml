@@ -5,14 +5,12 @@ metadata:
   name: cluster-apps-mineflayer
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: cluster-apps-rook-ceph-cluster
   path: ./kubernetes/arisu/apps/minecraft/mineflayer/apps
   prune: true
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
-  wait: true
+  wait: false
   interval: 30m
   retryInterval: 1m
   timeout: 5m
