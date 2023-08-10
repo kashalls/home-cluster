@@ -32,7 +32,7 @@ spec:
       strategy: Recreate
     image:
       repository: ghcr.io/kashalls/mineflayer-container # {"$imagepolicy": "flux-system:mineflayer-container:name"}
-      tag: main-aec69c35-1691691563 # {"$imagepolicy": "flux-system:mineflayer-container:tag"}
+      tag: main-390baedd-1691692291 # {"$imagepolicy": "flux-system:mineflayer-container:tag"}
     env:
       PORT: &port 8080
     envFrom:
