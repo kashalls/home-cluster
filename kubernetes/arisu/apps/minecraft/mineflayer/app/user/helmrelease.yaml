@@ -48,7 +48,7 @@ spec:
         enabled: true
         ingressClassName: internal
         hosts:
-          - host: &host "mineflayer.ok8.sh"
+          - host: &host "mineflayer.kashall.dev"
             paths:
               - path: "{{ .Release.Name }}"
                 pathType: Prefix
