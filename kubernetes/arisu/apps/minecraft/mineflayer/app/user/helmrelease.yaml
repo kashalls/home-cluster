@@ -50,7 +50,7 @@ spec:
         hosts:
           - host: &host "mineflayer.kashall.dev"
             paths:
-              - path: "{{ .Release.Name }}"
+              - path: "/{{ .Release.Name }}"
                 pathType: Prefix
         tls:
           - hosts:
