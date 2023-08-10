@@ -48,8 +48,6 @@ spec:
       main:
         enabled: true
         ingressClassName: internal
-        annotations:
-          nginx.ingress.kubernetes.io/rewrite-target: /$2
         hosts:
           - host: &host "mineflayer.kashall.dev"
             paths:
