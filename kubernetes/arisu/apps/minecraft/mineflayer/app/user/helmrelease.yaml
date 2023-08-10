@@ -1,0 +1,66 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.kashall.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: user
+  namespace: minecraft
+  annotations:
+    secret.reloader.stakater.com/reload: "user-secret,details"
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    controller:
+      strategy: Recreate
+    image:
+      repository: ghcr.io/kashalls/prismarine-k8s-master # {"$imagepolicy": "flux-system:mineflayer-container:name"}
+      tag: main-b8607a1d-1690316640 # {"$imagepolicy": "flux-system:mineflayer-container:tag"}
+    env:
+      PORT: &port 8080
+    envFrom:
+      - secretRef:
+          name: details
+      - secretRef:
+          name: user-secrets
+    service:
+      main:
+        ports:
+          http:
+            port: *port
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: internal
+        hosts:
+          - host: &host "mineflayer.ok8.sh"
+            paths:
+              - path: "{{ .Release.Name }}"
+                pathType: Prefix
+        tls:
+          - hosts:
+            - *host
+    resources:
+      requests:
+        cpu: 10m
+        memory: 100Mi
+      limits:
+        memory: 500Mi
