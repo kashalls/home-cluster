@@ -13,7 +13,6 @@ spec:
   dnsNames:
     - "kashall.dev"
     - "*.kashall.dev"
-    - "*.mineflayer.kashall.dev"
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
