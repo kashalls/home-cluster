@@ -33,29 +33,9 @@ spec:
     image:
       repository: ghcr.io/kashalls/mineflayer-container # {"$imagepolicy": "flux-system:mineflayer-container:name"}
       tag: main-60b761e8-1691782710 # {"$imagepolicy": "flux-system:mineflayer-container:tag"}
-    env:
-      PORT: &port 8080
-      #WEBPREFIX: "/{{ .Release.Name }}"
     envFrom:
       - secretRef:
           name: user-secrets
-    service:
-      main:
-        ports:
-          http:
-            port: *port
-    ingress:
-      main:
-        enabled: true
-        ingressClassName: internal
-        hosts:
-          - host: &host "user-mineflayer.kashall.dev"
-            paths:
-              - path: "/"
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *host
     resources:
       requests:
         cpu: 10m
