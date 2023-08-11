@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: lina
+  name: mineflayer
   namespace: minecraft
   annotations:
     secret.reloader.stakater.com/reload: true
@@ -32,10 +32,10 @@ spec:
       strategy: Recreate
     image:
       repository: ghcr.io/kashalls/mineflayer-container # {"$imagepolicy": "flux-system:mineflayer-container:name"}
-      tag: main-04a43307-1691789134 # {"$imagepolicy": "flux-system:mineflayer-container:tag"}
+      tag: main-60b761e8-1691782710 # {"$imagepolicy": "flux-system:mineflayer-container:tag"}
     envFrom:
       - secretRef:
-          name: lina-secrets
+          name: mineflayer-secrets
     service:
       main:
         enabled: false
