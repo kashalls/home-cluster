@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: user
+  name: lina
   namespace: minecraft
   annotations:
     secret.reloader.stakater.com/reload: true
@@ -35,7 +35,7 @@ spec:
       tag: main-60b761e8-1691782710 # {"$imagepolicy": "flux-system:mineflayer-container:tag"}
     envFrom:
       - secretRef:
-          name: user-secrets
+          name: lina-secrets
     resources:
       requests:
         cpu: 10m
