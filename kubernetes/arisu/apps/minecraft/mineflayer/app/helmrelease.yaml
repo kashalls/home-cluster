@@ -35,7 +35,7 @@ spec:
       tag: main-04a43307-1691789134 # {"$imagepolicy": "flux-system:mineflayer-container:tag"}
     envFrom:
       - secretRef:
-          name: mineflayer-secrets
+          name: mineflayer-secret
     service:
       main:
         enabled: false
