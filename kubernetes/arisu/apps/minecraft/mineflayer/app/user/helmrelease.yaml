@@ -49,7 +49,7 @@ spec:
         enabled: true
         ingressClassName: internal
         hosts:
-          - host: &host "user.mineflayer.kashall.dev"
+          - host: &host "user-mineflayer.kashall.dev"
             paths:
               - path: "/"
                 pathType: Prefix
