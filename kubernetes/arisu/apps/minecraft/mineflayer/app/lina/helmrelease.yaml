@@ -36,6 +36,9 @@ spec:
     envFrom:
       - secretRef:
           name: lina-secrets
+    service:
+      main:
+        enabled: false
     resources:
       requests:
         cpu: 10m
