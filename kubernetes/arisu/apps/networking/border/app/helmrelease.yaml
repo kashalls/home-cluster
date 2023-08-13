@@ -30,7 +30,7 @@ spec:
     controller:
       strategy: RollingUpdate
     image:
-      repository: ghcr.io/kashall/border # {"$imagepolicy": "flux-system:border:name"}
+      repository: ghcr.io/kashalls/border # {"$imagepolicy": "flux-system:border:name"}
       tag: main-204022de-1691967781 # {"$imagepolicy": "flux-system:border:tag"}
     service:
       main:
