@@ -41,8 +41,6 @@ spec:
       main:
         enabled: true
         ingressClassName: external
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "external.kashall.dev"
         hosts:
           - host: &host "border.kashall.dev"
             paths:
