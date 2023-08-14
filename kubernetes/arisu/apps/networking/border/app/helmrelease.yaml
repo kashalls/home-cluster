@@ -31,7 +31,7 @@ spec:
       strategy: RollingUpdate
     image:
       repository: ghcr.io/kashalls/border # {"$imagepolicy": "flux-system:border:name"}
-      tag: main-204022de-1691967781 # {"$imagepolicy": "flux-system:border:tag"}
+      tag: main-770e7a85-1691986170 # {"$imagepolicy": "flux-system:border:tag"}
     service:
       main:
         ports:
