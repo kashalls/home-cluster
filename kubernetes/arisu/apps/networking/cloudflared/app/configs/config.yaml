@@ -13,17 +13,17 @@ ingress:
   - hostname: "kashall.dev"
     service: https://nginx-external-controller.networking.svc.cluster.local:443
     originRequest:
-      originServerName: "external.kashall.dev"
+      originServerName: "border.kashall.dev"
   - hostname: "*.kashall.dev"
     service: https://nginx-external-controller.networking.svc.cluster.local:443
     originRequest:
-      originServerName: "external.kashall.dev"
+      originServerName: "border.kashall.dev"
   - hostname: "ok8.sh"
     service: https://nginx-external-controller.networking.svc.cluster.local:443
     originRequest:
-      originServerName: "external.kashall.dev"
+      originServerName: "border.kashall.dev"
   - hostname: "*.ok8.sh"
     service: https://nginx-external-controller.networking.svc.cluster.local:443
     originRequest:
-      originServerName: "external.kashall.dev"
+      originServerName: "border.kashall.dev"
   - service: http_status:404

@@ -8,9 +8,9 @@ metadata:
     external-dns.alpha.kubernetes.io/target: "true"
 spec:
   endpoints:
-    - dnsName: "external.kashall.dev"
+    - dnsName: "border.kashall.dev"
       recordType: CNAME
       targets: ["${SECRET_CLOUDFLARE_TUNNEL_ID}.cfargotunnel.com"]
-    - dnsName: "external.ok8.sh"
+    - dnsName: "border.ok8.sh"
       recordType: CNAME
       targets: ["${SECRET_CLOUDFLARE_TUNNEL_ID}.cfargotunnel.com"]

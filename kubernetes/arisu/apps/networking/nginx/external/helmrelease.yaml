@@ -31,7 +31,7 @@ spec:
       replicaCount: 2
       service:
         annotations:
-          external-dns.alpha.kubernetes.io/hostname: external.kashall.dev
+          external-dns.alpha.kubernetes.io/hostname: border.kashall.dev
           io.cilium/lb-ipam-ips: 10.69.69.69
         externalTrafficPolicy: Cluster
       ingressClassResource:

@@ -5,4 +5,4 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./mineflayer/ks.yaml
-  - ./vanilla/ks.yaml
+  #- ./vanilla/ks.yaml
