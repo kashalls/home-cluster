@@ -169,7 +169,7 @@ spec:
         memory: 1000Mi
     initContainers:
       01-init-db:
-        image: ghcr.io/onedr0p/postgres-init:14.8@sha256:d8391076d2c6449927a6409c4e72aaa5607c95be51969036f4feeb7c999638ea
+        image: ghcr.io/onedr0p/postgres-init:14.8@sha256:dfddde81c0d49da09da1e893c95c32934333baba60edde707be5010dc3baa4c2
         imagePullPolicy: IfNotPresent
         envFrom:
           - secretRef:
