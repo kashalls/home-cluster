@@ -19,7 +19,7 @@
   "platform": "github",
   "onboarding": false,
   "requireConfig": "optional",
-  "dependencyDashboardTitle": "Renovate Dashboard 🤖",
+  "dependencyDashboardTitle": "Moonami Dashboard 🌙",
   "suppressNotifications": ["prIgnoreNotification"],
   "ignorePaths": ["**/archive/**"],
   "flux": {
