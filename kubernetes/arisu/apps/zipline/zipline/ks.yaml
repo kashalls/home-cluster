@@ -7,13 +7,13 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: cluster-apps-rook-ceph
+    - name: cluster-apps-rook-ceph-cluster
   path: ./kubernetes/arisu/apps/zipline/zipline/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
-  wait: false
+  wait: true
   interval: 30m
   retryInterval: 1m
   timeout: 5m
