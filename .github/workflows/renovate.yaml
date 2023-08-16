@@ -13,13 +13,14 @@ on:
         default: debug
         required: false
   schedule:
-    - cron: "* */6 * * *"
+    - cron: "0 * * * *"
   push:
     branches: ["main"]
     paths:
       - .github/renovate-bot.json5
       - .github/renovate.json5
       - .github/renovate/**.json5
+      - .github/workflows/renovate.yaml
 
 env:
   LOG_LEVEL: debug
