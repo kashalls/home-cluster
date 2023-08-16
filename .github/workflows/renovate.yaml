@@ -13,7 +13,7 @@ on:
         default: debug
         required: false
   schedule:
-    - cron: "*/6 * * * *"
+    - cron: "* */6 * * *"
   push:
     branches: ["main"]
     paths:
@@ -25,7 +25,7 @@ env:
   LOG_LEVEL: debug
   RENOVATE_DRY_RUN: false
   RENOVATE_CONFIG_FILE: .github/renovate-bot.json5
-  RENOVATE_AUTODISCOVER: true
+  RENOVATE_AUTODISCOVER: false
   RENOVATE_AUTODISCOVER_FILTER: "${{ github.repository }}"
 
 jobs:
