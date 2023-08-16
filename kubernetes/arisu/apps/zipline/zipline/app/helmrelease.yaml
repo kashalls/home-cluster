@@ -49,11 +49,7 @@ spec:
             name: zipline-bucket
             key: AWS_SECRET_ACCESS_KEY
       DATASOURCE_TYPE: "s3"
-      DATASOURCE_S3_BUCKET:
-        valueFrom:
-          secretKeyRef:
-            name: zipline-bucket
-            key: BUCKET_NAME
+      DATASOURCE_S3_BUCKET: "zipline-v1"
       DATASOURCE_S3_ENDPOINT:
         valueFrom:
           secretKeyRef:
