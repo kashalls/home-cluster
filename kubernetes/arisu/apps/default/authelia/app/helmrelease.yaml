@@ -33,7 +33,7 @@ spec:
   values:
     initContainers:
       01-init-db:
-        image: ghcr.io/onedr0p/postgres-init:14.8
+        image: ghcr.io/onedr0p/postgres-init:14.9
         imagePullPolicy: IfNotPresent
         envFrom: &envFrom
           - secretRef:
@@ -45,7 +45,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/authelia/authelia
-      tag: master@sha256:aeaed4d16d7dfe18feea6030563ee6a5684032f7db42e0c96d54427534de0440
+      tag: master@sha256:48c2f8a4d3322ceb3946b31e0db02eeceebf7803f7158c4a4ab7e4ef013f67b6
     args: ["--config", "/config/configuration.yaml", "--config.experimental.filters", "expand-env"]
     envFrom: *envFrom
     enableServiceLinks: false
