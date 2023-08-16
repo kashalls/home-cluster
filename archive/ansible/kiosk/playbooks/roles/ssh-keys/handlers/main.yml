@@ -1,6 +1,0 @@
----
-# handlers file for rpi-grafana-kiosk
-- name: Restart sshd
-  service:
-    name: sshd
-    state: restarted

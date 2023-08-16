@@ -1,4 +1,0 @@
----
-roles:
-  - name: sladkoff.grafana-kiosk
-    src: https://github.com/sladkoff/ansible-role-grafana-kiosk
