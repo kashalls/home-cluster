@@ -33,7 +33,7 @@ spec:
       clusterIP: 172.31.0.10
     image:
       repository: registry.k8s.io/coredns/coredns
-      tag: v1.10.1
+      tag: v1.11.0
     replicaCount: 3
     serviceAccount:
       create: true
