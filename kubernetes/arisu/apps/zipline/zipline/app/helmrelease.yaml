@@ -41,12 +41,12 @@ spec:
       DATASOURCE_S3_ACCESS_KEY_ID:
         valueFrom:
           secretKeyRef:
-            name: zipline-secret
+            name: zipline-bucket
             key: AWS_ACCESS_KEY_ID
       DATASOURCE_S3_SECRET_ACCESS_KEY:
         valueFrom:
           secretKeyRef:
-            name: zipline-secret
+            name: zipline-bucket
             key: AWS_SECRET_ACCESS_KEY
       DATASOURCE_TYPE: "s3"
       DATASOURCE_S3_BUCKET: "zipline-v1"
