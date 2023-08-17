@@ -58,5 +58,4 @@ spec:
             key: aws-secret-access-key
   affinity:
     nodeSelector:
-      matchLabels:
-        beta.kubernetes.io/arch: amd64
+      beta.kubernetes.io/arch: amd64
