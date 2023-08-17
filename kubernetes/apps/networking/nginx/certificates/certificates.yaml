@@ -28,3 +28,4 @@ spec:
   dnsNames:
     - "ok8.sh"
     - "*.ok8.sh"
+    
