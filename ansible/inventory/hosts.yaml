@@ -15,6 +15,14 @@ kubernetes:
   children:
     master:
       hosts:
+        rpi-one:
+          ansible_host: 10.69.0.11
+        rpi-two:
+          ansible_host: 10.69.0.12
+        rpi-three:
+          ansible_host: 10.69.0.13
+    worker:
+      hosts:
         k8s-astro:
           ansible_host: 10.69.0.3
           rook_block_devices:
@@ -27,8 +35,6 @@ kubernetes:
           ansible_host: 10.69.0.5
           rook_block_devices:
             - /dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1804C
-    worker:
-      hosts:
         k8s-jera:
           ansible_host: 10.69.0.6
           rook_block_devices:
