@@ -16,7 +16,6 @@ spec:
         namespace: flux-system
   maxHistory: 2
   install:
-    createNamespace: true
     remediation:
       retries: 3
   upgrade:
@@ -29,18 +28,13 @@ spec:
     fullnameOverride: *app
     provider: cloudflare
     env:
-      - name: CF_API_EMAIL
+      - name: CF_API_TOKEN
         valueFrom:
           secretKeyRef:
             name: external-dns-secret
-            key: email
-      - name: CF_API_KEY
-        valueFrom:
-          secretKeyRef:
-            name: external-dns-secret
-            key: api-key
+            key: api-token
     extraArgs:
-      - --annotation-filter=external-dns.alpha.kubernetes.io/target
+      - --ingress-class=external
       - --cloudflare-proxied
       - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
       - --crd-source-kind=DNSEndpoint
