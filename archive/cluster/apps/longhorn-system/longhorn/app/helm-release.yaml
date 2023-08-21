@@ -21,7 +21,7 @@ spec:
       defaultClassReplicaCount: 2
     defaultSettings:
       defaultReplicaCount: 2
-      backupTarget: nfs://${SYNOLOGY_NAS}:/volume1/LonghornBackupstore
+      backupTarget: nfs://10.0.0.20:/volume1/LonghornBackupstore
       backupTargetCredentialSecret: longhorn-secret
       concurrentAutomaticEngineUpgradePerNodeLimit: 1
       createDefaultDiskLabeledNodes: true

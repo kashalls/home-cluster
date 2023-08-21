@@ -66,7 +66,7 @@ spec:
               s3: null
               insecure: true
               s3forcepathstyle: true
-              endpoint: "${SYNOLOGY_NAS}:9000"
+              endpoint: "fran.outsideour.casa:9000"
               bucketnames: loki
               access_key_id: "k8s"
               secret_access_key: "k8sk8sk8s"
