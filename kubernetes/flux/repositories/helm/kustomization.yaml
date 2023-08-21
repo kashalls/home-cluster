@@ -9,6 +9,7 @@ resources:
   - ./cilium.yaml
   - ./cloudnative-pg.yaml
   - ./coredns.yaml
+  - ./csi-driver-nfs.yaml
   - ./external-dns.yaml
   - ./external-secrets.yaml
   - ./grafana.yaml
