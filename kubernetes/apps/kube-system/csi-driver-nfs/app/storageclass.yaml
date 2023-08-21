@@ -5,8 +5,8 @@ metadata:
   name: nfs-fran
 provisioner: nfs.csi.k8s.io
 parameters:
-  server: "${NFS_TANK_CLUSTERIP}"
-  share: /pvc
+  server: "fran.outsideour.casa"
+  share: /mnt/littleboi/kubernetes
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
 mountOptions:
