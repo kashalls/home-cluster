@@ -1,0 +1,16 @@
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-fran
+provisioner: nfs.csi.k8s.io
+parameters:
+  server: "${NFS_TANK_CLUSTERIP}"
+  share: /pvc
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+mountOptions:
+  - nfsvers=4.2
+  - nconnect=16
+  - hard
+  - noatime
