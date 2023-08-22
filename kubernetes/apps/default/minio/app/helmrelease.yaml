@@ -47,7 +47,7 @@ spec:
       # MINIO_IDENTITY_OPENID_REDIRECT_URI: "https://minio.kashall.dev/oauth_callback"
     envFrom:
       - secretRef:
-          name: *app
+          name: minio-secret
     args: ["server", "/data", "--console-address", ":9001"]
     service:
       main:
