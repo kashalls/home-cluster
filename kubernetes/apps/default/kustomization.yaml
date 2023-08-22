@@ -11,6 +11,7 @@ resources:
   - ./home-assistant/ks.yaml
   - ./kubernetes-schemas/ks.yaml
   - ./lldap/ks.yaml
+  - ./minio/ks.yaml
   - ./mosquitto/ks.yaml
   - ./opnsense/ks.yaml
   - ./redis/ks.yaml
