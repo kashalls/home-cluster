@@ -16,7 +16,7 @@ spec:
     name: cloudnative-pg-secret
   bootstrap:
     recovery:
-      source: &previousCluster postgres-v6
+      source: &previousCluster postgres-v5
   postgresql:
     parameters:
       max_connections: "600"
