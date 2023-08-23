@@ -170,6 +170,22 @@ spec:
         tls:
           - hosts:
               - *exthost
+      shorten-image:
+        enabled: true
+        primary: false
+        ingressClassName: external
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "border.ok8.sh"
+          nginx.ingress.kubernetes.io/use-regex: "true"
+          nginx.ingress.kubernetes.io/rewrite-target: /file/$1
+        hosts:
+          - host: &shorten-image "i.ok8.sh"
+            paths:
+              - path: /(.*)
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *shorten-image
     resources:
       requests:
         cpu: 10m
