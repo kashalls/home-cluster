@@ -5,7 +5,7 @@ kind: Kustomization
 namespace: monitoring
 resources:
   - ./secret.sops.yaml
-  - ./helm-release.yaml
+  - ./helmrelease.yaml
 configMapGenerator:
   - name: thanos-bucket-replicate-dashboard
     files:
