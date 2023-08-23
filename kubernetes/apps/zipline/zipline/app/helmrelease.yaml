@@ -99,7 +99,7 @@ spec:
       WEBSITE_TITLE: "Zipline"
       WEBSITE_SHOW_FILES_PER_USER: "false"
       WEBSITE_EXTERNAL_LINKS: '[{"label":"Powered by Zipline","link":"https://github.com/diced/zipline"}]'
-      WEBSITE_SHOW_VERSION: "false"
+      WEBSITE_SHOW_VERSION: "true"
       WEBSITE_DISABLE_MEDIA_PREVIEW: "false"
     service:
       main:
