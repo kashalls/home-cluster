@@ -47,3 +47,6 @@ spec:
       enabled: true
     podAnnotations:
       secret.reloader.stakater.com/reload: external-dns-secret
+    domainFilters:
+      - ok8.sh
+      - kashall.dev
