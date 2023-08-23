@@ -34,6 +34,7 @@ spec:
             name: external-dns-secret
             key: api-token
     extraArgs:
+      - --log-level=debug
       - --ingress-class=external
       - --cloudflare-proxied
       - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
