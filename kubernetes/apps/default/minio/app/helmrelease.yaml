@@ -88,7 +88,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: internal
         annotations:
           hajimari.io/icon: mdi:pail
         hosts:
@@ -103,7 +103,7 @@ spec:
               - *console-host
       s3:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: internal
         annotations:
           hajimari.io/enable: "false"
           nginx.ingress.kubernetes.io/proxy-connect-timeout: "180"
