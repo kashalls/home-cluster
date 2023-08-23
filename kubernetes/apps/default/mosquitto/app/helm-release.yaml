@@ -47,7 +47,7 @@ spec:
       main:
         type: LoadBalancer
         annotations:
-          external-dns.alpha.kubernetes.io/hostname: "mosquitto.${SECRET_DOMAIN}"
+          external-dns.alpha.kubernetes.io/hostname: "mosquitto.kashall.dev"
           io.cilium/lb-ipam-ips: "10.69.69.110"
         externalTrafficPolicy: Cluster
         ports:

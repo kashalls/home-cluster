@@ -73,7 +73,7 @@ spec:
         enabled: true
         ingressClassName: internal
         hosts:
-          - host: &host "onepassword-connect.${SECRET_DOMAIN}"
+          - host: &host "onepassword-connect.kashall.dev"
             paths:
               - path: /
                 pathType: Prefix

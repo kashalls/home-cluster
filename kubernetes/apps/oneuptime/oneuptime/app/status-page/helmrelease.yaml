@@ -71,7 +71,7 @@ spec:
         enabled: true
         ingressClassName: external
         annotations:
-          external-dns.alpha.lubernetes.io/target: "ingress.${SECRET_DOMAIN}"
+          external-dns.alpha.lubernetes.io/target: "ingress.kashall.dev"
         hosts:
           - host: &host "oneuptime.ok8.sh"
             paths:

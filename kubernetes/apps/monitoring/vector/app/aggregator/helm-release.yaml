@@ -56,7 +56,7 @@ spec:
         type: LoadBalancer
         annotations:
           io.cilium/lb-ipam-ips: "10.69.69.111"
-          external-dns.alpha.kubernetes.io/hostname: vector."${SECRET_DOMAIN}"
+          external-dns.alpha.kubernetes.io/hostname: vector."kashall.dev"
         externalTrafficPolicy: Cluster
         ports:
           http:
