@@ -27,6 +27,7 @@ spec:
   values:
     fullnameOverride: *app
     provider: cloudflare
+    logLevel: debug
     env:
       - name: CF_API_TOKEN
         valueFrom:
@@ -34,7 +35,6 @@ spec:
             name: external-dns-secret
             key: api-token
     extraArgs:
-      - --log-level=debug
       - --ingress-class=external
       - --cloudflare-proxied
       - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
