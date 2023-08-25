@@ -126,3 +126,4 @@ spec:
       kind: Secret
       name: thanos-bucket
       valuesKey: AWS_SECRET_ACCESS_KEY
+#
