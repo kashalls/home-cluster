@@ -6,9 +6,9 @@ namespace: monitoring
 resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
-  - ./scrapeconfigs
   - ./prometheusrules
   - ./gatus.yaml
+  #- ./scrapeconfigs
 configMapGenerator:
   - name: alertmanager-config-tpl
     files:
