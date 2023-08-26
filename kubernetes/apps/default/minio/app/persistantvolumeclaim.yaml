@@ -27,7 +27,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: fran-nfs
+  storageClassName: nfs-fran
   resources:
     requests:
       storage: 200G
