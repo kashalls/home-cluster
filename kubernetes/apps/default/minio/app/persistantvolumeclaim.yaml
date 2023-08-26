@@ -27,7 +27,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: nfs-fran
+  storageClassName: minio-nfs
   resources:
     requests:
       storage: 200G
