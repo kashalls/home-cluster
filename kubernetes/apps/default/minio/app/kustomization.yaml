@@ -5,4 +5,5 @@ kind: Kustomization
 namespace: default
 resources:
   - ./secret.sops.yaml
+  - ./persistantvolumeclaim.yaml
   - ./helmrelease.yaml

@@ -129,9 +129,7 @@ spec:
     persistence:
       data:
         enabled: true
-        type: nfs
-        server: "fran.outsideour.casa"
-        path: /mnt/bigboi/minio
+        existingClaim: minio-nfs
         mountPath: /data
     resources:
       requests:
