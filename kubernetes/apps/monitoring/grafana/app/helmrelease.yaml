@@ -17,7 +17,6 @@ spec:
         namespace: flux-system
   maxHistory: 2
   install:
-    createNamespace: true
     remediation:
       retries: 3
   upgrade:
@@ -34,7 +33,7 @@ spec:
         envFrom:
           - secretRef:
               name: &secret grafana-secret
-    replicas: 1
+    replicas: 2
     env:
       GF_AUTH_GENERIC_OAUTH_API_URL: https://auth.kashall.dev/api/oidc/userinfo
       GF_AUTH_GENERIC_OAUTH_AUTH_URL: https://auth.kashall.dev/api/oidc/authorization
@@ -52,6 +51,7 @@ spec:
       analytics:
         check_for_updates: false
         check_for_plugin_updates: false
+        reporting_enabled: false
       auth:
         oauth_auto_login: true
         oauth_allow_insecure_email_lookup: true
@@ -320,6 +320,7 @@ spec:
           foldersFromFilesStructure: true
       datasources:
         enabled: true
+        labelValue: ''
         searchNamespace: ALL
     plugins:
       - grafana-clock-panel
@@ -332,9 +333,9 @@ spec:
       enabled: true
     ingress:
       enabled: true
-      ingressClassName: internal
+      ingressClassName: external
       annotations:
-        hajimari.io/icon: simple-icons:grafana
+        external-dns.alpha.kubernetes.io/target: border.kashall.dev
       hosts:
         - &host grafana.kashall.dev
       tls:
