@@ -47,16 +47,15 @@ spec:
       annotations:
         reloader.stakater.com/auto: "true"
     image:
-      # https://github.com/vectordotdev/vector/issues/6715
-      repository: ghcr.io/kashalls/vector-but-its-using-bookwork
-      tag: latest
+      repository: docker.io/timberio/vector
+      tag: 0.32.1-debian
     args: ["--config", "/etc/vector/vector.yaml"]
     service:
       main:
         type: LoadBalancer
         annotations:
           io.cilium/lb-ipam-ips: "10.69.69.111"
-          external-dns.alpha.kubernetes.io/hostname: vector."kashall.dev"
+          external-dns.alpha.kubernetes.io/hostname: "vector.kashall.dev"
         externalTrafficPolicy: Cluster
         ports:
           http:
