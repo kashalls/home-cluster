@@ -10,7 +10,7 @@ parameters:
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
 mountOptions:
-  - nfsvers=4.2
+  - nfsvers=4.1
   - nconnect=16
   - hard
   - noatime
