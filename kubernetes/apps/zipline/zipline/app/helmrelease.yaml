@@ -188,8 +188,8 @@ spec:
               - *shorten-image
     resources:
       requests:
-        cpu: 10m
-        memory: 128Mi
+        cpu: 300m
+        memory: 512Mi
       limits:
         memory: 1000Mi
     initContainers:
