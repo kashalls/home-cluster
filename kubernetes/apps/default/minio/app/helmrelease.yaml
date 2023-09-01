@@ -31,7 +31,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: quay.io/minio/minio
-      tag: RELEASE.2023-08-29T23-07-35Z
+      tag: RELEASE.2023-08-31T15-31-16Z
     env:
       TZ: "${TIMEZONE}"
       MINIO_UPDATE: "off"
