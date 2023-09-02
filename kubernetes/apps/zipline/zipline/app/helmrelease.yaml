@@ -109,7 +109,7 @@ spec:
       main:
         enabled: true
         primary: true
-        ingressClassName: internal
+        ingressClassName: externalwwwwwrwwwwwwwwwww
         annotations:
           nginx.ingress.kubernetes.io/proxy-body-size: "100m"
           external-dns.alpha.kubernetes.io/target: "border.ok8.sh"
