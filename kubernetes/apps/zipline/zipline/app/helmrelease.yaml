@@ -87,7 +87,7 @@ spec:
       RATELIMIT_USER: "5"
       RATELIMIT_ADMIN: "1"
       UPLOADER_DEFAULT_FORMAT: "DATE"
-      UPLOADER_ROUTE: &upload "/file"
+      UPLOADER_ROUTE: &upload "/i"
       UPLOADER_ADMIN_LIMIT: "100gb"
       UPLOADER_USER_LIMIT: "500mb"
       UPLOADER_DISABLED_EXTENSIONS: "ps1,pdf,bat,exe,sh,fish"
@@ -112,79 +112,15 @@ spec:
         ingressClassName: internal
         annotations:
           nginx.ingress.kubernetes.io/proxy-body-size: "100m"
+          external-dns.alpha.kubernetes.io/target: "border.ok8.sh"
         hosts:
-          - host: &host "zipline.kashall.dev"
+          - host: &host "ok8.sh"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
               - *host
-      external-upload:
-        enabled: true
-        primary: false
-        ingressClassName: external
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "border.kashall.dev"
-          nginx.ingress.kubernetes.io/proxy-body-size: "100m"
-        hosts:
-          - host: *host
-            paths:
-              - path: *upload
-                pathType: Prefix
-              - path: /view
-                pathType: Prefix
-              - path: /r
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *host
-      shorten:
-        enabled: true
-        primary: false
-        ingressClassName: external
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "border.ok8.sh"
-        hosts:
-          - host: &exthost "s.ok8.sh"
-            paths:
-              - path: *shorten
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *exthost
-      shorten-rewrite:
-        enabled: true
-        primary: false
-        ingressClassName: external
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "border.ok8.sh"
-          nginx.ingress.kubernetes.io/use-regex: "true"
-          nginx.ingress.kubernetes.io/rewrite-target: /go/$1
-        hosts:
-          - host: *exthost
-            paths:
-              - path: /(.*)
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *exthost
-      shorten-image:
-        enabled: true
-        primary: false
-        ingressClassName: external
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "border.ok8.sh"
-          nginx.ingress.kubernetes.io/use-regex: "true"
-          nginx.ingress.kubernetes.io/rewrite-target: /file/$1
-        hosts:
-          - host: &shorten-image "i.ok8.sh"
-            paths:
-              - path: /(.*)
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *shorten-image
     resources:
       requests:
         cpu: 300m
