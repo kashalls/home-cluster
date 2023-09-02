@@ -26,6 +26,7 @@ spec:
       repository: ghcr.io/diced/zipline
       tag: 3.7.4@sha256:000d61f694d002d94a46b089b4d2617a72fe2cba3c1388ad149233e654625fe3
     env:
+      DEBUG: "true"
       TZ: "${CONFIG_TZ}"
       CORE_SECRET:
         valueFrom:
