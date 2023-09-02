@@ -114,7 +114,7 @@ spec:
           nginx.ingress.kubernetes.io/proxy-body-size: "100m"
           external-dns.alpha.kubernetes.io/target: "border.ok8.sh"
         hosts:
-          - host: &host "ok8.sh"
+          - host: &host "z.ok8.sh"
             paths:
               - path: /
                 pathType: Prefix
