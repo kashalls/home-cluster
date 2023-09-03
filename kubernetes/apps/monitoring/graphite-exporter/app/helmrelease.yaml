@@ -58,8 +58,10 @@ spec:
           http:
             enabled: false
           metrics:
+            enabled: true
             port: 9108
           graphite:
+            enabled: true
             port: 2003
     serviceMonitor:
       main:
