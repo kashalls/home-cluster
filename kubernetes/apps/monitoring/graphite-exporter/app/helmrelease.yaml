@@ -61,8 +61,13 @@ spec:
           metrics:
             enabled: true
             port: 9108
-          graphite:
+          graphite-tcp:
             enabled: true
+            protocol: TCP
+            port: 2003
+          graphite-udp:
+            enabled: true
+            protocol: UDP
             port: 2003
     serviceMonitor:
       main:
