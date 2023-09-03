@@ -35,8 +35,9 @@ spec:
     command:
       [
         /bin/graphite_exporter,
-        "--graphite.listen-address=:2003",
+        --graphite.listen-address=:2003,
         --graphite.mapping-config=/config/graphite-mapping.yaml,
+        --log.level=debug
       ]
     env:
       TZ: America/Los_Angeles
