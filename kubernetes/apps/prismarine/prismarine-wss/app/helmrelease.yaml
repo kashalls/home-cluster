@@ -31,7 +31,7 @@ spec:
       strategy: RollingUpdate
     image:
       repository: ghcr.io/kashalls/prismarine-k8s-wss # {"$imagepolicy": "flux-system:prismarine-wss:name"}
-      tag: main-3560fe84-1690423526 # {"$imagepolicy": "flux-system:prismarine-wss:tag"}
+      tag: main-7e6d3b7d-1695065988 # {"$imagepolicy": "flux-system:prismarine-wss:tag"}
     env:
       MONGODB_CONNECTION_STRING:
         valueFrom:
