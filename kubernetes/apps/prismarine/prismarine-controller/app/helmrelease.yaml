@@ -31,7 +31,7 @@ spec:
       strategy: RollingUpdate
     image:
       repository: ghcr.io/kashalls/prismarine-k8s-master # {"$imagepolicy": "flux-system:prismarine-controller:name"}
-      tag: main-2c72d880-1694828524 # {"$imagepolicy": "flux-system:prismarine-controller:tag"}
+      tag: main-fe7a9a89-1695065672 # {"$imagepolicy": "flux-system:prismarine-controller:tag"}
     env:
       MONGO_CONNECTION_STRING:
         valueFrom:
