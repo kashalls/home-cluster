@@ -104,6 +104,9 @@ spec:
     envFrom:
       - secretRef:
           name: shynet-secret
+    service:
+      main:
+        enabled: false
 #    resources:
 #      requests:
 #        cpu: 10m
