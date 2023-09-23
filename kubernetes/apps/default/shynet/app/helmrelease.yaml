@@ -99,7 +99,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: docker.io/milesmcc/shynet
-      tag: v0.13.1
+      tag: edge
     command: ["./celeryworker.sh"]
     envFrom:
       - secretRef:
