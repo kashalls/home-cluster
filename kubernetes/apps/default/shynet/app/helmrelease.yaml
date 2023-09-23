@@ -33,7 +33,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/kashalls/shynet
-      tag: sha256:9da5491edebd86fcebd614ab105dbcbd789b343348ccbb11ead692704ad82b39 
+      tag: sha256:3ba0a49170ef7280324d67391d8dc8eb26b86685d526200f9e68cac89b4de4c3
     envFrom:
       - secretRef:
           name: shynet-secret
@@ -99,7 +99,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/kashalls/shynet
-      tag: sha256:9da5491edebd86fcebd614ab105dbcbd789b343348ccbb11ead692704ad82b39
+      tag: sha256:3ba0a49170ef7280324d67391d8dc8eb26b86685d526200f9e68cac89b4de4c3 
     command: ["./celeryworker.sh"]
     envFrom:
       - secretRef:
