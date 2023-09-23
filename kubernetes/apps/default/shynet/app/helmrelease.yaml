@@ -100,7 +100,7 @@ spec:
     image:
       repository: ghcr.io/kashalls/shynet-debug
       tag: 1
-    command: ["./celeryworker.sh"]
+    command: ["/usr/src/shynet/celeryworker.sh"]
     envFrom:
       - secretRef:
           name: shynet-secret
