@@ -100,7 +100,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/kashalls/shynet
-      tag: pickles2
+      tag: pickles3
       pullPolicy: Always
     command: ["./celeryworker.sh"]
     envFrom:
