@@ -32,8 +32,8 @@ spec:
       annotations:
         reloader.stakater.com/auto: "true"
     image:
-      repository: docker.io/milesmcc/shynet
-      tag: v0.13.1
+      repository: ghcr.io/milesmcc/shynet
+      tag: edge
     envFrom:
       - secretRef:
           name: shynet-secret
@@ -98,7 +98,7 @@ spec:
       annotations:
         reloader.stakater.com/auto: "true"
     image:
-      repository: docker.io/milesmcc/shynet
+      repository: ghcr.io/milesmcc/shynet
       tag: edge
     command: ["./celeryworker.sh"]
     envFrom:
