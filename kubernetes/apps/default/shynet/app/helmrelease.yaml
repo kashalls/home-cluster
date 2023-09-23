@@ -59,12 +59,12 @@ spec:
         tls:
           - hosts:
               - *host
-#    resources:
-#      requests:
-#        cpu: 10m
-#        memory: 10Mi
-#      limits:
-#        memory: 50Mi
+    resources:
+      requests:
+        cpu: 75m
+        memory: 150Mi
+      limits:
+        memory: 300Mi
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.kashall.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
