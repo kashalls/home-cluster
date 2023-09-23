@@ -32,7 +32,7 @@ spec:
       annotations:
         reloader.stakater.com/auto: "true"
     image:
-      repository: ghcr.io/milesmcc/shynet
+      repository: ghcr.io/kashalls/shynet
       tag: edge
     envFrom:
       - secretRef:
@@ -98,9 +98,9 @@ spec:
       annotations:
         reloader.stakater.com/auto: "true"
     image:
-      repository: ghcr.io/kashalls/shynet-debug
-      tag: 1
-    command: ["/usr/src/shynet/celeryworker.sh"]
+      repository: ghcr.io/kashalls/shynet
+      tag: edge
+    command: ["./celeryworker.sh"]
     envFrom:
       - secretRef:
           name: shynet-secret
