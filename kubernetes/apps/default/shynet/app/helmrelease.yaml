@@ -98,8 +98,8 @@ spec:
       annotations:
         reloader.stakater.com/auto: "true"
     image:
-      repository: ghcr.io/milesmcc/shynet
-      tag: edge
+      repository: ghcr.io/kashalls/shynet-debug
+      tag: 1
     command: ["./celeryworker.sh"]
     envFrom:
       - secretRef:
