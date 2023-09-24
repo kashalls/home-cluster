@@ -39,7 +39,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p ${{ env.SCHEMA_DIR }}
-          flux pull artifact oci://ghcr.io/onedr0p/manifests/kubernetes-schemas:latest \
+          flux pull artifact oci://ghcr.io/kashalls/kubernetes-schemas:latest \
               --output=${{ env.SCHEMA_DIR }}
 
       - name: Run kubeconform

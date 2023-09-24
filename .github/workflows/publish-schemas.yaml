@@ -59,7 +59,7 @@ jobs:
       - name: Generate tag
         id: generate-tag
         shell: bash
-        run: echo "tag=ghcr.io/${{ github.repository_owner }}/manifests/kubernetes-schemas:$(git rev-parse --short HEAD)" >> "${GITHUB_OUTPUT}"
+        run: echo "tag=ghcr.io/${{ github.repository_owner }}/raw-kubernetes-schemas:$(git rev-parse --short HEAD)" >> "${GITHUB_OUTPUT}"
 
       - name: Publish manifests
         shell: bash
@@ -99,7 +99,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p /home/runner/crdSchemas
-          flux pull artifact oci://ghcr.io/${{ github.repository_owner }}/manifests/kubernetes-schemas:$(git rev-parse --short HEAD) --output /home/runner/crdSchemas
+          flux pull artifact oci://ghcr.io/${{ github.repository_owner }}/raw-kubernetes-schemas:$(git rev-parse --short HEAD) --output /home/runner/crdSchemas
 
       - name: Write nginx-unprivileged Dockerfile
         shell: bash
