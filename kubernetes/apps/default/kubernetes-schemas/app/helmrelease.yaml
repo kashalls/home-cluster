@@ -31,8 +31,8 @@ spec:
       replicas: 1
       strategy: RollingUpdate
     image:
-      repository: ghcr.io/onedr0p/kubernetes-schemas
-      tag: latest@sha256:dbc20daff1b2c84a32f8775f587f2635b02720d6909d1a3bddbe3842c963b1b9
+      repository: ghcr.io/kashalls/kubernetes-schemas
+      tag: latest@sha256:428b8144273e7cc49ee9485cc2d3ef8cd26db105bd5c81f9e1dc92d58e6baa64
     service:
       main:
         ports:
@@ -46,7 +46,7 @@ spec:
           external-dns.alpha.kubernetes.io/target: border.kashall.dev
           hajimari.io/icon: mdi:code-json
         hosts:
-          - host: &host "{{ .Release.Name }}.kashall.dev"
+          - host: &host "kubernetes-schemas.kashall.dev"
             paths:
               - path: /
                 pathType: Prefix
