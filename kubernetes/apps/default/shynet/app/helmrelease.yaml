@@ -93,6 +93,13 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    initContainers:
+      01-init-db:
+        image: ghcr.io/onedr0p/postgres-init:14.9
+        imagePullPolicy: IfNotPresent
+        envFrom: &envFrom
+          - secretRef:
+              name: shynet-secret
     controller:
       replicas: 3
       strategy: RollingUpdate
