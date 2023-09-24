@@ -59,7 +59,7 @@ jobs:
       - name: Generate tag
         id: generate-tag
         shell: bash
-        run: echo "tag=ghcr.io/${{ github.repository_owner }}/raw-kubernetes-schemas:$(git rev-parse --short HEAD)" >> "${GITHUB_OUTPUT}"
+        run: echo "tag=ghcr.io/${{ github.repository_owner }}/raw-kubernetes-schemas:${GITHUB_SHA::7}" >> "${GITHUB_OUTPUT}"
 
       - name: Publish manifests
         shell: bash
