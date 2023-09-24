@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@nuxt-themes/docus": "^1.6.0",
-    "nuxt": "^3.1.0"
+    "nuxt": "^3.7.3"
   },
   "packageManager": "yarn@3.6.3"
 }
