@@ -4,9 +4,9 @@ kind: Kustomization
 namespace: default
 resources:
   - ./secret.sops.yaml
-  #- ./external-secrets.yaml
-  - ./helm-release.yaml
-  - ./node-feature-rule.yaml
+  #- ./externalsecrets.yaml
+  - ./helmrelease.yaml
+  - ./nodefeaturerule.yaml
 commonLabels:
   app.kubernetes.io/name: rtlamr2mqtt
   app.kubernetes.io/instance: rtlamr2mqtt

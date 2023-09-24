@@ -4,4 +4,4 @@ kind: Kustomization
 namespace: flux-system
 resources:
   - ./secret.sops.yaml
-  - ./helm-release.yaml
+  - ./helmrelease.yaml
