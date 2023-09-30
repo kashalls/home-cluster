@@ -12,7 +12,7 @@ on:
 jobs:
   publish-manifests:
     name: Publish Manifests
-    runs-on: ["arc-runner-set-home-ops"]
+    runs-on: ["self-hosted"]
     steps:
       - name: Setup Flux
         uses: fluxcd/flux2/action@026ab61ba7e3755d7be7dc7d2b6024c3b3992291 # v2.1.1
