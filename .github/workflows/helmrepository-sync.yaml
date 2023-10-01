@@ -18,7 +18,7 @@ on:
 jobs:
   sync:
     name: Flux HelmRepository Sync
-    runs-on: ["self-hosted"]
+    runs-on: ["arc-runner-set-home-ops"]
     steps:
       - name: Checkout
         uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
