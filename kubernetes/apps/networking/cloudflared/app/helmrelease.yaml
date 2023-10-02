@@ -33,6 +33,7 @@ spec:
           reloader.stakater.com/auto: "true"
         containers:
           main:
+            nameOverride: cloudflared
             image:
               repository: docker.io/cloudflare/cloudflared
               tag: 2023.8.2
