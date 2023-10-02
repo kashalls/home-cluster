@@ -12,7 +12,6 @@ resources:
   - ./kubernetes-schemas/ks.yaml
   - ./lldap/ks.yaml
   - ./mosquitto/ks.yaml
-  - ./opnsense/ks.yaml
   - ./redis/ks.yaml
   - ./rtlamr2mqtt/ks.yaml
   - ./shynet/ks.yaml
