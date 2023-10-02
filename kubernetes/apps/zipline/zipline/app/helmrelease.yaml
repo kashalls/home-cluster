@@ -123,7 +123,6 @@ spec:
     ingress:
       main:
         enabled: true
-        primary: true
         className: external
         annotations:
           nginx.ingress.kubernetes.io/proxy-body-size: "100m"
