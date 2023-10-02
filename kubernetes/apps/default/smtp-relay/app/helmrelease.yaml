@@ -83,9 +83,10 @@ spec:
         enabled: true
         type: configMap
         name: smtp-relay-configmap
-        subPath: maddy.conf
-        mountPath: /data/maddy.conf
-        readOnly: true
+        globalMounts:
+          - path: /data/maddy.conf
+            subPath: maddy.conf
+            readOnly: true
       data:
         enabled: true
         type: emptyDir
