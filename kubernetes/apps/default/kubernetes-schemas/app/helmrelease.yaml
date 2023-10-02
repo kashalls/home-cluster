@@ -57,7 +57,6 @@ spec:
             port: 8080
     ingress:
       main:
-        enabled: true
         className: external
         annotations:
           external-dns.alpha.kubernetes.io/target: border.kashall.dev
@@ -67,6 +66,9 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
