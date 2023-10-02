@@ -12,7 +12,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.0.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -29,16 +29,24 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    image:
-      repository: docker.io/binwiederhier/ntfy
-      tag: v2.7.0
-    args: ["serve"]
-    env:
-      TIMEZONE: "UTC"
-      NTFY_DEBUG: false
-      NTFY_LOG_LEVEL: "INFO"
-      NTFY_BASE_URL: "https://nfty.ok8.sh"
-      PORT: &port 80
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: docker.io/binwiederhier/ntfy
+              tag: v2.7.0
+            args: ["serve"]
+            env:
+              TIMEZONE: "UTC"
+              NTFY_DEBUG: false
+              NTFY_LOG_LEVEL: "INFO"
+              NTFY_BASE_URL: "https://nfty.ok8.sh"
+              PORT: &port 80
+            resources:
+              requests:
+                cpu: 500m
+                memory: 250Mi
     service:
       main:
         ports:
@@ -47,7 +55,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: external
+        className: external
         annotations:
           external-dns.alpha.kubernetes.io/target: "border.ok8.sh"
         hosts:
@@ -58,16 +66,6 @@ spec:
         tls:
           - hosts:
             - *host
-    resources:
-      requests:
-        cpu: 500m
-        memory: 250Mi
-    volumeMounts:
-      - name: config-volume
-        subPath: server.yml
-        mountPath: /etc/ntfy/server.yml
-      - name: cache-volume
-        mountPath: /var/cache/ntfy
     persistance:
       config:
         enabled: true
