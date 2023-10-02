@@ -27,25 +27,54 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    initContainers:
-      01-init-db:
-        image: ghcr.io/onedr0p/postgres-init:14.9
-        imagePullPolicy: IfNotPresent
-        envFrom: &envFrom
-          - secretRef:
-              name: home-assistant-secret
-    controller:
-      type: statefulset
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/onedr0p/home-assistant
-      tag: 2023.9.3@sha256:d6e4c153f71b544e0e216706beda9511e106d535f96a0fce75500efa7cbee01d
-    env:
-      TZ: America/Los_Angeles
-      POSTGRES_HOST: postgres-rw.default.svc.cluster.local
-      POSTGRES_DB: home_assistant
-    envFrom: *envFrom
+    defaultPodOptions:
+      podSecurityContext:
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+    controllers:
+      main:
+        type: statefulset
+        statefulset:
+          volumeClaimTemplates:
+            - name: data
+              mountPath: /config
+              accessMode: ReadWriteOnce
+              size: 15Gi
+              storageClass: ceph-block
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/onedr0p/home-assistant
+              tag: 2023.9.3@sha256:d6e4c153f71b544e0e216706beda9511e106d535f96a0fce75500efa7cbee01d
+            env:
+              TZ: America/Los_Angeles
+              POSTGRES_HOST: postgres-rw.default.svc.cluster.local
+              POSTGRES_DB: home_assistant
+              envFrom: &envFrom
+                - secretRef:
+                    name: home-assistant-secret
+            probes:
+              liveness:
+                enabled: false
+              readiness:
+                enabled: false
+              startup:
+                enabled: false
+            resources:
+              requests:
+                cpu: 10m
+                memory: 100Mi
+              limits:
+                memory: 750Mi
+        initContainers:
+          01-init-db:
+            image: ghcr.io/onedr0p/postgres-init:14.9
+            imagePullPolicy: IfNotPresent
+            envFrom: *envFrom
     service:
       main:
         ports:
@@ -66,27 +95,3 @@ spec:
         tls:
           - hosts:
               - *host
-    probes:
-      liveness:
-        enabled: false
-      readiness:
-        enabled: false
-      startup:
-        enabled: false
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: OnRootMismatch
-    volumeClaimTemplates:
-      - name: data
-        mountPath: /config
-        accessMode: ReadWriteOnce
-        size: 15Gi
-        storageClass: ceph-block
-    resources:
-      requests:
-        cpu: 10m
-        memory: 100Mi
-      limits:
-        memory: 750Mi
