@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.0.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -26,20 +26,37 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    controller:
-      replicas: 1
-      strategy: RollingUpdate
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/foxcpp/maddy
-      tag: 0.7.0
-    env:
-      DEBUG: "true"
-      SMTP_PORT: 465
-    envFrom:
-      - secretRef:
-          name: smtp-relay-secret
+    defaultPodOptions:
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: *app
+    controllers:
+      main:
+        replicas: 2
+        strategy: RollingUpdate
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/foxcpp/maddy
+              tag: 0.7.0
+            env:
+              DEBUG: "true"
+              SMTP_PORT: 465
+            envFrom:
+              - secretRef:
+                  name: smtp-relay-secret
+            resources:
+              requests:
+                cpu: 10m
+                memory: 10Mi
+              limits:
+                memory: 50Mi
     service:
       main:
         type: LoadBalancer
@@ -75,16 +92,3 @@ spec:
         medium: Memory
         sizeLimit: 1Gi
         mountPath: /dev/shm
-    topologySpreadConstraints:
-      - maxSkew: 1
-        topologyKey: kubernetes.io/hostname
-        whenUnsatisfiable: DoNotSchedule
-        labelSelector:
-          matchLabels:
-            app.kubernetes.io/name: *app
-    resources:
-      requests:
-        cpu: 10m
-        memory: 10Mi
-      limits:
-        memory: 50Mi
