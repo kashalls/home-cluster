@@ -110,7 +110,9 @@ spec:
               WEBSITE_DISABLE_MEDIA_PREVIEW: "false"
         initContainers:
           01-init-db:
-            image: ghcr.io/onedr0p/postgres-init:14.9@sha256:e54cfa670bfaad70a3286d3792a98091125e50e176c56e07492cf5d9849cae57
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 14.9@sha256:e54cfa670bfaad70a3286d3792a98091125e50e176c56e07492cf5d9849cae57
             imagePullPolicy: IfNotPresent
             envFrom:
               - secretRef:
