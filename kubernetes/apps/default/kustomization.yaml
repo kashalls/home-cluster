@@ -18,3 +18,4 @@ resources:
   - ./shynet/ks.yaml
   - ./smtp-relay/ks.yaml
   - ./zigbee2mqtt/ks.yaml
+  - ./zipline/ks.yaml

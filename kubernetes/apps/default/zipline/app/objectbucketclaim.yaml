@@ -4,7 +4,7 @@ apiVersion: objectbucket.io/v1alpha1
 kind: ObjectBucketClaim
 metadata:
   name: zipline-bucket
-  namespace: zipline
+  namespace: default
 spec:
   bucketName: zipline-v1
   storageClassName: ceph-bucket
