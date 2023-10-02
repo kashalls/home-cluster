@@ -47,21 +47,22 @@ spec:
               size: 1Gi
               storageClass: ceph-block
         containers:
-          image:
-            repository: ghcr.io/dgtlmoon/changedetection.io
-            tag: "0.45.2"
-          env:
-            TZ: America/Los_Angeles
-            PORT: &port 5000
-            PUID: 568
-            PGID: 568
-            BASE_URL: "https://cd.kashall.dev"
-          resources:
-            requests:
-              cpu: 10m
-              memory: 100Mi
-            limits:
-              memory: 500Mi
+          main:
+            image:
+              repository: ghcr.io/dgtlmoon/changedetection.io
+              tag: "0.45.2"
+            env:
+              TZ: America/Los_Angeles
+              PORT: &port 5000
+              PUID: 568
+              PGID: 568
+              BASE_URL: "https://cd.kashall.dev"
+            resources:
+              requests:
+                cpu: 10m
+                memory: 100Mi
+              limits:
+                memory: 500Mi
     service:
       main:
         ports:
