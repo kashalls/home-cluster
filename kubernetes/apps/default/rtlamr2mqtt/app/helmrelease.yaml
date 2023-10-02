@@ -10,33 +10,18 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.0.0
+      version: 1.5.1
       interval: 30m
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
   values:
-    defaultPodOptions:
-      securityContext:
-        privileged: true
-      nodeSelector:
-        rtlamr.feature.node.kubernetes.io/rtlamr: "true"
-    controllers:
-      main:
-        annotations:
-          reloader.stakater.com/auto: "true"
-        containers:
-          main:
-            image:
-              repository: allangood/rtlamr2mqtt
-              tag: 2.3.3
-            resources:
-              requests:
-                cpu: 100m
-                memory: 36M
-              limits:
-                memory: 36M
+    annotations:
+      reloader.stakater.com/auto: "true"
+    image:
+      repository: allangood/rtlamr2mqtt
+      tag: 2.3.3
     service:
       main:
         enabled: false
@@ -49,3 +34,13 @@ spec:
         subPath:
           - path: rtlamr2mqtt.yaml
             mountPath: /etc/rtlamr2mqtt.yaml
+    securityContext:
+      privileged: true
+    nodeSelector:
+      rtlamr.feature.node.kubernetes.io/rtlamr: "true"
+    resources:
+      requests:
+        cpu: 100m
+        memory: 36M
+      limits:
+        memory: 36M
