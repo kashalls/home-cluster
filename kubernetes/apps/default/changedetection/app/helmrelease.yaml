@@ -30,17 +30,38 @@ spec:
     - name: volsync
       namespace: volsync
   values:
-    controller:
+    defaultPodOptions:
+      podSecurityContext:
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+    controllers:
       type: statefulset
-    image:
-      repository: ghcr.io/dgtlmoon/changedetection.io
-      tag: "0.45.2"
-    env:
-      TZ: America/Los_Angeles
-      PORT: &port 5000
-      PUID: 568
-      PGID: 568
-      BASE_URL: "https://cd.kashall.dev"
+      main:
+        statefulset:
+          volumeClaimTemplates:
+            - name: config
+              mountPath: /datastore
+              accessMode: ReadWriteOnce
+              size: 1Gi
+              storageClass: ceph-block
+        containers:
+          image:
+            repository: ghcr.io/dgtlmoon/changedetection.io
+            tag: "0.45.2"
+          env:
+            TZ: America/Los_Angeles
+            PORT: &port 5000
+            PUID: 568
+            PGID: 568
+            BASE_URL: "https://cd.kashall.dev"
+          resources:
+            requests:
+              cpu: 10m
+              memory: 100Mi
+            limits:
+              memory: 500Mi
     service:
       main:
         ports:
@@ -49,7 +70,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: internal
+        className: internal
         annotations:
           hajimari.io/icon: mdi:web-sync
         hosts:
@@ -60,20 +81,3 @@ spec:
         tls:
           - hosts:
               - *host
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: OnRootMismatch
-    volumeClaimTemplates:
-      - name: config
-        mountPath: /datastore
-        accessMode: ReadWriteOnce
-        size: 1Gi
-        storageClass: ceph-block
-    resources:
-      requests:
-        cpu: 10m
-        memory: 100Mi
-      limits:
-        memory: 500Mi
