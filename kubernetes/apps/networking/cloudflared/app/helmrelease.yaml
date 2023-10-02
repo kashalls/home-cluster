@@ -93,13 +93,15 @@ spec:
         enabled: true
         type: configMap
         name: cloudflared-configmap
-        subPath: config.yaml
-        mountPath: /etc/cloudflared/config/config.yaml
-        readOnly: true
+        globalMounts:
+          - path: /etc/cloudflared/config/config.yaml
+            subPath: config.yaml
+            readOnly: true
       creds:
         enabled: true
         type: secret
         name: cloudflared-secret
-        subPath: credentials.json
-        mountPath: /etc/cloudflared/creds/credentials.json
-        readOnly: true
+        globalMounts:
+          - path: /etc/cloudflared/creds/credentials.json
+            subPath: credentials.json
+            readOnly: true
