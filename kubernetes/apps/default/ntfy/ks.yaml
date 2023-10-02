@@ -6,7 +6,7 @@ metadata:
   name: cluster-apps-ntfy
   namespace: flux-system
 spec:
-  path: ./kubernetes/apps/ntfy/ntfy/app
+  path: ./kubernetes/apps/default/ntfy/app
   prune: true
   sourceRef:
     kind: GitRepository

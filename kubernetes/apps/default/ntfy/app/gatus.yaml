@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: ntfy-gatus-ep
-  namespace: ntfy
+  namespace: default
   labels:
     gatus.io/enabled: "true"
 data:
