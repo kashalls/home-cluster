@@ -10,14 +10,13 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.0.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
   maxHistory: 2
   install:
-    createNamespace: true
     remediation:
       retries: 3
   upgrade:
@@ -27,24 +26,39 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    initContainers:
-      01-init-db:
-        image: ghcr.io/onedr0p/postgres-init:14.9
-        imagePullPolicy: IfNotPresent
-        envFrom: &envFrom
-          - secretRef:
-              name: gatus-secret
-    controller:
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/twin/gatus
-      tag: v5.5.1
-    env:
-      TZ: America/Los_Angeles
-      GATUS_CONFIG_PATH: /config
-      CUSTOM_WEB_PORT: &port 80
-    envFrom: *envFrom
+    defaultPodOptions:
+      podSecurityContext:
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        initContainers:
+          01-init-db:
+            image: ghcr.io/onedr0p/postgres-init:14.9
+            imagePullPolicy: IfNotPresent
+            envFrom: &envFrom
+              - secretRef:
+                  name: gatus-secret
+        containers:
+          main:
+            image:
+              repository: ghcr.io/twin/gatus
+              tag: v5.5.1
+            env:
+              TZ: America/Los_Angeles
+              GATUS_CONFIG_PATH: /config
+              CUSTOM_WEB_PORT: &port 80
+            envFrom: *envFrom
+            resources:
+              requests:
+                cpu: 100m
+                memory: 100Mi
+              limits:
+                memory: 500Mi
     service:
       main:
         ports:
@@ -62,7 +76,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: external
+        className: external
         annotations:
           external-dns.alpha.kubernetes.io/target: border.kashall.dev
         hosts:
@@ -76,11 +90,6 @@ spec:
     serviceAccount:
       create: true
       name: gatus
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: OnRootMismatch
     persistence:
       config:
         enabled: true
@@ -92,12 +101,6 @@ spec:
         mountPath: /config/config.yaml
         subPath: config.yaml
         readOnly: true
-    resources:
-      requests:
-        cpu: 100m
-        memory: 100Mi
-      limits:
-        memory: 500Mi
     sidecars:
       config-sync:
         image: ghcr.io/kiwigrid/k8s-sidecar:1.25.1
