@@ -43,7 +43,9 @@ spec:
           reloader.stakater.com/auto: "true"
         initContainers:
           01-init-geoip:
-            image: ghcr.io/maxmind/geoipupdate:v6.0.0
+            image:
+              repository: ghcr.io/maxmind/geoipupdate
+              tag: v6.0.0
             imagePullPolicy: IfNotPresent
             env:
               - { name: GEOIPUPDATE_EDITION_IDS, value: GeoLite2-City }
