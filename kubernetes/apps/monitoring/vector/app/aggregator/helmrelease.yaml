@@ -11,14 +11,13 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.0.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
   maxHistory: 2
   install:
-    createNamespace: true
     remediation:
       retries: 3
   upgrade:
@@ -28,28 +27,39 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    initContainers:
-      01-init-geoip:
-        image: ghcr.io/maxmind/geoipupdate:v6.0.0
-        imagePullPolicy: IfNotPresent
-        env:
-          - { name: GEOIPUPDATE_EDITION_IDS, value: GeoLite2-City }
-          - { name: GEOIPUPDATE_FREQUENCY, value: "0" }
-          - { name: GEOIPUPDATE_VERBOSE, value: "true" }
-        envFrom:
-          - secretRef:
-              name: vector-aggregator-secret
-        volumeMounts:
-          - { name: geoip, mountPath: /usr/share/GeoIP }
-    controller:
-      replicas: 3
-      strategy: RollingUpdate
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: docker.io/timberio/vector
-      tag: 0.33.0-debian
-    args: ["--config", "/etc/vector/vector.yaml"]
+    defaultPodOptions:
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: *app
+    controllers:
+      main:
+        replicas: 3
+        strategy: RollingUpdate
+        annotations:
+          reloader.stakater.com/auto: "true"
+        initContainers:
+          01-init-geoip:
+            image: ghcr.io/maxmind/geoipupdate:v6.0.0
+            imagePullPolicy: IfNotPresent
+            env:
+              - { name: GEOIPUPDATE_EDITION_IDS, value: GeoLite2-City }
+              - { name: GEOIPUPDATE_FREQUENCY, value: "0" }
+              - { name: GEOIPUPDATE_VERBOSE, value: "true" }
+            envFrom:
+              - secretRef:
+                  name: vector-aggregator-secret
+            volumeMounts:
+              - { name: geoip, mountPath: /usr/share/GeoIP }
+        containers:
+          main:
+            image:
+              repository: docker.io/timberio/vector
+              tag: 0.33.0-debian
+            args: ["--config", "/etc/vector/vector.yaml"]
     service:
       main:
         type: LoadBalancer
@@ -86,10 +96,3 @@ spec:
         enabled: true
         type: emptyDir
         mountPath: /usr/share/GeoIP
-    topologySpreadConstraints:
-      - maxSkew: 1
-        topologyKey: kubernetes.io/hostname
-        whenUnsatisfiable: DoNotSchedule
-        labelSelector:
-          matchLabels:
-            app.kubernetes.io/name: *app
