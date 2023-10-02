@@ -53,20 +53,20 @@ spec:
               - run
               - "$(TUNNEL_ID)"
             probes:
-            liveness: &probes
-              enabled: true
-              custom: true
-              spec:
-                httpGet:
-                  path: /ready
-                  port: http
-                initialDelaySeconds: 0
-                periodSeconds: 10
-                timeoutSeconds: 1
-                failureThreshold: 3
-            readiness: *probes
-            startup:
-              enabled: false
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /ready
+                    port: http
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
             resources:
               requests:
                 cpu: 5m
