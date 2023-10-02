@@ -50,7 +50,7 @@ spec:
         initContainers:
           01-init-config:
             image:
-              registry: public.ecr.aws/docker/library/eclipse-mosquitto
+              repository: public.ecr.aws/docker/library/eclipse-mosquitto
               tag: 2.0.18
             imagePullPolicy: IfNotPresent
             command: ["/bin/sh", "-c"]
