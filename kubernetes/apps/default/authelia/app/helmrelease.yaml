@@ -31,63 +31,24 @@ spec:
     - name: redis
       namespace: default
   values:
-    defaultPodOptions:
-      enableServiceLinks: false
-      podSecurityContext:
-        runAsUser: 568
-        runAsGroup: 568
-        fsGroup: 568
-        fsGroupChangePolicy: OnRootMismatch
-      topologySpreadConstraints:
-        - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
-          whenUnsatisfiable: DoNotSchedule
-          labelSelector:
-            matchLabels:
-              app.kubernetes.io/name: *app
-    controllers:
-      main:
-        annotations:
-          reloader.stakater.com/auto: "true"
-        strategy: RollingUpdate
-        replicas: 2
-        initContainers:
-          01-init-db:
-            image:
-              repository: ghcr.io/onedr0p/postgres-init
-              tag: 14.9
-            imagePullPolicy: IfNotPresent
-            envFrom: &envFrom
-              - secretRef:
-                  name: authelia-secret
-        containers:
-          main:
-            image:
-              repository: ghcr.io/authelia/authelia
-              tag: master@sha256:93e005b560f2a8e7babea880b28d929e3c0e5a881ec3aed9cc5a568a6d50be34
-            args: ["--config", "/config/configuration.yaml", "--config.experimental.filters", "expand-env"]
-            envFrom: *envFrom
-            resources:
-              requests:
-                cpu: 5m
-                memory: 10Mi
-              limits:
-                memory: 200Mi
-            probes:
-              liveness: &probes
-                enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /api/health
-                    port: &port 80
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
-              readiness: *probes
-              startup:
-                enabled: false
+    initContainers:
+      01-init-db:
+        image: ghcr.io/onedr0p/postgres-init:14.9
+        imagePullPolicy: IfNotPresent
+        envFrom: &envFrom
+          - secretRef:
+              name: authelia-secret
+    controller:
+      replicas: 1
+      strategy: RollingUpdate
+      annotations:
+        reloader.stakater.com/auto: "true"
+    image:
+      repository: ghcr.io/authelia/authelia
+      tag: master@sha256:93e005b560f2a8e7babea880b28d929e3c0e5a881ec3aed9cc5a568a6d50be34
+    args: ["--config", "/config/configuration.yaml", "--config.experimental.filters", "expand-env"]
+    envFrom: *envFrom
+    enableServiceLinks: false
     service:
       main:
         ports:
@@ -105,10 +66,25 @@ spec:
             path: /metrics
             interval: 1m
             scrapeTimeout: 10s
+    probes:
+      liveness: &probes
+        enabled: true
+        custom: true
+        spec:
+          httpGet:
+            path: /api/health
+            port: *port
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          timeoutSeconds: 1
+          failureThreshold: 3
+      readiness: *probes
+      startup:
+        enabled: false
     ingress:
       main:
         enabled: true
-        className: external
+        ingressClassName: external
         annotations:
           external-dns.alpha.kubernetes.io/target: border.kashall.dev
           nginx.ingress.kubernetes.io/configuration-snippet: |
@@ -127,14 +103,29 @@ spec:
         tls:
           - hosts:
               - *host
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: OnRootMismatch
     persistence:
       config:
         enabled: true
         type: configMap
         name: authelia-configmap
-        advancedMounts:
-          main:
-            main:
-              - path: /config/configuration.yaml
-                subPath: configuration.yaml
-                readOnly: false
+        subPath: configuration.yaml
+        mountPath: /config/configuration.yaml
+        readOnly: false
+    topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: *app
+    resources:
+      requests:
+        cpu: 5m
+        memory: 10Mi
+      limits:
+        memory: 200Mi
