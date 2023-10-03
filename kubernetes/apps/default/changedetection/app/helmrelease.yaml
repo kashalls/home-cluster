@@ -38,14 +38,14 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
     controllers:
       type: statefulset
+      statefulset:
+        volumeClaimTemplates:
+          - name: config
+            mountPath: /datastore
+            accessMode: ReadWriteOnce
+            size: 1Gi
+            storageClass: ceph-block
       main:
-        statefulset:
-          volumeClaimTemplates:
-            - name: config
-              mountPath: /datastore
-              accessMode: ReadWriteOnce
-              size: 1Gi
-              storageClass: ceph-block
         containers:
           main:
             image:
