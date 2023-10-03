@@ -87,16 +87,20 @@ spec:
         enabled: true
         type: configMap
         name: mosquitto-configmap # overriden by kustomizeconfig
-        mountPath: /mosquitto/config/mosquitto.conf
-        subPath: mosquitto.conf
+        globalMounts:
+          - path: /mosquitto/config/mosquitto.conf
+            readOnly: false
+            subPath: mosquitto.conf
       secret-file:
         enabled: true
         type: secret
         name: mosquitto-secret
-        subPath: mosquitto_pwd
-        mountPath: /data/mosquitto_secret/mosquitto_pwd
-        readOnly: true
+        globalMounts:
+          - path: /data/mosquitto_secret/mosquitto_pwd
+            subPath: mosquitto_pwd
+            readOnly: true
       external-config:
         enabled: true
         type: emptyDir
-        mountPath: /mosquitto/external_config
+        globalMounts:
+          - path: /mosquitto/external_config
