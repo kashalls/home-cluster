@@ -47,7 +47,7 @@ spec:
           main:
             image:
               repository: ghcr.io/twin/gatus
-              tag: v5.5.1
+              tag: v5.6.0
             env:
               TZ: America/Los_Angeles
               GATUS_CONFIG_PATH: /config
