@@ -77,12 +77,12 @@ spec:
       main:
         ports:
           http:
-            port: 8080
+            port: &port 8080
     serviceMonitor:
       main:
         enabled: true
         endpoints:
-          - port: http
+          - port: *port
             scheme: http
             path: /metrics
             interval: 1m
