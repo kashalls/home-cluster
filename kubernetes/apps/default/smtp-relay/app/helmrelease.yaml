@@ -57,6 +57,13 @@ spec:
                 memory: 10Mi
               limits:
                 memory: 50Mi
+            probes:
+              liveness:
+                enabled: false
+              readiness:
+                enabled: false
+              startup:
+                enabled: false
     service:
       main:
         type: LoadBalancer

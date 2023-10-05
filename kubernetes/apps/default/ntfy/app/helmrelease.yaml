@@ -47,6 +47,13 @@ spec:
               requests:
                 cpu: 500m
                 memory: 250Mi
+            probes:
+              liveness:
+                enabled: false
+              readiness:
+                enabled: false
+              startup:
+                enabled: false
     service:
       main:
         ports:

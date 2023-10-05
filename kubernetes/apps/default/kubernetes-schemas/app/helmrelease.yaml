@@ -50,6 +50,13 @@ spec:
                 memory: 50Mi
               limits:
                 memory: 100Mi
+            probes:
+              liveness:
+                enabled: false
+              readiness:
+                enabled: false
+              startup:
+                enabled: false
     service:
       main:
         ports:

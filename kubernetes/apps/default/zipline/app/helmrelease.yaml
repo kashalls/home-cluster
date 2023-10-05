@@ -108,6 +108,13 @@ spec:
               WEBSITE_EXTERNAL_LINKS: '[{"label":"Powered by Zipline","link":"https://github.com/diced/zipline"}]'
               WEBSITE_SHOW_VERSION: "true"
               WEBSITE_DISABLE_MEDIA_PREVIEW: "false"
+            probes:
+              liveness:
+                enabled: false
+              readiness:
+                enabled: false
+              startup:
+                enabled: false
         initContainers:
           01-init-db:
             image:
