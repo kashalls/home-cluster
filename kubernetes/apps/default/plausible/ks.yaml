@@ -8,7 +8,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-rook-ceph-cluster
-  path: ./kubernetes/apps/default/plausible/clickhouse/app
+  path: ./kubernetes/apps/default/plausible/clickhouse/
   prune: true
   sourceRef:
     kind: GitRepository
