@@ -48,7 +48,7 @@ spec:
               storageClass: ceph-block
         annotations:
           reloader.stakater.com/auto: "true"
-        controllers:
+        containers:
           main:
             image:
               repository: ghcr.io/koenkk/zigbee2mqtt
