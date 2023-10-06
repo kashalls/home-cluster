@@ -13,6 +13,7 @@ resources:
   - ./lldap/ks.yaml
   - ./mosquitto/ks.yaml
   - ./ntfy/ks.yaml
+  - ./plausible/ks.yaml
   - ./redis/ks.yaml
   - ./rtlamr2mqtt/ks.yaml
   # - ./shynet/ks.yaml
