@@ -58,6 +58,13 @@ spec:
           mqtt:
             enabled: true
             port: 1883
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: false
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
