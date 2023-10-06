@@ -53,7 +53,7 @@ spec:
       main:
         ports:
           http:
-            port: &port 80
+            port: 80
           metrics:
             enabled: true
             port: 8080
@@ -73,7 +73,7 @@ spec:
         spec:
           httpGet:
             path: /api/health
-            port: *port
+            port: 80
           initialDelaySeconds: 0
           periodSeconds: 10
           timeoutSeconds: 1
