@@ -39,7 +39,7 @@ spec:
           - secretRef:
               name: authelia-secret
     controller:
-      replicas: 1
+      replicas: 2
       strategy: RollingUpdate
       annotations:
         reloader.stakater.com/auto: "true"
