@@ -50,21 +50,11 @@ spec:
         type: LoadBalancer
         annotations:
           external-dns.alpha.kubernetes.io/hostname: "mosquitto.kashall.dev"
-          io.cilium/lb-ipam-ips: "10.69.69.110"
+          io.cilium/lb-ipam-ips: 10.69.69.110
         externalTrafficPolicy: Cluster
         ports:
           http:
-            enabled: false
-          mqtt:
-            enabled: true
             port: 1883
-    probes:
-      liveness:
-        enabled: false
-      readiness:
-        enabled: false
-      startup:
-        enabled: false
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
@@ -81,18 +71,15 @@ spec:
         enabled: true
         type: configMap
         name: mosquitto-configmap # overriden by kustomizeconfig
-        globalMounts:
-          - path: /mosquitto/config/mosquitto.conf
-            readOnly: false
-            subPath: mosquitto.conf
+        mountPath: /mosquitto/config/mosquitto.conf
+        subPath: mosquitto.conf
       secret-file:
         enabled: true
         type: secret
         name: mosquitto-secret
-        globalMounts:
-          - path: /data/mosquitto_secret/mosquitto_pwd
-            subPath: mosquitto_pwd
-            readOnly: true
+        subPath: mosquitto_pwd
+        mountPath: /data/mosquitto_secret/mosquitto_pwd
+        readOnly: true
       external-config:
         enabled: true
         type: emptyDir
@@ -103,4 +90,3 @@ spec:
         memory: 50Mi
       limits:
         memory: 150Mi
-#
