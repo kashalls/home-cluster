@@ -26,6 +26,9 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    envFrom:
+      - secretRef:
+          name: authentik-secret
     replicas: 2
     annotations:
       secret.reloader.stakater.com/reload: authentik-secret
@@ -61,6 +64,10 @@ spec:
         create: true
     redis:
       enabled: true
-    envFrom:
-      - secretRef:
-          name: authentik-secret
+    geoip:
+      enabled: true
+      accountId: "878850"
+      licenseKey: ${SECRET_MAXMIND_LICENSE_KEY}
+      editionIds: "GeoLite2-City"
+      image: maxmindinc/geoipupdate:v6.0
+      updateInterval: 24
