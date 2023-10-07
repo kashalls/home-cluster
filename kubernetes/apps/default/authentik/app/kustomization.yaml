@@ -6,3 +6,10 @@ namespace: default
 resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
+configMapGenerator:
+  - name: authentik-branding
+    files:
+      - ./branding/favicon.png
+      - ./branding/logo.svg
+    options:
+      disableNameSuffixHash: true

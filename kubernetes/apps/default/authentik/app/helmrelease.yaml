@@ -96,3 +96,10 @@ spec:
       enabled: true
     geoip:
       enabled: false
+    volumes:
+      - configMap:
+          name: authentik-branding
+        name: branding
+    volumeMounts:
+      - mountPath: /media/branding
+        name: branding
