@@ -26,6 +26,15 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    initContainers:
+      init-db:
+        image: ghcr.io/onedr0p/postgres-init:14.9
+        imagePullPolicy: IfNotPresent
+        envFrom:
+          - secretRef:
+              name: authentik-secret
+    global:
+      storageClass: ceph-block
     envFrom:
       - secretRef:
           name: authentik-secret
@@ -34,6 +43,7 @@ spec:
       secret.reloader.stakater.com/reload: authentik-secret
     authentik:
       log_level: info
+      avatars: "gravatar,initials"
       email:
         host: smtp-relay.default.svc.cluster.local
         port: 2525
@@ -41,6 +51,8 @@ spec:
       error_reporting:
         enable: false
         send_pii: false
+      outposts:
+        docker_image_base: ghcr.io/goauthentik/%(type)s:%(version)s
     ingress:
       enabled: true
       ingressClassName: external
