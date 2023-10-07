@@ -96,8 +96,3 @@ spec:
       enabled: true
     geoip:
       enabled: false
-      accountId: "${SECRET_MAXMIND_USER_ID}"
-      licenseKey: ${SECRET_MAXMIND_LICENSE_KEY}
-      editionIds: "GeoLite2-City"
-      image: maxmindinc/geoipupdate:v6.0
-      updateInterval: 24
