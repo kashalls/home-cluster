@@ -1,0 +1,66 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.kashall.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app authentik
+  namespace: default
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: authentik
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    replicas: 2
+    annotations:
+      secret.reloader.stakater.com/reload: authentik-secret
+    authentik:
+      log_level: info
+      email:
+        host: smtp-relay.default.svc.cluster.local
+        port: 2525
+        from: "Access <access@outsideour.casa>"
+      error_reporting:
+        enable: false
+        send_pii: false
+    ingress:
+      enabled: true
+      ingressClassName: external
+      annotations:
+        external-dns.alpha.kubernetes.io/target: border.ok8.sh
+        nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+        nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+      hosts:
+        - host: &host id.ok8.sh
+          paths:
+            - path: /
+      tls:
+        - hosts:
+            - *host
+    postgresql:
+      enabled: false
+    prometheus:
+      rules:
+        create: true
+      serviceMonitor:
+        create: true
+    redis:
+      enabled: true
+    envFrom:
+      - secretRef:
+        name: authentik-secret
