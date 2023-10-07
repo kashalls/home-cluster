@@ -63,4 +63,4 @@ spec:
       enabled: true
     envFrom:
       - secretRef:
-        name: authentik-secret
+          name: authentik-secret
