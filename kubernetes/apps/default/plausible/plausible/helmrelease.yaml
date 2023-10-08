@@ -37,7 +37,7 @@ spec:
               tag: v2.0
             # First run only.
             # https://github.com/plausible/hosting/blob/master/docker-compose.yml
-            #command: sh -c "sleep 10 && /entrypoint.sh db createdb && /entrypoint.sh db migrate && /entrypoint.sh run"
+            command: "sleep 10 && /entrypoint.sh db createdb && /entrypoint.sh db migrate && /entrypoint.sh run"
             # Every run after that.
             #command: "/entrypoint.sh run"
             env:
