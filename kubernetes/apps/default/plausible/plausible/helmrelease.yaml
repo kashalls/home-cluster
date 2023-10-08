@@ -45,12 +45,12 @@ spec:
             envFrom:
               - secretRef:
                   name: plausible-secret
-            resources:
-              requests:
-                cpu: 5m
-                memory: 10Mi
-              limits:
-                memory: 50Mi
+            #resources:
+            # requests:
+            #    cpu: 5m
+            #    memory: 10Mi
+            #  limits:
+            #   memory: 50Mi
             probes:
               liveness: &probes
                 enabled: true
