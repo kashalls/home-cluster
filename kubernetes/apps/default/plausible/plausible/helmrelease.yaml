@@ -30,6 +30,13 @@ spec:
     controllers:
       main:
         strategy: RollingUpdate
+        initContainers:
+          01-init-db:
+            image: ghcr.io/onedr0p/postgres-init:14.9
+            imagePullPolicy: IfNotPresent
+            envFrom: &envFrom
+              - secretRef:
+                  name: plausible-secret
         containers:
           main:
             image:
@@ -42,9 +49,7 @@ spec:
             #command: "/entrypoint.sh run"
             env:
               BASE_URL: "https://analytics.ok8.sh"
-            envFrom:
-              - secretRef:
-                  name: plausible-secret
+            envFrom: *envFrom
             #resources:
             # requests:
             #    cpu: 5m
