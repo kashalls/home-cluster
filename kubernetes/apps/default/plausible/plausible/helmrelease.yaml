@@ -32,7 +32,9 @@ spec:
         strategy: RollingUpdate
         initContainers:
           01-init-db:
-            image: ghcr.io/onedr0p/postgres-init:14.9
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 14.9
             imagePullPolicy: IfNotPresent
             envFrom: &envFrom
               - secretRef:
