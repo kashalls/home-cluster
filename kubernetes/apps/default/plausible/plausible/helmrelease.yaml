@@ -47,7 +47,8 @@ spec:
             # First run only.
             # https://github.com/plausible/hosting/blob/master/docker-compose.yml
             #command: "sh -c \"/entrypoint.sh db createdb && /entrypoint.sh db migrate && /entrypoint.sh run\""
-            command: ['sh', '-c', '/entrypoint.sh', 'db', 'createdb']
+            #command: ['sh', '-c', '/entrypoint.sh', 'db', 'createdb']
+            command: ['sh', '-c', '/entrypoint.sh', 'db', 'migrate']
             # Every run after that.
             #command: "/entrypoint.sh run"
             #args: ["db createdb"]
