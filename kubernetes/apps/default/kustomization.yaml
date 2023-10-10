@@ -4,7 +4,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ./namespace.yaml
-  - ./authelia/ks.yaml
+  #- ./authelia/ks.yaml
   - ./authentik/ks.yaml
   - ./changedetection/ks.yaml
   - ./cloudnative-pg/ks.yaml
@@ -14,7 +14,7 @@ resources:
   - ./lldap/ks.yaml
   - ./mosquitto/ks.yaml
   - ./ntfy/ks.yaml
-  - ./plausible/ks.yaml
+  #- ./plausible/ks.yaml
   - ./redis/ks.yaml
   - ./rtlamr2mqtt/ks.yaml
   # - ./shynet/ks.yaml
