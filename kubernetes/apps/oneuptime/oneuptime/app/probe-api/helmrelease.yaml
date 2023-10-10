@@ -37,7 +37,7 @@ spec:
       strategy: RollingUpdate
     image:
       repository: ghcr.io/oneuptime/probe-api
-      tag: 7.0.868
+      tag: 7.0.851
     env:
       PROBE_API_PORT: &port 3400
     envFrom:
