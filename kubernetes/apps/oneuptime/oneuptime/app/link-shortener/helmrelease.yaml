@@ -35,7 +35,7 @@ spec:
       repository: ghcr.io/oneuptime/link-shortener
       tag: 7.0.868
     env:
-      PORT: &port 3521
+      LINK_SHORTENER_PORT: &port 3521
     envFrom:
       - secretRef:
           name: common-server-secrets

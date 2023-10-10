@@ -38,7 +38,7 @@ spec:
       repository: ghcr.io/oneuptime/notification
       tag: 7.0.868
     env:
-      PORT: &port 3191
+      NOTIFICATION_PORT: &port 3191
     envFrom:
       - secretRef:
           name: common-server-secrets

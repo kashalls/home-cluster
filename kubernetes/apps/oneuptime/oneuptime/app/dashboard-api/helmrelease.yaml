@@ -38,7 +38,7 @@ spec:
       repository: ghcr.io/oneuptime/dashboard-api
       tag: 7.0.868
     env:
-      PORT: &port 3002
+      DASHBOARD_API_PORT: &port 3002
     envFrom:
       - secretRef:
           name: common-server-secrets

@@ -39,7 +39,7 @@ spec:
       repository: ghcr.io/oneuptime/probe-api
       tag: 7.0.868
     env:
-      PORT: &port 3400
+      PROBE_API_PORT: &port 3400
     envFrom:
       - secretRef:
           name: common-server-secrets
