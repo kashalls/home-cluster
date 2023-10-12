@@ -11,7 +11,12 @@ module.exports = {
   "requiredConfig": "optional",
   "extends": [
     'config:best-practices',
-    ':gitSignOff'
+    'docker:enableMajor',
+    ':gitSignOff',
+    ':semanticCommits',
+    ':automergeDigest',
+    ':automergeBranch',
+    ':disableRateLimiting'
   ],
 
   // Commit Messages
