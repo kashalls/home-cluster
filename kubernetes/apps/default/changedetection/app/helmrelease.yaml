@@ -42,15 +42,16 @@ spec:
         statefulset:
           volumeClaimTemplates:
             - name: config
-              mountPath: /datastore
               accessMode: ReadWriteOnce
               size: 1Gi
               storageClass: ceph-block
+              globalMounts:
+                - path: /datastore
         containers:
           main:
             image:
               repository: ghcr.io/dgtlmoon/changedetection.io
-              tag: "0.45.3"
+              tag: 0.45.3
             env:
               TZ: America/Los_Angeles
               PORT: &port 5000
