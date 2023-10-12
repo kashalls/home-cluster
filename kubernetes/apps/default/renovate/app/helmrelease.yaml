@@ -41,7 +41,7 @@ spec:
             nameOverride: renovate
             image:
               repository: ghcr.io/mend/renovate-ce
-              tag: 6.3.0
+              tag: 6.3.0-full
             env:
               PORT: &port 8080
             envFrom:
