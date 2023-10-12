@@ -5,7 +5,6 @@ kind: Kustomization
 resources:
   - ./accounts
   - ./api-reference
-  - ./clickhouse
   - ./common
   - ./dashboard
   - ./dashboard-api
