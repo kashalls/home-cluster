@@ -40,6 +40,8 @@ spec:
             image:
               repository: ghcr.io/mend/renovate-ce
               tag: 6.3.0
+            env:
+              PORT: &port 8080
             envFrom:
               - secretRef:
                   name: renovate-secret
