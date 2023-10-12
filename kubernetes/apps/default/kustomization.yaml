@@ -16,6 +16,7 @@ resources:
   - ./ntfy/ks.yaml
   #- ./plausible/ks.yaml
   - ./redis/ks.yaml
+  - ./renovate/ks.yaml
   - ./rtlamr2mqtt/ks.yaml
   # - ./shynet/ks.yaml
   - ./smtp-relay/ks.yaml
