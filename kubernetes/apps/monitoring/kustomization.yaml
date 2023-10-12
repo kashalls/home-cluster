@@ -7,7 +7,9 @@ resources:
   - ./grafana/ks.yaml
   - ./graphite-exporter/ks.yaml
   - ./kube-prometheus-stack/ks.yaml
+  - ./kube-state-metrics/ks.yaml
   - ./loki/ks.yaml
+  - ./node-exporter/ks.yaml
   - ./smartctl-exporter/ks.yaml
   - ./thanos/ks.yaml
   - ./unpoller/ks.yaml
