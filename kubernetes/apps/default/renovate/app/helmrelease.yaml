@@ -67,18 +67,15 @@ spec:
             port: *port
     ingress:
       main:
+        enabled: false
+    persistence:
+      cache:
         enabled: true
-        className: internal
-        annotations:
-          hajimari.io/icon: mdi:web-sync
-        hosts:
-          - host: &host "renovate.kashall.dev"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  name: main
-                  port: http
-        tls:
-          - hosts:
-              - *host
+        type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
+        size: 50Gi
+        storageClass: ceph-block
+        retain: true
+        globalMounts:
+          - path: /tmp/renovate
+            readOnly: false
