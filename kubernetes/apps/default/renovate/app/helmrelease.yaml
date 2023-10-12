@@ -69,6 +69,13 @@ spec:
       main:
         enabled: false
     persistence:
+      config:
+        enabled: true
+        name: renovate-config
+        type: configMap
+        globalMounts:
+          - path: /usr/src/app/config.js
+            readOnly: true
       cache:
         enabled: true
         type: persistentVolumeClaim

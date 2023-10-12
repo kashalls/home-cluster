@@ -6,3 +6,11 @@ namespace: default
 resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
+configMapGenerator:
+  - name: renovate-config
+    files:
+      - ./config/config.js
+generatorOptions:
+  disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
