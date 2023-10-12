@@ -27,6 +27,7 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    namespaceOverride: oneuptime
     shards: 1
     replicaCount: 1
     keeper:
