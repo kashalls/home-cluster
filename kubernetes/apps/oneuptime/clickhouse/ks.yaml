@@ -8,7 +8,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-rook-ceph-cluster
-  path: ./kubernetes/apps/default/oneuptime/clickhouse/
+  path: ./kubernetes/apps/oneuptime/clickhouse/app/
   prune: true
   sourceRef:
     kind: GitRepository
