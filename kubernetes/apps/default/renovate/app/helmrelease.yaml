@@ -67,7 +67,19 @@ spec:
             port: *port
     ingress:
       main:
-        enabled: false
+        enabled: true
+        className: external
+        hosts:
+          - host: &host "renovate-webhook.kashall.dev"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
     persistence:
       config:
         enabled: true
