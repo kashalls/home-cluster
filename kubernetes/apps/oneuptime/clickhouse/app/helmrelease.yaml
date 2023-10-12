@@ -27,6 +27,10 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    shards: 1
+    replicaCount: 1
+    keeper:
+      enabled: false
     persistence:
       enabled: true
       storageClass: ceph-block
