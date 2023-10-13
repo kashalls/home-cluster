@@ -66,24 +66,16 @@ spec:
         tls:
           - hosts:
             - *host
-
-      oneuptime:
-        enabled: true
-        ingressClassName: external
-        annotations:
-          external-dns.alpha.lubernetes.io/target: "ingress.kashall.dev"
-        hosts:
-          - host: &host "oneuptime.ok8.sh"
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - hosts:
-            - *host
-
     resources:
       requests:
         cpu: 10m
         memory: 100Mi
       limits:
         memory: 500Mi
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: false

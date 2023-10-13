@@ -51,4 +51,12 @@ spec:
         memory: 100Mi
       limits:
         memory: 500Mi
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: false
+
 
