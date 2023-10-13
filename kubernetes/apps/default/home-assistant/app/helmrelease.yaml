@@ -54,7 +54,7 @@ spec:
     ingress:
       main:
         enabled: true
-        className: external
+        ingressClassName: external
         annotations:
           external-dns.alpha.kubernetes.io/target: border.kashall.dev
           hajimari.io/icon: mdi:home-assistant
