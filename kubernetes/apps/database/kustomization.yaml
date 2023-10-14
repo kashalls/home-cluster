@@ -2,10 +2,10 @@
 # yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: default
 resources:
-  - ./cluster.yaml
-  - ./scheduled-backup.yaml
-  - ./prometheus-rule.yaml
-  - ./service.yaml
-  - ./gatus.yaml
+  # Pre Flux-Kustomizations
+  - ./namespace.yaml
+  # Flux-Kustomizations
+  - ./clickhouse/ks.yaml
+  - ./cloudnative-pg/ks.yaml
+  - ./redis/ks.yaml

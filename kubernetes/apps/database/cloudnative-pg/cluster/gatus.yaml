@@ -11,7 +11,7 @@ data:
     endpoints:
       - name: cloudnative-pg
         group: infrastructure
-        url: tcp://postgres-lb.default.svc.cluster.local:5432
+        url: tcp://postgres-lb.database.svc.cluster.local:5432
         interval: 1m
         conditions: ["[CONNECTED] == true"]
         alerts:

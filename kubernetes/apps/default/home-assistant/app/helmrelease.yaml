@@ -43,7 +43,7 @@ spec:
       tag: 2023.10.2@sha256:389a13a6d63d6615a276e8e60a9769c8484183bea724054f8a0726557ecd031c
     env:
       TZ: America/Los_Angeles
-      POSTGRES_HOST: postgres-rw.default.svc.cluster.local
+      POSTGRES_HOST: postgres-rw.database.svc.cluster.local
       POSTGRES_DB: home_assistant
     envFrom: *envFrom
     service:

@@ -71,6 +71,8 @@ spec:
         send_pii: false
       outposts:
         docker_image_base: ghcr.io/goauthentik/%(type)s:%(version)s
+      redis:
+        host: "redis-headless.database.svc.cluster.local"
     ingress:
       enabled: true
       ingressClassName: external
@@ -93,9 +95,14 @@ spec:
       serviceMonitor:
         create: true
     redis:
-      enabled: true
+      enabled: false
     geoip:
       enabled: false
+    autoscaling:
+      server:
+        enabled: true
+      worker:
+        enabled: true
     volumes:
       - configMap:
           name: authentik-branding

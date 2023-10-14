@@ -40,7 +40,7 @@ stringData:
     CLICKHOUSE_USER: ENC[AES256_GCM,data:s6PNHH1tQA==,iv:F2t5MSzV+2Lg6sggfJHO4TGPINet20xwNHoNEVZ9PXI=,tag:nokYuFdSMy9R1RtssBNkMw==,type:str]
     CLICKHOUSE_PASSWORD: ENC[AES256_GCM,data:KHHAaQzHwYS01g==,iv:qGTvOe2X/Q9RW60QZ8Dn7GOasZgx1XzIxQH382N8qlk=,tag:IcPxLdhSZypgovyAnyftQw==,type:str]
     CLICKHOUSE_DATABASE: ENC[AES256_GCM,data:NpFqHbvt3Gq9,iv:QZClVSJwP7OE3nvDMBfVAEg1JSq0nE30lofNpt3wfcc=,tag:rOWeDpYouOO6fip94FaD9A==,type:str]
-    CLICKHOUSE_HOST: ENC[AES256_GCM,data:JiZ0v7Xn1eihMQ==,iv:FkUPaZBlbUg4ioZQUCL4ilmhGKZsNrD5IBJ9LdEacsg=,tag:xp11OAU1KZhZmyha26pKMQ==,type:str]
+    CLICKHOUSE_HOST: ENC[AES256_GCM,data:Yh7TPzXVns0tsg+cCO9hpLCXIA==,iv:WVLmNkWbMfmXjIIpaEs0WbG+Uz77cC4MGtzOdYLSICQ=,tag:+YeQbKOFBNVirletHpzxXw==,type:str]
     CLICKHOUSE_PORT: ENC[AES256_GCM,data:cWW84w==,iv:qME5BWSrN9TD9dTnTW/cc21XMSRbPLolyVyIHSiNtX4=,tag:I7cuP8ZVIUS4MMg4wTm3sA==,type:str]
 sops:
     kms: []
@@ -57,8 +57,8 @@ sops:
             MVhLZGlCWDQ4bUE1by9KMTJsUXRSajgKjgnidKLxH1S9pOuxdFV3D/fxnV4Xgxim
             w1PFNRdf+ukeRyfoIP4pVd7hdNe9AHTJElLkboO/85wvkQ9uvIjczg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-10-13T06:14:21Z"
-    mac: ENC[AES256_GCM,data:xfNIePkIXV0APeeVR6mPKajalA3qd3mJ7q7UjSd2QcSfN3Qzud4wa8FGjAiITvk+0UcSSZ0VtHhM85l2JL9aIc4EfITChkDJBWNNkk9ZfMMwcOifv8of0yCiREzqH1XXYOHDsl7+CS8i8g1YdDMz7Ml+g3hpTi0MNiSZfyhWHpQ=,iv:M2ugXQXm5zxFXlIjzgucC7pmhV/9kdrCFdHOLGCW4t8=,tag:A6LX14K4V6fyfBamqMv2jA==,type:str]
+    lastmodified: "2023-10-14T05:48:53Z"
+    mac: ENC[AES256_GCM,data:0eR6gY/Ukh84Xg/9VCoBLFbq9pLPKgJwPP/wTjATVodXK/8yZ2A/0iDO7Vv3K+IUVFCos14Whs+EvU9zJ3HouAqbQbCWNXNES/VT4CJgQ3vSbx1S4i7A5b/odAJN8RiTU9+W0/sRcSvHrOXvQr/4T/S2zHPTN31p2Gffq7PyLJ4=,iv:afYL6YPhLEhj4vr6L3gQRPi1RWChIOCMOjJ8eoSuig8=,tag:hBqA7e/U4tfTcojlMdYS9g==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3
