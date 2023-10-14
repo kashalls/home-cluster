@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
@@ -22,6 +23,7 @@ resources:
   - ./mongodb.yaml
   - ./metrics-server.yaml
   - ./node-feature-discovery.yaml
+  - ./oneuptime.yaml
   - ./piraeus.yaml
   - ./prometheus-community.yaml
   - ./redis-operator.yaml
