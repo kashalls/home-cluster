@@ -6,14 +6,12 @@ resources:
   - ./namespace.yaml
   - ./authentik/ks.yaml
   - ./changedetection/ks.yaml
-  - ./cloudnative-pg/ks.yaml
   - ./echo-server/ks.yaml
   - ./home-assistant/ks.yaml
   - ./kubernetes-schemas/ks.yaml
   - ./mosquitto/ks.yaml
   - ./ntfy/ks.yaml
   #- ./plausible/ks.yaml
-  - ./redis/ks.yaml
   - ./renovate/ks.yaml
   - ./rtlamr2mqtt/ks.yaml
   # - ./shynet/ks.yaml
