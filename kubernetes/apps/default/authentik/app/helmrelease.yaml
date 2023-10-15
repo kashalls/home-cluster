@@ -29,8 +29,6 @@ spec:
     image:
       repository: thegrandpkizzle/authentik
       tag: 2023.8.3-b7719e7
-      pullPolicy: IfNotPresent
-      pullSecrets: []
     initContainers:
       init-db:
         image: ghcr.io/onedr0p/postgres-init:14.9
