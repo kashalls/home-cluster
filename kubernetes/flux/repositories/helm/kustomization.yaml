@@ -18,6 +18,7 @@ resources:
   # - ./hajimari.yaml
   - ./ingress-nginx.yaml
   - ./itzg.yaml
+  - ./jameswynn.yaml
   - ./jetstack.yaml
   - ./k8s-gateway.yaml
   - ./mongodb.yaml
