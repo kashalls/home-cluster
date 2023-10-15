@@ -28,7 +28,7 @@ spec:
     keepHistory: false
   dependsOn:
     - name: volsync
-      namespace: volsync
+      namespace: storage
   values:
     defaultPodOptions:
       securityContext:
