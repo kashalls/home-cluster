@@ -44,7 +44,7 @@ spec:
     config:
       useExistingConfigMap: *app
     podAnnotations:
-      configmap.reloader.stakater.com/reload: *app
+      reloader.stakater.com/auto: "true"
     resources:
       requests:
         cpu: 15m
