@@ -11,7 +11,7 @@ data:
     endpoints:
       - name: echo-server
         group: external
-        url: https://echo-server.kashall.dev
+        url: https://echo-server.ok8.sh
         interval: 1m
         client:
           dns-resolver: tcp://1.1.1.1:53

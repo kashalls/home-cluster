@@ -11,7 +11,7 @@ data:
     endpoints:
       - name: home-assistant
         group: external
-        url: https://hass.kashall.dev
+        url: https://hass.ok8.sh
         interval: 1m
         client:
           dns-resolver: tcp://1.1.1.1:53

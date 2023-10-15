@@ -14,7 +14,7 @@ data:
         url: 1.1.1.1
         interval: 1m
         dns:
-          query-name: grafana.kashall.dev
+          query-name: grafana.ok8.sh
           query-type: A
         conditions:
           - "len([BODY]) == 0"

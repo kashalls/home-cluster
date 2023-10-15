@@ -33,7 +33,7 @@ connectivity:
 endpoints:
   - name: status
     group: external
-    url: https://status.kashall.dev
+    url: https://status.ok8.sh
     interval: 1m
     client:
       dns-resolver: tcp://1.1.1.1:53

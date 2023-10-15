@@ -5,12 +5,12 @@ metadata:
   name: flux-webhook
   namespace: flux-system
   annotations:
-    external-dns.alpha.kubernetes.io/target: "border.kashall.dev"
+    external-dns.alpha.kubernetes.io/target: "border.ok8.sh"
     hajimari.io/enable: "false"
 spec:
   ingressClassName: external
   rules:
-    - host: &host "flux-webhook.kashall.dev"
+    - host: &host "flux-webhook.ok8.sh"
       http:
         paths:
           - path: /hook/

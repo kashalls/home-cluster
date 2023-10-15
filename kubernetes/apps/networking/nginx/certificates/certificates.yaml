@@ -2,21 +2,6 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: "kashall-dev"
-  namespace: networking
-spec:
-  secretName: "kashall-dev-tls"
-  issuerRef:
-    name: letsencrypt-production
-    kind: ClusterIssuer
-  commonName: "kashall.dev"
-  dnsNames:
-    - "kashall.dev"
-    - "*.kashall.dev"
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
   name: "ok8-sh"
   namespace: networking
 spec:

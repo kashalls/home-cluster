@@ -73,7 +73,7 @@ spec:
         enabled: true
         ingressClassName: internal
         hosts:
-          - host: &host "onepassword-connect.kashall.dev"
+          - host: &host "onepassword-connect.ok8.sh"
             paths:
               - path: /
                 pathType: Prefix

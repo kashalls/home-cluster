@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.kashall.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -74,7 +74,7 @@ spec:
         type: LoadBalancer
         annotations:
           io.cilium/lb-ipam-ips: "10.69.69.111"
-          external-dns.alpha.kubernetes.io/hostname: "vector.kashall.dev"
+          external-dns.alpha.kubernetes.io/hostname: "vector.ok8.sh"
         externalTrafficPolicy: Cluster
         ports:
           http:

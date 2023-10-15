@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.kashall.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -46,7 +46,7 @@ spec:
       ingress:
         enabled: true
         ingressClassName: internal
-        hostname: &host thanos-query-frontend.kashall.dev
+        hostname: &host thanos-query-frontend.ok8.sh
         tls: true
         extraTls:
           - hosts:

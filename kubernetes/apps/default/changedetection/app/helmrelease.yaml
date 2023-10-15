@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.kashall.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -57,7 +57,7 @@ spec:
               PORT: &port 5000
               PUID: 568
               PGID: 568
-              BASE_URL: "https://cd.kashall.dev"
+              BASE_URL: "https://cd.ok8.sh"
             resources:
               requests:
                 cpu: 10m
@@ -83,7 +83,7 @@ spec:
         annotations:
           hajimari.io/icon: mdi:web-sync
         hosts:
-          - host: &host "cd.kashall.dev"
+          - host: &host "cd.ok8.sh"
             paths:
               - path: /
                 pathType: Prefix

@@ -5,7 +5,7 @@ metadata:
   name: postgres-lb
   namespace: database
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: "postgres.kashall.dev"
+    external-dns.alpha.kubernetes.io/hostname: "postgres.ok8.sh"
     io.cilium/lb-ipam-ips: "10.69.69.133"
 spec:
   type: LoadBalancer

@@ -27,7 +27,7 @@ spec:
     keepHistory: false
   values:
     fullnameOverride: k8s-gateway
-    domain: "kashall.dev"
+    domain: "ok8.sh"
     ttl: 1
     service:
       type: LoadBalancer

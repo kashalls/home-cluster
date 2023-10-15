@@ -17,7 +17,7 @@ data:
           hide-hostname: true
           hide-url: true
         dns:
-          query-name: loki.kashall.dev
+          query-name: loki.ok8.sh
           query-type: A
         conditions:
           - "len([BODY]) == 0"

@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.kashall.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -56,10 +56,10 @@ spec:
         enabled: false
         ingressClassName: external
         annotations:
-          external-dns.alpha.kubernetes.io/target: border.kashall.dev
+          external-dns.alpha.kubernetes.io/target: border.ok8.sh
           hajimari.io/icon: mdi:home-assistant
         hosts:
-          - host: &host hass.kashall.dev
+          - host: &host hass.ok8.sh
             paths:
               - path: /
                 pathType: Prefix

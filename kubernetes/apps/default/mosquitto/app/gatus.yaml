@@ -14,7 +14,7 @@ data:
         url: 1.1.1.1
         interval: 1m
         dns:
-          query-name: mosquitto.kashall.dev
+          query-name: mosquitto.ok8.sh
           query-type: A
         conditions:
           - "len([BODY]) == 0"

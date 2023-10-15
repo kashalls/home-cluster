@@ -17,7 +17,7 @@ data:
           hide-hostname: true
           hide-url: true
         dns:
-          query-name: thanos-query-frontend.kashall.dev
+          query-name: thanos-query-frontend.ok8.sh
           query-type: A
         conditions:
           - "len([BODY]) == 0"
