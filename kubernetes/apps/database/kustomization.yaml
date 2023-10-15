@@ -6,6 +6,6 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  #- ./clickhouse/ks.yaml
-  #- ./cloudnative-pg/ks.yaml
+  - ./clickhouse/ks.yaml
+  - ./cloudnative-pg/ks.yaml
   - ./redis/ks.yaml
