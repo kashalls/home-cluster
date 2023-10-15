@@ -80,6 +80,13 @@ spec:
         external-dns.alpha.kubernetes.io/target: border.ok8.sh
         nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
         nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Authentik
+        gethomepage.dev/group: Security
+        gethomepage.dev/icon: mdi-security
+        gethomepage.dev/name: Access
+        gethomepage.dev/widget.type: "authentik"
+        gethomepage.dev/widget.url: "https://id.ok8.sh"
       hosts:
         - host: &host id.ok8.sh
           paths:
@@ -110,4 +117,3 @@ spec:
     volumeMounts:
       - mountPath: /media/branding
         name: branding
-#

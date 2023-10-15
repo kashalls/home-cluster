@@ -26,7 +26,7 @@ data:
           cpu: true
           memory: true
           showLabel: true
-          label: "K8S"
+          label: "Cluster"
         nodes:
           show: true
           cpu: true
@@ -42,8 +42,9 @@ data:
     title: Dashboard
     favicon: https://kubernetes.io/images/favicon.png
     theme: dark
-    color: stone
+    color: blue
     target: _self
+    headerStyle: clean
     layout:
       Media Management:
         style: row
