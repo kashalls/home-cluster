@@ -1,0 +1,71 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: homepage
+  namespace: default
+  annotations:
+    reloader.stakater.com/match: "true"
+data:
+  bookmarks.yaml: |
+    ---
+  services.yaml: |
+    ---
+  widgets.yaml: |
+    ---
+    - search:
+        provider: [google, duckduckgo]
+        focus: false
+        target: _blank
+    - greeting:
+        text_size: xl
+        text: "Howdy!"
+    - kubernetes:
+        cluster:
+          show: true
+          cpu: true
+          memory: true
+          showLabel: true
+          label: "K8S"
+        nodes:
+          show: true
+          cpu: true
+          memory: true
+          showLabel: true
+  kubernetes.yaml: |
+    ---
+    mode: cluster
+  docker.yaml: |
+    ---
+  settings.yaml: |
+    ---
+    title: Dashboard
+    favicon: https://kubernetes.io/images/favicon.png
+    theme: dark
+    color: stone
+    target: _self
+    layout:
+      Media Management:
+        style: row
+        columns: 4
+      FileOps:
+        style: row
+        columns: 2
+      Collaboration:
+        style: row
+        columns: 4
+      Observability:
+        style: column
+        columns: 1
+      Media Automation:
+        style: column
+        columns: 1
+      Security:
+        style: row
+        columns: 2
+      Downloaders:
+        style: row
+        columns: 2
+      Storage:
+        style: row
+        columns: 2

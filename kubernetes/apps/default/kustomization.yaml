@@ -8,6 +8,7 @@ resources:
   - ./changedetection/ks.yaml
   - ./echo-server/ks.yaml
   - ./home-assistant/ks.yaml
+  - ./homepage/ks.yaml
   - ./kubernetes-schemas/ks.yaml
   - ./mosquitto/ks.yaml
   - ./ntfy/ks.yaml
