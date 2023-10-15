@@ -29,7 +29,7 @@ spec:
   values:
     namespaceOverride: oneuptime
     shards: 1
-    replicaCount: 1
+    replicaCount: 2
     keeper:
       enabled: false
     persistence:
