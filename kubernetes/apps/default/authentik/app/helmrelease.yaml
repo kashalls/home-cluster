@@ -26,9 +26,9 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    #image:
-    # repository: thegrandpkizzle/authentik
-    # tag: 2023.8.3-d08b0a4
+    image:
+      repository: thegrandpkizzle/authentik
+      tag: 2023.8.3-d08b0a4
     initContainers:
       init-db:
         image: ghcr.io/onedr0p/postgres-init:14.9
@@ -111,7 +111,7 @@ spec:
       serviceMonitor:
         create: true
     redis:
-      enabled: true
+      enabled: false
     geoip:
       enabled: false
     autoscaling:
