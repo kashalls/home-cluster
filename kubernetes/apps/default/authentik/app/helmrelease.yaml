@@ -65,7 +65,8 @@ spec:
           key: AUTHENTIK_REDIS__URL
     replicas: 2
     annotations:
-      secret.reloader.stakater.com/reload: authentik-secret,authentik-branding
+      secret.reloader.stakater.com/reload: "authentik-secret"
+      configmap.reloader.stakater.com/reload: "authentik-branding"
     authentik:
       log_level: info
       avatars: "gravatar,initials"
