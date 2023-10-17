@@ -36,7 +36,7 @@ spec:
       strategy: RollingUpdate
     image:
       repository: ghcr.io/oneuptime/dashboard-api
-      tag: 7.0.875
+      tag: 7.0.892
     env:
       DASHBOARD_API_PORT: &port 3002
     envFrom:
