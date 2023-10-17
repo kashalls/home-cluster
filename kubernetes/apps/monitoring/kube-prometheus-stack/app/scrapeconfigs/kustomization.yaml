@@ -6,4 +6,3 @@ namespace: monitoring
 resources:
   - ./homeassistant.yaml
   - ./node-exporter.yaml
-  - ./minio.yaml
