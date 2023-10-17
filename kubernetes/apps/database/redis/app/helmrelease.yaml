@@ -45,6 +45,7 @@ spec:
       persistence:
         enabled: false
       service:
+        type: LoadBalancer
         annotations:
           io.cilium/lb-ipam-ips: 10.69.69.180
         headless:
