@@ -44,6 +44,12 @@ spec:
         failureThreshold: 2
       persistence:
         enabled: false
+      serviceMonitor:
+        annotations:
+          io.cilium/lb-ipam-ips: 10.69.69.180
+        headless:
+          annotations:
+            io.cilium/lb-ipam-ips: 10.69.69.181
     metrics:
       enabled: true
       serviceMonitor:
