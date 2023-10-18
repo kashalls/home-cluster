@@ -43,8 +43,7 @@ spec:
       GF_AUTH_GENERIC_OAUTH_API_URL: "https://id.ok8.sh/application/o/userinfo/"
       GF_AUTH_SIGNOUT_REDIRECT_URL: "https://id.ok8.sh/application/o/grafana/end-session/"
       GF_AUTH_OAUTH_AUTO_LOGIN: "true"
-      GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'"
-
+      GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(groups[*], 'Grafana Admin') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'"
       GF_DATE_FORMATS_USE_BROWSER_LOCALE: true
       GF_EXPLORE_ENABLED: true
       GF_FEATURE_TOGGLES_ENABLE: publicDashboards
