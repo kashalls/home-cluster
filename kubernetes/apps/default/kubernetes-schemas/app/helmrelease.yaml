@@ -64,15 +64,14 @@ spec:
             port: 8080
     ingress:
       main:
+        enabled: true
         className: external
         annotations:
           external-dns.alpha.kubernetes.io/target: border.ok8.sh
-          hajimari.io/icon: mdi:code-json
         hosts:
           - host: &host "kubernetes-schemas.ok8.sh"
             paths:
               - path: /
-                pathType: Prefix
                 service:
                   name: main
                   port: http
