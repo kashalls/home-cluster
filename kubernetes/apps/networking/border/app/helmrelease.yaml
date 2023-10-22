@@ -34,7 +34,7 @@ spec:
           main:
             image:
               repository: ghcr.io/kashalls/border # {"$imagepolicy": "flux-system:border:name"}
-              tag: main-770e7a85-1691986170 # {"$imagepolicy": "flux-system:border:tag"}
+              tag: main-b1115bd5-1697940196 # {"$imagepolicy": "flux-system:border:tag"}
             resources:
               requests:
                 cpu: 200m
