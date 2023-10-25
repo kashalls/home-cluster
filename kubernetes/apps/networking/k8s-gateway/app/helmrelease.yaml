@@ -28,6 +28,8 @@ spec:
   values:
     fullnameOverride: k8s-gateway
     domain: "ok8.sh"
+    fallthrough:
+      enabled: true
     ttl: 1
     service:
       type: LoadBalancer
@@ -35,3 +37,22 @@ spec:
       annotations:
         io.cilium/lb-ipam-ips: "10.69.69.53"
       externalTrafficPolicy: Cluster
+    extraZonePlugins:
+      - name: forward
+        parameters: . tls://1.1.1.1 tls://1.0.0.1
+        configBlock: |-
+          tls_servername cloudflare-dns.com
+      - name: log
+      - name: errors
+      # Serves a /health endpoint on :8080, required for livenessProbe
+      - name: health
+        configBlock: |-
+          lameduck 5s
+      # Serves a /ready endpoint on :8181, required for readinessProbe
+      - name: ready
+      # Serves a /metrics endpoint on :9153, required for serviceMonitor
+      - name: prometheus
+        parameters: 0.0.0.0:9153
+      - name: loop
+      - name: reload
+      - name: loadbalance
