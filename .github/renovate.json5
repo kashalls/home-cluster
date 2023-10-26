@@ -14,6 +14,7 @@
     "github>kashalls/home-cluster//.github/renovate/groups.json5",
     "github>kashalls/home-cluster//.github/renovate/labels.json5",
     "github>kashalls/home-cluster//.github/renovate/semanticCommits.json5",
+    "github>kashalls/home-cluster//.github/renovate/customDatasources.json5",
     "helpers:pinGitHubActionDigests"
   ],
   "platform": "github",
@@ -63,6 +64,18 @@
       ],
       "datasourceTemplate": "docker",
       "versioningTemplate": "redhat"
+    },
+    {
+      "description": "Process Grafana dashboards",
+      "fileMatch": [
+        "(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$"
+      ],
+      "matchStrings": [
+        "depName=\"(?<depName>.*)\"\\n\\s+gnetId:\\s+(?<packageName>.*?)\\n\\s+revision:\\s+(?<currentValue>.*)"
+      ],
+      "customType": "regex",
+      "versioningTemplate": "regex:^(?<major>\\d+)$",
+      "datasourceTemplate": "custom.grafana-dashboards"
     }
   ],
   "packageRules": [
