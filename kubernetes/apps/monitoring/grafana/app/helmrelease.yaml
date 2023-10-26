@@ -250,12 +250,12 @@ spec:
         kubernetes-api-server:
           # renovate: depName="Kubernetes / System / API Server"
           gnetId: 15761
-          revision: 13
+          revision: 14
           datasource: Prometheus
         kubernetes-coredns:
           # renovate: depName="Kubernetes / System / CoreDNS"
           gnetId: 15762
-          revision: 12
+          revision: 13
           datasource: Prometheus
         kubernetes-global:
           # renovate: depName="Kubernetes / Views / Global"
