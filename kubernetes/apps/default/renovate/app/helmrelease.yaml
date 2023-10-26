@@ -92,13 +92,3 @@ spec:
         globalMounts:
           - path: /usr/src/app/config.js
             readOnly: true
-      cache:
-        enabled: true
-        type: persistentVolumeClaim
-        accessMode: ReadWriteOnce
-        size: 50Gi
-        storageClass: ceph-block
-        retain: true
-        globalMounts:
-          - path: /tmp/renovate
-            readOnly: false
