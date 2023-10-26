@@ -260,22 +260,22 @@ spec:
         kubernetes-global:
           # renovate: depName="Kubernetes / Views / Global"
           gnetId: 15757
-          revision: 30
+          revision: 31
           datasource: Prometheus
         kubernetes-namespaces:
           # renovate: depName="Kubernetes / Views / Global"
           gnetId: 15757
-          revision: 30
+          revision: 31
           datasource: Prometheus
         kubernetes-nodes:
           # renovate: depName="Kubernetes / Views / Global"
           gnetId: 15757
-          revision: 30
+          revision: 31
           datasource: Prometheus
         kubernetes-pods:
           # renovate: depName="Kubernetes / Views / Global"
           gnetId: 15757
-          revision: 30
+          revision: 31
           datasource: Prometheus
       nginx:
         nginx:
