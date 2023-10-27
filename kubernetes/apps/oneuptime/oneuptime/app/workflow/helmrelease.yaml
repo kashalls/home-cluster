@@ -37,7 +37,7 @@ spec:
       strategy: RollingUpdate
     image:
       repository: ghcr.io/oneuptime/workflow
-      tag: 7.0.929
+      tag: 7.0.931
     env:
       WORKFLOW_PORT: &port 3099
     envFrom:

@@ -33,7 +33,7 @@ spec:
       strategy: RollingUpdate
     image:
       repository: ghcr.io/oneuptime/file
-      tag: 7.0.929
+      tag: 7.0.931
     env:
       PORT: &port 3125
     envFrom:
