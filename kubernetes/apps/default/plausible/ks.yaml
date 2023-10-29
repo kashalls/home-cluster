@@ -3,34 +3,15 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-plausible-clickhouse
-  namespace: flux-system
-spec:
-  dependsOn:
-    - name: cluster-apps-rook-ceph-cluster
-  path: ./kubernetes/apps/default/plausible/clickhouse/
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: home-kubernetes
-  wait: true
-  interval: 30m
-  retryInterval: 1m
-  timeout: 5m
----
-# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/kustomize.toolkit.fluxcd.io/kustomization_v1.json
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
   name: cluster-apps-plausible
   namespace: flux-system
 spec:
   dependsOn:
     - name: cluster-apps-rook-ceph-cluster
     - name: cluster-apps-external-secrets-stores
-    - name: cluster-apps-plausible-clickhouse
+    - name: cluster-apps-database-clickhouse
     - name: cluster-apps-cloudnative-pg-cluster
-  path: ./kubernetes/apps/default/plausible/plausible/
+  path: ./kubernetes/apps/default/plausible/app/
   prune: true
   sourceRef:
     kind: GitRepository
