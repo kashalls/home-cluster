@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: home-assistant
+  name: home-assistant-code
   namespace: default
 spec:
   interval: 30m
@@ -26,41 +26,30 @@ spec:
   uninstall:
     keepHistory: false
   dependsOn:
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
-    - name: volsync
-      namespace: volsync
+    - name: home-assistant
+      namespace: default
   values:
     controllers:
       main:
         annotations:
           reloader.stakater.com/auto: "true"
-        initContainers:
-          init-db:
-            image:
-              repository: ghcr.io/onedr0p/postgres-init
-              tag: 14.9
-              pullPolicy: IfNotPresent
-            envFrom: &envFrom
-              - secretRef:
-                  name: home-assistant-secret
         containers:
           main:
             image:
-              repository: ghcr.io/onedr0p/home-assistant
-              tag: 2023.10.5@sha256:24ce89830111fe19bb2df00621dfd631fd20abe07a453ea60c2027890d5b934e
+              repository: ghcr.io/coder/code-server
+              tag: 4.18.0
             env:
               TZ: America/Los_Angeles
-              POSTGRES_HOST: postgres-rw.database.svc.cluster.local
-              POSTGRES_DB: home_assistant
-            envFrom: *envFrom
-            probes:
-              liveness:
-                enabled: false
-              readiness:
-                enabled: false
-              startup:
-                enabled: false
+            args:
+              - --auth
+              - "none"
+              - --user-data-dir
+              - "/config/.vscode"
+              - --extensions-dir
+              - "/config/.vscode"
+              - "--port"
+              - "80"
+              - /config
             resources:
               requests:
                 cpu: 10m
@@ -77,15 +66,13 @@ spec:
       main:
         ports:
           http:
-            port: 8123
+            port: 80
     ingress:
       main:
-        enabled: false
-        className: external
-        annotations:
-          external-dns.alpha.kubernetes.io/target: border.ok8.sh
+        enabled: true
+        className: internal
         hosts:
-          - host: &host hass.ok8.sh
+          - host: &host hass-code.ok8.sh
             paths:
               - path: /
                 service:
