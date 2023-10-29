@@ -28,8 +28,8 @@ spec:
     keepHistory: false
   values:
     namespaceOverride: oneuptime
-    shards: 1
-    replicaCount: 2
+    shards: 2
+    replicaCount: 3
     keeper:
       enabled: false
     persistence:
