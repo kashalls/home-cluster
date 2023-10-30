@@ -27,8 +27,8 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    shards: 2
-    replicaCount: 3
+    shards: 1
+    replicaCount: 1
     auth:
       username: default
       password: 1nternalUseOnly
