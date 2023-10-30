@@ -51,7 +51,7 @@ spec:
             #command: "sh -c \"/entrypoint.sh db createdb && /entrypoint.sh db migrate && /entrypoint.sh run\""
             #command: ['sh', '-c', '/entrypoint.sh', 'db', 'createdb']
             #command: ['sh', '-c', '/entrypoint.sh', 'db', 'migrate']
-            command: ['sh', '-c', '/entrypoint.sh', 'run']
+            #command: ['sh', '-c', '/entrypoint.sh', 'run']
             env:
               BASE_URL: "https://analytics.ok8.sh"
             envFrom: *envFrom
