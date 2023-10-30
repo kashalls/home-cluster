@@ -5,14 +5,3 @@ kind: Kustomization
 namespace: database
 resources:
   - ./helmrelease.yaml
-configMapGenerator:
-  - name: clickhouse-config
-    files:
-      - ./config/clickhouse-config.xml
-  - name: clickhouse-userconfig
-    files:
-      - ./config/clickhouse-userconfig.xml
-generatorOptions:
-  disableNameSuffixHash: true
-  annotations:
-    kustomize.toolkit.fluxcd.io/substitute: disabled

@@ -29,8 +29,9 @@ spec:
   values:
     shards: 2
     replicaCount: 3
-    keeper:
-      enabled: false
+    auth:
+      username: default
+      password: 1nternalUseOnly
     persistence:
       enabled: true
       storageClass: ceph-block
