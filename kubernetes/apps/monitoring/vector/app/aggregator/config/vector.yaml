@@ -171,7 +171,7 @@ sinks:
   journald:
     inputs: ["journald_source"]
     type: loki
-    endpoint: http://loki-gateway.monitoring.svc.cluster.local:3100
+    endpoint: http://loki-gateway.monitoring.svc.cluster.local
     encoding: { codec: json }
     out_of_order_action: accept
     remove_label_fields: true
@@ -182,7 +182,7 @@ sinks:
   kubernetes:
     inputs: ["kubernetes_remap"]
     type: loki
-    endpoint: http://loki-gateway.monitoring.svc.cluster.local:3100
+    endpoint: http://loki-gateway.monitoring.svc.cluster.local
     encoding: { codec: json }
     out_of_order_action: accept
     remove_label_fields: true
@@ -199,7 +199,7 @@ sinks:
       - "opnsense_geotag"
     encoding:
       codec: "json"
-    endpoint: "http://loki-gateway.monitoring.svc.cluster.local:3100"
+    endpoint: http://loki-gateway.monitoring.svc.cluster.local
     out_of_order_action: "accept"
     labels:
       logtype: "net"
