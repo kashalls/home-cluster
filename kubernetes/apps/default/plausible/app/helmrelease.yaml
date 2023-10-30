@@ -50,9 +50,15 @@ spec:
             command: [
               'sh',
               '-c',
+              'sleep',
+              '10',
+              '&&',
               '/entrypoint.sh',
               'db',
-              'migrate'
+              'migrate',
+              '&&',
+              '/entrypoint.sh',
+              'run'
             ]
             #command: ['sh', '-c', '/entrypoint.sh', 'db', 'createdb']
             #command: ['sh', '-c', '/entrypoint.sh', 'db', 'migrate']
