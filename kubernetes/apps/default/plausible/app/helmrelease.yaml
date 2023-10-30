@@ -52,7 +52,7 @@ spec:
               '-c',
               '/entrypoint.sh',
               'db',
-              'createdb'
+              'migrate'
             ]
             #command: ['sh', '-c', '/entrypoint.sh', 'db', 'createdb']
             #command: ['sh', '-c', '/entrypoint.sh', 'db', 'migrate']
