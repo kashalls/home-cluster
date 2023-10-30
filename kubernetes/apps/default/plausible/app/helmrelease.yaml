@@ -41,6 +41,8 @@ spec:
                   name: plausible-secret
         containers:
           main:
+            annotations:
+              secret.reloader.stakater.com/reload: "plausible-secret"
             image:
               repository: plausible/analytics
               tag: v2.0
