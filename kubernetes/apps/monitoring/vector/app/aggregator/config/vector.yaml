@@ -24,7 +24,7 @@ sources:
     version: "2"
     address: 0.0.0.0:6010
 
-  opnsense_source:
+  opnsense:
     type: syslog
     address: 0.0.0.0:5140
     mode: udp
@@ -43,39 +43,125 @@ transforms:
       # Drop pod_labels
       del(.pod_labels)
 
-  opnsense_remap:
-    type: remap
+  opnsense_filterlog:
+    type: "remap"
     inputs:
-      - opnsense_source
-    source: |
-      msg = parse_csv!(string!(.message))
-      # Only parse IPv4 / IPv6
-      if msg[8] == "4" || msg[8] == "6" {
-        .filter_interface = msg[4]
-        .filter_direction = msg[7]
-        .filter_action = msg[6]
-        .filter_ip_version = msg[8]
-        .filter_protocol = msg[16]
-        .filter_source_ip = msg[18]
-        .filter_destination_ip = msg[19]
-        if (msg[16] == "icmp" || msg[16] == "igmp" || msg[16] == "gre") {
-          .filter_data = msg[20]
-        } else {
-          .filter_source_port = msg[20]
-          .filter_destination_port = msg[21]
-          .filter_data_length = msg[22]
-          if msg[8] == "4" && msg[16] == "tcp" {
-            .filter_tcp_flags = msg[23]
+      - "opnsense"
+    source: |-
+      if .appname == "filterlog" {
+        message_array = parse_csv!(string!(.message))
+        # Check for IPv4 or IPv6
+        if message_array[8] == "4" || message_array[8] == "6" {
+          .rulenr = message_array[0]
+          .subrulenr = message_array[1]
+          .anchorname = message_array[2]
+          .rid = message_array[3]
+          .interface = message_array[4]
+          .reason = message_array[5]
+          .action = message_array[6]
+          .dir = message_array[7]
+          .ipversion = message_array[8]
+
+          # Field assignments for IPv4
+          if message_array[8] == "4" {
+            .tos = message_array[9]
+            .ecn = message_array[10]
+            .ttl = message_array[11]
+            .id = message_array[12]
+            .offset = message_array[13]
+            .ipflags = message_array[14]
+            .protonum = message_array[15]
+            .protoname = message_array[16]
+            .length = message_array[17]
+            .src = message_array[18]
+            .dst = message_array[19]
+
+            # Field assignments for specific protocols (UDP, TCP, CARP)
+            if message_array[15] == "17" {
+              .srcport = message_array[20]
+              .dstport = message_array[21]
+              .datalen = message_array[22]
+            } else if message_array[15] == "6" {
+              .srcport = message_array[20]
+              .dstport = message_array[21]
+              .datalen = message_array[22]
+              .tcpflags = message_array[23]
+              .seq = message_array[24]
+              .ack = message_array[25]
+              .urp = message_array[26]
+              .tcpopts = message_array[27]
+            } else if message_array[15] == "112" {
+              .type = message_array[20]
+              .ttl = message_array[21]
+              .vhid = message_array[22]
+              .version = message_array[23]
+              .advskew = message_array[24]
+              .advbase = message_array[25]
+            }
+          }
+
+          # Field assignments for IPv6
+          if message_array[8] == "6" {
+            .class = message_array[9]
+            .flow = message_array[10]
+            .hoplimit = message_array[11]
+            .protoname = message_array[12]
+            .protonum = message_array[13]
+            .length = message_array[14]
+            .src = message_array[15]
+            .dst = message_array[16]
+
+            # Field assignments for specific protocols (UDP, TCP, CARP)
+            if message_array[13] == "17" {
+              .srcport = message_array[17]
+              .dstport = message_array[18]
+              .datalen = message_array[19]
+            } else if message_array[13] == "6" {
+              .srcport = message_array[17]
+              .dstport = message_array[18]
+              .datalen = message_array[19]
+              .tcpflags = message_array[20]
+              .seq = message_array[21]
+              .ack = message_array[22]
+              .urp = message_array[23]
+              .tcpopts = message_array[24]
+            } else if message_array[13] == "112" {
+              .type = message_array[17]
+              .hoplimit = message_array[18]
+              .vhid = message_array[19]
+              .version = message_array[20]
+              .advskew = message_array[21]
+              .advbase = message_array[22]
+            }
           }
         }
       }
 
-  opnsense_route:
-    type: route
+  opnsense_split:
+    type: "route"
     inputs:
-      - opnsense_remap
+      - "opnsense_filterlog"
     route:
-      pass_action: .filter_action == "pass"
+      pass: '.action == "pass"'
+      therest: '.action != "pass"'
+
+  opnsense_geotag:
+    type: "remap"
+    inputs:
+      - "opnsense_split.pass"
+    source: |-
+      .src_geoip, err = get_enrichment_table_record("geoip_table",
+        {
+          "ip": .src
+        }
+      )
+      if err == null { false }
+      .dst_geoip, err = get_enrichment_table_record("geoip_table",
+        {
+          "ip": .dst
+        }
+      )
+      if err == null { false }
 
 #
 # Sinks
@@ -85,36 +171,41 @@ sinks:
   journald:
     inputs: ["journald_source"]
     type: loki
-    endpoint: http://loki-gateway.monitoring.svc.cluster.local
+    endpoint: http://loki-gateway.monitoring.svc.cluster.local:3100
     encoding: { codec: json }
     out_of_order_action: accept
     remove_label_fields: true
     remove_timestamp: true
     labels:
-      hostname: '{{ host }}'
+      hostname: "{{ host }}"
 
   kubernetes:
     inputs: ["kubernetes_remap"]
     type: loki
-    endpoint: http://loki-gateway.monitoring.svc.cluster.local
+    endpoint: http://loki-gateway.monitoring.svc.cluster.local:3100
     encoding: { codec: json }
     out_of_order_action: accept
     remove_label_fields: true
     remove_timestamp: true
     labels:
-      app: '{{ custom_app_name }}'
-      namespace: '{{ kubernetes.pod_namespace }}'
-      node: '{{ kubernetes.pod_node_name }}'
+      app: "{{ custom_app_name }}"
+      namespace: "{{ kubernetes.pod_namespace }}"
+      node: "{{ kubernetes.pod_node_name }}"
 
-  opnsense:
-    type: loki
-    batch:
-      max_bytes: 2049000
-    encoding:
-      codec: json
-    endpoint: http://loki-gateway.monitoring.svc.cluster.local
+  loki_opnsense:
+    type: "loki"
     inputs:
-      - opnsense_route._unmatched
+      - "opnsense_split.therest"
+      - "opnsense_geotag"
+    encoding:
+      codec: "json"
+    endpoint: "http://loki-gateway.monitoring.svc.cluster.local:3100"
+    out_of_order_action: "accept"
     labels:
-      hostname: opnsense
-    out_of_order_action: accept
+      logtype: "net"
+      server: "opnsense"
+      interface: "{{ interface }}"
+      reason: "{{ reason }}"
+      action: "{{ action }}"
+      dir: "{{ dir }}"
+      ipversion: "{{ ipversion }}"
