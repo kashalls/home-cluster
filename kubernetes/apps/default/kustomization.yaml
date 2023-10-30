@@ -12,7 +12,7 @@ resources:
   - ./kubernetes-schemas/ks.yaml
   - ./mosquitto/ks.yaml
   - ./ntfy/ks.yaml
-  #- ./plausible/ks.yaml
+  - ./plausible/ks.yaml
   - ./renovate/ks.yaml
   - ./rtlamr2mqtt/ks.yaml
   - ./smtp-relay/ks.yaml
