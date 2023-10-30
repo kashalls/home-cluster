@@ -1,11 +1,8 @@
 ---
 groups:
-  #
-  # SMART Failures
-  #
-  - name: smart-failure
+  - name: smart
     rules:
-      - alert: SmartFailures
+      - alert: SMARTFailure
         expr: |
           sum by (hostname) (count_over_time({hostname=~".+"} | json | _SYSTEMD_UNIT = "smartmontools.service" !~ "(?i)previous self-test completed without error" !~ "(?i)Prefailure" |~ "(?i)(error|fail)"[2m])) > 0
         for: 2m
@@ -16,12 +13,9 @@ groups:
           hostname: "{{ $labels.hostname }}"
           summary: "{{ $labels.hostname }} has reported SMART failures"
 
-  #
-  # zigbee2mqtt
-  #
   - name: zigbee2mqtt
     rules:
-      - alert: ZigbeeUnableToReachMQTT
+      - alert: ZigbeeMQTTUnreachable
         expr: |
           sum(count_over_time({app="zigbee2mqtt"} |~ "(?i)not connected to mqtt server"[2m])) > 0
         for: 2m
@@ -30,14 +24,11 @@ groups:
           category: logs
         annotations:
           app: "{{ $labels.app }}"
-          summary: "{{ $labels.app }} is unable to reach mqtt"
+          summary: "{{ $labels.app }} is unable to reach MQTT"
 
-  #
-  # home-assistant
-  #
   - name: home-assistant
     rules:
-      - alert: HomeAssistantUnableToReachPostgresql
+      - alert: HomeAssistantPostgresUnreachable
         expr: |
           sum by (app) (count_over_time({app="home-assistant"} |~ "(?i)error in database connectivity"[2m])) > 0
         for: 2m
@@ -46,36 +37,4 @@ groups:
           category: logs
         annotations:
           app: "{{ $labels.app }}"
-          summary: "{{ $labels.app }} is unable to connect to postgresql"
-
-  #
-  # valetudo
-  #
-  - name: valetudo
-    rules:
-      - alert: ValetudoUnableToReachMQTT
-        expr: |
-          sum by (hostname) (count_over_time({hostname="valetudo"} |~ "(?i).*error.*mqtt.*"[2m])) > 0
-        for: 2m
-        labels:
-          severity: critical
-          category: logs
-        annotations:
-          hostname: "{{ $labels.hostname }}"
-          summary: "{{ $labels.hostname }} is unable to connect to mqtt"
-
-  #
-  # node-red
-  #
-  - name: node-red
-    rules:
-      - alert: NodeRedUnableToReachHomeAssistant
-        expr: |
-          sum by (app) (count_over_time({app="node-red"} |~ "(?i)home assistant.*connecting to undefined"[2m])) > 0
-        for: 2m
-        labels:
-          severity: critical
-          category: logs
-        annotations:
-          app: "{{ $labels.app }}"
-          summary: "{{ $labels.app }} is unable to connect to home assistant"
+          summary: "{{ $labels.app }} is unable to connect to postgres"
