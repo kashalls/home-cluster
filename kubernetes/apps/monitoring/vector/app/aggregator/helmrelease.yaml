@@ -85,10 +85,10 @@ spec:
           kubernetes:
             enabled: true
             port: 6010
-          vyos:
+          opnsense:
             enabled: true
-            port: 6020
-            # protocol: UDP
+            port: 5140
+            protocol: UDP
     persistence:
       config:
         enabled: true
