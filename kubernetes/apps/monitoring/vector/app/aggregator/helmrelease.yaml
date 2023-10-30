@@ -27,66 +27,54 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    defaultPodOptions:
-      topologySpreadConstraints:
-        - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
-          whenUnsatisfiable: DoNotSchedule
-          labelSelector:
-            matchLabels:
-              app.kubernetes.io/name: *app
     controllers:
       main:
-        replicas: 3
+        replicas: 2
         strategy: RollingUpdate
         annotations:
           reloader.stakater.com/auto: "true"
         initContainers:
-          01-init-geoip:
+          init-geoip:
             image:
               repository: ghcr.io/maxmind/geoipupdate
               tag: v6.0.0
-            imagePullPolicy: IfNotPresent
+              pullPolicy: IfNotPresent
             env:
-              - { name: GEOIPUPDATE_EDITION_IDS, value: GeoLite2-City }
-              - { name: GEOIPUPDATE_FREQUENCY, value: "0" }
-              - { name: GEOIPUPDATE_VERBOSE, value: "true" }
+              GEOIPUPDATE_EDITION_IDS: GeoLite2-City
+              GEOIPUPDATE_FREQUENCY: "0"
+              GEOIPUPDATE_VERBOSE: "true"
             envFrom:
               - secretRef:
                   name: vector-aggregator-secret
-            volumeMounts:
-              - { name: geoip, mountPath: /usr/share/GeoIP }
         containers:
           main:
             image:
               repository: docker.io/timberio/vector
               tag: 0.33.0-debian
             args: ["--config", "/etc/vector/vector.yaml"]
-            probes:
-              liveness:
-                enabled: false
-              readiness:
-                enabled: false
-              startup:
-                enabled: false
+        pod:
+          topologySpreadConstraints:
+            - maxSkew: 1
+              topologyKey: kubernetes.io/hostname
+              whenUnsatisfiable: DoNotSchedule
+              labelSelector:
+                matchLabels:
+                  app.kubernetes.io/name: *app
     service:
       main:
+        controller: main
         type: LoadBalancer
         annotations:
-          io.cilium/lb-ipam-ips: "10.69.69.111"
-          external-dns.alpha.kubernetes.io/hostname: "vector.ok8.sh"
-        externalTrafficPolicy: Cluster
+          external-dns.alpha.kubernetes.io/hostname: vector.ok8.sh
+          io.cilium/lb-ipam-ips: 10.69.69.111
         ports:
           http:
             port: 8686
           journald:
-            enabled: true
             port: 6000
           kubernetes:
-            enabled: true
             port: 6010
           opnsense:
-            enabled: true
             port: 5140
             protocol: UDP
     persistence:
@@ -94,14 +82,15 @@ spec:
         enabled: true
         type: configMap
         name: vector-aggregator-configmap # overriden by kustomizeconfig
-        subPath: vector.yaml
-        mountPath: /etc/vector/vector.yaml
-        readOnly: true
+        globalMounts:
+          - path: /etc/vector/vector.yaml
+            subPath: vector.yaml
+            readOnly: true
       data:
-        enabled: true
         type: emptyDir
-        mountPath: /vector-data-dir
+        globalMounts:
+          - path: /vector-data-dir
       geoip:
-        enabled: true
         type: emptyDir
-        mountPath: /usr/share/GeoIP
+        globalMounts:
+          - path: /usr/share/GeoIP
