@@ -29,16 +29,6 @@ spec:
   values:
     controllers:
       main:
-        strategy: RollingUpdate
-        initContainers:
-          01-init-db:
-            image:
-              repository: ghcr.io/onedr0p/postgres-init
-              tag: 14.9
-            imagePullPolicy: IfNotPresent
-            envFrom: &envFrom
-              - secretRef:
-                  name: plausible-secret
         containers:
           main:
             annotations:
@@ -54,7 +44,9 @@ spec:
             #command: ['sh', '-c', '/entrypoint.sh', 'run']
             env:
               BASE_URL: "https://analytics.ok8.sh"
-            envFrom: *envFrom
+            envFrom:
+              - secretRef:
+                  name: plausible-secret
             #resources:
             # requests:
             #    cpu: 5m
