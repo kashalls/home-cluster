@@ -35,10 +35,17 @@ spec:
               repository: plausible/analytics
               tag: v2.0
             command: ['/bin/sh', '-c']
-            args: ['/entrypoint.sh', 'db', 'createdb', '&&', '/entrypoint.sh', 'db', 'migrate']
+            args: ['/entrypoint.sh', 'db', 'createdb']
             envFrom: &envFrom
               - secretRef:
                   name: plausible-secret
+          plausible-migrate:
+            image:
+              repository: plausible/analytics
+              tag: v2.0
+            command: ['/bin/sh', '-c']
+            args: ['/entrypoint.sh', 'db', 'migrate']
+            envFrom: *envFrom
         containers:
           main:
             annotations:
