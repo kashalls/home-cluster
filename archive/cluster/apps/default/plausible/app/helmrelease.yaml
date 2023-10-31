@@ -1,0 +1,114 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: plausible
+  namespace: default
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.0.3
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    controllers:
+      main:
+        initContainers:
+          plausible-init:
+            image:
+              repository: plausible/analytics
+              tag: v2.0
+            command:
+              - '/bin/sh'
+              - '-c'
+            args:
+              - '/entrypoint.sh db createdb'
+            envFrom: &envFrom
+              - secretRef:
+                  name: plausible-secret
+          plausible-migrate:
+            image:
+              repository: plausible/analytics
+              tag: v2.0
+            command:
+              - '/bin/sh'
+              - '-c'
+            args:
+              - '/entrypoint.sh db migrate'
+            envFrom: *envFrom
+        containers:
+          main:
+            annotations:
+              secret.reloader.stakater.com/reload: "plausible-secret"
+            image:
+              repository: plausible/analytics
+              tag: v2.0
+            # First run only.
+            # https://github.com/plausible/hosting/blob/master/docker-compose.yml
+            #command: "sh -c \"/entrypoint.sh db createdb && /entrypoint.sh db migrate && /entrypoint.sh run\""
+            #command: ['sh', '-c', '/entrypoint.sh', 'db', 'migrate', '&&','sh', '-c', '/entrypoint.sh', 'run' ]
+            #command: ['sh', '-c', '/entrypoint.sh', 'run']
+            #command: ['sh', '-c', '/entrypoint.sh', 'db', 'migrate']
+            #command: ['sh', '-c', '/entrypoint.sh', 'run']
+            env:
+              BASE_URL: "https://analytics.ok8.sh"
+            envFrom: *envFrom
+            #resources:
+            # requests:
+            #    cpu: 5m
+            #    memory: 10Mi
+            #  limits:
+            #   memory: 50Mi
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/health
+                    port: &port 8000
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
+    service:
+      main:
+        ports:
+          http:
+            port: *port
+    ingress:
+      main:
+        enabled: true
+        className: external
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "border.ok8.sh"
+        hosts:
+          - host: &host "analytics.ok8.sh"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host

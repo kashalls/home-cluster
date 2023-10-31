@@ -27,13 +27,13 @@ spec:
     keepHistory: false
   values:
     controller:
-      replicas: 3
+      replicas: 1
       strategy: RollingUpdate
       annotations:
         reloader.stakater.com/auto: "true"
     image:
-      repository: ghcr.io/kashalls/shynet
-      tag: pickles4
+      repository: ghcr.io/milesmcc/shynet
+      tag: edge@sha256:b92cb33ed27846ffff33145a0d1f310347c6130e49da6e5376dca995a7cfaa08
       pullPolicy: Always
     envFrom:
       - secretRef:
@@ -65,61 +65,3 @@ spec:
         memory: 150Mi
       limits:
         memory: 300Mi
----
-# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
-kind: HelmRelease
-metadata:
-  name: &app-worker shynet-celeryworker
-  namespace: default
-spec:
-  interval: 30m
-  chart:
-    spec:
-      chart: app-template
-      version: 1.5.1
-      sourceRef:
-        kind: HelmRepository
-        name: bjw-s
-        namespace: flux-system
-  maxHistory: 2
-  install:
-    remediation:
-      retries: 3
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
-  uninstall:
-    keepHistory: false
-  values:
-    initContainers:
-      01-init-db:
-        image: ghcr.io/onedr0p/postgres-init:14.9
-        imagePullPolicy: IfNotPresent
-        envFrom: &envFrom
-          - secretRef:
-              name: shynet-secret
-    controller:
-      replicas: 3
-      strategy: RollingUpdate
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/kashalls/shynet
-      tag: pickles4
-      pullPolicy: Always
-    command: ["./celeryworker.sh"]
-    envFrom:
-      - secretRef:
-          name: shynet-secret
-    service:
-      main:
-        enabled: false
-    resources:
-      requests:
-        cpu: 50m
-        memory: 250Mi
-      limits:
-        memory: 500Mi
-
