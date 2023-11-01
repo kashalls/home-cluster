@@ -33,7 +33,7 @@ spec:
       strategy: RollingUpdate
     image:
       repository: ghcr.io/oneuptime/link-shortener
-      tag: 7.0.931
+      tag: 7.0.944
     env:
       LINK_SHORTENER_PORT: &port 3521
     envFrom:
