@@ -137,7 +137,7 @@ spec:
           nginx.ingress.kubernetes.io/proxy-body-size: "100m"
           external-dns.alpha.kubernetes.io/target: "border.ok8.sh"
         hosts:
-          - host: &host "z.ok8.sh"
+          - host: &host "ok8.sh"
             paths:
               - path: /
                 pathType: Prefix
@@ -147,20 +147,3 @@ spec:
         tls:
           - hosts:
               - *host
-      shorten-rewrite:
-        enabled: true
-        className: external
-        annotations:
-          nginx.ingress.kubernetes.io/use-regex: "true"
-          nginx.ingress.kubernetes.io/rewrite-target: /go/$1
-        hosts:
-          - host: &shorten-rewrite "go.ok8.sh"
-            paths:
-              - path: /(.*)
-                pathType: Prefix
-                service:
-                  name: main
-                  port: http
-        tls:
-          - hosts:
-              - *shorten-rewrite
