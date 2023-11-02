@@ -32,7 +32,7 @@ spec:
               - secretRef:
                   name: zipline-secret
         containers:
-          zipline:
+          main:
             image:
               repository: ghcr.io/diced/zipline
               tag: trunk@sha256:3472f4eef68ef3ab53b2750346e37f48cece2c015af5b8a557bd2cb685713b1c
