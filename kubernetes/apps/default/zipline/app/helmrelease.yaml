@@ -44,7 +44,7 @@ spec:
                 memory: 1Gi
             env:
               DEBUG: "true"
-              TZ: "${CONFIG_TZ}"
+              TZ: "America/Los_Angeles"
               CORE_SECRET:
                 valueFrom:
                   secretKeyRef:
