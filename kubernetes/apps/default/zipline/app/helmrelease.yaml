@@ -22,8 +22,17 @@ spec:
       automountServiceAccountToken: false
     controllers:
       main:
+        initContainers:
+          01-init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 14.9@sha256:170970a909f892149cbf99be8d86c26f0090bc7d2fbd1c34dd770b4bf7e08458
+            imagePullPolicy: IfNotPresent
+            envFrom: &envFrom
+              - secretRef:
+                  name: zipline-secret
         containers:
-          main:
+          zipline:
             image:
               repository: ghcr.io/diced/zipline
               tag: trunk@sha256:3472f4eef68ef3ab53b2750346e37f48cece2c015af5b8a557bd2cb685713b1c
@@ -115,15 +124,6 @@ spec:
                 enabled: false
               startup:
                 enabled: false
-        initContainers:
-          01-init-db:
-            image:
-              repository: ghcr.io/onedr0p/postgres-init
-              tag: 14.9@sha256:170970a909f892149cbf99be8d86c26f0090bc7d2fbd1c34dd770b4bf7e08458
-            imagePullPolicy: IfNotPresent
-            envFrom:
-              - secretRef:
-                  name: zipline-secret
     service:
       main:
         ports:
@@ -147,3 +147,20 @@ spec:
         tls:
           - hosts:
               - *host
+      shorten-rewrite:
+        enabled: true
+        className: external
+        annotations:
+          nginx.ingress.kubernetes.io/use-regex: "true"
+          nginx.ingress.kubernetes.io/rewrite-target: /go/$1
+        hosts:
+          - host: &shorten-rewrite "go.ok8.sh"
+            paths:
+              - path: /(.*)
+                pathType: Prefix
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *shorten-rewrite
