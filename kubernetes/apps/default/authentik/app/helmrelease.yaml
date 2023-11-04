@@ -28,7 +28,7 @@ spec:
   values:
     image:
       repository: thegrandpkizzle/authentik
-      tag: 2023.8.3-699ea28
+      tag: 2023.10.2-d3b510d
     initContainers:
       init-db:
         image: ghcr.io/onedr0p/postgres-init:14.9
