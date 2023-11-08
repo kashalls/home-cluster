@@ -35,7 +35,7 @@ spec:
           main:
             image:
               repository: ghcr.io/diced/zipline
-              tag: trunk@sha256:3472f4eef68ef3ab53b2750346e37f48cece2c015af5b8a557bd2cb685713b1c
+              tag: trunk@sha256:7248e2a71c2d94edd648d4a84853a9c6e439ed2b7903a2769332a6737960645e
             resources:
               requests:
                 cpu: 300m
