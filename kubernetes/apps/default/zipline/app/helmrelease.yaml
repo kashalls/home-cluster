@@ -35,7 +35,7 @@ spec:
           main:
             image:
               repository: ghcr.io/kashalls/zipline
-              tag: trunk-3.7.5
+              tag: trunk-3.7.5-test
             resources:
               requests:
                 cpu: 300m
