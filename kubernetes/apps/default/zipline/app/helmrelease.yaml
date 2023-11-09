@@ -31,19 +31,11 @@ spec:
             envFrom: &envFrom
               - secretRef:
                   name: zipline-secret
-            probes:
-              liveness:
-                enabled: false
-              readiness:
-                enabled: false
-              startup:
-                enabled: false
-
         containers:
           main:
             image:
-              repository: ghcr.io/diced/zipline
-              tag: trunk@sha256:7248e2a71c2d94edd648d4a84853a9c6e439ed2b7903a2769332a6737960645e
+              repository: ghcr.io/kashalls/zipline
+              tag: trunk-3.7.5
             resources:
               requests:
                 cpu: 300m
