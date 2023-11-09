@@ -36,12 +36,6 @@ spec:
             image:
               repository: ghcr.io/kashalls/zipline
               tag: trunk-3.7.5-test
-            resources:
-              requests:
-                cpu: 500m
-                memory: 1Gi
-              limits:
-                memory: 4Gi
             env:
               DEBUG: "true"
               TZ: "America/Los_Angeles"
