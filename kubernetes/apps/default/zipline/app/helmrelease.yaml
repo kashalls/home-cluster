@@ -38,10 +38,10 @@ spec:
               tag: trunk-3.7.5-test
             resources:
               requests:
-                cpu: 300m
-                memory: 512Mi
-              limits:
+                cpu: 500m
                 memory: 1Gi
+              limits:
+                memory: 4Gi
             env:
               DEBUG: "true"
               TZ: "America/Los_Angeles"
