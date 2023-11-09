@@ -35,7 +35,7 @@ spec:
           main:
             image:
               repository: ghcr.io/kashalls/zipline
-              tag: trunk-3.7.5-test
+              tag: trunk-3.7.5-test.2
             env:
               DEBUG: "true"
               TZ: "America/Los_Angeles"
