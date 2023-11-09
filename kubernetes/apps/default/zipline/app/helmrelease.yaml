@@ -31,6 +31,14 @@ spec:
             envFrom: &envFrom
               - secretRef:
                   name: zipline-secret
+            probes:
+              liveness:
+                enabled: false
+              readiness:
+                enabled: false
+              startup:
+                enabled: false
+
         containers:
           main:
             image:
