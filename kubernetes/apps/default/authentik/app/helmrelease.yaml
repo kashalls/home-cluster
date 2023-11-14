@@ -27,8 +27,8 @@ spec:
     keepHistory: false
   values:
     image:
-      repository: thegrandpkizzle/authentik
-      tag: 2023.10.2-d3b510d
+      repository: docker.io/thegrandpkizzle/authentik
+      tag: 2023.10.2-1c68198
     initContainers:
       init-db:
         image: ghcr.io/onedr0p/postgres-init:14.9
