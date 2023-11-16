@@ -28,9 +28,9 @@ spec:
   values:
     defaultPodOptions:
       securityContext:
-        runAsUser: 3000
-        runAsGroup: 3003
-        fsGroup: 3003
+        runAsUser: 8675
+        runAsGroup: 8675
+        fsGroup: 8675
         fsGroupChangePolicy: OnRootMismatch
     controllers:
       main:
