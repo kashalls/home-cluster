@@ -6,7 +6,7 @@ metadata:
   name: cluster-apps-minio
   namespace: flux-system
 spec:
-  path: ./truesnaz/apps/storage/minio/app
+  path: ./truesnaz/apps/default/minio/app
   prune: true
   sourceRef:
     kind: GitRepository
