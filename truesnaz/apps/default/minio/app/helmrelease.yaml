@@ -134,7 +134,7 @@ spec:
     persistence:
       data:
         enabled: true
-        type: nfs
-        server: 10.1.0.69
-        path: /mnt/bigboi/kubernetes/minio
-        mountPath: /data
+        type: hostPath
+        hostPath: /mnt/bigboi/minio
+        globalMounts:
+          - path: /data
