@@ -85,7 +85,7 @@ spec:
             port: *api-port
     serviceMonitor:
       main:
-        enabled: true
+        enabled: false
         endpoints:
           - port: api
             scheme: http
