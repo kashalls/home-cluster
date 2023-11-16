@@ -8,7 +8,7 @@ spec:
   interval: 30m
   ref:
     branch: main
-  url: ssh://git@github.com/Kashalls/home-cluster
+  url: ssh://git@github.com/kashalls/home-cluster
   secretRef:
     name: github-deploy-key
   ignore: |
