@@ -4,6 +4,7 @@ apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: mongodb-issuer
+  namespace: database
 spec:
   ca:
     secretName: mongodb-ca-key-pair
