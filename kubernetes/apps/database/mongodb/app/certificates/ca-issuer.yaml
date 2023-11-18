@@ -1,0 +1,9 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/cert-manager.io/issuer_v1.json
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: mongodb-issuer
+spec:
+  ca:
+    secretName: mongodb-ca-key-pair
