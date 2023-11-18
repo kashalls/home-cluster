@@ -10,9 +10,9 @@ spec:
   issuerRef:
     name: mongodb-issuer
     kind: Issuer
-  commonName: "*.mongodb-cluster.database.svc.cluster.local"
+  commonName: "*.mongodb-cluster-svc.database.svc.cluster.local"
   dnsNames:
-    - "*.mongodb-cluster.svc.database.svc.cluster.local"
+    - "*.mongodb-cluster-svc.svc.database.svc.cluster.local"
     - mongodb01.ok8.sh
     - mongodb02.ok8.sh
     - mongodb03.ok8.sh
