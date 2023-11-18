@@ -1,0 +1,48 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mongodb-cluster01-external
+  namespace: database
+spec:
+  type: NodePort
+  selector:
+    app: mongodb-cluster-svc
+    statefulset.kubernetes.io/pod-name: mongodb-cluster-0
+  ports:
+    - protocol: TCP
+      nodePort: 31181
+      port: 31181
+      targetPort: 27017
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mongodb-cluster02-external
+  namespace: database
+spec:
+  type: NodePort
+  selector:
+    app: mongodb-cluster-svc
+    statefulset.kubernetes.io/pod-name: mongodb-cluster-1
+  ports:
+    - nodePort: 31182
+      port: 31182
+      targetPort: 27017
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mongodb-cluster03-external
+  namespace: database
+spec:
+  type: NodePort
+  selector:
+    app: mongodb-cluster-svc
+    statefulset.kubernetes.io/pod-name: mongodb-cluster-2
+  ports:
+    - nodePort: 31183
+      port: 31183
+      targetPort: 27017
