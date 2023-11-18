@@ -5,4 +5,3 @@ kind: Kustomization
 resources:
   - ./certificates
   - ./helmrelease.yaml
-  - ./ca-root.sops.yaml
