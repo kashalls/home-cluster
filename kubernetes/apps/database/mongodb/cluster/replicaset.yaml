@@ -7,24 +7,14 @@ metadata:
 spec:
   members: 3
   type: ReplicaSet
-  version: "6.0.10"
-  replicaSetHorizons:
-    - horizon: mongodb01.ok8.sh:31181
-    - horizon: mongodb02.ok8.sh:31182
-    - horizon: mongodb03.ok8.sh:31183
+  version: 6.0.10
   security:
-    tls:
-      enabled: true
-      certificateKeySecretRef:
-        name: mongodb-cluster-tls
-      caCertificateSecretRef:
-        name: mongodb-ca-root-certificate
     authentication:
       modes: ["SCRAM", "SCRAM-SHA-1"]
   users:
-    - name: admin
+    - name: kashall
       db: admin
-      passwordSecretRef: # a reference to the secret that will be used to generate the user's password
+      passwordSecretRef:
         name: mongodb-cluster-secret
         key: password
       roles:
@@ -39,9 +29,26 @@ spec:
     storage.wiredTiger.engineConfig.journalCompressor: zlib
   statefulSet:
     spec:
+      containers:
+        - name: mongod
+          resources:
+            limits:
+              cpu: "0.5"
+              memory: 650M
+            requests:
+              cpu: "0.5"
+              memory: 300M
+        - name: mongodb-agent
+          resources:
+            limits:
+              cpu: "0.5"
+              memory: 650M
+            requests:
+              cpu: "0.5"
+              memory: 300M
       volumeClaimTemplates:
         - metadata:
-            name: data-volume
+            name: data
           spec:
             accessModes: ["ReadWriteMany"]
             resources:
@@ -49,7 +56,7 @@ spec:
                 storage: 30Gi
             storageClassName: ceph-filesystem
         - metadata:
-            name: logs-volume
+            name: logs
           spec:
             accessModes: ["ReadWriteMany"]
             resources:
