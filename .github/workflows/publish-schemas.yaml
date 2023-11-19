@@ -14,6 +14,12 @@ jobs:
     name: Publish Manifests
     runs-on: ["arc-runner-set-home-ops"]
     steps:
+      - name: Setup Tools
+        shell: bash
+        run: |
+          sudo apt-get -qq update && \
+          sudo apt-get -qq install --no-install-recommends -y curl git
+
       - name: Setup Flux
         uses: fluxcd/flux2/action@a18d4f345021182d6516bf3e8e00210567f46ab5 # v2.1.2
 
