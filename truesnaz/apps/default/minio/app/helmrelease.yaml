@@ -102,7 +102,7 @@ spec:
         annotations:
           hajimari.io/icon: mdi:pail
         hosts:
-          - host: &console-host "minio.ok8.sh"
+          - host: &console-host "minio.outsideour.casa"
             paths:
               - path: /
                 service:
