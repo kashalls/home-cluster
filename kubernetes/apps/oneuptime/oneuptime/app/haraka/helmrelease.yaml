@@ -34,7 +34,7 @@ spec:
       strategy: RollingUpdate
     image:
       repository: ghcr.io/oneuptime/haraka
-      tag: 7.0.1000
+      tag: 7.0.1004
     env:
       PORT: &port 25
     envFrom:
