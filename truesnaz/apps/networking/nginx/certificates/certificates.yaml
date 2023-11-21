@@ -8,7 +8,7 @@ metadata:
 spec:
   secretName: "outsideour-casa-tls"
   issuerRef:
-    name: letsencrypt-production
+    name: letsencrypt-testing
     kind: ClusterIssuer
   commonName: "outsideour.casa"
   dnsNames:
