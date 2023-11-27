@@ -34,8 +34,8 @@ spec:
         containers:
           main:
             image:
-              repository: ghcr.io/kashalls/zipline
-              tag: trunk-3.7.5-test.2
+              repository: ghcr.io/diced/zipline
+              tag: 3.7.7
             resources:
               limits:
                 memory: 5Gi
