@@ -1,67 +1,114 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "packageRules": [
-      {
-        "description": "1Password Connect and Sync images",
-        "groupName": "1Password",
-        "matchPackagePatterns": ["1password"],
-        "matchDatasources": ["docker"],
-        "group": {
-          "commitMessageTopic": "{{{groupName}}} group"
-        },
-        "separateMinorPatch": true
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "packageRules": [
+    {
+      "description": "1Password Connect and Sync images",
+      "groupName": "1Password",
+      "matchPackagePatterns": [
+        "1password"
+      ],
+      "matchDatasources": [
+        "docker"
+      ],
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
       },
-      {
-        "description": "Flux Group",
-        "groupName": "Flux",
-        "matchPackagePatterns": ["flux"],
-        "matchDatasources": ["docker", "github-tags"],
-        "versioning": "semver",
-        "group": {
-          "commitMessageTopic": "{{{groupName}}} group"
-        },
-        "separateMinorPatch": true
+      "separateMinorPatch": true
+    },
+    {
+      "description": "Flux Group",
+      "groupName": "Flux",
+      "matchPackagePatterns": [
+        "flux"
+      ],
+      "matchDatasources": [
+        "docker",
+        "github-tags"
+      ],
+      "versioning": "semver",
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
       },
-      {
-        "description": "Rook-Ceph Group",
-        "groupName": "Rook-Ceph",
-        "matchPackagePatterns": ["rook.ceph"],
-        "matchDatasources": ["helm"],
-        "group": {
-          "commitMessageTopic": "{{{groupName}}} group"
-        },
-        "separateMinorPatch": true
+      "separateMinorPatch": true
+    },
+    {
+      "description": "Rook-Ceph Group",
+      "groupName": "Rook-Ceph",
+      "matchPackagePatterns": [
+        "rook.ceph"
+      ],
+      "matchDatasources": [
+        "helm"
+      ],
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
       },
-      {
-        "description": "External Snapshotter charts",
-        "groupName": "External Snapshotter",
-        "matchPackageNames": ["snapshot-controller", "snapshot-validation-webhook"],
-        "matchDatasources": ["helm"],
-        "group": {
-          "commitMessageTopic": "{{{groupName}}} group"
-        },
-        "separateMinorPatch": true
+      "separateMinorPatch": true
+    },
+    {
+      "description": "External Snapshotter charts",
+      "groupName": "External Snapshotter",
+      "matchPackageNames": [
+        "snapshot-controller",
+        "snapshot-validation-webhook"
+      ],
+      "matchDatasources": [
+        "helm"
+      ],
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
       },
-      {
-        "description": "Thanos image and chart - mismatched versions",
-        "groupName": "Thanos",
-        "matchPackagePatterns": ["thanos"],
-        "matchDatasources": ["docker", "github-releases", "helm"],
-        "matchUpdateTypes": ["minor", "patch"],
-        "group": {
-          "commitMessageTopic": "{{{groupName}}} group"
-        },
-        "separateMinorPatch": false
+      "separateMinorPatch": true
+    },
+    {
+      "description": "Thanos image and chart - mismatched versions",
+      "groupName": "Thanos",
+      "matchPackagePatterns": [
+        "thanos"
+      ],
+      "matchDatasources": [
+        "docker",
+        "github-releases",
+        "helm"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
       },
-      {
-        "description": "OneUptime Images",
-        "groupName": "OneUptime",
-        "matchPackagePatterns": ["oneuptime"],
-        "matchDatasources": ["docker", "ghcr.io"],
-        "group": {
-          "commitMessageTopic": "{{{groupName}}} group"
-        },
-        "separateMinorPatch": true
-      }
-    ]
-  }
+      "separateMinorPatch": false
+    },
+    {
+      "description": "OneUptime Images",
+      "groupName": "OneUptime",
+      "matchPackagePatterns": [
+        "oneuptime"
+      ],
+      "matchDatasources": [
+        "docker",
+        "ghcr.io"
+      ],
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
+      },
+      "separateMinorPatch": true
+    },
+    {
+      "description": "System Upgrade Controller Group",
+      "groupName": "System Upgrade Controller",
+      "matchPackagePatterns": [
+        "rancher/system-upgrade-controller"
+      ],
+      "matchDatasources": [
+        "docker",
+        "github-releases"
+      ],
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
+      },
+      "separateMinorPatch": true
+    }
+  ]
+}

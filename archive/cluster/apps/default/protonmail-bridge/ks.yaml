@@ -5,8 +5,8 @@ metadata:
   name: cluster-apps-protonmail-bridge
   namespace: flux-system
 spec:
-  path: ./kubernetes/apps/default/protonmail-bridge/app
-  prune: false
+  path: ./kubernetes/nell/apps/default/protonmail-bridge/app
+  prune: true
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
 version: "3"
 
 vars:
@@ -9,10 +10,10 @@ env:
   SOPS_AGE_KEY_FILE: ~/.config/sops/age/keys.txt
 
 includes:
-  ansible: .taskfiles/AnsibleTasks.yml
-  cluster: .taskfiles/ClusterTasks.yml
-  es: .taskfiles/ExternalSecrets/Tasks.yml
-  volsync: .taskfiles/VolSync/Tasks.yml
+  ansible: .taskfiles/Ansible/Taskfile.yaml
+  cluster: .taskfiles/Cluster/Taskfile.yaml
+  es: .taskfiles/ExternalSecrets/Taskfile.yaml
+  volsync: .taskfiles/VolSync/Taskfile.yaml
 
 tasks:
   default:

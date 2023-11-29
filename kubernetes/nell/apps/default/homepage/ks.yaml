@@ -1,0 +1,22 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster-apps-default-homepage
+  namespace: flux-system
+spec:
+<<<<<<< Updated upstream:kubernetes/apps/default/homepage/ks.yaml
+  path: ./kubernetes/apps/default/homepage/app
+  prune: false
+=======
+  path: ./kubernetes/nell/apps/default/homepage/app
+  prune: true
+>>>>>>> Stashed changes:kubernetes/nell/apps/default/homepage/ks.yaml
+  sourceRef:
+    kind: GitRepository
+    name: home-kubernetes
+  wait: false
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m

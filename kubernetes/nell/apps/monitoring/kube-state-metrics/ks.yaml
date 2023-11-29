@@ -1,0 +1,22 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster-apps-kube-state-metrics
+  namespace: flux-system
+spec:
+<<<<<<< Updated upstream:kubernetes/apps/monitoring/kube-state-metrics/ks.yaml
+  path: ./kubernetes/apps/monitoring/kube-state-metrics/app
+  prune: false
+=======
+  path: ./kubernetes/nell/apps/monitoring/kube-state-metrics/app
+  prune: true
+>>>>>>> Stashed changes:kubernetes/nell/apps/monitoring/kube-state-metrics/ks.yaml
+  sourceRef:
+    kind: GitRepository
+    name: home-kubernetes
+  wait: false
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m

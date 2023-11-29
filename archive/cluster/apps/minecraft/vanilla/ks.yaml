@@ -7,8 +7,8 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-rook-ceph-cluster
-  path: ./kubernetes/apps/minecraft/vanilla/app
-  prune: false
+  path: ./kubernetes/nell/apps/minecraft/vanilla/app
+  prune: true
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

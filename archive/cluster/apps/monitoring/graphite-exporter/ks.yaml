@@ -8,8 +8,8 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-kube-prometheus-stack
-  path: ./kubernetes/apps/monitoring/graphite-exporter/app
-  prune: false
+  path: ./kubernetes/nell/apps/monitoring/graphite-exporter/app
+  prune: true
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

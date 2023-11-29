@@ -1,0 +1,46 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster-apps-external-secrets
+  namespace: flux-system
+spec:
+<<<<<<< Updated upstream:kubernetes/apps/kube-system/external-secrets/ks.yaml
+  path: ./kubernetes/apps/kube-system/external-secrets/app
+  prune: false
+=======
+  path: ./kubernetes/nell/apps/kube-system/external-secrets/app
+  prune: true
+>>>>>>> Stashed changes:kubernetes/nell/apps/kube-system/external-secrets/ks.yaml
+  sourceRef:
+    kind: GitRepository
+    name: home-kubernetes
+  wait: true
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster-apps-external-secrets-stores
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: cluster-apps-external-secrets
+<<<<<<< Updated upstream:kubernetes/apps/kube-system/external-secrets/ks.yaml
+  path: ./kubernetes/apps/kube-system/external-secrets/stores
+  prune: false
+=======
+  path: ./kubernetes/nell/apps/kube-system/external-secrets/stores
+  prune: true
+>>>>>>> Stashed changes:kubernetes/nell/apps/kube-system/external-secrets/ks.yaml
+  sourceRef:
+    kind: GitRepository
+    name: home-kubernetes
+  wait: true
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m

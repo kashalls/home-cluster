@@ -1,5 +1,19 @@
 {
-  "ansible.validation.lint.arguments": "-c .ansible-lint",
+  "ansible.python.activationScript": ".venv/bin/activate",
+  "ansible.python.interpreterPath": ".venv/bin/python3",
+  "ansible.validation.enabled": true,
+  "ansible.validation.lint.arguments": "-c ansible/.ansible-lint",
+  "ansible.validation.lint.enabled": true,
+  "ansible.validation.lint.path": ".venv/bin/ansible-lint",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.fontFamily": "FiraCode Nerd Font",
+  "editor.fontLigatures": true,
+  "editor.guides.bracketPairs": true,
+  "editor.guides.bracketPairsHorizontal": true,
+  "editor.guides.highlightActiveBracketPair": true,
+  "editor.hover.delay": 1500,
+  "editor.stickyScroll.enabled": false,
+  "explorer.autoReveal": false,
   "files.associations": {
       "*.json5": "jsonc",
       "**/ansible/**/*.yml": "ansible",
@@ -8,11 +22,11 @@
       "**/terraform/**/*.tf": "terraform",
       "**/kubernetes/**/*.sops.toml": "plaintext"
   },
+  "files.trimTrailingWhitespace": true,
   "material-icon-theme.folders.associations": {
     ".taskfiles": "utils",
     "bootstrap": "import",
     "charts": "kubernetes",
-    "hack": "scripts",
     "repositories": "database",
     "terraforms": "terraform",
     "vars": "other",
@@ -28,16 +42,5 @@
   "yaml.schemas": {
       "ansible": "ansible/*.yml",
       "kubernetes": "kubernetes/**/*.yaml"
-  },
-  "editor.fontFamily": "FiraCode Nerd Font",
-  "editor.fontLigatures": true,
-  "editor.bracketPairColorization.enabled": true,
-  "editor.guides.bracketPairs": true,
-  "editor.guides.bracketPairsHorizontal": true,
-  "editor.guides.highlightActiveBracketPair": true,
-  "editor.hover.delay": 1500,
-  "editor.stickyScroll.enabled": false,
-  "files.trimTrailingWhitespace": true,
-  "explorer.autoReveal": false,
-  "ansible.python.interpreterPath": "/usr/bin/python3",
+  }
 }

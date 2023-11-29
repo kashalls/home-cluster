@@ -1,13 +1,14 @@
-# Trash
 .DS_Store
 Thumbs.db
-# k8s
-kubeconfig*
-# vscode-sops
-.decrypted~*.yaml
-.config.env
+.private/
+.venv/
+.task/
+.terraform
+*.tfvars
+.decrypted~*
 *.agekey
 *.pub
 *.key
-# Ansible
-xanmanning.k3s*
+*.pem
+kubeconfig*
+config.xml

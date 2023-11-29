@@ -1,0 +1,21 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster-apps-border
+  namespace: flux-system
+spec:
+<<<<<<< Updated upstream:kubernetes/apps/networking/border/ks.yaml
+  path: ./kubernetes/apps/networking/border/app
+  prune: false
+=======
+  path: ./kubernetes/nell/apps/networking/border/app
+  prune: true
+>>>>>>> Stashed changes:kubernetes/nell/apps/networking/border/ks.yaml
+  sourceRef:
+    kind: GitRepository
+    name: home-kubernetes
+  wait: false
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m

@@ -1,0 +1,48 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster-apps-mongodb
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: cluster-apps-rook-ceph-cluster
+<<<<<<< Updated upstream:kubernetes/apps/database/mongodb/ks.yaml
+  path: ./kubernetes/apps/database/mongodb/app
+  prune: false
+=======
+  path: ./kubernetes/nell/apps/database/mongodb/app
+  prune: true
+>>>>>>> Stashed changes:kubernetes/nell/apps/database/mongodb/ks.yaml
+  sourceRef:
+    kind: GitRepository
+    name: home-kubernetes
+  wait: true
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster-apps-mongodb-cluster
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: cluster-apps-mongodb
+<<<<<<< Updated upstream:kubernetes/apps/database/mongodb/ks.yaml
+  path: ./kubernetes/apps/database/mongodb/cluster
+  prune: false
+=======
+  path: ./kubernetes/nell/apps/database/mongodb/cluster
+  prune: true
+>>>>>>> Stashed changes:kubernetes/nell/apps/database/mongodb/ks.yaml
+  sourceRef:
+    kind: GitRepository
+    name: home-kubernetes
+  wait: true
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m

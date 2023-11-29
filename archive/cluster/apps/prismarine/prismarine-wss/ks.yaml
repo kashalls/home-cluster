@@ -5,8 +5,8 @@ metadata:
   name: cluster-apps-prismarine-wss
   namespace: flux-system
 spec:
-  path: ./kubernetes/apps/prismarine/prismarine-wss/app
-  prune: false
+  path: ./kubernetes/nell/apps/prismarine/prismarine-wss/app
+  prune: true
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
