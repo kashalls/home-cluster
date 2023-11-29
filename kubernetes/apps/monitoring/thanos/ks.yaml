@@ -10,7 +10,7 @@ spec:
     - name: cluster-apps-local-path-provisioner
     - name: cluster-apps-rook-ceph-cluster
   path: ./kubernetes/apps/monitoring/thanos/app
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

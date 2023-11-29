@@ -12,7 +12,7 @@ spec:
     - name: cluster-apps-database-clickhouse
     - name: cluster-apps-cloudnative-pg-cluster
   path: ./kubernetes/apps/default/plausible/app/
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

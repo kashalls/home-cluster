@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   path: ./truesnaz/apps/cert-manager/cert-manager/app
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
@@ -24,7 +24,7 @@ spec:
   dependsOn:
     - name: cluster-apps-cert-manager
   path: ./truesnaz/apps/cert-manager/cert-manager/issuers
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

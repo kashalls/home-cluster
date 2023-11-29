@@ -7,9 +7,9 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: cluster-apps-rook-ceph-cluster 
+    - name: cluster-apps-rook-ceph-cluster
   path: ./kubernetes/apps/storage/minio/app
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

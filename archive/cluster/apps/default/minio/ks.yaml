@@ -9,7 +9,7 @@ spec:
   dependsOn:
     - name: cluster-apps-csi-driver-nfs
   path: ./kubernetes/apps/default/minio/app
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

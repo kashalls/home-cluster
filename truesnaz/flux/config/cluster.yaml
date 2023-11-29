@@ -25,7 +25,7 @@ metadata:
 spec:
   interval: 30m
   path: ./truesnaz/flux
-  prune: true
+  prune: false
   wait: true
   sourceRef:
     kind: GitRepository

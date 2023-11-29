@@ -8,7 +8,7 @@ spec:
   dependsOn:
     - name: cluster-apps-cilium
   path: ./kubernetes/apps/networking/k8s-gateway/app
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

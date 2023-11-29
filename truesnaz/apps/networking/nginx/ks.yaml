@@ -8,7 +8,7 @@ spec:
   dependsOn:
     - name: cluster-apps-cert-manager-issuers
   path: ./truesnaz/apps/networking/nginx/certificates
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
@@ -27,7 +27,7 @@ spec:
   dependsOn:
     - name: cluster-apps-nginx-certificates
   path: ./truesnaz/apps/networking/nginx/app
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

@@ -9,7 +9,7 @@ spec:
   dependsOn:
     - name: cluster-apps-rook-ceph-cluster
   path: ./kubernetes/apps/database/clickhouse/app/
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   path: ./kubernetes/apps/flux-system/addons/webhooks
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
