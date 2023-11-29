@@ -5,13 +5,8 @@ metadata:
   name: cluster-apps-cert-manager
   namespace: flux-system
 spec:
-<<<<<<< Updated upstream:truesnaz/apps/cert-manager/cert-manager/ks.yaml
-  path: ./truesnaz/apps/cert-manager/cert-manager/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/cert-manager/cert-manager/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/cert-manager/cert-manager/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
@@ -28,13 +23,8 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-cert-manager
-<<<<<<< Updated upstream:truesnaz/apps/cert-manager/cert-manager/ks.yaml
-  path: ./truesnaz/apps/cert-manager/cert-manager/issuers
-  prune: false
-=======
   path: ./kubernetes/nell/apps/cert-manager/cert-manager/issuers
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/cert-manager/cert-manager/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
