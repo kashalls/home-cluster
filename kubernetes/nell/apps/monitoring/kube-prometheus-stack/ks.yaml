@@ -10,13 +10,8 @@ spec:
     - name: cluster-apps-local-path-provisioner
     - name: cluster-apps-rook-ceph-cluster
     - name: cluster-apps-thanos
-<<<<<<< Updated upstream:kubernetes/apps/monitoring/kube-prometheus-stack/ks.yaml
-  path: ./kubernetes/apps/monitoring/kube-prometheus-stack/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/monitoring/kube-prometheus-stack/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/monitoring/kube-prometheus-stack/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

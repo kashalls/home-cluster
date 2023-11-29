@@ -10,13 +10,8 @@ spec:
     - name: cluster-apps-node-feature-discovery
     - name: cluster-apps-mosquitto
     - name: cluster-apps-external-secrets-stores
-<<<<<<< Updated upstream:kubernetes/apps/default/rtlamr2mqtt/ks.yaml
-  path: ./kubernetes/apps/default/rtlamr2mqtt/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/default/rtlamr2mqtt/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/default/rtlamr2mqtt/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

@@ -5,13 +5,8 @@ metadata:
   name: cluster-apps-weave-gitops
   namespace: flux-system
 spec:
-<<<<<<< Updated upstream:kubernetes/apps/flux-system/weave-gitops/ks.yaml
-  path: ./kubernetes/apps/flux-system/weave-gitops/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/flux-system/weave-gitops/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/flux-system/weave-gitops/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

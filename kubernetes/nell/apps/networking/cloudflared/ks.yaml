@@ -7,13 +7,8 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-external-dns
-<<<<<<< Updated upstream:kubernetes/apps/networking/cloudflared/ks.yaml
-  path: ./kubernetes/apps/networking/cloudflared/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/networking/cloudflared/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/networking/cloudflared/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

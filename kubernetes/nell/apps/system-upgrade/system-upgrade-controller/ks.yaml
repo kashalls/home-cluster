@@ -5,13 +5,8 @@ metadata:
   name: cluster-apps-system-upgrade-controller
   namespace: flux-system
 spec:
-<<<<<<< Updated upstream:kubernetes/apps/system-upgrade/system-upgrade-controller/ks.yaml
-  path: ./kubernetes/apps/system-upgrade/system-upgrade-controller/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/system-upgrade/system-upgrade-controller/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/system-upgrade/system-upgrade-controller/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
@@ -28,13 +23,8 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-system-upgrade-controller
-<<<<<<< Updated upstream:kubernetes/apps/system-upgrade/system-upgrade-controller/ks.yaml
-  path: ./kubernetes/apps/system-upgrade/system-upgrade-controller/plans
-  prune: false
-=======
   path: ./kubernetes/nell/apps/system-upgrade/system-upgrade-controller/plans
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/system-upgrade/system-upgrade-controller/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

@@ -9,13 +9,8 @@ spec:
   dependsOn:
     - name: cluster-apps-cloudnative-pg-cluster
     - name: cluster-apps-external-secrets-stores
-<<<<<<< Updated upstream:kubernetes/apps/default/home-assistant/ks.yaml
-  path: ./kubernetes/apps/default/home-assistant/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/default/home-assistant/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/default/home-assistant/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
@@ -31,13 +26,8 @@ metadata:
   name: cluster-apps-home-assistant-code
   namespace: flux-system
 spec:
-<<<<<<< Updated upstream:kubernetes/apps/default/home-assistant/ks.yaml
-  path: ./kubernetes/apps/default/home-assistant/code
-  prune: false
-=======
   path: ./kubernetes/nell/apps/default/home-assistant/code
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/default/home-assistant/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

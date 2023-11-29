@@ -8,13 +8,8 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-rook-ceph-cluster
-<<<<<<< Updated upstream:kubernetes/apps/database/mongodb/ks.yaml
-  path: ./kubernetes/apps/database/mongodb/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/database/mongodb/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/database/mongodb/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
@@ -32,13 +27,8 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-mongodb
-<<<<<<< Updated upstream:kubernetes/apps/database/mongodb/ks.yaml
-  path: ./kubernetes/apps/database/mongodb/cluster
-  prune: false
-=======
   path: ./kubernetes/nell/apps/database/mongodb/cluster
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/database/mongodb/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

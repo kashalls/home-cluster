@@ -8,13 +8,8 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-external-secrets-stores
-<<<<<<< Updated upstream:kubernetes/apps/database/redis/ks.yaml
-  path: ./kubernetes/apps/database/redis/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/database/redis/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/database/redis/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

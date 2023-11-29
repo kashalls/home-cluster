@@ -8,13 +8,8 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-external-secrets-stores
-<<<<<<< Updated upstream:kubernetes/apps/default/zigbee2mqtt/ks.yaml
-  path: ./kubernetes/apps/default/zigbee2mqtt/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/default/zigbee2mqtt/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/default/zigbee2mqtt/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

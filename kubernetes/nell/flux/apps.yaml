@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30m
-  path: ./kubernetes/apps
+  path: ./kubernetes/nell/apps
   prune: false
   sourceRef:
     kind: GitRepository

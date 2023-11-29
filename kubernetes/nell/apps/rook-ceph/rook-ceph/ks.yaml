@@ -6,13 +6,8 @@ metadata:
   name: cluster-apps-rook-ceph
   namespace: flux-system
 spec:
-<<<<<<< Updated upstream:kubernetes/apps/rook-ceph/rook-ceph/ks.yaml
-  path: ./kubernetes/apps/rook-ceph/rook-ceph/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/rook-ceph/rook-ceph/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/rook-ceph/rook-ceph/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
@@ -30,13 +25,8 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-rook-ceph
-<<<<<<< Updated upstream:kubernetes/apps/rook-ceph/rook-ceph/ks.yaml
-  path: ./kubernetes/apps/rook-ceph/rook-ceph/cluster
-  prune: false
-=======
   path: ./kubernetes/nell/apps/rook-ceph/rook-ceph/cluster
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/rook-ceph/rook-ceph/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

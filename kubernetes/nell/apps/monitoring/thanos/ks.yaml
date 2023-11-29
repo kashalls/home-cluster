@@ -9,13 +9,8 @@ spec:
   dependsOn:
     - name: cluster-apps-local-path-provisioner
     - name: cluster-apps-rook-ceph-cluster
-<<<<<<< Updated upstream:kubernetes/apps/monitoring/thanos/ks.yaml
-  path: ./kubernetes/apps/monitoring/thanos/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/monitoring/thanos/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/monitoring/thanos/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

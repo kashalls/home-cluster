@@ -9,13 +9,8 @@ spec:
   dependsOn:
     - name: cluster-apps-cloudnative-pg-cluster
     - name: cluster-apps-external-secrets-stores
-<<<<<<< Updated upstream:kubernetes/apps/monitoring/gatus/ks.yaml
-  path: ./kubernetes/apps/monitoring/gatus/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/monitoring/gatus/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/monitoring/gatus/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

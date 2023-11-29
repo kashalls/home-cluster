@@ -5,13 +5,8 @@ metadata:
   name: cluster-apps-csi-driver-nfs
   namespace: flux-system
 spec:
-<<<<<<< Updated upstream:kubernetes/apps/kube-system/csi-driver-nfs/ks.yaml
-  path: ./kubernetes/apps/kube-system/csi-driver-nfs/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/kube-system/csi-driver-nfs/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/kube-system/csi-driver-nfs/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

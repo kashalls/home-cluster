@@ -7,13 +7,8 @@ metadata:
   labels:
     substitution.flux.home.arpa/disabled: "true"
 spec:
-<<<<<<< Updated upstream:kubernetes/apps/kube-system/local-path-provisioner/ks.yaml
-  path: ./kubernetes/apps/kube-system/local-path-provisioner/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/kube-system/local-path-provisioner/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/kube-system/local-path-provisioner/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

@@ -9,13 +9,8 @@ spec:
   dependsOn:
     - name: cluster-apps-cloudnative-pg-cluster
     - name: cluster-apps-external-secrets-stores
-<<<<<<< Updated upstream:kubernetes/apps/default/authentik/ks.yaml
-  path: ./kubernetes/apps/default/authentik/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/default/authentik/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/default/authentik/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

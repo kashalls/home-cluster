@@ -5,13 +5,8 @@ metadata:
   name: cluster-apps-metrics-server
   namespace: flux-system
 spec:
-<<<<<<< Updated upstream:kubernetes/apps/kube-system/metrics-server/ks.yaml
-  path: ./kubernetes/apps/kube-system/metrics-server/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/kube-system/metrics-server/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/kube-system/metrics-server/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

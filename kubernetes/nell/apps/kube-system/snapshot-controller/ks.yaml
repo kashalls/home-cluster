@@ -6,13 +6,8 @@ metadata:
   name: cluster-apps-snapshot-controller
   namespace: flux-system
 spec:
-<<<<<<< Updated upstream:kubernetes/apps/kube-system/snapshot-controller/ks.yaml
-  path: ./kubernetes/apps/kube-system/snapshot-controller/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/kube-system/snapshot-controller/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/kube-system/snapshot-controller/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

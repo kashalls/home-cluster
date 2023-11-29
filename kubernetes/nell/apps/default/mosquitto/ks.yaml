@@ -8,13 +8,8 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-external-secrets-stores
-<<<<<<< Updated upstream:kubernetes/apps/default/mosquitto/ks.yaml
-  path: ./kubernetes/apps/default/mosquitto/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/default/mosquitto/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/default/mosquitto/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

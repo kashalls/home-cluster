@@ -6,13 +6,8 @@ metadata:
   name: cluster-apps-vector
   namespace: flux-system
 spec:
-<<<<<<< Updated upstream:kubernetes/apps/monitoring/vector/ks.yaml
-  path: ./kubernetes/apps/monitoring/vector/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/monitoring/vector/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/monitoring/vector/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

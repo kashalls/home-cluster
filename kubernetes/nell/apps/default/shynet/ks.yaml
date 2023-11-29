@@ -10,13 +10,8 @@ spec:
     - name: cluster-apps-external-secrets-stores
     - name: cluster-apps-cloudnative-pg-cluster
     - name: cluster-apps-redis
-<<<<<<< Updated upstream:kubernetes/apps/default/shynet/ks.yaml
-  path: ./kubernetes/apps/default/shynet/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/default/shynet/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/default/shynet/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

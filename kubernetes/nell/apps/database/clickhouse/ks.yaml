@@ -8,13 +8,8 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-rook-ceph-cluster
-<<<<<<< Updated upstream:kubernetes/apps/database/clickhouse/ks.yaml
-  path: ./kubernetes/apps/database/clickhouse/app/
-  prune: false
-=======
   path: ./kubernetes/nell/apps/database/clickhouse/app/
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/database/clickhouse/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

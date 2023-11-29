@@ -6,13 +6,8 @@ metadata:
   name: cluster-apps-external-secrets
   namespace: flux-system
 spec:
-<<<<<<< Updated upstream:kubernetes/apps/kube-system/external-secrets/ks.yaml
-  path: ./kubernetes/apps/kube-system/external-secrets/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/kube-system/external-secrets/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/kube-system/external-secrets/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
@@ -30,13 +25,8 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-external-secrets
-<<<<<<< Updated upstream:kubernetes/apps/kube-system/external-secrets/ks.yaml
-  path: ./kubernetes/apps/kube-system/external-secrets/stores
-  prune: false
-=======
   path: ./kubernetes/nell/apps/kube-system/external-secrets/stores
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/kube-system/external-secrets/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

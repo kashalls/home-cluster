@@ -8,13 +8,8 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-rook-ceph-cluster
-<<<<<<< Updated upstream:kubernetes/apps/storage/minio/ks.yaml
-  path: ./kubernetes/apps/storage/minio/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/storage/minio/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/storage/minio/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

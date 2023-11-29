@@ -5,13 +5,8 @@ metadata:
   name: cluster-apps-flux-webhooks
   namespace: flux-system
 spec:
-<<<<<<< Updated upstream:kubernetes/apps/flux-system/addons/ks.yaml
-  path: ./kubernetes/apps/flux-system/addons/webhooks
-  prune: false
-=======
   path: ./kubernetes/nell/apps/flux-system/addons/webhooks
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/flux-system/addons/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

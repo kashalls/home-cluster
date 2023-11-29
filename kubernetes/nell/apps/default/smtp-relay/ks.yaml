@@ -8,13 +8,8 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-external-secrets-stores
-<<<<<<< Updated upstream:kubernetes/apps/default/smtp-relay/ks.yaml
-  path: ./kubernetes/apps/default/smtp-relay/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/default/smtp-relay/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/default/smtp-relay/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

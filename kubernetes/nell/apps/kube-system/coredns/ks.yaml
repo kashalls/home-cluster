@@ -6,13 +6,8 @@ metadata:
   name: cluster-apps-coredns
   namespace: flux-system
 spec:
-<<<<<<< Updated upstream:kubernetes/apps/kube-system/coredns/ks.yaml
-  path: ./kubernetes/apps/kube-system/coredns/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/kube-system/coredns/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/kube-system/coredns/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

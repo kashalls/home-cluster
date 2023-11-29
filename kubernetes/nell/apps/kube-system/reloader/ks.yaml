@@ -5,13 +5,8 @@ metadata:
   name: cluster-apps-reloader
   namespace: flux-system
 spec:
-<<<<<<< Updated upstream:kubernetes/apps/kube-system/reloader/ks.yaml
-  path: ./kubernetes/apps/kube-system/reloader/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/kube-system/reloader/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/kube-system/reloader/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

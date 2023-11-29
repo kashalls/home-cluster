@@ -8,13 +8,8 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-external-secrets-stores
-<<<<<<< Updated upstream:kubernetes/apps/actions-runner-system/actions-runner-controller/ks.yaml
-  path: ./kubernetes/apps/actions-runner-system/actions-runner-controller/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/actions-runner-system/actions-runner-controller/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/actions-runner-system/actions-runner-controller/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
@@ -32,13 +27,8 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-actions-runner-controller
-<<<<<<< Updated upstream:kubernetes/apps/actions-runner-system/actions-runner-controller/ks.yaml
-  path: ./kubernetes/apps/actions-runner-system/actions-runner-controller/runners
-  prune: false
-=======
   path: ./kubernetes/nell/apps/actions-runner-system/actions-runner-controller/runners
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/actions-runner-system/actions-runner-controller/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

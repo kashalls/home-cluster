@@ -6,13 +6,8 @@ metadata:
   name: cluster-apps-oneuptime
   namespace: flux-system
 spec:
-<<<<<<< Updated upstream:kubernetes/apps/oneuptime/oneuptime/ks.yaml
-  path: ./kubernetes/apps/oneuptime/oneuptime/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/oneuptime/oneuptime/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/oneuptime/oneuptime/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

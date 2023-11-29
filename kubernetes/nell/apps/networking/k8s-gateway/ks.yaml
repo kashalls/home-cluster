@@ -7,13 +7,8 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-cilium
-<<<<<<< Updated upstream:kubernetes/apps/networking/k8s-gateway/ks.yaml
-  path: ./kubernetes/apps/networking/k8s-gateway/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/networking/k8s-gateway/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/networking/k8s-gateway/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

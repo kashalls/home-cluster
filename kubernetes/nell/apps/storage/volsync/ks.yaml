@@ -8,13 +8,8 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-snapshot-controller
-<<<<<<< Updated upstream:kubernetes/apps/storage/volsync/ks.yaml
-  path: ./kubernetes/apps/storage/volsync/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/storage/volsync/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/storage/volsync/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

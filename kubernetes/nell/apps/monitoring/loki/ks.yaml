@@ -9,13 +9,8 @@ spec:
   dependsOn:
     - name: cluster-apps-local-path-provisioner
     - name: cluster-apps-rook-ceph-cluster
-<<<<<<< Updated upstream:kubernetes/apps/monitoring/loki/ks.yaml
-  path: ./kubernetes/apps/monitoring/loki/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/monitoring/loki/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/monitoring/loki/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

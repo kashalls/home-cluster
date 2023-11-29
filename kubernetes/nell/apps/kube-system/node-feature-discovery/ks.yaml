@@ -6,13 +6,8 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-<<<<<<< Updated upstream:kubernetes/apps/kube-system/node-feature-discovery/ks.yaml
-  path: ./kubernetes/apps/kube-system/node-feature-discovery/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/kube-system/node-feature-discovery/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/kube-system/node-feature-discovery/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

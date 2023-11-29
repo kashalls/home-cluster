@@ -6,13 +6,8 @@ metadata:
   name: cluster-apps-kubernetes-schemas
   namespace: flux-system
 spec:
-<<<<<<< Updated upstream:kubernetes/apps/default/kubernetes-schemas/ks.yaml
-  path: ./kubernetes/apps/default/kubernetes-schemas/app
-  prune: false
-=======
   path: ./kubernetes/nell/apps/default/kubernetes-schemas/app
   prune: true
->>>>>>> Stashed changes:kubernetes/nell/apps/default/kubernetes-schemas/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
