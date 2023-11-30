@@ -32,9 +32,9 @@ spec:
             resources:
               requests:
                 cpu: 100m
-                memory: 36M
+                memory: 200M
               limits:
-                memory: 36M
+                memory: 400M
     service:
       main:
         enabled: false
