@@ -26,9 +26,6 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    image:
-      repository: docker.io/thegrandpkizzle/authentik
-      tag: 2023.10.4-55f67ec
     initContainers:
       init-db:
         image: ghcr.io/onedr0p/postgres-init:15.5
