@@ -30,11 +30,14 @@ spec:
       create: true
       createSecret: false
       username: admin
+    envVars:
+      - name: WEAVE_GITOPS_FEATURE_OIDC_BUTTON_LABEL
+        value: "Login with Authentik"
+      - name: WEAVE_GITOPS_FEATURE_TENANCY
+        value: "true"
     ingress:
       enabled: true
       className: internal
-      annotations:
-        hajimari.io/icon: sawtooth-wave
       hosts:
         - host: &host "gitops.ok8.sh"
           paths:
