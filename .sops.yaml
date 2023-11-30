@@ -9,8 +9,3 @@ creation_rules:
     key_groups:
       - age:
           - age19963x2afvcsek4p5sas5n05thusjvzz7gpfknp20666u69jw44lsu5w4u5
-  - path_regex: truesnaz/.*\.sops\.ya?ml
-    encrypted_regex: "^(data|stringData)$"
-    key_groups:
-      - age:
-          - age19963x2afvcsek4p5sas5n05thusjvzz7gpfknp20666u69jw44lsu5w4u5

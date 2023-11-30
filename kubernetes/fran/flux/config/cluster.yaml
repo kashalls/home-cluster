@@ -15,7 +15,7 @@ spec:
     # exclude all
     /*
     # include kubernetes directory
-    !/truesnaz
+    !/kubernetes/fran
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -24,7 +24,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30m
-  path: ./truesnaz/flux
+  path: ./kubernetes/fran/flux
   prune: false
   wait: true
   sourceRef:
