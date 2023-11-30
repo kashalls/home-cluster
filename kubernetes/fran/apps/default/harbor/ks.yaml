@@ -6,13 +6,8 @@ metadata:
   name: cluster-apps-minio
   namespace: flux-system
 spec:
-<<<<<<< Updated upstream:truesnaz/apps/default/minio/ks.yaml
-  path: ./truesnaz/apps/default/minio/app
-  prune: false
-=======
   path: ./kubernetes/fran/apps/default/minio/app
   prune: true
->>>>>>> Stashed changes:kubernetes/fran/apps/default/harbor/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

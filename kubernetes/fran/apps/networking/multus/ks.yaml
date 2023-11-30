@@ -5,13 +5,8 @@ metadata:
   name: cluster-apps-multus-config
   namespace: flux-system
 spec:
-<<<<<<< Updated upstream:truesnaz/apps/networking/multus/ks.yaml
-  path: ./truesnaz/apps/networking/multus/app
-  prune: false
-=======
   path: ./kubernetes/fran/apps/networking/multus/app
   prune: true
->>>>>>> Stashed changes:kubernetes/fran/apps/networking/multus/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

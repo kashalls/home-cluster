@@ -7,13 +7,8 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-cert-manager-issuers
-<<<<<<< Updated upstream:truesnaz/apps/networking/nginx/ks.yaml
-  path: ./truesnaz/apps/networking/nginx/certificates
-  prune: false
-=======
   path: ./kubernetes/fran/apps/networking/nginx/certificates
   prune: true
->>>>>>> Stashed changes:kubernetes/fran/apps/networking/nginx/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
@@ -31,13 +26,8 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-nginx-certificates
-<<<<<<< Updated upstream:truesnaz/apps/networking/nginx/ks.yaml
-  path: ./truesnaz/apps/networking/nginx/app
-  prune: false
-=======
   path: ./kubernetes/fran/apps/networking/nginx/app
   prune: true
->>>>>>> Stashed changes:kubernetes/fran/apps/networking/nginx/ks.yaml
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
