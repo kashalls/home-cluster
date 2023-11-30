@@ -109,7 +109,7 @@ spec:
       serviceMonitor:
         create: true
     redis:
-      enabled: false
+      enabled: true
     geoip:
       enabled: false
     autoscaling:
