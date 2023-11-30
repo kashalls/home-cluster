@@ -26,6 +26,8 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    podAnnotations:
+      secret.reloader.stakater.com/reload: oidc-auth,cluster-user-auth
     adminUser:
       create: true
       createSecret: false
