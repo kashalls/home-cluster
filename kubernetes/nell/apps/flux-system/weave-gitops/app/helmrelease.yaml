@@ -55,3 +55,7 @@ spec:
     rbac:
       create: true
       impersonationResourceNames: ["admin"]
+      additionalRules:
+        - apiGroups: [ "infra.contrib.fluxcd.io" ]
+          resources: [ "terraforms" ]
+          verbs: [ "get", "list", "patch" ]
