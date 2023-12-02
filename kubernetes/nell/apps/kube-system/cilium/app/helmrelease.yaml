@@ -89,6 +89,7 @@ spec:
       enabled: true
       serviceMonitor:
         enabled: true
+        trustCRDsExist: true
     rollOutCiliumPods: true
     l2announcements:
       enabled: true
