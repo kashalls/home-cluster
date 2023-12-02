@@ -3,18 +3,19 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-home-assistant
+  name: &app system-upgrade-controller
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: cluster-apps-cloudnative-pg-cluster
-    - name: cluster-apps-external-secrets-stores
-  path: ./kubernetes/nell/apps/default/home-assistant/app
+  targetNamespace: kube-system
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  path: ./kubernetes/nell/apps/kube-system/system-upgrade-controller/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
-  wait: false # no flux ks dependents
+  wait: true
   interval: 30m
   retryInterval: 1m
   timeout: 5m
@@ -23,10 +24,16 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-home-assistant-code
+  name: &app system-upgrade-controller-plans
   namespace: flux-system
 spec:
-  path: ./kubernetes/nell/apps/default/home-assistant/code
+  targetNamespace: kube-system
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  dependsOn:
+    - name: system-upgrade-controller
+  path: ./kubernetes/nell/apps/kube-system/system-upgrade-controller/plans
   prune: true
   sourceRef:
     kind: GitRepository
