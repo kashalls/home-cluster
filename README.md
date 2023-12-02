@@ -76,6 +76,6 @@ My main opnsense
 
 ## Inspiration
 
-Thanks to all the people who donate their time to the [Kubernetes @ Home](https://github.com/k8s-at-home/) community.
+Thanks to all the people who donate their time to the [Home Operations](https://discord.gg/home-operations) community.
 
 Special thanks to: [ᗪєνιη ᗷυнʟ](https://github.com/onedr0p/home-cluster), [Bᴇʀɴᴅ Sᴄʜᴏʀɢᴇʀs](https://github.com/bjw-s/k8s-gitops), and [Toboshii Nakama](https://github.com/toboshii/home-cluster) for their assistance.
