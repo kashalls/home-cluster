@@ -48,7 +48,7 @@ My main opnsense
 <details>
   <summary>Click to see the rack!</summary>
 
-  <img src="https://user-images.githubusercontent.com/213795/172947261-65a82dcd-3274-45bd-aabf-140d60a04aa9.png" align="center" width="200px" alt="rack"/>
+  <img src="" align="center" width="200px" alt="rack"/>
 </details>
 
 | Device                      | Count | OS Disk Size | Data Disk Size              | Ram  | Operating System | Purpose             |
