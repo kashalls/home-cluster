@@ -3,18 +3,20 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-nginx-certificates
+  name: &app system-upgrade-controller
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: cluster-apps-cert-manager-issuers
-  path: ./kubernetes/fran/apps/networking/nginx/certificates
+  targetNamespace: kube-system
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  path: ./kubernetes/nell/apps/kube-system/system-upgrade-controller/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
   wait: true
-  interval: 31m
+  interval: 30m
   retryInterval: 1m
   timeout: 5m
 ---
@@ -22,17 +24,21 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-nginx-internal
+  name: &app system-upgrade-controller-plans
   namespace: flux-system
 spec:
+  targetNamespace: kube-system
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
   dependsOn:
-    - name: cluster-apps-nginx-certificates
-  path: ./kubernetes/fran/apps/networking/nginx/internal
+    - name: system-upgrade-controller
+  path: ./kubernetes/nell/apps/kube-system/system-upgrade-controller/plans
   prune: true
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
-  wait: true
+  wait: false
   interval: 30m
   retryInterval: 1m
   timeout: 5m

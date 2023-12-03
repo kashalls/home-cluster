@@ -3,18 +3,20 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-nginx-certificates
+  name: &app external-secrets
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: cluster-apps-cert-manager-issuers
-  path: ./kubernetes/fran/apps/networking/nginx/certificates
+  targetNamespace: kube-system
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  path: ./kubernetes/storage/apps/kube-system/external-secrets/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
   wait: true
-  interval: 31m
+  interval: 30m
   retryInterval: 1m
   timeout: 5m
 ---
@@ -22,12 +24,16 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-nginx-internal
+  name: &app external-secrets-stores
   namespace: flux-system
 spec:
+  targetNamespace: kube-system
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
   dependsOn:
-    - name: cluster-apps-nginx-certificates
-  path: ./kubernetes/fran/apps/networking/nginx/internal
+    - name: external-secrets
+  path: ./kubernetes/storage/apps/kube-system/external-secrets/stores
   prune: true
   sourceRef:
     kind: GitRepository

@@ -6,4 +6,8 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  - ./volsync/ks.yaml
+  - ./external-secrets/ks.yaml
+  - ./local-path-provisioner/ks.yaml
+  - ./metrics-server/ks.yaml
+  - ./reloader/ks.yaml
+  - ./system-upgrade-controller/ks.yaml

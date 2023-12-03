@@ -14,7 +14,7 @@ This repo serves as the "roadmap" that is automatically updated and deployed tha
 
 Thanks to [onedr0p](https://github.com/onedr0p), there is the [flux cluster template](https://github.com/onedr0p/flux-cluster-template) that allows you to get started with your own kubernetes cluster at home. You don't need to have multiple computers or a fancy setup to get one working.
 
-If you're interested, you can also join on [Discord](https://discord.com) with [https://discord.gg/k8s-at-home](https://discord.gg/k8s-at-home). Several people are involved daily and it makes for some interesting conversations.
+If you're interested, you can also join the community [Discord](https://discord.com): [Home Operations](https://discord.gg/home-operations). Several people are involved daily and it makes for some interesting conversations.
 
 
 ## ☁️ Cloud Dependencies
