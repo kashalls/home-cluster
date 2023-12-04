@@ -3,31 +3,48 @@
   "extends": [
     "config:base",
     "docker:enableMajor",
+    "replacements:k8s-registry-move",
     ":disableRateLimiting",
     ":dependencyDashboard",
     ":semanticCommits",
     ":automergeDigest",
     ":automergeBranch",
+    ":timezone(America/Los_Angeles)",
     "github>kashalls/home-cluster//.github/renovate/allowedVersions.json5",
     "github>kashalls/home-cluster//.github/renovate/autoMerge.json5",
+    "github>kashalls/home-cluster//.github/renovate/clusters.json5",
     "github>kashalls/home-cluster//.github/renovate/commitMessage.json5",
+    "github>kashalls/home-cluster//.github/renovate/customDatasources.json5",
+    "github>kashalls/home-cluster//.github/renovate/customManagers.json5",
     "github>kashalls/home-cluster//.github/renovate/groups.json5",
     "github>kashalls/home-cluster//.github/renovate/labels.json5",
+    "github>kashalls/home-cluster//.github/renovate/packageRules.json5",
     "github>kashalls/home-cluster//.github/renovate/semanticCommits.json5",
-    "github>kashalls/home-cluster//.github/renovate/customDatasources.json5",
-    "helpers:pinGitHubActionDigests"
+    "helpers:pinGitHubActionDigests",
+    "security:openssf-scorecard"
   ],
-  "platform": "github",
   "onboarding": false,
   "requireConfig": "optional",
   "dependencyDashboardTitle": "Moonami Dashboard 🌙",
   "suppressNotifications": ["prIgnoreNotification"],
-  "ignorePaths": ["**/archive/**"],
+  "vulnerabilityAlerts": {
+    "labels": ["security"],
+    "automerge": true,
+    "automergeType": "branch",
+    "schedule": ["at any time"]
+  },
+  "osvVulnerabilityAlerts": true,
+  "dependencyDashboardOSVVulnerabilitySummary": "all",
+  "ignorePaths": ["**/.archive/**"],
   "flux": {
-    "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$"]
+    "fileMatch": [
+      "(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$"
+    ]
   },
   "helm-values": {
-    "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$"]
+    "fileMatch": [
+      "(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$"
+    ]
   },
   "kubernetes": {
     "fileMatch": [
@@ -35,61 +52,5 @@
       "(^|/)ansible/.+\\.ya?ml(\\.j2)?$",
       "(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$"
     ]
-  },
-  "regexManagers": [
-    {
-      "description": "Process custom dependencies",
-      "fileMatch": [
-        "(^|/)ansible/.+\\.ya?ml(\\.j2)?$",
-        "(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$"
-      ],
-      "matchStrings": [
-        // Example: `k3s_release_version: "v1.27.3+k3s1"`
-        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?\"(?<currentValue>.*)\"\n",
-        // Example: `- https://github.com/rancher/system-upgrade-controller/releases/download/v0.11.0/crd.yaml`
-        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?-\\s(.*?)\/(?<currentValue>[^/]+)\/[^/]+\n",
-        // Example: apiVersion=helm.cattle.io/v1 kind=HelmChart
-        "datasource=(?<datasource>\\S+)\n.*?repo: (?<registryUrl>\\S+)\n.*?chart: (?<depName>\\S+)\n.*?version: (?<currentValue>\\S+)\n"
-      ],
-      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
-      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
-    },
-    {
-      "description": "Process CloudnativePG Postgresql version",
-      "fileMatch": [
-        "(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$"
-      ],
-      "matchStrings": [
-        "imageName: (?<depName>\\S+):(?<currentValue>.*\\-.*)"
-      ],
-      "datasourceTemplate": "docker",
-      "versioningTemplate": "redhat"
-    },
-    {
-      "description": "Process Grafana dashboards",
-      "fileMatch": [
-        "(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$"
-      ],
-      "matchStrings": [
-        "depName=\"(?<depName>.*)\"\\n\\s+gnetId:\\s+(?<packageName>.*?)\\n\\s+revision:\\s+(?<currentValue>.*)"
-      ],
-      "customType": "regex",
-      "versioningTemplate": "regex:^(?<major>\\d+)$",
-      "datasourceTemplate": "custom.grafana-dashboards"
-    }
-  ],
-  "packageRules": [
-    {
-      "description": "Loose versioning for non-semver packages",
-      "matchDatasources": ["docker"],
-      "versioning": "loose",
-      "matchPackagePatterns": ["changedetection"]
-    },
-    {
-      "description": "Use custom versioning for Minio",
-      "matchDatasources": ["docker"],
-      "versioning": "regex:^RELEASE\\.(?<major>\\d+)-(?<minor>\\d+)-(?<patch>\\d+)T.*Z$",
-      "matchPackagePatterns": ["minio"]
-    }
-  ]
+  }
 }
