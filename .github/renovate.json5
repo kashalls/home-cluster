@@ -25,7 +25,7 @@
   ],
   "onboarding": false,
   "requireConfig": "optional",
-  "dependencyDashboardTitle": "Moonami Dashboard 🌙",
+  "dependencyDashboardTitle": "Dehya Dashboard 🗡️",
   "suppressNotifications": ["prIgnoreNotification"],
   "vulnerabilityAlerts": {
     "labels": ["security"],
