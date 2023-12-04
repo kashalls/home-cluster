@@ -1,11 +1,26 @@
 ---
 area/ansible:
-  - "ansible/**/*"
+  - changed-files:
+      - any-glob-to-any-file: ansible/**/*
+area/docs:
+  - changed-files:
+      - any-glob-to-any-file: docs/**/*
 area/github:
-  - ".github/**/*"
+  - changed-files:
+      - any-glob-to-any-file: .github/**/*
 area/kubernetes:
-  - "kubernetes/**/*"
+  - changed-files:
+      - any-glob-to-any-file: kubernetes/**/*
+area/taskfile:
+  - changed-files:
+      - any-glob-to-any-file: .taskfiles/**/*
+      - any-glob-to-any-file: Taskfile*
 area/terraform:
-  - "terraform/**/*"
-area/templates:
-  - "tmpl/**/*"
+  - changed-files:
+      - any-glob-to-any-file: terraform/**/*
+cluster/nell:
+  - changed-files:
+      - any-glob-to-any-file: kubernetes/nell/**/*
+cluster/fran:
+  - changed-files:
+      - any-glob-to-any-file: kubernetes/fran/**/*
