@@ -8,7 +8,6 @@ resources:
   - ./bitnami.yaml
   - ./cilium.yaml
   - ./cloudnative-pg.yaml
-  - ./external-dns.yaml
   - ./hajimari.yaml
   - ./jameswynn.yaml
   - ./mongodb.yaml
