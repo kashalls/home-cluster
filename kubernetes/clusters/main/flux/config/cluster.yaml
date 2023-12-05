@@ -15,7 +15,7 @@ spec:
     # exclude all
     /*
     # include kubernetes directory
-    !/kubernetes/clusters/nell
+    !/kubernetes/clusters/main
     !/kubernetes/config
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1

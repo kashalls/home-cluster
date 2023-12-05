@@ -15,7 +15,7 @@ spec:
     # exclude all
     /*
     # include kubernetes directory
-    !/kubernetes/clusters/fran
+    !/kubernetes/clusters/storage
     !/kubernetes/config
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1

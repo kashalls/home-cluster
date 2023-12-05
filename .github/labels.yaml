@@ -13,9 +13,9 @@
 - name: area/terraform
   color: "0e8a16"
 # Clusters
-- name: cluster/nell
+- name: cluster/main
   color: "ffc300"
-- name: cluster/fran
+- name: cluster/storage
   color: "ffc300"
 # Renovate Types
 - name: renovate/ansible
