@@ -8,7 +8,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-external-secrets-stores
-  path: ./kubernetes/nell/apps/default/opnsense/app
+  path: ./kubernetes/clusters/main/apps/default/opnsense/app
   prune: true
   sourceRef:
     kind: GitRepository

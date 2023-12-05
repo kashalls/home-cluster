@@ -11,7 +11,7 @@ spec:
     - name: cluster-apps-external-secrets-stores
     - name: cluster-apps-database-clickhouse
     - name: cluster-apps-cloudnative-pg-cluster
-  path: ./kubernetes/nell/apps/default/plausible/app/
+  path: ./kubernetes/clusters/main/apps/default/plausible/app/
   prune: true
   sourceRef:
     kind: GitRepository

@@ -1,0 +1,14 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster-apps-node-feature-discovery
+  namespace: flux-system
+spec:
+  interval: 10m
+  path: ./kubernetes/clusters/main/apps/kube-system/node-feature-discovery/app
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: home-kubernetes
+  wait: true

@@ -6,7 +6,7 @@ metadata:
   name: cluster-apps-netbootxyz
   namespace: flux-system
 spec:
-  path: ./kubernetes/nell/apps/default/netboot.xyz/app
+  path: ./kubernetes/clusters/main/apps/default/netboot.xyz/app
   prune: true
   sourceRef:
     kind: GitRepository
