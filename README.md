@@ -17,6 +17,29 @@ Thanks to [onedr0p](https://github.com/onedr0p), there is the [flux cluster temp
 If you're interested, you can also join the community [Discord](https://discord.com): [Home Operations](https://discord.gg/home-operations). Several people are involved daily and it makes for some interesting conversations.
 
 
+### Directories
+
+This Git repository contains the following directories under [Kubernetes](./kubernetes/).
+
+```sh
+📁 kubernetes
+├── 📁 bootstrap
+├── 📁 clusters
+│   ├── 📁 main
+│   │    ├── 📁 apps
+│   │    └── 📁 config
+│   │         ├── 📁 repositories
+│   │         └── 📁 vars
+│   └── 📁 storage
+│        ├── 📁 apps
+│        └── 📁 config
+│              ├── 📁 repositories
+│              └── 📁 vars
+└── 📁 config
+    ├── 📁 repositories
+    └── 📁 vars
+```
+
 ## ☁️ Cloud Dependencies
 
 While most of my infrastructure and workloads are self-hosted I do rely upon the cloud for certain key parts of my setup. This saves me from having to worry about two things. (1) Dealing with chicken/egg scenarios and (2) services I critically need whether my cluster is online or not.
