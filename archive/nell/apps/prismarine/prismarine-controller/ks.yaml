@@ -5,7 +5,7 @@ metadata:
   name: cluster-prismarine-controller
   namespace: flux-system
 spec:
-  path: ./kubernetes/nell/apps/prismarine/prismarine-controller
+  path: ./kubernetes/clusters/main/apps/prismarine/prismarine-controller
   prune: true
   sourceRef:
     kind: GitRepository

@@ -8,7 +8,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-external-secrets-stores
-  path: ./kubernetes/nell/apps/default/renovate/app
+  path: ./kubernetes/clusters/main/apps/default/renovate/app
   prune: true
   sourceRef:
     kind: GitRepository

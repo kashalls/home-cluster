@@ -8,7 +8,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-csi-driver-nfs
-  path: ./kubernetes/nell/apps/default/minio/app
+  path: ./kubernetes/clusters/main/apps/default/minio/app
   prune: true
   sourceRef:
     kind: GitRepository
