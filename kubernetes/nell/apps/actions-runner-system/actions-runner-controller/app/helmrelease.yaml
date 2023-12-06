@@ -27,3 +27,6 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+  values:
+    podAnnotations:
+      secret.reloader.stakater.com/reload: "actions-runner-controller-auth-secret"
