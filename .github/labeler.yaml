@@ -20,7 +20,7 @@ area/terraform:
       - any-glob-to-any-file: terraform/**/*
 cluster/main:
   - changed-files:
-      - any-glob-to-any-file: kubernetes/clusters/main/**/*
+      - any-glob-to-any-file: kubernetes/apps/main/**/*
 cluster/storage:
   - changed-files:
-      - any-glob-to-any-file: kubernetes/clusters/storage/**/*
+      - any-glob-to-any-file: kubernetes/apps/storage/**/*

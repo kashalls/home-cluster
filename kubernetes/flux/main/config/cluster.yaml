@@ -17,7 +17,7 @@ spec:
     # include kubernetes directory
     !/kubernetes/apps/main
     !/kubernetes/flux/main
-    !/kubernetes/flux/.global
+    !/kubernetes/flux/global
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -54,7 +54,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30m
-  path: ./kubernetes/flux/.global
+  path: ./kubernetes/flux/global
   prune: false
   wait: true
   sourceRef:

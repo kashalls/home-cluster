@@ -6,7 +6,7 @@ metadata:
   name: cluster-apps-longhorn
   namespace: flux-system
 spec:
-  path: ./kubernetes/clusters/main/apps/longhorn-system/longhorn/app
+  path: ./kubernetes/apps/main/longhorn-system/longhorn/app
   prune: false
   sourceRef:
     kind: GitRepository
@@ -29,7 +29,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-longhorn
-  path: ./kubernetes/clusters/main/apps/longhorn-system/longhorn/storage-classes
+  path: ./kubernetes/apps/main/longhorn-system/longhorn/storage-classes
   prune: false
   sourceRef:
     kind: GitRepository

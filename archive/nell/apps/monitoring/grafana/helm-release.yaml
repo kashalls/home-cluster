@@ -116,7 +116,7 @@ spec:
           revision: 1
           datasource: Prometheus
         air-gradient:
-          url: https://raw.githubusercontent.com/Kashalls/home-cluster/main/cluster/apps/monitoring/grafana/dashboard/airgradient-grafana.json
+          url: https://raw.githubusercontent.com/Kashalls/home-cluster/main/cluster/monitoring/grafana/dashboard/airgradient-grafana.json
           datasource: Prometheus
         flux-cluster:
           url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/cluster.json

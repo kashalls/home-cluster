@@ -6,7 +6,7 @@ metadata:
   name: cluster-apps-oneuptime
   namespace: flux-system
 spec:
-  path: ./kubernetes/clusters/main/apps/oneuptime/oneuptime/app
+  path: ./kubernetes/apps/main/oneuptime/oneuptime/app
   prune: true
   sourceRef:
     kind: GitRepository

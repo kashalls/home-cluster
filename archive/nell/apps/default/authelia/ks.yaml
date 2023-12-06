@@ -9,7 +9,7 @@ spec:
   dependsOn:
     - name: cluster-apps-cloudnative-pg-cluster
     - name: cluster-apps-external-secrets-stores
-  path: ./kubernetes/clusters/main/apps/default/authelia/app
+  path: ./kubernetes/apps/main/default/authelia/app
   prune: true
   sourceRef:
     kind: GitRepository

@@ -5,7 +5,7 @@ metadata:
   name: cluster-apps-mineflayer
   namespace: flux-system
 spec:
-  path: ./kubernetes/clusters/main/apps/minecraft/mineflayer/app
+  path: ./kubernetes/apps/main/minecraft/mineflayer/app
   prune: true
   sourceRef:
     kind: GitRepository

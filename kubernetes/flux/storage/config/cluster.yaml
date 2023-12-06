@@ -53,7 +53,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30m
-  path: ./kubernetes/flux/.global
+  path: ./kubernetes/flux/global
   prune: false
   wait: true
   sourceRef:

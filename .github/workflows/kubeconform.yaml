@@ -6,8 +6,8 @@ on:
   pull_request:
     branches: ["main"]
     paths:
-      - "kubernetes/clusters/main/**"
-      - "kubernetes/clusters/storage/**"
+      - "kubernetes/apps/main/**"
+      - "kubernetes/apps/storage/**"
       - "kubernetes/config/**"
 
 env:
@@ -20,8 +20,8 @@ jobs:
     strategy:
       matrix:
         path:
-          - "kubernetes/clusters/main"
-          - "kubernetes/clusters/storage"
+          - "kubernetes/apps/main"
+          - "kubernetes/apps/storage"
           - "kubernetes/config"
     steps:
       - name: Generate Token
