@@ -32,7 +32,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: system-upgrade-controller
+    - name: cluster-apps-system-upgrade-controller
   path: ./kubernetes/clusters/main/apps/kube-system/system-upgrade-controller/plans
   prune: true
   sourceRef:
