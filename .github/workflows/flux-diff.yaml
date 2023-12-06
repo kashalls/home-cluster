@@ -14,7 +14,7 @@ jobs:
       pull-requests: write
     strategy:
       matrix:
-        path: ["kubernetes/fran", "kubernetes/nell"]
+        path: ["kubernetes/clusters/main", "kubernetes/clusters/storage"]
         resource: ["helmrelease", "kustomization"]
     steps:
       - name: Generate Token

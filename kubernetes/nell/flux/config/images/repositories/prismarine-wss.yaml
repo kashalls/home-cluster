@@ -1,9 +1,0 @@
----
-apiVersion: image.toolkit.fluxcd.io/v1beta1
-kind: ImageRepository
-metadata:
-  name: prismarine-wss
-  namespace: flux-system
-spec:
-  image: ghcr.io/kashalls/prismarine-k8s-wss
-  interval: 5m0s

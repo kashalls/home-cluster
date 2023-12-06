@@ -18,9 +18,9 @@ area/taskfile:
 area/terraform:
   - changed-files:
       - any-glob-to-any-file: terraform/**/*
-cluster/nell:
+cluster/main:
   - changed-files:
-      - any-glob-to-any-file: kubernetes/nell/**/*
-cluster/fran:
+      - any-glob-to-any-file: kubernetes/clusters/main/**/*
+cluster/storage:
   - changed-files:
-      - any-glob-to-any-file: kubernetes/fran/**/*
+      - any-glob-to-any-file: kubernetes/clusters/storage/**/*

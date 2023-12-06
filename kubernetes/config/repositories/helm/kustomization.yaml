@@ -1,0 +1,18 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ./bjw-s.yaml
+  - ./coredns.yaml
+  - ./external-dns.yaml
+  - ./external-secrets.yaml
+  - ./grafana.yaml
+  - ./ingress-nginx.yaml
+  - ./jetstack.yaml
+  - ./k8s-gateway.yaml
+  - ./metrics-server.yaml
+  - ./node-feature-discovery.yaml
+  - ./piraeus.yaml
+  - ./prometheus-community.yaml
+  - ./stakater.yaml
