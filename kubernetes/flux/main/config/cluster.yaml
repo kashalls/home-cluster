@@ -16,7 +16,8 @@ spec:
     /*
     # include kubernetes directory
     !/kubernetes/clusters/main
-    !/kubernetes/config
+    !/kubernetes/flux/main
+    !/kubernetes/flux/.global
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
