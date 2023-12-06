@@ -5,8 +5,8 @@ metadata:
   name: global-settings
   namespace: flux-system
 data:
-  TIMEZONE: "America/Los_Angeles"
+  GLOBAL_TIMEZONE: "America/Los_Angeles"
   # Device Mappings
-  AIRGRADIENT: "10.42.42.10"
-  FRAN: 10.1.0.69"
-  ZIGBEE: "10.69.96.10"
+  GLOBAL_AIRGRADIENT: "10.42.42.10"
+  GLOBAL_FRAN: 10.1.0.69"
+  GLOBAL_ZIGBEE: "10.69.96.10"

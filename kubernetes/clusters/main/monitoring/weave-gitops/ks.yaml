@@ -6,7 +6,10 @@ metadata:
   namespace: flux-system
 spec:
   path: ./kubernetes/clusters/main/apps/flux-system/weave-gitops/app
+  targetNamespace: monitoring
   prune: true
+  dependsOn:
+    - name: cluster-apps-external-secrets-stores
   sourceRef:
     kind: GitRepository
     name: home-kubernetes

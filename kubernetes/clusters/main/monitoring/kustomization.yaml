@@ -14,3 +14,4 @@ resources:
   - ./thanos/ks.yaml
   - ./unpoller/ks.yaml
   - ./vector/ks.yaml
+  - ./weave-gitops/ks.yaml

@@ -25,7 +25,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30m
-  path: ./kubernetes/clusters/main/flux
+  path: ./kubernetes/clusters/main/flux-system/bootstrap/
   prune: false
   wait: true
   sourceRef:
