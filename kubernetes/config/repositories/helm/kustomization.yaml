@@ -12,8 +12,6 @@ resources:
   - ./jetstack.yaml
   - ./k8s-gateway.yaml
   - ./metrics-server.yaml
-  - ./mongodb.yaml
-  - ./metrics-server.yaml
   - ./node-feature-discovery.yaml
   - ./piraeus.yaml
   - ./prometheus-community.yaml
