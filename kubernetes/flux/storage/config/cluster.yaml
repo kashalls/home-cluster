@@ -15,8 +15,9 @@ spec:
     # exclude all
     /*
     # include kubernetes directory
+    !/kubernetes/flux/global
+    !/kubernetes/flux/storage
     !/kubernetes/apps/storage
-    !/kubernetes/config
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
