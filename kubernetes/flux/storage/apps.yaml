@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30m
-  path: ./kubernetes/clusters/storage/
+  path: ./kubernetes/apps/storage/
   prune: false
   sourceRef:
     kind: GitRepository

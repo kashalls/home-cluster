@@ -15,7 +15,7 @@ spec:
     # exclude all
     /*
     # include kubernetes directory
-    !/kubernetes/clusters/main
+    !/kubernetes/apps/main
     !/kubernetes/flux/main
     !/kubernetes/flux/.global
 ---
