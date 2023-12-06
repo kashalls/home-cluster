@@ -8,6 +8,7 @@ on:
     paths:
       - "kubernetes/clusters/main/**"
       - "kubernetes/clusters/storage/**"
+      - "kubernetes/config/**"
 
 env:
   SCHEMA_DIR: /home/runner/crds
@@ -18,7 +19,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        path: ["kubernetes/clusters/main", "kubernetes/clusters/storage"]
+        path:
+          - "kubernetes/clusters/main"
+          - "kubernetes/clusters/storage"
+          - "kubernetes/config"
     steps:
       - name: Generate Token
         uses: actions/create-github-app-token@46e4a501e119d39574a54e53a06c9a705efc55c9 # v1.6.1
