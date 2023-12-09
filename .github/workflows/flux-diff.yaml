@@ -14,7 +14,7 @@ jobs:
       pull-requests: write
     strategy:
       matrix:
-        path: ["kubernetes/apps/main", "kubernetes/apps/storage"]
+        path: ["main", "storage"]
         resource: ["helmrelease", "kustomization"]
     steps:
       - name: Generate Token
@@ -32,8 +32,8 @@ jobs:
         uses: allenporter/flux-local/action/diff@flux-build
         id: diff
         with:
-          sources: home-kubernetes
-          path: "${{ matrix.path }}"
+          sources: "home-kubernetes=./kubernetes/flux/${{ matrix.path }}"
+          path: "kubernetes/apps/${{ matrix.path }}"
           resource: "${{ matrix.resource }}"
 
       - if: ${{ steps.diff.outputs.diff != '' }}
@@ -41,7 +41,7 @@ jobs:
         uses: mshick/add-pr-comment@7c0890544fb33b0bdd2e59467fbacb62e028a096 # v2.8.1
         with:
           repo-token: "${{ steps.app-token.outputs.token }}"
-          message-id: "${{ github.event.pull_request.number }}/${{ matrix.path }}/${{ matrix.resource }}"
+          message-id: "${{ github.event.pull_request.number }}/kubernetes/apps/${{ matrix.path }}/${{ matrix.resource }}"
           message-failure: Diff was not successful
           message: |
             ```diff
