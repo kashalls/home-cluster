@@ -32,7 +32,7 @@ spec:
             nameOverride: kubebadges
             order: 2
             image:
-              repository: ghcr.io/neosu/kubebadges
+              repository: neosu/kubebadges
               tag: v0.0.4
             env:
               SHIELDS_HOST: shields:8080
