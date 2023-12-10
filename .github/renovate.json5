@@ -20,21 +20,12 @@
     "github>kashalls/home-cluster//.github/renovate/labels.json5",
     "github>kashalls/home-cluster//.github/renovate/packageRules.json5",
     "github>kashalls/home-cluster//.github/renovate/semanticCommits.json5",
-    "helpers:pinGitHubActionDigests",
-    "security:openssf-scorecard"
+    "helpers:pinGitHubActionDigests"
   ],
   "onboarding": false,
   "requireConfig": "optional",
   "dependencyDashboardTitle": "Dehya Dashboard 🗡️",
   "suppressNotifications": ["prIgnoreNotification"],
-  "vulnerabilityAlerts": {
-    "labels": ["security"],
-    "automerge": true,
-    "automergeType": "branch",
-    "schedule": ["at any time"]
-  },
-  "osvVulnerabilityAlerts": true,
-  "dependencyDashboardOSVVulnerabilitySummary": "all",
   "ignorePaths": ["**/.archive/**"],
   "flux": {
     "fileMatch": [
