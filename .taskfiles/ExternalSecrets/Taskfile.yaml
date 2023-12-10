@@ -1,20 +1,42 @@
 ---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
 version: "3"
 
 tasks:
 
   sync:
-    desc: Sync ExternalSecret resources
+    desc: Sync an ExternalSecret for a cluster
+    summary: |
+      Args:
+        cluster: Cluster to run command against (required)
+        ns: Namespace the externalsecret is in (default: default)
+        secret: Secret to sync (required)
+    cmd: kubectl --context {{.cluster}} -n {{.ns}} annotate externalsecret {{.secret}} force-sync=$(date +%s) --overwrite
+    env:
+      KUBECONFIG: "{{.KUBERNETES_DIR}}/{{.cluster}}/kubeconfig"
     vars:
-      secret: '{{ .secret | default ""}}'
-      namespace: '{{.namespace | default "default"}}'
-    cmds:
-      - |
-        {{if eq .secret ""}}
-          kubectl get externalsecret.external-secrets.io --all-namespaces --no-headers -A | awk '{print $1, $2}' \
-            | xargs --max-procs=4 -l bash -c 'kubectl -n $0 annotate externalsecret.external-secrets.io $1 force-sync=$(date +%s) --overwrite'
-        {{else}}
-          kubectl -n {{.namespace}} annotate externalsecret.external-secrets.io {{.secret}} force-sync=$(date +%s) --overwrite
-        {{end}}
+      ns: '{{.ns | default "default"}}'
+      secret: '{{ or .secret (fail "Argument (secret) is required") }}'
     preconditions:
-      - kubectl -n {{.namespace}} get es {{.secret}}
+      - { msg: "ExternalSecret not found",       sh: "kubectl --context {{.cluster}} -n {{.ns}} get externalsecret {{.secret}}" }
+      - { msg: "Argument (cluster) is required", sh: "test -n {{.cluster}}" }
+
+  sync-all:
+    desc: Sync all ExternalSecrets for a cluster
+    summary: |
+      Args:
+        cluster: Cluster to run command against (required)
+    cmds:
+      - for: { var: secrets, split: '' }
+        task: sync
+        vars:
+          cluster: '{{.cluster}}'
+          ns: '{{$a := split "|" .ITEM}}{{$a._0}}'
+          secret: '{{$a := split "|" .ITEM}}{{$a._1}}'
+    env:
+      KUBECONFIG: "{{.KUBERNETES_DIR}}/{{.cluster}}/kubeconfig"
+    vars:
+      secrets:
+        sh: kubectl --context {{.cluster}} get externalsecret --all-namespaces --no-headers -A | awk '{print $1 "|" $2}'
+    preconditions:
+      - { msg: "Argument (cluster) is required", sh: "test -n {{.cluster}}" }
