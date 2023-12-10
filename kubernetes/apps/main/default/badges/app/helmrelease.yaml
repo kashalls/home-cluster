@@ -30,9 +30,7 @@ spec:
         containers:
           main:
             nameOverride: kubebadges
-            dependsOn:
-              - name: shields
-                namespace: default
+            order: 2
             image:
               repository: ghcr.io/neosu/kubebadges
               tag: v0.0.4
@@ -57,6 +55,7 @@ spec:
                 memory: 256Mi
           shields:
             nameOverride: shields
+            order: 1
             image:
               repository: shieldsio/shields
               tag: next
