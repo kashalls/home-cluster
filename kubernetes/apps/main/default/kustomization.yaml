@@ -5,7 +5,6 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./authentik/ks.yaml
-  - ./badges/ks.yaml
   - ./changedetection/ks.yaml
   - ./echo-server/ks.yaml
   - ./home-assistant/ks.yaml
