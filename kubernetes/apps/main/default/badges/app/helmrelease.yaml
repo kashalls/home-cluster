@@ -35,7 +35,7 @@ spec:
               repository: neosu/kubebadges
               tag: v0.0.4
             env:
-              SHIELDS_HOST: shields:8081
+              SHIELDS_HOST: kubebadges.default.svc.cluster.local:8081
               SHIELDS_SCHEME: http
               CACHE_TIME: 300
               BADGE_CACHE_TIME: 300
