@@ -35,7 +35,7 @@ spec:
               repository: neosu/kubebadges
               tag: v0.0.4
             env:
-              SHIELDS_HOST: shields:8080
+              SHIELDS_HOST: shields:8081
               SHIELDS_SCHEME: http
               CACHE_TIME: 300
               BADGE_CACHE_TIME: 300
@@ -60,7 +60,7 @@ spec:
               repository: shieldsio/shields
               tag: next
             env:
-              PORT: 8080
+              PORT: 8081
             probes:
               liveness:
                 enabled: true
@@ -77,22 +77,15 @@ spec:
                 memory: 512Mi
     service:
       main:
-        controller: main
-        primary: true
         ports:
-          - protocol: http
+          http:
             port: 8090
-            targetPort: 8090
-          - protocol: http
+          external:
+            enabled: true
             port: 8080
-            targetPort: 8080
-      shields:
-        controller: main
-        primary: false
-        ports:
-          - protocol: http
-            port: 8080
-            targetPort: 8080
+          shields:
+            enabled: true
+            port: 8081
     ingress:
       main:
         enabled: true
@@ -105,6 +98,7 @@ spec:
                 pathType: Prefix
                 service:
                   name: main
-                  port: 8080
+                  port: http
     serviceAccount:
       name: kubebadges
+
