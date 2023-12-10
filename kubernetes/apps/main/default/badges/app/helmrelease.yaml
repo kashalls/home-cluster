@@ -41,11 +41,11 @@ spec:
               BADGE_CACHE_TIME: 300
             probes:
               liveness:
-                enabled: true
+                enabled: false
               readiness:
-                enabled: true
+                enabled: false
               startup:
-                enabled: true
+                enabled: false
             resources:
               requests:
                 cpu: 10m
@@ -63,11 +63,11 @@ spec:
               PORT: 8081
             probes:
               liveness:
-                enabled: true
+                enabled: false
               readiness:
-                enabled: true
+                enabled: false
               startup:
-                enabled: true
+                enabled: false
             resources:
               requests:
                 cpu: 10m
