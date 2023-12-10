@@ -1,0 +1,61 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: kubebadges-role
+  namespace: kubebadges
+rules:
+- apiGroups:
+  - kubebadges.tcode.ltd
+  resources:
+  - kubebadges
+  verbs:
+  - '*'
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - '*'
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: kubebadges
+rules:
+- apiGroups:
+  - '*'
+  resources:
+  - '*'
+  verbs:
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: kubebadges-rolebinding
+  namespace: kubebadges
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: kubebadges-role
+subjects:
+- kind: ServiceAccount
+  name: kubebadges
+  namespace: kubebadges
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: kubebadges-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kubebadges
+subjects:
+- kind: ServiceAccount
+  name: kubebadges
+  namespace: kubebadges
