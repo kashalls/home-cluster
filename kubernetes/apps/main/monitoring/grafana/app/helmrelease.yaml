@@ -354,6 +354,7 @@ spec:
       - natel-discrete-panel
       - pr0ps-trackmap-panel
       - vonage-status-panel
+      - grafana-image-renderer
     serviceMonitor:
       enabled: true
     ingress:
