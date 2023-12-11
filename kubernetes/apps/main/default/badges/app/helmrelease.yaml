@@ -33,7 +33,7 @@ spec:
             order: 2
             image:
               repository: neosu/kubebadges
-              tag: v0.0.4
+              tag: v0.0.5
             env:
               SHIELDS_HOST: kubebadges.default.svc.cluster.local:8081
               SHIELDS_SCHEME: http
