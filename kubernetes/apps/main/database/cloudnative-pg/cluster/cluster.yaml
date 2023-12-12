@@ -16,7 +16,7 @@ spec:
     name: cloudnative-pg-secret
   bootstrap:
     recovery:
-      source: &previousCluster postgres-v11
+      source: &previousCluster postgres-v10
   postgresql:
     parameters:
       max_connections: "600"
@@ -31,7 +31,7 @@ spec:
         maxParallel: 8
       destinationPath: s3://cloudnative-pg-v1/
       endpointURL: https://${SECRET_CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com
-      serverName: &currentCluster postgres-v12
+      serverName: &currentCluster postgres-v11
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
