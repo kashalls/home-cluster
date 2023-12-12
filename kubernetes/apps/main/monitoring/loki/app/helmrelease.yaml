@@ -154,9 +154,9 @@ spec:
         annotations:
           grafana_folder: Loki
       serviceMonitor:
-        enabled: false
+        enabled: true
         metricsInstance:
-          enabled: false
+          enabled: true
       selfMonitoring:
         enabled: false
         grafanaAgent:
