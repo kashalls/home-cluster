@@ -34,7 +34,7 @@ tasks:
           ns: '{{$a := split "|" .ITEM}}{{$a._0}}'
           secret: '{{$a := split "|" .ITEM}}{{$a._1}}'
     env:
-      KUBECONFIG: "{{.KUBERNETES_DIR}}/{{.cluster}}/kubeconfig"
+      KUBECONFIG: "{{.KUBERNETES_DIR}}/kubeconfig"
     vars:
       secrets:
         sh: kubectl --context {{.cluster}} get externalsecret --all-namespaces --no-headers -A | awk '{print $1 "|" $2}'
