@@ -8,7 +8,6 @@ The general format of this follows this roughly: kubernetes/apps/{{ cluster }}/{
 
 Some applications are grouped under a namespace because they provide similar functionality.
 
-
 `📁 bootstrap`
 
 This folder contains the initial install of flux. After applying it, its pretty much not needed.
