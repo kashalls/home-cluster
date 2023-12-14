@@ -33,7 +33,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/milesmcc/shynet
-      tag: edge@sha256:73672e582bd5bbaa0f7606c488463f912ab43164b11d3b1634646568f1646ad7
+      tag: edge@sha256:16f0e83762cac08c9f9ee348e2992ae4a3f1673938e12183887361e022e8722b
       pullPolicy: Always
     envFrom:
       - secretRef:
