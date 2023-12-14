@@ -1,16 +1,15 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: gatus
-  namespace: monitoring
 spec:
   interval: 30m
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.4.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -26,36 +25,72 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    initContainers:
-      01-init-db:
-        image: ghcr.io/onedr0p/postgres-init:16.1
-        imagePullPolicy: IfNotPresent
-        envFrom: &envFrom
-          - secretRef:
-              name: gatus-secret
-      02-config-sync:
-        image: ghcr.io/kiwigrid/k8s-sidecar:1.25.3
-        imagePullPolicy: IfNotPresent
-        env:
-          - { name: FOLDER, value: /config }
-          - { name: LABEL, value: gatus.io/enabled }
-          - { name: NAMESPACE, value: ALL }
-          - { name: RESOURCE, value: both }
-          - { name: UNIQUE_FILENAMES, value: "true" }
-          - { name: METHOD, value: LIST }
-        volumeMounts:
-          - { name: config, mountPath: /config }
-    controller:
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/twin/gatus
-      tag: v5.7.0
-    env:
-      TZ: America/Los_Angeles
-      GATUS_CONFIG_PATH: /config
-      CUSTOM_WEB_PORT: &port 80
-    envFrom: *envFrom
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        initContainers:
+          init-db:
+            order: 1
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16
+            envFrom: &envFrom
+              - secretRef:
+                  name: gatus-secret
+          # TODO: Convert this to a proper 'sidecar' container someday
+          init-config:
+            order: 2
+            image: &configSyncImage
+              repository: ghcr.io/kiwigrid/k8s-sidecar
+              tag: 1.25.3@sha256:8dc0aca015bf7173378ee5987dd78d49f94ff9a5c3495b3664141750cc55f444
+            env: &configSyncEnv
+              FOLDER: /config
+              LABEL: gatus.io/enabled
+              NAMESPACE: ALL
+              RESOURCE: both
+              UNIQUE_FILENAMES: true
+              METHOD: LIST
+            resources: &configSyncResources
+              requests:
+                cpu: 10m
+                memory: 10Mi
+              limits:
+                memory: 128Mi
+        containers:
+          main:
+            image:
+              repository: ghcr.io/twin/gatus
+              tag: v5.7.0@sha256:e077910eeda4c1369e20c74bd09853b141399103531d97d831d1ae58bd81537d
+            env:
+              TZ: America/New_York
+              GATUS_CONFIG_PATH: /config
+              CUSTOM_WEB_PORT: &port 80
+            envFrom: *envFrom
+            securityContext: &securityContext
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 10m
+                memory: 256M
+              limits:
+                memory: 512M
+          config-sync:
+            image: *configSyncImage
+            env:
+              <<: *configSyncEnv
+              METHOD: WATCH
+            securityContext: *securityContext
+            resources: *configSyncResources
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            runAsNonRoot: true
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
     service:
       main:
         ports:
@@ -64,61 +99,40 @@ spec:
     serviceMonitor:
       main:
         enabled: true
-        endpoints:
-          - port: http
-            scheme: http
-            path: /metrics
-            interval: 1m
-            scrapeTimeout: 10s
     ingress:
       main:
         enabled: true
-        ingressClassName: external
+        className: external
         annotations:
           external-dns.alpha.kubernetes.io/target: border.ok8.sh
         hosts:
-          - host: &host status.ok8.sh
+          - host: &host "{{ .Release.Name }}.ok8.sh"
             paths:
               - path: /
-                pathType: Prefix
+                service:
+                  name: main
+                  port: http
+          - host: &customHost status.ok8.sh
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
+              - *customHost
     serviceAccount:
       create: true
       name: gatus
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: OnRootMismatch
     persistence:
       config:
         enabled: true
         type: emptyDir
       config-file:
-        enabled: true
         type: configMap
         name: gatus-configmap
-        mountPath: /config/config.yaml
-        subPath: config.yaml
-        readOnly: true
-    resources:
-      requests:
-        cpu: 100m
-        memory: 100Mi
-      limits:
-        memory: 500Mi
-    sidecars:
-      config-sync:
-        image: ghcr.io/kiwigrid/k8s-sidecar:1.25.3
-        imagePullPolicy: IfNotPresent
-        env:
-          - { name: FOLDER, value: /config }
-          - { name: LABEL, value: gatus.io/enabled }
-          - { name: NAMESPACE, value: ALL }
-          - { name: RESOURCE, value: both }
-          - { name: UNIQUE_FILENAMES, value: "true" }
-          - { name: METHOD, value: WATCH }
-        volumeMounts:
-          - { name: config, mountPath: /config }
+        globalMounts:
+          - path: /config/config.yaml
+            subPath: config.yaml
+            readOnly: true
