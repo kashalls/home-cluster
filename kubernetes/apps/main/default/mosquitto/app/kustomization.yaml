@@ -2,14 +2,15 @@
 # yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: default
 resources:
-  - ./external-secrets.yaml
+  - ./claim.yaml
+  - ./externalsecret.yaml
   - ./helmrelease.yaml
-  - ./gatus.yaml
 configMapGenerator:
   - name: mosquitto-configmap
     files:
       - mosquitto.conf=./config/mosquitto.conf
-configurations:
-  - ./patches/kustomizeconfig.yaml
+generatorOptions:
+  disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled

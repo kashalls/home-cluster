@@ -8,7 +8,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-node-feature-discovery
-    - name: cluster-apps-mosquitto
+    - name: mosquitto
     - name: cluster-apps-external-secrets-stores
   path: ./kubernetes/apps/main/default/rtlamr2mqtt/app
   prune: true
