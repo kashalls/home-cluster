@@ -73,7 +73,7 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/target: border.ok8.sh
         hosts:
-          - host: &host "{{ .Release.Name }}.ok8.sh"
+          - host: &host "kromgo.ok8.sh"
             paths:
               - path: /
                 service:
