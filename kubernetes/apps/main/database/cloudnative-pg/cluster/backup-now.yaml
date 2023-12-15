@@ -6,4 +6,4 @@ metadata:
 spec:
   method: barmanObjectStore
   cluster:
-    name: postgres
+    name: postgres16

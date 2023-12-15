@@ -25,7 +25,7 @@ spec:
         databases: ["*"]
         roles: ["*"]
         source:
-          externalCluster: postgres-v12
+          externalCluster: &previousCluster postgres-v12
   postgresql:
     parameters:
       max_connections: "600"
