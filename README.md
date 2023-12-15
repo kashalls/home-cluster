@@ -1,12 +1,28 @@
+<div align="center">
+
 ## Kashall's Home Operations
 
-- [📄 Documentation](https://home-cluster.pages.dev)
-- [⚡️ Clone Flux Cluster Template](https://github.com/onedr0p/flux-cluster-template)
+[📄 Documentation](https://home-cluster.pages.dev)
+[⚡️ Clone Flux Cluster Template](https://github.com/onedr0p/flux-cluster-template)
+</div>
 
+<div align="center">
+
+[![Discord](https://img.shields.io/discord/673534664354430999?style=for-the-badge&label&logo=discord&logoColor=white&color=blue)](https://discord.gg/home-operations)&nbsp;&nbsp;&nbsp;
+[![Kubernetes](https://img.shields.io/badge/dynamic/yaml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fkashalls%2Fhome-cluster%2Fmain%2Fkubernetes%2Fapps%2Fmain%2Fkube-system%2Fsystem-upgrade-controller%2Fplans%2Fserver.yaml&query=%24.spec.version&style=for-the-badge&logo=kubernetes&logoColor=white&label=%20)](https://k3s.io/)&nbsp;&nbsp;&nbsp;
+[![Renovate](https://img.shields.io/github/actions/workflow/status/kashalls/home-cluster/renovate.yaml?branch=main&label=&logo=renovatebot&style=for-the-badge&color=blue)](https://github.com/onedr0p/home-ops/actions/workflows/renovate.yaml)
+
+[![Age-Days](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.ok8.sh%2Fquery%3Fformat%3Dendpoint%26metric%3Dcluster_age_days&style=for-the-badge&label=Age)](https://github.com/kashalls/kromgo/)&nbsp;&nbsp;&nbsp;
+[![Uptime-Days](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.ok8.sh%2Fquery%3Fformat%3Dendpoint%26metric%3Dcluster_uptime_days&style=for-the-badge&label=Uptime)](https://github.com/kashalls/kromgo/)&nbsp;&nbsp;&nbsp;
+[![Node-Count](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.ok8.sh%2Fquery%3Fformat%3Dendpoint%26metric%3Dcluster_node_count&style=for-the-badge&label=Nodes)](https://github.com/kashalls/kromgo/)&nbsp;&nbsp;&nbsp;
+[![Pod-Count](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.ok8.sh%2Fquery%3Fformat%3Dendpoint%26metric%3Dcluster_pods_running&style=for-the-badge&label=Pods)](https://github.com/kashalls/kromgo/)&nbsp;&nbsp;&nbsp;
+[![CPU-Usage](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.ok8.sh%2Fquery%3Fformat%3Dendpoint%26metric%3Dcluster_cpu_usage&style=for-the-badge&label=CPU)](https://github.com/kashalls/kromgo/)&nbsp;&nbsp;&nbsp;
+[![Power-Usage](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.ok8.sh%2Fquery%3Fformat%3Dendpoint%26metric%3Dcluster_power_usage&style=for-the-badge&label=Power)](https://github.com/kashalls/kromgo/)
+</div>
 
 ## What is this?
 
-Arisu is the name of the kubernetes cluster I deployed at home. It features a couple of low power consumer machines running [Ubuntu Server](https://ubuntu.com/server) with [k3s](https://k3s.io/) deployed using my [ansible configuration](/ansible/).
+This is the home of the kubernetes cluster I deployed at home. It features a couple of low power consumer machines running [Ubuntu Server](https://ubuntu.com/server) with [k3s](https://k3s.io/) deployed using my [ansible configuration](/ansible/).
 
 This repo serves as the "roadmap" that is automatically updated and deployed thanks to [renovate](https://www.mend.io/renovate/) and [fluxcd](https://fluxcd.io/).
 
