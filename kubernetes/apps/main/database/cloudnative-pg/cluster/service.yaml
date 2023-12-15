@@ -18,3 +18,23 @@ spec:
   selector:
     cnpg.io/cluster: postgres
     role: primary
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres16-lb
+  namespace: database
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: "postgres.ok8.sh"
+    io.cilium/lb-ipam-ips: "10.69.69.134"
+spec:
+  type: LoadBalancer
+  externalTrafficPolicy: Cluster
+  ports:
+    - name: postgres
+      port: 5432
+      protocol: TCP
+      targetPort: 5432
+  selector:
+    cnpg.io/cluster: postgres16
+    role: primary
