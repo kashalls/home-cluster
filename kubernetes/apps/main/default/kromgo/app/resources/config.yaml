@@ -30,7 +30,7 @@ metrics:
   - name: cluster_pods_running
     query: sum(kube_pod_status_phase{phase="Running"})
 
-  - name: cluster_power_watts
+  - name: cluster_power_usage
     query: round(avg_over_time(unpoller_device_outlet_ac_power_consumption[5m]), 0.1)
     suffix: "w"
     colors:
@@ -38,7 +38,7 @@ metrics:
       - { color: "orange", min: 401, max: 750 }
       - { color: "red", min: 751, max: 2000 }
 
-  - name: cluster_installed_ago
+  - name: cluster_age_days
     query: "round((time() - max(kube_node_created) ) / 86400)"
     suffix: " days"
 
