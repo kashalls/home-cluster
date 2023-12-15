@@ -43,6 +43,14 @@ spec:
     queryFrontend:
       enabled: true
       replicaCount: 2
+      config: &config |-
+        type: REDIS
+        config:
+          addr: >-
+            redis-node-0.redis-headless.databases.svc.cluster.local:26379,
+            redis-node-1.redis-headless.databases.svc.cluster.local:26379,
+            redis-node-2.redis-headless.databases.svc.cluster.local:26379
+          master_name: redis-master
       ingress:
         enabled: true
         ingressClassName: internal
@@ -76,6 +84,7 @@ spec:
     storegateway:
       enabled: true
       replicaCount: 2
+      config: *config
       persistence:
         enabled: true
         storageClass: local-path
@@ -126,4 +135,3 @@ spec:
       kind: Secret
       name: thanos-bucket
       valuesKey: AWS_SECRET_ACCESS_KEY
-#
