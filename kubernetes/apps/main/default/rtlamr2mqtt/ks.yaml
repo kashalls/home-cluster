@@ -6,6 +6,7 @@ metadata:
   name: cluster-apps-rtlamr2mqtt
   namespace: flux-system
 spec:
+  targetNamespace: default
   dependsOn:
     - name: cluster-apps-node-feature-discovery
     - name: mosquitto
