@@ -37,3 +37,11 @@ metrics:
       - { color: "green", min: 0, max: 400 }
       - { color: "orange", min: 401, max: 750 }
       - { color: "red", min: 751, max: 2000 }
+
+  - name: cluster_installed_ago
+    query: "round((time() - max(kube_node_created) ) / 86400)"
+    suffix: " days"
+
+  - name: cluster_uptime_days
+    query: round(avg((node_time_seconds - node_boot_time_seconds) / 3600 / 24), 0.1)
+    suffix: " days"
