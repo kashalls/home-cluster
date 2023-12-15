@@ -59,21 +59,21 @@ spec:
       password:
         name: cloudnative-pg-secret
         key: password
-    - name: *previousCluster
-      barmanObjectStore:
-        serverName: *previousCluster
-        wal:
-          compression: bzip2
-          maxParallel: 8
-        destinationPath: s3://cloudnative-pg-v1/
-        endpointURL: https://${SECRET_CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com
-        s3Credentials:
-          accessKeyId:
-            name: cloudnative-pg-secret
-            key: aws-access-key-id
-          secretAccessKey:
-            name: cloudnative-pg-secret
-            key: aws-secret-access-key
+#    - name: *previousCluster
+#      barmanObjectStore:
+#        serverName: *previousCluster
+#        wal:
+#          compression: bzip2
+#          maxParallel: 8
+#        destinationPath: s3://cloudnative-pg-v1/
+#        endpointURL: https://${SECRET_CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com
+#        s3Credentials:
+#          accessKeyId:
+#            name: cloudnative-pg-secret
+#            key: aws-access-key-id
+#          secretAccessKey:
+#            name: cloudnative-pg-secret
+#            key: aws-secret-access-key
   affinity:
     nodeSelector:
       beta.kubernetes.io/arch: amd64
