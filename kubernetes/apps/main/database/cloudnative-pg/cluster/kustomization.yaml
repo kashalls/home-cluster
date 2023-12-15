@@ -9,3 +9,4 @@ resources:
   - ./service.yaml
   - ./gatus.yaml
   - ./cluster-16.yaml
+  - ./cluster.yaml
