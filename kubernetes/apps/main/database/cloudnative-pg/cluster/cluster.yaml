@@ -15,17 +15,9 @@ spec:
   superuserSecret:
     name: cloudnative-pg-secret
   enableSuperuserAccess: true
-#  bootstrap:
-#    recovery:
-#      source: &previousCluster postgres-v11
   bootstrap:
-    initdb:
-      import:
-        type: monolith
-        databases: ["*"]
-        roles: ["*"]
-        source:
-          externalCluster: &previousCluster postgres-v12
+    recovery:
+      source: &previousCluster postgres-v13
   postgresql:
     parameters:
       max_connections: "600"
@@ -40,7 +32,7 @@ spec:
         maxParallel: 8
       destinationPath: s3://cloudnative-pg-v1/
       endpointURL: https://${SECRET_CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com
-      serverName: &currentCluster postgres-v13
+      serverName: &currentCluster postgres-v14
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
@@ -50,30 +42,21 @@ spec:
           key: aws-secret-access-key
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   externalClusters:
-    - name: postgres16
-      connectionParameters:
-        # Use the correct IP or host name for the source database
-        host: postgres16-rw.database.svc.cluster.local
-        user: postgres
-        dbname: postgres
-      password:
-        name: cloudnative-pg-secret
-        key: password
-#    - name: *previousCluster
-#      barmanObjectStore:
-#        serverName: *previousCluster
-#        wal:
-#          compression: bzip2
-#          maxParallel: 8
-#        destinationPath: s3://cloudnative-pg-v1/
-#        endpointURL: https://${SECRET_CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com
-#        s3Credentials:
-#          accessKeyId:
-#            name: cloudnative-pg-secret
-#            key: aws-access-key-id
-#          secretAccessKey:
-#            name: cloudnative-pg-secret
-#            key: aws-secret-access-key
+    - name: *previousCluster
+      barmanObjectStore:
+        serverName: *previousCluster
+        wal:
+          compression: bzip2
+          maxParallel: 8
+        destinationPath: s3://cloudnative-pg-v1/
+        endpointURL: https://${SECRET_CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com
+        s3Credentials:
+          accessKeyId:
+            name: cloudnative-pg-secret
+            key: aws-access-key-id
+          secretAccessKey:
+            name: cloudnative-pg-secret
+            key: aws-secret-access-key
   affinity:
     nodeSelector:
       beta.kubernetes.io/arch: amd64
