@@ -2,7 +2,8 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Backup
 metadata:
-  name: backup-now
+  name: backup-now-4
+  namespace: database
 spec:
   method: barmanObjectStore
   cluster:
