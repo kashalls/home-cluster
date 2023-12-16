@@ -183,8 +183,8 @@ spec:
           datasource:
             - { name: DS_PROMETHEUS, value: Prometheus }
         external-dns:
-          # renovate: depName="External-dns"
-          gnetId: 35038
+          # renovate: depName="External DNS"
+          gnetId: 15038
           revision: 3
           datasource: Prometheus
         minio:
