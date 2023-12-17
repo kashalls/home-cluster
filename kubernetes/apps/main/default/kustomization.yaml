@@ -6,7 +6,6 @@ resources:
   - ./namespace.yaml
   - ./authentik/ks.yaml
   - ./changedetection/ks.yaml
-  - ./echo-server/ks.yaml
   - ./home-assistant/ks.yaml
   - ./kromgo/ks.yaml
   - ./kubernetes-schemas/ks.yaml
