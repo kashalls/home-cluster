@@ -6,4 +6,7 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
+  - ./csi-driver-nfs/ks.yaml
+  - ./local-path-provisioner/ks.yaml
+  - ./snapshot-controller/ks.yaml
   - ./volsync/ks.yaml

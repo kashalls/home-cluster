@@ -3,12 +3,16 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-loki
+  name: &app loki
   namespace: flux-system
 spec:
+  targetNamespace: monitoring
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
   dependsOn:
-    - name: cluster-apps-local-path-provisioner
-    - name: cluster-apps-rook-ceph-cluster
+    - name: local-path-provisioner
+    - name: rook-ceph-cluster
   path: ./kubernetes/apps/main/monitoring/loki/app
   prune: true
   sourceRef:

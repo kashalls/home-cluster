@@ -3,14 +3,17 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-rtlamr2mqtt
+  name: &app rtlamr2mqtt
   namespace: flux-system
 spec:
   targetNamespace: default
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
   dependsOn:
-    - name: cluster-apps-node-feature-discovery
+    - name: node-feature-discovery
     - name: mosquitto
-    - name: cluster-apps-external-secrets-stores
+    - name: external-secrets-stores
   path: ./kubernetes/apps/main/default/rtlamr2mqtt/app
   prune: true
   sourceRef:

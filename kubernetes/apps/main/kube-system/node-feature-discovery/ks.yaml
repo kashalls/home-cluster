@@ -1,10 +1,15 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-node-feature-discovery
+  name: &app node-feature-discovery
   namespace: flux-system
 spec:
+  targetNamespace: kube-system
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
   interval: 10m
   path: ./kubernetes/apps/main/kube-system/node-feature-discovery/app
   prune: true

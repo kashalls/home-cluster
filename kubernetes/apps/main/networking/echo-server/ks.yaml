@@ -3,17 +3,19 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-storage-minio
+  name: &app echo-server
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: cluster-apps-rook-ceph-cluster
-  path: ./kubernetes/apps/main/storage/minio/app
+  targetNamespace: networking
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  path: ./kubernetes/apps/main/networking/echo-server/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
-  wait: false
+  wait: true
   interval: 30m
   retryInterval: 1m
   timeout: 5m

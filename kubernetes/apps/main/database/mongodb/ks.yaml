@@ -3,11 +3,15 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-mongodb
+  name: &app mongodb
   namespace: flux-system
 spec:
+  targetNamespace: database
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
   dependsOn:
-    - name: cluster-apps-rook-ceph-cluster
+    - name: rook-ceph-cluster
   path: ./kubernetes/apps/main/database/mongodb/app
   prune: true
   sourceRef:
@@ -22,11 +26,15 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-mongodb-cluster
+  name: &app mongodb-cluster
   namespace: flux-system
 spec:
+  targetNamespace: database
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
   dependsOn:
-    - name: cluster-apps-mongodb
+    - name: mongodb
   path: ./kubernetes/apps/main/database/mongodb/cluster
   prune: true
   sourceRef:

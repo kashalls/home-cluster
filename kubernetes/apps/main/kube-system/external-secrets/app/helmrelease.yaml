@@ -15,7 +15,6 @@ spec:
         kind: HelmRepository
         name: external-secrets
         namespace: flux-system
-  maxHistory: 2
   install:
     createNamespace: true
     remediation:
