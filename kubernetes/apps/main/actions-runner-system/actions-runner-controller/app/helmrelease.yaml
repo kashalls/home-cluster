@@ -25,29 +25,3 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  valuesFrom:
-    - targetPath: githubWebhookServer.secret.github_webhook_secret_token
-      kind: Secret
-      name: actions-runner-controller-auth-secret
-      valuesKey: ACTION_RUNNER_CONTROLLER_GITHUB_WEBHOOK_SECRET_TOKEN
-  values:
-    githubWebhookServer:
-      enabled: true
-      replicaCount: 2
-      secret:
-        enabled: true
-      ingress:
-        enabled: true
-        annotations:
-          external-dns.alpha.kubernetes.io/target: border.ok8.sh
-        className: external
-        hosts:
-          - host: &host arc.ok8.sh
-            paths:
-              - path: /
-                service:
-                  name: main
-                  port: http
-        tls:
-          - hosts:
-              - *host
