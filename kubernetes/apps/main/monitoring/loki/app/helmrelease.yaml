@@ -27,7 +27,7 @@ spec:
     keepHistory: false
   dependsOn:
     - name: local-path-provisioner
-      namespace: kube-system
+      namespace: storage
     - name: rook-ceph-cluster
       namespace: rook-ceph
   values:
