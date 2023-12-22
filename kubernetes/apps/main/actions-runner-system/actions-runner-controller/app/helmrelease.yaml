@@ -32,6 +32,7 @@ spec:
       valuesKey: ACTION_RUNNER_CONTROLLER_GITHUB_WEBHOOK_SECRET_TOKEN
   values:
     githubWebhookServer:
+      enabled: true
       replicaCount: 2
       secret:
         enabled: true
