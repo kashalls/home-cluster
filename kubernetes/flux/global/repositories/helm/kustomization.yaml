@@ -16,3 +16,4 @@ resources:
   - ./piraeus.yaml
   - ./prometheus-community.yaml
   - ./stakater.yaml
+  - ./weaveworks.yaml
