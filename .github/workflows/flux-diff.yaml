@@ -37,7 +37,7 @@ jobs:
         with:
           files: kubernetes/**
           dir_names: true
-          dir_names_max_depth: 2
+          dir_names_max_depth: 3 # Usually you would want 2, but since my apps directory contains multiple clusters you should use 3.
           json: true
           escape_json: false
 
