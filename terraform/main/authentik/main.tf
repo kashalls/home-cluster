@@ -14,6 +14,11 @@ terraform {
   }
 }
 
+provider "onepassword" {
+  url = "http://onepassword-connect.kube-system.svc.cluster.local:80/"
+}
+
+
 module "secret_authentik" {
   # Remember to export OP_CONNECT_HOST and OP_CONNECT_TOKEN
   source = "github.com/bjw-s/terraform-1password-item?ref=main"

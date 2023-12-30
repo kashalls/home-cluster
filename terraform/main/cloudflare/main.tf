@@ -3,7 +3,7 @@ terraform {
     hostname     = "app.terraform.io"
     organization = "kashall"
     workspaces {
-      name = "home-cluster-cloudflare"
+      name = "cloudflare"
     }
   }
   required_providers {
@@ -18,6 +18,11 @@ terraform {
   }
   required_version = ">= 1.3.0"
 }
+
+provider "onepassword" {
+  url = "http://onepassword-connect.kube-system.svc.cluster.local:80/"
+}
+
 
 module "onepassword_item" {
   source = "github.com/bjw-s/terraform-1password-item?ref=main"
