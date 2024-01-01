@@ -17,7 +17,3 @@ resource "authentik_group" "infrastructure" {
 data "authentik_group" "admins" {
   name = "authentik Admins"
 }
-
-data "authentik_group" "s3-admin" {
-  name = "S3 Superuser"
-}
