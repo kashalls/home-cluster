@@ -1,4 +1,4 @@
-resource "cloudflare_ruleset" "terraform_managed_resource_d3ca7f290deb4d4590f1371fe4d33ca5" {
+resource "cloudflare_ruleset" "main" {
   kind    = "zone"
   name    = "default"
   phase   = "http_request_firewall_custom"

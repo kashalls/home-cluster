@@ -13,13 +13,13 @@ resource "cloudflare_zone_settings_override" "domain_settings" {
     development_mode          = "off"
     early_hints               = "off"
     email_obfuscation         = "on"
-    filter_logs_to_cloudflare = "off"
+    # filter_logs_to_cloudflare = "off" # filter_logs_to_cloudflare cannot be modified for this zone (1057)
     hotlink_protection        = "off"
-    # http2                     = "on" #
+    # http2                     = "on" # Read-only
     http3                     = "on"
     ip_geolocation            = "on"
     ipv6                      = "on"
-    log_to_cloudflare         = "on"
+    # log_to_cloudflare         = "on" # log_to_cloudflare cannot be modified for this zone (1057)
     max_upload                = 100
     min_tls_version           = "1.2"
     minify {
@@ -27,17 +27,17 @@ resource "cloudflare_zone_settings_override" "domain_settings" {
       html = "on"
       js   = "on"
     }
-    mirage                      = "off"
+    # mirage                      = "off" # Read-only
     opportunistic_encryption    = "on"
     opportunistic_onion         = "on"
-    orange_to_orange            = "off"
-    origin_error_page_pass_thru = "off"
-    polish                      = "off"
-    prefetch_preload            = "off"
+    # orange_to_orange            = "off" # It is not possible to change Orange To Orange settings for this zone. (1024)
+    # origin_error_page_pass_thru = "off" # Read-only
+    # polish                      = "off" # Read-only
+    # prefetch_preload            = "off" # Read-only
     privacy_pass                = "on"
-    proxy_read_timeout          = "100"
+    # proxy_read_timeout          = "100" # Read-only
     pseudo_ipv4                 = "off"
-    response_buffering          = "off"
+    # response_buffering          = "off" # Read-only
     rocket_loader               = "off"
     security_header {
       enabled            = false
@@ -48,14 +48,14 @@ resource "cloudflare_zone_settings_override" "domain_settings" {
     }
     security_level              = "medium"
     server_side_exclude         = "on"
-    sort_query_string_for_cache = "off"
+    # sort_query_string_for_cache = "off" # Read-only
     ssl                         = "flexible"
     tls_1_3                     = "on"
     tls_client_auth             = "off"
-    true_client_ip_header       = "off"
-    visitor_ip                  = "on"
-    waf                         = "off"
-    webp                        = "off"
+    # true_client_ip_header       = "off" # Read-only
+    # visitor_ip                  = "on" # It is not possible to change Visitor IP settings for this zone. (1025)
+    # waf                         = "off" # Not allowed to edit setting for waf (1015)
+    # webp                        = "off" # Read-only
     websockets                  = "on"
     zero_rtt                    = "off"
   }
