@@ -4,7 +4,6 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: coredns
-  namespace: &namespace kube-system
 spec:
   interval: 30m
   chart:
@@ -16,7 +15,6 @@ spec:
         name: coredns
         namespace: flux-system
   install:
-    createNamespace: true
     remediation:
       retries: 3
   upgrade:
@@ -26,14 +24,12 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    fullnameOverride: coredns
+    replicaCount: 2
     k8sAppLabelOverride: kube-dns
     service:
       name: kube-dns
       clusterIP: 172.31.0.10
-    image:
-      repository: registry.k8s.io/coredns/coredns
-      tag: v1.11.1
-    replicaCount: 3
     serviceAccount:
       create: true
     deployment:
@@ -61,7 +57,7 @@ spec:
           - name: prometheus
             parameters: 0.0.0.0:9153
           - name: forward
-            parameters: . 10.69.0.1
+            parameters: . /etc/resolv.conf
           - name: cache
             parameters: 30
           - name: loop
