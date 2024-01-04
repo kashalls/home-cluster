@@ -15,7 +15,7 @@ resource "cloudflare_zone_settings_override" "domain_settings" {
     email_obfuscation         = "on"
     filter_logs_to_cloudflare = "off"
     hotlink_protection        = "off"
-    http2                     = "on"
+    # http2                     = "on" #
     http3                     = "on"
     ip_geolocation            = "on"
     ipv6                      = "on"
