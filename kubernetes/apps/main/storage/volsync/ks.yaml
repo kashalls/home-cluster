@@ -10,8 +10,6 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  dependsOn:
-    - name: snapshot-controller
   path: ./kubernetes/apps/main/storage/volsync/app
   prune: true
   sourceRef:
