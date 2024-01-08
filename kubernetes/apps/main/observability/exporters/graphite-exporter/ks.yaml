@@ -8,7 +8,7 @@ metadata:
 spec:
   dependsOn:
     - name: kube-prometheus-stack
-  path: ./kubernetes/apps/main/observability/graphite-exporter/app
+  path: ./kubernetes/apps/main/observability/exporters/graphite-exporter/app
   prune: true
   sourceRef:
     kind: GitRepository
