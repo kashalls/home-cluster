@@ -3,8 +3,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  # Pre Flux-Kustomizations
-  - ./namespace.yaml
   # Flux-Kustomizations
   - ./graphite-exporter/ks.yaml
   - ./node-exporter/ks.yaml
