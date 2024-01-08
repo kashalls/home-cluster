@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/kashalls/kromgo/main/config.schema.json
 metrics:
   - name: cluster_cpu_usage
     query: round(cluster:node_cpu:ratio_rate5m * 100, 0.1)
