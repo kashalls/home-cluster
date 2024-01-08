@@ -39,4 +39,4 @@ spec:
       enabled: true
       servicemonitor:
         enabled: true
-        prometheusInstance: monitoring
+        prometheusInstance: observability

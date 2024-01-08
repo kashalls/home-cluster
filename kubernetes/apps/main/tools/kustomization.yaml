@@ -6,6 +6,8 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  - ./addons/ks.yaml
-  - ./tf-controller/ks.yaml
-  - ./weave-gitops/ks.yaml
+  - ./descheduler/ks.yaml
+  - ./intel-device-plugin/ks.yaml
+  - ./node-feature-discovery/ks.yaml
+  - ./reloader/ks.yaml
+  - ./system-upgrade-controller/ks.yaml

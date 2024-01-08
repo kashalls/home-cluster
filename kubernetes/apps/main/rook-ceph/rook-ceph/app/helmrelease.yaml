@@ -110,7 +110,7 @@ spec:
               cpu: 25m
             limits:
               memory: 256Mi
-    monitoring:
+    observability:
       enabled: true
     resources:
       requests:
