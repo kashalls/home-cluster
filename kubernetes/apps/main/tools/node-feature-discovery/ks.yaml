@@ -6,12 +6,12 @@ metadata:
   name: &app node-feature-discovery
   namespace: flux-system
 spec:
-  targetNamespace: kube-system
+  targetNamespace: tools
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   interval: 10m
-  path: ./kubernetes/apps/main/kube-system/node-feature-discovery/app
+  path: ./kubernetes/apps/main/tools/node-feature-discovery/app
   prune: true
   sourceRef:
     kind: GitRepository
