@@ -78,7 +78,7 @@ spec:
             port: 8123
     ingress:
       main:
-        enabled: false
+        enabled: true
         className: external
         annotations:
           external-dns.alpha.kubernetes.io/target: border.ok8.sh
