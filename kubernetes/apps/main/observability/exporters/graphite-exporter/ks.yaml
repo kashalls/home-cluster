@@ -6,6 +6,7 @@ metadata:
   name: graphite-exporter
   namespace: flux-system
 spec:
+  targetNamespace: observability
   dependsOn:
     - name: kube-prometheus-stack
   path: ./kubernetes/apps/main/observability/exporters/graphite-exporter/app

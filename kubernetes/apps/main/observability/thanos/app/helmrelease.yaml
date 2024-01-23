@@ -78,7 +78,7 @@ spec:
       retentionResolution1h: 90d
       persistence:
         enabled: true
-        storageClass: local-path
+        storageClass: local-hostpath
         size: 10Gi
     storegateway:
       enabled: true
@@ -86,7 +86,7 @@ spec:
       config: *config
       persistence:
         enabled: true
-        storageClass: local-path
+        storageClass: local-hostpath
         size: 10Gi
     ruler:
       enabled: true
@@ -107,7 +107,7 @@ spec:
                   severity: critical
       persistence:
         enabled: true
-        storageClass: local-path
+        storageClass: local-hostpath
         size: 10Gi
     metrics:
       enabled: true

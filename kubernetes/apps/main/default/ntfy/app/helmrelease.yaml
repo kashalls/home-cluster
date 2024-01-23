@@ -85,5 +85,5 @@ spec:
         enabled: true
         type: pvc
         mountPath: /var/cache/ntfy
-        storageClass: local-path
+        storageClass: local-hostpath
 

@@ -11,7 +11,7 @@ spec:
   primaryUpdateStrategy: unsupervised
   storage:
     size: 20Gi
-    storageClass: local-path
+    storageClass: local-hostpath
   superuserSecret:
     name: cloudnative-pg-secret
   enableSuperuserAccess: true
