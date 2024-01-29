@@ -6,7 +6,7 @@ metadata:
   name: &app reloader
   namespace: flux-system
 spec:
-  targetNamespace: kube-system
+  targetNamespace: tools
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
