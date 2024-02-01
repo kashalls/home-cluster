@@ -29,8 +29,6 @@ spec:
     autoDirectNodeRoutes: true
     bpf:
       masquerade: true
-    bgp:
-      enabled: false
     cluster:
       name: arisu-cluster
       id: 1
@@ -105,4 +103,4 @@ spec:
     localRedirectPolicy: true
     securityContext:
       privileged: true
-    tunnel: "disabled"
+    routingMode: native
