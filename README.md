@@ -68,7 +68,9 @@ While most of my infrastructure and workloads are self-hosted I do rely upon the
 
 ## 🌐 DNS
 
-My main opnsense
+> I have been making changes constantly to my dns setup in my lab. Currently, OPNsense forces all traffic to port 53 through Unbound + DNSCrypt which is pointed at 1.1.1.1 and 9.9.9.9 using DNSoverHTTPS and DNSoverTLS and DNSCrypt.
+
+Unbound handles caching and DNSCrypt encrypts the DNS requests.
 
 
 ---
