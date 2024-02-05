@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.4.0
+      version: 2.5.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -31,7 +31,7 @@ spec:
           main:
             image:
               repository: docker.io/rancher/system-upgrade-controller
-              tag: v0.13.2
+              tag: v0.13.2@sha256:c3d120c265c3d1167f077bf79a88d0a401dd3a54ce6933e4cb98b2e51a1ed49b
             env:
               SYSTEM_UPGRADE_CONTROLLER_DEBUG: false
               SYSTEM_UPGRADE_CONTROLLER_THREADS: 2
@@ -47,16 +47,17 @@ spec:
                 valueFrom:
                   fieldRef:
                     fieldPath: metadata.namespace
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+              seccompProfile:
+                type: RuntimeDefault
         pod:
           securityContext:
-            runAsNonRoot: true
             runAsUser: 65534
             runAsGroup: 65534
-            allowPrivilegeEscalation: false
-            seccompProfile:
-              type: RuntimeDefault
-            capabilities:
-              drop: ["ALL"]
+            runAsNonRoot: true
           affinity:
             nodeAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
@@ -65,12 +66,16 @@ spec:
                       - key: node-role.kubernetes.io/control-plane
                         operator: Exists
           tolerations:
-            - {key: CriticalAddonsOnly, operator: Exists}
-            - {key: node-role.kubernetes.io/master, operator: Exists, effect: NoSchedule}
-            - {key: node-role.kubernetes.io/controlplane, operator: Exists, effect: NoSchedule}
-            - {key: node-role.kubernetes.io/control-plane, operator: Exists, effect: NoSchedule}
-            - {key: node-role.kubernetes.io/etcd, operator: Exists, effect: NoExecute}
+            - key: CriticalAddonsOnly
+              operator: Exists
+            - key: node-role.kubernetes.io/control-plane
+              operator: Exists
+              effect: NoSchedule
+            - key: node-role.kubernetes.io/master
+              operator: Exists
+              effect: NoSchedule
     serviceAccount:
+      create: true
       name: system-upgrade
     service:
       main:
