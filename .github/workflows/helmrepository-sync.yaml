@@ -37,7 +37,7 @@ jobs:
           sudo apt-get -qq install --no-install-recommends -y curl git
 
       - name: Setup Kube Tools
-        uses: yokawasa/action-setup-kube-tools@af4ebb1af1efd30c5bd84a2e9773355ad6362a33 # v0.9.3
+        uses: yokawasa/action-setup-kube-tools@93f6df178ec13d1b814a7622073ba28727716ca2 # v0.10.0
         with:
           setup-tools: yq
 
@@ -53,7 +53,7 @@ jobs:
 
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@90a06d6ba9543371ab4df8eeca0be07ca6054959 # v42.0.2
+        uses: tj-actions/changed-files@3f54ebb830831fc121d3263c1857cfbdc310cdb9 # v42.0.4
         with:
           files: kubernetes/**/helmrelease.yaml
 
