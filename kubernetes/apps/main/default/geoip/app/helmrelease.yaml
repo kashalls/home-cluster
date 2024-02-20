@@ -46,6 +46,14 @@ spec:
               HTTP_BIND_ADDR: "0.0.0.0:8080"
             securityContext:
               allowPrivilegeEscalation: false
+            probes:
+              liveness:
+                enabled: false
+              readiness:
+                enabled: false
+              startup:
+                enabled: false
+
 #            resources:
 #              requests:
 #                cpu: 5m
