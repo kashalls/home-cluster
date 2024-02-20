@@ -43,7 +43,7 @@ spec:
               DNS_LOCAL: false
               HTTP_TRUSTED_PROXIES: "172.30.0.0/16"
               DNS_RESOLVERS: "9.9.9.9"
-              HTTP_BIND_ADDR: "localhost:8080"
+              HTTP_BIND_ADDR: "0.0.0.0:8080"
             securityContext:
               allowPrivilegeEscalation: false
 #            resources:
