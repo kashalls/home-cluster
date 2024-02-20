@@ -35,6 +35,9 @@ spec:
             image:
               repository: ghcr.io/lrstanley/geoip
               tag: 1.0.3@sha256:0014cc80a265ae08d25ce2ed1a914dfc339de7fd839d78b427afe0ee3afa7b06
+            envFrom: &envFrom
+              - secretRef:
+                  name: geoip-secret
             env:
               PROMETHEUS_URL: http://thanos-query-frontend.observability.svc.cluster.local:9090
               PORT: &port 80
