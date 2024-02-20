@@ -39,11 +39,11 @@ spec:
               - secretRef:
                   name: geoip-secret
             env:
+              DNS_LOCAL: false
               PROMETHEUS_URL: http://thanos-query-frontend.observability.svc.cluster.local:9090
               PORT: &port 80
             securityContext:
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
 #            resources:
 #              requests:
