@@ -59,34 +59,33 @@ spec:
               - *host
     worker:
       autoscaling: true
-
     global:
       storageClass: ceph-block
-    envValueFrom:
-      AUTHENTIK_SECRET_KEY:
-        secretKeyRef:
-          name: authentik-secret
-          key: AUTHENTIK_SECRET_KEY
-      AUTHENTIK_POSTGRESQL__HOST:
-        secretKeyRef:
-          name: authentik-secret
-          key: AUTHENTIK_POSTGRESQL__HOST
-      AUTHENTIK_POSTGRESQL__NAME:
-        secretKeyRef:
-          name: authentik-secret
-          key: AUTHENTIK_POSTGRESQL__NAME
-      AUTHENTIK_POSTGRESQL__USER:
-        secretKeyRef:
-          name: authentik-secret
-          key: AUTHENTIK_POSTGRESQL__USER
-      AUTHENTIK_POSTGRESQL__PASSWORD:
-        secretKeyRef:
-          name: authentik-secret
-          key: AUTHENTIK_POSTGRESQL__PASSWORD
-      AUTHENTIK_REDIS__URL:
-        secretKeyRef:
-          name: authentik-secret
-          key: AUTHENTIK_REDIS__URL
+      envValueFrom:
+        AUTHENTIK_SECRET_KEY:
+          secretKeyRef:
+            name: authentik-secret
+            key: AUTHENTIK_SECRET_KEY
+        AUTHENTIK_POSTGRESQL__HOST:
+          secretKeyRef:
+            name: authentik-secret
+            key: AUTHENTIK_POSTGRESQL__HOST
+        AUTHENTIK_POSTGRESQL__NAME:
+          secretKeyRef:
+            name: authentik-secret
+            key: AUTHENTIK_POSTGRESQL__NAME
+        AUTHENTIK_POSTGRESQL__USER:
+          secretKeyRef:
+            name: authentik-secret
+            key: AUTHENTIK_POSTGRESQL__USER
+        AUTHENTIK_POSTGRESQL__PASSWORD:
+          secretKeyRef:
+            name: authentik-secret
+            key: AUTHENTIK_POSTGRESQL__PASSWORD
+        AUTHENTIK_REDIS__URL:
+          secretKeyRef:
+            name: authentik-secret
+            key: AUTHENTIK_REDIS__URL
     replicas: 2
     annotations:
       secret.reloader.stakater.com/reload: "authentik-secret"
