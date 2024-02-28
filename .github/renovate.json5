@@ -22,8 +22,6 @@
     "github>kashalls/home-cluster//.github/renovate/semanticCommits.json5",
     "helpers:pinGitHubActionDigests"
   ],
-  "onboarding": false,
-  "requireConfig": "optional",
   "dependencyDashboardTitle": "Renovate Dashboard 🗡️",
   "suppressNotifications": ["prIgnoreNotification"],
   "ignorePaths": ["**/.archive/**"],
