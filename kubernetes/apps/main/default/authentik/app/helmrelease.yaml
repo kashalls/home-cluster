@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: authentik
-      version: 2023.10.7
+      version: 2024.2.1
       sourceRef:
         kind: HelmRepository
         name: authentik
@@ -24,13 +24,42 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    initContainers:
-      init-db:
-        image: ghcr.io/onedr0p/postgres-init:16.2
-        imagePullPolicy: IfNotPresent
-        envFrom:
-          - secretRef:
-              name: authentik-secret
+    server:
+      initContainers:
+        init-db:
+          image: ghcr.io/onedr0p/postgres-init:16.2
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - secretRef:
+                name: authentik-secret
+      autoscaling: true
+      metrics:
+        serviceMonitor:
+          enabled: true
+      ingress:
+        enabled: true
+        ingressClassName: external
+        annotations:
+          external-dns.alpha.kubernetes.io/target: border.ok8.sh
+          nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+          nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: Authentik
+          gethomepage.dev/group: Security
+          gethomepage.dev/icon: mdi-security
+          gethomepage.dev/name: Access
+          gethomepage.dev/widget.type: "authentik"
+          gethomepage.dev/widget.url: "https://id.ok8.sh"
+        hosts:
+          - host: &host id.ok8.sh
+            paths:
+              - path: /
+        tls:
+          - hosts:
+              - *host
+    worker:
+      autoscaling: true
+
     global:
       storageClass: ceph-block
     envValueFrom:
@@ -78,47 +107,13 @@ spec:
       # https://github.com/goauthentik/authentik/issues/1285
       #redis:
       #  host: "redis-headless.database.svc.cluster.local"
-    ingress:
-      enabled: true
-      ingressClassName: external
-      annotations:
-        external-dns.alpha.kubernetes.io/target: border.ok8.sh
-        nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
-        nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
-        gethomepage.dev/enabled: "true"
-        gethomepage.dev/description: Authentik
-        gethomepage.dev/group: Security
-        gethomepage.dev/icon: mdi-security
-        gethomepage.dev/name: Access
-        gethomepage.dev/widget.type: "authentik"
-        gethomepage.dev/widget.url: "https://id.ok8.sh"
-      hosts:
-        - host: &host id.ok8.sh
-          paths:
-            - path: /
-      tls:
-        - hosts:
-            - *host
+
     postgresql:
       enabled: false
     prometheus:
       rules:
-        create: true
-      serviceMonitor:
-        create: true
+        enabled: true
     redis:
       enabled: true
     geoip:
       enabled: false
-    autoscaling:
-      server:
-        enabled: true
-      worker:
-        enabled: true
-    volumes:
-      - configMap:
-          name: authentik-branding
-        name: branding
-    volumeMounts:
-      - mountPath: /media/branding
-        name: branding
