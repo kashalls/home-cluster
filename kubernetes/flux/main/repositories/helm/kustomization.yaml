@@ -14,4 +14,3 @@ resources:
   - ./oneuptime.yaml
   - ./redis-operator.yaml
   - ./rook-ceph.yaml
-  - ./weave-gitops.yaml

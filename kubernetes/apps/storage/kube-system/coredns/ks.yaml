@@ -3,21 +3,19 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app weave-gitops
+  name: &app coredns
   namespace: flux-system
 spec:
-  targetNamespace: flux-system
+  targetNamespace: kube-system
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/apps/main/flux-system/weave-gitops/app
+  path: ./kubernetes/apps/main/kube-system/coredns/app
   prune: true
-  dependsOn:
-    - name: external-secrets-stores
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
-  wait: true
+  wait: false # no flux ks dependents
   interval: 30m
   retryInterval: 1m
   timeout: 5m
