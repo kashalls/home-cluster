@@ -69,7 +69,16 @@ While most of my infrastructure and workloads are self-hosted I do rely upon the
 |                                                 |                                                                   | Total: ~$20/mo |
 ---
 
-## 🌐 DNS
+
+## Networking
+
+<details>
+  <summary>Click to see a high-level network diagram</summary>
+
+  <img src="https://raw.githubusercontent.com/kashalls/home-cluster/main/.docs/assets/network-topology.png" align="center" width="600px" alt="networking"/>
+</details>
+
+### 🌐 DNS
 
 > I have been making changes constantly to my dns setup in my lab. Currently, OPNsense forces all traffic to port 53 through Unbound + DNSCrypt which is pointed at 1.1.1.1 and 9.9.9.9 using DNSoverHTTPS and DNSoverTLS and DNSCrypt.
 
