@@ -24,7 +24,7 @@
   ],
   "onboarding": false,
   "requireConfig": "optional",
-  "dependencyDashboardTitle": "Dehya Dashboard 🗡️",
+  "dependencyDashboardTitle": "Renovate Dashboard 🗡️",
   "suppressNotifications": ["prIgnoreNotification"],
   "ignorePaths": ["**/.archive/**"],
   "flux": {
