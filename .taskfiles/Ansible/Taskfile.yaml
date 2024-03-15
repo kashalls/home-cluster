@@ -15,32 +15,8 @@ env:
 
 tasks:
 
-  deps:
-    desc: Set up Ansible dependencies for the environment
-    cmds:
-      - task: .venv
-
-  run:
-    desc: Run an Ansible playbook for configuring a cluster
-    summary: |
-      Args:
-        cluster: Cluster to run command against (required)
-        playbook: Playbook to run (required)
-    prompt: Run Ansible playbook '{{.playbook}}' against the '{{.cluster}}' cluster... continue?
-    deps: ["deps"]
-    cmd: |
-      .venv/bin/ansible-playbook \
-        --inventory {{.ANSIBLE_DIR}}/{{.cluster}}/inventory/hosts.yaml \
-        {{.ANSIBLE_DIR}}/{{.cluster}}/playbooks/{{.playbook}}.yaml {{.CLI_ARGS}}
-    preconditions:
-      - { msg: "Argument (cluster) is required",  sh: "test -n {{.cluster}}" }
-      - { msg: "Argument (playbook) is required", sh: "test -n {{.playbook}}" }
-      - { msg: "Venv not found",                  sh: "test -d {{.ROOT_DIR}}/.venv" }
-      - { msg: "Inventory not found",             sh: "test -f {{.ANSIBLE_DIR}}/{{.cluster}}/inventory/hosts.yaml" }
-      - { msg: "Playbook not found",              sh: "test -f {{.ANSIBLE_DIR}}/{{.cluster}}/playbooks/{{.playbook}}.yaml" }
-
-  .venv:
-    internal: true
+  venv:
+    desc: Set up Python virtual environment
     cmds:
       - true && {{.PYTHON_BIN}} -m venv {{.ROOT_DIR}}/.venv
       - .venv/bin/python3 -m pip install --upgrade pip setuptools wheel
@@ -51,3 +27,21 @@ tasks:
       - "{{.ANSIBLE_DIR}}/requirements.yaml"
     generates:
       - "{{.ROOT_DIR}}/.venv/pyvenv.cfg"
+
+  run:
+    desc: Run an Ansible playbook for configuring a cluster
+    summary: |
+      Args:
+        cluster: Cluster to run command against (required)
+        playbook: Playbook to run (required)
+    prompt: Run Ansible playbook '{{.playbook}}' against the '{{.cluster}}' cluster ... continue?
+    cmd: |
+      .venv/bin/ansible-playbook \
+        --inventory {{.ANSIBLE_DIR}}/{{.cluster}}/inventory/hosts.yaml \
+        {{.ANSIBLE_DIR}}/{{.cluster}}/playbooks/{{.playbook}}.yaml {{.CLI_ARGS}}
+    requires:
+      vars: ["cluster", "playbook"]
+    preconditions:
+      - test -d {{.ROOT_DIR}}/.venv
+      - test -f {{.ANSIBLE_DIR}}/{{.cluster}}/inventory/hosts.yaml
+      - test -f {{.ANSIBLE_DIR}}/{{.cluster}}/playbooks/{{.playbook}}.yaml
