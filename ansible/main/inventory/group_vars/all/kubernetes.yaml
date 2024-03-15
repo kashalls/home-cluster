@@ -5,6 +5,7 @@
 #
 
 # (string) Use a specific version of k3s
+
 # renovate: datasource=github-releases depName=k3s-io/k3s
 k3s_release_version: "v1.29.1+k3s2"
 
