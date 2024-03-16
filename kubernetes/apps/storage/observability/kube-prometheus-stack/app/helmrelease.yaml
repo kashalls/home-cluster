@@ -25,9 +25,6 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  dependsOn:
-    - name: openebs
-      namespace: openebs-system
   values:
     cleanPrometheusOperatorObjectNames: true
     crds:
@@ -71,7 +68,7 @@ spec:
     kubeControllerManager:
       enabled: true
       endpoints: &cp
-        - 192.168.42.80
+        - 10.69.0.69
       serviceMonitor:
         metricRelabelings:
           # Remove duplicate labels provided by k3s
@@ -98,7 +95,7 @@ spec:
         ingressClassName: internal
         pathType: Prefix
         hosts:
-          - &host prometheus.turbo.ac
+          - &host prometheus.outsideour.casa
         tls:
           - hosts:
               - *host
@@ -109,7 +106,7 @@ spec:
         additionalAlertManagerConfigs:
           - static_configs:
               - targets:
-                  - alertmanager.devbu.io
+                  - alertmanager.ok8.sh
         replicas: 1
         replicaExternalLabelName: __replica__
         scrapeInterval: 1m # Must match interval in Grafana Helm chart
@@ -148,8 +145,8 @@ spec:
         enabled: true
         type: LoadBalancer
         annotations:
-          external-dns.alpha.kubernetes.io/hostname: thanos.turbo.ac
-          io.cilium/lb-ipam-ips: 192.168.42.101
+          external-dns.alpha.kubernetes.io/hostname: thanos.outsideour.casa
+          io.cilium/lb-ipam-ips: 10.69.70.111
         externalTrafficPolicy: Cluster
       thanosServiceMonitor:
         enabled: true
