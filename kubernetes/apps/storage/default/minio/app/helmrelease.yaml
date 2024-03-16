@@ -103,8 +103,8 @@ spec:
                   port: s3
         tls:
           - hosts:
-              - *host
-              - *s3Host
+              - *console-host
+              - *api-host
     persistence:
       data:
         hostPathType: Directory
