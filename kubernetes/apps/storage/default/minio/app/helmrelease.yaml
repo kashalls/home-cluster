@@ -1,46 +1,37 @@
 ---
-# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2beta1.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2beta2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: &app minio
-  namespace: storage
+  name: minio
 spec:
   interval: 30m
   chart:
     spec:
       chart: app-template
-      version: 2.6.0
+      version: 3.0.4
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-  maxHistory: 2
   install:
     remediation:
       retries: 3
   upgrade:
     cleanupOnFail: true
     remediation:
+      strategy: rollback
       retries: 3
-  uninstall:
-    keepHistory: false
   values:
-    defaultPodOptions:
-      securityContext:
-        runAsUser: 8675
-        runAsGroup: 8675
-        fsGroup: 8675
-        fsGroupChangePolicy: OnRootMismatch
     controllers:
-      main:
+      minio:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          main:
+          app:
             image:
               repository: quay.io/minio/minio
-              tag: RELEASE.2024-03-15T01-07-19Z
+              tag: RELEASE.2024-03-10T02-53-48Z@sha256:b9e644d40add58b121f7801e9ec0e19a58f836a366a88011e8951e3166aaf16e
             env:
               TZ: "${TIMEZONE}"
               MINIO_UPDATE: "off"
@@ -63,80 +54,60 @@ spec:
                 spec:
                   httpGet:
                     path: /minio/health/live
-                    port: &api-port 9000
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
+                    port: 9000
+                  initialDelaySeconds: 30
+                  periodSeconds: 30
+                  timeoutSeconds: 10
+                  failureThreshold: 6
               readiness: *probes
               startup:
                 enabled: false
-            resources:
-              requests:
-                memory: 100Mi
-                cpu: 100m
-              limits:
-                memory: 750Mi
+            securityContext:
+              runAsUser: 568
+              runAsGroup: 568
+              fsGroup: 568
+              fsGroupChangePolicy: OnRootMismatch
+              supplementalGroups: [100]
     service:
-      main:
-        enabled: true
+      app:
+        controller: minio
         ports:
           http:
             port: 9001
-          api:
-            enabled: true
-            port: *api-port
+          s3:
+            port: 9000
     serviceMonitor:
-      main:
-        enabled: false
+      app:
+        serviceName: minio
         endpoints:
-          - port: api
+          - port: s3
             scheme: http
             path: /minio/v2/metrics/cluster
             interval: 1m
             scrapeTimeout: 10s
-            bearerTokenSecret:
-              name: minio-secret
-              key: MINIO_PROMETHEUS_TOKEN
     ingress:
-      main:
-        enabled: true
+      app:
         className: internal
-        annotations:
-          hajimari.io/icon: mdi:pail
         hosts:
           - host: &console-host "minio.outsideour.casa"
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: app
                   port: http
-        tls:
-          - hosts:
-              - *console-host
-      s3:
-        enabled: true
-        className: internal
-        annotations:
-          hajimari.io/enable: "false"
-          nginx.ingress.kubernetes.io/proxy-connect-timeout: "180"
-          nginx.ingress.kubernetes.io/proxy-body-size: 1024m
-          nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            chunked_transfer_encoding off;
-        hosts:
           - host: &api-host s3.outsideour.casa
             paths:
               - path: /
                 service:
-                  name: main
-                  port: api
+                  identifier: app
+                  port: s3
         tls:
           - hosts:
-              - *api-host
+              - *host
+              - *s3Host
     persistence:
       data:
-        enabled: true
+        hostPathType: Directory
         type: hostPath
         hostPath: /bigboi/kubernetes/minio
         globalMounts:
