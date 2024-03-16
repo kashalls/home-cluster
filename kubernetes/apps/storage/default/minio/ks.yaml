@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-minio
+  name: minio
   namespace: flux-system
 spec:
   path: ./kubernetes/apps/storage/default/minio/app
