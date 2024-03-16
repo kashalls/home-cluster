@@ -125,7 +125,7 @@ spec:
           nginx.ingress.kubernetes.io/configuration-snippet: |
             chunked_transfer_encoding off;
         hosts:
-          - host: &api-host s3.ok8.sh
+          - host: &api-host s3.outsideour.casa
             paths:
               - path: /
                 service:
