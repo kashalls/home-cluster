@@ -138,6 +138,6 @@ spec:
       data:
         enabled: true
         type: hostPath
-        hostPath: /mnt/bigboi/minio
+        hostPath: /bigboi/kubernetes/minio
         globalMounts:
           - path: /data
