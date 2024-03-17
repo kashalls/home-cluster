@@ -9,11 +9,11 @@
   },
   "databaseInfo": {
     "server": {
-      "connectionUri": "mongodb://{env:USERNAME}:{env:PASSWORD}@mongodb-cluster-svc.database.svc.cluster.local:27017",
+      "connectionUri": "mongodb://{{ .username }}:{{ .password }}@mongodb-cluster-svc.database.svc.cluster.local:27017",
       "collection": "grasscutter"
     },
     "game": {
-      "connectionUri": "mongodb://{env:USERNAME}:{env:PASSWORD}@mongodb-cluster-svc.database.svc.cluster.local:27017",
+      "connectionUri": "mongodb://{{ .username }}:{{ .password }}@mongodb-cluster-svc.database.svc.cluster.local:27017",
       "collection": "grasscutter"
     }
   },

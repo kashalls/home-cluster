@@ -6,10 +6,8 @@ resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
 configMapGenerator:
-  - name: grasscutter-configmap
+  - name: grasscutter-configmap-tpl
     files:
       - config.json=./config/config.json
 generatorOptions:
   disableNameSuffixHash: true
-  annotations:
-    kustomize.toolkit.fluxcd.io/substitute: disabled

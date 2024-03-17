@@ -93,8 +93,8 @@ spec:
               - *host
     persistence:
       config:
-        type: configMap
-        name: grasscutter-configmap
+        type: secret
+        name: grasscutter-secret
         globalMounts:
           - path: /app/config.json
             subPath: config.json
