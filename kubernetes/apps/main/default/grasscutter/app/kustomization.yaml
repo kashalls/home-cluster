@@ -3,6 +3,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  - ./externalsecret.yaml
   - ./helmrelease.yaml
 configMapGenerator:
   - name: grasscutter-configmap
@@ -10,3 +11,5 @@ configMapGenerator:
       - config.json=./config/config.json
 generatorOptions:
   disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
