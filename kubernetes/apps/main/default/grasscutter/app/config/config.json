@@ -9,11 +9,11 @@
   },
   "databaseInfo": {
     "server": {
-      "connectionUri": "mongodb://{{ .username }}:{{ .password }}@mongodb-cluster01-external.database.svc.cluster.local,mongodb-cluster02-external.database.svc.cluster.local,mongodb-cluster03-external.database.svc.cluster.local:27017?replicaSet=database%2Fmongodb-cluster/",
+      "connectionUri": "mongodb://{{ .username }}:{{ .password }}@mongodb-cluster01-external.database.svc.cluster.local,mongodb-cluster02-external.database.svc.cluster.local,mongodb-cluster03-external.database.svc.cluster.local:27017/grasscutter?replicaSet=database%2Fmongodb-cluster",
       "collection": "grasscutter"
     },
     "game": {
-      "connectionUri": "mongodb://{{ .username }}:{{ .password }}@mongodb-cluster01-external.database.svc.cluster.local,mongodb-cluster02-external.database.svc.cluster.local,mongodb-cluster03-external.database.svc.cluster.local:27017?replicaSet=database%2Fmongodb-cluster/",
+      "connectionUri": "mongodb://{{ .username }}:{{ .password }}@mongodb-cluster01-external.database.svc.cluster.local,mongodb-cluster02-external.database.svc.cluster.local,mongodb-cluster03-external.database.svc.cluster.local:27017/grasscutter?replicaSet=database%2Fmongodb-cluster",
       "collection": "grasscutter"
     }
   },
