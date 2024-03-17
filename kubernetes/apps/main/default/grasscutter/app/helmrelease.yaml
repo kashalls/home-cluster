@@ -114,18 +114,24 @@ spec:
       data:
         type: persistentVolumeClaim
         accessMode: ReadWriteOnce
-        size: 20Gi
+        size: 2Gi
         globalMounts:
           - path: /app/data
       logs:
         type: persistentVolumeClaim
         accessMode: ReadWriteOnce
-        size: 20Gi
+        size: 5Gi
         globalMounts:
           - path: /app/logs
       plugins:
         type: persistentVolumeClaim
         accessMode: ReadWriteOnce
-        size: 20Gi
+        size: 2Gi
         globalMounts:
           - path: /app/plugins
+      gm-handbook:
+        type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
+        size: 2Gi
+        globalMounts:
+          - path: "/app/GM Handbook"
