@@ -9,11 +9,11 @@
   },
   "databaseInfo": {
     "server": {
-      "connectionUri": "mongodb://{{ .username }}:{{ .password }}@mongodb-cluster01-external.database.svc.cluster.local,mongodb-cluster02-external.database.svc.cluster.local,mongodb-cluster03-external.database.svc.cluster.local:27017/grasscutter",
+      "connectionUri": "mongodb://{{ .username }}:{{ .password }}@mongodb-cluster01-external.database.svc.cluster.local,mongodb-cluster02-external.database.svc.cluster.local,mongodb-cluster03-external.database.svc.cluster.local:31183/grasscutter",
       "collection": "grasscutter"
     },
     "game": {
-      "connectionUri": "mongodb://{{ .username }}:{{ .password }}@mongodb-cluster01-external.database.svc.cluster.local,mongodb-cluster02-external.database.svc.cluster.local,mongodb-cluster03-external.database.svc.cluster.local:27017/grasscutter",
+      "connectionUri": "mongodb://{{ .username }}:{{ .password }}@mongodb-cluster01-external.database.svc.cluster.local,mongodb-cluster02-external.database.svc.cluster.local,mongodb-cluster03-external.database.svc.cluster.local:31183/grasscutter",
       "collection": "grasscutter"
     }
   },
