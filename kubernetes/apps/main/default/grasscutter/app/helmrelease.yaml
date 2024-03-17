@@ -68,7 +68,11 @@ spec:
           io.cilium/lb-ipam-ips: 10.69.69.121
         ports:
           http:
+            port: 80
+          https:
             port: 443
+          whoknows:
+            port: 8888
           game-tcp:
             protocol: TCP
             port: 22102
