@@ -105,3 +105,10 @@ spec:
           - path: /app/config.json
             subPath: config.json
             readOnly: true
+      cache:
+        type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        globalMounts:
+          - path: /app/cache
+            readOnly: false
