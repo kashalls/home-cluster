@@ -134,4 +134,4 @@ spec:
         accessMode: ReadWriteOnce
         size: 2Gi
         globalMounts:
-          - path: "/app/GM Handbook"
+          - path: "/app/GM Handbook/"
