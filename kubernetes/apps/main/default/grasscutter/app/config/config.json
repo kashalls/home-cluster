@@ -41,8 +41,8 @@
       "accessAddress": "127.0.0.1",
       "accessPort": 0,
       "encryption": {
-        "useEncryption": true,
-        "useInRouting": true,
+        "useEncryption": false,
+        "useInRouting": false,
         "keystore": "./keystore.p12",
         "keystorePassword": "123456"
       },
