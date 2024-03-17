@@ -123,3 +123,9 @@ spec:
         size: 20Gi
         globalMounts:
           - path: /app/logs
+      plugins:
+        type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
+        size: 20Gi
+        globalMounts:
+          - path: /app/plugins
