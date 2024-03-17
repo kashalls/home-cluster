@@ -68,17 +68,22 @@ spec:
           io.cilium/lb-ipam-ips: 10.69.69.121
         ports:
           http:
+            targetPort: 80
             port: 80
           https:
+            targetPort: 443
             port: 443
           whoknows:
+            targetPort: 8888
             port: 8888
           game-tcp:
             protocol: TCP
             port: 22102
+            targetPort: 22102
           game-udp:
             protocol: UDP
             port: 22102
+            targetPort: 22102
     ingress:
       app:
         className: internal
