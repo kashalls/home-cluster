@@ -67,7 +67,7 @@
       "useUniquePacketKey": true,
       "loadEntitiesForPlayerRange": 300,
       "enableScriptInBigWorld": true,
-      "enableConsole": true,
+      "enableConsole": false,
       "kcpInterval": 20,
       "logPackets": "NONE",
       "isShowPacketPayload": false,
