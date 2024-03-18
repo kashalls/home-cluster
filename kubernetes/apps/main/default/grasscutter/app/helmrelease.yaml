@@ -35,24 +35,6 @@ spec:
             image:
               repository: ghcr.io/grasscutters/grasscutter
               tag: development@sha256:d3a49b07a342111a638fcb652361fe2a26bdd2a55796c07fb265bdce0f2f639f
-            probes:
-              liveness: &probes
-                enabled: false
-                custom: true
-                spec:
-                  httpGet:
-                    path: /identity
-                    port: 32400
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
-              readiness: *probes
-            resources:
-              requests:
-                cpu: 1500m
-              limits:
-                memory: 4Gi
         pod:
           securityContext:
             runAsUser: 568
