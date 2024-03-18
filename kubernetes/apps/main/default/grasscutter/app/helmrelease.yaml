@@ -76,11 +76,7 @@ spec:
           whoknows:
             targetPort: 8888
             port: 8888
-          game-tcp:
-            protocol: TCP
-            port: 22102
-            targetPort: 22102
-          game-udp:
+          game:
             protocol: UDP
             port: 22102
             targetPort: 22102
