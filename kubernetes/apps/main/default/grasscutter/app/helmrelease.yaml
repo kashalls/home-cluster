@@ -66,29 +66,15 @@ spec:
         type: LoadBalancer
         annotations:
           io.cilium/lb-ipam-ips: 10.69.69.121
+          tailscale.com/expose: "true"
+          tailscale.com/hostname: "grasscutter"
         ports:
-          http:
-            targetPort: 80
-            port: 80
           https:
             targetPort: 443
             port: 443
           whoknows:
             targetPort: 8888
             port: 8888
-          game:
-            protocol: UDP
-            port: 22102
-            targetPort: 22102
-      tailscale:
-        controller: grasscutter
-        type: LoadBalancer
-        annotations:
-          tailscale.com/expose: "true"
-        ports:
-          https:
-            targetPort: 443
-            port: 443
           game:
             protocol: UDP
             port: 22102
