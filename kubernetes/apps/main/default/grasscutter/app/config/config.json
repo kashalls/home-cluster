@@ -38,7 +38,7 @@
       "startImmediately": false,
       "bindAddress": "0.0.0.0",
       "bindPort": 443,
-      "accessAddress": "grasscutter.tailc098d.ts.net",
+      "accessAddress": "100.121.238.105",
       "accessPort": 0,
       "encryption": {
         "useEncryption": false,
@@ -62,7 +62,7 @@
     "game": {
       "bindAddress": "0.0.0.0",
       "bindPort": 22102,
-      "accessAddress": "grasscutter.tailc098d.ts.net",
+      "accessAddress": "100.121.238.105",
       "accessPort": 0,
       "useUniquePacketKey": true,
       "loadEntitiesForPlayerRange": 300,
@@ -116,7 +116,7 @@
           },
           "server": {
             "enforced": false,
-            "address": "grasscutter.tailc098d.ts.net",
+            "address": "100.121.238.105",
             "port": 443,
             "canChange": true
           }
@@ -190,7 +190,7 @@
     },
     "dispatch": {
       "regions": [],
-      "dispatchUrl": "ws://grasscutter.tailc098d.ts.net:1111",
+      "dispatchUrl": "ws://100.121.238.105:1111",
       "encryptionKey": "7M9yvHhQbavXPTGNYxtYiiJ6PpwzNH7dBGHL3b4C/QI=",
       "dispatchKey": "7JjAlB2nbsixeBrhblOtVMtduJEliIt/jPazbO0h76Y=",
       "defaultName": "Grasscutter",
