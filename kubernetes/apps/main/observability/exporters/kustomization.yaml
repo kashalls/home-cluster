@@ -4,7 +4,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   # Flux-Kustomizations
-  - ./graphite-exporter/ks.yaml
   - ./node-exporter/ks.yaml
   - ./smartctl-exporter/ks.yaml
   - ./unpoller/ks.yaml
