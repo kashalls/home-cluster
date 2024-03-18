@@ -23,7 +23,7 @@
     "document": "EN"
   },
   "account": {
-    "autoCreate": false,
+    "autoCreate": true,
     "EXPERIMENTAL_RealPassword": false,
     "defaultPermissions": [],
     "maxPlayer": -1
@@ -32,7 +32,7 @@
     "debugWhitelist": [],
     "debugBlacklist": [],
     "runMode": "HYBRID",
-    "logCommands": false,
+    "logCommands": true,
     "fastRequire": true,
     "http": {
       "startImmediately": false,
