@@ -38,13 +38,13 @@
       "startImmediately": false,
       "bindAddress": "0.0.0.0",
       "bindPort": 443,
-      "accessAddress": "127.0.0.1",
+      "accessAddress": "10.69.69.121",
       "accessPort": 0,
       "encryption": {
-        "useEncryption": false,
-        "useInRouting": false,
+        "useEncryption": true,
+        "useInRouting": true,
         "keystore": "./keystore.p12",
-        "keystorePassword": "123456"
+        "keystorePassword": "{{ .keystore_password }}"
       },
       "policies": {
         "cors": {
@@ -62,7 +62,7 @@
     "game": {
       "bindAddress": "0.0.0.0",
       "bindPort": 22102,
-      "accessAddress": "127.0.0.1",
+      "accessAddress": "10.69.69.121",
       "accessPort": 0,
       "useUniquePacketKey": true,
       "loadEntitiesForPlayerRange": 300,
@@ -116,7 +116,7 @@
           },
           "server": {
             "enforced": false,
-            "address": "127.0.0.1",
+            "address": "10.69.69.121",
             "port": 443,
             "canChange": true
           }
@@ -190,7 +190,7 @@
     },
     "dispatch": {
       "regions": [],
-      "dispatchUrl": "ws://127.0.0.1:1111",
+      "dispatchUrl": "ws://10.69.69.121:1111",
       "encryptionKey": "7M9yvHhQbavXPTGNYxtYiiJ6PpwzNH7dBGHL3b4C/QI=",
       "dispatchKey": "7JjAlB2nbsixeBrhblOtVMtduJEliIt/jPazbO0h76Y=",
       "defaultName": "Grasscutter",

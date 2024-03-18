@@ -98,6 +98,13 @@ spec:
           - hosts:
               - *host
     persistence:
+      keystore:
+        type: secret
+        name: grasscutter-keystore
+        globalMounts:
+          - path: /app/keystore.p12
+            subPath: KEYSTORE_PK12
+            readOnly: true
       config:
         type: secret
         name: grasscutter-secret
