@@ -41,8 +41,8 @@
       "accessAddress": "10.69.69.121",
       "accessPort": 0,
       "encryption": {
-        "useEncryption": true,
-        "useInRouting": true,
+        "useEncryption": false,
+        "useInRouting": false,
         "keystore": "./keystore.p12",
         "keystorePassword": "{{ .keystore_password }}"
       },
