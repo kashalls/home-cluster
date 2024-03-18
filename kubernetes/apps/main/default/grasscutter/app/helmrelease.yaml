@@ -66,6 +66,7 @@ spec:
         type: LoadBalancer
         annotations:
           io.cilium/lb-ipam-ips: 10.69.69.121
+          tailscale.com/expose: "true"
         ports:
           http:
             targetPort: 80
