@@ -70,6 +70,7 @@ spec:
               supplementalGroups: [100]
     service:
       app:
+        type: LoadBalancer
         controller: minio
         annotations:
           tailscale.com/expose: "true"
