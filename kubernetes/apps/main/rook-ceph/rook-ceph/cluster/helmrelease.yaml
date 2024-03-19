@@ -26,11 +26,20 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    toolbox:
-      enabled: true
-    observability:
+    monitoring:
       enabled: true
       createPrometheusRules: true
+    ingress:
+      dashboard:
+        ingressClassName: internal
+        host:
+          name: &host "rook.ok8.sh"
+          path: /
+        tls:
+          - hosts:
+              - *host
+    toolbox:
+      enabled: true
     configOverride: |
       [global]
       bdev_enable_discard = true
@@ -40,92 +49,53 @@ spec:
       network:
         provider: host
         connections:
-          compression:
-            enabled: false
+          requireMsgr2: true
       resources:
         mgr:
           requests:
-            cpu: "300m"
-            memory: "1Gi"
+            cpu: 100m
+            memory: 512Mi
           limits:
-            cpu: "2000m"
-            memory: "4Gi"
+            memory: 2Gi
         mon:
           requests:
-            cpu: "300m"
-            memory: "1Gi"
+            cpu: 50m
+            memory: 512Mi
           limits:
-            memory: "2Gi"
+            memory: 1Gi
         osd:
           requests:
-            cpu: "500m"
-            memory: "2Gi"
+            cpu: 500m
+            memory: 2Gi
           limits:
-            memory: "4Gi"
+            memory: 6Gi
         mgr-sidecar:
           requests:
-            cpu: "300m"
-            memory: "200M"
+            cpu: 50m
+            memory: 128Mi
           limits:
-            cpu: "8000m"
-            memory: "500M"
-        crashcollector:
-          requests:
-            cpu: "15m"
-            memory: "64M"
-          limits:
-            memory: "64M"
-        logcollector:
-          requests:
-            cpu: "100m"
-            memory: "100M"
-          limits:
-            memory: "1G"
-        cleanup:
-          requests:
-            cpu: "250m"
-            memory: "100M"
-          limits:
-            memory: "1G"
+            memory: 256Mi
       crashCollector:
         disable: false
       dashboard:
         enabled: true
         ssl: false
         urlPrefix: /
+        prometheusEndpoint: http://thanos-query-frontend.observability.svc.cluster.local:9090
       storage:
-        useAllNodes: false
-        useAllDevices: false
+        useAllNodes: true
+        useAllDevices: true
+        deviceFilter: nvme0n1
         config:
           osdsPerDevice: "1"
-        nodes:
-          - name: "k8s-astro"
-            devices:
-              - name: "/dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1809D"
-          - name: "k8s-august"
-            devices:
-              - name: "/dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1804E"
-          - name: "k8s-delta"
-            devices:
-              - name: "/dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1804C"
-          - name: "k8s-jera"
-            devices:
-              - name: "/dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1EDC2"
-          - name: "k8s-leafions"
-            devices:
-              - name: "/dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1E1A3"
-          - name: "k8s-miah"
-            devices:
-              - name: "/dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1E249"
-    ingress:
-      dashboard:
-        ingressClassName: internal
-        host:
-          name: &host "rook.ok8.sh"
-          path: "/"
-        tls:
-          - hosts:
-              - *host
+      placement:
+        mgr: &placement
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: node-role.kubernetes.io/control-plane
+                      operator: Exists
     cephBlockPools:
       - name: ceph-blockpool
         spec:
@@ -138,6 +108,7 @@ spec:
           isDefault: true
           reclaimPolicy: Delete
           allowVolumeExpansion: true
+          volumeBindingMode: Immediate
           parameters:
             imageFormat: "2"
             imageFeatures: layering
@@ -148,6 +119,11 @@ spec:
             csi.storage.k8s.io/node-stage-secret-name: rook-csi-rbd-node
             csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
             csi.storage.k8s.io/fstype: ext4
+    cephBlockPoolsVolumeSnapshotClass:
+      enabled: true
+      name: csi-ceph-blockpool
+      isDefault: false
+      deletionPolicy: Delete
     cephFileSystems:
       - name: ceph-filesystem
         spec:
@@ -158,22 +134,23 @@ spec:
             - failureDomain: host
               replicated:
                 size: 3
+              name: data0
           metadataServer:
             activeCount: 1
             activeStandby: true
             resources:
               requests:
-                cpu: "35m"
-                memory: "64M"
+                cpu: 100m
+                memory: 1Gi
               limits:
-                memory: "512M"
+                memory: 4Gi
         storageClass:
           enabled: true
           isDefault: false
           name: ceph-filesystem
+          pool: data0
           reclaimPolicy: Delete
           allowVolumeExpansion: true
-          mountOptions: []
           parameters:
             csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
             csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
@@ -203,7 +180,8 @@ spec:
                 memory: 128M
               limits:
                 memory: 2Gi
-            instances: 1
+            instances: 2
+            priorityClassName: system-cluster-critical
           healthCheck:
             bucket:
               interval: 60s
@@ -211,5 +189,15 @@ spec:
           enabled: true
           name: ceph-bucket
           reclaimPolicy: Delete
+          volumeBindingMode: Immediate
           parameters:
             region: us-east-1
+        ingress:
+          enabled: true
+          ingressClassName: internal
+          host:
+            name: &host rgw.ok8.sh
+            path: /
+          tls:
+            - hosts:
+                - *host
