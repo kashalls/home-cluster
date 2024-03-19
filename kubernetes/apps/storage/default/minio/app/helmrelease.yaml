@@ -71,6 +71,9 @@ spec:
     service:
       app:
         controller: minio
+        annotations:
+          tailscale.com/expose: "true"
+          tailscale.com/hostname: "k8s-storage-minio"
         ports:
           http:
             port: 9001
@@ -105,28 +108,6 @@ spec:
           - hosts:
               - *console-host
               - *api-host
-      tailscale:
-        className: tailscale
-        annotations:
-          tailscale.com/expose: "true"
-          tailscale.com/hostname: "k8s-storage-minio"
-        hosts:
-          - host: &tailscale-host minio-http
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
-          - host: &tailscale-api minio-s3
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: s3
-        tls:
-          - hosts:
-              - *tailscale-host
-              - *tailscale-api
     persistence:
       data:
         hostPathType: Directory
