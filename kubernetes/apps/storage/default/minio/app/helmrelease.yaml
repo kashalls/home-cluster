@@ -88,6 +88,8 @@ spec:
     ingress:
       app:
         className: internal
+        annotations:
+          tailscale.com/expose: "true"
         hosts:
           - host: &console-host "minio.outsideour.casa"
             paths:
