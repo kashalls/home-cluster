@@ -37,9 +37,6 @@ spec:
               MINIO_UPDATE: "off"
               MINIO_PROMETHEUS_URL: https://prometheus.outsideour.casa
               MINIO_PROMETHEUS_JOB_ID: minio
-              MINIO_BROWSER_REDIRECT_URL: &console-host https://minio.outsideour.casa
-              MINIO_SERVER_URL: &api-host https://s3.outsideour.casa
-              MINIO_API_CORS_ALLOW_ORIGIN: https://minio.outsideour.casa,https://s3.outsideour.casa,
               MINIO_IDENTITY_OPENID_REDIRECT_URI: https://minio.outsideour.casa/oauth_callback
               MINIO_IDENTITY_OPENID_CONFIG_URL: https://id.ok8.sh/application/o/minio/.well-known/openid-configuration
               MINIO_IDENTITY_OPENID_SCOPES: openid,profile,email,minio
