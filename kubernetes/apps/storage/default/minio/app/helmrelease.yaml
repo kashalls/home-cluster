@@ -88,6 +88,25 @@ spec:
     ingress:
       app:
         className: internal
+        hosts:
+          - host: *console-host
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+          - host: *api-host
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: s3
+        tls:
+          - hosts:
+              - *console-host
+              - *api-host
+      tailscale:
+        className: tailscale
         annotations:
           tailscale.com/expose: "true"
           tailscale.com/hostname: "k8s-storage-minio"
