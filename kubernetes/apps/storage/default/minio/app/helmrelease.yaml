@@ -111,13 +111,13 @@ spec:
           tailscale.com/expose: "true"
           tailscale.com/hostname: "k8s-storage-minio"
         hosts:
-          - host: *console-host
+          - host: &tailscale-host minio-http
             paths:
               - path: /
                 service:
                   identifier: app
                   port: http
-          - host: *api-host
+          - host: &tailscale-api minio-s3
             paths:
               - path: /
                 service:
@@ -125,8 +125,8 @@ spec:
                   port: s3
         tls:
           - hosts:
-              - *console-host
-              - *api-host
+              - *tailscale-host
+              - *tailscale-api
     persistence:
       data:
         hostPathType: Directory
