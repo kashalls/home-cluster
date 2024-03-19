@@ -90,6 +90,7 @@ spec:
         className: internal
         annotations:
           tailscale.com/expose: "true"
+          tailscale.com/hostname: "k8s-storage-minio"
         hosts:
           - host: &console-host "minio.outsideour.casa"
             paths:
