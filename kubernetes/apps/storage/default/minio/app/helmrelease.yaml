@@ -106,6 +106,25 @@ spec:
           - hosts:
               - *console-host
               - *api-host
+      tailscale:
+        className: tailscale
+        hosts:
+          - host: s3-dashboard
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+          - host: s3-api
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: s3
+        tls:
+          - hosts:
+              - s3-dashboard
+              - s3-api
     persistence:
       data:
         hostPathType: Directory
