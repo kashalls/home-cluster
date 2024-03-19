@@ -37,8 +37,8 @@ spec:
               MINIO_UPDATE: "off"
               MINIO_PROMETHEUS_URL: https://prometheus.outsideour.casa
               MINIO_PROMETHEUS_JOB_ID: minio
-              MINIO_BROWSER_REDIRECT_URL: https://minio.outsideour.casa
-              MINIO_SERVER_URL: https://s3.outsideour.asa
+              MINIO_BROWSER_REDIRECT_URL: &console-host https://minio.outsideour.casa
+              MINIO_SERVER_URL: &api-host https://s3.outsideour.casa
               MINIO_API_CORS_ALLOW_ORIGIN: https://minio.outsideour.casa,https://s3.outsideour.casa
               MINIO_IDENTITY_OPENID_REDIRECT_URI: https://minio.outsideour.casa/oauth_callback
               MINIO_IDENTITY_OPENID_CONFIG_URL: https://id.ok8.sh/application/o/minio/.well-known/openid-configuration
@@ -92,13 +92,13 @@ spec:
           tailscale.com/expose: "true"
           tailscale.com/hostname: "k8s-storage-minio"
         hosts:
-          - host: &console-host "minio.outsideour.casa"
+          - host: *console-host
             paths:
               - path: /
                 service:
                   identifier: app
                   port: http
-          - host: &api-host s3.outsideour.casa
+          - host: *api-host
             paths:
               - path: /
                 service:
