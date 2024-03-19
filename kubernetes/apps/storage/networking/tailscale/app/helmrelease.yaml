@@ -18,6 +18,6 @@ spec:
         namespace: flux-system
   values:
     operatorConfig:
-      hostname: "tailscale-operator"
+      hostname: "tailscale-storage-operator"
     apiServerProxyConfig:
       mode: "false"
