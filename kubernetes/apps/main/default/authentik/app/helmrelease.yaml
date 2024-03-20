@@ -79,7 +79,7 @@ spec:
       autoscaling:
         enabled: true
     geoip:
-      enabled: true
+      enabled: false
       existingSecret:
         secretName: "authentik-secret"
         accountId: "MAXMIND_ACCOUNT_ID"
