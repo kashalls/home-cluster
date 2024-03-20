@@ -59,7 +59,8 @@ spec:
           - hosts:
               - *host
     worker:
-      autoscaling: true
+      autoscaling:
+        enabled: true
     global:
       storageClass: ceph-block
       envValueFrom:
