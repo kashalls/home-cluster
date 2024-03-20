@@ -71,7 +71,7 @@ spec:
       #redis:
       #  host: "redis-headless.database.svc.cluster.local"
     server:
-      replicas: 2
+      replicas: 1
       autoscaling:
         enabled: true
       initContainers:
@@ -97,6 +97,7 @@ spec:
           - hosts:
               - *host
     worker:
+      replicas: 1
       autoscaling:
         enabled: true
     geoip:
