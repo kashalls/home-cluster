@@ -107,7 +107,7 @@ spec:
         licenseKey: "MAXMIND_LICENSE_KEY"
     prometheus:
       rules:
-        enabled:
+        enabled: true
     postgresql:
       enabled: false
     redis:
