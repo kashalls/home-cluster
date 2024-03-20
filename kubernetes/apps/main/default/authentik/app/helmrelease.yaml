@@ -32,7 +32,8 @@ spec:
           envFrom:
             - secretRef:
                 name: authentik-secret
-      autoscaling: true
+      autoscaling:
+        enabled: true
       metrics:
         serviceMonitor:
           enabled: true
