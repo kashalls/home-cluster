@@ -24,43 +24,6 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    server:
-      initContainers:
-        init-db:
-          image: ghcr.io/onedr0p/postgres-init:16.2
-          imagePullPolicy: IfNotPresent
-          envFrom:
-            - secretRef:
-                name: authentik-secret
-      autoscaling:
-        enabled: true
-      metrics:
-        serviceMonitor:
-          enabled: true
-      ingress:
-        enabled: true
-        ingressClassName: external
-        annotations:
-          external-dns.alpha.kubernetes.io/target: border.ok8.sh
-          nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
-          nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/description: Authentik
-          gethomepage.dev/group: Security
-          gethomepage.dev/icon: mdi-security
-          gethomepage.dev/name: Access
-          gethomepage.dev/widget.type: "authentik"
-          gethomepage.dev/widget.url: "https://id.ok8.sh"
-        hosts:
-          - host: &host id.ok8.sh
-            paths:
-              - path: /
-        tls:
-          - hosts:
-              - *host
-    worker:
-      autoscaling:
-        enabled: true
     global:
       storageClass: ceph-block
       envValueFrom:
@@ -88,10 +51,6 @@ spec:
           secretKeyRef:
             name: authentik-secret
             key: AUTHENTIK_REDIS__URL
-    replicas: 2
-    annotations:
-      secret.reloader.stakater.com/reload: "authentik-secret"
-      configmap.reloader.stakater.com/reload: "authentik-branding"
     authentik:
       log_level: info
       avatars: "gravatar,initials"
@@ -103,18 +62,53 @@ spec:
         enable: false
         send_pii: false
       outposts:
-        docker_image_base: ghcr.io/goauthentik/%(type)s:%(version)s
+        container_image_base: ghcr.io/goauthentik/%(type)s:%(version)s
       # https://github.com/goauthentik/authentik/pull/7118
       # https://github.com/goauthentik/authentik/issues/1285
       #redis:
       #  host: "redis-headless.database.svc.cluster.local"
-
-    postgresql:
-      enabled: false
+    annotations:
+      secret.reloader.stakater.com/reload: "authentik-secret"
+      configmap.reloader.stakater.com/reload: "authentik-branding"
+    server:
+      replicas: 2
+      autoscaling:
+        enabled: true
+      initContainers:
+        - name: init-db
+          image: ghcr.io/onedr0p/postgres-init:16.2
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - secretRef:
+                name: authentik-secret
+      metrics:
+        serviceMonitor:
+          enabled: true
+      ingress:
+        enabled: true
+        ingressClassName: external
+        annotations:
+          external-dns.alpha.kubernetes.io/target: border.ok8.sh
+        hosts:
+          - host: &host id.ok8.sh
+            paths:
+              - path: /
+        tls:
+          - hosts:
+              - *host
+    worker:
+      autoscaling:
+        enabled: true
+    geoip:
+      enabled: true
+      existingSecret:
+        secretName: "authentik-secret"
+        accountId: "MAXMIND_ACCOUNT_ID"
+        licenseKey: "MAXMIND_LICENSE_KEY"
     prometheus:
       rules:
-        enabled: true
+        enabled:
+    postgresql:
+      enabled: false
     redis:
       enabled: true
-    geoip:
-      enabled: false
