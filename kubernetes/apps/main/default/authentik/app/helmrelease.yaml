@@ -25,6 +25,9 @@ spec:
     keepHistory: false
   values:
     global:
+      deploymentAnnotations:
+        secret.reloader.stakater.com/reload: "authentik-secret"
+        configmap.reloader.stakater.com/reload: "authentik-branding"
       storageClass: ceph-block
       envValueFrom:
         AUTHENTIK_SECRET_KEY:
@@ -67,9 +70,6 @@ spec:
       # https://github.com/goauthentik/authentik/issues/1285
       #redis:
       #  host: "redis-headless.database.svc.cluster.local"
-    annotations:
-      secret.reloader.stakater.com/reload: "authentik-secret"
-      configmap.reloader.stakater.com/reload: "authentik-branding"
     server:
       replicas: 2
       autoscaling:
