@@ -103,4 +103,4 @@ spec:
     securityContext:
       privileged: true
     routingMode: native
-    devices: enp*
+    devices: en*
