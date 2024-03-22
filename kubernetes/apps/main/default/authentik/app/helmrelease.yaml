@@ -68,9 +68,9 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/target: border.ok8.sh
         hosts:
-          - host: &host id.ok8.sh
-            paths:
-              - path: /
+          - &host id.ok8.sh
+        paths:
+          - /
         tls:
           - hosts:
               - *host
