@@ -11,7 +11,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: local-path-provisioner
+    - name: openebs
     - name: rook-ceph-cluster
     - name: thanos
   path: ./kubernetes/apps/main/observability/kube-prometheus-stack/app

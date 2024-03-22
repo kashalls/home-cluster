@@ -12,7 +12,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: redis
-    - name: local-path-provisioner
+    - name: openebs
     - name: rook-ceph-cluster
   path: ./kubernetes/apps/main/observability/thanos/app
   prune: true
