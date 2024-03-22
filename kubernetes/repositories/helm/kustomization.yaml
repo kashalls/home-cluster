@@ -16,6 +16,7 @@ resources:
   - ./grafana.yaml
   - ./hajimari.yaml
   - ./ingress-nginx.yaml
+  - ./intel.yaml
   - ./jameswynn.yaml
   - ./jetstack.yaml
   - ./k8s-gateway.yaml
@@ -24,6 +25,7 @@ resources:
   - ./node-feature-discovery.yaml
   - ./openebs.yaml
   - ./piraeus.yaml
+  - ./postfinance.yaml
   - ./prometheus-community.yaml
   - ./redis-operator.yaml
   - ./rook-ceph.yaml
