@@ -16,8 +16,8 @@ spec:
     # exclude all
     /*
     # include kubernetes directory
-    !/kubernetes/flux/repositories
-    !/kubernetes/flux/config/main
+    !/kubernetes/repositories
+    !/kubernetes/flux/main
     !/kubernetes/apps/main
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/kustomize.toolkit.fluxcd.io/kustomization_v1.json
@@ -28,7 +28,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30m
-  path: ./kubernetes/flux/config/main
+  path: ./kubernetes/flux/main/
   prune: false
   wait: true
   sourceRef:
@@ -44,25 +44,3 @@ spec:
         name: cluster-settings
       - kind: Secret
         name: cluster-secrets
-      - kind: ConfigMap
-        name: global-settings
-      - kind: Secret
-        name: global-secrets
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: cluster-global
-  namespace: flux-system
-spec:
-  interval: 30m
-  path: ./kubernetes/flux/global
-  prune: false
-  wait: true
-  sourceRef:
-    kind: GitRepository
-    name: home-kubernetes
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
