@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
@@ -21,10 +22,6 @@ spec:
         name: cluster-settings
       - kind: Secret
         name: cluster-secrets
-      - kind: ConfigMap
-        name: global-settings
-      - kind: Secret
-        name: global-secrets
   patches:
     - patch: |-
         apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -42,10 +39,6 @@ spec:
                 name: cluster-settings
               - kind: Secret
                 name: cluster-secrets
-              - kind: ConfigMap
-                name: global-settings
-              - kind: Secret
-                name: global-secrets
       target:
         group: kustomize.toolkit.fluxcd.io
         kind: Kustomization
