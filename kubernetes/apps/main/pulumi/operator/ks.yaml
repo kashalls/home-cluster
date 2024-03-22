@@ -10,7 +10,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/main/apps/pulumi/operator/app
+  path: ./kubernetes/apps/main/pulumi/operator/app
   prune: true
   sourceRef:
     kind: GitRepository
