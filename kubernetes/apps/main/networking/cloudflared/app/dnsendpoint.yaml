@@ -11,6 +11,3 @@ spec:
     - dnsName: "border.ok8.sh"
       recordType: CNAME
       targets: ["${CLOUDFLARE_TUNNEL_ID}.cfargotunnel.com"]
-    - dnsName: "border.ok8.sh"
-      recordType: CNAME
-      targets: ["${CLOUDFLARE_TUNNEL_ID}.cfargotunnel.com"]

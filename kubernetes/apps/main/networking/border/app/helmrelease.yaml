@@ -55,7 +55,7 @@ spec:
             port: 3000
     ingress:
       main:
-        enabled: true
+        enabled: false
         className: external
         hosts:
           - host: &host "border.ok8.sh"
