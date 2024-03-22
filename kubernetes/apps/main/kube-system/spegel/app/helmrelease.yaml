@@ -24,7 +24,7 @@ spec:
       retries: 3
   values:
     spegel:
-      containerdSock: /run/containerd/containerd.sock
+      containerdSock: /var/run/k3s/containerd/containerd.sock
       containerdRegistryConfigPath: /etc/cri/conf.d/hosts
       registries:
         - https://docker.io
