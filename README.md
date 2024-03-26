@@ -101,8 +101,8 @@ My kubernetes clusters interact with bind9 using the `RFC2136` standard to sync 
 | Raspberry Pi 4              | 3     | 256GB SSD    |                             | 8GB  | Debian           | Kubernetes Masters  |
 | Lenovo ThinkCentre M900     | 6     | 256GB SSD    | 1TB NVMe (rook-ceph)        | 16GB | Debian           | Kubernetes Workers  |
 | Fran the Fabulous Nas       | 1     | 2x1TB SSD    | 5x8TB (raidz2)              | 64GB | Debian           | NFS + Backup Server |
-| Raspberry Pi 3              | 1     | 32GB (SD)    | -                           | 4GB  | PiKVM (Arch)     | Network KVM         |
-| 1U ??? Box                  | 1     | 256GB SSD    | -                           | 8GB  | Opnsense         | Router              |
+| Raspberry Pi 3              | 1     | 32GB (SD)    | -                           | 4GB  | -     | Network KVM         |
+| 1U ??? Box                  | 1     | 256GB SSD    | -                           | 8GB  | VyOS         | Router              |
 | USW 24 G1                   | 1     | -            | -                           | -    | -                | 1Gb Switch          |
 | Unifi USP PDU Pro           | 1     | -            | -                           | -    | -                | PDU                 |
 | APC Back-Ups 1500           | 1     | -            | -                           | -    | -                | UPS                 |
