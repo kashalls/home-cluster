@@ -34,7 +34,7 @@ spec:
           main:
             image:
               repository: docker.io/binwiederhier/ntfy
-              tag: v2.9.0
+              tag: v2.10.0
             args: ["serve"]
             env:
               TIMEZONE: "UTC"
