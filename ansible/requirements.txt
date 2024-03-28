@@ -1,4 +1,4 @@
-ansible==9.3.0
+ansible==9.4.0
 ansible-lint==24.2.1
 # https://github.com/pyca/bcrypt/issues/684
 bcrypt==4.1.2
