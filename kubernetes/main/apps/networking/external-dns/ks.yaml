@@ -10,7 +10,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/apps/main/networking/external-dns/app
+  path: ./kubernetes/main/apps/networking/external-dns/app
   prune: true
   sourceRef:
     kind: GitRepository

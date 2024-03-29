@@ -12,7 +12,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: external-secrets-stores
-  path: ./kubernetes/apps/main/actions-runner-system/actions-runner-controller/app
+  path: ./kubernetes/main/apps/actions-runner-system/actions-runner-controller/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -35,7 +35,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: actions-runner-controller
-  path: ./kubernetes/apps/main/actions-runner-system/actions-runner-controller/runners
+  path: ./kubernetes/main/apps/actions-runner-system/actions-runner-controller/runners
   prune: true
   sourceRef:
     kind: GitRepository

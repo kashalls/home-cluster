@@ -11,7 +11,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/apps/main/observability/exporters/node-exporter/app
+  path: ./kubernetes/main/apps/observability/exporters/node-exporter/app
   prune: true
   sourceRef:
     kind: GitRepository

@@ -10,7 +10,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/apps/main/database/cloudnative-pg/app
+  path: ./kubernetes/main/apps/database/cloudnative-pg/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -34,7 +34,7 @@ spec:
   dependsOn:
     - name: cloudnative-pg
     - name: external-secrets-stores
-  path: ./kubernetes/apps/main/database/cloudnative-pg/cluster
+  path: ./kubernetes/main/apps/database/cloudnative-pg/cluster
   prune: true
   sourceRef:
     kind: GitRepository

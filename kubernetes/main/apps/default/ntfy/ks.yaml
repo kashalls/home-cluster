@@ -10,7 +10,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/apps/main/default/ntfy/app
+  path: ./kubernetes/main/apps/default/ntfy/app
   prune: true
   sourceRef:
     kind: GitRepository

@@ -12,7 +12,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: cilium
-  path: ./kubernetes/apps/main/networking/k8s-gateway/app
+  path: ./kubernetes/main/apps/networking/k8s-gateway/app
   prune: true
   sourceRef:
     kind: GitRepository

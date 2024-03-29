@@ -6,7 +6,7 @@ metadata:
   name: cert-manager
   namespace: flux-system
 spec:
-  path: ./kubernetes/apps/storage/cert-manager/cert-manager/app
+  path: ./kubernetes/storage/apps/cert-manager/cert-manager/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -25,7 +25,7 @@ metadata:
 spec:
   dependsOn:
     - name: cert-manager
-  path: ./kubernetes/apps/storage/cert-manager/cert-manager/issuers
+  path: ./kubernetes/storage/apps/cert-manager/cert-manager/issuers
   prune: true
   sourceRef:
     kind: GitRepository

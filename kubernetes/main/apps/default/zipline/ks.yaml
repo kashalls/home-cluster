@@ -12,7 +12,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: rook-ceph-cluster
-  path: ./kubernetes/apps/main/default/zipline/app
+  path: ./kubernetes/main/apps/default/zipline/app
   prune: true
   sourceRef:
     kind: GitRepository

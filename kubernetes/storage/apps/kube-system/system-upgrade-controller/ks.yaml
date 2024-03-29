@@ -10,7 +10,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/apps/storage/kube-system/system-upgrade-controller/app
+  path: ./kubernetes/storage/apps/kube-system/system-upgrade-controller/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -33,7 +33,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: system-upgrade-controller
-  path: ./kubernetes/apps/storage/kube-system/system-upgrade-controller/plans
+  path: ./kubernetes/storage/apps/kube-system/system-upgrade-controller/plans
   prune: true
   sourceRef:
     kind: GitRepository

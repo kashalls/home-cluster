@@ -13,7 +13,7 @@ spec:
   dependsOn:
     - name: cloudnative-pg-cluster
     - name: external-secrets-stores
-  path: ./kubernetes/apps/main/default/home-assistant/app
+  path: ./kubernetes/main/apps/default/home-assistant/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -34,7 +34,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/apps/main/default/home-assistant/code
+  path: ./kubernetes/main/apps/default/home-assistant/code
   prune: true
   sourceRef:
     kind: GitRepository

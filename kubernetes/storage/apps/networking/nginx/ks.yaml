@@ -8,7 +8,7 @@ metadata:
 spec:
   dependsOn:
     - name: cert-manager-issuers
-  path: ./kubernetes/apps/storage/networking/nginx/certificates
+  path: ./kubernetes/storage/apps/networking/nginx/certificates
   prune: true
   sourceRef:
     kind: GitRepository
@@ -27,7 +27,7 @@ metadata:
 spec:
   dependsOn:
     - name: nginx-certificates
-  path: ./kubernetes/apps/storage/networking/nginx/internal
+  path: ./kubernetes/storage/apps/networking/nginx/internal
   prune: true
   sourceRef:
     kind: GitRepository

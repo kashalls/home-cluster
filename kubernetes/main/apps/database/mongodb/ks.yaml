@@ -12,7 +12,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: rook-ceph-cluster
-  path: ./kubernetes/apps/main/database/mongodb/app
+  path: ./kubernetes/main/apps/database/mongodb/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -35,7 +35,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: mongodb
-  path: ./kubernetes/apps/main/database/mongodb/cluster
+  path: ./kubernetes/main/apps/database/mongodb/cluster
   prune: true
   sourceRef:
     kind: GitRepository

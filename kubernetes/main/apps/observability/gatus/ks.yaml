@@ -13,7 +13,7 @@ spec:
   dependsOn:
     - name: cloudnative-pg-cluster
     - name: external-secrets-stores
-  path: ./kubernetes/apps/main/observability/gatus/app
+  path: ./kubernetes/main/apps/observability/gatus/app
   prune: true
   sourceRef:
     kind: GitRepository

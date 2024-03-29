@@ -12,7 +12,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: external-secrets-stores
-  path: ./kubernetes/apps/storage/networking/external-dns/app
+  path: ./kubernetes/storage/apps/networking/external-dns/app
   prune: false
   sourceRef:
     kind: GitRepository

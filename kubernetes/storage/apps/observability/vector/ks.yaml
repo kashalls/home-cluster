@@ -12,7 +12,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: external-secrets-stores
-  path: ./kubernetes/apps/storage/observability/vector/app
+  path: ./kubernetes/storage/apps/observability/vector/app
   prune: true
   sourceRef:
     kind: GitRepository

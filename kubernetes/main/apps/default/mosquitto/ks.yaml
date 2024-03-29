@@ -12,7 +12,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: external-secrets-stores
-  path: ./kubernetes/apps/main/default/mosquitto/app
+  path: ./kubernetes/main/apps/default/mosquitto/app
   prune: true
   sourceRef:
     kind: GitRepository

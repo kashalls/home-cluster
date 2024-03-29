@@ -12,7 +12,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: node-feature-discovery-rules
-  path: ./kubernetes/apps/main/system-upgrade/system-upgrade-controller/app
+  path: ./kubernetes/main/apps/system-upgrade/system-upgrade-controller/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -35,7 +35,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: system-upgrade-controller
-  path: ./kubernetes/apps/main/system-upgrade/system-upgrade-controller/plans
+  path: ./kubernetes/main/apps/system-upgrade/system-upgrade-controller/plans
   prune: true
   sourceRef:
     kind: GitRepository

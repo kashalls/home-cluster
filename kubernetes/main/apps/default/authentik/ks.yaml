@@ -13,7 +13,7 @@ spec:
   dependsOn:
     - name: cloudnative-pg-cluster
     - name: external-secrets-stores
-  path: ./kubernetes/apps/main/default/authentik/app
+  path: ./kubernetes/main/apps/default/authentik/app
   prune: true
   sourceRef:
     kind: GitRepository
