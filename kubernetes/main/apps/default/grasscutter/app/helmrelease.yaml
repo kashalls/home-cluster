@@ -47,7 +47,7 @@ spec:
         controller: grasscutter
         type: LoadBalancer
         annotations:
-          io.cilium/lb-ipam-ips: 10.69.69.121
+          io.cilium/lb-ipam-ips: 10.69.0.110
           tailscale.com/expose: "true"
           tailscale.com/hostname: "grasscutter"
         ports:
