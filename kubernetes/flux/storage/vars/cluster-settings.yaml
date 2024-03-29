@@ -1,9 +1,0 @@
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: cluster-settings
-  namespace: flux-system
-data:
-  # Cluster Settings
-  TIMEZONE: "America/Los_Angeles"

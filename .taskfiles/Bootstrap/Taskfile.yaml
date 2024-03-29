@@ -1,0 +1,33 @@
+---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: "3"
+
+tasks:
+
+  main:
+    vars: &vars
+      cluster: main
+      cephnodes: astro august delta jera leafions miah
+      cephdisk: /dev/nvme0n1
+    cmds:
+      - task: :talos:bootstrap
+        vars: *vars
+      - task: :rook:reset
+        vars: *vars
+      - task: :flux:bootstrap
+        vars: *vars
+    preconditions:
+      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/talosconfig
+      - talosctl --context {{.cluster}} config info >/dev/null 2>&1
+
+  storage:
+    vars: &vars
+      cluster: storage
+      playbook: cluster-installation
+    cmds:
+      - task: :ansible:venv
+        vars: *vars
+      - task: :ansible:run
+        vars: *vars
+      - task: :flux:bootstrap
+        vars: *vars

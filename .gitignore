@@ -6,6 +6,8 @@ Thumbs.db
 .terraform
 *.tfvars
 .decrypted~*
+*.secret.env
+*.secret.yaml
 *.agekey
 *.pub
 *.key
@@ -13,4 +15,3 @@ Thumbs.db
 kubeconfig
 talosconfig
 config.xml
-*.age

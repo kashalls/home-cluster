@@ -1,0 +1,200 @@
+---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: "3"
+
+vars:
+  VYOS_ADDR: dreamweaver.outsideour.casa
+  VYOS_USER: kashall
+  VYOS_MATCHBOX_DIR: /config/containers/matchbox/data
+  VYOS_MATCHBOX_GROUPS_DIR: "{{.VYOS_MATCHBOX_DIR}}/groups"
+  VYOS_MATCHBOX_PROFILES_DIR: "{{.VYOS_MATCHBOX_DIR}}/profiles"
+  VYOS_MATCHBOX_ASSETS_DIR: "{{.VYOS_MATCHBOX_DIR}}/assets"
+  VYOS_MATCHBOX_ADDR: matchbox.outsideour.casa
+  # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
+  TALOS_VERSION: v1.6.7
+  TALOS_SCHEMATIC_ID: d715f723f882b1e1e8063f1b89f237dcc0e3bd000f9f970243af59c8baae0100
+  # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
+  KUBERNETES_VERSION: v1.29.3
+  TALOS_SCRIPTS_DIR: "{{.ROOT_DIR}}/.taskfiles/Talos/scripts"
+
+tasks:
+
+  bootstrap:
+    desc: Bootstrap Talos
+    summary: |
+      Args:
+        cluster: Cluster to run command against (required)
+    prompt: Bootstrap Talos on the '{{.cluster}}' cluster ... continue?
+    cmds:
+      - task: bootstrap-etcd
+        vars: &vars
+          cluster: "{{.cluster}}"
+      - task: fetch-kubeconfig
+        vars: *vars
+      - task: bootstrap-apps
+        vars: *vars
+    requires:
+      vars: ["cluster"]
+
+  bootstrap-etcd:
+    desc: Bootstrap Etcd
+    cmd: until talosctl --context {{.cluster}} --nodes 10.69.0.6 --endpoints 10.69.0.6 bootstrap; do sleep 10; done
+    vars:
+      controller:
+        sh: talosctl --context {{.cluster}} config info --output json | jq --raw-output '.endpoints[0]'
+    requires:
+      vars: ["cluster"]
+    preconditions:
+      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/talosconfig
+      - talosctl --context {{.cluster}} config info >/dev/null 2>&1
+
+  bootstrap-apps:
+    desc: Bootstrap core apps needed for Talos
+    cmds:
+      - until kubectl --context {{.cluster}} wait --for=condition=Ready=False nodes --all --timeout=10m; do sleep 10; done
+      - helmfile --quiet --kube-context {{.cluster}} --file {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/apps/helmfile.yaml apply --skip-diff-on-install --suppress-diff
+      - until kubectl --context {{.cluster}} wait --for=condition=Ready nodes --all --timeout=10m; do sleep 10; done
+    requires:
+      vars: ["cluster"]
+    preconditions:
+      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/talosconfig
+      - talosctl --context {{.cluster}} config info >/dev/null 2>&1
+      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/apps/helmfile.yaml
+
+  fetch-kubeconfig:
+    desc: Fetch kubeconfig from Talos controllers
+    cmd: |
+      talosctl --context {{.cluster}} kubeconfig --nodes {{.controller}} \
+          --force --force-context-name {{.cluster}} {{.KUBERNETES_DIR}}/{{.cluster}}
+    vars:
+      controller:
+        sh: talosctl --context {{.cluster}} config info --output json | jq --raw-output '.endpoints[0]'
+    requires:
+      vars: ["cluster"]
+    preconditions:
+      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/talosconfig
+      - talosctl --context {{.cluster}} config info >/dev/null 2>&1
+
+  apply-config:
+    desc: Apply Talos configuration to a node
+    cmd: |
+      sops -d {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/matchbox/assets/{{.role | replace "controlplane" "controller"}}.secret.sops.yaml | \
+          envsubst | \
+              talosctl --context {{.cluster}} apply-config --mode=reboot --nodes {{.node}} --file /dev/stdin
+    env:
+      TALOS_VERSION: "{{.TALOS_VERSION}}"
+      TALOS_SCHEMATIC_ID: "{{.TALOS_SCHEMATIC_ID}}"
+      KUBERNETES_VERSION: "{{.KUBERNETES_VERSION}}"
+    vars:
+      role:
+        sh: talosctl --context {{.cluster}} --nodes {{.node}} get machineconfig -o jsonpath='{.spec.machine.type}'
+    requires:
+      vars: ["cluster", "node"]
+    preconditions:
+      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/talosconfig
+      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/matchbox/assets/controller.secret.sops.yaml
+      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/matchbox/assets/worker.secret.sops.yaml
+      - talosctl --context {{.cluster}} --nodes {{.node}} get machineconfig >/dev/null 2>&1
+
+  upgrade:
+    desc: Upgrade Talos on a node
+    cmd: bash {{.TALOS_SCRIPTS_DIR}}/upgrade.sh "{{.cluster}}" "{{.node}}" "{{.TALOS_SCHEMATIC_ID}}:{{.TALOS_VERSION}}" "{{.rollout}}"
+    vars:
+      rollout: '{{.rollout | default "false"}}'
+    requires:
+      vars: ["cluster", "node"]
+    preconditions:
+      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/talosconfig
+      - talosctl --context {{.cluster}} config info >/dev/null 2>&1
+      - talosctl --context {{.cluster}} --nodes {{.node}} get machineconfig >/dev/null 2>&1
+
+  upgrade-rollout:
+    desc: Rollout Talos upgrade on all nodes
+    cmds:
+      - flux --context {{.cluster}} suspend kustomization --all
+      - kubectl cnpg --context {{.cluster}} maintenance set --reusePVC --all-namespaces
+      - for: { var: nodes, split: "," }
+        task: upgrade
+        vars:
+          cluster: "{{.cluster}}"
+          node: "{{.ITEM}}"
+          rollout: "true"
+      - kubectl cnpg --context {{.cluster}} maintenance unset --reusePVC --all-namespaces
+      - flux --context {{.cluster}} resume kustomization --all
+      - task: :kubernetes:delete-failed-pods
+        vars:
+          cluster: "{{.cluster}}"
+    vars:
+      nodes:
+        sh: talosctl --context {{.cluster}} config info --output json | jq --join-output '[.nodes[]] | join(",")'
+    requires:
+      vars: ["cluster"]
+    preconditions:
+      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/talosconfig
+      - talosctl --context {{.cluster}} config info >/dev/null 2>&1
+      - talosctl --context {{.cluster}} --nodes {{.nodes}} get machineconfig >/dev/null 2>&1
+
+  upgrade-k8s:
+    desc: Upgrade the clusters k8s version
+    cmd: talosctl --context {{.cluster}} --nodes {{.controller}} upgrade-k8s --to {{.KUBERNETES_VERSION}}
+    vars:
+      controller:
+        sh: talosctl --context {{.cluster}} config info --output json | jq --raw-output '.endpoints[0]'
+    requires:
+      vars: ["cluster"]
+    preconditions:
+      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/talosconfig
+      - talosctl --context {{.cluster}} config info >/dev/null 2>&1
+      - talosctl --context {{.cluster}} --nodes {{.node}} get machineconfig >/dev/null 2>&1
+
+  reset-node:
+    desc: Reset a Talos node and shut it down
+    prompt: Reset Talos '{{.node}}' node on the '{{.cluster}}' cluster ... continue?
+    cmd: talosctl --context {{.cluster}} reset --nodes {{.node}} --graceful=false
+    requires:
+      vars: ["cluster", "node"]
+    preconditions:
+      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/talosconfig
+      - talosctl --context {{.cluster}} config info >/dev/null 2>&1
+      - talosctl --context {{.cluster}} --nodes {{.node}} get machineconfig >/dev/null 2>&1
+
+  reset-cluster:
+    desc: Reset all the Talos nodes and shut 'em down
+    prompt: Reset Talos on the '{{.cluster}}' cluster ... continue?
+    cmd: talosctl --context {{.cluster}} reset --nodes {{.nodes}} --graceful=false
+    vars:
+      nodes:
+        sh: talosctl --context {{.cluster}} config info --output json | jq --join-output '[.nodes[]] | join(",")'
+    requires:
+      vars: ["cluster"]
+    preconditions:
+      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/talosconfig
+      - talosctl --context {{.cluster}} config info >/dev/null 2>&1
+      - talosctl --context {{.cluster}} --nodes {{.nodes}} get machineconfig >/dev/null 2>&1
+
+  bootstrap-matchbox:
+    desc: Bootstrap required Matchbox configuration to Vyos for PXE Boot
+    dir: "{{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/matchbox"
+    cmds:
+      - ssh -l {{.VYOS_USER}} {{.VYOS_ADDR}} "sudo mkdir -p {{.VYOS_MATCHBOX_DIR}}/{groups,profiles,assets}"
+      - ssh -l {{.VYOS_USER}} {{.VYOS_ADDR}} "sudo chown -R {{.VYOS_USER}}:users {{.VYOS_MATCHBOX_DIR}}/{groups,profiles,assets}"
+      - for: ["kernel-amd64", "initramfs-amd64.xz"]
+        cmd: |
+          curl -skL https://factory.talos.dev/image/{{.TALOS_SCHEMATIC_ID}}/{{.TALOS_VERSION}}/{{.ITEM}} | \
+              curl -skT - -u "{{.VYOS_USER}}:" \
+                  sftp://{{.VYOS_ADDR}}/{{.VYOS_MATCHBOX_ASSETS_DIR}}/{{.ITEM}}
+      - for: ["controller.secret.sops.yaml", "worker.secret.sops.yaml"]
+        cmd: |
+          sops -d assets/{{.ITEM}} | \
+              envsubst | curl -skT - -u "{{.VYOS_USER}}:" \
+                  sftp://{{.VYOS_ADDR}}/{{.VYOS_MATCHBOX_ASSETS_DIR}}/{{.ITEM | replace ".secret.sops.yaml" ".yaml"}}
+      - find ./groups -type f | xargs -I{} curl -skT {} -u "{{.VYOS_USER}}:" sftp://{{.VYOS_ADDR}}/{{.VYOS_MATCHBOX_GROUPS_DIR}}/
+      - find ./profiles -type f | xargs -I{} curl -skT {} -u "{{.VYOS_USER}}:" sftp://{{.VYOS_ADDR}}/{{.VYOS_MATCHBOX_PROFILES_DIR}}/
+      - ssh -l {{.VYOS_USER}} {{.VYOS_ADDR}} -t /opt/vyatta/bin/vyatta-op-cmd-wrapper "restart container matchbox"
+      - curl --silent --output /dev/null --connect-timeout 10 --retry 10 --retry-delay 2 http://{{.VYOS_MATCHBOX_ADDR}}/assets/controller.yaml
+    env:
+      TALOS_VERSION: "{{.TALOS_VERSION}}"
+      TALOS_SCHEMATIC_ID: "{{.TALOS_SCHEMATIC_ID}}"
+      KUBERNETES_VERSION: "{{.KUBERNETES_VERSION}}"
+    requires:
+      vars: ["cluster"]

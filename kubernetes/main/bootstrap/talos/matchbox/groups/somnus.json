@@ -1,0 +1,8 @@
+{
+    "id": "somnus",
+    "name": "somnus",
+    "profile": "talos-controller",
+    "selector": {
+        "mac": "d8:3a:dd:17:f5:eb"
+    }
+}

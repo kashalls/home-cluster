@@ -2,8 +2,8 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "wipe-${app}-${ts}"
-  namespace: "${ns}"
+  name: ${job}
+  namespace: ${ns}
 spec:
   ttlSecondsAfterFinished: 3600
   template:
@@ -11,15 +11,16 @@ spec:
       automountServiceAccountToken: false
       restartPolicy: OnFailure
       containers:
-        - name: wipe
-          image: public.ecr.aws/docker/library/busybox:latest
+        - name: main
+          image: ghcr.io/onedr0p/alpine:rolling
           command: ["/bin/sh", "-c", "cd /config; find . -delete"]
           volumeMounts:
             - name: config
               mountPath: /config
           securityContext:
             privileged: true
+          resources: {}
       volumes:
         - name: config
           persistentVolumeClaim:
-            claimName: "${claim}"
+            claimName: ${claim}

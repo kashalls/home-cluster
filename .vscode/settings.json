@@ -1,4 +1,5 @@
 {
+  "ansible.ansible.path": ".venv/bin/ansible",
   "ansible.python.activationScript": ".venv/bin/activate",
   "ansible.python.interpreterPath": ".venv/bin/python3",
   "ansible.validation.enabled": true,
@@ -15,14 +16,17 @@
   "editor.stickyScroll.enabled": false,
   "explorer.autoReveal": false,
   "files.associations": {
-      "*.json5": "jsonc",
-      "**/ansible/**/*.yml": "ansible",
-      "**/ansible/**/*.sops.yml": "yaml",
-      "**/ansible/**/inventory/**/*.yml": "yaml",
-      "**/terraform/**/*.tf": "terraform",
-      "**/kubernetes/**/*.sops.toml": "plaintext"
+    "*.json5": "jsonc",
+    "./ansible/**/*.yaml": "ansible",
+    "./ansible/**/inventory/**/*.yaml": "yaml",
+    "./terraform/**/*.tf": "terraform"
   },
   "files.trimTrailingWhitespace": true,
+  "material-icon-theme.files.associations": {
+    // TODO: https://github.com/PKief/vscode-material-icon-theme/issues/330
+    "*.secret.sops.env": "lock",
+    "*.secret.sops.yaml": "lock"
+  },
   "material-icon-theme.folders.associations": {
     ".taskfiles": "utils",
     "bootstrap": "import",
@@ -38,9 +42,16 @@
     "networking": "connection",
     "rook-ceph": "dump",
   },
+  "sops.defaults.ageKeyFile": "age.key",
+  "vs-kubernetes": {
+    "vs-kubernetes.kubeconfig": "./kubeconfig",
+    "vs-kubernetes.knownKubeconfigs": [
+      "./kubeconfig"
+    ]
+  },
   "yaml.schemaStore.enable": true,
   "yaml.schemas": {
-      "ansible": "ansible/*.yml",
-      "kubernetes": "kubernetes/**/*.yaml"
+    "ansible": "./ansible/**/*.yaml",
+    "kubernetes": "./kubernetes/**/*.yaml"
   }
 }

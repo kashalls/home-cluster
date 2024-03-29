@@ -1,9 +1,0 @@
----
-apiVersion: image.toolkit.fluxcd.io/v1beta1
-kind: ImageRepository
-metadata:
-  name: mineflayer-container
-  namespace: flux-system
-spec:
-  image: ghcr.io/kashalls/mineflayer-container
-  interval: 5m0s

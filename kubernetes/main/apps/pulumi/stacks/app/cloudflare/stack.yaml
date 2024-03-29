@@ -1,0 +1,18 @@
+---
+apiVersion: pulumi.com/v1
+kind: Stack
+metadata:
+  name: pulumi-cloudflare
+spec:
+  stack: kashalls/pulumi-cloudflare/kashalls
+  fluxSource:
+    sourceRef:
+      apiVersion: source.toolkit.fluxcd.io/v1beta2
+      kind: OCIRepository
+      name: pulumi-cloudflare
+  envRefs:
+    PULUMI_ACCESS_TOKEN:
+      type: Secret
+      secret:
+        name: pulumi-secret
+        key: PULUMI_ACCESS_TOKEN
