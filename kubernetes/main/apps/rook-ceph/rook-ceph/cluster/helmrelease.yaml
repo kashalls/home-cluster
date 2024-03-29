@@ -16,15 +16,18 @@ spec:
         name: rook-ceph
         namespace: flux-system
   install:
-    createNamespace: true
     remediation:
       retries: 3
   upgrade:
     cleanupOnFail: true
     remediation:
+      strategy: rollback
       retries: 3
-  uninstall:
-    keepHistory: false
+  dependsOn:
+    - name: rook-ceph-operator
+      namespace: rook-ceph
+    - name: snapshot-controller
+      namespace: volsync-system
   values:
     monitoring:
       enabled: true
@@ -33,11 +36,10 @@ spec:
       dashboard:
         ingressClassName: internal
         host:
-          name: &host "rook.ok8.sh"
+          name: &host rook.ok8.sh
           path: /
         tls:
-          - hosts:
-              - *host
+          - hosts: [*host]
     toolbox:
       enabled: true
     configOverride: |
@@ -79,9 +81,9 @@ spec:
         disable: false
       dashboard:
         enabled: true
-        ssl: false
         urlPrefix: /
-        prometheusEndpoint: http://thanos-query-frontend.observability.svc.cluster.local:9090
+        ssl: false
+        prometheusEndpoint: http://thanos-query-frontend.observability.svc.cluster.local:10902
       storage:
         useAllNodes: true
         useAllDevices: true
@@ -96,6 +98,7 @@ spec:
                 - matchExpressions:
                     - key: node-role.kubernetes.io/control-plane
                       operator: Exists
+        mon: *placement
     cephBlockPools:
       - name: ceph-blockpool
         spec:
@@ -125,7 +128,7 @@ spec:
       isDefault: false
       deletionPolicy: Delete
     cephFileSystems:
-      - name: ceph-filesystem
+      - name: &cephFileSystemName ceph-filesystem
         spec:
           metadataPool:
             replicated:
@@ -138,6 +141,16 @@ spec:
           metadataServer:
             activeCount: 1
             activeStandby: true
+            priorityClassName: system-cluster-critical
+            placement:
+              topologySpreadConstraints:
+                - maxSkew: 1
+                  topologyKey: kubernetes.io/hostname
+                  whenUnsatisfiable: DoNotSchedule
+                  labelSelector:
+                    matchLabels:
+                      app.kubernetes.io/name: ceph-mds
+                      app.kubernetes.io/part-of: *cephFileSystemName
             resources:
               requests:
                 cpu: 100m
@@ -151,6 +164,7 @@ spec:
           pool: data0
           reclaimPolicy: Delete
           allowVolumeExpansion: true
+          volumeBindingMode: Immediate
           parameters:
             csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
             csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
@@ -159,6 +173,11 @@ spec:
             csi.storage.k8s.io/node-stage-secret-name: rook-csi-cephfs-node
             csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
             csi.storage.k8s.io/fstype: ext4
+    cephFileSystemVolumeSnapshotClass:
+      enabled: true
+      name: csi-ceph-filesystem
+      isDefault: false
+      deletionPolicy: Delete
     cephObjectStores:
       - name: ceph-objectstore
         spec:
@@ -177,7 +196,7 @@ spec:
             resources:
               requests:
                 cpu: 100m
-                memory: 128M
+                memory: 1Gi
               limits:
                 memory: 2Gi
             instances: 2

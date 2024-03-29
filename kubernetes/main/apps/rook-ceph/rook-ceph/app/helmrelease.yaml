@@ -23,6 +23,9 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
+  dependsOn:
+    - name: snapshot-controller
+      namespace: volsync-system
   values:
     monitoring:
       enabled: true
