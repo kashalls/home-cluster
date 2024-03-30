@@ -20,15 +20,14 @@ spec:
   upgrade:
     cleanupOnFail: true
     remediation:
+      strategy: rollback
       retries: 3
-  uninstall:
-    keepHistory: false
   values:
     fullnameOverride: *app
     provider: rfc2136
     env:
       - name: EXTERNAL_DNS_RFC2136_HOST
-        value: "10.1.0.1"
+        value: "10.5.0.3"
       - name: EXTERNAL_DNS_RFC2136_PORT
         value: "53530"
       - name: EXTERNAL_DNS_RFC2136_ZONE
