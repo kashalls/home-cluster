@@ -29,7 +29,7 @@ spec:
       - name: EXTERNAL_DNS_RFC2136_HOST
         value: "10.5.0.3"
       - name: EXTERNAL_DNS_RFC2136_PORT
-        value: "53530"
+        value: "53"
       - name: EXTERNAL_DNS_RFC2136_ZONE
         value: ok8.sh
       - name: EXTERNAL_DNS_RFC2136_TSIG_AXFR
