@@ -132,7 +132,7 @@ spec:
         className: external
         annotations:
           nginx.ingress.kubernetes.io/proxy-body-size: "10000m"
-          external-dns.alpha.kubernetes.io/target: "border.ok8.sh"
+          external-dns.alpha.kubernetes.io/target: "external.ok8.sh"
         hosts:
           - host: &host "ok8.sh"
             paths:

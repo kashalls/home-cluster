@@ -1,6 +1,6 @@
 ---
 originRequest:
-  originServerName: "border.ok8.sh"
+  originServerName: "external.ok8.sh"
 
 ingress:
   - hostname: "ok8.sh"

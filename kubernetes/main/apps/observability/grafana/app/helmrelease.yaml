@@ -359,7 +359,7 @@ spec:
       enabled: true
       ingressClassName: external
       annotations:
-        external-dns.alpha.kubernetes.io/target: border.ok8.sh
+        external-dns.alpha.kubernetes.io/target: external.ok8.sh
       hosts:
         - &host grafana.ok8.sh
       tls:

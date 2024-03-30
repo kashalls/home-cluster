@@ -103,7 +103,7 @@ spec:
         enabled: true
         className: external
         annotations:
-          external-dns.alpha.kubernetes.io/target: border.ok8.sh
+          external-dns.alpha.kubernetes.io/target: external.ok8.sh
         hosts:
           - host: &host "{{ .Release.Name }}.ok8.sh"
             paths:
