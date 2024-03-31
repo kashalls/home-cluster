@@ -68,11 +68,15 @@ tasks:
 
   reconcile:
     desc: Force update Flux to pull in changes from your Git repository
+    requires:
+      vars: ["cluster"]
     cmds:
-      - flux reconcile -n flux-system kustomization cluster --with-source
+      - flux --context {{.cluster}} reconcile -n flux-system kustomization cluster --with-source
 
   hr-restart:
     desc: Restart all failed Helm Releases
+    requires:
+      vars: ["cluster"]
     cmds:
-      - kubectl get hr --all-namespaces | grep False | awk '{print $2, $1}' | xargs -l bash -c 'flux suspend hr $0 -n $1'
-      - kubectl get hr --all-namespaces | grep False | awk '{print $2, $1}' | xargs -l bash -c 'flux resume hr $0 -n $1'
+      - kubectl --context {{.cluster}} get hr --all-namespaces | grep False | awk '{print $2, $1}' | xargs -l bash -c 'flux --context {{.cluster}} suspend hr $0 -n $1'
+      - kubectl --context {{.cluster}} get hr --all-namespaces | grep False | awk '{print $2, $1}' | xargs -l bash -c 'flux --context {{.cluster}} resume hr $0 -n $1'
