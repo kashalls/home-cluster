@@ -5,4 +5,4 @@ kind: Kustomization
 resources:
   - ./actions-runner-controller.yaml
   - ./pulumi.yaml
-  - ./xenitab.yaml
+  - ./spegel.yaml
