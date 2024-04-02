@@ -17,7 +17,7 @@ env:
 jobs:
   publish-schemas:
     name: Publish Schemas
-    runs-on: ["arc-runner-set-home-ops"]
+    runs-on: ["gha-runner-scale-set"]
     permissions:
       contents: read
       packages: write
