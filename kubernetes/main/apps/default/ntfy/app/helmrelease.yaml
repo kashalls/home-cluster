@@ -85,5 +85,5 @@ spec:
         enabled: true
         type: pvc
         mountPath: /var/cache/ntfy
-        storageClass: local-hostpath
+        storageClass: openebs-hostpath
 
