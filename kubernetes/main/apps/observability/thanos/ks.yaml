@@ -11,7 +11,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: redis
+    - name: dragonfly-cluster
     - name: openebs
     - name: rook-ceph-cluster
   path: ./kubernetes/main/apps/observability/thanos/app
