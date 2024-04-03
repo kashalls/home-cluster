@@ -95,6 +95,7 @@ transforms:
               "ip": .message.SRC
           }
       )
+
 #  opnsense_filterlog:
 #    type: "remap"
 #    inputs:
