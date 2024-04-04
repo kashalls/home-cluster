@@ -1,9 +1,0 @@
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
-  name: border
-  namespace: flux-system
-spec:
-  image: ghcr.io/kashalls/border
-  interval: 5m0s
