@@ -114,20 +114,20 @@ spec:
             fsGroup: 999
             fsGroupChangePolicy: OnRootMismatch
     service:
-      app:
+      api:
         controller: onepassword-connect
         ports:
           http:
             port: *apiPort
     ingress:
-      app:
+      api:
         className: internal
         hosts:
           - host: &host "onepassword-connect.ok8.sh"
             paths:
               - path: /
                 service:
-                  identifier: app
+                  identifier: api
                   port: http
         tls:
           - hosts: [*host]
