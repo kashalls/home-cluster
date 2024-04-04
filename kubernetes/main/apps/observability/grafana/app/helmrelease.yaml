@@ -22,8 +22,13 @@ spec:
     cleanupOnFail: true
     remediation:
       retries: 3
-  uninstall:
-    keepHistory: false
+  dependsOn:
+    - name: authentik
+      namespace: default
+    - name: kube-prometheus-stack
+      namespace: observability
+    - name: loki
+      namespace: observability
   values:
     extraInitContainers:
       - name: 01-init-db
@@ -197,11 +202,6 @@ spec:
           gnetId: 1860
           revision: 36
           datasource: Prometheus
-        redis:
-          # renovate: depName="Redis Dashboard for Prometheus Redis Exporter 1.x"
-          gnetId: 763
-          revision: 6
-          datasource: Prometheus
         zfs:
           # renovate: depName="ZFS"
           gnetId: 7845
@@ -212,6 +212,9 @@ spec:
           datasource: Prometheus
         cert-manager:
           url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
+          datasource: Prometheus
+        dragonfly:
+          url: https://raw.githubusercontent.com/dragonflydb/dragonfly/main/tools/local/monitoring/grafana/provisioning/dashboards/dashboard.json
           datasource: Prometheus
         external-secrets:
           url: https://raw.githubusercontent.com/external-secrets/external-secrets/main/docs/snippets/dashboard.json
