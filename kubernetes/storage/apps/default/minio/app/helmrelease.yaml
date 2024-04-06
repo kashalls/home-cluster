@@ -90,13 +90,13 @@ spec:
       app:
         className: internal
         hosts:
-          - host: &console-host https://minio.outsideour.casa
+          - host: &console-host minio.outsideour.casa
             paths:
               - path: /
                 service:
                   identifier: app
                   port: http
-          - host: &api-host https://s3.outsideour.casa
+          - host: &api-host s3.outsideour.casa
             paths:
               - path: /
                 service:
