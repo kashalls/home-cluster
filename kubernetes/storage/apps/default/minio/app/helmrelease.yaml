@@ -67,11 +67,7 @@ spec:
               supplementalGroups: [100]
     service:
       app:
-        type: LoadBalancer
         controller: minio
-        annotations:
-          tailscale.com/expose: "true"
-          tailscale.com/hostname: "k8s-storage-minio"
         ports:
           http:
             port: 9001
