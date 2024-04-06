@@ -187,11 +187,11 @@ tasks:
         cmd: |
           sops -d assets/{{.ITEM}} | \
               envsubst | curl -skT - -u "{{.VYOS_USER}}:" \
-                  sftp://{{.VYOS_ADDR}}/{{.VYOS_MATCHBOX_ASSETS_DIR}}/{{.ITEM | replace ".secret.sops.yaml" ".yaml"}}
+                  sftp://{{.VYOS_ADDR}}/{{.VYOS_MATCHBOX_ASSETS_DIR}}/{{.cluster}}/{{.ITEM | replace ".secret.sops.yaml" "{{.cluster}}.yaml"}}
       - find ./groups -type f | xargs -I{} curl -skT {} -u "{{.VYOS_USER}}:" sftp://{{.VYOS_ADDR}}/{{.VYOS_MATCHBOX_GROUPS_DIR}}/
       - find ./profiles -type f | xargs -I{} curl -skT {} -u "{{.VYOS_USER}}:" sftp://{{.VYOS_ADDR}}/{{.VYOS_MATCHBOX_PROFILES_DIR}}/
       - ssh -l {{.VYOS_USER}} {{.VYOS_ADDR}} -t /opt/vyatta/bin/vyatta-op-cmd-wrapper "restart container matchbox"
-      - curl --silent --output /dev/null --connect-timeout 10 --retry 10 --retry-delay 2 http://{{.VYOS_MATCHBOX_ADDR}}/assets/controller.yaml
+      - curl --silent --output /dev/null --connect-timeout 10 --retry 10 --retry-delay 2 http://{{.VYOS_MATCHBOX_ADDR}}/assets/{{.cluster}}/controller.yaml
     env:
       TALOS_VERSION: "{{.TALOS_VERSION}}"
       TALOS_SCHEMATIC_ID: "{{.TALOS_SCHEMATIC_ID}}"
