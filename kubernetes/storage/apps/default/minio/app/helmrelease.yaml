@@ -37,6 +37,7 @@ spec:
               MINIO_UPDATE: "off"
               MINIO_PROMETHEUS_URL: https://prometheus.outsideour.casa
               MINIO_PROMETHEUS_JOB_ID: minio
+              MINIO_BROWSER_REDIRECT_URL: ""
               MINIO_IDENTITY_OPENID_REDIRECT_URI: https://minio.outsideour.casa/oauth_callback
               MINIO_IDENTITY_OPENID_CONFIG_URL: https://id.ok8.sh/application/o/minio/.well-known/openid-configuration
               MINIO_IDENTITY_OPENID_SCOPES: openid,profile,email,minio
@@ -102,28 +103,6 @@ spec:
           - hosts:
               - *console-host
               - *api-host
-      tailscale-dashboard:
-        className: tailscale
-        hosts:
-          - host: s3-dashboard
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
-        tls:
-          - hosts: [s3-dashboard]
-      tailscale-api:
-        className: tailscale
-        hosts:
-          - host: s3-api
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: s3
-        tls:
-          - hosts: [s3-api]
     persistence:
       data:
         hostPathType: Directory
