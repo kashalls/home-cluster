@@ -36,7 +36,9 @@ spec:
     containerRuntime:
       integration: containerd
       socketPath: /var/run/k3s/containerd/containerd.sock
-    devices: bond0
+    devices:
+      - enp+
+      - eno+
     enableRuntimeDeviceDetection: true
     endpointRoutes:
       enabled: true
