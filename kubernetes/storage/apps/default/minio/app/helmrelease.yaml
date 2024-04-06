@@ -106,7 +106,7 @@ spec:
           - hosts:
               - *console-host
               - *api-host
-      tailscale:
+      tailscale-dashboard:
         className: tailscale
         hosts:
           - host: s3-dashboard
@@ -115,6 +115,11 @@ spec:
                 service:
                   identifier: app
                   port: http
+        tls:
+          - hosts: [s3-dashboard]
+      tailscale-api:
+        className: tailscale
+        hosts:
           - host: s3-api
             paths:
               - path: /
@@ -122,9 +127,7 @@ spec:
                   identifier: app
                   port: s3
         tls:
-          - hosts:
-              - s3-dashboard
-              - s3-api
+          - hosts: [s3-api]
     persistence:
       data:
         hostPathType: Directory
