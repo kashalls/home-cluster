@@ -3,13 +3,13 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: ok8-sh
+  name: outsideour-casa
 spec:
-  secretName: ok8-sh-tls
+  secretName: outsideour-casa-tls
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: ok8-sh
+  commonName: outsideour.casa
   dnsNames:
-    - ok8.sh
-    - "*.ok8.sh"
+    - outsideour.casa
+    - "*.outsideour.casa"
