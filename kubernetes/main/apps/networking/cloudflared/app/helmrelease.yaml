@@ -24,7 +24,7 @@ spec:
       retries: 3
   dependsOn:
     - name: nginx-external
-      namespace: network
+      namespace: networking
   values:
     controllers:
       cloudflared:
