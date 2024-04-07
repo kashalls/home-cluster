@@ -9,7 +9,7 @@ resources:
 configMapGenerator:
   - name: smtp-relay-configmap
     files:
-      - ./config/maddy.conf
+      - ./resources/maddy.conf
 generatorOptions:
   disableNameSuffixHash: true
   annotations:
