@@ -37,7 +37,6 @@ spec:
         envFrom:
           - secretRef:
               name: &secret grafana-secret
-    replicas: 2
     env:
       GF_AUTH_GENERIC_OAUTH_ENABLED: "true"
       GF_AUTH_GENERIC_OAUTH_NAME: "authentik"

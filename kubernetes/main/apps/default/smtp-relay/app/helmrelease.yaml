@@ -34,7 +34,6 @@ spec:
               app.kubernetes.io/name: *app
     controllers:
       main:
-        replicas: 2
         strategy: RollingUpdate
         annotations:
           reloader.stakater.com/auto: "true"
