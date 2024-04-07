@@ -1,2 +1,2 @@
 ---
-providerRegex: ^k8s-\d$
+providerRegex: ^(astro)|(august)|(delta)|(jera)|(leafions)|(miah)\d$
