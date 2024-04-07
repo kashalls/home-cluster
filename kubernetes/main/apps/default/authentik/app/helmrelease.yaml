@@ -49,9 +49,6 @@ spec:
       #redis:
       #  host: "redis-headless.database.svc.cluster.local"
     server:
-      replicas: 1
-      autoscaling:
-        enabled: true
       initContainers:
         - name: init-db
           image: ghcr.io/onedr0p/postgres-init:16.2
@@ -74,10 +71,6 @@ spec:
         tls:
           - hosts:
               - *host
-    worker:
-      replicas: 1
-      autoscaling:
-        enabled: true
     geoip:
       enabled: false
       existingSecret:
