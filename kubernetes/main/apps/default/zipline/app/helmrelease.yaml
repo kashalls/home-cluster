@@ -102,7 +102,7 @@ spec:
               RATELIMIT_ADMIN: "1"
               UPLOADER_DEFAULT_FORMAT: "DATE"
               UPLOADER_ROUTE: &upload "/i"
-              UPLOADER_ADMIN_LIMIT: "100gb"
+              UPLOADER_ADMIN_LIMIT: "10gb"
               UPLOADER_USER_LIMIT: "500mb"
               UPLOADER_DISABLED_EXTENSIONS: "ps1,pdf,bat,exe,sh,fish"
               UPLOADER_FORMAT_DATE: "YYYY-MM-DD_HH-mm-ss"
@@ -134,7 +134,7 @@ spec:
           nginx.ingress.kubernetes.io/proxy-body-size: "10000m"
           external-dns.alpha.kubernetes.io/target: "external.ok8.sh"
         hosts:
-          - host: &host "ok8.sh"
+          - host: &host "z.ok8.sh"
             paths:
               - path: /
                 pathType: Prefix
