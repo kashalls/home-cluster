@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2beta2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.6.0
+      version: 3.1.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -20,9 +20,8 @@ spec:
   upgrade:
     cleanupOnFail: true
     remediation:
+      strategy: rollback
       retries: 3
-  uninstall:
-    keepHistory: false
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
@@ -30,20 +29,11 @@ spec:
       namespace: volsync-system
   values:
     controllers:
-      main:
+      home-assistant:
         annotations:
           reloader.stakater.com/auto: "true"
-        initContainers:
-          init-db:
-            image:
-              repository: ghcr.io/onedr0p/postgres-init
-              tag: 16.2
-              pullPolicy: IfNotPresent
-            envFrom: &envFrom
-              - secretRef:
-                  name: home-assistant-secret
         containers:
-          main:
+          app:
             image:
               repository: ghcr.io/onedr0p/home-assistant
               tag: 2024.4.1@sha256:bf8004556d5f420a3996f79f53a6727f2ea5ff9f4494d5ee9721cedb5c770051
@@ -51,34 +41,33 @@ spec:
               TZ: America/Los_Angeles
               POSTGRES_HOST: postgres-rw.database.svc.cluster.local
               POSTGRES_DB: home_assistant
-            envFrom: *envFrom
-            probes:
-              liveness:
-                enabled: false
-              readiness:
-                enabled: false
-              startup:
-                enabled: false
+            envFrom:
+              - secretRef:
+                  name: home-assistant-secret
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 cpu: 10m
-                memory: 128Mi
               limits:
                 memory: 1Gi
         pod:
           securityContext:
             runAsUser: 568
             runAsGroup: 568
+            runAsNonRoot: true
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
     service:
-      main:
+      app:
+        controller: home-assistant
         ports:
           http:
             port: 8123
     ingress:
-      main:
-        enabled: true
+      app:
         className: external
         annotations:
           external-dns.alpha.kubernetes.io/target: external.ok8.sh
@@ -87,12 +76,20 @@ spec:
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
-          - hosts:
-              - *host
+          - hosts: [*host]
     persistence:
       config:
-        enabled: true
-        existingClaim: home-assistant-config
+        existingClaim: home-assistant
+      logs:
+        type: emptyDir
+        globalMounts:
+          - path: /config/logs
+      tts:
+        type: emptyDir
+        globalMounts:
+          - path: /config/tts
+      tmp:
+        type: emptyDir

@@ -4,9 +4,6 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: ntfy
-  namespace: default
-  annotations:
-    reloader.stakater.com/auto: "true"
 spec:
   interval: 30m
   chart:
