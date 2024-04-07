@@ -1,2 +1,2 @@
 ---
-providerRegex: "^(astro)|(august)|(delta)|(jera)|(leafions)|(miah)$/gi"
+providerRegex: ^(astro)|(august)|(delta)|(jera)|(leafions)|(miah)$"
