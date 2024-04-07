@@ -23,7 +23,7 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
         initContainers:
-          01-init-db:
+          postgres:
             image:
               repository: ghcr.io/onedr0p/postgres-init
               tag: 16.2@sha256:930a20e3ea8c82504d8e80f413d042d9936930d625fb098dd306b5aad427a151
@@ -126,7 +126,7 @@ spec:
                 cpu: 15m
                 memory: 512Mi
               limits:
-                memory: 2Gb
+                memory: 2Gi
     service:
       app:
         controller: zipline
