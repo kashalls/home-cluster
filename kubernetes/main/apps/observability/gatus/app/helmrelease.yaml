@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 3.0.4
+      version: 3.1.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -32,3 +32,105 @@ spec:
             image:
               repository: ghcr.io/onedr0p/postgres-init
               tag: 16
+            envFrom: &envFrom
+              - secretRef:
+                  name: gatus-secret
+          init-config:
+            dependsOn: init-db
+            image:
+              repository: ghcr.io/kiwigrid/k8s-sidecar
+              tag: 1.26.1@sha256:b8d5067137fec093cf48670dc3a1dbb38f9e734f3a6683015c2e89a45db5fd16
+            env:
+              FOLDER: /config
+              LABEL: gatus.io/enabled
+              NAMESPACE: ALL
+              RESOURCE: both
+              UNIQUE_FILENAMES: true
+              METHOD: WATCH
+            restartPolicy: Always
+            resources: &resources
+              requests:
+                cpu: 10m
+              limits:
+                memory: 256Mi
+        containers:
+          app:
+            image:
+              repository: ghcr.io/twin/gatus
+              tag: v5.8.0@sha256:fecb4c38722df59f5e00ab4fcf2393d9b8dad9161db208d8d79386dc86da8a55
+            env:
+              TZ: America/Los_Angeles
+              GATUS_CONFIG_PATH: /config
+              GATUS_DELAY_START_SECONDS: 5
+              CUSTOM_WEB_PORT: &port 80
+            envFrom: *envFrom
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /health
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources: *resources
+        pod:
+          dnsConfig:
+            options:
+              - { name: ndots, value: "1" }
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            runAsNonRoot: true
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        controller: gatus
+        ports:
+          http:
+            port: *port
+    serviceMonitor:
+      app:
+        serviceName: gatus
+        endpoints:
+          - port: http
+            scheme: http
+            path: /metrics
+            interval: 1m
+            scrapeTimeout: 10s
+    ingress:
+      app:
+        className: external
+        annotations:
+          external-dns.alpha.kubernetes.io/target: external.ok8.sh
+        hosts:
+          - host: &host status.ok8.sh
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - hosts: [*host]
+    serviceAccount:
+      create: true
+      name: gatus
+    persistence:
+      config:
+        type: emptyDir
+      config-file:
+        type: configMap
+        name: gatus-configmap
+        globalMounts:
+          - path: /config/config.yaml
+            subPath: config.yaml
+            readOnly: true
