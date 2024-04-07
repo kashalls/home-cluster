@@ -9,26 +9,23 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.6.0
+      version: 3.1.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
   install:
-    createNamespace: true
     remediation:
       retries: 3
   upgrade:
     cleanupOnFail: true
     remediation:
       retries: 3
-  uninstall:
-    keepHistory: false
   values:
     controllers:
       main:
         containers:
-          main:
+          app:
             image:
               repository: docker.io/binwiederhier/ntfy
               tag: v2.10.0
@@ -41,8 +38,10 @@ spec:
               PORT: &port 80
             resources:
               requests:
-                cpu: 500m
-                memory: 250Mi
+                cpu: 10m
+                memory: 125Mi
+              limits:
+                memory: 256Mi
             probes:
               liveness:
                 enabled: false
@@ -52,6 +51,7 @@ spec:
                 enabled: false
     service:
       main:
+        controller: ntfy
         ports:
           http:
             port: *port
@@ -67,11 +67,10 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: main
                   port: http
         tls:
-          - hosts:
-            - *host
+          - hosts: [*host]
     persistance:
       config:
         enabled: true
@@ -83,4 +82,3 @@ spec:
         type: pvc
         mountPath: /var/cache/ntfy
         storageClass: openebs-hostpath
-
