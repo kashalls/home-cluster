@@ -51,7 +51,7 @@ spec:
                 enabled: false
     service:
       main:
-        controller: ntfy
+        controller: main
         ports:
           http:
             port: *port
