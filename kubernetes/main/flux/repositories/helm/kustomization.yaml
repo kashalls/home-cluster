@@ -19,6 +19,7 @@ resources:
   - ./ingress-nginx.yaml
   - ./intel.yaml
   - ./jameswynn.yaml
+  - ./jenkinsci.yaml
   - ./jetstack.yaml
   - ./k8s-gateway.yaml
   - ./metrics-server.yaml
