@@ -9,7 +9,7 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: ok8-sh
+  commonName: ok8.sh
   dnsNames:
     - ok8.sh
     - "*.ok8.sh"
