@@ -75,7 +75,7 @@ spec:
     query:
       replicas: 2
       extraArgs: ["--alert.query-url=https://thanos.ok8.sh"]
-      additionalStores: ["thanos.ok8.sh:10901"]
+      additionalStores: ["thanos.outsideour.casa:10901"]
     queryFrontend:
       enabled: true
       replicas: 2
