@@ -126,5 +126,10 @@ spec:
         tls:
           - hosts: [*host]
     persistence:
-      config:
-        existingClaim: zigbee2mqtt
+      data:
+        type: persistentVolumeClaim
+        globalMounts:
+          - /data
+        size: 1Gi
+        storageClass: ceph-block
+        accessMode: "ReadWriteOnce"
