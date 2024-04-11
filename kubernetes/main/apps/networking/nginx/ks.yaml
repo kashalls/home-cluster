@@ -11,8 +11,8 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
+    - name: certificates
     - name: external-secrets-stores
-    - name: nginx-certificates
   path: ./kubernetes/main/apps/networking/nginx/external
   prune: true
   sourceRef:
@@ -31,7 +31,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: nginx-certificates
+    - name: certificates
   path: ./kubernetes/main/apps/networking/nginx/internal
   prune: true
   sourceRef:
