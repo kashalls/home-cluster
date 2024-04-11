@@ -127,9 +127,10 @@ spec:
           - hosts: [*host]
     persistence:
       data:
+        enabled: true
         type: persistentVolumeClaim
-        globalMounts:
-          - /data
         size: 1Gi
         storageClass: ceph-block
-        accessMode: "ReadWriteOnce"
+        accessMode: ReadWriteOnce
+        globalMounts:
+          - path: /data
