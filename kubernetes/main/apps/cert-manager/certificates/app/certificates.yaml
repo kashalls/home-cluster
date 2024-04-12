@@ -13,3 +13,4 @@ spec:
   dnsNames:
     - ok8.sh
     - "*.ok8.sh"
+    - "random.ok8.sh"
