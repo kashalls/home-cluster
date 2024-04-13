@@ -2,7 +2,7 @@
     "name": "cloudflare",
     "main": "src/index.ts",
     "devDependencies": {
-        "@types/node": "^18"
+        "@types/node": "^20.0.0"
     },
     "dependencies": {
         "@pulumi/cloudflare": "^5.25.0",

@@ -2,7 +2,7 @@
     "name": "home-cluster",
     "main": "index.ts",
     "devDependencies": {
-        "@types/node": "^18"
+        "@types/node": "^20.0.0"
     },
     "dependencies": {
         "@pulumi/pulumi": "^3.0.0"
