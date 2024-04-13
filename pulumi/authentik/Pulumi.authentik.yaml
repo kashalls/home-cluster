@@ -1,0 +1,2 @@
+config:
+  pulumi:template: typescript
