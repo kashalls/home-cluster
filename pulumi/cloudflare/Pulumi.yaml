@@ -1,0 +1,7 @@
+name: cloudflare
+runtime: nodejs
+description: Cloudflare
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: typescript
