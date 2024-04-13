@@ -1,0 +1,2 @@
+config:
+  cloudflare:experimental-features: "true"

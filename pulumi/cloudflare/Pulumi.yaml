@@ -1,7 +1,7 @@
 name: cloudflare
 runtime: nodejs
-description: Cloudflare
+description: A minimal configuration of my cloudflare infrastructure
 config:
   pulumi:tags:
     value:
-      pulumi:template: typescript
+      pulumi:template: ""
