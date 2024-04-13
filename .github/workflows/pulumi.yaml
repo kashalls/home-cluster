@@ -42,7 +42,7 @@ jobs:
   preview:
     name: Preview
     runs-on: ["gha-runner-scale-set"]
-    if: github.action == 'pull_request'
+    if: github.event_name == 'pull_request'
     needs: ["changed-infrastructure"]
     permissions:
       pull-requests: write
@@ -84,7 +84,7 @@ jobs:
   update:
     name: Update
     runs-on: ["gha-runner-scale-set"]
-    if: github.action == 'push'
+    if: github.event_name == 'push'
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3.5.0
