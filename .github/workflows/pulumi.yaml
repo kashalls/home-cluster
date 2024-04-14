@@ -1,0 +1,125 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: Pulumi
+
+on:
+  pull_request:
+  push:
+    branches: ["main"]
+    paths:
+      - pulumi/**/**
+
+jobs:
+  changed-infrastructure:
+    name: Changed Infrastructure
+    runs-on: ["gha-runner-scale-set"]
+    outputs:
+      matrix: ${{ steps.changed-infrastructure.outputs.all_changed_and_modified_files }}
+    steps:
+      - name: Generate Token
+        uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: "${{ secrets.BOT_APP_ID }}"
+          private-key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
+
+      - name: Checkout Default Branch
+        uses: actions/checkout@v4
+        with:
+          token: "${{ steps.app-token.outputs.token }}"
+          fetch-depth: 0
+
+      - name: Get Changed Infrastructure
+        id: changed-infrastructure
+        uses: tj-actions/changed-files@v44
+        with:
+          files: pulumi/**
+          dir_names: true
+          dir_names_max_depth: 2
+          matrix: true
+
+      - name: List All Changed Infrastructure
+        run: echo "${{ steps.changed-infrastructure.outputs.all_changed_and_modified_files }}"
+
+  preview:
+    name: Preview
+    runs-on: ["gha-runner-scale-set"]
+    if: github.event_name == 'pull_request'
+    needs: ["changed-infrastructure"]
+    permissions:
+      pull-requests: write
+    strategy:
+      matrix:
+        paths: ${{ fromJSON(needs.changed-infrastructure.outputs.matrix) }}
+      max-parallel: 4
+      fail-fast: false
+    steps:
+      - name: Generate Token
+        uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: "${{ secrets.BOT_APP_ID }}"
+          private-key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: "${{ steps.app-token.outputs.token }}"
+
+      - uses: actions/setup-node@v3.5.0
+        with:
+          node-version: 20
+
+      - run: npm install
+        working-directory: ${{ matrix.paths }}
+
+      - uses: pulumi/actions@v3
+        with:
+          command: preview
+          stack-name: main
+          diff: true
+          comment-on-pr: true
+          github-token: "${{ steps.app-token.outputs.token }}"
+          work-dir: ${{ matrix.paths }}
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+
+  update:
+    name: Update
+    runs-on: ["gha-runner-scale-set"]
+    needs: ["changed-infrastructure"]
+    if: github.event_name == 'push'
+    strategy:
+      matrix:
+        paths: ${{ fromJSON(needs.changed-infrastructure.outputs.matrix) }}
+      max-parallel: 4
+      fail-fast: false
+    steps:
+      - name: Generate Token
+        uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: "${{ secrets.BOT_APP_ID }}"
+          private-key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: "${{ steps.app-token.outputs.token }}"
+
+      - uses: actions/setup-node@v3.5.0
+        with:
+          node-version: 20
+
+      - run: npm install
+        working-directory: ${{ matrix.paths }}
+
+      - uses: pulumi/actions@v3
+        with:
+          command: up
+          stack-name: main
+          work-dir: ${{ matrix.paths }}
+          comment-on-pr: true
+          github-token: "${{ steps.app-token.outputs.token }}"
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}

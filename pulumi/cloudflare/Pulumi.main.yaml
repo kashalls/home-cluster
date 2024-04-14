@@ -1,2 +1,2 @@
-config:
-  cloudflare:experimental-features: "true"
+environment:
+  - cloudflare-main

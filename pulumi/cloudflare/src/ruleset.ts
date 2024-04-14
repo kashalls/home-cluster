@@ -1,10 +1,10 @@
 import * as cloudflare from "@pulumi/cloudflare";
 
-export const ruleset = new cloudflare.Ruleset("ruleset-main", {
+export const ok8sh_ruleset = new cloudflare.Ruleset("ok8sh-ruleset", {
   kind: "zone",
   name: "default",
   phase: "http_request_firewall_custom",
-  zoneId: process.env.CLOUDFLARE_ACCOUNT_TAG,
+  zoneId: "0d25405508f47412a22635be99b37c46",
   rules: [
     {
       action: 'block',
