@@ -7,3 +7,4 @@ export const ok8sh_zone = new cloudflare.Zone("ok8sh-zone", {
 }, {
   protect: true,
 });
+
