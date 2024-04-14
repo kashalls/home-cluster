@@ -1,7 +1,0 @@
-name: home-cluster
-runtime: nodejs
-description: ""
-config:
-  pulumi:tags:
-    value:
-      pulumi:template: typescript

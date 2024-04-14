@@ -5,6 +5,7 @@
         "@types/node": "^18"
     },
     "dependencies": {
+        "@1password/connect": "^1.4.1",
         "@pulumi/cloudflare": "^5.25.0",
         "@pulumi/pulumi": "^3.0.0"
     }
