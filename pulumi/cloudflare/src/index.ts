@@ -1,5 +1,7 @@
+import * as pulumi from "@pulumi/pulumi";
+
 export * from './bucket'
 export * from './ruleset'
 export * from './zone'
 
-console.log(process.env)
+export const config = new pulumi.Config()
