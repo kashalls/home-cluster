@@ -77,6 +77,7 @@ jobs:
         with:
           command: preview
           stack-name: main
+          diff: true
           comment-on-pr: true
           github-token: "${{ steps.app-token.outputs.token }}"
           work-dir: ${{ matrix.paths }}
