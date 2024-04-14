@@ -6,6 +6,8 @@ on:
   pull_request:
   push:
     branches: ["main"]
+    paths:
+      - pulumi/**/**
 
 jobs:
   changed-infrastructure:
