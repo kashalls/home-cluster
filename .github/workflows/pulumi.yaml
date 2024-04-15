@@ -73,7 +73,7 @@ jobs:
       - run: npm install
         working-directory: ${{ matrix.paths }}
 
-      - uses: pulumi/actions@v3
+      - uses: pulumi/actions@v5
         with:
           command: preview
           stack-name: main
@@ -114,7 +114,7 @@ jobs:
       - run: npm install
         working-directory: ${{ matrix.paths }}
 
-      - uses: pulumi/actions@v3
+      - uses: pulumi/actions@v5
         with:
           command: up
           stack-name: main
