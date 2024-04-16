@@ -19,7 +19,7 @@
 
 ## What is this?
 
-This is the home of the kubernetes cluster I deployed at home. It features a couple of low power consumer machines running [Debian 12](https://www.debian.org/) with [k3s](https://k3s.io/) deployed using my [ansible configuration](/ansible/).
+This is the home of the kubernetes cluster I deployed at home. It features a couple of low power lenovo computers running [Talos](https://www.talos.dev/) which allows seamless bootstraping when combined with my [vyos-config/matchbox](https://github.com/kashalls/vyos-config/blob/main/config-parts/container.sh#L98) config. My NAS is running [Debian 12](https://www.debian.org/) with [k3s](https://k3s.io/) deployed using my [ansible configuration](/ansible/).
 
 This repo serves as the "roadmap" that is automatically updated and deployed thanks to [renovate](https://www.mend.io/renovate/) and [fluxcd](https://fluxcd.io/).
 
