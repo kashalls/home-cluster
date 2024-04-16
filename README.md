@@ -56,10 +56,9 @@ While most of my infrastructure and workloads are self-hosted I do rely upon the
 | [GitHub](https://github.com/)                   | Hosting this repository and continuous integration/deployments    | Free           |
 | [Let's Encrypt](https://letsencrypt.org/)       | Issuing SSL Certificates                                          | Free           |
 | [Migadu](https://migadu.com/)                   | Email hosting                                                     | ~$20/yr        |
-| [NextDNS](https://nextdns.io/)                  | My router DNS server which includes AdBlocking                    | ~$20/yr        |
+| [Pulumi Cloud](https://app.pulumi.com/)         | Resource state management                                         | Free           |
 | [Pushover](https://pushover.net/)               | Kubernetes Alerts and application notifications                   | Free           |
-| [UptimeRobot](https://uptimerobot.com/)         | Monitoring internet connectivity and external facing applications | ~$60/yr        |
-|                                                 |                                                                   | Total: ~$20/mo |
+|                                                 |                                                                   | Total: ~$10/mo |
 ---
 
 
@@ -98,11 +97,11 @@ My kubernetes clusters interact with bind9 using the `RFC2136` standard to sync 
 
 | Device                      | Count | OS Disk Size | Data Disk Size              | Ram  | Operating System | Purpose             |
 |-----------------------------|-------|--------------|-----------------------------|------|------------------|---------------------|
-| Raspberry Pi 4              | 3     | 256GB SSD    |                             | 8GB  | Debian           | Kubernetes Masters  |
-| Lenovo ThinkCentre M900     | 6     | 256GB SSD    | 1TB NVMe (rook-ceph)        | 16GB | Debian           | Kubernetes Workers  |
+| Raspberry Pi 4              | 3     | 256GB SSD    | -                           | 8GB  | Talos            | Raspberry Cluster   |
+| Lenovo ThinkCentre M900     | 6     | 256GB SSD    | 1TB NVMe (rook-ceph)        | 16GB | Talos            | Kubernetes Nodes    |
 | Fran the Fabulous Nas       | 1     | 2x1TB SSD    | 5x8TB (raidz2)              | 64GB | Debian           | NFS + Backup Server |
-| Raspberry Pi 3              | 1     | 32GB (SD)    | -                           | 4GB  | -     | Network KVM         |
-| 1U ??? Box                  | 1     | 256GB SSD    | -                           | 8GB  | VyOS         | Router              |
+| Raspberry Pi 3              | 1     | 32GB (SD)    | -                           | 4GB  | -                | Network KVM         |
+| Supermicro + X470D4U        | 1     | 256GB SSD    | -                           | 8GB  | VyOS             | Router              |
 | USW 24 G1                   | 1     | -            | -                           | -    | -                | 1Gb Switch          |
 | Unifi USP PDU Pro           | 1     | -            | -                           | -    | -                | PDU                 |
 | APC Back-Ups 1500           | 1     | -            | -                           | -    | -                | UPS                 |
