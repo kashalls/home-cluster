@@ -33,3 +33,4 @@ resources:
   - ./rook-ceph.yaml
   - ./stakater.yaml
   - ./stevehipwell.yaml
+  - ./tofu-controller.yaml
