@@ -3,7 +3,7 @@
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
-  name: zigbee2mqtt-restic
+  name: zigbee2mqtt-volsync
   namespace: default
 spec:
   secretStoreRef:
