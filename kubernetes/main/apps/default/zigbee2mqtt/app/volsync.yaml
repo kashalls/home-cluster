@@ -10,7 +10,7 @@ spec:
     kind: ClusterSecretStore
     name: onepassword-connect
   target:
-    name: zigbee2mqtt-restic-secret
+    name: zigbee2mqtt-volsync-secret
     creationPolicy: Owner
     template:
       engineVersion: v2
@@ -36,7 +36,7 @@ spec:
   restic:
     copyMethod: Snapshot
     pruneIntervalDays: 7
-    repository: zigbee2mqtt-restic-secret
+    repository: zigbee2mqtt-volsync-secret
     cacheCapacity: 2Gi
     volumeSnapshotClassName: csi-ceph-blockpool
     storageClassName: ceph-block

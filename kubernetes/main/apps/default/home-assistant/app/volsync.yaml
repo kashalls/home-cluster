@@ -10,7 +10,7 @@ spec:
     kind: ClusterSecretStore
     name: onepassword-connect
   target:
-    name: home-assistant-restic-secret
+    name: home-assistant-volsync-secret
     creationPolicy: Owner
     template:
       engineVersion: v2
@@ -36,7 +36,7 @@ spec:
   restic:
     copyMethod: Snapshot
     pruneIntervalDays: 7
-    repository: home-assistant-restic-secret
+    repository: home-assistant-volsync-secret
     cacheCapacity: 8Gi
     cacheStorageClassName: openebs-hostpath
     cacheAccessModes: ["ReadWriteOnce"]
