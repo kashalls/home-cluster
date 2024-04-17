@@ -41,6 +41,7 @@ spec:
               MINIO_IDENTITY_OPENID_REDIRECT_URI: https://minio.outsideour.casa/oauth_callback
               MINIO_IDENTITY_OPENID_CONFIG_URL: https://id.ok8.sh/application/o/minio/.well-known/openid-configuration
               MINIO_IDENTITY_OPENID_SCOPES: openid,profile,email,minio
+              MINIO_IDENTITY_OPENID_DISPLAY_NAME: "Login with Authentik"
             envFrom:
               - secretRef:
                   name: minio-secret
