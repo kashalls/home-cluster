@@ -125,7 +125,7 @@ spec:
         enabled: true
         ingressClassName: internal
         hosts:
-          - host: &host loki.ok8.sh
+          - host: loki.ok8.sh
             paths:
               - path: /
                 pathType: Prefix
