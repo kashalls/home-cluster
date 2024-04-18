@@ -9,3 +9,4 @@ resources:
   - ./filebrowser/ks.yaml
   - ./kopia/ks.yaml
   - ./minio/ks.yaml
+  - ./sftpgo/ks.yaml
