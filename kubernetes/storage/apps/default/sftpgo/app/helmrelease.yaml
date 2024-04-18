@@ -58,6 +58,7 @@ spec:
               SFTPGO_TELEMETRY__BIND_ADDRESS: 0.0.0.0
               SFTPGO_TELEMETRY__BIND_PORT: &metrics-port 8081
             envFrom: *envFrom
+            args: ['sftpgo', 'serve']
             probes:
               liveness: &probes
                 enabled: true
@@ -117,4 +118,5 @@ spec:
         hostPath: /bigboi/kubernetes/sftp
         globalMounts:
           - path: /srv/sftpgo
+          - path: /var/lib/sftpgo
 
