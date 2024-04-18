@@ -1,0 +1,111 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2beta2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: minio
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    controllers:
+      sftpgo:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/drakkan/sftpgo
+              tag: 2.5.6@sha256:584298589ff92a1fdb5f4b9c5152a4a7de7a58dc95b4606c0074259f86ee9e9c
+            env:
+              TZ: "America/Los_Angeles"
+              SFTPGO_DATA_PROVIDER__DRIVER: postgresql
+              SFTPGO_DATA_PROVIDER__NAME: sftpgo
+              SFTPGO_DATA_PROVIDER__HOST: postgres.ok8.sh
+              SFTPGO_DATA_PROVIDER__PORT: "5432"
+              SFTPGO_SFTPD__BINDINGS__0__ADDRESS: 0.0.0.0
+              SFTPGO_SFTPD__BINDINGS__0__PORT: &sftpd-port 22
+              SFTPGO_HTTPD__BINDINGS__0__ADDRESS: 0.0.0.0
+              SFTPGO_HTTPD__BINDINGS__0__PORT: &httpd-port 8080
+              SFTPGO_HTTPD__BINDINGS__0__OIDC__SCOPES: "openid,profile,email,sftpgo"
+              SFTPGO_HTTPD__BINDINGS__0__OIDC__ROLE_FIELD: "sftpgo_role"
+              SFTPGO_TELEMETRY__BIND_ADDRESS: 0.0.0.0
+              SFTPGO_TELEMETRY__BIND_PORT: &metrics-port 8081
+            envFrom:
+              - secretRef:
+                  name: sftpgo-secret
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /healthz
+                    port: *metrics-port
+                  initialDelaySeconds: 30
+                  periodSeconds: 30
+                  timeoutSeconds: 10
+                  failureThreshold: 6
+              readiness: *probes
+              startup:
+                enabled: false
+            securityContext:
+              runAsUser: 1001
+              runAsGroup: 1001
+              fsGroup: 1001
+              fsGroupChangePolicy: OnRootMismatch
+              supplementalGroups: [100]
+    service:
+      app:
+        controller: sftpgo
+        ports:
+          http:
+            port: *httpd-port
+          sftp:
+            port: *sftpd-port
+          metrics:
+            port: *metrics-port
+    serviceMonitor:
+      app:
+        serviceName: sftpgo
+        endpoints:
+          - port: metrics
+            scheme: http
+            path: /metrics
+            interval: 1m
+            scrapeTimeout: 10s
+    ingress:
+      app:
+        className: internal
+        hosts:
+          - host: &host sftp.outsideour.casa
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - hosts: [*host]
+    persistence:
+      data:
+        hostPathType: Directory
+        type: hostPath
+        hostPath: /bigboi/kubernetes/sftp
+        globalMounts:
+          - path: /data
+
