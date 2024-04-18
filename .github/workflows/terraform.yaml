@@ -17,7 +17,7 @@ jobs:
       packages: write
     steps:
       - name: Generate Token
-        uses: actions/create-github-app-token@e8e39f73bb84fdf315a015fa3104f314c0a258b4 # v1
+        uses: actions/create-github-app-token@7bfa3a4717ef143a604ee0a99d859b8886a96d00 # v1
         id: app-token
         with:
           app-id: "${{ secrets.BOT_APP_ID }}"
@@ -36,7 +36,7 @@ jobs:
         run: brew install fluxcd/tap/flux
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3
+        uses: docker/login-action@e92390c5fb421da1463c202d546fed0ec5c39f20 # v3
         with:
           registry: ghcr.io
           username: "${{ github.actor }}"
