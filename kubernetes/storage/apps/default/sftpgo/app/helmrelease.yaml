@@ -111,16 +111,10 @@ spec:
         tls:
           - hosts: [*host]
     persistence:
-      config:
-        hostPathType: Directory
-        type: hostPath
-        hostPath: /bigboi/kubernetes/sftp/config
-        globalMounts:
-          - path: /etc/sftpgo
       data:
         hostPathType: Directory
         type: hostPath
-        hostPath: /bigboi/kubernetes/sftp/data
+        hostPath: /bigboi/kubernetes/sftp
         globalMounts:
           - path: /data
 
