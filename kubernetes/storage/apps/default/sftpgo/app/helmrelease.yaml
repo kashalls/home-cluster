@@ -42,6 +42,8 @@ spec:
               SFTPGO_SFTPD__BINDINGS__0__PORT: &sftpd-port 22
               SFTPGO_HTTPD__BINDINGS__0__ADDRESS: 0.0.0.0
               SFTPGO_HTTPD__BINDINGS__0__PORT: &httpd-port 8080
+              SFTPGO_HTTPD__BINDINGS__0__OIDC__CONFIG_URL: "https://id.ok8.sh/application/o/sftpgo/"
+              SFTPGO_HTTPD__BINDINGS__0__OIDC__REDIRECT_BASE_URL: "https://sftp.outsideour.casa"
               SFTPGO_HTTPD__BINDINGS__0__OIDC__SCOPES: "openid,profile,email,sftpgo"
               SFTPGO_HTTPD__BINDINGS__0__OIDC__ROLE_FIELD: "sftpgo_role"
               SFTPGO_TELEMETRY__BIND_ADDRESS: 0.0.0.0
