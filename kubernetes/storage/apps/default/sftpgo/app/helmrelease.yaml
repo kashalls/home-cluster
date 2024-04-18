@@ -27,6 +27,14 @@ spec:
       sftpgo:
         annotations:
           reloader.stakater.com/auto: "true"
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16
+            envFrom: &envFrom
+              - secretRef:
+                  name: sftpgo-secret
         containers:
           app:
             image:
@@ -48,9 +56,7 @@ spec:
               SFTPGO_HTTPD__BINDINGS__0__OIDC__ROLE_FIELD: "sftpgo_role"
               SFTPGO_TELEMETRY__BIND_ADDRESS: 0.0.0.0
               SFTPGO_TELEMETRY__BIND_PORT: &metrics-port 8081
-            envFrom:
-              - secretRef:
-                  name: sftpgo-secret
+            envFrom: *envFrom
             probes:
               liveness: &probes
                 enabled: true
