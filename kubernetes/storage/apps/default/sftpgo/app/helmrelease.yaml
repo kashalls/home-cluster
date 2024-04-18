@@ -116,5 +116,5 @@ spec:
         type: hostPath
         hostPath: /bigboi/kubernetes/sftp
         globalMounts:
-          - path: /data
+          - path: /srv/sftpgo
 
