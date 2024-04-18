@@ -6,5 +6,5 @@ metadata:
   name: sagikazarmark
   namespace: kube-system
 spec:
-  interval: 10m0s
+  interval: 5m
   url: https://charts.sagikazarmark.dev
