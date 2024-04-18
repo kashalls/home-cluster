@@ -1,0 +1,9 @@
+
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: skm
+  namespace: kube-system
+spec:
+  interval: 10m0s
+  url: https://charts.sagikazarmark.dev

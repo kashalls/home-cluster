@@ -3,7 +3,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ./authentik.yaml
   - ./backube.yaml
   - ./bitnami.yaml
   - ./bjw-s.yaml
@@ -20,15 +19,12 @@ resources:
   - ./intel.yaml
   - ./jameswynn.yaml
   - ./jetstack.yaml
-  - ./k8s-gateway.yaml
   - ./metrics-server.yaml
-  - ./mongodb.yaml
   - ./node-feature-discovery.yaml
   - ./openebs.yaml
   - ./piraeus.yaml
   - ./postfinance.yaml
   - ./prometheus-community.yaml
-  - ./redis-operator.yaml
-  - ./rook-ceph.yaml
+  - ./sagikazarmark.yaml
   - ./stakater.yaml
   - ./tailscale.yaml
