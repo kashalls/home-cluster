@@ -107,7 +107,7 @@ spec:
               URLS_LENGTH: "6"
               WEBSITE_TITLE: "Zipline"
               WEBSITE_SHOW_FILES_PER_USER: "false"
-              WEBSITE_EXTERNAL_LINKS: '[{"label":"Powered by Zipline","link":"https://github.com/diced/zipline"}]'
+              WEBSITE_EXTERNAL_LINKS: '[{"name":"Powered by Zipline","url":"https://github.com/diced/zipline"}]'
               WEBSITE_SHOW_VERSION: "true"
               WEBSITE_DISABLE_MEDIA_PREVIEW: "false"
             envFrom: *envFrom
