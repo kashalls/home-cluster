@@ -29,7 +29,7 @@ spec:
               tag: 16.2@sha256:3436dfbbc2799332a01361e007e3b408d016cfc235261e1caccc65e6edadf516
             envFrom: &envFrom
               - secretRef:
-                  name: zipline-secret
+                  name: zipline-v4-secret
         containers:
           app:
             image:
@@ -41,12 +41,12 @@ spec:
               CORE_SECRET:
                 valueFrom:
                   secretKeyRef:
-                    name: zipline-secret
+                    name: zipline-v4-secret
                     key: CORE_SECRET
               CORE_DATABASE_URL:
                 valueFrom:
                   secretKeyRef:
-                    name: zipline-secret
+                    name: zipline-v4-secret
                     key: CORE_DATABASE_URL
               # TODO: 2023-06-03 add OAuth when Authentik support is merged: https://github.com/diced/zipline/discussions/321 and https://github.com/diced/zipline/pull/372/
               DATASOURCE_S3_ACCESS_KEY_ID:
