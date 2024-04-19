@@ -109,7 +109,7 @@ spec:
         additionalAlertManagerConfigs:
           - static_configs:
               - targets:
-                  - alertmanager.ok8.sh
+                  - alert-manager.ok8.sh
         replicas: 1
         replicaExternalLabelName: __replica__
         scrapeInterval: 1m # Must match interval in Grafana Helm chart
