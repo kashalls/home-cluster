@@ -49,39 +49,7 @@ spec:
                     name: zipline-v4-secret
                     key: CORE_DATABASE_URL
               # TODO: 2023-06-03 add OAuth when Authentik support is merged: https://github.com/diced/zipline/discussions/321 and https://github.com/diced/zipline/pull/372/
-              DATASOURCE_S3_ACCESS_KEY_ID:
-                valueFrom:
-                  secretKeyRef:
-                    name: zipline-v4
-                    key: AWS_ACCESS_KEY_ID
-              DATASOURCE_S3_SECRET_ACCESS_KEY:
-                valueFrom:
-                  secretKeyRef:
-                    name: zipline-v4
-                    key: AWS_SECRET_ACCESS_KEY
-              DATASOURCE_TYPE: "s3"
-              DATASOURCE_S3_BUCKET:
-                valueFrom:
-                  configMapKeyRef:
-                    name: zipline-v4
-                    key: BUCKET_NAME
-              DATASOURCE_S3_ENDPOINT:
-                valueFrom:
-                  configMapKeyRef:
-                    name: zipline-v4
-                    key: BUCKET_HOST
-              DATASOURCE_S3_PORT:
-                valueFrom:
-                  configMapKeyRef:
-                    name: zipline-v4
-                    key: BUCKET_PORT
-              DATASOURCE_S3_REGION:
-                valueFrom:
-                  configMapKeyRef:
-                    name: zipline-v4
-                    key: BUCKET_REGION
-              DATASOURCE_S3_FORCE_S3_PATH: "true" # TODO: 2023-06-03 current in-cluster RGW doesn't use subdomain (VirtualHost) based S3 buckets yet, it uses path-based
-              DATASOURCE_S3_USE_SSL: "false"
+              DATASORUCE_LOCAL_DIRECTORY: &datasource-directory /data
               CORE_RETURN_HTTPS: "true"
               CORE_HTTPS: "true"
               CORE_HOST: "0.0.0.0"
@@ -149,3 +117,8 @@ spec:
                   port: http
         tls:
           - hosts: [*host]
+    persistence:
+      data:
+        type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
+        size: 25Gi
