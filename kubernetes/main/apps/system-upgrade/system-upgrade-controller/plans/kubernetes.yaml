@@ -1,12 +1,11 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/upgrade.cattle.io/plan_v1.json
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/upgrade.cattle.io/plan_v1.json
 apiVersion: upgrade.cattle.io/v1
 kind: Plan
 metadata:
   name: kubernetes
 spec:
-  # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
-  version: v1.30.0
+  version: ${KUBERNETES_VERSION}
   serviceAccountName: system-upgrade
   secrets:
     - name: talos
@@ -28,7 +27,7 @@ spec:
       operator: Exists
       effect: NoSchedule
   prepare: &prepare
-    image: ghcr.io/siderolabs/talosctl:v1.6.7
+    image: ghcr.io/siderolabs/talosctl:${TALOS_VERSION}
     envs:
       - name: NODE_IP
         valueFrom:
