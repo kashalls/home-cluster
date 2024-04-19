@@ -30,24 +30,20 @@ spec:
             envFrom: &envFrom
               - secretRef:
                   name: zipline-v4-secret
+          zipline-db:
+            image:
+              repository: &zipline-repo ghcr.io/diced/zipline
+              tag: &zipline-tag v4@sha256:dbc0a97c0dd2be16468a26304f5450d70cf15f8a7950eae3d761b1be48fd12af
+            envFrom: *envFrom
+            args: ["pnpm", "prisma", "db", "push"]
         containers:
           app:
             image:
-              repository: ghcr.io/diced/zipline
-              tag: v4@sha256:dbc0a97c0dd2be16468a26304f5450d70cf15f8a7950eae3d761b1be48fd12af
+              repository: *zipline-repo
+              tag: *zipline-tag
             env:
               DEBUG: "zipline"
               TZ: "America/Los_Angeles"
-              CORE_SECRET:
-                valueFrom:
-                  secretKeyRef:
-                    name: zipline-v4-secret
-                    key: CORE_SECRET
-              CORE_DATABASE_URL:
-                valueFrom:
-                  secretKeyRef:
-                    name: zipline-v4-secret
-                    key: CORE_DATABASE_URL
               # TODO: 2023-06-03 add OAuth when Authentik support is merged: https://github.com/diced/zipline/discussions/321 and https://github.com/diced/zipline/pull/372/
               DATASOURCE_LOCAL_DIRECTORY: "/data"
               CORE_RETURN_HTTPS: "true"
