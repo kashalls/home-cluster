@@ -30,12 +30,12 @@ spec:
             envFrom: &envFrom
               - secretRef:
                   name: zipline-v4-secret
-          zipline-db:
-            image:
-              repository: &zipline-repo ghcr.io/diced/zipline
-              tag: &zipline-tag v4@sha256:dbc0a97c0dd2be16468a26304f5450d70cf15f8a7950eae3d761b1be48fd12af
-            envFrom: *envFrom
-            args: ["pnpm", "dlx", "prisma", "db", "push", "--accept-data-loss"]
+          #zipline-db:
+          # image:
+          #    repository: &zipline-repo ghcr.io/diced/zipline
+          #    tag: &zipline-tag v4@sha256:dbc0a97c0dd2be16468a26304f5450d70cf15f8a7950eae3d761b1be48fd12af
+          #  envFrom: *envFrom
+          #  args: ["pnpm", "dlx", "prisma", "db", "push", "--accept-data-loss"]
         containers:
           app:
             image:
