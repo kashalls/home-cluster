@@ -31,7 +31,7 @@ spec:
           app:
             image:
               repository: docker.io/kopia/kopia
-              tag: 20240419.0.155045@sha256:9a994cad7139d04dbea33b1b1d460f09aafd7b40c0dc990b9a24f322a2dc9217
+              tag: 20240424.0.175026@sha256:f3566e465e3178adb758524470f19e87c8da1c16f023ef9ce1fe22c81d984c22
             env:
               TZ: America/Los_Angeles
             envFrom:
