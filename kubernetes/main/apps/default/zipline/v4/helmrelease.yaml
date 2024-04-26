@@ -40,7 +40,7 @@ spec:
           app:
             image:
               repository: ghcr.io/diced/zipline
-              tag: v4@sha256:dbc0a97c0dd2be16468a26304f5450d70cf15f8a7950eae3d761b1be48fd12af
+              tag: v4@sha256:091ff6a6cffccb9db7550607544fc1c41285836a9777c95fc1ecf3f9fb973b8e
             env:
               DEBUG: "zipline"
               TZ: "America/Los_Angeles"
