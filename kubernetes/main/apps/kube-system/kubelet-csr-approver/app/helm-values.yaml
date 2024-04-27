@@ -1,2 +1,3 @@
 ---
-providerRegex: (astro)|(august)|(delta)|(jera)|(leafions)|(miah)$
+providerRegex: ^(astro)|(august)|(delta)|(jera)|(leafions)|(miah)$
+bypassDnsResolution: true
