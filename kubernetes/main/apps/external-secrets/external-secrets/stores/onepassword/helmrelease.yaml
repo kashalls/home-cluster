@@ -114,7 +114,7 @@ spec:
             fsGroup: 999
             fsGroupChangePolicy: OnRootMismatch
     service:
-      app:
+      api:
         controller: onepassword-connect
         ports:
           http:
