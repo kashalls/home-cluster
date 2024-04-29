@@ -1,8 +1,8 @@
-resource "cloudflare_ruleset" "main" {
+resource "cloudflare_ruleset" "terraform_managed_resource_929c7976ab41464cb8d3946ca61ae321" {
   kind    = "zone"
   name    = "default"
   phase   = "http_request_firewall_custom"
-  zone_id = data.cloudflare_zone.domain.id
+  zone_id = "0d25405508f47412a22635be99b37c46"
   rules {
     action      = "block"
     description = "Block Countries"
@@ -20,7 +20,7 @@ resource "cloudflare_ruleset" "main" {
     action_parameters {
       ruleset = "current"
     }
-    description = "Allow github flux api"
+    description = "Allow Github Access to Flux Webhook"
     enabled     = true
     expression  = "(http.host eq \"flux-webhook.ok8.sh\" and ip.geoip.asnum eq 36459)"
     logging {
