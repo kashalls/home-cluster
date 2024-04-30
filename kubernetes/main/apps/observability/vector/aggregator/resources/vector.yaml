@@ -143,3 +143,5 @@ sinks:
     out_of_order_action: "rewrite_timestamp"
     remove_label_fields: true
     remove_timestamp: true
+    labels:
+      hostname: '{{ host }}'
