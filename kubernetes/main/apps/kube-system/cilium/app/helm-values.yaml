@@ -18,6 +18,7 @@ containerRuntime:
 devices:
   - enp+
   - eno+
+  - enx+
 enableRuntimeDeviceDetection: true
 endpointRoutes:
   enabled: true
