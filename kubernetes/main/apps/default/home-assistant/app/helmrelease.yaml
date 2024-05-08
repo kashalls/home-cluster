@@ -82,7 +82,7 @@ spec:
           - hosts: [*host]
     persistence:
       config:
-        existingClaim: home-assistant
+        existingClaim: home-assistant-config
       logs:
         type: emptyDir
         globalMounts:
