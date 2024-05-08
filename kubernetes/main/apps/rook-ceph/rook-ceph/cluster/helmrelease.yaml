@@ -96,8 +96,10 @@ spec:
             requiredDuringSchedulingIgnoredDuringExecution:
               nodeSelectorTerms:
                 - matchExpressions:
-                    - key: node-role.kubernetes.io/worker
-                      operator: Exists
+                    - key: kubernetes.io/arch=amd64
+                      operator: In
+                      values:
+                        - amd64
         mon: *placement
     cephBlockPools:
       - name: ceph-blockpool
