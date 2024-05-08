@@ -1,8 +1,0 @@
-{
-    "id": "phish",
-    "name": "phish",
-    "profile": "talos-raspberry-controller",
-    "selector": {
-        "mac": "e4:5f:01:50:40:31"
-    }
-}

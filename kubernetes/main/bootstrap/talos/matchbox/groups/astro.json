@@ -1,7 +1,7 @@
 {
     "id": "astro",
     "name": "astro",
-    "profile": "talos-controller",
+    "profile": "talos-worker",
     "selector": {
         "mac": "00:23:24:b0:30:0b"
     }

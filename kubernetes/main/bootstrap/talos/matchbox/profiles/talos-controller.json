@@ -2,20 +2,18 @@
   "id": "talos-controller",
   "name": "talos-controller",
   "boot": {
-    "kernel": "/assets/kernel-amd64",
+    "kernel": "/assets/kernel-arm64",
     "initrd": [
-      "/assets/initramfs-amd64.xz"
+      "/assets/initramfs-arm64.xz"
     ],
     "args": [
-      "initrd=initramfs-amd64.xz",
       "init_on_alloc=1",
       "slab_nomerge",
       "pti=on",
-      "console=tty0",
-      "console=ttyS0",
-      "printk.devkmsg=on",
+      "talos.board=rpi_4",
       "talos.platform=metal",
-      "talos.config=http://10.5.0.8/assets/controller.yaml"
+      "talos.shutdown=poweroff",
+      "talos.config=http://10.5.0.8/assets/main/controller.yaml"
     ]
   }
 }

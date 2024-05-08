@@ -1,7 +1,7 @@
 {
     "id": "delta",
     "name": "delta",
-    "profile": "talos-controller",
+    "profile": "talos-worker",
     "selector": {
         "mac": "00:23:24:b0:30:47"
     }

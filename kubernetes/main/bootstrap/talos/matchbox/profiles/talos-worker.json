@@ -15,7 +15,7 @@
         "console=ttyS0",
         "printk.devkmsg=on",
         "talos.platform=metal",
-        "talos.config=http://10.5.0.8/assets/worker.yaml"
+        "talos.config=http://10.5.0.8/assets/main/worker.yaml"
       ]
     }
   }
