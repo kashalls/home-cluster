@@ -46,7 +46,7 @@ spec:
                 memory: 256Mi
         pod:
           nodeSelector:
-            nesdr.feature.node.kubernetes.io/rtlamr: "true"
+            rtlamr.feature.node.kubernetes.io/rtlamr: "true"
     persistence:
       config-file:
         type: secret
