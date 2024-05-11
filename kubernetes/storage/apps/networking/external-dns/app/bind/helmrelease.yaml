@@ -29,9 +29,9 @@ spec:
     provider: rfc2136
     env:
       - name: EXTERNAL_DNS_RFC2136_HOST
-        value: "10.5.0.3"
+        value: "10.1.0.2"
       - name: EXTERNAL_DNS_RFC2136_PORT
-        value: "53"
+        value: "5353"
       - name: EXTERNAL_DNS_RFC2136_ZONE
         value: outsideour.casa
       - name: EXTERNAL_DNS_RFC2136_TSIG_AXFR
