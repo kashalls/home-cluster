@@ -35,7 +35,7 @@ spec:
           main:
             image:
               repository: ghcr.io/coder/code-server
-              tag: 4.89.0
+              tag: 4.89.1
             env:
               TZ: America/Los_Angeles
             args:
