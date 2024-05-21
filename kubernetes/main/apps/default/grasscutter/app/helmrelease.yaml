@@ -34,7 +34,7 @@ spec:
           app:
             image:
               repository: ghcr.io/grasscutters/grasscutter
-              tag: development@sha256:d3a49b07a342111a638fcb652361fe2a26bdd2a55796c07fb265bdce0f2f639f
+              tag: development@sha256:8cb0d3db5a62af4fe0d654f78d9c098eb39b7448241925fef49f58f2c6e2763e
         pod:
           securityContext:
             runAsUser: 568

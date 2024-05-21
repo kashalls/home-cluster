@@ -9,11 +9,11 @@ vars:
   HOME_SERVICES_MATCHBOX_DIR: /srv/matchbox
 
   # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
-  TALOS_VERSION: v1.7.1
+  TALOS_VERSION: v1.7.2
   TALOS_AMD64_SCHEMATIC_ID: d715f723f882b1e1e8063f1b89f237dcc0e3bd000f9f970243af59c8baae0100
   TALOS_ARM64_SCHEMATIC_ID: 69c0f32290e5f1abe266a219fbee33ff9f659fd49820452e47d626b86e292b4a
   # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
-  KUBERNETES_VERSION: v1.30.0
+  KUBERNETES_VERSION: v1.30.1
   TALOS_SCRIPTS_DIR: "{{.ROOT_DIR}}/.taskfiles/Talos/scripts"
 
 tasks:
