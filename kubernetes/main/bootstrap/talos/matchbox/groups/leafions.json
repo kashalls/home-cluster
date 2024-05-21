@@ -1,8 +1,8 @@
 {
-    "id": "leafions",
-    "name": "leafions",
-    "profile": "talos-worker",
-    "selector": {
-        "mac": "6c:0b:84:a8:f9:25"
-    }
+  "id": "leafions",
+  "name": "leafions",
+  "profile": "leafions",
+  "selector": {
+    "mac": "6c:0b:84:a8:f9:25"
+  }
 }

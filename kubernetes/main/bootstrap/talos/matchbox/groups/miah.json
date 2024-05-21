@@ -1,8 +1,8 @@
 {
-    "id": "miah",
-    "name": "miah",
-    "profile": "talos-worker",
-    "selector": {
-        "mac": "00:23:24:9e:c2:fb"
-    }
+  "id": "miah",
+  "name": "miah",
+  "profile": "miah",
+  "selector": {
+    "mac": "00:23:24:9e:c2:fb"
+  }
 }

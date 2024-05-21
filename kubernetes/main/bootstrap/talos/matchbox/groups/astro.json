@@ -1,8 +1,8 @@
 {
-    "id": "astro",
-    "name": "astro",
-    "profile": "talos-worker",
-    "selector": {
-        "mac": "00:23:24:b0:30:0b"
-    }
+  "id": "astro",
+  "name": "astro",
+  "profile": "astro",
+  "selector": {
+    "mac": "00:23:24:b0:30:0b"
+  }
 }
