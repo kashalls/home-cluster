@@ -39,7 +39,7 @@ spec:
           app:
             image:
               repository: ghcr.io/drakkan/sftpgo
-              tag: v2.5.6@sha256:584298589ff92a1fdb5f4b9c5152a4a7de7a58dc95b4606c0074259f86ee9e9c
+              tag: v2.6.0@sha256:757034b295bce1ee59677c70a0af7067299938ce726940a9ade347e4b9205374
             env:
               TZ: "America/Los_Angeles"
               SFTPGO_DATA_PROVIDER__DRIVER: postgresql
