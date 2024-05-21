@@ -3,16 +3,15 @@
 version: "3"
 
 vars:
-  VYOS_ADDR: dreamweaver.outsideour.casa
-  VYOS_USER: kashall
-  VYOS_MATCHBOX_DIR: /config/containers/matchbox/data
-  VYOS_MATCHBOX_GROUPS_DIR: "{{.VYOS_MATCHBOX_DIR}}/groups"
-  VYOS_MATCHBOX_PROFILES_DIR: "{{.VYOS_MATCHBOX_DIR}}/profiles"
-  VYOS_MATCHBOX_ASSETS_DIR: "{{.VYOS_MATCHBOX_DIR}}/assets"
-  VYOS_MATCHBOX_ADDR: matchbox.outsideour.casa
+  # Ref: https://github.com/onedr0p/home-service
+  HOME_SERVICES_ADDR: 10.1.0.2
+  HOME_SERVICES_USER: kashall
+  HOME_SERVICES_MATCHBOX_DIR: /srv/matchbox
+
   # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
   TALOS_VERSION: v1.7.1
-  TALOS_SCHEMATIC_ID: d715f723f882b1e1e8063f1b89f237dcc0e3bd000f9f970243af59c8baae0100
+  TALOS_AMD64_SCHEMATIC_ID: d715f723f882b1e1e8063f1b89f237dcc0e3bd000f9f970243af59c8baae0100
+  TALOS_ARM64_SCHEMATIC_ID: 69c0f32290e5f1abe266a219fbee33ff9f659fd49820452e47d626b86e292b4a
   # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
   KUBERNETES_VERSION: v1.30.0
   TALOS_SCRIPTS_DIR: "{{.ROOT_DIR}}/.taskfiles/Talos/scripts"
@@ -38,7 +37,7 @@ tasks:
 
   bootstrap-etcd:
     desc: Bootstrap Etcd
-    cmd: until talosctl --context {{.cluster}} --nodes 10.69.0.6 --endpoints 10.69.0.6 bootstrap; do sleep 10; done
+    cmd: until talosctl --context {{.cluster}} --nodes 10.69.0.3 --endpoints 10.69.0.3 bootstrap; do sleep 10; done
     vars:
       controller:
         sh: talosctl --context {{.cluster}} config info --output json | jq --raw-output '.endpoints[0]'
@@ -51,9 +50,9 @@ tasks:
   bootstrap-apps:
     desc: Bootstrap core apps needed for Talos
     cmds:
-      - until kubectl --context {{.cluster}} wait --for=condition=Ready=False nodes --all --timeout=10m; do sleep 10; done
+      #- until kubectl --context {{.cluster}} wait --for=condition=Ready=False nodes --all --timeout=10m; do sleep 10; done
       - helmfile --quiet --kube-context {{.cluster}} --file {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/apps/helmfile.yaml apply --skip-diff-on-install --suppress-diff
-      - until kubectl --context {{.cluster}} wait --for=condition=Ready nodes --all --timeout=10m; do sleep 10; done
+      #- until kubectl --context {{.cluster}} wait --for=condition=Ready nodes --all --timeout=10m; do sleep 10; done
     requires:
       vars: ["cluster"]
     preconditions:
@@ -77,23 +76,23 @@ tasks:
 
   apply-config:
     desc: Apply Talos configuration to a node
-    cmd: |
-      sops -d {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/matchbox/assets/{{.role | replace "controlplane" "controller"}}.secret.sops.yaml | \
-          envsubst | \
-              talosctl --context {{.cluster}} apply-config --mode=reboot --nodes {{.node}} --file /dev/stdin
     env:
       TALOS_VERSION: "{{.TALOS_VERSION}}"
       TALOS_SCHEMATIC_ID: "{{.TALOS_SCHEMATIC_ID}}"
       KUBERNETES_VERSION: "{{.KUBERNETES_VERSION}}"
+    cmd: |
+      sops -d {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/matchbox/assets/{{.hostname}}.secret.sops.yaml | \
+          envsubst | \
+              talosctl --context {{.cluster}} apply-config --mode={{.mode}} --nodes {{.node}} --file /dev/stdin
     vars:
-      role:
-        sh: talosctl --context {{.cluster}} --nodes {{.node}} get machineconfig -o jsonpath='{.spec.machine.type}'
+      mode: '{{.mode | default "no-reboot"}}'
+      hostname:
+        sh: talosctl --context {{.cluster}} --nodes {{.node}} get machineconfig -o jsonpath='{.spec.machine.network.hostname}'
     requires:
       vars: ["cluster", "node"]
     preconditions:
       - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/talosconfig
-      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/matchbox/assets/controller.secret.sops.yaml
-      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/matchbox/assets/worker.secret.sops.yaml
+      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/matchbox/assets/{{.hostname}}.secret.sops.yaml
       - talosctl --context {{.cluster}} --nodes {{.node}} get machineconfig >/dev/null 2>&1
 
   upgrade:
@@ -176,25 +175,24 @@ tasks:
     desc: Bootstrap required Matchbox configuration to Vyos for PXE Boot
     dir: "{{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/matchbox"
     cmds:
-      - ssh -l {{.VYOS_USER}} {{.VYOS_ADDR}} "sudo mkdir -p {{.VYOS_MATCHBOX_DIR}}/{groups,profiles,assets}"
-      - ssh -l {{.VYOS_USER}} {{.VYOS_ADDR}} "sudo chown -R {{.VYOS_USER}}:users {{.VYOS_MATCHBOX_DIR}}/{groups,profiles,assets}"
       - for: ["kernel-amd64", "initramfs-amd64.xz"]
         cmd: |
-          curl -skL https://factory.talos.dev/image/{{.TALOS_SCHEMATIC_ID}}/{{.TALOS_VERSION}}/{{.ITEM}} | \
-              curl -skT - -u "{{.VYOS_USER}}:" \
-                  sftp://{{.VYOS_ADDR}}/{{.VYOS_MATCHBOX_ASSETS_DIR}}/{{.ITEM}}
-      - for: ["controller.secret.sops.yaml", "worker.secret.sops.yaml"]
+          curl -skL https://factory.talos.dev/image/{{.TALOS_AMD64_SCHEMATIC_ID}}/{{.TALOS_VERSION}}/{{.ITEM}} | \
+              curl -skT - -u "{{.HOME_SERVICES_USER}}:" \
+                  sftp://{{.HOME_SERVICES_ADDR}}/{{.HOME_SERVICES_MATCHBOX_DIR}}/assets/{{.ITEM}}
+      - for: ["initramfs-arm64.xz", "kernel-arm64"]
         cmd: |
-          sops -d assets/{{.ITEM}} | \
-              envsubst | curl -skT - -u "{{.VYOS_USER}}:" \
-                  sftp://{{.VYOS_ADDR}}/{{.VYOS_MATCHBOX_ASSETS_DIR}}/{{.cluster}}/{{.ITEM | replace ".secret.sops.yaml" "{{.cluster}}.yaml"}}
-      - find ./groups -type f | xargs -I{} curl -skT {} -u "{{.VYOS_USER}}:" sftp://{{.VYOS_ADDR}}/{{.VYOS_MATCHBOX_GROUPS_DIR}}/
-      - find ./profiles -type f | xargs -I{} curl -skT {} -u "{{.VYOS_USER}}:" sftp://{{.VYOS_ADDR}}/{{.VYOS_MATCHBOX_PROFILES_DIR}}/
-      - ssh -l {{.VYOS_USER}} {{.VYOS_ADDR}} -t /opt/vyatta/bin/vyatta-op-cmd-wrapper "restart container matchbox"
-      - curl --silent --output /dev/null --connect-timeout 10 --retry 10 --retry-delay 2 http://{{.VYOS_MATCHBOX_ADDR}}/assets/{{.cluster}}/controller.yaml
+          curl -skL https://factory.talos.dev/image/{{.TALOS_AMD64_SCHEMATIC_ID}}/{{.TALOS_VERSION}}/{{.ITEM}} | \
+              curl -skT - -u "{{.HOME_SERVICES_USER}}:" \
+                  sftp://{{.HOME_SERVICES_ADDR}}/{{.HOME_SERVICES_MATCHBOX_DIR}}/assets/{{.ITEM}}
+      - find ./assets -type f | xargs -I{} sh -c "sops -d {} | envsubst | curl -skT - -u "{{.HOME_SERVICES_USER}}:" sftp://{{.HOME_SERVICES_ADDR}}/{{.HOME_SERVICES_MATCHBOX_DIR}}/assets/{{.cluster}}/\$(basename {} | sed 's/\.secret\.sops//')"
+      - find ./groups -type f | xargs -I{} curl -skT {} -u "{{.HOME_SERVICES_USER}}:" sftp://{{.HOME_SERVICES_ADDR}}/{{.HOME_SERVICES_MATCHBOX_DIR}}/groups/
+      - find ./profiles -type f | xargs -I{} curl -skT {} -u "{{.HOME_SERVICES_USER}}:" sftp://{{.HOME_SERVICES_ADDR}}/{{.HOME_SERVICES_MATCHBOX_DIR}}/profiles/
+      - ssh -l {{.HOME_SERVICES_USER}} {{.HOME_SERVICES_ADDR}} "sudo systemctl restart matchbox"
     env:
       TALOS_VERSION: "{{.TALOS_VERSION}}"
-      TALOS_SCHEMATIC_ID: "{{.TALOS_SCHEMATIC_ID}}"
+      TALOS_ARM64_SCHEMATIC_ID: "{{.TALOS_ARM64_SCHEMATIC_ID}}"
+      TALOS_AMD64_SCHEMATIC_ID: "{{.TALOS_AMD64_SCHEMATIC_ID}}"
       KUBERNETES_VERSION: "{{.KUBERNETES_VERSION}}"
     requires:
       vars: ["cluster"]
