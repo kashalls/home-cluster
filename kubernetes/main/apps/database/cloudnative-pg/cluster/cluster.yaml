@@ -17,7 +17,7 @@ spec:
   enableSuperuserAccess: true
   bootstrap:
     recovery:
-      source: &previousCluster postgres-v16
+      source: &previousCluster postgres-v17
   postgresql:
     parameters:
       max_connections: "600"
@@ -32,7 +32,7 @@ spec:
         maxParallel: 8
       destinationPath: s3://cloudnative-pg-v1/
       endpointURL: https://${CLOUDFLARE_TUNNEL_ACCOUNT_ID}.r2.cloudflarestorage.com
-      serverName: &currentCluster postgres-v17
+      serverName: &currentCluster postgres-v18
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
