@@ -24,24 +24,25 @@ spec:
       retries: 3
   values:
     fullnameOverride: *app
-    provider: webhook
-    webhook:
-      image:
-        repository: ghcr.io/kashalls/external-dns-unifi-webhook
-        tag: 0.0.1@sha256:7935c71656de7dd1ae645825442e027a05617ae3f4b4076ce057189f1a6debae
-      env:
-        - name: UNIFI_HOST
-          value: 10.1.0.131
-        - name: UNIFI_EXTERNAL_DNS_USER
-          valueFrom:
-            secretKeyRef:
-              name: &secret external-dns-unifi-secret
-              key: UNIFI_EXTERNAL_DNS_USER
-        - name: UNIFI_EXTERNAL_DNS_PASS
-          valueFrom:
-            secretKeyRef:
-              name: *secret
-              key: UNIFI_EXTERNAL_DNS_PASS
+    provider:
+      name: webhook
+      webhook:
+        image:
+          repository: ghcr.io/kashalls/external-dns-unifi-webhook
+          tag: 0.0.1@sha256:7935c71656de7dd1ae645825442e027a05617ae3f4b4076ce057189f1a6debae
+        env:
+          - name: UNIFI_HOST
+            value: 10.1.0.131
+          - name: UNIFI_EXTERNAL_DNS_USER
+            valueFrom:
+              secretKeyRef:
+                name: &secret external-dns-unifi-secret
+                key: UNIFI_EXTERNAL_DNS_USER
+          - name: UNIFI_EXTERNAL_DNS_PASS
+            valueFrom:
+              secretKeyRef:
+                name: *secret
+                key: UNIFI_EXTERNAL_DNS_PASS
     policy: sync
     sources:
       - ingress
