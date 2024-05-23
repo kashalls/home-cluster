@@ -42,6 +42,13 @@ spec:
             secretKeyRef:
               name: *secret
               key: UNIFI_EXTERNAL_DNS_PASS
+      serviceMonitor:
+        interval: 30m
+        scheme: http
+        tlsConfig: {}
+        scrapeTimeout: 1h
+        metricRelabelings: []
+        relabelings: []
     policy: sync
     sources:
       - ingress
