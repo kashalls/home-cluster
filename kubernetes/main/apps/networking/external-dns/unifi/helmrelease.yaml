@@ -33,16 +33,16 @@ spec:
         env:
           - name: UNIFI_HOST
             value: 10.1.0.131
-          - name: UNIFI_EXTERNAL_DNS_USER
+          - name: UNIFI_USER
             valueFrom:
               secretKeyRef:
                 name: &secret external-dns-unifi-secret
-                key: UNIFI_EXTERNAL_DNS_USER
-          - name: UNIFI_EXTERNAL_DNS_PASS
+                key: UNIFI_USER
+          - name: UNIFI_PASS
             valueFrom:
               secretKeyRef:
                 name: *secret
-                key: UNIFI_EXTERNAL_DNS_PASS
+                key: UNIFI_PASS
     policy: sync
     sources:
       - ingress
