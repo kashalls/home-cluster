@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app external-dns-bind
+  name: &app external-dns-unifi
   namespace: flux-system
 spec:
   targetNamespace: networking
@@ -12,7 +12,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: external-secrets-stores
-  path: ./kubernetes/main/apps/networking/external-dns/bind
+  path: ./kubernetes/main/apps/networking/external-dns/unifi
   prune: false
   sourceRef:
     kind: GitRepository

@@ -1,0 +1,58 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app external-dns-unifi
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: external-dns
+      version: 1.14.4
+      sourceRef:
+        kind: HelmRepository
+        name: external-dns
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    fullnameOverride: *app
+    provider: webhook
+    webhook:
+      image:
+        repository: ghcr.io/kashalls/external-dns-unifi-webhook
+        tag: 0.0.1@sha256:7935c71656de7dd1ae645825442e027a05617ae3f4b4076ce057189f1a6debae
+      env:
+        - name: UNIFI_HOST
+          value: 10.1.0.131
+        - name: UNIFI_EXTERNAL_DNS_USER
+          valueFrom:
+            secretKeyRef:
+              name: &secret external-dns-unifi-secret
+              key: UNIFI_EXTERNAL_DNS_USER
+        - name: UNIFI_EXTERNAL_DNS_PASS
+          valueFrom:
+            secretKeyRef:
+              name: *secret
+              key: UNIFI_EXTERNAL_DNS_PASS
+    policy: sync
+    sources:
+      - ingress
+      - service
+    txtOwnerId: default
+    txtPrefix: k8s.
+    domainFilters:
+      - ok8.sh
+    excludeDomains:
+      - internal
+    serviceMonitor:
+      enabled: true
+    podAnnotations:
+      secret.reloader.stakater.com/reload: *secret
