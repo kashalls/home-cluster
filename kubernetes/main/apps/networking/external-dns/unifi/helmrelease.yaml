@@ -26,10 +26,11 @@ spec:
     fullnameOverride: *app
     provider:
       name: webhook
+      logLevel: debug
       webhook:
         image:
           repository: ghcr.io/kashalls/external-dns-unifi-webhook
-          tag: main@sha256:7b4e1c585caee48bf52ebfc816f0e77bb81b9f4aa6b8ebcdeba753135467e5d3
+          tag: main@sha256:d3ce8cf20e2063e600db8d329ccbd007d6a0a50c4425d8f759d6c571305e5d83
         env:
           - name: UNIFI_HOST
             value: "https://10.1.0.131"
