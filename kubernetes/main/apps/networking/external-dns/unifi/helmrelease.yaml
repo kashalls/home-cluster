@@ -24,9 +24,9 @@ spec:
       retries: 3
   values:
     fullnameOverride: *app
+    logLevel: debug
     provider:
       name: webhook
-      logLevel: debug
       webhook:
         image:
           repository: ghcr.io/kashalls/external-dns-unifi-webhook
