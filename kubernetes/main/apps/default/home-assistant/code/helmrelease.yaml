@@ -69,6 +69,8 @@ spec:
       main:
         enabled: true
         className: internal
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "internal.ok8.sh"
         hosts:
           - host: &host hass-code.ok8.sh
             paths:

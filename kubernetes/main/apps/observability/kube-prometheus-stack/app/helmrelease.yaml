@@ -39,6 +39,8 @@ spec:
         enabled: true
         pathType: Prefix
         ingressClassName: internal
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "internal.ok8.sh"
         hosts:
           - &host alert-manager.ok8.sh
         tls:
@@ -94,6 +96,8 @@ spec:
     prometheus:
       ingress:
         enabled: true
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "internal.ok8.sh"
         ingressClassName: internal
         pathType: Prefix
         hosts:

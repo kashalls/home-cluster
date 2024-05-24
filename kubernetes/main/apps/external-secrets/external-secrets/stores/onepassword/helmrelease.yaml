@@ -122,6 +122,8 @@ spec:
     ingress:
       api:
         className: internal
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "internal.ok8.sh"
         hosts:
           - host: &host "onepassword-connect.ok8.sh"
             paths:

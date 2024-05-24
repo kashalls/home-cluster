@@ -89,6 +89,8 @@ spec:
       ingress:
         enabled: true
         ingressClassName: internal
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "internal.ok8.sh"
         hosts:
           - &host thanos.ok8.sh
         tls:

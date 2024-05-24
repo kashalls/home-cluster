@@ -116,6 +116,8 @@ spec:
     ingress:
       app:
         className: internal
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "internal.ok8.sh"
         hosts:
           - host: &host "zigbee.ok8.sh"
             paths:

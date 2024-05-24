@@ -35,6 +35,8 @@ spec:
     ingress:
       dashboard:
         ingressClassName: internal
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "internal.ok8.sh"
         host:
           name: &host rook.ok8.sh
           path: /
@@ -216,6 +218,8 @@ spec:
         ingress:
           enabled: true
           ingressClassName: internal
+          annotations:
+            external-dns.alpha.kubernetes.io/target: "internal.ok8.sh"
           host:
             name: &host rgw.ok8.sh
             path: /
