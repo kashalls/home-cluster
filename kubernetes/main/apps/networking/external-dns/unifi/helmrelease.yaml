@@ -46,6 +46,8 @@ spec:
               secretKeyRef:
                 name: *secret
                 key: UNIFI_PASS
+          - name: LOG_LEVEL
+            value: "4"
     policy: sync
     sources:
       - ingress
