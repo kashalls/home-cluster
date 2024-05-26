@@ -2,8 +2,9 @@
 
 # Kashall's Home Operations
 
-[![Discord](https://img.shields.io/discord/673534664354430999?style=for-the-badge&label&logo=discord&logoColor=white&color=blue)](https://discord.gg/home-operations)&nbsp;&nbsp;&nbsp;
-[![Kubernetes](https://img.shields.io/badge/dynamic/yaml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fkashalls%2Fhome-cluster%2Fmain%2Fkubernetes%2Fmain%2Fapps%2Fsystem-upgrade%2Fsystem-upgrade-controller%2Fplans%2Fkubernetes.yaml&query=%24.spec.version&style=for-the-badge&logo=kubernetes&logoColor=white&label=%20)](https://k3s.io/)&nbsp;&nbsp;&nbsp;
+[![Discord](https://img.shields.io/discord/673534664354430999?style=for-the-badge&label&logo=discord&logoColor=white&color=blue)](https://discord.gg/home-operations)&nbsp;&nbsp;
+[![Talos](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.ok8.sh%2Fquery%3Fformat%3Dendpoint%26metric%3Dtalos_version&style=for-the-badge&logo=talos&logoColor=white&color=blue&label=%20)](https://www.talos.dev/)&nbsp;&nbsp;
+[![Kubernetes](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.ok8.sh%2Fquery%3Fformat%3Dendpoint%26metric%3Dkubernetes_version&style=for-the-badge&logo=kubernetes&logoColor=white&color=blue&label=%20)](https://www.talos.dev/)&nbsp;&nbsp;
 [![Renovate](https://img.shields.io/github/actions/workflow/status/kashalls/home-cluster/renovate.yaml?branch=main&label=&logo=renovatebot&style=for-the-badge&color=blue)](https://github.com/kashalls/home-cluster/actions/workflows/renovate.yaml)
 
 [![Age-Days](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.ok8.sh%2Fquery%3Fmetric%3Dcluster_age_days&style=flat-squaree&label=Age)](https://github.com/kashalls/kromgo/)&nbsp;&nbsp;&nbsp;
@@ -55,9 +56,10 @@ While most of my infrastructure and workloads are self-hosted I do rely upon the
 | [GCP](https://cloud.google.com/)                | Voice interactions with Home Assistant over Google Assistant      | Free           |
 | [GitHub](https://github.com/)                   | Hosting this repository and continuous integration/deployments    | Free           |
 | [Let's Encrypt](https://letsencrypt.org/)       | Issuing SSL Certificates                                          | Free           |
-| [Migadu](https://migadu.com/)                   | Email hosting                                                     | ~$20/yr        |
+| [Migadu](https://migadu.com/)                   | Email Hosting                                                     | ~$20/yr        |
 | [Pulumi Cloud](https://app.pulumi.com/)         | Resource state management                                         | Free           |
 | [Pushover](https://pushover.net/)               | Kubernetes Alerts and application notifications                   | Free           |
+| [UniFi Site Manager](https://unifi.ui.com)      | UniFi External Access Management                                  | Free           |
 |                                                 |                                                                   | Total: ~$10/mo |
 ---
 
@@ -70,20 +72,10 @@ While most of my infrastructure and workloads are self-hosted I do rely upon the
   <img src="https://raw.githubusercontent.com/kashalls/home-cluster/main/.github/assets/network-topology.png" align="center" width="600px" alt="networking"/>
 </details>
 
-### 📮 Routing
-
-I use [VyOS](https://vyos.io/) as my current routing operating system.
-Previous solutions I had used consisted of [OPNSense](https://opnsense.org/), and the [Unifi Dream Machine Pro](https://store.ui.com/us/en/pro/products/udm-pro).
-
-Here's a couple repositories to show my current/past configurations for these solutions.
-- [kashalls/vyos-config](https://github.com/kashalls/vyos-config)
-- [kashalls/udmp-utils](https://github.com/Kashalls/udmp-utils)
 
 ### 🌐 DNS
 
-My current setup consists of [bind9](https://github.com/isc-projects/bind9) and [dnsdist](https://dnsdist.org/) deployed as containers on [VyOS](https://vyos.io/). I currently point all DNS to Cloudflare's 1.1.1.1, and I am planning on intergrating nextdns in the future.
-
-My kubernetes clusters interact with bind9 using the `RFC2136` standard to sync DNS records.
+UniFi released a new feature update with UniFi routers that allow you to create custom dns records to be served to the whole network. I wrote[External DNS Unifi Webhook](https://github.com/kashalls/external-dns-unifi-webhook) to allow [External DNS](https://github.com/kubernetes-sigs/external-dns/) to gather service and ingress hosts from my clusters and deploy the records without any extra local resolvers.
 
 ---
 
@@ -91,19 +83,23 @@ My kubernetes clusters interact with bind9 using the `RFC2136` standard to sync 
 
 <details>
   <summary>Click to see the rack!</summary>
+  Updated 05/25/2024
 
-  <img src="" align="center" width="200px" alt="rack"/>
+  <img src="https://owo.whats-th.is/2drDDRN.jpg" align="center" width="200px" alt="rack"/>
 </details>
 
 | Device                      | Count | OS Disk Size | Data Disk Size              | Ram  | Operating System | Purpose             |
 |-----------------------------|-------|--------------|-----------------------------|------|------------------|---------------------|
+| UXG-Max                     | 1     | -            | -                           | -    | UniFi OS         | Router              |
+| UCK-G2-Plus                 | 1     | -            | 250 GB HDD                  | 3GB  | UniFi OS         | UniFi Management    |
+| US-24-G1                    | 1     | -            | -                           | -    | -                | Core Switch         |
+| U6-LR                       | 1     | -            | -                           | -    | -                | Office AP           |
+| UAP-AC-Pro                  | 1     | -            | -                           | -    | -                | Dining Room AP      |
+| USP-PDU-Pro                 | 1     | -            | -                           | -    | -                | Rack PDU            |
 | Raspberry Pi 4              | 3     | 256GB SSD    | -                           | 8GB  | Talos            | Raspberry Cluster   |
 | Lenovo ThinkCentre M900     | 6     | 256GB SSD    | 1TB NVMe (rook-ceph)        | 16GB | Talos            | Kubernetes Nodes    |
-| Fran the Fabulous Nas       | 1     | 2x1TB SSD    | 5x8TB (raidz2)              | 64GB | Debian           | NFS + Backup Server |
+| Fran the Fabulous Nas       | 1     | 2x1TB SSD    | 5x8TB (raidz2)              | 64GB | Debian           | Storage Cluster     |
 | Raspberry Pi 3              | 1     | 32GB (SD)    | -                           | 4GB  | -                | Network KVM         |
-| Supermicro + X470D4U        | 1     | 256GB SSD    | -                           | 8GB  | VyOS             | Router              |
-| USW 24 G1                   | 1     | -            | -                           | -    | -                | 1Gb Switch          |
-| Unifi USP PDU Pro           | 1     | -            | -                           | -    | -                | PDU                 |
 | APC Back-Ups 1500           | 1     | -            | -                           | -    | -                | UPS                 |
 
 ---
@@ -123,3 +119,5 @@ My kubernetes clusters interact with bind9 using the `RFC2136` standard to sync 
 Thanks to all the people who donate their time to the [Home Operations](https://discord.gg/home-operations) community.
 
 Special thanks to: [ᗪєνιη ᗷυнʟ](https://github.com/onedr0p/home-cluster), [Bᴇʀɴᴅ Sᴄʜᴏʀɢᴇʀs](https://github.com/bjw-s/k8s-gitops), and [Toboshii Nakama](https://github.com/toboshii/home-cluster) for their assistance.
+
+Check out [kubesearch.dev](https://kubesearch.dev) to see what other users are running in their kubernetes home labs!
