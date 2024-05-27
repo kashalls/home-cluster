@@ -32,6 +32,8 @@ spec:
           repository: ghcr.io/kashalls/external-dns-unifi-webhook
           tag: main@sha256:ec94a157ccfda73856b6ccbf8994774bac4f2502d48768dc1034553969d32579
         env:
+          - name: LOG_LEVEL
+            value: "debug"
           - name: UNIFI_HOST
             value: "https://10.1.0.131"
           - name: SERVER_HOST
@@ -46,21 +48,29 @@ spec:
               secretKeyRef:
                 name: *secret
                 key: UNIFI_PASS
-          - name: LOG_LEVEL
-            value: "debug"
-          - name: UNIFI_SKIP_TLS_VERIFY
-            value: "true"
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: http-wh-metrics
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: http-wh-metrics
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
     policy: sync
     sources:
       - ingress
       - service
-    txtOwnerId: default
+    txtOwnerId: main
     txtPrefix: k8s.
     domainFilters:
       - ok8.sh
     excludeDomains:
       - internal
     serviceMonitor:
-      enabled: false
+      enabled: true
     podAnnotations:
       secret.reloader.stakater.com/reload: *secret
