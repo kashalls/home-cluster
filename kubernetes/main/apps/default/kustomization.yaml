@@ -5,8 +5,6 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./authentik/ks.yaml
-  - ./geoip/ks.yaml
-# - ./grasscutter/ks.yaml
   - ./home-assistant/ks.yaml
   - ./kubernetes-schemas/ks.yaml
   - ./mosquitto/ks.yaml
