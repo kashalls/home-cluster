@@ -87,11 +87,16 @@ spec:
         ssl: false
         prometheusEndpoint: http://thanos-query-frontend.observability.svc.cluster.local:10902
       storage:
-        useAllNodes: true
-        useAllDevices: true
+        useAllNodes: false
+        useAllDevices: false
         deviceFilter: nvme0n1
         config:
           osdsPerDevice: "1"
+        nodes:
+          - name: "fenrys"
+            devices:
+              - name: /dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1809D
+              - name: /dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1EDC2
       placement:
         mgr: &placement
           nodeAffinity:
