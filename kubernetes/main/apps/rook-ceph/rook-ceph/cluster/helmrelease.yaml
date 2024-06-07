@@ -53,6 +53,9 @@ spec:
       mon:
         count: 1
         allowMultiplePerNode: true
+      mgr:
+        count: 1
+        allowMultiplePerNode: true
       network:
         provider: host
         connections:
