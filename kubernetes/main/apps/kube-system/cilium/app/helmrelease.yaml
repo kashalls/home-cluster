@@ -62,6 +62,7 @@ spec:
           tls:
             - hosts: [*host]
     operator:
+      replicas: 1
       prometheus:
         enabled: true
         serviceMonitor:
