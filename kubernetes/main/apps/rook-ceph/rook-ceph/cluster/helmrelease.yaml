@@ -208,7 +208,7 @@ spec:
                 memory: 1Gi
               limits:
                 memory: 2Gi
-            instances: 2
+            instances: 1
             priorityClassName: system-cluster-critical
           healthCheck:
             bucket:
