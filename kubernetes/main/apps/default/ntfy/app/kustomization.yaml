@@ -5,7 +5,6 @@ kind: Kustomization
 namespace: default
 resources:
   - ./helmrelease.yaml
-  - ./horizontalpodautoscaler.yaml
   - ./gatus.yaml
 configMapGenerator:
     - name: server-config

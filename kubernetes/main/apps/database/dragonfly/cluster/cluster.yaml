@@ -6,7 +6,7 @@ metadata:
   name: dragonfly
 spec:
   image: ghcr.io/dragonflydb/dragonfly:v1.18.1
-  replicas: 6 # set to the number of nodes in the cluster
+  replicas: 1 # set to the number of nodes in the cluster
   env:
     - name: MAX_MEMORY
       valueFrom:
