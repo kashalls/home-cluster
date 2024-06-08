@@ -31,7 +31,7 @@ tasks:
 
   bootstrap-etcd:
     desc: Bootstrap Etcd
-    cmd: until talosctl --context {{.cluster}} --nodes 192.168.1.10 --endpoints 192.168.1.10 bootstrap; do sleep 10; done
+    cmd: until talosctl --context {{.cluster}} --nodes 10.69.0.2 --endpoints 10.69.0.2 bootstrap; do sleep 10; done
     vars:
       controller:
         sh: talosctl --context {{.cluster}} config info --output json | jq --raw-output '.endpoints[0]'
