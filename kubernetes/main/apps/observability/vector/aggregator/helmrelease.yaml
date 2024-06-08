@@ -67,7 +67,7 @@ spec:
         type: LoadBalancer
         annotations:
           external-dns.alpha.kubernetes.io/hostname: vector.ok8.sh
-          io.cilium/lb-ipam-ips: 10.69.0.111
+          io.cilium/lb-ipam-ips: 192.168.1.111
         ports:
           http:
             primary: true
