@@ -31,7 +31,7 @@ spec:
         - name: 01-init-db
           image: ghcr.io/onedr0p/postgres-init:15.5
           imagePullPolicy: IfNotPresent
-          envFrom:
+          envFrom: &envFrom
             - secretRef:
                 name: coder-secret
       env:
@@ -41,7 +41,7 @@ spec:
           value: "*.coder.ok8.sh"
         - name: CODER_OIDC_SIGN_IN_TEXT
           value: "Sign In with Ok8Sh"
-        - name: CODER_OIDC
+      envFrom: *envFrom
       ingress:
         enable: true
         className: external
