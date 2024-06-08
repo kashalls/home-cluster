@@ -8,11 +8,11 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: authentik
-      version: 2024.4.2
+      chart: coder
+      version: 2.10.2
       sourceRef:
         kind: HelmRepository
-        name: authentik
+        name: coder
         namespace: flux-system
   install:
     remediation:
