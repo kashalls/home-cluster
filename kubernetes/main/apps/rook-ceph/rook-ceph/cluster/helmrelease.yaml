@@ -49,6 +49,7 @@ spec:
       bdev_enable_discard = true
       bdev_async_discard = true
       osd_class_update_on_start = false
+      osd_pool_default_size = 1
     cephClusterSpec:
       mon:
         count: 1
@@ -58,8 +59,6 @@ spec:
         allowMultiplePerNode: true
       network:
         provider: host
-        connections:
-          requireMsgr2: true
       resources:
         mgr:
           requests:
@@ -116,7 +115,7 @@ spec:
     cephBlockPools:
       - name: ceph-blockpool
         spec:
-          failureDomain: host
+          failureDomain: osd
           replicated:
             size: 1
         storageClass:
@@ -146,11 +145,11 @@ spec:
         spec:
           metadataPool:
             replicated:
-              size: 1
+              size: 2
           dataPools:
-            - failureDomain: host
+            - failureDomain: osd
               replicated:
-                size: 1
+                size: 2
               name: data0
           metadataServer:
             activeCount: 1
@@ -196,11 +195,11 @@ spec:
       - name: ceph-objectstore
         spec:
           metadataPool:
-            failureDomain: host
+            failureDomain: osd
             replicated:
-              size: 1
+              size: 2
           dataPool:
-            failureDomain: host
+            failureDomain: osd
             erasureCoded:
               dataChunks: 2
               codingChunks: 1
