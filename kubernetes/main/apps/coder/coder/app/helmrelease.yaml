@@ -41,6 +41,8 @@ spec:
           value: "*.coder.ok8.sh"
         - name: CODER_OIDC_SIGN_IN_TEXT
           value: "Sign In with Ok8Sh"
+        - name: CODER_PROMETHEUS_ENABLE
+          value: "true"
       envFrom: *envFrom
       ingress:
         enable: true
