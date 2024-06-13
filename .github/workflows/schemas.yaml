@@ -4,7 +4,7 @@ name: "Publish Schemas"
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * 0"
+    - cron: "0 0 * * *"
   push:
     branches: ["main"]
     paths: [".github/workflows/publish-schemas.yaml"]
@@ -22,24 +22,58 @@ jobs:
       contents: read
       packages: write
     steps:
-      - name: Setup Tools
-        shell: bash
-        run: |
-          sudo apt-get -qq update && \
-          sudo apt-get -qq install --no-install-recommends -y curl
-
-      - name: Setup Kube Tools
-        uses: yokawasa/action-setup-kube-tools@5fe385031665158529decddddb51d6224422836e # v0.11.1
+      - name: Generate Token
+        uses: actions/create-github-app-token@v1
+        id: app-token
         with:
-          setup-tools: kubectl
+          app-id: "${{ secrets.BOT_APP_ID }}"
+          private-key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: "${{ steps.app-token.outputs.token }}"
+
+      - name: Setup Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Setup Workflow Tools
+        shell: bash
+        run: brew install kubernetes-cli
 
       - name: Setup Python
-        uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d # v5.1.0
+        uses: actions/setup-python@v5
         with:
           python-version: 3.x
 
-      - name: Setup QEMU
-        uses: docker/setup-qemu-action@68827325e0b33c7199eb31dd4e31fbe9023e06e3 # v3.0.0
+      - name: Write kubeconfig
+        id: kubeconfig
+        uses: timheuer/base64-to-file@v1
+        with:
+          encodedString: "${{ secrets.KUBECONFIG }}"
+          fileName: kubeconfig
+
+      - name: Download and run crd-extractor
+        env:
+          KUBECONFIG: "${{ steps.kubeconfig.outputs.filePath }}"
+        shell: bash
+        run: |
+          curl -fsSL -o $GITHUB_WORKSPACE/crd-extractor.sh \
+              https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/Utilities/crd-extractor.sh
+          chmod +x $GITHUB_WORKSPACE/crd-extractor.sh
+          bash $GITHUB_WORKSPACE/crd-extractor.sh
+
+      - name: Write Dockerfile
+        shell: bash
+        run: |
+          cat <<EOF > Dockerfile
+          FROM docker.io/nginxinc/nginx-unprivileged:latest
+          COPY --chown=nginx:nginx --chmod=755 . /usr/share/nginx/html
+          USER nginx
+          EOF
+
+          - name: Setup QEMU
+          uses: docker/setup-qemu-action@68827325e0b33c7199eb31dd4e31fbe9023e06e3 # v3.0.0
 
       - name: Setup Docker Buildx
         id: buildx
@@ -62,38 +96,10 @@ jobs:
           username: "${{ github.actor }}"
           password: "${{ secrets.GITHUB_TOKEN }}"
 
-      - name: Write kubeconfig
-        id: kubeconfig
-        uses: timheuer/base64-to-file@784a1a4a994315802b7d8e2084e116e783d157be # v1.2.4
-        with:
-          encodedString: ${{ secrets.KUBECONFIG }}
-          fileName: kubeconfig
-
-      - name: Download and run crd-extractor
-        env:
-          KUBECONFIG: ${{ steps.kubeconfig.outputs.filePath }}
-        shell: bash
-        run: |
-          mkdir -p /home/runner/crds
-          curl -fsSL -o $GITHUB_WORKSPACE/crd-extractor.sh \
-              https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/Utilities/crd-extractor.sh
-          chmod +x $GITHUB_WORKSPACE/crd-extractor.sh
-          bash $GITHUB_WORKSPACE/crd-extractor.sh
-          mv /home/runner/.datree/crdSchemas/* /home/runner/crds
-
-      - name: Write Dockerfile
-        shell: bash
-        run: |
-          cat <<EOF > Dockerfile
-          FROM docker.io/nginxinc/nginx-unprivileged:latest
-          COPY --chown=nginx:nginx --chmod=755 . /usr/share/nginx/html
-          USER nginx
-          EOF
-
       - name: Build and publish container
         uses: docker/build-push-action@ca052bb54ab0790a636c9b5f226502c73d547a25 # v5.4.0
         with:
-          context: /home/runner/crds
+          context: /home/runner/.datree/crdSchemas
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
