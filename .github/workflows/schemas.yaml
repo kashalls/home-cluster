@@ -72,8 +72,8 @@ jobs:
           USER nginx
           EOF
 
-          - name: Setup QEMU
-          uses: docker/setup-qemu-action@68827325e0b33c7199eb31dd4e31fbe9023e06e3 # v3.0.0
+      - name: Setup QEMU
+        uses: docker/setup-qemu-action@68827325e0b33c7199eb31dd4e31fbe9023e06e3 # v3.0.0
 
       - name: Setup Docker Buildx
         id: buildx
