@@ -13,7 +13,7 @@ spec:
   dependsOn:
     - name: external-dns-cloudflare
     - name: external-secrets-stores
-  path: ./kubernetes/main/apps/networking/cloudflared/app
+  path: ./kubernetes/storage/apps/networking/cloudflared/app
   prune: true
   sourceRef:
     kind: GitRepository
