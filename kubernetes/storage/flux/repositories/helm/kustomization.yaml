@@ -32,4 +32,3 @@ resources:
   - ./sagikazarmark.yaml
   - ./stakater.yaml
   - ./tailscale.yaml
-  - ./tailscale.yaml
