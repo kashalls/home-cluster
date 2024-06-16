@@ -67,6 +67,7 @@ spec:
     txtOwnerId: storage
     txtPrefix: k8s.
     domainFilters:
+      - ok8.sh
       - outsideour.casa
     excludeDomains:
       - internal

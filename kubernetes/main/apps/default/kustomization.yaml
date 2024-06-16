@@ -8,7 +8,6 @@ resources:
   - ./home-assistant/ks.yaml
   - ./kubernetes-schemas/ks.yaml
   - ./mosquitto/ks.yaml
-  - ./ntfy/ks.yaml
   - ./rtlamr2mqtt/ks.yaml
   - ./smtp-relay/ks.yaml
   - ./zigbee2mqtt/ks.yaml
