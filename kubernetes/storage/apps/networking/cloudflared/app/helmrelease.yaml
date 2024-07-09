@@ -44,17 +44,12 @@ spec:
               TUNNEL_ORIGIN_ENABLE_HTTP2: true
               TUNNEL_TRANSPORT_PROTOCOL: quic
               TUNNEL_POST_QUANTUM: true
-              TUNNEL_ID:
-                valueFrom:
-                  secretKeyRef:
-                    name: cloudflared-tunnel-secret
-                    key: CLOUDFLARE_TUNNEL_ID
             args:
               - tunnel
               - --config
               - /etc/cloudflared/config/config.yaml
               - run
-              - "$(TUNNEL_ID)"
+              - "${CLUSTER_CLOUDFLARE_TUNNEL_ID}"
             probes:
               liveness: &probes
                 enabled: true
@@ -77,18 +72,19 @@ spec:
                 cpu: 10m
               limits:
                 memory: 256Mi
-        pod:
-          securityContext:
-            runAsUser: 568
-            runAsGroup: 568
-            runAsNonRoot: true
-          topologySpreadConstraints:
-            - maxSkew: 1
-              topologyKey: kubernetes.io/hostname
-              whenUnsatisfiable: DoNotSchedule
-              labelSelector:
-                matchLabels:
-                  app.kubernetes.io/name: *app
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65534
+        runAsGroup: 65534
+        seccompProfile: { type: RuntimeDefault }
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: *app
     service:
       app:
         controller: cloudflared

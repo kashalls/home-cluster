@@ -5,6 +5,8 @@ kind: Kustomization
 metadata:
   name: &app cloudflared
   namespace: flux-system
+  labels:
+    substitution.flux.home.arpa/enabled: "true"
 spec:
   targetNamespace: networking
   commonMetadata:
