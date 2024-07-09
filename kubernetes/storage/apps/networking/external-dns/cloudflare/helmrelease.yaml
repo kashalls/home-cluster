@@ -25,7 +25,8 @@ spec:
     keepHistory: false
   values:
     fullnameOverride: *app
-    provider: cloudflare
+    provider:
+      name: cloudflare
     env:
       - name: CF_API_EMAIL
         valueFrom:
@@ -38,17 +39,20 @@ spec:
             name: external-dns-cloudflare-secret
             key: api-key
     extraArgs:
-      - --ingress-class=external
+      - --cloudflare-dns-records-per-page=1000
       - --cloudflare-proxied
       - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
       - --crd-source-kind=DNSEndpoint
+      - --events
+      - --ignore-ingress-tls-spec
+      - --ingress-class=external
     policy: sync
     sources: ["crd", "ingress"]
     txtPrefix: k8s.
     txtOwnerId: default
+    domainFilters:
+      - ok8.sh
     serviceMonitor:
       enabled: true
     podAnnotations:
       secret.reloader.stakater.com/reload: external-dns-cloudflare-secret
-    domainFilters:
-      - ok8.sh
