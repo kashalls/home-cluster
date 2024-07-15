@@ -4,8 +4,9 @@ version: "3"
 
 vars:
   # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
-  TALOS_VERSION: v1.7.4
-  TALOS_SCHEMATIC_ID: ac0603c5c6832b783a75e3b0c06a9bd6da2f78ca157756ab7289ac063bd62ac0
+  TALOS_VERSION: v1.7.5
+  TALOS_MAIN_SCHEMATIC_ID: ac0603c5c6832b783a75e3b0c06a9bd6da2f78ca157756ab7289ac063bd62ac0
+  TALOS_STORAGE_SCHEMATIC_ID: 01f32e8a121a6c60e07373bd47c94a4bb7da9fca8f9fcc13bcbbdf0e1090554f
   # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
   KUBERNETES_VERSION: v1.30.2
   TALOS_SCRIPTS_DIR: "{{.ROOT_DIR}}/.taskfiles/Talos/scripts"
@@ -22,16 +23,17 @@ tasks:
       - task: bootstrap-etcd
         vars: &vars
           cluster: "{{.cluster}}"
+          endpoint: "{{.endpoint}}"
       - task: fetch-kubeconfig
         vars: *vars
       - task: bootstrap-apps
         vars: *vars
     requires:
-      vars: ["cluster"]
+      vars: ["cluster", "endpoint"]
 
   bootstrap-etcd:
     desc: Bootstrap Etcd
-    cmd: until talosctl --context {{.cluster}} --nodes 10.69.0.2 --endpoints 10.69.0.2 bootstrap; do sleep 10; done
+    cmd: until talosctl --context {{.cluster}} --nodes {{.endpoint}} --endpoints {{.endpoint}} bootstrap; do sleep 10; done
     vars:
       controller:
         sh: talosctl --context {{.cluster}} config info --output json | jq --raw-output '.endpoints[0]'
@@ -69,7 +71,8 @@ tasks:
     desc: Apply Talos configuration to a node
     env:
       TALOS_VERSION: "{{.TALOS_VERSION}}"
-      TALOS_SCHEMATIC_ID: "{{.TALOS_SCHEMATIC_ID}}"
+      TALOS_MAIN_SCHEMATIC_ID: "{{.TALOS_MAIN_SCHEMATIC_ID}}"
+      TALOS_STORAGE_SCHEMATIC_ID: "{{.TALOS_STORAGE_SCHEMATIC_ID}}"
       KUBERNETES_VERSION: "{{.KUBERNETES_VERSION}}"
     cmd: |
       sops -d {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/config/{{.hostname}}.secret.sops.yaml | \
@@ -90,7 +93,8 @@ tasks:
     desc: Init Talos configuration to a Node
     env:
       TALOS_VERSION: "{{.TALOS_VERSION}}"
-      TALOS_SCHEMATIC_ID: "{{.TALOS_SCHEMATIC_ID}}"
+      TALOS_MAIN_SCHEMATIC_ID: "{{.TALOS_MAIN_SCHEMATIC_ID}}"
+      TALOS_STORAGE_SCHEMATIC_ID: "{{.TALOS_STORAGE_SCHEMATIC_ID}}"
       KUBERNETES_VERSION: "{{.KUBERNETES_VERSION}}"
     cmd: |
       sops -d {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/config/{{.hostname}}.secret.sops.yaml | \

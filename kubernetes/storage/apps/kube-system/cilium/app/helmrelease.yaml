@@ -22,26 +22,10 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
+  valuesFrom:
+    - kind: ConfigMap
+      name: cilium-helm-values
   values:
-    autoDirectNodeRoutes: true
-    bpf:
-      masquerade: false
-    cgroup:
-      automount:
-        enabled: false
-      hostRoot: /sys/fs/cgroup
-    cluster:
-      id: 2
-      name: storage
-    containerRuntime:
-      integration: containerd
-      socketPath: /var/run/k3s/containerd/containerd.sock
-    devices:
-      - enp+
-      - eno+
-    enableRuntimeDeviceDetection: true
-    endpointRoutes:
-      enabled: true
     hubble:
       enabled: true
       metrics:
@@ -71,26 +55,13 @@ spec:
         ingress:
           enabled: true
           className: internal
+          annotations:
+            external-dns.alpha.kubernetes.io/target: "internal.ok8.sh"
           hosts:
-            - &host hubble.outsideour.casa
+            - &host hubble.ok8.sh
           tls:
-            - hosts:
-                - *host
-    ipam:
-      mode: kubernetes
-    ipv4NativeRoutingCIDR: 10.132.0.0/16
-    k8sServiceHost: 127.0.0.1
-    k8sServicePort: 6444
-    kubeProxyReplacement: true
-    kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
-    l2announcements:
-      enabled: true
-    loadBalancer:
-      algorithm: maglev
-      mode: dsr
-    localRedirectPolicy: true
+            - hosts: [*host]
     operator:
-      rollOutPods: true
       replicas: 1
       prometheus:
         enabled: true
@@ -109,23 +80,3 @@ spec:
       enabled: true
       annotations:
         grafana_folder: Cilium
-    rollOutCiliumPods: true
-    routingMode: native
-    securityContext:
-      capabilities:
-        ciliumAgent:
-          - CHOWN
-          - KILL
-          - NET_ADMIN
-          - NET_RAW
-          - IPC_LOCK
-          - SYS_ADMIN
-          - SYS_RESOURCE
-          - DAC_OVERRIDE
-          - FOWNER
-          - SETGID
-          - SETUID
-        cleanCiliumState:
-          - NET_ADMIN
-          - SYS_ADMIN
-          - SYS_RESOURCE
