@@ -115,7 +115,7 @@ spec:
       data:
         hostPathType: Directory
         type: hostPath
-        hostPath: /bigboi/kubernetes/sftp
+        hostPath: /var/mnt/loki/kubernetes/sftp
         globalMounts:
           - path: /srv/sftpgo
           - path: /var/lib/sftpgo

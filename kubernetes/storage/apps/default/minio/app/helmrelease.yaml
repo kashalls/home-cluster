@@ -109,6 +109,6 @@ spec:
       data:
         hostPathType: Directory
         type: hostPath
-        hostPath: /bigboi/kubernetes/minio
+        hostPath: /var/mnt/loki/kubernetes/minio
         globalMounts:
           - path: /data

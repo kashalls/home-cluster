@@ -35,7 +35,7 @@ spec:
             env:
               TZ: America/Los_Angeles
               FB_DATABASE: /config/filebrowser.db
-              FB_ROOT: /bigboi
+              FB_ROOT: /var/mnt/loki
               FB_LOG: stdout
               FB_NOAUTH: true
             probes:
@@ -93,7 +93,7 @@ spec:
         existingClaim: filebrowser
       bigboi:
         type: hostPath
-        hostPath: /bigboi
+        hostPath: /var/mnt/loki
         hostPathType: Directory
         globalMounts:
-          - path: /bigboi
+          - path: /var/mnt/loki

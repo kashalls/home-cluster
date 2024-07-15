@@ -115,8 +115,8 @@ spec:
           - path: /app/logs
       bigboi:
         type: hostPath
-        hostPath: /bigboi
+        hostPath: /var/mnt/loki
         hostPathType: Directory
         globalMounts:
-          - path: /bigboi
+          - path: /var/mnt/loki
             readOnly: true
