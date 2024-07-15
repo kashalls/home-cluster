@@ -10,7 +10,9 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/storage/apps/observability/kube-prometheus-stack/app
+  dependsOn:
+    - name: external-secrets-stores
+  path: ./kubernetes/main/apps/observability/kube-prometheus-stack/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -18,7 +20,7 @@ spec:
   wait: false
   interval: 30m
   retryInterval: 1m
-  timeout: 15m
+  timeout: 5m
   postBuild:
     substitute:
       # renovate: datasource=docker depName=quay.io/thanos/thanos

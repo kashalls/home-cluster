@@ -1,9 +1,10 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/helm.toolkit.fluxcd.io/helmrelease_v2.json
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: &app smartctl-exporter
+  namespace: observability
 spec:
   interval: 30m
   chart:
@@ -15,18 +16,24 @@ spec:
         name: prometheus-community
         namespace: flux-system
   install:
+    createNamespace: true
     remediation:
       retries: 3
   upgrade:
     cleanupOnFail: true
     remediation:
-      strategy: rollback
       retries: 3
-  dependsOn:
-    - name: kube-prometheus-stack
-      namespace: observability
+  uninstall:
+    keepHistory: false
   values:
     fullnameOverride: *app
+    image:
+      repository: ghcr.io/joryirving/smartctl_exporter
+      tag: 0.12.0@sha256:276917436a966f537755fcb7e145acad2c30dcb53d5841602b6c0545aac6cbd3
+    config:
+      devices:
+        - /dev/sda
+        - /dev/nvme0n1
     serviceMonitor:
       enabled: true
     prometheusRules:
