@@ -1,0 +1,16 @@
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: openebs-zfs-loki
+allowVolumeExpansion: true
+parameters:
+  fstype: zfs
+  poolname: loki/kubernetes
+  recordsize: 32k
+  compresion: lz4
+  dedup: off
+  thinprovision: yes
+  shared: yes
+provisioner: zfs.csi.openebs.io
+volumeBindingMode: WaitForFirstConsumer
