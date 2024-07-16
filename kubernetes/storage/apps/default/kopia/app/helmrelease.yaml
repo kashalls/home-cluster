@@ -113,7 +113,7 @@ spec:
         type: emptyDir
         globalMounts:
           - path: /app/logs
-      bigboi:
+      loki:
         type: hostPath
         hostPath: /var/mnt/loki
         hostPathType: Directory
