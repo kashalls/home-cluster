@@ -10,7 +10,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/main/apps/observability/unpoller/app
+  path: ./kubernetes/storage/apps/observability/unpoller/app
   prune: true
   sourceRef:
     kind: GitRepository
