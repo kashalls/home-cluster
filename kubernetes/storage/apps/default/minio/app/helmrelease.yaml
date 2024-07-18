@@ -107,8 +107,8 @@ spec:
               - *api-host
     persistence:
       data:
-        hostPathType: Directory
-        type: hostPath
-        hostPath: /var/mnt/loki/kubernetes/minio
-        globalMounts:
-          - path: /data
+        enabled: true
+        type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
+        storageClass: openebs-zfs-loki
+        size: 100Gi
