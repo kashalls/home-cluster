@@ -44,7 +44,7 @@ spec:
           enabled: true
         csi:
           volumeSnapshots:
-            enabled: true
+            enabled: false
     lvm-localpv:
       enabled: false
     mayastor:
