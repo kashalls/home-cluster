@@ -39,6 +39,8 @@ spec:
           keep: false
     zfs-localpv:
       enabled: true
+      zfsNode:
+        encrKeysDir: '/var/openebs/keys'
       crds:
         zfsLocalPv:
           enabled: true
