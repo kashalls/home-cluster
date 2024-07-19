@@ -2,15 +2,15 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: openebs-zfs-flash
+  name: openebs-zfs-holo
 allowVolumeExpansion: true
 parameters:
   fstype: zfs
-  poolname: thor/kubernetes
-  recordsize: 32k
+  poolname: holo/kubernetes
+  recordsize: 128k
   compresion: lz4
   dedup: off
   thinprovision: yes
   shared: yes
 provisioner: zfs.csi.openebs.io
-volumeBindingMode: WaitForFirstConsumer
+volumeBindingMode: Immediate

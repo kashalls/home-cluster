@@ -5,12 +5,12 @@ metadata:
   name: openebs-zfs-loki
 allowVolumeExpansion: true
 parameters:
+  recordsize: 128k
+  thinprovision: yes
   fstype: zfs
   poolname: loki/kubernetes
-  recordsize: 32k
   compresion: lz4
   dedup: off
-  thinprovision: yes
   shared: yes
 provisioner: zfs.csi.openebs.io
-volumeBindingMode: WaitForFirstConsumer
+volumeBindingMode: Immediate
