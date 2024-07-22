@@ -8,7 +8,7 @@ parameters:
   fstype: zfs
   poolname: holo/kubernetes
   recordsize: 128k
-  compresion: lz4
+  compression: lz4
   dedup: off
   thinprovision: yes
   shared: yes
