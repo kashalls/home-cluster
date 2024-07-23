@@ -116,7 +116,6 @@ spec:
       loki:
         type: hostPath
         hostPath: /var/mnt/loki
-        hostPathType: Directory
         globalMounts:
           - path: /var/mnt/loki
             readOnly: true
