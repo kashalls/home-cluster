@@ -110,5 +110,5 @@ spec:
         enabled: true
         type: persistentVolumeClaim
         accessMode: ReadWriteOnce
-        storageClass: openebs-zfs-loki
+        storageClass: openebs-zfs-holo
         size: 100Gi
