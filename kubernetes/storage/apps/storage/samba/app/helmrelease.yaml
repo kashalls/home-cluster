@@ -35,6 +35,9 @@ spec:
             env:
               TZ: America/Los_Angeles
               SAMBA_HOSTS_ALLOW: "127.0.0.0/8 10.0.0.0/8 172.16.0.0/12"
+              WSDD2_ENABLE: "1"
+              WSDD2_HOSTNAME: "fran"
+              WSDD2_NETBIOS_NAME: "fran"
     service:
       app:
         controller: samba
