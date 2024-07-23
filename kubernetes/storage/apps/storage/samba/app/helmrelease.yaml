@@ -35,21 +35,6 @@ spec:
             env:
               TZ: America/Los_Angeles
               SAMBA_HOSTS_ALLOW: "127.0.0.0/8 10.0.0.0/8 172.16.0.0/12"
-            securityContext:
-              allowPrivilegeEscalation: true
-              capabilities:
-                add:
-                  - CAP_NET_ADMIN
-                  - CAP_NET_RAW
-                  - CAP_SETGID
-                  - CAP_SETUID
-        pod:
-          securityContext:
-            runAsUser: 1001
-            runAsGroup: 1001
-            runAsNonRoot: true
-            fsGroup: 1001
-            fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         controller: samba
