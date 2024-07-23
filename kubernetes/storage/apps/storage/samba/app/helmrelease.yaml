@@ -37,7 +37,12 @@ spec:
               SAMBA_HOSTS_ALLOW: "127.0.0.0/8 10.0.0.0/8 172.16.0.0/12"
             securityContext:
               allowPrivilegeEscalation: true
-              capabilities: { add: ["CAP_NET_ADMIN", "CAP_NET_RAW", "CAP_SETGID", "CPA_SETUID"] }
+              capabilities:
+                add:
+                  - CAP_NET_ADMIN
+                  - CAP_NET_RAW
+                  - CAP_SETGID
+                  - CAP_SETUID
         pod:
           securityContext:
             runAsUser: 1001
