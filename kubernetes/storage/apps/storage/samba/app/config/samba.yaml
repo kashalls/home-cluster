@@ -4,7 +4,7 @@ auth:
     group: kashall
     uid: 1000
     gid: 1000
-    password: $${SAMBA_PASSWORD}
+    password: ${SAMBA_PASSWORD}
 
 share:
   - name: loki
