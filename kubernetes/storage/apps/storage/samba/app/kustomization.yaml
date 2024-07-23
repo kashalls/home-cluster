@@ -7,7 +7,7 @@ resources:
 configMapGenerator:
   - name: samba-config
     files:
-      - config.yml=./config/samba.yaml
+      - samba.yaml=./config/samba.yaml
 generatorOptions:
   disableNameSuffixHash: true
   annotations:

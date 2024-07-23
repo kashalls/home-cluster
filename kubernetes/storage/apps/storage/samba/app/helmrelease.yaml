@@ -64,7 +64,7 @@ spec:
           samba:
             app:
               - path: /data/config.yml
-                subPath: config.yml
+                subPath: samba.yaml
                 readOnly: true
       share:
         type: hostPath
