@@ -88,4 +88,4 @@ spec:
         type: hostPath
         hostPath: /var/mnt/loki
         globalMounts:
-          - path: /share/loki
+          - path: /mnt/loki
