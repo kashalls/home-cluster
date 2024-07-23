@@ -11,8 +11,8 @@ global:
   - "force group = foo"
 
 share:
-  - name: foo
-    path: /samba/foo
+  - name: Loki
+    path: /samba/loki
     browsable: yes
     readonly: no
     guestok: no
