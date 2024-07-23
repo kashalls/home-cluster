@@ -12,8 +12,8 @@ share:
     browsable: yes
     readonly: no
     guestok: no
-    validusers: foo
-    writelist: foo
+    validusers: kashall
+    writelist: kashall
     veto: no
     hidefiles: /_*/
     recycle: yes
