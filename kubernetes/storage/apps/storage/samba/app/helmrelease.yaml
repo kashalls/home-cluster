@@ -35,6 +35,7 @@ spec:
             env:
               TZ: America/Los_Angeles
               SAMBA_HOSTS_ALLOW: "127.0.0.0/8 10.0.0.0/8 172.16.0.0/12"
+              SAMBA_SERVER_STRING: &serverstring "smb.outsideour.casa"
               WSDD2_ENABLE: "1"
               WSDD2_HOSTNAME: "fran"
               WSDD2_NETBIOS_NAME: "fran"
@@ -43,7 +44,7 @@ spec:
         controller: samba
         type: LoadBalancer
         annotations:
-          external-dns.alpha.kubernetes.io/hostname: smb.outsideour.casa
+          external-dns.alpha.kubernetes.io/hostname: *serverstring
           io.cilium/lb-ipam-ips: 10.69.0.105
         ports:
           samba:
