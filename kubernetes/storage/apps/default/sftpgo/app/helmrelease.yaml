@@ -113,7 +113,6 @@ spec:
           - hosts: [*host]
     persistence:
       data:
-        hostPathType: Directory
         type: hostPath
         hostPath: /var/mnt/loki/kubernetes/sftp
         globalMounts:
