@@ -1,14 +1,10 @@
 ---
 auth:
-  - user: foo
-    group: foo
+  - user: kashall
+    group: kashall
     uid: 1000
     gid: 1000
-    password: ThisIsATestPassword!
-
-global:
-  - "force user = foo"
-  - "force group = foo"
+    password: $${SAMBA_PASSWORD}
 
 share:
   - name: loki
