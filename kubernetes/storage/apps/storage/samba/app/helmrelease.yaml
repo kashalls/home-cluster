@@ -1,0 +1,73 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: samba
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.2.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  dependsOn:
+    - name: openebs
+      namespace: openebs
+  values:
+    controllers:
+      samba:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/crazy-max/samba
+              tag: 4.19.6@sha256:d02680060b5366b696023ccbd8aa6809d0b7ad1c77da1a5db84262545cbab153
+            env:
+              TZ: America/Los_Angeles
+              SAMBA_HOSTS_ALLOW: "127.0.0.0/8 10.0.0.0/8 172.16.0.0/12"
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+        pod:
+          securityContext:
+            runAsNonRoot: true
+            fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        controller: samba
+        type: LoadBalancer
+        annotations:
+          external-dns.alpha.kubernetes.io/hostname: smb.outsideour.casa
+          io.cilium/lb-ipam-ips: 10.69.0.105
+        ports:
+          samba:
+            port: 445
+    persistence:
+      config:
+        name: samba-config
+        type: configMap
+        advancedMounts:
+          samba:
+            app:
+              - path: /data/config.yml
+                subPath: config.yml
+                readOnly: true
+      share:
+        type: hostPath
+        hostPath: /var/mnt/loki
+        globalMounts:
+          - path: /share/loki
