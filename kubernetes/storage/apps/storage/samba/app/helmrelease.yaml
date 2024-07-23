@@ -50,12 +50,27 @@ spec:
             enabled: true
             port: 445
             targetPort: 445
+          samba-udp:
+            enabled: true
+            protocol: UDP
+            port: 445
+            targetPort: 445
           wsdd:
             enabled: true
             port: 3702
             targetPort: 3702
+          wsdd-udp:
+            enabled: true
+            protocol: UDP
+            port: 3702
+            targetPort: 3702
           llmnr:
             enabled: true
+            port: 55355
+            targetPort: 55355
+          llmnr-udp:
+            enabled: true
+            protocol: UDP
             port: 55355
             targetPort: 55355
     persistence:
