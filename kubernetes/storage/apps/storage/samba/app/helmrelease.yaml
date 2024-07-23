@@ -45,6 +45,7 @@ spec:
         ports:
           samba:
             port: 445
+            targetPort: 445
     persistence:
       config:
         name: samba-config
