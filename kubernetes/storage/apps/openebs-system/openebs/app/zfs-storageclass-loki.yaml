@@ -9,7 +9,7 @@ parameters:
   thinprovision: yes
   fstype: zfs
   poolname: loki/kubernetes
-  compresion: lz4
+  compression: lz4
   dedup: off
   shared: yes
 provisioner: zfs.csi.openebs.io
