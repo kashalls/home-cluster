@@ -4,14 +4,14 @@ auth:
     group: foo
     uid: 1000
     gid: 1000
-    password: bar
+    password: ThisIsATestPassword!
 
 global:
   - "force user = foo"
   - "force group = foo"
 
 share:
-  - name: Loki
+  - name: loki
     path: /samba/loki
     browsable: yes
     readonly: no
