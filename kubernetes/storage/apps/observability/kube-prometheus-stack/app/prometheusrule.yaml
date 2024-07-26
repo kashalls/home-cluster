@@ -1,12 +1,9 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/monitoring.coreos.com/prometheusrule_v1.json
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/monitoring.coreos.com/prometheusrule_v1.json
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
   name: miscellaneous-rules
-  labels:
-    prometheus: k8s
-    role: alert-rules
 spec:
   groups:
     - name: dockerhub

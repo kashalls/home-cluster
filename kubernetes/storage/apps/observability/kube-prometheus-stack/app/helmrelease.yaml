@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -16,37 +16,33 @@ spec:
         name: prometheus-community
         namespace: flux-system
   install:
-    crds: CreateReplace
+    crds: Skip
     remediation:
       retries: 3
   upgrade:
     cleanupOnFail: true
-    crds: CreateReplace
+    crds: Skip
     remediation:
       strategy: rollback
       retries: 3
   dependsOn:
+    - name: prometheus-operator-crds
+      namespace: observability
     - name: openebs
       namespace: openebs-system
-    - name: thanos
-      namespace: observability
   values:
     crds:
-      enabled: true
+      enabled: false
     cleanPrometheusOperatorObjectNames: true
     alertmanager:
       ingress:
         enabled: true
-        pathType: Prefix
-        ingressClassName: internal
         annotations:
-          external-dns.alpha.kubernetes.io/target: "internal.ok8.sh"
-        hosts:
-          - &host alert-manager.ok8.sh
-        tls:
-          - hosts: [*host]
+          external-dns.alpha.kubernetes.io/target: internal.ok8.sh
+        ingressClassName: internal
+        hosts: ["alertmanager.ok8.sh"]
+        pathType: Prefix
       alertmanagerSpec:
-        replicas: 1
         useExistingSecret: true
         configSecret: alertmanager-secret
         storage:
@@ -82,7 +78,7 @@ spec:
     kubeControllerManager:
       enabled: true
       endpoints: &cp
-        - 10.69.0.2
+        - 10.69.0.69
     kubeEtcd:
       enabled: true
       endpoints: *cp
@@ -95,23 +91,11 @@ spec:
       ingress:
         enabled: true
         annotations:
-          external-dns.alpha.kubernetes.io/target: "internal.ok8.sh"
+          external-dns.alpha.kubernetes.io/target: internal.ok8.sh
         ingressClassName: internal
+        hosts: ["prometheus.ok8.sh"]
         pathType: Prefix
-        hosts:
-          - &host prometheus.ok8.sh
-        tls:
-          - hosts: [*host]
-      thanosService:
-        enabled: true
-      thanosServiceMonitor:
-        enabled: true
       prometheusSpec:
-        podMetadata:
-          annotations:
-            secret.reloader.stakater.com/reload: &secret thanos-objstore-config
-        replicas: 1
-        replicaExternalLabelName: __replica__
         scrapeInterval: 1m # Must match interval in Grafana Helm chart
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
@@ -124,21 +108,8 @@ spec:
           - auto-gomemlimit
           - memory-snapshot-on-shutdown
           - new-service-discovery-manager
-        image:
-          registry: quay.io
-          repository: prometheus/prometheus
-          tag: v2.51.0-dedupelabels
-        thanos:
-          image: quay.io/thanos/thanos:${THANOS_VERSION}
-          version: "${THANOS_VERSION#v}"
-          objectStorageConfig:
-            existingSecret:
-              name: *secret
-              key: config
-        retention: 2d
-        retentionSize: 15GB
-        externalLabels:
-          cluster: main
+        retention: 14d
+        retentionSize: 70GB
         resources:
           requests:
             cpu: 100m
@@ -150,7 +121,7 @@ spec:
               storageClassName: openebs-hostpath
               resources:
                 requests:
-                  storage: 20Gi
+                  storage: 75Gi
     nodeExporter:
       enabled: true
     prometheus-node-exporter:
@@ -184,10 +155,3 @@ spec:
     grafana:
       enabled: false
       forceDeployDashboards: true
-      sidecar:
-        dashboards:
-          annotations:
-            grafana_folder: Kubernetes
-          multicluster:
-            etcd:
-              enabled: true
