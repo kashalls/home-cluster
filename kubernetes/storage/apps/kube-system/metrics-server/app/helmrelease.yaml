@@ -14,21 +14,20 @@ spec:
         kind: HelmRepository
         name: metrics-server
         namespace: flux-system
-  maxHistory: 2
   install:
     remediation:
       retries: 3
   upgrade:
     cleanupOnFail: true
     remediation:
+      strategy: rollback
       retries: 3
   values:
     args:
-      - --kubelet-insecure-tls
       - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
       - --kubelet-use-node-status-port
       - --metric-resolution=15s
     metrics:
-      enabled: false
+      enabled: true
     serviceMonitor:
-      enabled: false
+      enabled: true
