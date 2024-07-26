@@ -3,7 +3,6 @@
 version: "3"
 
 vars:
-  ANSIBLE_DIR: "{{.ROOT_DIR}}/ansible"
   KUBERNETES_DIR: "{{.ROOT_DIR}}/kubernetes"
 
 env:
@@ -11,8 +10,6 @@ env:
   SOPS_AGE_KEY_FILE: "{{.ROOT_DIR}}/age.key"
 
 includes:
-  ansible: .taskfiles/Ansible/Taskfile.yaml
-  bootstrap: .taskfiles/Bootstrap/Taskfile.yaml
   external-secrets: .taskfiles/ExternalSecrets/Taskfile.yaml
   flux: .taskfiles/Flux/Taskfile.yaml
   kubernetes: .taskfiles/Kubernetes/Taskfile.yaml
