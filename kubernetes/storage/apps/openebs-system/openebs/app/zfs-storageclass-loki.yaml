@@ -13,4 +13,3 @@ parameters:
   dedup: off
   shared: yes
 provisioner: zfs.csi.openebs.io
-volumeBindingMode: Immediate
