@@ -3,21 +3,24 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app vector-agent
+  name: &app cloudflared
   namespace: flux-system
+  labels:
+    substitution.flux.home.arpa/enabled: "true"
 spec:
-  targetNamespace: observability
+  targetNamespace: networking
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: vector-aggregator
-  path: ./kubernetes/storage/apps/observability/vector/agent
-  prune: true
+    - name: external-dns-cloudflare
+    - name: external-secrets-stores
+  path: ./kubernetes/storage/apps/networking/cloudflared/app
+  prune: false
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
-  wait: false
+  wait: true
   interval: 30m
   retryInterval: 1m
-  timeout: 15m
+  timeout: 5m

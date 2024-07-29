@@ -8,9 +8,6 @@ resources:
   # Flux-Kustomizations
   - ./filebrowser/ks.yaml
   - ./kopia/ks.yaml
-  - ./kubernetes-schemas/ks.yaml
   - ./minio/ks.yaml
-  - ./mosquitto/ks.yaml
+  - ./samba/ks.yaml
   - ./sftpgo/ks.yaml
-  - ./smtp-relay/ks.yaml
-  - ./zigbee2mqtt/ks.yaml

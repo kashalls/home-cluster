@@ -28,7 +28,7 @@ spec:
       replicaCount: 1
       service:
         annotations:
-          external-dns.alpha.kubernetes.io/hostname: internal.ok8.sh
+          external-dns.alpha.kubernetes.io/hostname: internal.outsideour.casa
           io.cilium/lb-ipam-ips: 10.69.0.150
       ingressClassResource:
         name: internal

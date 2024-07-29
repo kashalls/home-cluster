@@ -3,22 +3,6 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: ok8-sh-tls
-spec:
-  secretName: ok8-sh-tls
-  issuerRef:
-    name: letsencrypt-production
-    kind: ClusterIssuer
-  commonName: ok8.sh
-  dnsNames:
-    - ok8.sh
-    - "*.ok8.sh"
-
----
-# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/cert-manager.io/certificate_v1.json
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
   name: outsideour-casa
 spec:
   secretName: outsideour-casa-tls
