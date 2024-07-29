@@ -5,6 +5,6 @@ metadata:
   name: cluster-settings
   namespace: flux-system
 data:
-  # Cluster Settings
   TIMEZONE: "America/Los_Angeles"
-  # Static Mappings
+  CLUSTER_NAME: main
+  CLUSTER_CLOUDFLARE_TUNNEL_ID: a4998cf0-1340-4c66-87bf-494f26b72b94
