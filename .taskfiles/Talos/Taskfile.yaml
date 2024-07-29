@@ -60,7 +60,7 @@ tasks:
           --force --force-context-name {{.cluster}} {{.KUBERNETES_DIR}}/{{.cluster}}
     vars:
       controller:
-        sh: talosctl --context {{.cluster}} config info --output json | jq --raw-output '.endpoints[0]'
+        sh: talosctl --context {{.cluster}} config info --output json --talosconfig=./kubernetes/main/talosconfig | jq --raw-output '.endpoints[0]'
     requires:
       vars: ["cluster"]
     preconditions:

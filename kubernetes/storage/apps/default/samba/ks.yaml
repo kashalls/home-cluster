@@ -6,13 +6,13 @@ metadata:
   name: &app samba
   namespace: flux-system
 spec:
-  targetNamespace: storage
+  targetNamespace: default
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: external-secrets-stores
-  path: ./kubernetes/storage/apps/storage/samba/app
+  path: ./kubernetes/storage/apps/default/samba/app
   prune: true
   sourceRef:
     kind: GitRepository
