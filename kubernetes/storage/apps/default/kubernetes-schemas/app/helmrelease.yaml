@@ -32,7 +32,7 @@ spec:
           main:
             image:
               repository: ghcr.io/kashalls/kubernetes-schemas
-              tag: latest@sha256:342af6cd428b19ed77bedde3c3a3a1360a8cdcce72aae8c203f356cd9124def6
+              tag: latest@sha256:6d3d1a75516dbff7748890a45bf60b9666227a6e783b3bacf830aaa391b59585
             resources:
               requests:
                 cpu: 10m
