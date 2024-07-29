@@ -18,7 +18,6 @@ includes:
   volsync: .taskfiles/VolSync/Taskfile.yaml
 
 tasks:
-
   default:
     silent: true
     cmd: task -l
