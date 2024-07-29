@@ -12,7 +12,6 @@ vars:
   TALOS_SCRIPTS_DIR: "{{.ROOT_DIR}}/.taskfiles/Talos/scripts"
 
 tasks:
-
   bootstrap:
     desc: Bootstrap Talos
     summary: |
@@ -40,7 +39,6 @@ tasks:
     requires:
       vars: ["cluster"]
     preconditions:
-      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/talosconfig
       - talosctl --context {{.cluster}} config info >/dev/null 2>&1
 
   bootstrap-apps:
@@ -49,7 +47,6 @@ tasks:
     requires:
       vars: ["cluster"]
     preconditions:
-      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/talosconfig
       - talosctl --context {{.cluster}} config info >/dev/null 2>&1
       - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/apps/helmfile.yaml
 
@@ -60,11 +57,10 @@ tasks:
           --force --force-context-name {{.cluster}} {{.KUBERNETES_DIR}}/{{.cluster}}
     vars:
       controller:
-        sh: talosctl --context {{.cluster}} config info --output json --talosconfig=./kubernetes/main/talosconfig | jq --raw-output '.endpoints[0]'
+        sh: talosctl --context {{.cluster}} config info --output json | jq --raw-output '.endpoints[0]'
     requires:
       vars: ["cluster"]
     preconditions:
-      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/talosconfig
       - talosctl --context {{.cluster}} config info >/dev/null 2>&1
 
   apply-config:
@@ -85,7 +81,6 @@ tasks:
     requires:
       vars: ["cluster", "node"]
     preconditions:
-      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/talosconfig
       - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/config/{{.hostname}}.secret.sops.yaml
       - talosctl --context {{.cluster}} --nodes {{.node}} get machineconfig >/dev/null 2>&1
 
@@ -105,7 +100,6 @@ tasks:
     requires:
       vars: ["cluster", "node", "hostname"]
     preconditions:
-      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/talosconfig
       - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/config/{{.hostname}}.secret.sops.yaml
 
   upgrade:
@@ -116,7 +110,6 @@ tasks:
     requires:
       vars: ["cluster", "node"]
     preconditions:
-      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/talosconfig
       - talosctl --context {{.cluster}} config info >/dev/null 2>&1
       - talosctl --context {{.cluster}} --nodes {{.node}} get machineconfig >/dev/null 2>&1
 
@@ -142,7 +135,6 @@ tasks:
     requires:
       vars: ["cluster"]
     preconditions:
-      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/talosconfig
       - talosctl --context {{.cluster}} config info >/dev/null 2>&1
       - talosctl --context {{.cluster}} --nodes {{.nodes}} get machineconfig >/dev/null 2>&1
 
@@ -155,7 +147,6 @@ tasks:
     requires:
       vars: ["cluster"]
     preconditions:
-      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/talosconfig
       - talosctl --context {{.cluster}} config info >/dev/null 2>&1
       - talosctl --context {{.cluster}} --nodes {{.node}} get machineconfig >/dev/null 2>&1
 
@@ -166,7 +157,6 @@ tasks:
     requires:
       vars: ["cluster", "node"]
     preconditions:
-      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/talosconfig
       - talosctl --context {{.cluster}} config info >/dev/null 2>&1
       - talosctl --context {{.cluster}} --nodes {{.node}} get machineconfig >/dev/null 2>&1
 
@@ -180,7 +170,5 @@ tasks:
     requires:
       vars: ["cluster"]
     preconditions:
-      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/talosconfig
       - talosctl --context {{.cluster}} config info >/dev/null 2>&1
       - talosctl --context {{.cluster}} --nodes {{.nodes}} get machineconfig >/dev/null 2>&1
-
