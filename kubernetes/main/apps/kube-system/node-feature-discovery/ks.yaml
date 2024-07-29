@@ -11,7 +11,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   interval: 10m
-  path: ./kubernetes/storage/apps/kube-system/node-feature-discovery/app
+  path: ./kubernetes/main/apps/kube-system/node-feature-discovery/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -31,7 +31,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: node-feature-discovery
-  path: ./kubernetes/storage/apps/kube-system/node-feature-discovery/rules
+  path: ./kubernetes/main/apps/kube-system/node-feature-discovery/rules
   prune: true
   sourceRef:
     kind: GitRepository
