@@ -1,125 +1,125 @@
 ---
-# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
-name: "Flux Diff"
+  # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+  name: "Flux Diff"
 
-on:
-  pull_request:
-    branches: ["main"]
-    paths: ["kubernetes/**"]
+  on:
+    pull_request:
+      branches: ["main"]
+      paths: ["kubernetes/**"]
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
-  cancel-in-progress: true
+  concurrency:
+    group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
+    cancel-in-progress: true
 
-jobs:
-  changed-clusters:
-    name: Changed Clusters
-    runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.changed-clusters.outputs.all_changed_and_modified_files }}
-    steps:
-      - name: Generate Token
-        uses: actions/create-github-app-token@v1
-        id: app-token
-        with:
-          app-id: "${{ secrets.BOT_APP_ID }}"
-          private-key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
+  jobs:
+    changed-clusters:
+      name: Changed Clusters
+      runs-on: ubuntu-latest
+      outputs:
+        matrix: ${{ steps.changed-clusters.outputs.all_changed_and_modified_files }}
+      steps:
+        - name: Generate Token
+          uses: actions/create-github-app-token@v1
+          id: app-token
+          with:
+            app-id: "${{ secrets.BOT_APP_ID }}"
+            private-key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
 
-      - name: Checkout Default Branch
-        uses: actions/checkout@v4
-        with:
-          token: "${{ steps.app-token.outputs.token }}"
-          fetch-depth: 0
+        - name: Checkout Default Branch
+          uses: actions/checkout@v4
+          with:
+            token: "${{ steps.app-token.outputs.token }}"
+            fetch-depth: 0
 
-      - name: Get Changed Clusters
-        id: changed-clusters
-        uses: tj-actions/changed-files@v44
-        with:
-          files: kubernetes/**
-          dir_names: true
-          dir_names_max_depth: 2
-          matrix: true
+        - name: Get Changed Clusters
+          id: changed-clusters
+          uses: tj-actions/changed-files@v44
+          with:
+            files: kubernetes/**
+            dir_names: true
+            dir_names_max_depth: 2
+            matrix: true
 
-      - name: List All Changed Clusters
-        run: echo "${{ steps.changed-clusters.outputs.all_changed_and_modified_files }}"
+        - name: List All Changed Clusters
+          run: echo "${{ steps.changed-clusters.outputs.all_changed_and_modified_files }}"
 
-  flux-diff:
-    name: Flux Diff
-    runs-on: ubuntu-latest
-    needs: ["changed-clusters"]
-    permissions:
-      pull-requests: write
-    strategy:
-      matrix:
-        paths: ${{ fromJSON(needs.changed-clusters.outputs.matrix) }}
-        resources: ["helmrelease", "kustomization"]
-      max-parallel: 4
-      fail-fast: false
-    steps:
-      - name: Generate Token
-        uses: actions/create-github-app-token@v1
-        id: app-token
-        with:
-          app-id: "${{ secrets.BOT_APP_ID }}"
-          private-key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
+    flux-diff:
+      name: Flux Diff
+      runs-on: ubuntu-latest
+      needs: ["changed-clusters"]
+      permissions:
+        pull-requests: write
+      strategy:
+        matrix:
+          paths: ${{ fromJSON(needs.changed-clusters.outputs.matrix) }}
+          resources: ["helmrelease", "kustomization"]
+        max-parallel: 4
+        fail-fast: false
+      steps:
+        - name: Generate Token
+          uses: actions/create-github-app-token@v1
+          id: app-token
+          with:
+            app-id: "${{ secrets.BOT_APP_ID }}"
+            private-key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
 
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          token: "${{ steps.app-token.outputs.token }}"
-          path: pull
+        - name: Checkout
+          uses: actions/checkout@v4
+          with:
+            token: "${{ steps.app-token.outputs.token }}"
+            path: pull
 
-      - name: Checkout Default Branch
-        uses: actions/checkout@v4
-        with:
-          token: "${{ steps.app-token.outputs.token }}"
-          ref: "${{ github.event.repository.default_branch }}"
-          path: default
+        - name: Checkout Default Branch
+          uses: actions/checkout@v4
+          with:
+            token: "${{ steps.app-token.outputs.token }}"
+            ref: "${{ github.event.repository.default_branch }}"
+            path: default
 
-      - name: Diff Resources
-        uses: docker://ghcr.io/allenporter/flux-local:v5.4.0
-        with:
-          args: >-
-            diff ${{ matrix.resources }}
-            --unified 6
-            --path /github/workspace/pull/${{ matrix.paths }}/flux
-            --path-orig /github/workspace/default/${{ matrix.paths }}/flux
-            --strip-attrs "helm.sh/chart,checksum/config,app.kubernetes.io/version,chart"
-            --limit-bytes 10000
-            --all-namespaces
-            --sources "home-kubernetes"
-            --output-file diff.patch
+        - name: Diff Resources
+          uses: docker://ghcr.io/allenporter/flux-local:v5.4.0
+          with:
+            args: >-
+              diff ${{ matrix.resources }}
+              --unified 6
+              --path /github/workspace/pull/${{ matrix.paths }}/flux
+              --path-orig /github/workspace/default/${{ matrix.paths }}/flux
+              --strip-attrs "helm.sh/chart,checksum/config,app.kubernetes.io/version,chart"
+              --limit-bytes 10000
+              --all-namespaces
+              --sources "home-kubernetes"
+              --output-file diff.patch
 
-      - name: Generate Diff
-        id: diff
-        run: |
-          echo "diff<<EOF" >> $GITHUB_OUTPUT
-          cat diff.patch >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-          echo "### Diff" >> $GITHUB_STEP_SUMMARY
-          echo '```diff' >> $GITHUB_STEP_SUMMARY
-          cat diff.patch >> $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
+        - name: Generate Diff
+          id: diff
+          run: |
+            echo "diff<<EOF" >> $GITHUB_OUTPUT
+            cat diff.patch >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+            echo "### Diff" >> $GITHUB_STEP_SUMMARY
+            echo '```diff' >> $GITHUB_STEP_SUMMARY
+            cat diff.patch >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
 
-      - if: ${{ steps.diff.outputs.diff != '' }}
-        name: Add comment
-        uses: mshick/add-pr-comment@v2
-        with:
-          repo-token: "${{ steps.app-token.outputs.token }}"
-          message-id: "${{ github.event.pull_request.number }}/${{ matrix.paths }}/${{ matrix.resources }}"
-          message-failure: Diff was not successful
-          message: |
-            ```diff
-            ${{ steps.diff.outputs.diff }}
-            ```
+        - if: ${{ steps.diff.outputs.diff != '' }}
+          name: Add comment
+          uses: mshick/add-pr-comment@v2
+          with:
+            repo-token: "${{ steps.app-token.outputs.token }}"
+            message-id: "${{ github.event.pull_request.number }}/${{ matrix.paths }}/${{ matrix.resources }}"
+            message-failure: Diff was not successful
+            message: |
+              ```diff
+              ${{ steps.diff.outputs.diff }}
+              ```
 
-  # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
-  flux-diff-success:
-    if: ${{ always() }}
-    needs: ["flux-diff"]
-    name: Flux Diff Successful
-    runs-on: ubuntu-latest
-    steps:
-      - if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
-        name: Check matrix status
-        run: exit 1
+    # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
+    flux-diff-success:
+      if: ${{ always() }}
+      needs: ["flux-diff"]
+      name: Flux Diff Successful
+      runs-on: ubuntu-latest
+      steps:
+        - if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
+          name: Check matrix status
+          run: exit 1
