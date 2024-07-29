@@ -1,0 +1,3 @@
+---
+providerRegex: ^(fran)$
+bypassDnsResolution: true
