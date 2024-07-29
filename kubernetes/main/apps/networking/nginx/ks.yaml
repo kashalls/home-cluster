@@ -8,7 +8,7 @@ metadata:
 spec:
   dependsOn:
     - name: certificates
-  path: ./kubernetes/storage/apps/networking/nginx/external
+  path: ./kubernetes/main/apps/networking/nginx/external
   prune: true
   sourceRef:
     kind: GitRepository
@@ -27,7 +27,7 @@ metadata:
 spec:
   dependsOn:
     - name: certificates
-  path: ./kubernetes/storage/apps/networking/nginx/internal
+  path: ./kubernetes/main/apps/networking/nginx/internal
   prune: true
   sourceRef:
     kind: GitRepository

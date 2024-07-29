@@ -10,7 +10,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/storage/apps/observability/speedtest-exporter/app
+  path: ./kubernetes/main/apps/observability/speedtest-exporter/app
   prune: true
   sourceRef:
     kind: GitRepository
