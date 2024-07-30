@@ -31,7 +31,7 @@ spec:
       service:
         annotations:
           external-dns.alpha.kubernetes.io/hostname: external.outsideour.casa
-          io.cilium/lb-ipam-ips: 10.69.0.151
+          io.cilium/lb-ipam-ips: 10.69.0.153
         externalTrafficPolicy: Cluster
       ingressClassResource:
         name: external
@@ -74,7 +74,7 @@ spec:
           namespaceSelector:
             any: true
       extraArgs:
-        default-ssl-certificate: "networking/ok8-sh-tls"
+        default-ssl-certificate: "networking/oursideour-casa-tls"
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: kubernetes.io/hostname
