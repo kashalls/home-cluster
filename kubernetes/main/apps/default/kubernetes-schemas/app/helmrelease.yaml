@@ -3,31 +3,28 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app kubernetes-schemas
+  name: kubernetes-schemas
 spec:
-  interval: 30m
+  interval: 15m
   chart:
     spec:
       chart: app-template
-      version: 2.6.0
+      version: 3.3.0
       sourceRef:
         kind: HelmRepository
-        name: bjw-s
+        name: bjw-s-charts
         namespace: flux-system
+      interval: 15m
   install:
     createNamespace: true
     remediation:
-      retries: 3
+      retries: 5
   upgrade:
-    cleanupOnFail: true
     remediation:
-      retries: 3
-  uninstall:
-    keepHistory: false
+      retries: 5
   values:
     controllers:
-      main:
-        strategy: RollingUpdate
+      kubernetes-schemas:
         containers:
           main:
             image:
@@ -40,14 +37,18 @@ spec:
               limits:
                 memory: 100Mi
             probes:
-              liveness:
-                enabled: false
-              readiness:
-                enabled: false
               startup:
-                enabled: false
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 5
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
     service:
       main:
+        controller: kubernetes-schemas
         ports:
           http:
             port: 8080
@@ -61,8 +62,9 @@ spec:
           - host: &host "kubernetes-schemas.ok8.sh"
             paths:
               - path: /
+                pathType: Prefix
                 service:
-                  name: main
+                  identifier: main
                   port: http
         tls:
           - hosts:
