@@ -27,7 +27,6 @@ spec:
     global:
       deploymentAnnotations:
         secret.reloader.stakater.com/reload: "authentik-secret"
-        configmap.reloader.stakater.com/reload: "authentik-branding"
       storageClass: ceph-block
       envFrom:
         - secretRef:
@@ -81,6 +80,6 @@ spec:
       rules:
         enabled: true
     postgresql:
-      enabled: true
+      enabled: false
     redis:
-      enabled: true
+      enabled: false
