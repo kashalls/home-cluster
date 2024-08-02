@@ -34,14 +34,12 @@ spec:
       createPrometheusRules: true
     ingress:
       dashboard:
-        ingressClassName: internal
         annotations:
-          external-dns.alpha.kubernetes.io/target: "internal.ok8.sh"
+          external-dns.alpha.kubernetes.io/target: internal.ok8.sh
+        ingressClassName: internal
         host:
-          name: &host rook.ok8.sh
+          name: rook.ok8.sh
           path: /
-        tls:
-          - hosts: [*host]
     toolbox:
       enabled: true
     configOverride: |
@@ -49,18 +47,37 @@ spec:
       bdev_enable_discard = true
       bdev_async_discard = true
       osd_class_update_on_start = false
-      osd_pool_default_size = 1
     cephClusterSpec:
-      mon:
-        count: 1
-        allowMultiplePerNode: true
+      crashCollector:
+        disable: false
+      dashboard:
+        enabled: true
+        urlPrefix: /
+        ssl: false
+        prometheusEndpoint: http://prometheus-operated.observability.svc.cluster.local:9090
       mgr:
-        count: 1
-        allowMultiplePerNode: true
+        modules:
+          - name: pg_autoscaler
+            enabled: true
       network:
         provider: host
         connections:
           requireMsgr2: true
+      storage:
+        useAllNodes: true
+        useAllDevices: true
+        deviceFilter: nvme0n1
+        config:
+          osdsPerDevice: "1"
+      placement:
+        mgr: &placement
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: node-role.kubernetes.io/control-plane
+                      operator: Exists
+        mon: *placement
       resources:
         mgr:
           requests:
@@ -86,40 +103,12 @@ spec:
             memory: 128Mi
           limits:
             memory: 256Mi
-      crashCollector:
-        disable: false
-      dashboard:
-        enabled: true
-        urlPrefix: /
-        ssl: false
-        prometheusEndpoint: http://thanos-query-frontend.observability.svc.cluster.local:10902
-      storage:
-        useAllNodes: false
-        useAllDevices: false
-        config:
-          osdsPerDevice: "1"
-        nodes:
-          - name: "fenrys"
-            devices:
-              - name: /dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1809D
-              - name: /dev/disk/by-id/nvme-CT1000P3SSD8_2318E6D1EDC2
-      placement:
-        mgr: &placement
-          nodeAffinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
-              nodeSelectorTerms:
-                - matchExpressions:
-                    - key: kubernetes.io/arch
-                      operator: In
-                      values:
-                        - amd64
-        mon: *placement
     cephBlockPools:
       - name: ceph-blockpool
         spec:
-          failureDomain: osd
+          failureDomain: host
           replicated:
-            size: 1
+            size: 3
         storageClass:
           enabled: true
           name: ceph-block
@@ -147,11 +136,11 @@ spec:
         spec:
           metadataPool:
             replicated:
-              size: 2
+              size: 3
           dataPools:
-            - failureDomain: osd
+            - failureDomain: host
               replicated:
-                size: 2
+                size: 3
               name: data0
           metadataServer:
             activeCount: 1
@@ -197,16 +186,17 @@ spec:
       - name: ceph-objectstore
         spec:
           metadataPool:
-            failureDomain: osd
+            failureDomain: host
             replicated:
-              size: 2
+              size: 3
           dataPool:
-            failureDomain: osd
+            failureDomain: host
             erasureCoded:
               dataChunks: 2
               codingChunks: 1
           preservePoolsOnDelete: true
           gateway:
+            hostNetwork: false
             port: 80
             resources:
               requests:
@@ -214,7 +204,7 @@ spec:
                 memory: 1Gi
               limits:
                 memory: 2Gi
-            instances: 1
+            instances: 2
             priorityClassName: system-cluster-critical
           healthCheck:
             bucket:
@@ -228,12 +218,11 @@ spec:
             region: us-east-1
         ingress:
           enabled: true
-          ingressClassName: internal
           annotations:
-            external-dns.alpha.kubernetes.io/target: "internal.ok8.sh"
+            external-dns.alpha.kubernetes.io/target: internal.ok8.sh
+            nginx.ingress.kubernetes.io/proxy-body-size: "0"
+            nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+          ingressClassName: internal
           host:
-            name: &host rgw.ok8.sh
+            name: rgw.ok8.sh
             path: /
-          tls:
-            - hosts:
-                - *host
