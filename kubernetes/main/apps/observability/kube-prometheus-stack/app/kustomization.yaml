@@ -5,12 +5,6 @@ kind: Kustomization
 resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
-  - ./prometheusrules
-  - ./gatus.yaml
+  - ./prometheusrule.yaml
   - ./scrapeconfig.yaml
-configMapGenerator:
-  - name: alertmanager-config-tpl
-    files:
-      - alertmanager.yaml=./resources/alertmanager.yaml
-generatorOptions:
-  disableNameSuffixHash: true
+  - ./gatus.yaml

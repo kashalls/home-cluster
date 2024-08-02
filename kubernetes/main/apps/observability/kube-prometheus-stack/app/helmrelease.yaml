@@ -10,26 +10,26 @@ spec:
   chart:
     spec:
       chart: kube-prometheus-stack
-      version: 60.5.0
+      version: 61.6.1
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
         namespace: flux-system
   install:
-    crds: CreateReplace
+    crds: Skip
     remediation:
       retries: 3
   upgrade:
     cleanupOnFail: true
-    crds: CreateReplace
+    crds: Skip
     remediation:
       strategy: rollback
       retries: 3
   dependsOn:
+    - name: prometheus-operator-crds
+      namespace: observability
     - name: openebs
       namespace: openebs-system
-    - name: thanos
-      namespace: observability
   values:
     crds:
       enabled: true
@@ -37,14 +37,11 @@ spec:
     alertmanager:
       ingress:
         enabled: true
-        pathType: Prefix
-        ingressClassName: internal
         annotations:
           external-dns.alpha.kubernetes.io/target: "internal.ok8.sh"
-        hosts:
-          - &host alert-manager.ok8.sh
-        tls:
-          - hosts: [*host]
+        pathType: Prefix
+        ingressClassName: internal
+        hosts: ["alert-manager.ok8.sh"]
       alertmanagerSpec:
         replicas: 1
         useExistingSecret: true
@@ -58,31 +55,14 @@ spec:
                   storage: 1Gi
     kubelet:
       enabled: true
-      serviceMonitor:
-        metricRelabelings:
-          # Drop high cardinality labels
-          - action: labeldrop
-            regex: (uid)
-          - action: labeldrop
-            regex: (id|name)
-          - action: drop
-            sourceLabels: ["__name__"]
-            regex: (rest_client_request_duration_seconds_bucket|rest_client_request_duration_seconds_sum|rest_client_request_duration_seconds_count)
     kubeApiServer:
       enabled: true
-      serviceMonitor:
-        metricRelabelings:
-          # Drop high cardinality labels
-          - action: drop
-            sourceLabels: ["__name__"]
-            regex: (apiserver|etcd|rest_client)_request(|_sli|_slo)_duration_seconds_bucket
-          - action: drop
-            sourceLabels: ["__name__"]
-            regex: (apiserver_response_sizes_bucket|apiserver_watch_events_sizes_bucket)
     kubeControllerManager:
       enabled: true
       endpoints: &cp
-        - 10.69.0.2
+        - 10.69.0.6
+        - 10.69.0.7
+        - 10.69.0.8
     kubeEtcd:
       enabled: true
       endpoints: *cp
@@ -98,20 +78,8 @@ spec:
           external-dns.alpha.kubernetes.io/target: "internal.ok8.sh"
         ingressClassName: internal
         pathType: Prefix
-        hosts:
-          - &host prometheus.ok8.sh
-        tls:
-          - hosts: [*host]
-      thanosService:
-        enabled: true
-      thanosServiceMonitor:
-        enabled: true
+        hosts: ["prometheus.ok8.sh"]
       prometheusSpec:
-        podMetadata:
-          annotations:
-            secret.reloader.stakater.com/reload: &secret thanos-objstore-config
-        replicas: 1
-        replicaExternalLabelName: __replica__
         scrapeInterval: 1m # Must match interval in Grafana Helm chart
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
@@ -124,14 +92,8 @@ spec:
           - auto-gomemlimit
           - memory-snapshot-on-shutdown
           - new-service-discovery-manager
-        image:
-          registry: quay.io
-          repository: prometheus/prometheus
-          tag: v2.51.0-dedupelabels
-        retention: 2d
-        retentionSize: 15GB
-        externalLabels:
-          cluster: main
+        retention: 14d
+        retentionSize: 70GB
         resources:
           requests:
             cpu: 100m
@@ -143,7 +105,7 @@ spec:
               storageClassName: openebs-hostpath
               resources:
                 requests:
-                  storage: 20Gi
+                  storage: 75Gi
     nodeExporter:
       enabled: true
     prometheus-node-exporter:
@@ -177,10 +139,3 @@ spec:
     grafana:
       enabled: false
       forceDeployDashboards: true
-      sidecar:
-        dashboards:
-          annotations:
-            grafana_folder: Kubernetes
-          multicluster:
-            etcd:
-              enabled: true
