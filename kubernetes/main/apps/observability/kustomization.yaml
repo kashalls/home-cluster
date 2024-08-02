@@ -15,4 +15,3 @@ resources:
   - ./smartctl-exporter/ks.yaml
   - ./speedtest-exporter/ks.yaml
   - ./unpoller/ks.yaml
-  - ./vector/ks.yaml
