@@ -91,9 +91,9 @@ spec:
       app:
         className: external
         annotations:
-          external-dns.alpha.kubernetes.io/target: external.ok8.sh
+          external-dns.alpha.kubernetes.io/target: external.outsideour.casa
         hosts:
-          - host: &host "{{ .Release.Name }}.ok8.sh"
+          - host: &host "{{ .Release.Name }}.outsideour.casa"
             paths:
               - path: /
                 service:

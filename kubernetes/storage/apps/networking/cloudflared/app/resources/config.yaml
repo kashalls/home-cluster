@@ -1,10 +1,10 @@
 ---
 originRequest:
-  originServerName: "external.ok8.sh"
+  originServerName: "external.outsideour.casa"
 
 ingress:
-  - hostname: "ok8.sh"
+  - hostname: "outsideour.casa"
     service: https://nginx-external-controller.networking.svc.cluster.local:443
-  - hostname: "*.ok8.sh"
+  - hostname: "*.outsideour.casa"
     service: https://nginx-external-controller.networking.svc.cluster.local:443
   - service: http_status:404

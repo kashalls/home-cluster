@@ -4,11 +4,11 @@ kind: Ingress
 metadata:
   name: flux-webhook
   annotations:
-    external-dns.alpha.kubernetes.io/target: "external.ok8.sh"
+    external-dns.alpha.kubernetes.io/target: "external.outsideour.casa"
 spec:
   ingressClassName: external
   rules:
-    - host: &host "flux-webhook.ok8.sh"
+    - host: &host "flux-webhook.outsideour.casa"
       http:
         paths:
           - path: /hook/
