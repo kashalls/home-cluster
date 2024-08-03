@@ -11,8 +11,8 @@ cgroup:
     enabled: false
   hostRoot: /sys/fs/cgroup
 cluster:
-  id: 2
-  name: storage
+  id: 1
+  name: main
 containerRuntime:
   integration: containerd
 devices:
@@ -24,9 +24,11 @@ endpointRoutes:
   enabled: true
 hubble:
   enabled: false
+envoy:
+  enabled: false
 ipam:
   mode: kubernetes
-ipv4NativeRoutingCIDR: 172.32.0.0/16
+ipv4NativeRoutingCIDR: 172.30.0.0/16
 k8sServiceHost: 127.0.0.1
 k8sServicePort: 7445
 kubeProxyReplacement: true
