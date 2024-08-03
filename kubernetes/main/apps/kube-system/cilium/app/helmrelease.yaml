@@ -41,8 +41,6 @@ spec:
           enabled: true
         dashboards:
           enabled: true
-          annotations:
-            grafana_folder: Cilium
       relay:
         enabled: true
         rollOutPods: true
@@ -57,10 +55,7 @@ spec:
           className: internal
           annotations:
             external-dns.alpha.kubernetes.io/target: "internal.ok8.sh"
-          hosts:
-            - &host hubble.ok8.sh
-          tls:
-            - hosts: [*host]
+          hosts: ["hubble.ok8.sh"]
     operator:
       replicas: 1
       prometheus:
@@ -78,5 +73,3 @@ spec:
         trustCRDsExist: true
     dashboards:
       enabled: true
-      annotations:
-        grafana_folder: Cilium
