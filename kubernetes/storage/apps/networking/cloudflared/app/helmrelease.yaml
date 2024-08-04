@@ -44,7 +44,7 @@ spec:
               TUNNEL_ORIGIN_ENABLE_HTTP2: true
               TUNNEL_TRANSPORT_PROTOCOL: quic
               TUNNEL_POST_QUANTUM: true
-            args: ["tunnel", "--config", "/etc/cloudflared/config/config.yaml", "run", "${CLUSTER_CLOUDFLARE_TUNNEL_ID}"]
+            args: ["tunnel", "--config", "/etc/cloudflared/config/config.yaml", "run", "${CLOUDFLARE_TUNNEL_STORAGE_ID}"]
             probes:
               liveness: &probes
                 enabled: true

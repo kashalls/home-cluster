@@ -8,4 +8,4 @@ spec:
   endpoints:
     - dnsName: external.ok8.sh
       recordType: CNAME
-      targets: ["${CLUSTER_CLOUDFLARE_TUNNEL_ID}.cfargotunnel.com"]
+      targets: ["${CLOUDFLARE_TUNNEL_MAIN_ID}.cfargotunnel.com"]

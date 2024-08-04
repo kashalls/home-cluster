@@ -31,7 +31,7 @@ spec:
         compression: bzip2
         maxParallel: 8
       destinationPath: s3://cloudnative-pg-v1/
-      endpointURL: https://${CLOUDFLARE_TUNNEL_ACCOUNT_ID}.r2.cloudflarestorage.com
+      endpointURL: https://${CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com
       serverName: &currentCluster postgres-v21
       s3Credentials:
         accessKeyId:
@@ -49,7 +49,7 @@ spec:
           compression: bzip2
           maxParallel: 8
         destinationPath: s3://cloudnative-pg-v1/
-        endpointURL: https://${CLOUDFLARE_TUNNEL_ACCOUNT_ID}.r2.cloudflarestorage.com
+        endpointURL: https://${CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com
         s3Credentials:
           accessKeyId:
             name: cloudnative-pg-secret

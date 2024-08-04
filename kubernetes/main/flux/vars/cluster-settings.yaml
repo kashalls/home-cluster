@@ -7,4 +7,3 @@ metadata:
 data:
   TIMEZONE: "America/Los_Angeles"
   CLUSTER_NAME: main
-  CLUSTER_CLOUDFLARE_TUNNEL_ID: a4998cf0-1340-4c66-87bf-494f26b72b94

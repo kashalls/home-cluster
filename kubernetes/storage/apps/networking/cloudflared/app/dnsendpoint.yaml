@@ -8,4 +8,4 @@ spec:
   endpoints:
     - dnsName: external.outsideour.casa
       recordType: CNAME
-      targets: ["${CLUSTER_CLOUDFLARE_TUNNEL_ID}.cfargotunnel.com"]
+      targets: ["${CLOUDFLARE_TUNNEL_STORAGE_ID}.cfargotunnel.com"]
