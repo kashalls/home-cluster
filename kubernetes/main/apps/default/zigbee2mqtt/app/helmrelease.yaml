@@ -25,8 +25,8 @@ spec:
   dependsOn:
     - name: mosquitto
       namespace: default
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
+    - name: openebs
+      namespace: openebs-system
     - name: volsync
       namespace: volsync-system
   values:
@@ -132,7 +132,7 @@ spec:
         enabled: true
         type: persistentVolumeClaim
         size: 1Gi
-        storageClass: ceph-block
+        storageClass: openebs-zfs
         accessMode: ReadWriteOnce
         globalMounts:
           - path: /data

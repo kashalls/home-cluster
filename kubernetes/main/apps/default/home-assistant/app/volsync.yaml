@@ -41,7 +41,7 @@ spec:
     cacheStorageClassName: openebs-hostpath
     cacheAccessModes: ["ReadWriteOnce"]
     volumeSnapshotClassName: csi-ceph-filesystem
-    storageClassName: ceph-filesystem
+    storageClassName: openebs-zfs
     moverSecurityContext:
       runAsUser: 568
       runAsGroup: 568

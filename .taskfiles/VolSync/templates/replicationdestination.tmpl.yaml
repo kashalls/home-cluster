@@ -11,8 +11,7 @@ spec:
     repository: ${app}-volsync-secret
     destinationPVC: ${claim}
     copyMethod: Direct
-    storageClassName: ceph-block
-    #storageClassName: ceph-filesystem
+    storageClassName: openebs-zfs
     accessModes: ["ReadWriteMany"]
     # IMPORTANT NOTE:
     #   Set to the last X number of snapshots to restore from
