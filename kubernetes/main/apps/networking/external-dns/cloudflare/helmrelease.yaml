@@ -49,9 +49,9 @@ spec:
     policy: sync
     sources: ["crd", "ingress"]
     txtPrefix: k8s.
-    txtOwnerId: default
+    txtOwnerId: main
     domainFilters:
-      - outsideour.casa
+      - ok8.sh
     serviceMonitor:
       enabled: true
     podAnnotations:
