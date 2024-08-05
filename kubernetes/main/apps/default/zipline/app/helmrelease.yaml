@@ -52,33 +52,33 @@ spec:
               DATASOURCE_S3_ACCESS_KEY_ID:
                 valueFrom:
                   secretKeyRef:
-                    name: zipline-bucket
+                    name: zipline-secret
                     key: AWS_ACCESS_KEY_ID
               DATASOURCE_S3_SECRET_ACCESS_KEY:
                 valueFrom:
                   secretKeyRef:
-                    name: zipline-bucket
+                    name: zipline-secret
                     key: AWS_SECRET_ACCESS_KEY
               DATASOURCE_TYPE: "s3"
               DATASOURCE_S3_BUCKET:
                 valueFrom:
                   configMapKeyRef:
-                    name: zipline-bucket
+                    name: zipline-secret
                     key: BUCKET_NAME
               DATASOURCE_S3_ENDPOINT:
                 valueFrom:
                   configMapKeyRef:
-                    name: zipline-bucket
+                    name: zipline-secret
                     key: BUCKET_HOST
               DATASOURCE_S3_PORT:
                 valueFrom:
                   configMapKeyRef:
-                    name: zipline-bucket
+                    name: zipline-secret
                     key: BUCKET_PORT
               DATASOURCE_S3_REGION:
                 valueFrom:
                   configMapKeyRef:
-                    name: zipline-bucket
+                    name: zipline-secret
                     key: BUCKET_REGION
               DATASOURCE_S3_FORCE_S3_PATH: "true" # TODO: 2023-06-03 current in-cluster RGW doesn't use subdomain (VirtualHost) based S3 buckets yet, it uses path-based
               DATASOURCE_S3_USE_SSL: "false"
