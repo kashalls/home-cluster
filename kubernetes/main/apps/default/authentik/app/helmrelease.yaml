@@ -45,8 +45,8 @@ spec:
         container_image_base: ghcr.io/goauthentik/%(type)s:%(version)s
       # https://github.com/goauthentik/authentik/pull/7118
       # https://github.com/goauthentik/authentik/issues/1285
-      #redis:
-      #  host: "redis-headless.database.svc.cluster.local"
+      redis:
+        host: "dragonfly.database.svc.cluster.local"
     server:
       initContainers:
         - name: init-db
