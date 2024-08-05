@@ -76,7 +76,7 @@ spec:
             targetPort: 55355
     persistence:
       config:
-        name: samba-config
+        name: samba-secret
         type: secret
         globalMounts:
           - path: /data/config.yml
