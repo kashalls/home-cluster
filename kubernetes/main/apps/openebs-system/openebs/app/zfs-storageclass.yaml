@@ -13,3 +13,8 @@ parameters:
   dedup: off
   shared: yes
 provisioner: zfs.csi.openebs.io
+allowedTopologies:
+- matchLabelExpressions:
+  - key: kubernetes.io/hostname
+    values:
+      - fenrys
