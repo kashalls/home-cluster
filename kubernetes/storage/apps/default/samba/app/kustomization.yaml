@@ -5,9 +5,3 @@ kind: Kustomization
 resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
-configMapGenerator:
-  - name: samba-config
-    files:
-      - samba.yaml=./config/samba.yaml
-generatorOptions:
-  disableNameSuffixHash: true

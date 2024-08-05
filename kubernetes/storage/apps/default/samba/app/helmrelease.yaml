@@ -77,13 +77,11 @@ spec:
     persistence:
       config:
         name: samba-config
-        type: configMap
-        advancedMounts:
-          samba:
-            app:
-              - path: /data/config.yml
-                subPath: samba.yaml
-                readOnly: true
+        type: secret
+        globalMounts:
+          - path: /data/config.yml
+            subPath: samba.yaml
+            readOnly: true
       share:
         type: hostPath
         hostPath: /var/mnt/loki
