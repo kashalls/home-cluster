@@ -39,11 +39,11 @@ spec:
               SERVER_PORT: &port 80
             probes:
               liveness: &probes
-                enabled: false
+                enabled: true
                 custom: true
                 spec:
                   httpGet:
-                    path: /-/ready
+                    path: /readyz
                     port: 8888
                   initialDelaySeconds: 0
                   periodSeconds: 10
