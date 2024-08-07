@@ -36,7 +36,10 @@ spec:
               tag: pr-60@sha256:8a2631351fbe479e36d71695bfa5992a0fe28c385162e6d04e78ac5a02149e58
             env:
               PROMETHEUS_URL: http://prometheus-operated.observability.svc.cluster.local:9090
+              SERVER_HOST: 0.0.0.0
               SERVER_PORT: &port 80
+              HEALTH_HOST: 0.0.0.0
+              HEALTH_PORT: &hport 8888
             probes:
               liveness: &probes
                 enabled: true
@@ -44,7 +47,7 @@ spec:
                 spec:
                   httpGet:
                     path: /readyz
-                    port: 8888
+                    port: *hport
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
