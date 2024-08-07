@@ -33,10 +33,10 @@ spec:
           app:
             image:
               repository: ghcr.io/kashalls/kromgo
-              tag: 0.3.1@sha256:5ba40b2fda00ab7adb039c0be955161b84febfe9e9e7816d5f1f87d9ab41f173
+              tag: pr-60@sha256:f803dd058e4c855182a4d983af42576ad826a8fec9f3dd8b58c5f54c6c17ba1c
             env:
               PROMETHEUS_URL: http://prometheus-operated.observability.svc.cluster.local:9090
-              PORT: &port 80
+              SERVER_PORT: &port 80
             probes:
               liveness: &probes
                 enabled: true
@@ -44,7 +44,7 @@ spec:
                 spec:
                   httpGet:
                     path: /-/ready
-                    port: *port
+                    port: 8888
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
