@@ -95,9 +95,9 @@ spec:
       data:
         enabled: true
         type: persistentVolumeClaim
-        accessMode: ReadWriteMany
-        size: 120Gi
-        storageClass: openebs-zfs
+        accessMode: ReadWriteOnce
+        size: 32Gi
+        storageClass: openebs-hostpath
         globalMounts:
           - path: /data
           - path: /app/repositories
