@@ -83,8 +83,7 @@ spec:
       stable-diffusion:
         className: nginx-internal
         annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-prod
-          auth.home.arpa/enabled: "true"
+          external-dns.alpha.kubernetes.io/target: internal.ok8.sh
         hosts:
           - host: &host stable-diffusion.ok8.sh
             paths:
@@ -92,6 +91,8 @@ spec:
                 service:
                   identifier: *app
                   port: *port
+        tls:
+          - hosts: [*host]
     persistence:
       data:
         enabled: true
