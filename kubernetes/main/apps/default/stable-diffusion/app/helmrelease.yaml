@@ -47,14 +47,14 @@ spec:
                 gpu.intel.com/i915: "1"
             probes:
               startup:
-                enabled: true
+                enabled: false
                 spec:
                   failureThreshold: 90
                   periodSeconds: 5
               liveness:
-                enabled: true
+                enabled: false
               readiness:
-                enabled: true
+                enabled: false
         pod:
           affinity:
             nodeAffinity:
