@@ -78,7 +78,7 @@ spec:
             port: &port 7860
     ingress:
       stable-diffusion:
-        className: nginx-internal
+        className: internal
         annotations:
           external-dns.alpha.kubernetes.io/target: internal.ok8.sh
         hosts:
