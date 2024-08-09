@@ -5,8 +5,8 @@ metadata:
   name: home-assistant-config
   namespace: default
 spec:
-  accessModes: ["ReadWriteOnce"]
+  accessModes: ["ReadWriteMany"]
   resources:
     requests:
       storage: 5Gi
-  storageClassName: openebs-zfs
+  storageClassName: openebs-hostpath

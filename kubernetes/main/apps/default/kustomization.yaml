@@ -11,4 +11,4 @@ resources:
   - ./smtp-relay/ks.yaml
   - ./stable-diffusion/ks.yaml
   - ./zigbee2mqtt/ks.yaml
-  - ./zipline/ks.yaml
+  #- ./zipline/ks.yaml
