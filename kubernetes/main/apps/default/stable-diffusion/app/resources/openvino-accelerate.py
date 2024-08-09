@@ -401,7 +401,7 @@ def cache_root_path():
     return cache_root
 
 def get_device():
-    device = "CPU"
+    device = "GPU"
     core = Core()
     if os.getenv("OPENVINO_TORCH_BACKEND_DEVICE") is not None:
         device = os.getenv("OPENVINO_TORCH_BACKEND_DEVICE")
