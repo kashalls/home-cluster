@@ -27,8 +27,6 @@ spec:
       namespace: default
     - name: kube-prometheus-stack
       namespace: observability
-    - name: loki
-      namespace: observability
   values:
     extraInitContainers:
       - name: 01-init-db
