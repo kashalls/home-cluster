@@ -132,7 +132,7 @@ spec:
         enabled: true
         type: persistentVolumeClaim
         size: 1Gi
-        storageClass: openebs-zfs
+        storageClass: openebs-hostpath
         accessMode: ReadWriteOnce
         globalMounts:
           - path: /data

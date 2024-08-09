@@ -106,7 +106,7 @@ spec:
         type: persistentVolumeClaim
         accessMode: ReadWriteMany
         size: 20Gi
-        storageClass: openebs-zfs
+        storageClass: openebs-hostpath
         globalMounts:
           - path: /app/outputs
       intel-gpu:

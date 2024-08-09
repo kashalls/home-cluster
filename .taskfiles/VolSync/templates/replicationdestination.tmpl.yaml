@@ -11,7 +11,7 @@ spec:
     repository: ${app}-volsync-secret
     destinationPVC: ${claim}
     copyMethod: Direct
-    storageClassName: openebs-zfs
+    storageClassName: openebs-hostpath
     accessModes: ["ReadWriteMany"]
     # IMPORTANT NOTE:
     #   Set to the last X number of snapshots to restore from

@@ -39,7 +39,7 @@ spec:
     repository: zigbee2mqtt-volsync-secret
     cacheCapacity: 2Gi
     volumeSnapshotClassName: csi-ceph-blockpool
-    storageClassName: openebs-zfs
+    storageClassName: openebs-hostpath
     moverSecurityContext:
       runAsUser: 568
       runAsGroup: 568

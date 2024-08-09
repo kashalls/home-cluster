@@ -27,7 +27,7 @@ spec:
     global:
       deploymentAnnotations:
         secret.reloader.stakater.com/reload: "authentik-secret"
-      storageClass: openebs-zfs
+      storageClass: openebs-hostpath
       envFrom:
         - secretRef:
             name: authentik-secret
