@@ -123,6 +123,7 @@ spec:
       fullnameOverride: kube-state-metrics
       metricLabelsAllowlist:
         - pods=[*]
+        - nodes=[*]
         - deployments=[*]
         - persistentvolumeclaims=[*]
       prometheus:
