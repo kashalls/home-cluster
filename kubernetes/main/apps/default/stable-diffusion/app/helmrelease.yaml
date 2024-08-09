@@ -104,7 +104,7 @@ spec:
       outputs:
         enabled: true
         type: persistentVolumeClaim
-        accessMode: ReadWriteMany
+        accessMode: ReadWriteOnce
         size: 20Gi
         storageClass: openebs-hostpath
         globalMounts:

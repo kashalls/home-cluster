@@ -12,7 +12,7 @@ spec:
     destinationPVC: ${claim}
     copyMethod: Direct
     storageClassName: openebs-hostpath
-    accessModes: ["ReadWriteMany"]
+    accessModes: ["ReadWriteOnce"]
     # IMPORTANT NOTE:
     #   Set to the last X number of snapshots to restore from
     previous: ${previous}
