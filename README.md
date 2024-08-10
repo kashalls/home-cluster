@@ -54,10 +54,10 @@ While most of my infrastructure and workloads are self-hosted I do rely upon the
 | Service                                    | Use                                                            | Cost           |
 |--------------------------------------------|----------------------------------------------------------------|----------------|
 | [1Password](https://1password.com/)        | Secrets with [External Secrets](https://external-secrets.io/)  | ~$55/yr        |
-| [Cloudflare](https://www.cloudflare.com/)  | Domain and R2                                                  | ~$30/yr        |
+| [Cloudflare](https://www.cloudflare.com/)  | Domains, Workers, Pages, and R2                                | ~$30/yr        |
 | [GCP](https://cloud.google.com/)           | Voice interactions with Home Assistant over Google Assistant   | Free           |
 | [GitHub](https://github.com/)              | Hosting this repository and continuous integration/deployments | Free           |
-| [Let's Encrypt](https://letsencrypt.org/)  | Issuing SSL Certificates                                       | Free           |
+| [Let's Encrypt](https://letsencrypt.org/)  | Issuing SSL Certificates with Cert Manager                     | Free           |
 | [Migadu](https://migadu.com/)              | Email Hosting                                                  | ~$20/yr        |
 | [Pulumi Cloud](https://app.pulumi.com/)    | Resource state management                                      | Free           |
 | [Pushover](https://pushover.net/)          | Kubernetes Alerts and application notifications                | Free           |
