@@ -7,7 +7,7 @@
 [![Kubernetes](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.ok8.sh%2Fquery%3Fformat%3Dendpoint%26metric%3Dkubernetes_version&style=for-the-badge&logo=kubernetes&logoColor=white&color=blue&label=%20)](https://www.talos.dev/)&nbsp;&nbsp;
 [![Renovate](https://img.shields.io/github/actions/workflow/status/kashalls/home-cluster/renovate.yaml?branch=main&label=&logo=renovatebot&style=for-the-badge&color=blue)](https://github.com/kashalls/home-cluster/actions/workflows/renovate.yaml)
 
-[![Main-Cluster](https://img.shields.io/uptimerobot/status/m793494864-dfc695db066960233ac70f45?color=brightgreeen&label=Home%20Internet&style=for-the-badge&logo=v&logoColor=white)](https://github.com/kashalls/hearthook)&nbsp;&nbsp;
+[![Main-Cluster](https://img.shields.io/endpoint?url=https%3A%2F%2Fhearthook.kashall.workers.dev%2Fmain&style=for-the-badge&logo=prometheus&logoColor=white)](https://github.com/kashalls/hearthook)&nbsp;&nbsp;
 [![Storage-Cluster](https://img.shields.io/endpoint?url=https%3A%2F%2Fhearthook.kashall.workers.dev%2Fstorage&style=for-the-badge&logo=prometheus&logoColor=white)](https://github.com/kashalls/hearthook)&nbsp;&nbsp;
 
 [![Age-Days](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.ok8.sh%2Fquery%3Fmetric%3Dcluster_age_days&style=flat-squaree&label=Age)](https://github.com/kashalls/kromgo/)&nbsp;&nbsp;&nbsp;
