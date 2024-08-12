@@ -22,9 +22,7 @@
 
 ## What is this?
 
-This is the home of the kubernetes cluster I deployed at home. It features a couple of low power lenovo computers running [Talos](https://www.talos.dev/) which allows seamless bootstraping when combined with my [vyos-config/matchbox](https://github.com/kashalls/vyos-config/blob/main/config-parts/container.sh#L98) config. My NAS is running [Debian 12](https://www.debian.org/) with [k3s](https://k3s.io/) deployed using my [ansible configuration](/ansible/).
-
-This repo serves as the "roadmap" that is automatically updated and deployed thanks to [renovate](https://www.mend.io/renovate/) and [fluxcd](https://fluxcd.io/).
+This is the repository I use to version control my kubernetes clusters I deploy and maintain at home. I currently use [Talos](https://www.talos.dev/) to provide a secure, minimal and immutable environment for Kubernetes. Previous iterations of this repository relied on Debian-based Operating Systems which can lead unwanted changes in the base system.
 
 ## How did you do this?
 
@@ -32,19 +30,18 @@ Thanks to [onedr0p](https://github.com/onedr0p), there is the [cluster template]
 
 If you're interested, you can also join the community [Discord](https://discord.com): [Home Operations](https://discord.gg/home-operations). Several people are involved daily and it makes for some interesting conversations.
 
-### Directories
+### Directory Helper
 
-This Git repository contains the following directories under [Kubernetes](./kubernetes/).
+This repository uses the following layout for [Kubernetes](./kubernetes/).
 
 ```sh
 📁 kubernetes
-├── 📁 apps
-│   ├── 📁 main
-│   └── 📁 storage
-├── 📁 bootstrap
-└── 📁 config
-    ├── 📁 repositories
-    └── 📁 vars
+└── 📁 {cluster}
+   ├── 📁 apps # Per-cluster application-specific configurations.
+   ├── 📁 bootstrap # Flux & Talos configurations for setting up the cluster.
+   ├── 📁 flux # Flux configuration, application repositories and more.
+   ├── 📝 kubeconfig # Kubernetes Certificate
+   └── 📝 talosconfig # Talos Certificate
 ```
 
 ## ☁️ Cloud Dependencies
@@ -100,7 +97,7 @@ UniFi released a new feature update with UniFi routers that allow you to create 
 | USP-PDU-Pro             | 1     | -            | -                    | -    | -                | Rack PDU          |
 | Raspberry Pi 4          | 3     | 256GB SSD    | -                    | 8GB  | Talos            | Raspberry Cluster |
 | Lenovo ThinkCentre M900 | 6     | 256GB SSD    | 1TB NVMe (rook-ceph) | 16GB | Talos            | Kubernetes Nodes  |
-| Fran the Fabulous Nas   | 1     | 2x1TB SSD    | 5x8TB (raidz2)       | 64GB | Debian           | Storage Cluster   |
+| Fran                    | 1     | 2x1TB SSD    | 5x8TB (raidz2)       | 64GB | Debian           | Storage Cluster   |
 | Raspberry Pi 3          | 1     | 32GB (SD)    | -                    | 4GB  | -                | Network KVM       |
 | APC Back-Ups 1500       | 1     | -            | -                    | -    | -                | UPS               |
 
