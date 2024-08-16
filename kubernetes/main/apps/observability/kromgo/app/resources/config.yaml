@@ -1,5 +1,8 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/kashalls/kromgo/main/config.schema.json
+badge:
+  font: Verdana.ttf
+  size: 12
 metrics:
   - name: talos_version
     query: node_os_info{ name="Talos"}
