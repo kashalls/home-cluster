@@ -2,6 +2,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/kashalls/kromgo/main/config.schema.json
 metrics:
   - name: talos_version
+    title: "Talos Version"
     query: node_os_info{ name="Talos"}
     label: version_id
 
