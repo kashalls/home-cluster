@@ -32,7 +32,7 @@ spec:
           mysql:
             image:
               repository: mysql
-              tag: 8.4.2
+              tag: 9.0.1
             env:
               MYSQL_ROOT_PASSWORD: password
             securityContext:
