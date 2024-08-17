@@ -33,7 +33,9 @@ spec:
             image:
               repository: ghcr.io/kashalls/azeroth-worldserver
               tag: 12@sha256:a0a83c75887d08c9884ccf774d98a8f07b757a0142c62ee3fa85a0765442f219
-            securityContext: &securityContext
+            env:
+              AC_UPDATES_ENABLE_DATABASES: 1
+            securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }

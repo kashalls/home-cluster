@@ -33,7 +33,9 @@ spec:
             image:
               repository: ghcr.io/kashalls/azeroth-authserver
               tag: 12@sha256:dbba89629411f76fd034cdde2fc8efb8acb45356d6088c5f812c60ce38d4e4aa
-            securityContext: &securityContext
+            env:
+              AC_UPDATES_ENABLE_DATABASES: 1
+            securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
