@@ -34,13 +34,12 @@ spec:
               repository: ghcr.io/kashalls/azeroth-worldserver
               tag: 12@sha256:a0a83c75887d08c9884ccf774d98a8f07b757a0142c62ee3fa85a0765442f219
             env:
-              AC_UPDATES_ENABLE_DATABASES: 1
+              AC_UPDATES_ENABLE_DATABASES: 0
               AC_LOGIN_DATABASE_INFO: "mysql.azeroth.svc.cluster.local;3306;root;password;acore_auth"
               AC_WORLD_DATABASE_INFO: "mysql.azeroth.svc.cluster.local;3306;root;password;acore_world"
               AC_CHARACTER_DATABASE_INFO: "mysql.azeroth.svc.cluster.local;3306;root;password;acore_characters"
             securityContext:
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
         pod:
           securityContext:
@@ -59,11 +58,3 @@ spec:
         ports:
           worldserver:
             port: 8085
-    persistence:
-      data:
-        type: persistentVolumeClaim
-        storageClass: openebs-hostpath
-        accessMode: ReadWriteOnce
-        size: 12G
-        globalMounts:
-          - path: /azerothcore/env/dist

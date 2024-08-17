@@ -34,7 +34,7 @@ spec:
               repository: ghcr.io/kashalls/azeroth-authserver
               tag: 12@sha256:dbba89629411f76fd034cdde2fc8efb8acb45356d6088c5f812c60ce38d4e4aa
             env:
-              AC_UPDATES_ENABLE_DATABASES: 1
+              AC_UPDATES_ENABLE_DATABASES: 0
               AC_LOGIN_DATABASE_INFO: "mysql.azeroth.svc.cluster.local;3306;root;password;acore_auth"
             securityContext:
               allowPrivilegeEscalation: false
