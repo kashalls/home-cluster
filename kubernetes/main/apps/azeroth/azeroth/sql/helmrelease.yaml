@@ -46,13 +46,17 @@ spec:
             runAsNonRoot: true
             fsGroup: 1000
             fsGroupChangePolicy: OnRootMismatch
-          imagePullSecrets:
-            - name: github
     service:
       mysql:
         controller: mysql
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "azau.ok8.sh"
         ports:
           mysql:
             port: 3306
+    persistence:
+      data:
+        type: persistentVolumeClaim
+        storageClass: openebs-hostpath
+        accessMode: ReadWriteOnce
+        size: 10G
+        globalMounts:
+          - /var/lib/mysql
