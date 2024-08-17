@@ -37,7 +37,6 @@ spec:
               MYSQL_ROOT_PASSWORD: password
             securityContext:
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
         pod:
           securityContext:
