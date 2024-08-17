@@ -57,3 +57,11 @@ spec:
         ports:
           authserver:
             port: 3724
+    persistence:
+      data:
+        type: persistentVolumeClaim
+        storageClass: openebs-hostpath
+        accessMode: ReadWriteOnce
+        size: 12G
+        globalMounts:
+          - path: /azerothcore/env/dist
