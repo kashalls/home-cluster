@@ -44,6 +44,8 @@ spec:
             runAsNonRoot: true
             fsGroup: 1000
             fsGroupChangePolicy: OnRootMismatch
+          imagePullSecrets:
+            - name: github
     service:
       worldserver:
         controller: worldserver
