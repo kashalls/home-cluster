@@ -59,4 +59,4 @@ spec:
         accessMode: ReadWriteOnce
         size: 10G
         globalMounts:
-          - /var/lib/mysql
+          - path: /var/lib/mysql
