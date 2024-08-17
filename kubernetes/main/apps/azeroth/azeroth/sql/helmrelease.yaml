@@ -37,16 +37,6 @@ spec:
               PUID: "1000"
               PGID: "1000"
               MYSQL_ROOT_PASSWORD: password
-            securityContext:
-              allowPrivilegeEscalation: false
-              capabilities: { drop: ["ALL"] }
-        pod:
-          securityContext:
-            runAsUser: 1000
-            runAsGroup: 1000
-            runAsNonRoot: true
-            fsGroup: 1000
-            fsGroupChangePolicy: OnRootMismatch
     service:
       mysql:
         controller: mysql
