@@ -51,5 +51,3 @@ spec:
         size: 10G
         globalMounts:
           - path: /config
-
-/azerothcore/env/dist
