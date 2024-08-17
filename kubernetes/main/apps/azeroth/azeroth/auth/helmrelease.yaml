@@ -38,7 +38,6 @@ spec:
               AC_LOGIN_DATABASE_INFO: "mysql.azeroth.svc.cluster.local;3306;root;password;acore_auth"
             securityContext:
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
         pod:
           securityContext:
@@ -59,6 +58,7 @@ spec:
             port: 3724
     persistence:
       data:
+        enabled: false
         type: persistentVolumeClaim
         storageClass: openebs-hostpath
         accessMode: ReadWriteOnce
