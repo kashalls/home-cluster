@@ -10,7 +10,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/main/apps/default/azeroth/sql
+  path: ./kubernetes/main/apps/azeroth/azeroth/sql
   prune: true
   sourceRef:
     kind: GitRepository
@@ -33,7 +33,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: azeroth-mysql
-  path: ./kubernetes/main/apps/default/azeroth/auth
+  path: ./kubernetes/main/apps/azeroth/azeroth/auth
   prune: true
   sourceRef:
     kind: GitRepository
@@ -56,7 +56,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: azeroth-mysql
-  path: ./kubernetes/main/apps/default/azeroth/world
+  path: ./kubernetes/main/apps/azeroth/azeroth/world
   prune: true
   sourceRef:
     kind: GitRepository
