@@ -31,9 +31,11 @@ spec:
         containers:
           mysql:
             image:
-              repository: mysql
-              tag: 8.4.2
+              repository: ghcr.io/linuxserver/mariadb
+              tag: 10.11.8
             env:
+              PUID: "1000"
+              PGID: "1000"
               MYSQL_ROOT_PASSWORD: password
             securityContext:
               allowPrivilegeEscalation: false
