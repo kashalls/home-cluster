@@ -39,6 +39,7 @@ spec:
               AC_LOGIN_DATABASE_INFO: "mysql.azeroth.svc.cluster.local;3306;root;password;acore_auth"
               AC_WORLD_DATABASE_INFO: "mysql.azeroth.svc.cluster.local;3306;root;password;acore_world"
               AC_CHARACTER_DATABASE_INFO: "mysql.azeroth.svc.cluster.local;3306;root;password;acore_characters"
+              AC_RA_ENABLE: 1
             securityContext:
               allowPrivilegeEscalation: false
               capabilities: { drop: ["ALL"] }
@@ -64,6 +65,8 @@ spec:
             port: 8085
           soap:
             port: 7878
+          ranet:
+            port: 3443
     persistence:
       etc:
         type: persistentVolumeClaim
