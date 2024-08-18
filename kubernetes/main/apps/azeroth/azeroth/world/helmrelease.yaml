@@ -61,3 +61,8 @@ spec:
             port: 8085
           soap:
             port: 7878
+    persistence:
+      data:
+        existingClaim: dataimport-data
+        globalMounts:
+          - path: /azerothcore/env/dist/data
