@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: mysql
+  name: worldserver
 spec:
   interval: 30m
   chart:
@@ -23,34 +23,26 @@ spec:
       strategy: rollback
       retries: 3
   values:
-    defaultPodOptions:
-      imagePullSecrets:
-        - name: github
     controllers:
-      mysql:
+      worldserver:
         strategy: RollingUpdate
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          mysql:
+          dbimport:
             image:
-              repository: ghcr.io/linuxserver/mariadb
-              tag: 10.11.8
+              repository: acore/ac-wotlk-db-import
+              tag: master
             env:
-              PUID: "1000"
-              PGID: "1000"
-              MYSQL_ROOT_PASSWORD: password
-    service:
-      mysql:
-        controller: mysql
-        ports:
-          mysql:
-            port: 3306
-    persistence:
-      data:
-        type: persistentVolumeClaim
-        storageClass: openebs-hostpath
-        accessMode: ReadWriteOnce
-        size: 10G
-        globalMounts:
-          - path: /config
+              AC_LOGIN_DATABASE_INFO: "mysql.azeroth.svc.cluster.local;3306;root;password;acore_auth"
+              AC_WORLD_DATABASE_INFO: "mysql.azeroth.svc.cluster.local;3306;root;password;acore_world"
+              AC_CHARACTER_DATABASE_INFO: "mysql.azeroth.svc.cluster.local;3306;root;password;acore_characters"
+        pod:
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            runAsNonRoot: true
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
+          imagePullSecrets:
+            - name: github
