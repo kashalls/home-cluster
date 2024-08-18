@@ -43,6 +43,8 @@ spec:
     service:
       mysql:
         controller: mysql
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "azql.ok8.sh"
         ports:
           mysql:
             port: 3306
