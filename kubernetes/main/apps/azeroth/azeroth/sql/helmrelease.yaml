@@ -23,6 +23,9 @@ spec:
       strategy: rollback
       retries: 3
   values:
+    defaultPodOptions:
+      imagePullSecrets:
+        - name: github
     controllers:
       mysql:
         strategy: RollingUpdate
@@ -45,9 +48,6 @@ spec:
               AC_LOGIN_DATABASE_INFO: "mysql.azeroth.svc.cluster.local;3306;root;password;acore_auth"
               AC_WORLD_DATABASE_INFO: "mysql.azeroth.svc.cluster.local;3306;root;password;acore_world"
               AC_CHARACTER_DATABASE_INFO: "mysql.azeroth.svc.cluster.local;3306;root;password;acore_characters"
-        pod:
-          imagePullSecrets:
-            - name: github
     service:
       mysql:
         controller: mysql
