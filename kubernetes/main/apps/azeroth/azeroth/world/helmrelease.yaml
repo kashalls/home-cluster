@@ -58,3 +58,5 @@ spec:
         ports:
           worldserver:
             port: 8085
+          soap:
+            port: 7878

@@ -28,6 +28,15 @@ spec:
         strategy: RollingUpdate
         annotations:
           reloader.stakater.com/auto: "true"
+        initContainers:
+          dbimport:
+            image:
+              repository: ghcr.io/kashalls/azeroth-db-import
+              tag: 13@sha256:8f53853e49af550587507a670502e258451f4cd9dbd4e91181dfefcbbd4ed542
+            env: &env
+              AC_LOGIN_DATABASE_INFO: "mysql.azeroth.svc.cluster.local;3306;root;password;acore_auth"
+              AC_WORLD_DATABASE_INFO: "mysql.azeroth.svc.cluster.local;3306;root;password;acore_world"
+              AC_CHARACTER_DATABASE_INFO: "mysql.azeroth.svc.cluster.local;3306;root;password;acore_characters"
         containers:
           mysql:
             image:
@@ -37,6 +46,9 @@ spec:
               PUID: "1000"
               PGID: "1000"
               MYSQL_ROOT_PASSWORD: password
+    pod:
+      imagePullSecrets:
+        - name: github
     service:
       mysql:
         controller: mysql
