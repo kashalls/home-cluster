@@ -57,3 +57,16 @@ spec:
         ports:
           authserver:
             port: 3724
+    persistence:
+      etc:
+        type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
+        size: 2G
+        globalMounts:
+          - path: /azerothcore/env/dist/etc
+      logs:
+        type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
+        size: 10G
+        globalMounts:
+          - path: /azerothcore/env/dist/logs
