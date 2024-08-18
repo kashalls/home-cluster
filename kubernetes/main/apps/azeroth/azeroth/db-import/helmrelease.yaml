@@ -24,7 +24,7 @@ spec:
       retries: 3
   values:
     controllers:
-      dbimport::
+      dbimport:
         strategy: RollingUpdate
         annotations:
           reloader.stakater.com/auto: "true"
