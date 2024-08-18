@@ -34,7 +34,8 @@ spec:
               repository: ghcr.io/kashalls/azeroth-worldserver
               tag: 12@sha256:a0a83c75887d08c9884ccf774d98a8f07b757a0142c62ee3fa85a0765442f219
             env:
-              AC_UPDATES_ENABLE_DATABASES: 0
+              AC_DATA_DIR: "/azerothcore/env/dist/data"
+              AC_LOGS_DIR: "/azerothcore/env/dist/logs"
               AC_LOGIN_DATABASE_INFO: "mysql.azeroth.svc.cluster.local;3306;root;password;acore_auth"
               AC_WORLD_DATABASE_INFO: "mysql.azeroth.svc.cluster.local;3306;root;password;acore_world"
               AC_CHARACTER_DATABASE_INFO: "mysql.azeroth.svc.cluster.local;3306;root;password;acore_characters"
@@ -62,7 +63,20 @@ spec:
           soap:
             port: 7878
     persistence:
-      data:
+      etc:
+        type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
+        size: 2G
+        globalMounts:
+          - path: /azerothcore/env/dist/etc
+      logs:
+        type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
+        size: 10G
+        globalMounts:
+          - path: /azerothcore/env/dist/logs
+      client-data:
         existingClaim: dataimport-data
         globalMounts:
-          - path: /azerothcore/env/dist/data
+          - path: /azerothcore/env/dist/data/
+            readOnly: true
