@@ -39,6 +39,8 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               capabilities: { drop: ["ALL"] }
+            tty: true
+            stdin: true
         pod:
           securityContext:
             runAsUser: 1000
