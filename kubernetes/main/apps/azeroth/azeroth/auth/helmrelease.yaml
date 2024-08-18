@@ -55,7 +55,7 @@ spec:
         controller: authserver
         annotations:
           external-dns.alpha.kubernetes.io/target: "azau.ok8.sh"
-          io.cilium/lb-ipam-ips: "10.69.0.140"
+          io.cilium/lb-ipam-ips: "10.69.0.138"
         ports:
           authserver:
             port: 3724
