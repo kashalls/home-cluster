@@ -45,6 +45,7 @@ spec:
         controller: mysql
         annotations:
           external-dns.alpha.kubernetes.io/target: "azql.ok8.sh"
+          io.cilium/lb-ipam-ips: "10.69.0.139"
         ports:
           mysql:
             port: 3306

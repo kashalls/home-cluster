@@ -55,6 +55,7 @@ spec:
         controller: worldserver
         annotations:
           external-dns.alpha.kubernetes.io/target: "azwo.ok8.sh"
+          io.cilium/lb-ipam-ips: "10.69.0.139"
         ports:
           worldserver:
             port: 8085
