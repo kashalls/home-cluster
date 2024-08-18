@@ -26,6 +26,7 @@ spec:
     controllers:
       dbimport:
         strategy: RollingUpdate
+        type: job
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
