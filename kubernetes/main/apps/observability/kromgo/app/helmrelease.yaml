@@ -33,7 +33,7 @@ spec:
           app:
             image:
               repository: ghcr.io/kashalls/kromgo
-              tag: main@sha256:8960e478213be96416e5f83743774ac24d8ef6fd9d33189454fd6bfc800313d2
+              tag: main@sha256:0e2c25f04b66e39c0d94b98e75906d0e2a55f8adf7ac4392e1752b7fa362b859
             env:
               PROMETHEUS_URL: http://prometheus-operated.observability.svc.cluster.local:9090
               SERVER_HOST: 0.0.0.0
