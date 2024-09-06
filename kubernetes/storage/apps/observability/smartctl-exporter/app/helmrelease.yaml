@@ -27,18 +27,6 @@ spec:
     keepHistory: false
   values:
     fullnameOverride: *app
-    config:
-      devices:
-        - /dev/sdb
-        - /dev/sdc
-        - /dev/sdd
-        - /dev/sde
-        - /dev/sdf
-        - /dev/sdg
-        - /dev/sdh
-        - /dev/sdi
-        - /dev/nvme0n1
-        - /dev/nvme1n1
     serviceMonitor:
       enabled: true
     prometheusRules:
