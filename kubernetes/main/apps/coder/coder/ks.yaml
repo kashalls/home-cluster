@@ -12,6 +12,8 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: external-secrets-stores
+    - name: cloudnative-pg-cluster
+    - name: dragonfly-cluster
   path: ./kubernetes/main/apps/coder/coder/app
   prune: false
   sourceRef:
