@@ -16,10 +16,10 @@ tasks:
     prompt: Bootstrap Flux into the '{{.cluster}}' cluster ... continue?
     cmds:
       # Install Flux
-      - kubectl --context {{.cluster}} apply --server-side --kustomize {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/flux
+      - kubectl --context {{.cluster}} apply --server-side --kustomize {{.BOOTSTRAP_DIR}}
       # Install secrets and configmaps
-      - sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/flux/age-key.secret.sops.yaml | kubectl --context {{.cluster}} apply --server-side --filename -
-      - sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/flux/github-deploy-key.secret.sops.yaml | kubectl --context {{.cluster}} apply --server-side --filename -
+      - sops --decrypt {{.BOOTSTRAP_DIR}}/age-key.secret.sops.yaml | kubectl --context {{.cluster}} apply --server-side --filename -
+      - sops --decrypt {{.BOOTSTRAP_DIR}}/github-deploy-key.secret.sops.yaml | kubectl --context {{.cluster}} apply --server-side --filename -
       - sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/flux/vars/cluster-secrets.secret.sops.yaml | kubectl --context {{.cluster}} apply --server-side --filename -
       - kubectl --context {{.cluster}} apply --server-side --filename {{.KUBERNETES_DIR}}/{{.cluster}}/flux/vars/cluster-settings.yaml
       # Install Flux Kustomization resources
@@ -28,12 +28,12 @@ tasks:
       vars: ["cluster"]
     preconditions:
       - test -f {{.ROOT_DIR}}/age.key
-      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/flux/age-key.secret.sops.yaml
-      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/flux/github-deploy-key.secret.sops.yaml
+      - test -f {{.BOOTSTRAP_DIR}}/age-key.secret.sops.yaml
+      - test -f {{.BOOTSTRAP_DIR}}/github-deploy-key.secret.sops.yaml
       - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/flux/vars/cluster-settings.yaml
       - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/flux/vars/cluster-secrets.secret.sops.yaml
-      - sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/flux/age-key.secret.sops.yaml
-      - sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/flux/github-deploy-key.secret.sops.yaml
+      - sops --decrypt {{.BOOTSTRAP_DIR}}/age-key.secret.sops.yaml
+      - sops --decrypt {{.BOOTSTRAP_DIR}}/github-deploy-key.secret.sops.yaml
       - sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/flux/vars/cluster-secrets.secret.sops.yaml
 
   apply:

@@ -16,16 +16,18 @@ tasks:
   apply-config:
     desc: Apply Talos configuration to a node
     cmd: |
-      sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/config/{{.hostname}}.secret.sops.yaml | \
+      sops --decrypt {{.TALOS_DIR}}/{{.cluster}}/{{.type}}.secret.sops.yaml | \
           $GOPATH/bin/envsubst | \
-              talosctl --context {{.cluster}} apply-config --nodes {{.hostname}} --file /dev/stdin --insecure
+              talosctl --context {{.cluster}} apply-config --nodes {{.node}} --file /dev/stdin --mode={{.mode}} --insecure={{.insecure}}
     env: *vars
     vars:
+      type: '{{.type | default "worker"}}'
       mode: '{{.mode | default "no-reboot"}}'
+      insecure: '{{.insecure | default "false" }}'
     requires:
-      vars: ["cluster", "hostname"]
+      vars: ["cluster", "node", "type"]
     preconditions:
-      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/config/{{.hostname}}.secret.sops.yaml
+      - test -f {{.TALOS_DIR}}/{{.cluster}}/{{.type}}.secret.sops.yaml
       #- talosctl --context {{.cluster}} --nodes {{.hostname}} get machineconfig >/dev/null 2>&1
 
   upgrade:
@@ -106,12 +108,12 @@ tasks:
 
   bootstrap-apps:
     desc: Bootstrap core apps needed for Talos
-    cmd: helmfile --quiet --kube-context {{.cluster}} --file {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/apps/helmfile.yaml apply --skip-diff-on-install --suppress-diff
+    cmd: helmfile --quiet --kube-context {{.cluster}} --file {{.TALOS_DIR}}/{{.cluster}}/helmfile.yaml apply --skip-diff-on-install --suppress-diff
     requires:
       vars: ["cluster"]
     preconditions:
       - talosctl --context {{.cluster}} config info >/dev/null 2>&1
-      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/apps/helmfile.yaml
+      - test -f {{.TALOS_DIR}}/{{.cluster}}/helmfile.yaml
 
   fetch-kubeconfig:
     desc: Fetch kubeconfig from Talos controllers
