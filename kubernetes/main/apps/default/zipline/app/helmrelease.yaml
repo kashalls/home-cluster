@@ -34,7 +34,7 @@ spec:
           app:
             image:
               repository: ghcr.io/diced/zipline
-              tag: 3.7.9
+              tag: 3.7.10
             env:
               DEBUG: "true"
               TZ: "America/Los_Angeles"
