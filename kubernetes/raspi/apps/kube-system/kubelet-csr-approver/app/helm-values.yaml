@@ -1,4 +1,0 @@
----
-replicas: 1
-providerRegex: ^(fenrys)$
-bypassDnsResolution: true
