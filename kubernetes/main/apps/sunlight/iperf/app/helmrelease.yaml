@@ -52,4 +52,4 @@ spec:
           io.cilium/lb-ipam-ips: 10.69.0.128
         ports:
           http:
-            port: 3000
+            port: 5201
