@@ -47,6 +47,7 @@ spec:
     service:
       app:
         controller: iperf
+        type: LoadBalancer
         annotations:
           external-dns.alpha.kubernetes.io/hostname: iperf.ok8.sh
           io.cilium/lb-ipam-ips: 10.69.0.128
