@@ -19,6 +19,7 @@ resources:
   - ./hajimari.yaml
   - ./ingress-nginx.yaml
   - ./intel.yaml
+  - ./itzg.yaml
   - ./jameswynn.yaml
   - ./jenkinsci.yaml
   - ./jetstack.yaml
