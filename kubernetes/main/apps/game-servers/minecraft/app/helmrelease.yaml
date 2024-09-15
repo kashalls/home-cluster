@@ -1,0 +1,93 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: minecraft
+spec:
+  chart:
+    spec:
+      chart: minecraft
+      version: 4.23.1
+      sourceRef:
+        kind: HelmRepository
+        name: minecraft-server
+        namespace: flux-system
+  interval: 30m
+  values:
+    deploymentAnnotations:
+      secret.reloader.stakater.com/reload: &secret minecraft-secret
+    image:
+      repository: itzg/minecraft-server
+      tag: 2024.9.0-java21
+    resources:
+      limits:
+        memory: 4096Mi
+      requests:
+        cpu: 1000m
+        memory: 2048Mi
+    securityContext:
+      runAsUser: 3000
+      fsGroup: 3000
+    livenessProbe:
+      initialDelaySeconds: 0
+    readinessProbe:
+      initialDelaySeconds: 0
+    startupProbe:
+      enabled: true
+    extraEnv:
+      TZ: "America/Los_Angeles"
+      ENABLE_ROLLING_LOGS: true
+      UID: 3000
+      GID: 3000
+      MEMORY: ""
+    persistence:
+      dataDir:
+        enabled: true
+        existingClaim: ${VOLSYNC_CLAIM}
+    serviceAnnotations:
+      io.cilium/lb-ipam-ips: "${CONFIG_MINECRAFT_IP}"
+      external-dns.alpha.kubernetes.io/hostname: mc.ok8.sh
+    minecraftServer:
+      eula: true
+      version: 1.20.6
+      type: PAPER
+      difficulty: normal
+      whitelist: "Kashall"
+      ops: "Kashall"
+      pvp: true
+      motd: Meh
+      worldSaveName: world
+      viewDistance: 12
+      forceReDownload: true
+      memory: ""
+      jvmXXOpts: "-XX:MaxRAMPercentage=70"
+      spigetResources:
+        - 36618
+        # Dynmap
+        - 274
+      rcon:
+        enabled: true
+        serviceType: ClusterIP
+      serviceType: LoadBalancer
+      extraPorts:
+        - name: map
+          containerPort: 8100
+          protocol: TCP
+          service:
+            enabled: true
+            embedded: false
+            type: ClusterIP
+            port: 8100
+          ingress:
+            ingressClassName: internal
+            enabled: true
+            hosts:
+              - name: &host ${MAP_HOSTNAME}
+                path: /
+            tls: [hosts: [*host]]
+  valuesFrom:
+    - kind: Secret
+      name: *secret
+      valuesKey: RCON_PASSWORD
+      targetPath: minecraftServer.rcon.password

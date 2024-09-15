@@ -6,11 +6,11 @@ metadata:
   name: &app azeroth-mysql
   namespace: flux-system
 spec:
-  targetNamespace: azeroth
+  targetNamespace: game-servers
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/main/apps/azeroth/azeroth/sql
+  path: ./kubernetes/main/apps/game-servers/azeroth/sql
   prune: true
   sourceRef:
     kind: GitRepository
@@ -27,13 +27,13 @@ metadata:
   name: &app azeroth-auth
   namespace: flux-system
 spec:
-  targetNamespace: azeroth
+  targetNamespace: game-servers
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: azeroth-mysql
-  path: ./kubernetes/main/apps/azeroth/azeroth/auth
+  path: ./kubernetes/main/apps/game-servers/azeroth/auth
   prune: true
   sourceRef:
     kind: GitRepository
@@ -50,13 +50,13 @@ metadata:
   name: &app azeroth-world
   namespace: flux-system
 spec:
-  targetNamespace: azeroth
+  targetNamespace: game-servers
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: azeroth-mysql
-  path: ./kubernetes/main/apps/azeroth/azeroth/world
+  path: ./kubernetes/main/apps/game-servers/azeroth/world
   prune: true
   sourceRef:
     kind: GitRepository
@@ -73,13 +73,13 @@ metadata:
   name: &app azeroth-db-import
   namespace: flux-system
 spec:
-  targetNamespace: azeroth
+  targetNamespace: game-servers
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: azeroth-mysql
-  path: ./kubernetes/main/apps/azeroth/azeroth/db-import
+  path: ./kubernetes/main/apps/game-servers/azeroth/db-import
   prune: true
   sourceRef:
     kind: GitRepository
@@ -96,11 +96,11 @@ metadata:
   name: &app azeroth-data-import
   namespace: flux-system
 spec:
-  targetNamespace: azeroth
+  targetNamespace: game-servers
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/main/apps/azeroth/azeroth/data-import
+  path: ./kubernetes/main/apps/game-servers/azeroth/data-import
   prune: true
   sourceRef:
     kind: GitRepository
