@@ -44,9 +44,9 @@ spec:
     persistence:
       dataDir:
         enabled: true
-        existingClaim: ${VOLSYNC_CLAIM}
+        existingClaim: minecraft-data
     serviceAnnotations:
-      io.cilium/lb-ipam-ips: "${CONFIG_MINECRAFT_IP}"
+      io.cilium/lb-ipam-ips: "10.69.0.129"
       external-dns.alpha.kubernetes.io/hostname: mc.ok8.sh
     minecraftServer:
       eula: true
