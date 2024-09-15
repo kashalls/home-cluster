@@ -22,7 +22,7 @@ spec:
           app:
             image:
               repository: ghcr.io/kashalls/dashboard
-              tag: main@sha256:b3906aa378b51ba3b6e96d21202119e0b0f8d3cda7a348a472fe2e5692e2ffbb
+              tag: main@sha256:f68d395e7f455bed6c9f3d2350091c2fd2741d904ad542639d88e7ddb0b5ee5d
             probes:
               liveness: &probes
                 enabled: true
