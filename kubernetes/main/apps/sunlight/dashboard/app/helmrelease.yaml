@@ -18,11 +18,20 @@ spec:
   values:
     controllers:
       dashboard:
+        initContainers:
+          postgres:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16.3@sha256:8ba3204f6b293dd168766009aae2ce4fa986a29b931c2d30ac1b30238ac750b8
+            envFrom: &envFrom
+              - secretRef:
+                  name: sunlight-dashboard-secret
         containers:
           app:
             image:
               repository: ghcr.io/kashalls/dashboard
               tag: main@sha256:f68d395e7f455bed6c9f3d2350091c2fd2741d904ad542639d88e7ddb0b5ee5d
+            envFrom: *envFrom
             probes:
               liveness: &probes
                 enabled: true
@@ -41,9 +50,9 @@ spec:
             resources:
               requests:
                 cpu: 10m
-                memory: 128Mi
+                memory: 256Mi
               limits:
-                memory: 128Mi
+                memory: 512Mi
     service:
       app:
         controller: dashboard
