@@ -24,7 +24,7 @@ spec:
       retries: 3
   values:
     fullnameOverride: *app
-    logLevel: debug
+    # logLevel: debug
     provider:
       name: webhook
       webhook:
@@ -58,14 +58,13 @@ spec:
             port: http-webhook
           initialDelaySeconds: 10
           timeoutSeconds: 5
+    extraArgs:
+      - --ignore-ingress-tls-spec
     policy: sync
-    sources:
-      - ingress
-      - service
+    sources: ["ingress", "service"]
     txtOwnerId: main
-    txtPrefix: k8s.
-    domainFilters:
-      - ok8.sh
+    txtPrefix: k8s.main.
+    domainFilters: ["ok8.sh"]
     serviceMonitor:
       enabled: true
     podAnnotations:
