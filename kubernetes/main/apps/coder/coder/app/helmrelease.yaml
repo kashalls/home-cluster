@@ -47,7 +47,5 @@ spec:
       ingress:
         enable: true
         className: external
-        annotations:
-          external-dns.alpha.kubernetes.io/target: external.ok8.sh
         host: "coder.ok8.sh"
         wildcardHost: "*.coder.ok8.sh"
