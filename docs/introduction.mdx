@@ -1,71 +1,25 @@
 ---
 title: Introduction
-description: 'Welcome to the home of your new documentation'
+description: 'The nodes and the bees.'
+icon: 'hand-wave'
 ---
 
-<img
-  className="block dark:hidden"
-  src="/images/hero-light.svg"
-  alt="Hero Light"
-/>
-<img
-  className="hidden dark:block"
-  src="/images/hero-dark.svg"
-  alt="Hero Dark"
-/>
+## What is this?
 
-## Setting up
+This is the documentation for the repository that I use to version control my homelab where I deploy services to better or worsen my life at home. I have many iterations of my homelab and wish to further document my encounters to help others down the road.
 
-The first step to world-class documentation is setting up your editing environments.
+## How does your home operations work?
 
-<CardGroup cols={2}>
-  <Card
-    title="Edit Your Docs"
-    icon="pen-to-square"
-    href="https://mintlify.com/docs/quickstart"
-  >
-    Get your docs set up locally for easy development
-  </Card>
-  <Card
-    title="Preview Changes"
-    icon="image"
-    href="https://mintlify.com/docs/development"
-  >
-    Preview your changes before you push to make sure they're perfect
-  </Card>
-</CardGroup>
+We use an open source and extensible continuous delivery system called [Flux](https://github.com/fluxcd/flux2).
+It's actually called "Flux2", but most of the community refers to it as "Flux".
 
-## Make it yours
+Flux is simply a tool that ensures that the Kubernetes cluster it is managing stays in sync with the configurations presenting in this repository.
 
-Update your docs to your brand and add valuable content for the best user conversion.
+We use other tools like [Renovate](https://github.com/renovatebot/renovate) to watch for dependency updates and automatically create new pull requests.
+When these pull requests are merged, Flux will automatically apply the changes to the cluster.
 
-<CardGroup cols={2}>
-  <Card
-    title="Customize Style"
-    icon="palette"
-    href="https://mintlify.com/docs/settings/global"
-  >
-    Customize your docs to your company's colors and brands
-  </Card>
-  <Card
-    title="Reference APIs"
-    icon="code"
-    href="https://mintlify.com/docs/api-playground/openapi"
-  >
-    Automatically generate endpoints from an OpenAPI spec
-  </Card>
-  <Card
-    title="Add Components"
-    icon="screwdriver-wrench"
-    href="https://mintlify.com/docs/components/accordion"
-  >
-    Build interactive features and designs to guide your users
-  </Card>
-  <Card
-    title="Get Inspiration"
-    icon="stars"
-    href="https://mintlify.com/customers"
-  >
-    Check out our showcase of our favorite documentation
-  </Card>
-</CardGroup>
+## Neat, How do I start my own?
+
+Thanks to [onedr0p](https://github.com/onedr0p), there is a [cluster template](https://github.com/onedr0p/flux-cluster-template) that allows you to easily get started with your own kubernetes cluster at home. You don't need to have multiple computers or a fancy setup to get one working.
+
+If you're interested, you can also join and talk wit the community: [Home Operations](https://discord.gg/home-operations). Several people are involved daily and it makes for some interesting conversations.

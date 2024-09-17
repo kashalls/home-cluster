@@ -1,91 +1,93 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
-  "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
-  },
-  "favicon": "/favicon.svg",
+  "name": "Kashall's Home Cluster",
+  "logo": "/.assets/logo.svg",
+  "favicon": "/.assets/logo.svg",
+  "theme": "prism",
+  "layout": "topnav",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
-    "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
-    }
+    "primary": "#5D4CFE",
+    "light": "#8477FF",
+    "dark": "#5D4CFE"
   },
   "topbarLinks": [
     {
-      "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "name": "Discord",
+      "url": "https://discord.gg/home-operations"
     }
   ],
   "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "name": "Github",
+    "url": "https://github.com/kashalls/home-cluster"
+  },
+  "primaryTab": {
+    "name": "Homelab"
   },
   "tabs": [
     {
-      "name": "API Reference",
-      "url": "api-reference"
+      "name": "Concepts",
+      "url": "concepts"
+    },
+    {
+      "name": "Guides",
+      "url": "guides"
     }
   ],
   "anchors": [
     {
-      "name": "Documentation",
+      "name": "Kubernetes Docs",
       "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
-    },
-    {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "url": "https://kubernetes.io/docs/home/"
     }
   ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "Welcome",
       "pages": [
         "introduction",
-        "quickstart",
-        "development"
+        "special-thanks"
       ]
     },
     {
-      "group": "Essentials",
+      "group": "My Home Operations",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "homelab/cloud-dependencies",
+        "homelab/hardware",
+        "homelab/networking",
+        "homelab/monitoring"
       ]
     },
     {
-      "group": "API Documentation",
+      "group": "Kubernetes and You",
       "pages": [
-        "api-reference/introduction"
+        "kubernetes/talos",
+        "kubernetes/configuration",
+        "kubernetes/deployment"
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "Storage",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "storage/previous-installations",
+        "storage/truenas"
+      ]
+    },
+    {
+      "group": "Guides",
+      "pages": [
+        "guides/overview",
+        {
+          "group": "Networking",
+          "pages": [
+            "guides/networking/general-dns"
+          ]
+        }
       ]
     }
   ],
   "footerSocials": {
     "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "github": "https://github.com/kashalls",
+    "linkedin": "https://www.linkedin.com/in/jordpjones/"
   }
 }
