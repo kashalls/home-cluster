@@ -1,0 +1,27 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: &name "${CLIENT_NAME}"
+  namespace: "${CLIENT_NS}"
+  labels:
+    jobs.home.arpa/iperf2: "client"
+spec:
+  ttlSecondsAfterFinished: 3600
+  template:
+    spec:
+      automountServiceAccountToken: false
+      restartPolicy: Never
+      # hostNetwork: true
+      dnsPolicy: "ClusterFirstWithHostNet"
+      nodeSelector:
+        kubernetes.io/hostname: "${CLIENT_NODE}"
+      containers:
+        - name: *name
+          image: public.ecr.aws/debian/debian:bookworm-20230411-slim
+          resources: {}
+          command: ["/bin/sh", "-c"]
+          args:
+            - apt update;
+              apt install iperf;
+              iperf -c ${SERVER_NAME}.${SERVER_NS}.svc.${CLUSTER_DOMAIN} -p ${SERVER_PORT} ${CLIENT_ARGS};

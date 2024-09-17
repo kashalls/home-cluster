@@ -1,0 +1,57 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: &name "${SERVER_NAME}"
+  namespace: "${SERVER_NS}"
+  labels: &labels
+    jobs.home.arpa/iperf2: "server"
+spec:
+  ttlSecondsAfterFinished: 3600
+  template:
+    spec:
+      automountServiceAccountToken: false
+      restartPolicy: "Never"
+      nodeSelector:
+        kubernetes.io/hostname: "${SERVER_NODE}"
+      # hostNetwork: true
+      containers:
+        - name: *name
+          image: "public.ecr.aws/debian/debian:bookworm-20230411-slim"
+          resources: {}
+          ports:
+            - name: "iperf2"
+              protocol: "TCP"
+              containerPort: ${SERVER_PORT}
+          readinessProbe: &probe
+            periodSeconds: 2
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 2
+            tcpSocket:
+              port: 5001
+          livenessProbe:
+            <<: *probe
+            terminationGracePeriodSeconds: 150
+          startupProbe:
+            <<: *probe
+            failureThreshold: 100
+          command: ["/bin/sh", "-c"]
+          # args: ["sleep 999999999"]
+          args:
+            - apt update;
+              apt install iperf;
+              iperf -s -p ${SERVER_PORT} ${SERVER_ARGS};
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: &name "${SERVER_NAME}"
+  namespace: "${SERVER_NS}"
+  labels:
+    jobs.home.arpa/iperf2: "server"
+spec:
+  type: ClusterIP
+  clusterIP: "None"
+  selector:
+    job-name: *name
