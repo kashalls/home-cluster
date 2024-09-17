@@ -18,5 +18,5 @@ metadata:
 spec:
   endpoints:
     - dnsName: ok8.sh
-      recordType: CNAME
+      recordType: A
       targets: ["76.76.21.21"]
