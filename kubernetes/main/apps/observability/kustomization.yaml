@@ -12,5 +12,5 @@ resources:
   - ./kube-prometheus-stack/ks.yaml
   - ./prometheus-operator-crds/ks.yaml
   - ./smartctl-exporter/ks.yaml
-  - ./speedtest-exporter/ks.yaml
+  #- ./speedtest-exporter/ks.yaml
   - ./unpoller/ks.yaml
