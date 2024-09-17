@@ -1,0 +1,96 @@
+---
+title: "Proxy DHCP PXE Booting"
+description: "Utilize dnsmasq to allow PXE bootstraping your Kubernetes nodes seamlessly."
+icon: 'arrow-right-arrow-left'
+---
+
+Most router appliances do not allow the user to properly configure multi-arch pxe booting without modifying the base operating system. These changes would be overwritten on the next firmware update, requiring you to redeploy the changes.
+
+You can get around this by running [poseidon/dnsmasq](https://github.com/poseidon/dnsmasq) in a container for running DHCP, proxy DHCP, DNS and/or TFTP.
+
+This can be easily deployed on a raspberry pi or other machine stuffed in the back of your lab. This also can be combined with matchbox to facilitate bootstraping nodes with Talos.
+
+## How This Works
+
+When your machine wants to connect to the internet, it creates a DHCP Request asking for a address on your local network. Your router usually responds to this request and hands out an address.
+
+Dnsmasq in proxy mode listens for this request, and sends out a second answer to the client with the options required to allow PXE Booting. Dnsmasq simply says: "Hey! You can boot from this server over here. Here's the details if you need them."
+It doesn't interfer with any of your router's dhcp options, and your machine will always prefer the dhcp response from your router over the proxy.
+
+
+## Requirements
+- A device seperate from your cluster.
+- Device must share an address from the network you are running the proxy on.
+
+## Create The Container
+
+<CodeGroup>
+```bash /bin/bash
+  docker run -d \
+    --cap-add NET_BIND_SERVICE \
+    --cap-add NET_ADMIN \
+    --cap-add NET_RAW \
+    --name dhcp-relay \
+    --network host \
+    --restart always \
+    quay.io/poseidon/dnsmasq:v0.5.0-31-gdc1adc8@sha256:6a839fde323fb405f6be84003a6b9019d9151caa983bfdcbc8cc1b51b1f8627d \
+    --log-dhcp --log-queries --no-daemon \
+    --port=0 \
+    --dhcp-range=<Your Network Gateway>,proxy,255.255.255.0 \
+    --enable-tftp \
+    --tftp-root=/var/lib/tftpboot \
+    --pxe-service=net:#ipxe,x86PC,,undionly.kpxe \
+    --pxe-service=net:#ipxe,X86-64_EFI,,ipxe.efi \
+    --dhcp-match=set:bios,option:client-arch,0 \
+    --dhcp-boot=tag:bios,undionly.kpxe \
+    --dhcp-match=set:efi32,option:client-arch,6 \
+    --dhcp-boot=tag:efi32,ipxe.efi \
+    --dhcp-match=set:efibc,option:client-arch,7 \
+    --dhcp-boot=tag:efibc,ipxe.efi \
+    --dhcp-match=set:efi64,option:client-arch,9 \
+    --dhcp-boot=tag:efi64,ipxe.efi \
+    --dhcp-match=set:arm64,option:client-arch,11 \
+    --dhcp-boot=tag:arm64,ipxe-arm64.efi \
+    --dhcp-userclass=set:ipxe,iPXE \
+    --dhcp-boot=tag:ipxe,http://<TFTP Server>/boot.ipxe
+```
+
+```EditorConfig podman.container
+[Unit]
+Description=dhcp-relay
+
+[Container]
+AddCapability=NET_BIND_SERVICE
+AddCapability=NET_ADMIN
+AddCapability=NET_RAW
+ContainerName=dhcp-relay
+Exec=--log-dhcp --log-queries --no-daemon \
+  --port=0 \
+  --dhcp-range=<Your Network Gateway>,proxy,255.255.255.0 \
+  --enable-tftp \
+  --tftp-root=/var/lib/tftpboot \
+  --pxe-service=net:#ipxe,x86PC,,undionly.kpxe \
+  --pxe-service=net:#ipxe,X86-64_EFI,,ipxe.efi \
+  --dhcp-match=set:bios,option:client-arch,0 \
+  --dhcp-boot=tag:bios,undionly.kpxe \
+  --dhcp-match=set:efi32,option:client-arch,6 \
+  --dhcp-boot=tag:efi32,ipxe.efi \
+  --dhcp-match=set:efibc,option:client-arch,7 \
+  --dhcp-boot=tag:efibc,ipxe.efi \
+  --dhcp-match=set:efi64,option:client-arch,9 \
+  --dhcp-boot=tag:efi64,ipxe.efi \
+  --dhcp-match=set:arm64,option:client-arch,11 \
+  --dhcp-boot=tag:arm64,ipxe-arm64.efi \
+  --dhcp-userclass=set:ipxe,iPXE \
+  --dhcp-boot=tag:ipxe,http://<TFTP Server>/boot.ipxe
+Image=quay.io/poseidon/dnsmasq:v0.5.0-31-gdc1adc8@sha256:6a839fde323fb405f6be84003a6b9019d9151caa983bfdcbc8cc1b51b1f8627d
+Network=host
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target
+```
+</CodeGroup>

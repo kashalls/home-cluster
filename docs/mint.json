@@ -21,7 +21,7 @@
     "url": "https://github.com/kashalls/home-cluster"
   },
   "primaryTab": {
-    "name": "Homelab"
+    "name": "Home Lab"
   },
   "tabs": [
     {
@@ -76,12 +76,9 @@
       "group": "Guides",
       "pages": [
         "guides/overview",
-        {
-          "group": "Networking",
-          "pages": [
-            "guides/networking/general-dns"
-          ]
-        }
+        "guides/ms01-secure-boot",
+        "guides/proxy-dhcp-booting",
+        "guides/understanding-talos"
       ]
     }
   ],

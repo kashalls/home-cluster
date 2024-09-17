@@ -1,0 +1,101 @@
+---
+title: "Understanding Talos"
+description: "Talos provides a secure, immutable, minimal and confusing operating system for new users."
+icon: 'bird'
+---
+
+<Warning> Booting into an air-gapped environment is not easy, and will not be covered by this guide. </Warning>
+
+## About Talos
+
+> Talos Linux is Linux designed for Kubernetes – secure, immutable, and minimal.
+>
+> *Developed by [Siderolabs](https://www.siderolabs.com/)*
+
+### Why *should*  you use Talos?
+- Talos is a container optimized linux distro; it is designed to be as minimal as possible while still maintaining practicality.
+- Talos allows customization through the means of a machine config file that is generated along with the secrets needed to authenticate with your cluster.
+- Talos will always end up configured exactly the same every time (it is immutable).
+- Talos can be managed declaritively just like kubernetes. Making it easier to automate and maintain at scale.
+
+### Why *shouldn't*  I used Ubuntu or Debian?
+- Debian-based Operating Systems are designed to be a general-purpose operating system.
+- Higher attack surface. Ubuntu server is a full linux distribution with a shell, multiple packages and services enabled by default. It is harder to garuntee that the system running kubernetes hasn't been tampered with.
+- For larger clusters, managing nodes will require more complex configurations, automation, and oversight.
+
+
+## Getting Started with Talos
+
+### Prerequisites
+Almost all of the configuration will be over the Command-Line Interface or `CLI` for short.
+
+I highly recommend installing [homebrew/brew.sh](https://brew.sh/) if you don't have it installed. Updating `talosctl` manually is difficult and tiring.
+
+If you have homebrew installed, you can install `talosctl` via:
+
+```bash
+brew install siderolabs/tap/talosctl
+```
+
+Windows users can also use the brew command above if brew is installed, otherwise you can download the latest `talosctl` binary from [here](https://github.com/siderolabs/talos/releases/) and put it in your `$PATH` each time it updates.
+
+### Building Your Factory Image
+
+Talos provides this awesome factory that helps configure and package various boot assets required for each node: https://factory.talos.dev/
+
+The factory will guide you through creating the ideal image for your node by configuring:
+- The Hardware Type
+- Talos Version
+- Architecture
+- Secure Boot
+- Extensions
+
+### Deciding What Extensions You Need
+
+Generally, this depends on the machine you are using to run Talos. For AMD-based machines, you can select all of the amd extensions.
+
+If you plan on running virtualized github runners, you will need `siderolabs/binfmt-misc` as it is a dependency.
+
+If you have a Intel CPU, you will need the intel-ucode extension.
+
+The zfs extension is incompatiable with the nvidia extension at the moment.
+
+The nut client & zfs extensions require additional configurations
+
+### Flashing Your Image
+
+Assuming you have somehow managed to coerce your machine into booting from the ISO, Talos will be running in *mainteance* mode. It is running in RAM and will not install itself to any disk without a configuration.
+
+
+### Finding Your Disks
+
+While your machine is in *mainteance mode*, you can use the `CLI` to fetch details about the machine. You will need to use the `--insecure` flag as the machine does not have any configuration associated with it.
+
+```bash
+talosctl disks -n <your_node_ip> -e <your_node_ip> --insecure
+```
+
+Here is the output if the machine has Talos installed:
+```
+NODE        DEV            MODEL                      SERIAL             TYPE   UUID                                   WWID                                                                   MODALIAS   NAME   SIZE     BUS_PATH                                                   SUBSYSTEM          READ_ONLY   SYSTEM_DISK
+10.69.0.2   /dev/nvme0n1   CT1000P3SSD8               2318E6D1E1A3       NVME   -                                      nvme.c0a9-323331384536443145314133-435431303030503353534438-00000001   -          -      1.0 TB   /pci0000:00/0000:00:1c.4/0000:58:00.0/nvme/nvme0/nvme0n1   /sys/class/block
+10.69.0.2   /dev/nvme1n1   KINGSTON OM8PGP41024Q-A0   50026B7382F40A20   NVME   00000000-0000-0000-0026-b7382f40a205   eui.00000000000000000026b7382f40a205                                   -          -      1.0 TB   /pci0000:00/0000:00:06.0/0000:01:00.0/nvme/nvme1/nvme1n1   /sys/class/block               *
+10.69.0.2   /dev/nvme2n1   CT1000P3SSD8               2318E6D1804E       NVME   -
+```
+
+### Scouring Your Talos Filesyste
+
+`talosctl` provides the `read`, `list` & `copy` commands for looking and pulling information from the filesystem.
+
+This is particularly helpful for searching for the disk id's for your drives when setting up a storage engine like [longhorn](https://longhorn.io/) or [rook-ceph](https://rook.io).
+
+### Accessing The Node (through other means)
+
+In the case you need to interact with the node, you can create a privileged pod and enter an interactive session with it using the `kubectl` tool.
+
+```bash
+kubectl run toolbox --image=debian:latest --privileged=true -it
+```
+
+- `-i` will keep the output open regardless if nothing is attached.
+- `-t` will allocate a output for the container.
