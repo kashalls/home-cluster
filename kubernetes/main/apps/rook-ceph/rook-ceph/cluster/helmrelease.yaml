@@ -114,10 +114,6 @@ spec:
             memory: 256Mi
     cephBlockPools:
       - name: ceph-blockpool
-        spec:
-          failureDomain: host
-          replicated:
-            size: 3
         storageClass:
           enabled: true
           name: ceph-block
@@ -143,14 +139,8 @@ spec:
     cephFileSystems:
       - name: &cephFileSystemName ceph-filesystem
         spec:
-          metadataPool:
-            replicated:
-              size: 3
           dataPools:
-            - failureDomain: host
-              replicated:
-                size: 3
-              name: data0
+            - name: data0
           metadataServer:
             activeCount: 1
             activeStandby: true
@@ -194,10 +184,6 @@ spec:
     cephObjectStores:
       - name: ceph-objectstore
         spec:
-          metadataPool:
-            failureDomain: host
-            replicated:
-              size: 3
           dataPool:
             failureDomain: host
             erasureCoded:
