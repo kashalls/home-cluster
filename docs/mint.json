@@ -76,14 +76,14 @@
       "group": "Guides",
       "pages": [
         "guides/overview",
-        "guides/ms01-secure-boot",
+        "guides/understanding-talos",
         "guides/proxy-dhcp-booting",
-        "guides/understanding-talos"
+        "guides/ms01-secure-boot",
+        "guides/seperating-ingress-traffic"
       ]
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
     "github": "https://github.com/kashalls",
     "linkedin": "https://www.linkedin.com/in/jordpjones/"
   }

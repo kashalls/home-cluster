@@ -20,7 +20,7 @@ icon: 'bird'
 
 ### Why *shouldn't*  I used Ubuntu or Debian?
 - Debian-based Operating Systems are designed to be a general-purpose operating system.
-- Higher attack surface. Ubuntu server is a full linux distribution with a shell, multiple packages and services enabled by default. It is harder to garuntee that the system running kubernetes hasn't been tampered with.
+- Higher attack surface. Ubuntu server is a full linux distribution with a shell, multiple packages and services enabled by default. It is harder to guarantee that the system running kubernetes hasn't been tampered with.
 - For larger clusters, managing nodes will require more complex configurations, automation, and oversight.
 
 
@@ -52,15 +52,60 @@ The factory will guide you through creating the ideal image for your node by con
 
 ### Deciding What Extensions You Need
 
-Generally, this depends on the machine you are using to run Talos. For AMD-based machines, you can select all of the amd extensions.
-
-If you plan on running virtualized github runners, you will need `siderolabs/binfmt-misc` as it is a dependency.
-
-If you have a Intel CPU, you will need the intel-ucode extension.
-
-The zfs extension is incompatiable with the nvidia extension at the moment.
-
-The nut client & zfs extensions require additional configurations
+<AccordionGroup>
+  <Accordion title="Firmware Extensions">
+    | Extension Name       | Description                                              |
+    |----------------------|----------------------------------------------------------|
+    | amdgpu-firmware      | Provides AMD GPU firmware binaries required for the `amdgpu` driver. |
+    | amd-ucode            | Provides AMD CPU microcode binaries.                      |
+    | chelsio-firmware     | Provides firmware for Chelsio NICs.                       |
+    | i915-ucode           | Provides Intel GPU microcode binaries.                    |
+    | intel-ice-firmware   | Provides Intel Ice network firmware binaries.             |
+    | intel-ucode          | Provides Intel CPU microcode binaries.                    |
+    | qlogic-firmware      | Provides firmware for QLogic devices.                     |
+    | realtek-firmware     | Provides Realtek firmware binaries.                       |
+  </Accordion>
+  <Accordion title="Kernel Modules">
+    | Extension Name          | Description                                                        |
+    |-------------------------|--------------------------------------------------------------------|
+    | binfmt-misc             | Provides the kernel module for `binfmt-misc`, enabling execution of different binary formats. |
+    | bnx2-bnx2x              | Provides network drivers for Broadcom network devices (bnx2 and bnx2x). |
+    | btrfs                   | Provides the BTRFS filesystem kernel module.                        |
+    | chelsio-drivers         | Provides network drivers for Chelsio NICs.                          |
+    | drbd                    | Provides Distributed Replicated Block Device (DRBD) kernel module.  |
+    | gasket-driver           | Provides Google gasket driver kernel modules for PCIe and M.2 Google Coral accelerators. |
+    | nvidia-open-gpu-kernel-modules | Provides Nvidia open-source GPU driver kernel modules.         |
+    | thunderbolt             | Provides Thunderbolt/USB4 driver kernel modules.                    |
+    | usb-modem-drivers       | Provides USB modem driver kernel modules.                           |
+    | v4l-uvc-drivers         | Provides Video4Linux drivers for USB Video Class devices.            |
+    | zfs                     | Provides ZFS filesystem kernel modules. (Pool must exist before booting) |
+    | nonfree-kmod-nvidia     | Provides proprietary Nvidia kernel modules.                          |
+  </Accordion>
+  <Accordion title="Container and Virtualization Extensions">
+    | Extension Name              | Description                                                      |
+    |-----------------------------|------------------------------------------------------------------|
+    | ecr-credential-provider      | Provides credentials for Kubelet to authenticate against AWS Elastic Container Registry. |
+    | gvisor                       | Provides gVisor as a sandboxed container runtime.               |
+    | gvisor-debug                 | Enables gVisor debug logging.                                    |
+    | kata-containers              | Provides Kata Containers runtime for lightweight virtualized containers. |
+    | nvidia-container-toolkit     | Provides Nvidia runtime and its dependencies using NVIDIA's runtime handler. |
+    | qemu-guest-agent             | Provides the QEMU Guest Agent service.                          |
+    | spin                         | Provides runtime support for WebAssembly (WASM) containers using Spin. |
+    | stargz-snapshotter           | Provides Stargz Snapshotter using containerd's runtime handler.  |
+    | vmtoolsd-guest-agent         | Provides the VMToolsd Guest Agent for interacting with virtual machine hosts. |
+    | wasmedge                     | Provides support for the WasmEdge WebAssembly runtime.           |
+    | xen-guest-agent              | Provides the Xen Guest Agent for communication with Xen hypervisor hosts. |
+  </Accordion>
+  <Accordion title="Networking and System Tools">
+    | Extension Name       | Description                                                      |
+    |----------------------|------------------------------------------------------------------|
+    | iscsi-tools          | Provides tools for iSCSI (Internet Small Computer System Interface). |
+    | mdadm                | Provides the `mdadm` tool for managing RAID arrays.              |
+    | nut-client           | Provides the Network UPS Tools (NUT) client for monitoring UPS devices. (Requires Config) |
+    | tailscale            | Tailscale connects your team's devices and development environments for easy access to remote resources. (Requires Config) |
+    | util-linux-tools     | Provides a minimal util-linux package.                           |
+  </Accordion>
+</AccordionGroup>
 
 ### Flashing Your Image
 
@@ -83,7 +128,7 @@ NODE        DEV            MODEL                      SERIAL             TYPE   
 10.69.0.2   /dev/nvme2n1   CT1000P3SSD8               2318E6D1804E       NVME   -
 ```
 
-### Scouring Your Talos Filesyste
+### Scouring Your Talos Filesystem
 
 `talosctl` provides the `read`, `list` & `copy` commands for looking and pulling information from the filesystem.
 
