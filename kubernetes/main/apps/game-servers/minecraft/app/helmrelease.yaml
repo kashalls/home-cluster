@@ -44,7 +44,8 @@ spec:
     persistence:
       dataDir:
         enabled: true
-        existingClaim: minecraft-data
+        storageClass: ceph-block
+        Size: 10G
     serviceAnnotations:
       io.cilium/lb-ipam-ips: "10.69.0.129"
       external-dns.alpha.kubernetes.io/hostname: mc.ok8.sh
