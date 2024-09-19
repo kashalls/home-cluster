@@ -23,7 +23,7 @@ resources:
   - ./jameswynn.yaml
   - ./jenkinsci.yaml
   - ./jetstack.yaml
-  - ./k8s-gateway.yaml
+  - ./longhorn.yaml
   - ./metrics-server.yaml
   - ./mongodb.yaml
   - ./node-feature-discovery.yaml
