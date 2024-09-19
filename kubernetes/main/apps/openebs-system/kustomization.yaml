@@ -7,4 +7,4 @@ resources:
   - ./namespace.yaml
   - ./notifications.yaml
   # Flux-Kustomizations
-  - ./openebs/ks.yaml
+  #- ./openebs/ks.yaml
