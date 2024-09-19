@@ -84,7 +84,7 @@ spec:
             ingressClassName: internal
             enabled: true
             hosts:
-              - name: &host ${MAP_HOSTNAME}
+              - name: &host mc.ok8.sh
                 path: /
             tls: [hosts: [*host]]
   valuesFrom:
