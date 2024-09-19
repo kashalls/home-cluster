@@ -25,7 +25,7 @@ spec:
       retries: 3
   dependsOn:
     - name: snapshot-controller
-      namespace: volsync-system
+      namespace: storage
   values:
     csi:
       cephFSKernelMountOptions: ms_mode=prefer-crc

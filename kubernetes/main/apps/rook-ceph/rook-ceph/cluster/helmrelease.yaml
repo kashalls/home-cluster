@@ -27,7 +27,7 @@ spec:
     - name: rook-ceph-operator
       namespace: rook-ceph
     - name: snapshot-controller
-      namespace: volsync-system
+      namespace: storage
   values:
     monitoring:
       enabled: true

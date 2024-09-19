@@ -24,9 +24,9 @@ spec:
       retries: 3
   dependsOn:
     - name: openebs
-      namespace: openebs-system
+      namespace: storage
     - name: volsync
-      namespace: volsync-system
+      namespace: storage
   values:
     controllers:
       home-assistant:
