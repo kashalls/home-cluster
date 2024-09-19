@@ -110,7 +110,7 @@ spec:
       data:
         enabled: true
         type: nfs
-        server: fran.ok8.sh
+        server: fran.outsideour.casa
         path: /mnt/loki/kubernetes/minio
         globalMounts:
           - path: /data
