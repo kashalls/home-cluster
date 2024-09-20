@@ -26,9 +26,9 @@ spec:
     - name: mosquitto
       namespace: default
     - name: openebs
-      namespace: storage
+      namespace: openebs-system
     - name: volsync
-      namespace: storage
+      namespace: volsync-system
   values:
     controllers:
       zigbee2mqtt:

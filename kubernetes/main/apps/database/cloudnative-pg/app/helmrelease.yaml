@@ -26,7 +26,7 @@ spec:
     keepHistory: false
   dependsOn:
     - name: openebs
-      namespace: storage
+      namespace: openebs-system
   values:
     crds:
       create: true

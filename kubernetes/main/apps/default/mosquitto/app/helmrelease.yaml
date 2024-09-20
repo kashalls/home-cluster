@@ -24,7 +24,7 @@ spec:
       retries: 3
   dependsOn:
     - name: openebs
-      namespace: storage
+      namespace: openebs-system
   values:
     controllers:
       mosquitto:
