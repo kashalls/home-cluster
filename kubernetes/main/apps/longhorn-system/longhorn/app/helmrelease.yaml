@@ -30,7 +30,7 @@ spec:
     defaultSettings:
       backupTarget: s3://longhorn@us-west-2/
       backupTargetCredentialSecret: longhorn-secret
-      defaultReplicaCount: 3
+      defaultReplicaCount: 1
       backupstorePollInterval: 0
       createDefaultDiskLabeledNodes: true
       restoreVolumeRecurringJobs: true
