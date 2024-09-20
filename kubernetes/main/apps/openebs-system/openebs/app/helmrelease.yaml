@@ -40,13 +40,21 @@ spec:
     zfs-localpv:
       enabled: false
     lvm-localpv:
-      enabled: false
+      enabled: true
+      lvmNode:
+        nodeSelector:
+          kubernetes.io/arch: "amd64"
+      crds:
+        csi:
+          volumeSnapshots:
+            enabled: false
+            keep: false
     mayastor:
       enabled: false
     engines:
       local:
         lvm:
-          enabled: false
+          enabled: true
         zfs:
           enabled: false
       replicated:
