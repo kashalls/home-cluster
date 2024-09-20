@@ -6,11 +6,11 @@ metadata:
   name: &app longhorn
   namespace: flux-system
 spec:
-  targetNamespace: storage
+  targetNamespace: longhorn-system
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/main/apps/storage/longhorn/app
+  path: ./kubernetes/main/apps/longhorn-system/longhorn/app
   prune: true
   sourceRef:
     kind: GitRepository
