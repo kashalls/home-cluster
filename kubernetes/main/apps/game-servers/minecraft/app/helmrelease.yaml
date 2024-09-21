@@ -65,8 +65,9 @@ spec:
       jvmXXOpts: "-XX:MaxRAMPercentage=70"
       spigetResources:
         - 36618
-        # Dynmap
-        - 274
+      modrinth:
+        projects:
+          - dynmap
       rcon:
         enabled: true
         serviceType: ClusterIP
