@@ -62,6 +62,7 @@ spec:
       modrinth:
         projects:
           - dynmap
+        allowedVersionType: beta
       rcon:
         enabled: true
         serviceType: ClusterIP
