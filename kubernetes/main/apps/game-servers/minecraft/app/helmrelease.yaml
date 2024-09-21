@@ -26,9 +26,6 @@ spec:
       requests:
         cpu: 1000m
         memory: 2048Mi
-    securityContext:
-      runAsUser: 3000
-      fsGroup: 3000
     livenessProbe:
       initialDelaySeconds: 0
     readinessProbe:
@@ -38,9 +35,6 @@ spec:
     extraEnv:
       TZ: "America/Los_Angeles"
       ENABLE_ROLLING_LOGS: true
-      UID: 3000
-      GID: 3000
-      MEMORY: ""
     persistence:
       dataDir:
         enabled: true
