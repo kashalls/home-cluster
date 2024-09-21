@@ -44,7 +44,7 @@ spec:
     persistence:
       dataDir:
         enabled: true
-        storageClass: ceph-block
+        storageClass: openebs-zfs
         Size: 10G
     serviceAnnotations:
       io.cilium/lb-ipam-ips: "10.69.0.129"
