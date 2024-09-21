@@ -69,9 +69,7 @@ spec:
         allowedVersionType: beta
       rcon:
         enabled: true
-        serviceType: LoadBalancer
-        nodePort: 25575
-        port: 25575
+        serviceType: ClusterIP
       serviceType: LoadBalancer
       extraPorts:
         - name: map
