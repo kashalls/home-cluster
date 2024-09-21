@@ -36,9 +36,9 @@ spec:
       TZ: "America/Los_Angeles"
       ENABLE_ROLLING_LOGS: true
     persistence:
+      storageClass: openebs-zfs
       dataDir:
         enabled: true
-        storageClass: openebs-zfs
         Size: 10G
     serviceAnnotations:
       io.cilium/lb-ipam-ips: "10.69.0.129"
