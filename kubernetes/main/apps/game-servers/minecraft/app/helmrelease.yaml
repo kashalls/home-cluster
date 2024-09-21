@@ -69,13 +69,13 @@ spec:
       serviceType: LoadBalancer
       extraPorts:
         - name: map
-          containerPort: 8100
+          containerPort: 8123
           protocol: TCP
           service:
             enabled: true
             embedded: false
             type: ClusterIP
-            port: 8100
+            port: 8123
           ingress:
             ingressClassName: internal
             enabled: true
