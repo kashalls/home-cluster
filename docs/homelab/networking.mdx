@@ -1,7 +1,36 @@
 ---
 title: 'Janky Networking'
-description: 'Learn how to preview changes locally'
+description: 'See how my network comes to a crawl once RSTP is disabled...'
 icon: 'network-wired'
 ---
 
-*I haven't gotten to writing this page yet... Sorry!*
+## The Internet
+
+We don't know where it comes from... It's just there.
+Here's what I do know.
+
+### Xfinity
+
+Or comcast, or whatever. I don't know. I was paying them for their Gigabit plan that offered `1,200 Mbps Download` and `45 Mbps Upload`. I mostly needed it for the upload.
+
+They recently "upgraded" the network (I know they didn't invest any money into it recently) and grandfathered me into their **Gigabit x2 Plan** which offers up to `2000 Mbps Download` and `300 Mbps Uplaod`. It's almost too much for me.
+
+I still pay roughly the same amount, and still am using their modem however much I would not like to be doing that. It's $35 a month for Unlimited Data with my own modem, but $15 if I use theirs.
+
+
+### Ubiquiti
+
+I use Ubiquiti's [UXG-Max](https://store.ui.com/us/en/category/all-cloud-keys-gateways/products/uxg-max), a console-less 2.5Gbe router which I pared with my ancient [CloudKey+](https://store.ui.com/us/en/category/all-cloud-keys-gateways/collections/pro-uck-g2).
+I bought this before they released the [UCG-Max](https://store.ui.com/us/en/category/cloud-gateways-compact/collections/cloud-gateway-max) which offers the same thing, but with a Console + Protect Server inside.
+
+It's worked perfectly for me so far.
+I only wish that BGP support could come sooner.
+
+My UXG-Max is plugged into my *also ancient* [USW-24-Gen1](https://store.ui.com/us/en/category/all-switching/products/usw-24).
+*They don't even make these anymore.*
+In the future, I will want to replace this with a smaller PoE Switch that offers 10Gbe.
+
+All the devices that offer support for 2.5Gbe are plugged directly into the UXG-Max, the rest are plugged into the USW-24-G1.
+
+As for WiFI Connectivity, I have a [U6-LR](https://store.ui.com/us/en/category/all-wifi/products/u6-lr) and a [UAP-AC-Pro](https://store.ui.com/us/en/category/all-wifi/products/uap-ac-pro).
+
