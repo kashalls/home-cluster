@@ -41,10 +41,8 @@ spec:
         enabled: true
         Size: 10G
     rconServiceAnnotations:
-      io.cilium/lb-ipam-ips: "10.69.0.129"
       external-dns.alpha.kubernetes.io/hostname: mc.ok8.sh
     serviceAnnotations:
-      io.cilium/lb-ipam-ips: "10.69.0.129"
       external-dns.alpha.kubernetes.io/hostname: mc.ok8.sh
     servicePort: 25565
     minecraftServer:
