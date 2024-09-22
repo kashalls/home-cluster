@@ -1,0 +1,60 @@
+---
+title: 'Github Repository'
+icon: 'github'
+---
+
+You don't have to build your gitops homelab around github. There are plenty of people who use GitLab or other git-based providers.
+Flux lists their bootstrap providers on [their documentation](https://fluxcd.io/flux/installation/#bootstrap-providers).
+
+In my case, I am using Github.
+
+## Configuration
+
+### Action > Repository Secrets
+
+These are required if you are using my workflow actions to automate some tasks in your cluster.
+
+`BOT_*` secrets are required if you are using a custom github application with your actions.
+All of these values will be located at your [application's settings](https://github.com/settings/apps/).
+
+`CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` optional as they allow the `schemas.yaml` action to publish schematics to some of the cluster resources.
+`CLOUDFLARE_API_TOKEN` has the permissions `Account / Cloudflare Pages / Edit` and `User / User Details / Read`.
+
+| Name                  | Description                                                  |
+|-----------------------|--------------------------------------------------------------|
+| BOT_APP_ID            | The github application id.                                   |
+| BOT_APP_PRIVATE_KEY   | A base64 encoded private key from your application.          |
+| BOT_USERNAME          | Your bot's literal username.                                 |
+| CLOUDFLARE_ACCOUNT_ID | Found on any domain's overview page under Account ID.        |
+| CLOUDFLARE_API_TOKEN  | Create one at https://dash.cloudflare.com/profile/api-tokens |
+| KUBECONFIG            | A base64 encoded kubeconfig generated from your cluster.     |
+
+### Self Hosted Runners
+
+I self-host an [actions-runner-controller](https://github.com/actions/actions-runner-controller) in my cluster.
+This helps run some sensitive workflows inside my cluster and doesn't require me to expose it to the outside world.
+
+You'll need to provide roughly the same information as listed above.
+
+View more: [home-cluster/kubernetes/main/apps/actions-runner-system](https://github.com/kashalls/home-cluster/tree/main/kubernetes/main/apps/actions-runner-system)
+
+### Webhook(s)
+
+I utilize Flux's [Webhook Receivers](https://fluxcd.io/flux/guides/webhook-receivers/).
+By design, flux is **pull-based**, meaning it runs on an interval unless told to pull otherwise.
+
+You can utilize these receivers to make super responsive **push-based** pipelines.
+
+View more: [home-cluster/kubernetes/main/apps/addons](https://github.com/kashalls/home-cluster/tree/main/kubernetes/main/apps/flux-system/addons/app/webhooks/github)
+
+Some specific settings:
+- `Content type`: application/x-www-form-urlencoded
+- `SSL Verification`: Enabled
+- `Which events?`: Just push.
+
+### Deploy Keys
+
+Flux uses [Deploy Keys](https://fluxcd.io/flux/installation/bootstrap/github/#github-deploy-keys) to allow bootstraping flux over SSH instead of HTTPS.
+I don't really use it for this as I have a whole system already revolving around HTTP/S.
+I instead use it for ImagePolicy(s) as Flux is configured to check for specific application updates faster that Renovate is.
+This is mostly for me when I am developing an application and I don't want to keep pushing the same commit to update the digest.

@@ -52,6 +52,7 @@
       "group": "My Home Operations",
       "pages": [
         "homelab/cloud-dependencies",
+        "homelab/github-repository",
         "homelab/hardware",
         "homelab/networking",
         "homelab/monitoring"
