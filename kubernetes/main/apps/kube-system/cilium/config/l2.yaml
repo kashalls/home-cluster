@@ -18,6 +18,7 @@ metadata:
   name: l2-pool
 spec:
   allowFirstLastIPs: "Yes"
+  disabled: true
   blocks:
     - start: 10.69.0.100
       stop: 10.69.0.149
