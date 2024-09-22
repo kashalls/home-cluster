@@ -1,16 +1,15 @@
 ---
 title: 'Github Repository'
 icon: 'github'
+description: 'Some of the things I do in my github repository that isn\'t shown'
 ---
 
 You don't have to build your gitops homelab around github. There are plenty of people who use GitLab or other git-based providers.
-Flux lists their bootstrap providers on [their documentation](https://fluxcd.io/flux/installation/#bootstrap-providers).
-
-In my case, I am using Github.
+Flux lists their *supported* bootstrap providers on [their documentation](https://fluxcd.io/flux/installation/#bootstrap-providers).
 
 ## Configuration
 
-### Action > Repository Secrets
+### Actions > Repository Secrets
 
 These are required if you are using my workflow actions to automate some tasks in your cluster.
 
@@ -45,12 +44,13 @@ By design, flux is **pull-based**, meaning it runs on an interval unless told to
 
 You can utilize these receivers to make super responsive **push-based** pipelines.
 
-View more: [home-cluster/kubernetes/main/apps/addons](https://github.com/kashalls/home-cluster/tree/main/kubernetes/main/apps/flux-system/addons/app/webhooks/github)
-
 Some specific settings:
 - `Content type`: application/x-www-form-urlencoded
 - `SSL Verification`: Enabled
 - `Which events?`: Just push.
+
+View more: [home-cluster/kubernetes/main/apps/addons](https://github.com/kashalls/home-cluster/tree/main/kubernetes/main/apps/flux-system/addons/app/webhooks/github)
+
 
 ### Deploy Keys
 
