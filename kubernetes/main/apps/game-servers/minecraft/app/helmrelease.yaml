@@ -69,7 +69,7 @@ spec:
         allowedVersionType: beta
       rcon:
         enabled: true
-        serviceType: ClusterIP
+        serviceType: LoadBalancer
       serviceType: LoadBalancer
       extraPorts:
         - name: map
@@ -84,7 +84,7 @@ spec:
             ingressClassName: internal
             enabled: true
             hosts:
-              - name: &host mc.ok8.sh
+              - name: &host dynmc.ok8.sh
                 path: /
             tls: [hosts: [*host]]
   valuesFrom:
