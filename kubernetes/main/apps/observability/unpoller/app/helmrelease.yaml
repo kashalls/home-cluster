@@ -36,7 +36,7 @@ spec:
             env:
               TZ: America/Los_Angeles
               UP_UNIFI_DEFAULT_ROLE: home-ops
-              UP_UNIFI_DEFAULT_URL: https://10.1.0.2
+              UP_UNIFI_DEFAULT_URL: https://172.16.0.1
               UP_UNIFI_DEFAULT_VERIFY_SSL: false
               UP_UNIFI_DEFAULT_USER: unifipoller
               UP_UNIFI_DEFAULT_PASS: 1nternalUseOnly
