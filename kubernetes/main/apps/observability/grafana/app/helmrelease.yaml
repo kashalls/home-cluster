@@ -288,7 +288,7 @@ spec:
         prometheus:
           # renovate: depName="Prometheus"
           gnetId: 19105
-          revision: 4
+          revision: 5
           datasource: Prometheus
       thanos:
         thanos-bucket-replicate:
