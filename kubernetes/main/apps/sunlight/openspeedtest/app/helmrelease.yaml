@@ -55,6 +55,7 @@ spec:
         className: internal
         annotations:
           external-dns.alpha.kubernetes.io/target: internal.ok8.sh
+          nginx.ingress.kubernetes.io/proxy-body-size: 35m
         hosts:
           - host: speedtest.ok8.sh
             paths:
