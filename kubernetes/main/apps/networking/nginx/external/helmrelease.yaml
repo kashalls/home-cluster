@@ -27,7 +27,7 @@ spec:
   values:
     fullnameOverride: nginx-external
     controller:
-      replicaCount: 1
+      replicaCount: 2
       service:
         annotations:
           external-dns.alpha.kubernetes.io/hostname: external.ok8.sh
