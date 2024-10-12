@@ -16,18 +16,17 @@ tasks:
   apply-config:
     desc: Apply Talos configuration to a node
     cmd: |
-      sops --decrypt {{.TALOS_DIR}}/{{.cluster}}/{{.type}}.secret.sops.yaml | \
+      sops --decrypt {{.TALOS_DIR}}/{{.cluster}}/{{.hostname}}.secret.sops.yaml | \
           $GOPATH/bin/envsubst | \
-              talosctl --context {{.cluster}} apply-config --nodes {{.node}} --file /dev/stdin --mode={{.mode}} --insecure={{.insecure}}
+              talosctl --context {{.cluster}} apply-config --nodes {{if .endpoint}}{{.endpoint}}{{else}}{{.hostname}}{{end}} --file /dev/stdin --mode={{.mode}} {{if .insecure}}--insecure{{end}} {{if .endpoint}}--endpoints={{.endpoint}}{{end}}
     env: *vars
     vars:
-      type: '{{.type | default "worker"}}'
       mode: '{{.mode | default "no-reboot"}}'
       insecure: '{{.insecure | default "false" }}'
     requires:
-      vars: ["cluster", "node", "type"]
+      vars: ["cluster", "hostname"]
     preconditions:
-      - test -f {{.TALOS_DIR}}/{{.cluster}}/{{.type}}.secret.sops.yaml
+      - test -f {{.TALOS_DIR}}/{{.cluster}}/{{.hostname}}.secret.sops.yaml
       #- talosctl --context {{.cluster}} --nodes {{.hostname}} get machineconfig >/dev/null 2>&1
 
   upgrade:

@@ -10,8 +10,6 @@ Only some of the values have been encrypted, so other users could see how my nod
 
 These are applications that needed to be ran while the node is being bootstrapped. Some of the initial applications are disabled by default as they are hardcoded versions and only update when the Talos version does.
 
-
-
 ### Talos MS-01 Required Extensions
 - siderolabs/binfmt-misc
 - siderolabs/intel-ucode
