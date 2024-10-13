@@ -17,9 +17,6 @@ area/taskfile:
       - any-glob-to-any-file:
           - ".taskfiles/**/*"
           - "Taskfile.yaml"
-area/terraform:
-  - changed-files:
-      - any-glob-to-any-file: "terraform/**/*"
 # Clusters
 cluster/main:
   - changed-files:

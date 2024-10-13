@@ -19,7 +19,6 @@
     "*.json5": "jsonc",
     "./ansible/**/*.yaml": "ansible",
     "./ansible/**/inventory/**/*.yaml": "yaml",
-    "./terraform/**/*.tf": "terraform"
   },
   "files.trimTrailingWhitespace": true,
   "material-icon-theme.files.associations": {
@@ -32,7 +31,6 @@
     "bootstrap": "import",
     "charts": "kubernetes",
     "repositories": "database",
-    "terraforms": "terraform",
     "vars": "other",
     // namespaces
     "cert-manager": "guard",
