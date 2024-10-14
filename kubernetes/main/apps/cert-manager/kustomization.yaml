@@ -8,4 +8,3 @@ resources:
   - ./notifications.yaml
   # Flux-Kustomizations
   - ./cert-manager/ks.yaml
-  - ./certificates/ks.yaml
