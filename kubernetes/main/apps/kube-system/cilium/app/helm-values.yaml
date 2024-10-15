@@ -3,6 +3,8 @@ autoDirectNodeRoutes: true
 bandwidthManager:
   enabled: true
   bbr: true
+bgpControlPlane:
+  enabled: true
 bpf:
   masquerade: true
   tproxy: true
@@ -23,6 +25,7 @@ envoy:
   enabled: false
 ipam:
   mode: kubernetes
+
 ipv4:
   enabled: true
 ipv4NativeRoutingCIDR: 172.30.0.0/16
