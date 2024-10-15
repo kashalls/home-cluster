@@ -29,7 +29,7 @@ spec:
         containers:
           app:
             image:
-              repository: rancher/system-upgrade-controller:v0.14.0
+              repository: rancher/system-upgrade-controller
               tag: v0.14.0@sha256:69a721d89cabb500baf94cf8953c8abfb16c7c625a842c8447e3d15bf92a7a5c
             env:
               SYSTEM_UPGRADE_CONTROLLER_DEBUG: false
