@@ -50,4 +50,4 @@ pages:
       - size: small
         widgets:
           - type: weather
-            location: Eugene, OR
+            location: Eugene, Oregon, United States
