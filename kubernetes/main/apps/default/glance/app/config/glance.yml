@@ -51,3 +51,20 @@ pages:
         widgets:
           - type: weather
             location: Eugene, Oregon, United States
+
+          - type: monitor
+            cache: 1m
+            title: Services
+            sites:
+              - title: Home Assistant
+                url: https://hass.ok8.sh
+              - title: Grafana
+                url: https://grafana.ok8.sh
+              - title: ID
+                url: https://id.ok8.sh
+              - title: Coder
+                url: https://coder.ok8.sh
+              - title: S3
+                url: https://minio.ok8.sh
+              - title: DynMC
+                url: https://dynmc.ok8.sh
