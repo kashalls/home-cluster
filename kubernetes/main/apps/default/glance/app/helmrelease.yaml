@@ -77,6 +77,6 @@ spec:
         advancedMounts:
           glance:
             app:
-              - path: /app/glance.yaml
-                subPath: glance.yaml
+              - path: /app/glance.yml
+                subPath: glance.yml
                 readOnly: true

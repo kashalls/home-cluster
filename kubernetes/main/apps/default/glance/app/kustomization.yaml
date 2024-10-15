@@ -7,7 +7,7 @@ resources:
 configMapGenerator:
   - name: glance-configmap
     files:
-      - glance.yaml=./config/glance.yaml
+      - glance.yml=./config/glance.yml
 generatorOptions:
   disableNameSuffixHash: true
   annotations:
