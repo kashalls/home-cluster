@@ -15,7 +15,7 @@ cgroup:
 cluster:
   id: 2
   name: raspi
-devices: enp+
+devices: enx+
 enableRuntimeDeviceDetection: true
 endpointRoutes:
   enabled: true
