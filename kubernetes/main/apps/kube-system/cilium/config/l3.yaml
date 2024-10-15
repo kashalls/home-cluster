@@ -9,7 +9,7 @@ spec:
     - localASN: 64514
       exportPodCIDR: true
       neighbors: # []CiliumBGPNeighbor
-        - peerAddress: "172.16.0.1/42"
+        - peerAddress: "172.16.0.1/32"
           peerASN: 64513
       serviceSelector:
         matchExpressions:
