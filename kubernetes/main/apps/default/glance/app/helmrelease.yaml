@@ -75,7 +75,7 @@ spec:
         type: configMap
         name: glance-configmap
         advancedMounts:
-          mosquitto:
+          glance:
             app:
               - path: /app/glance.yaml
                 subPath: glance.yaml
