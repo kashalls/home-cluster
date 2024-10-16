@@ -30,7 +30,7 @@ spec:
       webhook:
         image:
           repository: ghcr.io/aki263/external-dns-unifi-webhook
-          tag: main@sha256:b0b52c28397cb6aa7a49b8974ae742642f6332b5b0691713f1a44cd544c2b08b
+          tag: main@sha256:8bcfc112b2fe115c6aec4f3087495718075c05673e82347cecef51ee03d0b4b7
         env:
           - name: LOG_LEVEL
             value: *logLevel
