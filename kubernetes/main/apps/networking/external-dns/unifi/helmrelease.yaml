@@ -24,16 +24,16 @@ spec:
       retries: 3
   values:
     fullnameOverride: *app
-    #logLevel: debug
+    logLevel: &logLevel debug
     provider:
       name: webhook
       webhook:
         image:
           repository: ghcr.io/aki263/external-dns-unifi-webhook
-          tag: main@sha256:4594cc861b8460b54f349504de84605cc7ff7f4f48841991ee1dd88d1257c8a3
+          tag: main@sha256:b0b52c28397cb6aa7a49b8974ae742642f6332b5b0691713f1a44cd544c2b08b
         env:
-          #- name: LOG_LEVEL
-          # value: "debug"
+          - name: LOG_LEVEL
+            value: *logLevel
           - name: UNIFI_HOST
             value: "https://172.16.0.1"
           - name: UNIFI_USER
