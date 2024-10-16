@@ -11,6 +11,8 @@ spec:
       neighbors: # []CiliumBGPNeighbor
         - peerAddress: "172.16.0.1/32"
           peerASN: 64513
+        - peerAddress: "fe80::9c05:d6ff:fe52:580e/64"
+          peerASN: 64513
       serviceSelector:
         matchExpressions:
           - { key: somekey, operator: NotIn, values: ["never-used-value"] }
