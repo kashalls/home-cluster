@@ -29,7 +29,7 @@ ipv4:
   enabled: true
 ipv4NativeRoutingCIDR: 172.30.0.0/16
 ipv6:
-  enabled: true
+  enabled: false
 ipv6NativeRoutingCIDR: fdcf:5280:f513::/48
 k8sServiceHost: 127.0.0.1
 k8sServicePort: 7445
