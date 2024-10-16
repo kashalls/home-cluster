@@ -6,11 +6,11 @@ metadata:
   name: l3-policy
 spec:
   virtualRouters: # []CiliumBGPVirtualRouter
-    - localASN: 64514
+    - localASN: 64514 # Cluster ASN
       exportPodCIDR: true
       neighbors: # []CiliumBGPNeighbor
-        - peerAddress: "172.16.0.1/32"
-          peerASN: 64513
+        - peerAddress: "172.16.0.1/32" # Remote Router IP
+          peerASN: 64513 # Remote Router ASN
         - peerAddress: "fe80::9c05:d6ff:fe52:580e/64"
           peerASN: 64513
       serviceSelector:
