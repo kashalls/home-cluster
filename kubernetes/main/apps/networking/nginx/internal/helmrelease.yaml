@@ -29,6 +29,10 @@ spec:
       service:
         annotations:
           external-dns.alpha.kubernetes.io/hostname: internal.ok8.sh
+        ipFamilyPolicy: PreferDualStack
+        ipFamilies:
+          - IPv4
+          - IPv6
       ingressClassResource:
         name: internal
         default: true
