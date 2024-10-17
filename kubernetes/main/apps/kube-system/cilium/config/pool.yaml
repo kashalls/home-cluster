@@ -7,5 +7,5 @@ metadata:
 spec:
   allowFirstLastIPs: "Yes"
   blocks:
-    - start: 172.16.0.10
-      stop: 172.16.0.60
+    - cidr: 172.16.10.0/24
+    - cidr: fdda:ee81:0182::/112
