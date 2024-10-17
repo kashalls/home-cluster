@@ -11,7 +11,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   path: ./kubernetes/main/apps/kube-system/cilium/app
-  prune: true
+  prune: false # never should be deleted
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
@@ -34,7 +34,7 @@ spec:
   dependsOn:
     - name: cilium
   path: ./kubernetes/main/apps/kube-system/cilium/config
-  prune: false # never should be deleted
+  prune: true
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
