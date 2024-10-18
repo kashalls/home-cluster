@@ -19,7 +19,7 @@ spec:
       secret.reloader.stakater.com/reload: &secret minecraft-secret
     image:
       repository: itzg/minecraft-server
-      tag: 2024.10.1-java21
+      tag: 2024.10.2-java21
     resources:
       limits:
         memory: 4096Mi
