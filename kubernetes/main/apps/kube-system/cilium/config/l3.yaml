@@ -1,18 +1,78 @@
+#---
+## yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/cilium.io/ciliumbgppeeringpolicy_v2alpha1.json
+#apiVersion: "cilium.io/v2alpha1"
+#kind: CiliumBGPPeeringPolicy
+#metadata:
+#  name: l3-policy
+#spec:
+#  virtualRouters: # []CiliumBGPVirtualRouter
+#    - localASN: 64514 # Cluster ASN
+#      exportPodCIDR: true
+#      neighbors: # []CiliumBGPNeighbor
+#        - peerAddress: "172.16.0.1/32" # Remote Router IP
+#          peerASN: 64513 # Remote Router ASN
+#        - peerAddress: "2601:1c0:c685:2e10::1/128"
+#          peerASN: 64513
+#      serviceSelector:
+#        matchExpressions:
+#          - { key: somekey, operator: NotIn, values: ["never-used-value"] }
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/cilium.io/ciliumbgppeeringpolicy_v2alpha1.json
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/cilium.io/ciliumbgpadvertisement_v2alpha1.json
 apiVersion: "cilium.io/v2alpha1"
-kind: CiliumBGPPeeringPolicy
+kind: CiliumBGPAdvertisement
 metadata:
-  name: l3-policy
+  name: cilium-bgp-advertisement
+  labels:
+    advertise: pod-cidr
 spec:
-  virtualRouters: # []CiliumBGPVirtualRouter
-    - localASN: 64514 # Cluster ASN
-      exportPodCIDR: true
-      neighbors: # []CiliumBGPNeighbor
-        - peerAddress: "172.16.0.1/32" # Remote Router IP
-          peerASN: 64513 # Remote Router ASN
-        - peerAddress: "2601:1c0:c685:2e10::1/128"
-          peerASN: 64513
-      serviceSelector:
+  advertisements:
+    - advertisementType: "PodCIDR"
+    - advertisementType: "Service"
+      service:
+        addresses:
+          - LoadBalancerIP
+      selector:
         matchExpressions:
           - { key: somekey, operator: NotIn, values: ["never-used-value"] }
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/cilium.io/ciliumbgppeerconfig_v2alpha1.json
+apiVersion: "cilium.io/v2alpha1"
+kind: CiliumBGPPeerConfig
+metadata:
+  name: cilium-bgp-peer-config
+spec:
+  families:
+    - afi: ipv4
+      safi: unicast
+      advertisements:
+        matchLabels:
+          advertise: "pod-cidr"
+    - afi: ipv6
+      safi: unicast
+      advertisements:
+        matchLabels:
+          advertise: "pod-cidr"
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/cilium.io/ciliumbgpclusterconfig_v2alpha1.json
+apiVersion: "cilium.io/v2alpha1"
+kind: CiliumBGPClusterConfig
+metadata:
+  name: cilium-bgp-cluster-config
+spec:
+  nodeSelector:
+    matchLabels:
+      kubernetes.io/os: linux
+  bgpInstances:
+    - name: "instance-64514"
+      localASN: 64514
+      peers:
+        - name: "peer-64513-ipv4"
+          peerASN: 64513
+          peerAddress: "172.16.0.1"
+          peerConfigRef:
+            name: "peer-config"
+        - name: "peer-64513-ipv6"
+          peerASN: 64513
+          peerAddress: "2601:1c0:c685:2e10::1"
+          peerConfigRef:
+            name: "peer-config"
