@@ -11,7 +11,7 @@ spec:
       neighbors: # []CiliumBGPNeighbor
         - peerAddress: "172.16.0.1/32" # Remote Router IP
           peerASN: 64513 # Remote Router ASN
-        - peerAddress: "fe80::9c05:d6ff:fe52:580e/64"
+        - peerAddress: "fdb5:52da:c17e::/128"
           peerASN: 64513
       serviceSelector:
         matchExpressions:
