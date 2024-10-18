@@ -23,7 +23,7 @@ kind: CiliumBGPAdvertisement
 metadata:
   name: cilium-bgp-advertisement
   labels:
-    advertise: pod-cidr
+    advertise: bgp
 spec:
   advertisements:
     - advertisementType: "PodCIDR"
@@ -46,12 +46,12 @@ spec:
       safi: unicast
       advertisements:
         matchLabels:
-          advertise: "pod-cidr"
+          advertise: "bgp"
     - afi: ipv6
       safi: unicast
       advertisements:
         matchLabels:
-          advertise: "pod-cidr"
+          advertise: "bgp"
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/cilium.io/ciliumbgpclusterconfig_v2alpha1.json
 apiVersion: "cilium.io/v2alpha1"
@@ -70,9 +70,9 @@ spec:
           peerASN: 64513
           peerAddress: "172.16.0.1"
           peerConfigRef:
-            name: "peer-config"
+            name: "cilium-bgp-peer-config"
         - name: "peer-64513-ipv6"
           peerASN: 64513
           peerAddress: "2601:1c0:c685:2e10::1"
           peerConfigRef:
-            name: "peer-config"
+            name: "cilium-bgp-peer-config"
