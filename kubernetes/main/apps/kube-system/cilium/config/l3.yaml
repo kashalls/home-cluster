@@ -73,6 +73,6 @@ spec:
             name: "cilium-bgp-peer-config"
         - name: "peer-64513-ipv6"
           peerASN: 64513
-          peerAddress: "fdb5:52da:c17e::"
+          peerAddress: "fe80::9e05:d6ff:fe52:5816"
           peerConfigRef:
             name: "cilium-bgp-peer-config"
