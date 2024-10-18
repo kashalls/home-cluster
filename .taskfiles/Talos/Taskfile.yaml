@@ -22,7 +22,6 @@ tasks:
     env: *vars
     vars:
       mode: '{{.mode | default "no-reboot"}}'
-      insecure: '{{.insecure | default "false" }}'
     requires:
       vars: ["cluster", "hostname"]
     preconditions:
