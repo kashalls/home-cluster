@@ -68,11 +68,11 @@ spec:
       peers:
         - name: "peer-64513-ipv4"
           peerASN: 64513
-          peerAddress: "172.16.0.1"
+          peerAddress: "172.16.3.1"
           peerConfigRef:
             name: "cilium-bgp-peer-config"
         - name: "peer-64513-ipv6"
           peerASN: 64513
-          peerAddress: "2601:1c0:c685:2e10::1"
+          peerAddress: "fdb5:52da:c17e::"
           peerConfigRef:
             name: "cilium-bgp-peer-config"
