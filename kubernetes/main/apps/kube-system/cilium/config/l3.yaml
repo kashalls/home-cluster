@@ -39,7 +39,7 @@ spec:
 apiVersion: "cilium.io/v2alpha1"
 kind: CiliumBGPPeerConfig
 metadata:
-  name: cilium-bgp-peer-config
+  name: cilium-bgp-peer-config-ipv4
 spec:
   ebgpMultihop: 255
   families:
@@ -48,6 +48,20 @@ spec:
       advertisements:
         matchLabels:
           advertise: "bgp"
+    - afi: ipv6
+      safi: unicast
+      advertisements:
+        matchLabels:
+          advertise: "bgp"
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/cilium.io/ciliumbgppeerconfig_v2alpha1.json
+apiVersion: "cilium.io/v2alpha1"
+kind: CiliumBGPPeerConfig
+metadata:
+  name: cilium-bgp-peer-config-ipv6
+spec:
+  ebgpMultihop: 255
+  families:
     - afi: ipv6
       safi: unicast
       advertisements:
@@ -71,12 +85,12 @@ spec:
           peerASN: 64513
           peerAddress: "172.16.3.1"
           peerConfigRef:
-            name: "cilium-bgp-peer-config"
+            name: "cilium-bgp-peer-config-ipv4"
         - name: "peer-64513-ipv6"
           peerASN: 64513
           peerAddress: "fe80::9e05:d6ff:fe52:5816"
           peerConfigRef:
-            name: "cilium-bgp-peer-config"
+            name: "cilium-bgp-peer-config-ipv6"
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/cilium.io/ciliumbgpnodeconfigoverride_v2alpha1.json
 apiVersion: cilium.io/v2alpha1
