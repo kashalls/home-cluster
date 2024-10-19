@@ -82,6 +82,6 @@ spec:
             name: "cilium-bgp-peer-config-ipv4"
         - name: "peer-64513-ipv6"
           peerASN: 64513
-          peerAddress: "fd11:434e:5db5::"
+          peerAddress: "2601:1c0:c685:2e11::1"
           peerConfigRef:
             name: "cilium-bgp-peer-config-ipv6"
