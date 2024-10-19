@@ -90,7 +90,8 @@ spec:
 apiVersion: cilium.io/v2alpha1
 kind: CiliumBGPNodeConfigOverride
 metadata:
-  name: cilium-bgp-node-config-override
+  # This name MUST match your cilium node name.
+  name: fenrys
 spec:
   bgpInstances:
     - name: "instance-64514"
