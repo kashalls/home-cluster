@@ -61,7 +61,7 @@ spec:
         proxy-body-size: 0
         proxy-buffer-size: 16k
         ssl-protocols: TLSv1.3 TLSv1.2
-        use-geoip2: true
+        use-geoip2: false
         hide-headers: Server,X-Powered-By
         large-client-header-buffers: 2 2k # hardened near CIS benchmarks of 2 1k, but needs increase due to auth services (e.g. Kanidm, Authentik, CloudFlare Zero Trust)
         block-user-agents: "GPTBot,~*GPTBot*,ChatGPT-User,~*ChatGPT-User*,Google-Extended,~*Google-Extended*,CCBot,~*CCBot*,Omgilibot,~*Omgilibot*,FacebookBot,~*FacebookBot*" # taken from https://github.com/superseriousbusiness/gotosocial/blob/main/internal/web/robots.go
