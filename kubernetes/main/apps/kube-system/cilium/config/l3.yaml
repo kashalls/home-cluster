@@ -82,19 +82,6 @@ spec:
             name: "cilium-bgp-peer-config-ipv4"
         - name: "peer-64513-ipv6"
           peerASN: 64513
-          peerAddress: "fe80::9e05:d6ff:fe52:5816"
+          peerAddress: "fd11:434e:5db5::"
           peerConfigRef:
             name: "cilium-bgp-peer-config-ipv6"
----
-# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/cilium.io/ciliumbgpnodeconfigoverride_v2alpha1.json
-apiVersion: cilium.io/v2alpha1
-kind: CiliumBGPNodeConfigOverride
-metadata:
-  # This name MUST match your cilium node name.
-  name: fenrys
-spec:
-  bgpInstances:
-    - name: "instance-64514"
-      peers:
-        - name: "peer-64513-ipv6"
-          localAddress: fe80::5a47:caff:fe76:191b
