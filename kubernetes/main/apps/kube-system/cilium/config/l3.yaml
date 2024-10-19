@@ -41,14 +41,8 @@ kind: CiliumBGPPeerConfig
 metadata:
   name: cilium-bgp-peer-config-ipv4
 spec:
-  ebgpMultihop: 255
   families:
     - afi: ipv4
-      safi: unicast
-      advertisements:
-        matchLabels:
-          advertise: "bgp"
-    - afi: ipv6
       safi: unicast
       advertisements:
         matchLabels:
