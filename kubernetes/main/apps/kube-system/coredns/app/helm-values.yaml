@@ -6,7 +6,9 @@ serviceAccount:
   create: true
 service:
   name: kube-dns
-  clusterIP: 172.31.0.10
+  clusterIPs:
+    - 172.31.0.10
+  ipFamilyPolicy: "RequireDualStack"
 servers:
   - zones:
       - zone: .
