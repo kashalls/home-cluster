@@ -75,6 +75,17 @@ spec:
         - name: "peer-64513-ipv6"
           peerASN: 64513
           peerAddress: "fe80::9e05:d6ff:fe52:5816"
-          localAddress: "fe80::5a47:caff:fe76:191b"
           peerConfigRef:
             name: "cilium-bgp-peer-config"
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/cilium.io/ciliumbgpnodeconfigoverride_v2alpha1.json
+apiVersion: cilium.io/v2alpha1
+kind: CiliumBGPNodeConfigOverride
+metadata:
+  name: cilium-bgp-node-config-override
+spec:
+  bgpInstances:
+    - name: "instance-64514"
+      peers:
+        - name: "peer-64513-ipv6"
+          localAddress: fe80::5a47:caff:fe76:191b
