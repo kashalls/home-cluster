@@ -9,7 +9,7 @@ service:
   clusterIPs:
     - 172.31.0.10
     - fd37:e8ff:88b4:0:0:0:0:a
-  ipFamilyPolicy: "RequireDualStack"
+  ipFamilyPolicy: "PreferDualStack"
 servers:
   - zones:
       - zone: .
