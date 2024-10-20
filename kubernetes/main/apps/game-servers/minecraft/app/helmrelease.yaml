@@ -35,6 +35,7 @@ spec:
     extraEnv:
       TZ: "America/Los_Angeles"
       ENABLE_ROLLING_LOGS: true
+      _JAVA_OPTIONS: "-Djava.net.preferIPv4Stack=true"
     persistence:
       storageClass: openebs-zfs
       dataDir:
