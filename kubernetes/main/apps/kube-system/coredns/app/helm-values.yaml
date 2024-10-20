@@ -8,8 +8,8 @@ service:
   name: kube-dns
   clusterIPs:
     - 172.31.0.10
-    #- fd37:e8ff:88b4:0:0:0:0:a
-  ipFamilyPolicy: "SingleStack"
+    - fd37:e8ff:88b4:0:0:0:0:a
+  ipFamilyPolicy: "PreferDualStack"
 servers:
   - zones:
       - zone: .
