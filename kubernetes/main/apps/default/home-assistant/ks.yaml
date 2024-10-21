@@ -6,6 +6,7 @@ metadata:
   name: &app home-assistant
   namespace: flux-system
 spec:
+#
   targetNamespace: default
   commonMetadata:
     labels:
@@ -27,3 +28,4 @@ spec:
       APP: *app
       GATUS_SUBDOMAIN: hass
       VOLSYNC_CAPACITY: 5Gi
+      #
