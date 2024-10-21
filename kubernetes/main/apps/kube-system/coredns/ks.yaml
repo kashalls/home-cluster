@@ -6,7 +6,6 @@ metadata:
   name: &app coredns
   namespace: flux-system
 spec:
-#
   targetNamespace: kube-system
   commonMetadata:
     labels:
