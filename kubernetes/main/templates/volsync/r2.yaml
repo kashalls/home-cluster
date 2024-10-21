@@ -48,3 +48,29 @@ spec:
       fsGroup: ${VOLSYNC_PGID:-568}
     retain:
       daily: 7
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/volsync.backube/replicationdestination_v1alpha1.json
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationDestination
+metadata:
+  name: "${APP}-dst"
+spec:
+  trigger:
+    manual: restore-once
+  restic:
+    repository: "${APP}-volsync-r2-secret"
+    copyMethod: Snapshot
+    volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:-csi-openebs-zfs}"
+    cacheStorageClassName: "${VOLSYNC_CACHE_SNAPSHOTCLASS:-openebs-hostpath}"
+    cacheAccessModes: ["${VOLSYNC_CACHE_ACCESSMODES:-ReadWriteOnce}"]
+    cacheCapacity: "${VOLSYNC_CACHE_CAPACITY:-8Gi}"
+    storageClassName: "${VOLSYNC_STORAGECLASS:-openebs-zfs}"
+    accessModes: ["${VOLSYNC_ACCESSMODES:-ReadWriteOnce}"]
+    capacity: "${VOLSYNC_CAPACITY}"
+    # enableFileDeletion: true # Uncomment on next Volsync release
+    # cleanupCachePVC: true # Uncomment on next Volsync release
+    # cleanupTempPVC: true # Uncomment on next Volsync release
+    # moverSecurityContext: # Not needed due to privileged movers
+    #   runAsUser: ${VOLSYNC_PUID:-568}
+    #   runAsGroup: ${VOLSYNC_PGID:-568}
+    #   fsGroup: ${VOLSYNC_PGID:-568}
