@@ -35,7 +35,7 @@ spec:
     openebs-crds:
       csi:
         volumeSnapshots:
-          enabled: true
+          enabled: false
           keep: false
     zfs-localpv:
       enabled: true
@@ -47,7 +47,7 @@ spec:
           enabled: true
         csi:
           volumeSnapshots:
-            enabled: false
+            enabled: true
     lvm-localpv:
       enabled: false
     mayastor:
