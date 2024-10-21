@@ -6,10 +6,15 @@ vars:
   KUBERNETES_DIR: "{{.ROOT_DIR}}/kubernetes"
   TALOS_DIR: "{{.ROOT_DIR}}/talos"
   BOOTSTRAP_DIR: "{{.ROOT_DIR}}/bootstrap"
+  CLUSTER: '{{.cluster | default "main"}}'
+  CLUSTER_DIR: '{{.ROOT_DIR}}/kubernetes/{{.cluster}}'
 
 env:
-  KUBECONFIG: "{{.KUBERNETES_DIR}}/kubernetes/main/kubeconfig:{{.KUBERNETES_DIR}}/kubernetes/storage/kubeconfig"
+  GOPATH: '{{.ROOT_DIR}}/.go'
+  KUBECONFIG: "{{.KUBERNETES_DIR}}/kubernetes/main/kubeconfig"
   SOPS_AGE_KEY_FILE: "{{.ROOT_DIR}}/age.key"
+  TALOSCONFIG: '{{.CLUSTER_DIR}}/talosconfig'
+  VIRTUAL_ENV: '{{.ROOT_DIR}}/.venv'
 
 includes:
   external-secrets: .taskfiles/ExternalSecrets/Taskfile.yaml
@@ -18,6 +23,7 @@ includes:
   rook: .taskfiles/Rook/Taskfile.yaml
   talos: .taskfiles/Talos/Taskfile.yaml
   volsync: .taskfiles/VolSync/Taskfile.yaml
+  workstation: .taskfiles/Workstation
 
 tasks:
   default:
