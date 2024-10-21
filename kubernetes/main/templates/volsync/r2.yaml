@@ -3,7 +3,7 @@
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
-  name: "${APP}-volsync-r2"
+  name: "${APP}-volsync"
 spec:
   secretStoreRef:
     kind: ClusterSecretStore
@@ -27,7 +27,7 @@ spec:
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-  name: "${APP}-r2"
+  name: "${APP}"
 spec:
   sourcePVC: "${APP}"
   trigger:
