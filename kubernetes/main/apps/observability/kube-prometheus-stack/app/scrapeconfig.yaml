@@ -8,5 +8,5 @@ metadata:
 spec:
   staticConfigs:
     - targets:
-        - 10.42.42.128:9926
+        - 172.16.2.128:9926
   metricsPath: /metrics
