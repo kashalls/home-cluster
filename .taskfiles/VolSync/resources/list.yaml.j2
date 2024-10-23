@@ -1,0 +1,20 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ ENV.JOB }}
+  namespace: {{ ENV.NS }}
+spec:
+  ttlSecondsAfterFinished: 3600
+  template:
+    spec:
+      automountServiceAccountToken: false
+      restartPolicy: OnFailure
+      containers:
+        - name: main
+          image: docker.io/restic/restic:latest
+          args: ["snapshots"]
+          envFrom:
+            - secretRef:
+                name: {{ ENV.APP }}-volsync-secret
+          resources: {}

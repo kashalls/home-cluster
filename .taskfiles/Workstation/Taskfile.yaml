@@ -1,0 +1,51 @@
+---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: '3'
+
+vars:
+  WORKSTATION_RESOURCES_DIR: '{{.ROOT_DIR}}/.taskfiles/Workstation/resources'
+
+tasks:
+
+  brew:
+    desc: Set up Homebrew tools
+    cmds:
+      - brew bundle --file {{.WORKSTATION_RESOURCES_DIR}}/Brewfile
+    sources:
+      - '{{.WORKSTATION_RESOURCES_DIR}}/Brewfile'
+    generates:
+      - '{{.WORKSTATION_RESOURCES_DIR}}/Brewfile.lock.json'
+    preconditions:
+      - command -v brew
+      - test -f {{.WORKSTATION_RESOURCES_DIR}}/Brewfile
+
+  golang:
+    desc: Set up Go tools
+    deps: [brew]
+    cmds: []
+    preconditions:
+      - command -v go
+
+  krew:
+    desc: Set up Krew tools
+    deps: [brew]
+    cmds:
+      - kubectl krew install cert-manager cnpg browse-pvc rook-ceph view-secret
+    preconditions:
+      - command -v kubectl
+      - kubectl krew &>/dev/null
+
+  python:
+    desc: Set up Python tools
+    deps: [brew]
+    cmds:
+      - python3 -m venv {{.VIRTUAL_ENV}}
+      - '{{.VIRTUAL_ENV}}/bin/python3 -m pip install --upgrade pip'
+      - '{{.VIRTUAL_ENV}}/bin/python3 -m pip install --upgrade --requirement "{{.WORKSTATION_RESOURCES_DIR}}/requirements.txt"'
+    sources:
+      - '{{.WORKSTATION_RESOURCES_DIR}}/requirements.txt'
+    generates:
+      - '{{.VIRTUAL_ENV}}/pyvenv.cfg'
+    preconditions:
+      - command -v python3
+      - test -f {{.WORKSTATION_RESOURCES_DIR}}/requirements.txt
