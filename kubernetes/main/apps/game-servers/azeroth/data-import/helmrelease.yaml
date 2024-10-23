@@ -30,10 +30,18 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          dataimport:
+          client-data:
             image:
               repository: acore/ac-wotlk-client-data
               tag: master
+          database:
+            image:
+              repository: acore/ac-wotlk-db-import
+              tag: master
+            env:
+              AC_LOGIN_DATABASE_INFO: "mysql.azeroth.svc.cluster.local;3306;root;password;acore_auth"
+              AC_WORLD_DATABASE_INFO: "mysql.azeroth.svc.cluster.local;3306;root;password;acore_world"
+              AC_CHARACTER_DATABASE_INFO: "mysql.azeroth.svc.cluster.local;3306;root;password;acore_characters"
         pod:
           securityContext:
             runAsUser: 1000
