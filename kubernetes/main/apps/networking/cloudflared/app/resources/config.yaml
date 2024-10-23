@@ -3,8 +3,6 @@ originRequest:
   originServerName: "external.ok8.sh"
 
 ingress:
-  - hostname: "mc.ok8.sh"
-    service: http://minecraft-minecraft.game-servers.svc.cluster.local:25565
   - hostname: "ok8.sh"
     service: https://nginx-external-controller.networking.svc.cluster.local:443
   - hostname: "*.ok8.sh"
