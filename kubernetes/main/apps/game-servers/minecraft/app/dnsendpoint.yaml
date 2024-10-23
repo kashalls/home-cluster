@@ -6,6 +6,6 @@ metadata:
   name: minecraft
 spec:
   endpoints:
-    - dnsName: _minecraft._tcp.ok8.sh
+    - dnsName: _minecraft._tcp.mc.ok8.sh
       recordType: SRV
       targets: ["0 1 25565 mc.ok8.sh"]
