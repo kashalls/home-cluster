@@ -42,9 +42,11 @@ spec:
         Size: 10G
     rconServiceAnnotations:
       lbipam.cilium.io/sharing-key: *app
+      external-dns.alpha.kubernetes.io/target: external.ok8.sh
       external-dns.alpha.kubernetes.io/hostname: mc.ok8.sh
     serviceAnnotations:
       lbipam.cilium.io/sharing-key: *app
+      external-dns.alpha.kubernetes.io/target: external.ok8.sh
       external-dns.alpha.kubernetes.io/hostname: mc.ok8.sh
     servicePort: 25565
     minecraftServer:
