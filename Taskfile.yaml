@@ -10,7 +10,7 @@ vars:
   CLUSTER_DIR: '{{.ROOT_DIR}}/kubernetes/{{.cluster}}'
 
 env:
-  GOPATH: '{{.ROOT_DIR}}/.go'
+  # GOPATH: '{{.ROOT_DIR}}/.go'
   KUBECONFIG: "{{.KUBERNETES_DIR}}/kubernetes/main/kubeconfig"
   SOPS_AGE_KEY_FILE: "{{.ROOT_DIR}}/age.key"
   TALOSCONFIG: '{{.CLUSTER_DIR}}/talosconfig'
