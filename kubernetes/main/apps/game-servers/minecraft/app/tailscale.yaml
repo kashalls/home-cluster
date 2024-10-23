@@ -4,6 +4,8 @@ kind: Service
 metadata:
   name: minecraft-tailscale
 spec:
+  annotations:
+    tailscale.com/hostname: "kashmc"
   type: LoadBalancer
   loadBalancerClass: tailscale
   selector:
