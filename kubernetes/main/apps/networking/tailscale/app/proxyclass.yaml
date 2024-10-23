@@ -1,0 +1,18 @@
+apiVersion: tailscale.com/v1alpha1
+kind: ProxyClass
+metadata:
+  name: tun-access
+spec:
+  statefulSet:
+    pod:
+      tailscaleContainer:
+        resources:
+          limits:
+            kernel.org/tun: "1"
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
+            add:
+              - NET_ADMIN

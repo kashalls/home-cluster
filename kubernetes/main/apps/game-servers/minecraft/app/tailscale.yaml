@@ -6,6 +6,8 @@ metadata:
 spec:
   annotations:
     tailscale.com/hostname: "kashmc"
+  labels:
+    tailscale.com/proxy-class: "tun-access"
   type: LoadBalancer
   loadBalancerClass: tailscale
   selector:
