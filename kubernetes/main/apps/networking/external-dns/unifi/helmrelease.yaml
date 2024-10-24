@@ -60,7 +60,7 @@ spec:
           timeoutSeconds: 5
     extraArgs:
       - --ignore-ingress-tls-spec
-      - --ingress-class=external
+      - --ingress-class=internal
     policy: sync
     sources: ["crd", "ingress", "service"]
     txtOwnerId: main
