@@ -63,7 +63,7 @@ spec:
       - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
       - --crd-source-kind=DNSEndpoint
     policy: sync
-    sources: ["ingress", "service"]
+    sources: ["crd", "ingress", "service"]
     txtOwnerId: main
     txtPrefix: k8s.main.
     domainFilters: ["ok8.sh"]
