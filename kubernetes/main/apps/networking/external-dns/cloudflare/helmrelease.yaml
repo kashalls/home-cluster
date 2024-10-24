@@ -25,6 +25,7 @@ spec:
     keepHistory: false
   values:
     fullnameOverride: *app
+    logLevel: debug
     provider:
       name: cloudflare
     env:
