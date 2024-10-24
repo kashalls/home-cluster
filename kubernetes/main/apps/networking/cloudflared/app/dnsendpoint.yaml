@@ -9,3 +9,14 @@ spec:
     - dnsName: external.ok8.sh
       recordType: CNAME
       targets: ["${CLOUDFLARE_TUNNEL_MAIN_ID}.cfargotunnel.com"]
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/externaldns.k8s.io/dnsendpoint_v1alpha1.json
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: minecraft-srv2
+spec:
+  endpoints:
+    - dnsName: _minecraft._tcp.mc.ok8.sh
+      recordType: SRV
+      targets: ["0 1 25565 mc.ok8.sh"]
