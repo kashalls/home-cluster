@@ -48,7 +48,7 @@ spec:
     servicePort: 25565
     minecraftServer:
       eula: true
-      version: 1.20.6
+      version: 1.21.3
       type: PAPER
       difficulty: normal
       whitelist: "Kashall"
