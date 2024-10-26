@@ -12,6 +12,10 @@ spec:
   loadBalancerClass: tailscale
   selector:
     app: minecraft-minecraft
+  ipFamilyPolicy: PreferDualStack
+  ipFamilies:
+    - IPv4
+    - IPv6
   ports:
     - name: minecraft
       protocol: TCP
