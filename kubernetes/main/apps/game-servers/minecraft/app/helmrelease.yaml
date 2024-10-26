@@ -47,6 +47,7 @@ spec:
       tailscale.com/expose: "true"
       lbipam.cilium.io/sharing-key: *app
       external-dns.alpha.kubernetes.io/hostname: mc.ok8.sh
+      tailscale.com/proxy-class: "tun-access"
     servicePort: 25565
     minecraftServer:
       eula: true
