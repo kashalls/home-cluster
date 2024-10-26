@@ -13,5 +13,7 @@ spec:
   selector:
     app: minecraft-minecraft
   ports:
-    - port: 25565
+    - name: minecraft
+      protocol: TCP
+      port: 25565
       targetPort: 25565
