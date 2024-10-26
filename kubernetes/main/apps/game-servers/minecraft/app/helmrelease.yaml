@@ -43,6 +43,8 @@ spec:
     rconServiceAnnotations:
       lbipam.cilium.io/sharing-key: *app
     serviceAnnotations:
+      tailscale.com/hostname: "kashmc"
+      tailscale.com/expose: "true"
       lbipam.cilium.io/sharing-key: *app
       external-dns.alpha.kubernetes.io/hostname: mc.ok8.sh
     servicePort: 25565
