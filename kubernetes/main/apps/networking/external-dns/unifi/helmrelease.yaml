@@ -65,7 +65,7 @@ spec:
       - --managed-record-types=CNAME
       - --managed-record-types=SRV
     policy: sync
-    sources: ["ingress", "service", "crd"]
+    sources: ["ingress", "service"]
     txtOwnerId: main
     txtPrefix: k8s.main.
     domainFilters: ["ok8.sh"]
