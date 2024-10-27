@@ -60,14 +60,12 @@ spec:
           timeoutSeconds: 5
     extraArgs:
       - --ignore-ingress-tls-spec
-      - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
-      - --crd-source-kind=DNSEndpoint
       - --managed-record-types=A
       - --managed-record-types=AAAA
       - --managed-record-types=CNAME
       - --managed-record-types=SRV
     policy: sync
-    sources: ["crd", "ingress", "service"]
+    sources: ["ingress", "service", "crd"]
     txtOwnerId: main
     txtPrefix: k8s.main.
     domainFilters: ["ok8.sh"]
