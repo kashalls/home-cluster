@@ -35,7 +35,7 @@ spec:
           mysql:
             image:
               repository: ghcr.io/linuxserver/mariadb
-              tag: 10.11.8
+              tag: 10.11.10
             env:
               PUID: "1000"
               PGID: "1000"
