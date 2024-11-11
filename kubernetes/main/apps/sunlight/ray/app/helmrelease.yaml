@@ -21,8 +21,9 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/kashalls/ray
-              tag: main@sha256:42ce5ac50f5af8693cd499ba8ab00cbbb8aad6931f228adafdfe77e3666a9ceb
+              repository: ghcr.io/kashalls/sunlight
+              tag: main@sha256:35781d3c4feb1418f7f95892edc4b9394fa885047b8a69e9a0da0e7cc79e751b
+            args: ["-s"]
             probes:
               liveness: &probes
                 enabled: false
