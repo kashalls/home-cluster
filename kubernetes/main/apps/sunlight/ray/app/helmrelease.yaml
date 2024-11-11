@@ -38,12 +38,12 @@ spec:
               readiness: *probes
               startup:
                 enabled: false
-            resources:
-              requests:
-                cpu: 100M
-                memory: 512Mi
-              limits:
-                memory: 1G
+#            resources:
+#              requests:
+#                cpu: 100M
+#                memory: 512Mi
+#              limits:
+#                memory: 1G
     service:
       app:
         controller: ray
