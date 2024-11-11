@@ -22,7 +22,7 @@ spec:
           app:
             image:
               repository: ghcr.io/kashalls/ray
-              tag: main@sha256:dea20c4e2456ae73285c1b7d7281b56f1e2286a38f82b1afebb3855970487321
+              tag: main@sha256:42ce5ac50f5af8693cd499ba8ab00cbbb8aad6931f228adafdfe77e3666a9ceb
             probes:
               liveness: &probes
                 enabled: false
