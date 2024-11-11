@@ -7,5 +7,6 @@ resources:
   - ./namespace.yaml
   # Flux-Kustomizations
   - ./dashboard/ks.yaml
+  - ./ray/ks.yaml
   - ./iperf/ks.yaml
   - ./openspeedtest/ks.yaml
