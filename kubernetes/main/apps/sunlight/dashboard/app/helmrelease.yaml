@@ -30,7 +30,7 @@ spec:
           app:
             image:
               repository: ghcr.io/kashalls/dashboard
-              tag: main@sha256:61eef3ecb09705ea7f4e573ed0d85634f87fa1d122b312ec8ff3893ba4577768
+              tag: main@sha256:9c3faae670bc3c8be11d9bd6ef6f7c8ae6c0b399fd40f2132f6c477b7ab91074
             envFrom: *envFrom
             probes:
               liveness: &probes
