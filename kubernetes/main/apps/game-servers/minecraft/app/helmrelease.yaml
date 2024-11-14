@@ -52,7 +52,7 @@ spec:
       whitelist: "Kashall,AutumnFloofer"
       ops: "Kashall"
       pvp: true
-      motd: Meh
+      motd: "Kash's World"
       worldSaveName: world
       viewDistance: 12
       forceReDownload: true
