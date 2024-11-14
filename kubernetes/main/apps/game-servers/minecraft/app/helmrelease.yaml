@@ -21,11 +21,9 @@ spec:
       repository: itzg/minecraft-server
       tag: 2024.10.2-java21
     resources:
-      limits:
-        memory: 4096Mi
       requests:
-        cpu: 1000m
-        memory: 2048Mi
+        cpu: 2000m
+        memory: 8192Mi
     livenessProbe:
       initialDelaySeconds: 0
     readinessProbe:
@@ -58,7 +56,7 @@ spec:
       worldSaveName: world
       viewDistance: 12
       forceReDownload: true
-      memory: ""
+      memory: "8G"
       jvmXXOpts: "-XX:MaxRAMPercentage=70"
       spigetResources:
         - 36618
