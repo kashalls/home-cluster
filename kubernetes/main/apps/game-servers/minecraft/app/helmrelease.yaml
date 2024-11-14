@@ -51,7 +51,7 @@ spec:
       version: 1.21.1
       type: PAPER
       difficulty: normal
-      whitelist: "Kashall"
+      whitelist: "Kashall,AutumnFloofer"
       ops: "Kashall"
       pvp: true
       motd: Meh
