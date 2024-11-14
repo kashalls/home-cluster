@@ -17,3 +17,7 @@ spec:
       protocol: TCP
       port: 25565
       targetPort: 25565
+    - name: dynmap
+      protocol: TCP
+      port: 8123
+      targetPort: 8123
