@@ -162,16 +162,15 @@ spec:
             type: prometheus
             uid: prometheus
             access: proxy
-            url: http://thanos-query-frontend.observability.svc.cluster.local:10902
+            url: http://prometheus-operated.observability.svc.cluster.local:9090
             jsonData:
-              prometheusType: Thanos
               timeInterval: 1m
             isDefault: true
           - name: Loki
             type: loki
             uid: loki
             access: proxy
-            url: http://loki-gateway.observability.svc.cluster.local
+            url: http://loki-headless.observability.svc.cluster.local:3100
             jsonData:
               maxLines: 250
           - name: Alertmanager
