@@ -89,7 +89,7 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/target: internal.ok8.sh
         hosts:
-          - host: "ddns.${SECRET_DOMAIN}"
+          - host: "ddns.ok8.sh"
             paths:
               - path: /
                 service:
