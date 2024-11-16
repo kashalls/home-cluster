@@ -83,7 +83,7 @@ spec:
             ingressClassName: external
             enabled: true
             hosts:
-              - name: &host dynmc.ok8.sh
+              - name: &host mc-map.ok8.sh
                 path: /
             tls: [hosts: [*host]]
   valuesFrom:

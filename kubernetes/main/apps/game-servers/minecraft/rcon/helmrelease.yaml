@@ -28,7 +28,7 @@ spec:
       isAdmin: true
       passwordExistingSecret: minecraft-rcon-secret
       passwordKey: RCON_ADMIN_PASS
-      rconHost: minecraft-minecraft.game-servers.svc.cluster.local
+      rconHost: minecraft-minecraft-rcon.game-servers.svc.cluster.local
       rconPasswordExistingSecret: minecraft-minecraft-rcon
     extraEnv:
       TZ: "America/Los_Angeles"
