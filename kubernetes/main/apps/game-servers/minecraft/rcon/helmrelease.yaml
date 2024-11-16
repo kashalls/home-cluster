@@ -1,0 +1,34 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: rcon-web-admin
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: rcon-web-admin
+      version: 1.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: itzg
+        namespace: flux-system
+      interval: 5m
+  values:
+    resources:
+      requests:
+        memory: 512Mi
+        cpu: 200m
+    ingress:
+      enabled: true
+      className: "internal"
+      host: rcon.ok8.sh
+      pathType: Prefix
+    rconWeb:
+      isAdmin: true
+      passwordExistingSecret: minecraft-rcon-secret
+      passwordKey: RCON_ADMIN_PASS
+      rconHost: minecraft-minecraft.game-servers.svc.cluster.local
+      rconPasswordExistingSecret: minecraft-minecraft-rcon
+    extraEnv:
+      TZ: "America/Los_Angeles"
