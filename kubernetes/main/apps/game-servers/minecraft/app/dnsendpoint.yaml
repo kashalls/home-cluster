@@ -3,11 +3,12 @@
 apiVersion: externaldns.k8s.io/v1alpha1
 kind: DNSEndpoint
 metadata:
-  name: minecraft-srv
-  labels:
-    thisisstupid.ok8.sh: internal
+  name: minecraft
 spec:
   endpoints:
-    - dnsName: _minecraft._tcp.mc.ok8.sh
+    - dnsName: mc.ok8.sh
       recordType: SRV
-      targets: ["0 1 25565 mc.ok8.sh"]
+      targets: ["ipv4.ok8.sh"]
+      providerSpecific:
+        - name: external-dns.alpha.kubernetes.io/cloudflare-proxied
+          value: "false"

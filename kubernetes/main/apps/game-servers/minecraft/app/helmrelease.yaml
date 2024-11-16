@@ -81,6 +81,8 @@ spec:
             port: 8123
           ingress:
             ingressClassName: external
+            annotations:
+              external-dns.alpha.kubernetes.io/target: external.ok8.sh
             enabled: true
             hosts:
               - name: &host mc-map.ok8.sh
