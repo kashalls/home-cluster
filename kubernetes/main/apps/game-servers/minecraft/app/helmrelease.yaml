@@ -22,7 +22,7 @@ spec:
       tag: 2024.10.2-java21
     resources:
       requests:
-        cpu: 2000m
+        cpu: 4000m
         memory: 8192Mi
     livenessProbe:
       initialDelaySeconds: 0
@@ -58,6 +58,7 @@ spec:
       forceReDownload: true
       memory: "8G"
       jvmXXOpts: "-XX:MaxRAMPercentage=70"
+      enableCommandBlock: true
       spigetResources:
         - 36618
       modrinth:
@@ -78,7 +79,7 @@ spec:
             type: ClusterIP
             port: 8123
           ingress:
-            ingressClassName: internal
+            ingressClassName: external
             enabled: true
             hosts:
               - name: &host dynmc.ok8.sh
