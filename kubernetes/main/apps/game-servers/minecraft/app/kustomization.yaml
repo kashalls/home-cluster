@@ -6,3 +6,11 @@ resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
   - ./dnsendpoint.yaml
+configMapGenerator:
+  - name: dynmap-configuration
+    files:
+      - ./config/dynmap/configuration.txt
+generatorOptions:
+  disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled

@@ -1,0 +1,436 @@
+# All paths in this configuration file are relative to Dynmap's data-folder: minecraft_server/plugins/dynmap/
+deftemplatesuffix: hires
+
+# Set default tile scale (0 = 128px x 128x, 1 = 256px x 256px, 2 = 512px x 512px, 3 = 1024px x 1024px, 4 = 2048px x 2048px) - 0 is default
+# Note: changing this value will result in all maps that use the default value being required to be fully rendered
+#defaulttilescale: 0
+
+# Map storage scheme: only uncomment one 'type' value
+#  filetree: classic and default scheme: tree of files, with all map data under the directory indicated by 'tilespath' setting
+#  sqlite: single SQLite database file (this can get VERY BIG), located at 'dbfile' setting (default is file dynmap.db in data directory)
+#  mysql: MySQL database, at hostname:port in database, accessed via userid with password
+#  mariadb: MariaDB database, at hostname:port in database, accessed via userid with password
+#  postgres: PostgreSQL database, at hostname:port in database, accessed via userid with password
+storage:
+  type: filetree
+
+components:
+  - class: org.dynmap.ClientConfigurationComponent
+
+  # Remember to change the following class to org.dynmap.JsonFileClientUpdateComponent when using an external web server.
+  - class: org.dynmap.InternalClientUpdateComponent
+    sendhealth: true
+    sendposition: true
+    allowwebchat: false
+    webchat-interval: 5
+    hidewebchatip: true
+    trustclientname: false
+    includehiddenplayers: false
+    use-name-colors: true
+    use-player-login-ip: false
+    require-player-login-ip: false
+    block-banned-player-chat: true
+    # Require login for web-to-server chat (requires login-enabled: true)
+    webchat-requires-login: false
+    # If set to true, users must have dynmap.webchat permission in order to chat
+    webchat-permissions: false
+    # Limit length of single chat messages
+    chatlengthlimit: 256
+    hideifsneaking: false
+    hideifspectator: true
+    protected-player-info: false
+    hide-if-invisiblity-potion: true
+    hidenames: false
+
+  - class: org.dynmap.SimpleWebChatComponent
+    allowchat: false
+    # If true, web UI users can supply name for chat using 'playername' URL parameter.  'trustclientname' must also be set true.
+    allowurlname: false
+
+  # Note: this component is needed for the dmarker commands, and for the Marker API to be available to other plugins
+  - class: org.dynmap.MarkersComponent
+    type: markers
+    showlabel: false
+    enablesigns: false
+    # Default marker set for sign markers
+    default-sign-set: markers
+    # (optional) add spawn point markers to standard marker layer
+    showspawn: true
+    spawnicon: world
+    spawnlabel: "Spawn"
+    # (optional) layer for showing offline player's positions (for 'maxofflinetime' minutes after logoff)
+    showofflineplayers: false
+    offlinelabel: "Offline"
+    offlineicon: offlineuser
+    offlinehidebydefault: true
+    offlineminzoom: 0
+    maxofflinetime: 30
+    # (optional) layer for showing player's spawn beds
+    showspawnbeds: false
+    spawnbedlabel: "Spawn Beds"
+    spawnbedicon: bed
+    spawnbedhidebydefault: true
+    spawnbedminzoom: 0
+    spawnbedformat: "%name%'s bed"
+    spawnbedremoveonplayerleave: true
+    # (optional) show world border (vanilla 1.8+)
+    showworldborder: true
+    worldborderlabel: "Border"
+
+  - class: org.dynmap.ClientComponent
+    type: playermarkers
+    showplayerfaces: true
+    showplayerhealth: true
+    # If true, show player body too (only valid if showplayerfaces=true)
+    showplayerbody: false
+    # Option to make player faces small - don't use with showplayerhealth or largeplayerfaces
+    smallplayerfaces: false
+    # Option to make player faces larger - don't use with showplayerhealth or smallplayerfaces
+    largeplayerfaces: false
+    # Optional - make player faces layer hidden by default
+    hidebydefault: false
+    # Optional - ordering priority in layer menu (low goes before high - default is 0)
+    layerprio: 0
+    # Optional - label for player marker layer (default is 'Players')
+    label: "Players"
+
+  #- class: org.dynmap.ClientComponent
+  #  type: digitalclock
+  - class: org.dynmap.ClientComponent
+    type: link
+
+  - class: org.dynmap.ClientComponent
+    type: timeofdayclock
+    showdigitalclock: true
+    showweather: true
+  # Mouse pointer world coordinate display
+  - class: org.dynmap.ClientComponent
+    type: coord
+    label: "Location"
+    hidey: false
+    show-mcr: false
+    show-chunk: false
+
+  - class: org.dynmap.ClientComponent
+    type: inactive
+    timeout: 1800 # in seconds (1800 seconds = 30 minutes)
+    redirecturl: inactive.html
+    #showmessage: 'You were inactive for too long.'
+
+display-whitelist: false
+
+# How often a tile gets rendered (in seconds).
+renderinterval: 1
+
+# How many tiles on update queue before accelerate render interval
+renderacceleratethreshold: 60
+
+# How often to render tiles when backlog is above renderacceleratethreshold
+renderaccelerateinterval: 0.2
+
+# How many update tiles to work on at once (if not defined, default is 1/2 the number of cores)
+tiles-rendered-at-once: 2
+
+# If true, use normal priority threads for rendering (versus low priority) - this can keep rendering
+# from starving on busy Windows boxes (Linux JVMs pretty much ignore thread priority), but may result
+# in more competition for CPU resources with other processes
+usenormalthreadpriority: true
+
+# Save and restore pending tile renders - prevents their loss on server shutdown or /reload
+saverestorepending: true
+
+# Save period for pending jobs (in seconds): periodic saving for crash recovery of jobs
+save-pending-period: 900
+
+# Zoom-out tile update period - how often to scan for and process tile updates into zoom-out tiles (in seconds)
+zoomoutperiod: 30
+
+# Control whether zoom out tiles are validated on startup (can be needed if zoomout processing is interrupted, but can be expensive on large maps)
+initial-zoomout-validate: true
+
+# Default delay on processing of updated tiles, in seconds.  This can reduce potentially expensive re-rendering
+# of frequently updated tiles (such as due to machines, pistons, quarries or other automation).  Values can
+# also be set on individual worlds and individual maps.
+tileupdatedelay: 30
+
+# Tile hashing is used to minimize tile file updates when no changes have occurred - set to false to disable
+enabletilehash: true
+
+# Optional - hide ores: render as normal stone (so that they aren't revealed by maps)
+#hideores: true
+
+# Optional - enabled BetterGrass style rendering of grass and snow block sides
+better-grass: true
+
+# Optional - enable smooth lighting by default on all maps supporting it (can be set per map as lighting option)
+smooth-lighting: true
+
+# Optional - use world provider lighting table (good for custom worlds with custom lighting curves, like nether)
+#   false=classic Dynmap lighting curve
+use-brightness-table: true
+
+# Optional - render specific block names using the textures and models of another block name: can be used to hide/disguise specific
+#  blocks (e.g. make ores look like stone, hide chests) or to provide simple support for rendering unsupported custom blocks
+block-alias:
+#    "minecraft:quartz_ore": "stone"
+#    "diamond_ore": "coal_ore"
+
+# Default image format for HDMaps (png, jpg, jpg-q75, jpg-q80, jpg-q85, jpg-q90, jpg-q95, jpg-q100, webp, webp-q75, webp-q80, webp-q85, webp-q90, webp-q95, webp-q100, webp-l),
+# Note: any webp format requires the presence of the 'webp command line tools' (cwebp, dwebp) (https://developers.google.com/speed/webp/download)
+#
+# Has no effect on maps with explicit format settings
+image-format: jpg-q90
+
+# If cwebp or dwebp are not on the PATH, use these settings to provide their full path.  Do not use these settings if the tools are on the PATH
+# For Windows, include .exe
+#
+#cwebpPath: /usr/bin/cwebp
+#dwebpPath: /usr/bin/dwebp
+
+#  use-generated-textures: if true, use generated textures (same as client); false is static water/lava textures
+#  correct-water-lighting: if true, use corrected water lighting (same as client); false is legacy water (darker)
+#  transparent-leaves: if true, leaves are transparent (lighting-wise): false is needed for some Spout versions that break lighting on leaf blocks
+use-generated-textures: true
+correct-water-lighting: true
+transparent-leaves: true
+
+# ctm-support: if true, Connected Texture Mod (CTM) in texture packs is enabled (default)
+ctm-support: true
+# custom-colors-support: if true, Custom Colors in texture packs is enabled (default)
+custom-colors-support: true
+
+# Control loading of player faces (if set to false, skins are never fetched)
+#fetchskins: false
+
+# Control updating of player faces, once loaded (if faces are being managed by other apps or manually)
+#refreshskins: false
+
+# Customize URL used for fetching player skins (%player% is macro for name, %uuid% for UUID)
+skin-url: "http://skins.minecraft.net/MinecraftSkins/%player%.png"
+
+# Enable skins via SkinsRestorer plugin instead of internal legacy implementation (disabled by default)
+#skinsrestorer-integration: true
+
+render-triggers:
+  #- playermove
+  #- playerjoin
+  - blockplaced
+  - blockbreak
+  - leavesdecay
+  - blockburn
+  - chunkgenerated
+  - blockformed
+  - blockfaded
+  - blockspread
+  - pistonmoved
+  - explosion
+  #- blockfromto
+  #- blockphysics
+  - structuregrow
+  - blockgrow
+  #- blockredstone
+
+# Title for the web page - if not specified, defaults to the server's name (unless it is the default of 'Unknown Server')
+#webpage-title: "My Awesome Server Map"
+
+# The path where the tile-files are placed.
+tilespath: web/tiles
+
+# The path where the web-files are located.
+webpath: web
+
+# If set to false, disable extraction of webpath content (good if using custom web UI or 3rd party web UI)
+# Note: web interface is unsupported in this configuration - you're on your own
+update-webpath-files: true
+
+# The path were the /dynmapexp command exports OBJ ZIP files
+exportpath: export
+
+# The path where files can be imported for /dmarker commands
+importpath: import
+
+# The network-interface the webserver will bind to (0.0.0.0 for all interfaces, 127.0.0.1 for only local access).
+# If not set, uses same setting as server in server.properties (or 0.0.0.0 if not specified)
+#webserver-bindaddress: 0.0.0.0
+
+# The TCP-port the webserver will listen on.
+webserver-port: 8123
+
+# Maximum concurrent session on internal web server - limits resources used in Bukkit server
+max-sessions: 30
+
+# Disables Webserver portion of Dynmap (Advanced users only)
+disable-webserver: false
+
+# Enable/disable having the web server allow symbolic links (true=compatible with existing code, false=more secure (default))
+allow-symlinks: true
+
+# Enable login support
+login-enabled: false
+# Require login to access website (requires login-enabled: true)
+login-required: false
+
+# Period between tile renders for fullrender, in seconds (non-zero to pace fullrenders, lessen CPU load)
+timesliceinterval: 0.0
+
+# Maximum chunk loads per server tick (1/20th of a second) - reducing this below 90 will impact render performance, but also will reduce server thread load
+maxchunkspertick: 200
+
+# Progress report interval for fullrender/radiusrender, in tiles.  Must be 100 or greater
+progressloginterval: 100
+
+# Parallel fullrender: if defined, number of concurrent threads used for fullrender or radiusrender
+#   Note: setting this will result in much more intensive CPU use, some additional memory use.  Caution should be used when
+#  setting this to equal or exceed the number of physical cores on the system.
+#parallelrendercnt: 4
+
+# Interval the browser should poll for updates.
+updaterate: 2000
+
+# If nonzero, server will pause fullrender/radiusrender processing when 'fullrenderplayerlimit' or more users are logged in
+fullrenderplayerlimit: 0
+# If nonzero, server will pause update render processing when 'updateplayerlimit' or more users are logged in
+updateplayerlimit: 0
+# Target limit on server thread use - msec per tick
+per-tick-time-limit: 50
+# If TPS of server is below this setting, update renders processing is paused
+update-min-tps: 18.0
+# If TPS of server is below this setting, full/radius renders processing is paused
+fullrender-min-tps: 18.0
+# If TPS of server is below this setting, zoom out processing is paused
+zoomout-min-tps: 18.0
+
+showplayerfacesinmenu: true
+
+# Control whether players that are hidden or not on current map are grayed out (true=yes)
+grayplayerswhenhidden: true
+
+# Use player permissions to order player list: first to last, players are ordered by first permission listed that they have
+# That is, anyone with first listed permission goes before anyone with second, etc, with users with none of the nodes going last
+player-sort-permission-nodes:
+  - bukkit.command.op
+
+# Set sidebaropened: 'true' to pin menu sidebar opened permanently, 'pinned' to default the sidebar to pinned, but allow it to unpin
+#sidebaropened: true
+
+# Customized HTTP response headers - add 'id: value' pairs to all HTTP response headers (internal web server only)
+#http-response-headers:
+#    Access-Control-Allow-Origin: "my-domain.com"
+#    X-Custom-Header-Of-Mine: "MyHeaderValue"
+
+# Trusted proxies for web server - which proxy addresses are trusted to supply valid X-Forwarded-For fields
+#   This now supports both IP address, and subnet ranges (e.g. 192.168.1.0/24 or 202.24.0.0/14 )
+trusted-proxies:
+  - "172.30.0.0/24"
+
+# Join/quit message format for web chat: set to "" to disable notice on web UI
+joinmessage: "%playername% joined"
+quitmessage: "%playername% quit"
+
+spammessage: "You may only chat once every %interval% seconds."
+# format for messages from web: %playername% substitutes sender ID (typically IP), %message% includes text
+webmsgformat: "&color;2[WEB] %playername%: &color;f%message%"
+
+# Control whether layer control is presented on the UI (default is true)
+showlayercontrol: true
+
+# Enable checking for banned IPs via banned-ips.txt (internal web server only)
+check-banned-ips: true
+
+# Default selection when map page is loaded
+defaultzoom: 0
+defaultworld: world
+defaultmap: flat
+# (optional) Zoom level and map to switch to when following a player, if possible
+#followzoom: 3
+#followmap: surface
+
+# If true, make persistent record of IP addresses used by player logins, to support web IP to player matching
+persist-ids-by-ip: true
+
+# If true, map text to cyrillic
+cyrillic-support: false
+
+# If true, coordinates will be rounded
+round-coordinates: true
+
+# Messages to customize
+msg:
+    maptypes: "Map Types"
+    players: "Players"
+    chatrequireslogin: "Chat Requires Login"
+    chatnotallowed: "You are not permitted to send chat messages"
+    hiddennamejoin: "Player joined"
+    hiddennamequit: "Player quit"
+
+# URL for client configuration (only need to be tailored for proxies or other non-standard configurations)
+url:
+    # configuration URL
+    #configuration: "up/configuration"
+    # update URL
+    #update: "up/world/{world}/{timestamp}"
+    # sendmessage URL
+    #sendmessage: "up/sendmessage"
+    # login URL
+    #login: "up/login"
+    # register URL
+    #register: "up/register"
+    # tiles base URL
+    #tiles: "tiles/"
+    # markers base URL
+    #markers: "tiles/"
+
+# Customization commands - allows scripts to be run before/after certain events
+custom-commands:
+    image-updates:
+        # Command run just before any image file is written or updated: run with single parameter with fully qualified file name
+        preupdatecommand: ""
+        # Command run just after any image file is written or updated: run with single parameter with fully qualified file name
+        postupdatecommand: ""
+
+# Snapshot cache size, in chunks
+snapshotcachesize: 500
+# Snapshot cache uses soft references (true), else weak references (false)
+soft-ref-cache: true
+
+# Player enter/exit title messages for map markers
+#
+# Processing period - how often to check player positions vs markers - default is 1000ms (1 second)
+#enterexitperiod: 1000
+# Title message fade in time, in ticks (0.05 second intervals) - default is 10 (1/2 second)
+#titleFadeIn: 10
+# Title message stay time, in ticks (0.05 second intervals) - default is 70 (3.5 seconds)
+#titleStay: 70
+# Title message fade out time, in ticks (0.05 seocnd intervals) - default is 20 (1 second)
+#titleFadeOut: 20
+# Enter/exit messages use on screen titles (true - default), if false chat messages are sent instead
+#enterexitUseTitle: true
+# Set true if new enter messages should supercede pending exit messages (vs being queued in order), default false
+#enterReplacesExits: true
+
+# Published public URL for Dynmap server (allows users to use 'dynmap url' command to get public URL usable to access server
+# If not set, 'dynmap url' will not return anything.  URL should be fully qualified (e.g. https://mc.westeroscraft.com/)
+#publicURL: http://my.greatserver.com/dynmap
+
+# Send this message if the player does not have permission to use the command
+noPermissionMsg: "You don't have permission to use this command!"
+
+# Set to true to enable verbose startup messages - can help with debugging map configuration problems
+# Set to false for a much quieter startup log
+verbose: false
+
+# Enables debugging.
+#debuggers:
+#  - class: org.dynmap.debug.LogDebugger
+# Debug: dump blocks missing render data
+dump-missing-blocks: false
+
+# Have dynmap migrate old chunks to the new format for the current MC version (specifically, for migrating pre-1.13 chunks to 1.13 or 1.14).  This is needed
+# in order to render chunks on an upgraded server (due to various bugs/limitations in CB/spigot 1.13+).  This setting is NOT suggested to be enabled full time,
+# but only long enough to do a fullrender of a migrated world - it should be turned back off once worlds are migrated).  It is EXPERIMENTAL, so be sure to backup
+# your worlds before running with this setting enabled (set to true)
+#
+#migrate-chunks: true
+
+# Log4J defense: string substituted for attempts to use macros in web chat
+hackAttemptBlurb: "(IaM5uchA1337Haxr-Ban Me!)"

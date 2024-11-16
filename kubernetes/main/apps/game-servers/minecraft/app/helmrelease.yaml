@@ -88,6 +88,14 @@ spec:
               - name: &host mc-map.ok8.sh
                 path: /
             tls: [hosts: [*host]]
+      extraVolumes:
+        volumeMounts:
+          - name: dynmap-configuration
+            mountPath: /data/plugins/dynmap/configuration.txt
+        volumes:
+          - name: dynmap-configuration
+            configMap:
+              name: dynmap-configuration
   valuesFrom:
     - kind: Secret
       name: *secret
