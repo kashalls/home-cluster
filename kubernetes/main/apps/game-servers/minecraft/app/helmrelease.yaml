@@ -22,7 +22,7 @@ spec:
       tag: 2024.10.2-java21
     resources:
       requests:
-        cpu: 4000m
+        cpu: 6000m
         memory: 8192Mi
     livenessProbe:
       initialDelaySeconds: 0
@@ -39,8 +39,9 @@ spec:
         enabled: true
         Size: 10G
     rconServiceAnnotations:
-      lbipam.cilium.io/ips: "172.16.10.5"
+      lbipam.cilium.io/sharing-key: *app
     serviceAnnotations:
+      lbipam.cilium.io/sharing-key: *app
       lbipam.cilium.io/ips: "172.16.10.4"
       external-dns.alpha.kubernetes.io/hostname: mc.ok8.sh
     servicePort: 25565
