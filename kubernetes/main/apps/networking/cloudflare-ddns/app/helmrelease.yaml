@@ -31,7 +31,7 @@ spec:
           app:
             image:
               repository: ghcr.io/larivierec/cloudflare-ddns
-              tag: v1.0.1@sha256:fc94db44ed58c1883da9528192ee7b097ce3c275c0e2cded902260eabb1b2cd1
+              tag: v1.0.2@sha256:a4f07465923311bf0bb34000d961eda673347380c0b052566cb9aa80952948a0
             args:
               - --zone-name
               - ok8.sh
