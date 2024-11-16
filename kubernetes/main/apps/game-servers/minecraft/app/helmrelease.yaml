@@ -39,9 +39,9 @@ spec:
         enabled: true
         Size: 10G
     rconServiceAnnotations:
-      lbipam.cilium.io/sharing-key: *app
+      lbipam.cilium.io/ips: "172.16.10.5"
     serviceAnnotations:
-      lbipam.cilium.io/sharing-key: *app
+      lbipam.cilium.io/ips: "172.16.10.4"
       external-dns.alpha.kubernetes.io/hostname: mc.ok8.sh
     servicePort: 25565
     minecraftServer:
