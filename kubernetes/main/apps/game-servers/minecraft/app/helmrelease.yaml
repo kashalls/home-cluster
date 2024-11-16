@@ -97,6 +97,8 @@ spec:
           - name: dynmap-configuration
             configMap:
               name: dynmap-configuration
+              items:
+                - key: configuration.txt
   valuesFrom:
     - kind: Secret
       name: *secret
