@@ -50,7 +50,7 @@ spec:
       version: 1.21.1
       type: PAPER
       difficulty: normal
-      whitelist: "Kashall,AutumnFloofer,theStriker01"
+      whitelist: "Kashall,AutumnFloofer,theStriker01,MarianKnight"
       ops: "Kashall"
       pvp: true
       motd: "Kash's World"
