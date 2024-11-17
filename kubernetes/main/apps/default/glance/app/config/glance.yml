@@ -62,9 +62,5 @@ pages:
                 url: https://grafana.ok8.sh
               - title: ID
                 url: https://id.ok8.sh
-              - title: Coder
-                url: https://coder.ok8.sh
-              - title: S3
-                url: https://minio.ok8.sh
               - title: DynMC
                 url: https://dynmc.ok8.sh
