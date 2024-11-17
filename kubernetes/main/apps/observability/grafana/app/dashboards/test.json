@@ -3438,6 +3438,6 @@
   "timezone": "browser",
   "title": "UniFi-Poller: PDU Insights - Prometheus",
   "uid": "youlikejazz",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }
