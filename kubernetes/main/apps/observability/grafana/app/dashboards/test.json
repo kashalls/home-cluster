@@ -1,47 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_PROMETHEUS",
-      "label": "Prometheus",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "prometheus",
-      "pluginName": "Prometheus"
-    }
-  ],
-  "__elements": {},
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "10.4.3"
-    },
-    {
-      "type": "panel",
-      "id": "graph",
-      "name": "Graph (old)",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "table",
-      "name": "Table",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "timeseries",
-      "name": "Time series",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -61,9 +18,8 @@
   "description": "UniFi Poller v2.0.1 Displays detailed information for network switches in a UniFi network using Prometheus.",
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "gnetId": 11312,
   "graphTooltip": 1,
-  "id": null,
+  "id": 1079,
   "links": [
     {
       "asDropdown": true,
@@ -100,26 +56,110 @@
   ],
   "panels": [
     {
-      "collapsed": false,
       "datasource": {
-        "uid": "bdkj55oguty4gd"
+        "type": "prometheus",
+        "uid": "prometheus"
       },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2300,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "unpoller_device_outlet_ac_power_consumption{site_name=~$Site}",
+          "format": "time_series",
+          "instant": false,
+          "legendFormat": "{{name}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Panel Title",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 0
+        "y": 8
       },
       "id": 137,
       "panels": [],
-      "targets": [
-        {
-          "datasource": {
-            "uid": "bdkj55oguty4gd"
-          },
-          "refId": "A"
-        }
-      ],
       "title": "Aggregate Graphs",
       "type": "row"
     },
@@ -454,7 +494,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 1
+        "y": 9
       },
       "id": 2297,
       "options": {
@@ -469,7 +509,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "10.4.3",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -537,6 +577,7 @@
             "axisLabel": "Celcius",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -673,7 +714,7 @@
         "h": 7,
         "w": 16,
         "x": 0,
-        "y": 7
+        "y": 15
       },
       "id": 1149,
       "options": {
@@ -691,7 +732,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.3",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -737,6 +778,7 @@
             "axisLabel": "Memory Utilization",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -824,11 +866,9 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 7
+        "y": 15
       },
-      "hideTimeOverride": true,
       "id": 1859,
-      "interval": "",
       "options": {
         "legend": {
           "calcs": [
@@ -843,7 +883,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "10.4.3",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -876,6 +916,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -1010,7 +1051,7 @@
         "h": 8,
         "w": 16,
         "x": 0,
-        "y": 14
+        "y": 22
       },
       "id": 1857,
       "options": {
@@ -1028,7 +1069,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "10.4.3",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -1085,6 +1126,7 @@
             "axisLabel": "CPU Utilization",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1172,11 +1214,9 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 14
+        "y": 22
       },
-      "hideTimeOverride": true,
       "id": 1861,
-      "interval": "",
       "options": {
         "legend": {
           "calcs": [
@@ -1191,7 +1231,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "10.4.3",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -1225,6 +1265,7 @@
             "axisLabel": "Bytes Per Second",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -1306,7 +1347,7 @@
         "h": 17,
         "w": 24,
         "x": 0,
-        "y": 22
+        "y": 30
       },
       "id": 135,
       "options": {
@@ -1324,7 +1365,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.3",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
@@ -1374,8 +1415,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1859,7 +1899,7 @@
         "h": 21,
         "w": 24,
         "x": 0,
-        "y": 39
+        "y": 47
       },
       "id": 214,
       "options": {
@@ -2033,14 +2073,11 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "uid": "bdkj55oguty4gd"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 60
+        "y": 68
       },
       "id": 4,
       "panels": [
@@ -2067,8 +2104,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2137,8 +2173,7 @@
                       "mode": "absolute",
                       "steps": [
                         {
-                          "color": "rgba(50, 172, 45, 0)",
-                          "value": null
+                          "color": "rgba(50, 172, 45, 0)"
                         },
                         {
                           "color": "rgba(237, 129, 40, 0.89)",
@@ -2257,7 +2292,7 @@
             "h": 3,
             "w": 24,
             "x": 0,
-            "y": 61
+            "y": 120
           },
           "id": 291,
           "options": {
@@ -2510,8 +2545,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2540,7 +2574,7 @@
             "h": 9,
             "w": 24,
             "x": 0,
-            "y": 64
+            "y": 123
           },
           "id": 1396,
           "options": {
@@ -2635,8 +2669,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2665,7 +2698,7 @@
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 73
+            "y": 132
           },
           "id": 594,
           "options": {
@@ -2780,8 +2813,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2830,7 +2862,7 @@
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 73
+            "y": 132
           },
           "id": 367,
           "options": {
@@ -2894,10 +2926,6 @@
           "type": "timeseries"
         },
         {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
@@ -2909,47 +2937,17 @@
             },
             "overrides": []
           },
-          "fill": 1,
-          "fillGradient": 0,
           "gridPos": {
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 80
+            "y": 139
           },
-          "hiddenSeries": false,
           "id": 468,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "rightSide": false,
-            "show": true,
-            "total": true,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null",
           "options": {
             "alertThreshold": true
           },
-          "percentage": false,
           "pluginVersion": "10.4.3",
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [
-            {
-              "alias": "/Rx$/",
-              "transform": "negative-Y"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
           "targets": [
             {
               "datasource": {
@@ -2972,36 +2970,8 @@
               "refId": "B"
             }
           ],
-          "thresholds": [],
-          "timeRegions": [],
           "title": "Packets Per Second: Switch $Port",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "mode": "time",
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "pps",
-              "label": "PPS",
-              "logBase": 1,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false
-          }
+          "type": "timeseries"
         },
         {
           "datasource": {
@@ -3052,8 +3022,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3069,7 +3038,7 @@
             "h": 7,
             "w": 4,
             "x": 12,
-            "y": 80
+            "y": 139
           },
           "id": 745,
           "options": {
@@ -3152,8 +3121,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3190,7 +3158,7 @@
             "h": 7,
             "w": 4,
             "x": 16,
-            "y": 80
+            "y": 139
           },
           "id": 921,
           "options": {
@@ -3273,8 +3241,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3290,7 +3257,7 @@
             "h": 7,
             "w": 4,
             "x": 20,
-            "y": 80
+            "y": 139
           },
           "id": 922,
           "options": {
@@ -3326,57 +3293,46 @@
         }
       ],
       "repeat": "Port",
-      "targets": [
-        {
-          "datasource": {
-            "uid": "bdkj55oguty4gd"
-          },
-          "refId": "A"
-        }
-      ],
       "title": "Switch $Port",
       "type": "row"
     },
     {
       "collapsed": true,
-      "datasource": {
-        "uid": "bdkj55oguty4gd"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 81
+        "y": 69
       },
       "id": 2299,
       "panels": [],
-      "targets": [
-        {
-          "datasource": {
-            "uid": "bdkj55oguty4gd"
-          },
-          "refId": "A"
-        }
-      ],
       "title": "Purposely Empty Row",
       "type": "row"
     }
   ],
+  "preload": false,
   "refresh": "1m",
-  "schemaVersion": 39,
+  "schemaVersion": 40,
   "tags": [
     "unifi",
-    "usw",
-    "unifi-poller"
+    "unifi-poller",
+    "pdu"
   ],
   "templating": {
     "list": [
       {
         "allValue": ".*",
-        "current": {},
+        "current": {
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_PROMETHEUS}"
+          "uid": "prometheus"
         },
         "definition": "label_values(unpoller_device_info,source)",
         "hide": 2,
@@ -3387,17 +3343,12 @@
         "query": "label_values(unpoller_device_info,source)",
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
         "sort": 1,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "type": "query"
       },
       {
-        "allValue": "",
+        "allValue": ".*",
         "current": {
-          "selected": true,
           "text": [
             "All"
           ],
@@ -3405,46 +3356,11 @@
             "$__all"
           ]
         },
-        "hide": 0,
-        "includeAll": true,
-        "multi": true,
-        "name": "Devices",
-        "options": [
-          {
-            "selected": true,
-            "text": "All",
-            "value": "$__all"
-          },
-          {
-            "selected": false,
-            "text": "udm",
-            "value": "udm"
-          },
-          {
-            "selected": false,
-            "text": "usw",
-            "value": "usw"
-          },
-          {
-            "selected": false,
-            "text": "uap",
-            "value": "uap"
-          }
-        ],
-        "query": "udm,usw,uap",
-        "queryValue": "",
-        "skipUrlSync": false,
-        "type": "custom"
-      },
-      {
-        "allValue": ".*",
-        "current": {},
         "datasource": {
           "type": "prometheus",
           "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(unpoller_device_info{source=~\"$Controller\"},site_name)",
-        "hide": 0,
         "includeAll": true,
         "multi": true,
         "name": "Site",
@@ -3452,68 +3368,15 @@
         "query": "label_values(unpoller_device_info{source=~\"$Controller\"},site_name)",
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
         "sort": 1,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": "",
-        "current": {},
-        "datasource": {
-          "type": "prometheus",
-          "uid": "${DS_PROMETHEUS}"
-        },
-        "definition": "label_values(unpoller_device_info{site_name=~\"$Site\", type=~\"$Devices\"},name)",
-        "hide": 0,
-        "includeAll": true,
-        "multi": true,
-        "name": "Switch",
-        "options": [],
-        "query": "label_values(unpoller_device_info{site_name=~\"$Site\", type=~\"$Devices\"},name)",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 1,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": ".*",
-        "current": {},
-        "datasource": {
-          "type": "prometheus",
-          "uid": "${DS_PROMETHEUS}"
-        },
-        "definition": "label_values(unpoller_device_port_port_speed_bps{site_name=~\"$Site\", name=~\"$Switch\"},port_id)",
-        "hide": 0,
-        "includeAll": true,
-        "multi": true,
-        "name": "Port",
-        "options": [],
-        "query": "label_values(unpoller_device_port_port_speed_bps{site_name=~\"$Site\", name=~\"$Switch\"},port_id)",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 3,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "type": "query"
       },
       {
         "current": {
-          "selected": false,
           "text": "2m",
           "value": "2m"
         },
-        "hide": 0,
         "includeAll": false,
-        "multi": false,
         "name": "Smooth",
         "options": [
           {
@@ -3553,7 +3416,6 @@
           }
         ],
         "query": "30s,1m,2m,5m,10m,15m,30m",
-        "skipUrlSync": false,
         "type": "custom"
       }
     ]
@@ -3572,21 +3434,10 @@
       "30m",
       "1h",
       "2h"
-    ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
     ]
   },
   "timezone": "browser",
-  "title": "UniFi-Poller: UPDU Insights - Prometheus",
+  "title": "UniFi-Poller: PDU Insights - Prometheus",
   "uid": "youlikejazz",
   "version": 1,
   "weekStart": ""
