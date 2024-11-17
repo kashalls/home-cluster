@@ -8,5 +8,3 @@ resources:
   # Flux-Kustomizations
   - ./dashboard/ks.yaml
   - ./sunlight/ks.yaml
-  - ./iperf/ks.yaml
-  - ./openspeedtest/ks.yaml
