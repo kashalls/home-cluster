@@ -9,6 +9,7 @@ resources:
   - ./home-assistant/ks.yaml
   - ./mosquitto/ks.yaml
   - ./openspeedtest/ks.yaml
+  - ./pocket-id/ks.yaml
   - ./rtlamr2mqtt/ks.yaml
   - ./smtp-relay/ks.yaml
   - ./zigbee2mqtt/ks.yaml
