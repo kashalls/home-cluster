@@ -85,5 +85,6 @@ spec:
         type: persistentVolumeClaim
         accessMode: ReadWriteOnce
         size: 5G
+        storageClass: openebs-zfs
         globalMounts:
           - path: /data
