@@ -218,7 +218,7 @@ spec:
           revision: 9
           datasource: Prometheus
         unifi-pdu:
-          url: https://raw.githubusercontent.com/kashalls/home-cluster/refs/heads/main/kubernetes/main/apps/observability/grafana/app/dashboards/test.json
+          url: https://raw.githubusercontent.com/kashalls/home-cluster/refs/heads/main/kubernetes/main/apps/observability/grafana/app/dashboards/UniFi-Poller_PDU Insights - Prometheus.json
           datasource: Prometheus
         volsync:
           # renovate: depName="VolSync Dashboard"
