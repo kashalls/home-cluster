@@ -65,7 +65,7 @@ spec:
         controller: pocket-id
         ports:
           http:
-            port: 3000
+            port: 80
     ingress:
       app:
         className: internal
