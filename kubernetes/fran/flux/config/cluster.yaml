@@ -16,7 +16,7 @@ spec:
     # exclude all
     /*
     # include kubernetes directory
-    !/kubernetes/fenrys
+    !/kubernetes/fran
     !/kubernetes/shared
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/kustomize.toolkit.fluxcd.io/kustomization_v1.json
@@ -42,9 +42,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30m
-  dependsOn:
-    - name: cluster-shared
-  path: ./kubernetes/fenrys/flux
+  path: ./kubernetes/fran/flux
   prune: false
   wait: true
   sourceRef:
