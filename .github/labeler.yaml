@@ -18,9 +18,9 @@ area/taskfile:
           - ".taskfiles/**/*"
           - "Taskfile.yaml"
 # Clusters
-cluster/main:
+cluster/fenrys:
   - changed-files:
-      - any-glob-to-any-file: "kubernetes/main/**/*"
+      - any-glob-to-any-file: "kubernetes/fenrys/**/*"
 cluster/storage:
   - changed-files:
       - any-glob-to-any-file: "kubernetes/storage/**/*"

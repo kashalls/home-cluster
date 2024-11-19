@@ -1,0 +1,95 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/fenrys/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app minecraft
+spec:
+  chart:
+    spec:
+      chart: minecraft
+      version: 4.23.2
+      sourceRef:
+        kind: HelmRepository
+        name: itzg
+        namespace: flux-system
+  interval: 30m
+  values:
+    deploymentAnnotations:
+      secret.reloader.stakater.com/reload: &secret minecraft-secret
+    image:
+      repository: itzg/minecraft-server
+      tag: 2024.10.2-java21
+    resources:
+      requests:
+        cpu: 6000m
+        memory: 8192Mi
+    livenessProbe:
+      initialDelaySeconds: 0
+    readinessProbe:
+      initialDelaySeconds: 0
+    startupProbe:
+      enabled: true
+    extraEnv:
+      TZ: "America/Los_Angeles"
+      ENABLE_ROLLING_LOGS: true
+    persistence:
+      storageClass: openebs-zfs
+      dataDir:
+        enabled: true
+        Size: 10G
+    rconServiceAnnotations:
+      lbipam.cilium.io/sharing-key: *app
+    serviceAnnotations:
+      lbipam.cilium.io/sharing-key: *app
+      lbipam.cilium.io/ips: "172.16.10.4"
+      external-dns.alpha.kubernetes.io/hostname: mc.ok8.sh
+    servicePort: 25565
+    minecraftServer:
+      eula: true
+      version: 1.21.1
+      type: PAPER
+      difficulty: normal
+      whitelist: "Kashall,AutumnFloofer,theStriker01,MarianKnight"
+      ops: "Kashall"
+      pvp: true
+      motd: "Kash's World"
+      worldSaveName: world
+      viewDistance: 12
+      forceReDownload: true
+      memory: "8G"
+      jvmXXOpts: "-XX:MaxRAMPercentage=70"
+      enableCommandBlock: true
+      spigetResources:
+        - 36618
+      modrinth:
+        projects:
+          - dynmap
+        allowedVersionType: beta
+      rcon:
+        enabled: true
+        serviceType: LoadBalancer
+      serviceType: LoadBalancer
+      extraPorts:
+        - name: map
+          containerPort: 8123
+          protocol: TCP
+          service:
+            enabled: true
+            embedded: false
+            type: ClusterIP
+            port: 8123
+          ingress:
+            ingressClassName: external
+            annotations:
+              external-dns.alpha.kubernetes.io/target: external.ok8.sh
+            enabled: true
+            hosts:
+              - name: &host mc-map.ok8.sh
+                path: /
+            tls: [hosts: [*host]]
+  valuesFrom:
+    - kind: Secret
+      name: *secret
+      valuesKey: RCON_PASSWORD
+      targetPath: minecraftServer.rcon.password

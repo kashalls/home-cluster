@@ -1,0 +1,116 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/fenrys/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: minio
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    controllers:
+      minio:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: quay.io/minio/minio
+              tag: RELEASE.2024-10-29T16-01-48Z@sha256:ebd2af76d40ff25ccc630533615f7ccd55fbe83d629a4b7c7a1b6311c1af3d6c
+            env:
+              TZ: "${TIMEZONE}"
+              MINIO_UPDATE: "off"
+              MINIO_PROMETHEUS_URL: https://prometheus.ok8.sh
+              MINIO_PROMETHEUS_JOB_ID: minio
+              MINIO_SERVER_URL: https://s3.ok8.sh
+              MINIO_BROWSER_REDIRECT_URL: https://minio.ok8.sh
+              MINIO_IDENTITY_OPENID_REDIRECT_URI: https://minio.ok8.sh/oauth_callback
+              MINIO_IDENTITY_OPENID_CONFIG_URL: https://id.ok8.sh/application/o/minio/.well-known/openid-configuration
+              MINIO_IDENTITY_OPENID_SCOPES: openid,profile,email,minio
+              MINIO_IDENTITY_OPENID_DISPLAY_NAME: "Login with Authentik"
+            envFrom:
+              - secretRef:
+                  name: minio-secret
+            args: ["server", "/data", "--console-address", ":9001"]
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /minio/health/live
+                    port: 9000
+                  initialDelaySeconds: 30
+                  periodSeconds: 30
+                  timeoutSeconds: 10
+                  failureThreshold: 6
+              readiness: *probes
+              startup:
+                enabled: false
+            securityContext:
+              runAsNonRoot: true
+              runAsUser: 1000
+              runAsGroup: 1000
+              fsGroup: 1000
+              fsGroupChangePolicy: OnRootMismatch
+              supplementalGroups: [100]
+    service:
+      app:
+        controller: minio
+        ports:
+          http:
+            port: 9001
+          s3:
+            port: 9000
+    serviceMonitor:
+      app:
+        serviceName: minio
+        endpoints:
+          - port: s3
+            scheme: http
+            path: /minio/v2/metrics/cluster
+            interval: 1m
+            scrapeTimeout: 10s
+    ingress:
+      app:
+        className: internal
+        hosts:
+          - host: &console-host minio.ok8.sh
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+          - host: &api-host s3.ok8.sh
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: s3
+        tls:
+          - hosts:
+              - *console-host
+              - *api-host
+    persistence:
+      data:
+        enabled: true
+        type: nfs
+        server: fran.outsideour.casa
+        path: /mnt/loki/kubernetes/minio
+        globalMounts:
+          - path: /data

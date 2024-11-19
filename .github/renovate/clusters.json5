@@ -4,8 +4,8 @@
     {
       "description": "Separate PRs for main cluster",
       "matchFileNames": [
-        "**/kubernetes/apps/main/**",
-        "**/ansible/main/**",
+        "**/kubernetes/apps/fenrys/**",
+        "**/ansible/fenrys/**",
       ],
       "additionalBranchPrefix": "main-"
     },

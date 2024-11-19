@@ -11,7 +11,7 @@ vars:
 
 env:
   # GOPATH: '{{.ROOT_DIR}}/.go'
-  KUBECONFIG: "{{.KUBERNETES_DIR}}/kubernetes/main/kubeconfig"
+  KUBECONFIG: "{{.KUBERNETES_DIR}}/kubernetes/fenrys/kubeconfig"
   SOPS_AGE_KEY_FILE: "{{.ROOT_DIR}}/age.key"
   TALOSCONFIG: '{{.CLUSTER_DIR}}/talosconfig'
   VIRTUAL_ENV: '{{.ROOT_DIR}}/.venv'

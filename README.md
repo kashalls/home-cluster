@@ -65,7 +65,7 @@ While most of my infrastructure and workloads are self-hosted I do rely upon the
 <details>
   <summary>Click to see a high-level network diagram</summary>
 
-  <img src="https://raw.githubusercontent.com/kashalls/home-cluster/main/.github/assets/network-topology.png" align="center" width="600px" alt="networking"/>
+  <img src="https://raw.githubusercontent.com/kashalls/home-cluster/fenrys/.github/assets/network-topology.png" align="center" width="600px" alt="networking"/>
 </details>
 
 

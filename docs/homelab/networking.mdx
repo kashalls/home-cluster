@@ -34,3 +34,41 @@ All the devices that offer support for 2.5Gbe are plugged directly into the UXG-
 
 As for WiFI Connectivity, I have a [U6-LR](https://store.ui.com/us/en/category/all-wifi/products/u6-lr) and a [UAP-AC-Pro](https://store.ui.com/us/en/category/all-wifi/products/uap-ac-pro).
 
+#### BGP
+
+As of recently, UniFi now allows BGP natively through the app.
+Here's my config:
+
+```
+router bgp 64513
+  bgp router-id 172.16.0.1
+  no bgp ebgp-requires-policy
+
+  neighbor kubernetes peer-group
+  neighbor kubernetes remote-as 64514
+  neighbor kubernetes activate
+  neighbor kubernetes capability extended-nexthop
+  neighbor kubernetes soft-reconfiguration inbound
+
+  neighbor 172.16.3.2 peer-group kubernetes
+  neighbor 2601:1c0:c685:2e11:5a47:caff:fe76:191b peer-group kubernetes
+
+  address-family ipv4 unicast
+    neighbor kubernetes next-hop-self
+    neighbor 172.16.3.2 route-map kubernetes-main-ipv4-filter in
+  exit-address-family
+
+  address-family ipv6 unicast
+    neighbor kubernetes next-hop-self
+    neighbor kubernetes activate
+    neighbor kubernetes allowas-in
+  exit-address-family
+
+ip prefix-list kubernetes-main-ipv4 seq 10 permit 172.30.0.0/24
+! Allows any /32 routes within this range.
+ip prefix-list kubernetes-main-ipv4 seq 11 permit 172.16.10.0/24 ge 32 le 32
+ip prefix-list kubernetes-main-ipv4 seq 20 deny any
+
+route-map kubernetes-main-ipv4-filter permit 10
+  match ip address prefix-list kubernetes-main-ipv4
+```

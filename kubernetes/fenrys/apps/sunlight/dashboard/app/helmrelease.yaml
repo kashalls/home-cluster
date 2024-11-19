@@ -1,0 +1,73 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/fenrys/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: sunlight-dashboard
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.5.1
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  values:
+    controllers:
+      dashboard:
+        initContainers:
+          postgres:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16.5@sha256:53fa938cfe6d2dae23b120145362341950f1154bf9d0e7f2ec4e471d61624f79
+            envFrom: &envFrom
+              - secretRef:
+                  name: sunlight-dashboard-secret
+        containers:
+          app:
+            image:
+              repository: ghcr.io/kashalls/dashboard
+              tag: main@sha256:469731f8101878d0b6130816917724e79e0614528597cb73bcf2df0fc750e86a
+            envFrom: *envFrom
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /
+                    port: 3000
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
+            resources:
+              requests:
+                cpu: 25m
+                memory: 256Mi
+              limits:
+                memory: 756Mi
+    service:
+      app:
+        controller: dashboard
+        ports:
+          http:
+            port: 3000
+    ingress:
+      app:
+        className: internal
+        annotations:
+          external-dns.alpha.kubernetes.io/target: internal.ok8.sh
+        hosts:
+          - host: sunlight.ok8.sh
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
