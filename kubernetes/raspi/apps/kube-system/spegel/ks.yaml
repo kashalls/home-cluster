@@ -10,7 +10,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/fenrys/apps/kube-system/spegel/app
+  path: ./kubernetes/raspi/apps/kube-system/spegel/app
   prune: true
   sourceRef:
     kind: GitRepository

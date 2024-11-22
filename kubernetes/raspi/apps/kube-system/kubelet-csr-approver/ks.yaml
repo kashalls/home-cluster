@@ -9,7 +9,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/fenrys/apps/kube-system/kubelet-csr-approver/app
+  path: ./kubernetes/raspi/apps/kube-system/kubelet-csr-approver/app
   prune: false # never should be deleted
   sourceRef:
     kind: GitRepository

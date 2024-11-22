@@ -13,7 +13,7 @@ cgroup:
     enabled: false
   hostRoot: /sys/fs/cgroup
 cluster:
-  id: 2
+  id: 3
   name: raspi
 devices: enx+
 enableRuntimeDeviceDetection: true
