@@ -31,7 +31,7 @@ spec:
           app:
             image:
               repository: docker.io/stonith404/pocket-id
-              tag: v0.14.0@sha256:c06ff9c10ee304f86d43994eeac195c23a7e2f8182c0a070941858a542c31536
+              tag: v0.15.0@sha256:b3afc293592a4d9a91fb1ca9d3f8c7ff96e5e0cd66a510046fbde944238410aa
             env:
               TZ: "${TIMEZONE}"
               PUBLIC_APP_URL: &host pid.ok8.sh
