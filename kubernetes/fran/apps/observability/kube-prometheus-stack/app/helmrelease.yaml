@@ -60,7 +60,7 @@ spec:
     kubeControllerManager:
       enabled: true
       endpoints: &cp
-        - 172.16.3.2
+        - 172.16.0.3
     kubeEtcd:
       enabled: true
       endpoints: *cp
