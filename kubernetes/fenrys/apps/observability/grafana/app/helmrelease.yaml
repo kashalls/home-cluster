@@ -126,13 +126,13 @@ spec:
           revision: 3
           datasource: Prometheus
         external-secrets:
-          url: https://raw.githubusercontent.com/external-secrets/external-secrets/fenrys/docs/snippets/dashboard.json
+          url: https://raw.githubusercontent.com/external-secrets/external-secrets/main/docs/snippets/dashboard.json
           datasource: Prometheus
         flux-cluster:
-          url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/fenrys/monitoring/configs/dashboards/cluster.json
+          url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/cluster.json
           datasource: Prometheus
         flux-control-plane:
-          url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/fenrys/monitoring/configs/dashboards/control-plane.json
+          url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/control-plane.json
           datasource: Prometheus
         kubernetes-api-server:
           # renovate: depName="Kubernetes / System / API Server"
@@ -170,7 +170,7 @@ spec:
           revision: 14
           datasource: Prometheus
         miniflux:
-          url: https://raw.githubusercontent.com/miniflux/v2/fenrys/contrib/grafana/dashboard.json
+          url: https://raw.githubusercontent.com/miniflux/v2/main/contrib/grafana/dashboard.json
           datasource: Prometheus
         nginx:
           url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/nginx.json
@@ -218,7 +218,7 @@ spec:
           revision: 9
           datasource: Prometheus
         unifi-pdu:
-          url: "https://raw.githubusercontent.com/kashalls/home-cluster/refs/heads/fenrys/kubernetes/fenrys/apps/observability/grafana/app/dashboards/UniFi-Poller_PDU Insights - Prometheus.json"
+          url: "https://raw.githubusercontent.com/kashalls/home-cluster/refs/heads/main/kubernetes/fenrys/apps/observability/grafana/app/dashboards/UniFi-Poller_PDU Insights - Prometheus.json"
           datasource: Prometheus
         volsync:
           # renovate: depName="VolSync Dashboard"

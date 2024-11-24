@@ -54,8 +54,8 @@ spec:
           enabled: true
           className: internal
           annotations:
-            external-dns.alpha.kubernetes.io/target: "internal.ok8.sh"
-          hosts: ["hubble.ok8.sh"]
+            external-dns.alpha.kubernetes.io/target: "internal.outsideour.casa"
+          hosts: ["hubble.outsideour.casa"]
     operator:
       replicas: 1
       prometheus:
