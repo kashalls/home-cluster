@@ -30,7 +30,7 @@ spec:
           app:
             image:
               repository: rancher/system-upgrade-controller
-              tag: v0.14.0@sha256:69a721d89cabb500baf94cf8953c8abfb16c7c625a842c8447e3d15bf92a7a5c
+              tag: v0.14.2@sha256:3cdbfdd90f814702cefb832fc4bdb09ea93865a4d06c6bafd019d1dc6a9f34c9
             env:
               SYSTEM_UPGRADE_CONTROLLER_DEBUG: false
               SYSTEM_UPGRADE_CONTROLLER_THREADS: 2
