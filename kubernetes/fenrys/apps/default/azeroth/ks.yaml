@@ -10,7 +10,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/fenrys/apps/game-servers/azeroth/sql
+  path: ./kubernetes/fenrys/apps/default/azeroth/sql
   prune: true
   sourceRef:
     kind: GitRepository
@@ -33,7 +33,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: azeroth-mysql
-  path: ./kubernetes/fenrys/apps/game-servers/azeroth/auth
+  path: ./kubernetes/fenrys/apps/default/azeroth/auth
   prune: true
   sourceRef:
     kind: GitRepository
@@ -56,7 +56,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: azeroth-mysql
-  path: ./kubernetes/fenrys/apps/game-servers/azeroth/world
+  path: ./kubernetes/fenrys/apps/default/azeroth/world
   prune: true
   sourceRef:
     kind: GitRepository
@@ -79,7 +79,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: azeroth-mysql
-  path: ./kubernetes/fenrys/apps/game-servers/azeroth/data-import
+  path: ./kubernetes/fenrys/apps/default/azeroth/data-import
   prune: true
   sourceRef:
     kind: GitRepository
