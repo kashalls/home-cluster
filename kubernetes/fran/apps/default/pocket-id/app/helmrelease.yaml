@@ -30,14 +30,16 @@ spec:
         containers:
           app:
             image:
-              repository: docker.io/stonith404/pocket-id
-              tag: v0.16.0@sha256:4be9996734945773e0843c1ac539e100e2bb8c35d8d187b04859bb7d718f5149
+              repository: ghcr.io/kashalls/pocket-id
+              tag: latest@sha256:28ba81c575a8c100cd1573e1b807b356f2ef006d8e36abde6aed8deb7c83679b
             env:
               TZ: "${TIMEZONE}"
               PUBLIC_APP_URL: &host pid.outsideour.casa
               TRUST_PROXY: true
               DB_PATH: /data/pocket-id.db
               UPLOAD_PATH: /data/uploads
+              PUID: &puid 1000
+              PGID: &pgid 1000
             probes:
               liveness: &probes
                 enabled: false
@@ -55,11 +57,10 @@ spec:
                 enabled: false
             securityContext:
               runAsNonRoot: true
-              runAsUser: 1000
-              runAsGroup: 1000
-              fsGroup: 1000
+              runAsUser: *puid
+              runAsGroup: *pgid
+              fsGroup: *pgid
               fsGroupChangePolicy: OnRootMismatch
-              supplementalGroups: [100]
     service:
       app:
         controller: pocket-id
