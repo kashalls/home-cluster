@@ -36,10 +36,6 @@ spec:
               TZ: "${TIMEZONE}"
               PUBLIC_APP_URL: &host pid.outsideour.casa
               TRUST_PROXY: true
-              DB_PATH: /data/pocket-id.db
-              UPLOAD_PATH: /data/uploads
-              PUID: &puid 1000
-              PGID: &pgid 1000
             probes:
               liveness: &probes
                 enabled: false
@@ -57,9 +53,9 @@ spec:
                 enabled: false
             securityContext:
               runAsNonRoot: true
-              runAsUser: *puid
-              runAsGroup: *pgid
-              fsGroup: *pgid
+              runAsUser: 1000
+              runAsGroup: 1000
+              fsGroup: 1000
               fsGroupChangePolicy: OnRootMismatch
     service:
       app:
@@ -88,4 +84,4 @@ spec:
         size: 5G
         storageClass: openebs-zfs
         globalMounts:
-          - path: /data
+          - path: /app/backend/data
