@@ -5,6 +5,6 @@ kind: CiliumLoadBalancerIPPool
 metadata:
   name: lb-pool
 spec:
-  allowFirstLastIPs: No
+  allowFirstLastIPs: "No"
   blocks:
-    - cidr: 10.254.0.0/24
+    - cidr: 172.16.11.0/24
