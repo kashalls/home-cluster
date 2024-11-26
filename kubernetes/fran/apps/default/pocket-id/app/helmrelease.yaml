@@ -31,7 +31,7 @@ spec:
           app:
             image:
               repository: docker.io/stonith404/pocket-id
-              tag: v0.15.0@sha256:b3afc293592a4d9a91fb1ca9d3f8c7ff96e5e0cd66a510046fbde944238410aa
+              tag: v0.16.0@sha256:4be9996734945773e0843c1ac539e100e2bb8c35d8d187b04859bb7d718f5149
             env:
               TZ: "${TIMEZONE}"
               PUBLIC_APP_URL: &host pid.outsideour.casa
