@@ -41,7 +41,7 @@ spec:
               tag: latest@sha256:28ba81c575a8c100cd1573e1b807b356f2ef006d8e36abde6aed8deb7c83679b
             env:
               TZ: "${TIMEZONE}"
-              PUBLIC_APP_URL: &host pid.outsideour.casa
+              PUBLIC_APP_URL: https://pid.outsideour.casa
               TRUST_PROXY: true
             probes:
               liveness: &probes
@@ -68,7 +68,7 @@ spec:
       app:
         className: internal
         hosts:
-          - host: *host
+          - host: &host pid.outsideour.casa
             paths:
               - path: /
                 service:
