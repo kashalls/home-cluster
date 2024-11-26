@@ -29,10 +29,6 @@ spec:
       service:
         annotations:
           external-dns.alpha.kubernetes.io/hostname: internal.outsideour.casa
-        ipFamilyPolicy: PreferDualStack
-        ipFamilies:
-          - IPv4
-          - IPv6
       ingressClassResource:
         name: internal
         default: true
@@ -74,7 +70,7 @@ spec:
           namespaceSelector:
             any: true
       extraArgs:
-        default-ssl-certificate: "networking/ok8-sh-tls"
+        default-ssl-certificate: "networking/outsideour-casa-tls"
       resources:
         requests:
           cpu: 100m
