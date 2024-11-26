@@ -38,7 +38,7 @@ spec:
           app:
             image:
               repository: ghcr.io/kashalls/pocket-id
-              tag: latest@sha256:28ba81c575a8c100cd1573e1b807b356f2ef006d8e36abde6aed8deb7c83679b
+              tag: latest@sha256:ac86a4cbdb32a5577eb9ae34dad76f329ecd9b6896b46f97f6b04c1e2e2f6f99
             env:
               TZ: "${TIMEZONE}"
               PUBLIC_APP_URL: https://pid.outsideour.casa
