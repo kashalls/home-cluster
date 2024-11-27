@@ -16,7 +16,7 @@ spec:
   interval: 30m
   values:
     deploymentAnnotations:
-      secret.reloader.stakater.com/reload: &secret minecraft-secret
+      secret.reloader.stakater.com/reload: &secret minecraft
     image:
       repository: itzg/minecraft-server
       tag: 2024.10.2-java21
@@ -47,6 +47,8 @@ spec:
     servicePort: 25565
     minecraftServer:
       autoCurseForge:
+        apiKey:
+          existingSecret: *secret
         slug: all-the-mods-10
       eula: true
       version: 1.21.1
@@ -66,6 +68,7 @@ spec:
       rcon:
         enabled: true
         serviceType: LoadBalancer
+        existingSecret: *secret
       serviceType: LoadBalancer
       extraPorts:
         - name: map
@@ -86,10 +89,6 @@ spec:
                 path: /
             tls: [hosts: [*host]]
   valuesFrom:
-    - kind: Secret
-      name: *secret
-      valuesKey: CF_API_KEY
-      targetPath: minecraftServer.autoCurseForge.key
     - kind: Secret
       name: *secret
       valuesKey: RCON_PASSWORD
