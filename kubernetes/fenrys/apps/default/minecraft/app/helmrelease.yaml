@@ -88,8 +88,3 @@ spec:
               - name: &host mc-map.ok8.sh
                 path: /
             tls: [hosts: [*host]]
-  valuesFrom:
-    - kind: Secret
-      name: *secret
-      valuesKey: RCON_PASSWORD
-      targetPath: minecraftServer.rcon.password
