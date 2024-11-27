@@ -46,9 +46,11 @@ spec:
       external-dns.alpha.kubernetes.io/hostname: mc.ok8.sh
     servicePort: 25565
     minecraftServer:
+      autoCurseForge:
+        slug: all-the-mods-10
       eula: true
       version: 1.21.1
-      type: NEOFORGE
+      type: AUTO_CURSEFORGE
       cfServerMod: https://mediafilez.forgecdn.net/files/5940/563/Server-Files-1.25.zip
       difficulty: normal
       ops: "Kashall"
@@ -56,7 +58,7 @@ spec:
       motd: "Kash's World"
       worldSaveName: world
       viewDistance: 10
-      forceReDownload: true
+      # forceReDownload: true
       memory: "8G"
       jvmXXOpts: "-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1"
       overrideServerProperties: true
@@ -84,6 +86,10 @@ spec:
                 path: /
             tls: [hosts: [*host]]
   valuesFrom:
+    - kind: Secret
+      name: *secret
+      valuesKey: CF_API_KEY
+      targetPath: minecraftServer.autoCurseForge.key
     - kind: Secret
       name: *secret
       valuesKey: RCON_PASSWORD
