@@ -6,7 +6,7 @@ metadata:
   name: &app minecraft
   namespace: flux-system
 spec:
-  targetNamespace: game-servers
+  targetNamespace: default
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -29,7 +29,7 @@ metadata:
   name: &app minecraft-rcon
   namespace: flux-system
 spec:
-  targetNamespace: game-servers
+  targetNamespace: default
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app

@@ -37,7 +37,7 @@ spec:
       storageClass: openebs-zfs
       dataDir:
         enabled: true
-        Size: 10G
+        Size: 128G
     rconServiceAnnotations:
       lbipam.cilium.io/sharing-key: *app
     serviceAnnotations:
@@ -48,24 +48,19 @@ spec:
     minecraftServer:
       eula: true
       version: 1.21.1
-      type: PAPER
+      type: NEOFORGE
+      downloadModpackUrl: https://mediafilez.forgecdn.net/files/5940/563/Server-Files-1.25.zip
       difficulty: normal
-      whitelist: "Kashall,AutumnFloofer,theStriker01,MarianKnight"
       ops: "Kashall"
       pvp: true
       motd: "Kash's World"
       worldSaveName: world
-      viewDistance: 12
+      viewDistance: 10
       forceReDownload: true
       memory: "8G"
-      jvmXXOpts: "-XX:MaxRAMPercentage=70"
+      jvmXXOpts: "-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1"
+      overrideServerProperties: true
       enableCommandBlock: true
-      spigetResources:
-        - 36618
-      modrinth:
-        projects:
-          - dynmap
-        allowedVersionType: beta
       rcon:
         enabled: true
         serviceType: LoadBalancer
@@ -75,7 +70,7 @@ spec:
           containerPort: 8123
           protocol: TCP
           service:
-            enabled: true
+            enabled: false
             embedded: false
             type: ClusterIP
             port: 8123
@@ -83,7 +78,7 @@ spec:
             ingressClassName: external
             annotations:
               external-dns.alpha.kubernetes.io/target: external.ok8.sh
-            enabled: true
+            enabled: false
             hosts:
               - name: &host mc-map.ok8.sh
                 path: /
