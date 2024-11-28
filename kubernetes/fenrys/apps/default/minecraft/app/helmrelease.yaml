@@ -67,7 +67,7 @@ spec:
       worldSaveName: world
       viewDistance: 10
       # forceReDownload: true
-      memory: "8G"
+      memory: "16G"
       jvmXXOpts: "-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1"
       overrideServerProperties: true
       enableCommandBlock: true
@@ -94,3 +94,13 @@ spec:
               - name: &host mc-map.ok8.sh
                 path: /
             tls: [hosts: [*host]]
+    mcbackup:
+      enabled: true
+      backupInterval: 24h
+      pruneBackupsDays: 7
+      excludes: "*.jar,cache,logs"
+      backupMethod: restic
+      resticRepository: "s3:https://s3.outsideour.casa/minecraft"
+      envFrom:
+        - secretRef:
+            name: minecraft-restic
