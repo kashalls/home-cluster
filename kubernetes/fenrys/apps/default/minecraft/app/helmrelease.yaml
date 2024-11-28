@@ -54,8 +54,8 @@ spec:
           - sodium
           - sodium-extra
           - reeses-sodium-options
-        includeMods:
-          - chunkpregenerator
+      modUrls:
+        - https://mediafilez.forgecdn.net/files/5632/200/Chunk-Pregenerator-Neoforge-1.21-4.4.5.jar
       eula: true
       version: 1.21.1
       type: AUTO_CURSEFORGE
