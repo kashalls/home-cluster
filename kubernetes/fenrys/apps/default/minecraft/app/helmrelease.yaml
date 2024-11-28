@@ -54,6 +54,8 @@ spec:
           - sodium
           - sodium-extra
           - reeses-sodium-options
+        includeMods:
+          - chunkpregenerator
       eula: true
       version: 1.21.1
       type: AUTO_CURSEFORGE
