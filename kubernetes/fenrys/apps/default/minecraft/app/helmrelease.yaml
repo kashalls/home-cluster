@@ -50,10 +50,11 @@ spec:
         apiKey:
           existingSecret: *secret
         slug: all-the-mods-10
+        excludeMods:
+          - sodium
       eula: true
       version: 1.21.1
       type: AUTO_CURSEFORGE
-      cfServerMod: https://mediafilez.forgecdn.net/files/5940/563/Server-Files-1.25.zip
       difficulty: normal
       ops: "Kashall"
       pvp: true
