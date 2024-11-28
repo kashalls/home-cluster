@@ -22,8 +22,8 @@ spec:
       tag: 2024.10.2-java21
     resources:
       requests:
-        cpu: 6000m
-        memory: 8192Mi
+        #cpu: 6000m
+        #memory: 8192Mi
     livenessProbe:
       initialDelaySeconds: 0
     readinessProbe:
