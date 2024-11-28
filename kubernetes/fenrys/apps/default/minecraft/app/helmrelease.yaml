@@ -51,7 +51,8 @@ spec:
           existingSecret: *secret
         slug: all-the-mods-10
         excludeMods:
-          - sodium
+          - sodium_extra
+          - reeses_sodium_options
       eula: true
       version: 1.21.1
       type: AUTO_CURSEFORGE
