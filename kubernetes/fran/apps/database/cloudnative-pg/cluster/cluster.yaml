@@ -15,9 +15,6 @@ spec:
   superuserSecret:
     name: cloudnative-pg-secret
   enableSuperuserAccess: true
-  bootstrap:
-    recovery:
-      source: &previousCluster postgres-v27
   postgresql:
     parameters:
       max_connections: "600"
@@ -26,12 +23,16 @@ spec:
     enablePodMonitor: true
   backup:
     retentionPolicy: 30d
-    barmanObjectStore:
+    barmanObjectStore: &barmanObjectStore
+      data:
+        compression: bzip2
       wal:
         compression: bzip2
         maxParallel: 8
       destinationPath: s3://cloudnative-pg-v1/
-      endpointURL: https://${CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com
+      endpointURL: https://3ed51f2c99510cd7fe8fcd8ed0621a37.r2.cloudflarestorage.com
+      # Note: serverName version needs to be incremented
+      # when recovering from an existing cnpg cluster
       serverName: &currentCluster postgres-v28
       s3Credentials:
         accessKeyId:
@@ -40,23 +41,17 @@ spec:
         secretAccessKey:
           name: cloudnative-pg-secret
           key: aws-secret-access-key
+  # Note: previousCluster needs to be set to the name of the previous
+  # cluster when recovering from an existing cnpg cluster
+  bootstrap:
+    recovery:
+      source: &previousCluster postgres-v27
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   externalClusters:
     - name: *previousCluster
       barmanObjectStore:
+        <<: *barmanObjectStore
         serverName: *previousCluster
-        wal:
-          compression: bzip2
-          maxParallel: 8
-        destinationPath: s3://cloudnative-pg-v1/
-        endpointURL: https://${CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com
-        s3Credentials:
-          accessKeyId:
-            name: cloudnative-pg-secret
-            key: aws-access-key-id
-          secretAccessKey:
-            name: cloudnative-pg-secret
-            key: aws-secret-access-key
   affinity:
     nodeSelector:
       beta.kubernetes.io/arch: amd64
