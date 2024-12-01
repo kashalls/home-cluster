@@ -22,7 +22,7 @@ spec:
           app:
             image:
               repository: ghcr.io/kashalls/sunlight
-              tag: main@sha256:755cf2bc14bd891a6f0a2f938b2a58a07fcf360e7de38a45860ff14d25afaf20
+              tag: main@sha256:8a2e4a151c851710bc9e1ae2de0688d255dc9ee2093e4ee04d53236ced4448e9
             args: ["-s"]
             probes:
               liveness: &probes
