@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: "${APP}-gatus-ep"
+  name: "${APP}-gatus-gu"
   labels:
     gatus.io/enabled: "true"
 data:
