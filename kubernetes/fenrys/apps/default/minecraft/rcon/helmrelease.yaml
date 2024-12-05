@@ -27,7 +27,7 @@ spec:
     rconWeb:
       isAdmin: true
       passwordExistingSecret: minecraft-rcon-secret
-      passwordKey: RCON_ADMIN_PASS
+      passwordKey: rcon-password
       rconHost: minecraft-minecraft-rcon.default.svc.cluster.local
       rconPasswordExistingSecret: minecraft-minecraft-rcon
     extraEnv:
