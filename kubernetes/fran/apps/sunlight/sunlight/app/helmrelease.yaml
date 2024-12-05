@@ -30,7 +30,7 @@ spec:
           app:
             image:
               repository: ghcr.io/kashalls/sunlight
-              tag: main@sha256:80bd2b80212084c4cc124cf044824482a57d0866518b48e0d8f53cb9340ce51e
+              tag: main@sha256:b7a053b18fbbac5daa59a6e58b8656d8a35abaccf3e5e78a5db3ddbaf5cb4624
             args: ["-s"]
             envFrom: *envFrom
             probes:
