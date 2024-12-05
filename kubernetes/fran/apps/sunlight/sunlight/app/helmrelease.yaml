@@ -18,20 +18,29 @@ spec:
   values:
     controllers:
       sunlight:
+        initContainers:
+          postgres:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16.6@sha256:35353a77777ee8f634d0f3945f495b4a40065134b8619e0d18bd49b0ee9c855b
+            envFrom: &envFrom
+              - secretRef:
+                  name: sunlight-secret
         containers:
           app:
             image:
               repository: ghcr.io/kashalls/sunlight
               tag: main@sha256:08f55427fe7d57fe444045ee2bc8a2df806cc322f6c7c4773a99f91de0b6d112
             args: ["-s"]
+            envFrom: *envFrom
             probes:
               liveness: &probes
-                enabled: false
+                enabled: true
                 custom: true
                 spec:
                   httpGet:
-                    path: /
-                    port: 3000
+                    path: /healthz
+                    port: 8080
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
@@ -39,12 +48,6 @@ spec:
               readiness: *probes
               startup:
                 enabled: false
-#            resources:
-#              requests:
-#                cpu: 100M
-#                memory: 512Mi
-#              limits:
-#                memory: 1G
     service:
       app:
         controller: sunlight
@@ -54,4 +57,3 @@ spec:
         ports:
           http:
             port: 8080
-
