@@ -1,0 +1,18 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/cilium.io/ciliumbgppeeringpolicy_v2alpha1.json
+apiVersion: "cilium.io/v2alpha1"
+kind: CiliumBGPPeeringPolicy
+metadata:
+  name: l3-policy
+spec:
+  virtualRouters: # []CiliumBGPVirtualRouter
+    - localASN: 64514 # Cluster ASN
+      exportPodCIDR: true
+      neighbors: # []CiliumBGPNeighbor
+        - peerAddress: "172.16.0.1/32" # Remote Router IP
+          peerASN: 64513 # Remote Router ASN
+        - peerAddress: "2601:1c0:c685:2e10::1/128"
+          peerASN: 64513
+      serviceSelector:
+        matchExpressions:
+          - { key: somekey, operator: NotIn, values: ["never-used-value"] }
