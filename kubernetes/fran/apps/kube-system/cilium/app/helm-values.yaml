@@ -4,7 +4,7 @@ bandwidthManager:
   enabled: true
   bbr: true
 bgpControlPlane:
-  enabled: false
+  enabled: true
 bpf:
   masquerade: true
   tproxy: true
