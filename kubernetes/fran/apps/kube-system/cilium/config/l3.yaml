@@ -58,8 +58,8 @@ spec:
     matchLabels:
       kubernetes.io/os: linux
   bgpInstances:
-    - name: "instance-64514"
-      localASN: 64514
+    - name: "instance-64515"
+      localASN: 64515
       peers:
         - name: "peer-64513-ipv4"
           peerASN: 64513
