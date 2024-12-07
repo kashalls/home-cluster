@@ -3,8 +3,6 @@ autoDirectNodeRoutes: true
 bandwidthManager:
   enabled: true
   bbr: true
-bgpControlPlane:
-  enabled: true
 bpf:
   masquerade: true
   tproxy: true
@@ -16,6 +14,7 @@ cluster:
   id: 2
   name: fran
 devices: enp+
+enableIPv4BIGTCP: true
 enableRuntimeDeviceDetection: true
 endpointRoutes:
   enabled: true
@@ -25,15 +24,13 @@ envoy:
   enabled: false
 ipam:
   mode: kubernetes
-ipv4:
-  enabled: true
 ipv4NativeRoutingCIDR: 172.28.0.0/16
 k8sServiceHost: 127.0.0.1
 k8sServicePort: 7445
 kubeProxyReplacement: true
 kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
 l2announcements:
-  enabled: false
+  enabled: true
 loadBalancer:
   algorithm: maglev
   mode: dsr

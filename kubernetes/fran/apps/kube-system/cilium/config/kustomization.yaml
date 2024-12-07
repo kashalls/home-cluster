@@ -3,7 +3,4 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  #- ./l2.yaml
-  #- ./l3.yaml
-  - ./old.yaml
-  - ./pool.yaml
+  - ./l2.yaml
