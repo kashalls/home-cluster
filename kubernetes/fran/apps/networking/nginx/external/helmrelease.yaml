@@ -30,7 +30,7 @@ spec:
       replicaCount: 2
       service:
         annotations:
-          #external-dns.alpha.kubernetes.io/hostname: external.outsideour.casa
+          external-dns.alpha.kubernetes.io/hostname: external.outsideour.casa
         externalTrafficPolicy: Cluster
       ingressClassResource:
         name: external
