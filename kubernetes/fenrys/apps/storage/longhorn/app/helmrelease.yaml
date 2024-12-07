@@ -48,7 +48,7 @@ spec:
       annotations:
         external-dns.alpha.kubernetes.io/target: internal.ok8.sh
       host: longhorn.ok8.sh
-      tls: true
+      tls: false
     metrics:
       serviceMonitor:
         enabled: true
