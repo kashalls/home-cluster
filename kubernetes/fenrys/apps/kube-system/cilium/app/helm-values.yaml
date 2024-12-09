@@ -6,7 +6,9 @@ bandwidthManager:
 bgpControlPlane:
   enabled: true
 bpf:
+#  datapathMode: netkit
   masquerade: true
+  preallocateMaps: true
   tproxy: true
 cgroup:
   automount:
@@ -16,8 +18,11 @@ cluster:
   id: 1
   name: main
 devices: enp+
+enableIPv4BIGTCP: true
 enableRuntimeDeviceDetection: true
 endpointRoutes:
+  enabled: true
+externalIPs:
   enabled: true
 hubble:
   enabled: false
@@ -28,16 +33,14 @@ ipam:
 ipv4:
   enabled: true
 ipv4NativeRoutingCIDR: 172.30.0.0/16
-ipv6:
-  enabled: true
-ipv6NativeRoutingCIDR: fdcf:5280:f513::/48
 k8sServiceHost: 127.0.0.1
 k8sServicePort: 7445
 kubeProxyReplacement: true
 kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
 l2announcements:
-  enabled: false
+  enabled: true
 loadBalancer:
+  acceleration: best-effort
   algorithm: maglev
   mode: dsr
 localRedirectPolicy: true

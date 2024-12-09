@@ -31,7 +31,7 @@ tasks:
   upgrade:
     desc: Upgrade Talos on a node
     cmds:
-      - talosctl --context {{.cluster}} --nodes {{.hostname}} upgrade --image="factory.talos.dev/installer/{{.TALOS_SCHEMATIC_ID}}:{{.TALOS_VERSION}}" --wait=true --timeout=10m --preserve=true
+      - talosctl --context {{.cluster}} --nodes {{.hostname}} upgrade --image="factory.talos.dev/installer{{ if .secure}}-secureboot{{end}}/{{.TALOS_SCHEMATIC_ID}}:{{.TALOS_VERSION}}" --wait=true --timeout=10m --preserve=true
       - talosctl --context {{.cluster}} --nodes {{.hostname}} health --wait-timeout=10m --server=false
     vars: *vars
     requires:

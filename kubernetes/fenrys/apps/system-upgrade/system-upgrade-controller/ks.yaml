@@ -45,8 +45,8 @@ spec:
   postBuild:
     substitute:
       # siderolabs/binfmt-misc, siderolabs/i915-ucode, siderolabs/intel-ucode, siderolabs/mei, siderolabs/realtek-firmware
-      # siderolabs/thunderbolt, siderolabs/util-linux-tools, siderolabs/v4l-uvc-drivers, siderolabs/zfs, iscsi-tools
-      TALOS_SCHEMATIC_ID: 2ee15f759525f3b8671a0b3feb34ef5b0e553f5950edcf5b80c6362f393020f1
+      # siderolabs/thunderbolt, siderolabs/util-linux-tools, siderolabs/v4l-uvc-drivers, iscsi-tools
+      TALOS_SCHEMATIC_ID: de6b3a319c3e90023ec3c2e53eb04fe1dfbbd89f49ce49c6662c7456c67272ca
       # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
       TALOS_VERSION: v1.8.3
       # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
