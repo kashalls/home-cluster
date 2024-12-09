@@ -34,7 +34,7 @@ spec:
       TZ: "America/Los_Angeles"
       ENABLE_ROLLING_LOGS: true
     persistence:
-      storageClass: openebs-zfs
+      storageClass: openebs-hostpath
       dataDir:
         enabled: true
         Size: 128G
@@ -57,6 +57,7 @@ spec:
       modUrls:
         - https://mediafilez.forgecdn.net/files/5662/294/CarbonConfig-Neoforge-1.21-1.2.9.2.jar
         - https://mediafilez.forgecdn.net/files/5632/200/Chunk-Pregenerator-Neoforge-1.21-4.4.5.jar
+        - https://mediafilez.forgecdn.net/files/5759/669/spark-1.10.109-forge.jar
       eula: true
       version: 1.21.1
       type: AUTO_CURSEFORGE
@@ -67,7 +68,7 @@ spec:
       worldSaveName: world
       viewDistance: 10
       # forceReDownload: true
-      memory: "16G"
+      memory: "12G"
       jvmXXOpts: "-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1"
       overrideServerProperties: true
       enableCommandBlock: true
@@ -78,24 +79,6 @@ spec:
         serviceType: LoadBalancer
         existingSecret: *secret
       serviceType: LoadBalancer
-      extraPorts:
-        - name: map
-          containerPort: 8123
-          protocol: TCP
-          service:
-            enabled: false
-            embedded: false
-            type: ClusterIP
-            port: 8123
-          ingress:
-            ingressClassName: external
-            annotations:
-              external-dns.alpha.kubernetes.io/target: external.ok8.sh
-            enabled: false
-            hosts:
-              - name: &host mc-map.ok8.sh
-                path: /
-            tls: [hosts: [*host]]
     mcbackup:
       enabled: true
       backupInterval: 24h
