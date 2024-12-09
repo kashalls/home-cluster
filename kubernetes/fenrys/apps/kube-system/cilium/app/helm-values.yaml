@@ -6,7 +6,7 @@ bandwidthManager:
 bgpControlPlane:
   enabled: true
 bpf:
-#  datapathMode: netkit
+#  datapathMode: netkit # Talos 1.17 beta
   masquerade: true
   preallocateMaps: true
   tproxy: true
@@ -19,7 +19,6 @@ cluster:
   name: main
 devices: enp+
 enableIPv4BIGTCP: true
-enableRuntimeDeviceDetection: true
 endpointRoutes:
   enabled: true
 externalIPs:
@@ -30,8 +29,6 @@ envoy:
   enabled: false
 ipam:
   mode: kubernetes
-ipv4:
-  enabled: true
 ipv4NativeRoutingCIDR: 172.30.0.0/16
 k8sServiceHost: 127.0.0.1
 k8sServicePort: 7445
@@ -59,6 +56,8 @@ securityContext:
       - IPC_LOCK
       - SYS_ADMIN
       - SYS_RESOURCE
+      - PERFMON
+      - BPF
       - DAC_OVERRIDE
       - FOWNER
       - SETGID
