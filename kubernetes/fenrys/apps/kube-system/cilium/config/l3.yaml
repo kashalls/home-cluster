@@ -26,7 +26,7 @@ metadata:
     advertise: bgp
 spec:
   advertisements:
-    - advertisementType: "PodCIDR"
+    # - advertisementType: "PodCIDR"
     - advertisementType: "Service"
       service:
         addresses:

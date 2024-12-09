@@ -8,4 +8,3 @@ spec:
   allowFirstLastIPs: "No"
   blocks:
     - cidr: 172.16.10.0/24
-    - cidr: fdda:ee81:0182::/112
