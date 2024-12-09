@@ -16,6 +16,7 @@ kind: Alert
 metadata:
   name: github
 spec:
+  summary: "fenrys"
   providerRef:
     name: github
   eventSeverity: info
