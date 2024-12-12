@@ -65,6 +65,4 @@ jobs:
           token: "${{ steps.app-token.outputs.token }}"
           renovate-version: "${{ env.WORKFLOW_RENOVATE_VERSION }}"
         env:
-          RENOVATE_DETECT_HOST_RULES_FROM_ENV: "true"
-          RENOVATE_DOCKER_GHCR_IO_USERNAME: "x-access-token"
-          RENOVATE_DOCKER_GHCR_IO_PASSWORD: "${{ secrets.GITHUB_TOKEN }}"
+          RENOVATE_HOST_RULES: "[{\"matchHost\": \"ghcr.io\",\"username\": \"x-access-token\",\"password\": \"${{ secrets.GITHUB_TOKEN }}\", \"hostType\": \"docker\"}]"
