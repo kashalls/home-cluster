@@ -32,7 +32,7 @@ spec:
           worldserver:
             image:
               repository: ghcr.io/kashalls/azeroth-worldserver
-              tag: 12@sha256:a0a83c75887d08c9884ccf774d98a8f07b757a0142c62ee3fa85a0765442f219
+              tag: 13@sha256:be1b62bfe7f83954e781ccc5284c78f8e5570f755aeaf756c66ca8c02e59f1c3
             env:
               AC_DATA_DIR: "/azerothcore/env/dist/data"
               AC_LOGS_DIR: "/azerothcore/env/dist/logs"
