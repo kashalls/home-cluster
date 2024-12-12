@@ -41,7 +41,10 @@ env:
 jobs:
   renovate:
     name: Renovate
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      packages: read
     steps:
       - name: Generate Token
         uses: actions/create-github-app-token@v1
@@ -61,3 +64,7 @@ jobs:
           configurationFile: .github/renovate.json5
           token: "${{ steps.app-token.outputs.token }}"
           renovate-version: "${{ env.WORKFLOW_RENOVATE_VERSION }}"
+        env:
+          RENOVATE_DETECT_HOST_RULES_FROM_ENV: "true"
+          GITHUB_GHCR_IO_USERNAME: "x-access-token"
+          GITHUB_GHCR_IO_PASSWORD: "${{ secrets.GITHUB_TOKEN }}"
