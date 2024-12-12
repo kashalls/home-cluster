@@ -14,7 +14,7 @@
   jobs:
     changed-clusters:
       name: Changed Clusters
-      runs-on: ubuntu-latest
+      runs-on: ubuntu-24.04
       outputs:
         matrix: ${{ steps.changed-clusters.outputs.all_changed_and_modified_files }}
       steps:
@@ -45,7 +45,7 @@
 
     extract-images:
       name: Extract Images
-      runs-on: ubuntu-latest
+      runs-on: ubuntu-24.04
       needs: ["changed-clusters"]
       permissions:
         pull-requests: write
@@ -129,7 +129,7 @@
     test-images:
       if: ${{ needs.extract-images.outputs.matrix != '[]' }}
       name: Test images
-      runs-on: ubuntu-latest
+      runs-on: ubuntu-24.04
       needs: ["extract-images"]
       strategy:
         matrix:
@@ -145,7 +145,7 @@
       if: ${{ always() }}
       needs: ["test-images"]
       name: Test Images Successful
-      runs-on: ubuntu-latest
+      runs-on: ubuntu-24.04
       steps:
         - if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
           name: Check matrix status

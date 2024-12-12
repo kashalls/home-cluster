@@ -14,7 +14,7 @@
   jobs:
     changed-clusters:
       name: Changed Clusters
-      runs-on: ubuntu-latest
+      runs-on: ubuntu-24.04
       outputs:
         matrix: ${{ steps.changed-clusters.outputs.all_changed_and_modified_files }}
       steps:
@@ -45,7 +45,7 @@
 
     flux-diff:
       name: Flux Diff
-      runs-on: ubuntu-latest
+      runs-on: ubuntu-24.04
       needs: ["changed-clusters"]
       permissions:
         pull-requests: write
@@ -118,7 +118,7 @@
       if: ${{ always() }}
       needs: ["flux-diff"]
       name: Flux Diff Successful
-      runs-on: ubuntu-latest
+      runs-on: ubuntu-24.04
       steps:
         - if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
           name: Check matrix status
