@@ -66,5 +66,5 @@ jobs:
           renovate-version: "${{ env.WORKFLOW_RENOVATE_VERSION }}"
         env:
           RENOVATE_DETECT_HOST_RULES_FROM_ENV: "true"
-          DOCKER_GHCR_IO_USERNAME: "x-access-token"
-          DOCKER_GHCR_IO_PASSWORD: "${{ secrets.GITHUB_TOKEN }}"
+          DOCKER_REGISTRY_GHCR_IO_USERNAME: "x-access-token"
+          DOCKER_REGISTRY_GHCR_IO_PASSWORD: "${{ secrets.GITHUB_TOKEN }}"
