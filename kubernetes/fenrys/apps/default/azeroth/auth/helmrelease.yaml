@@ -32,7 +32,7 @@ spec:
           authserver:
             image:
               repository: ghcr.io/kashalls/azeroth-authserver
-              tag: 12@sha256:dbba89629411f76fd034cdde2fc8efb8acb45356d6088c5f812c60ce38d4e4aa
+              tag: 13@sha256:d11b64f2868a78bf0309904cf49acd46c03f06dffc873258fba1a2071b755f18
             env:
               AC_UPDATES_ENABLE_DATABASES: 0
               AC_LOGIN_DATABASE_INFO: "mysql.azeroth.svc.cluster.local;3306;root;password;acore_auth"
