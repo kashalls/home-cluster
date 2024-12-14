@@ -63,6 +63,7 @@ spec:
         - https://mediafilez.forgecdn.net/files/5915/934/Prometheus-Exporter-1.19.4-fabric-1.2.1.jar
       eula: true
       version: 1.21.1
+      onlineMode: true
       type: AUTO_CURSEFORGE
       difficulty: normal
       ops: "Kashall"
