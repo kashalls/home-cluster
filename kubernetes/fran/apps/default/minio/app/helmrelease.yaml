@@ -82,6 +82,9 @@ spec:
             path: /minio/v2/metrics/cluster
             interval: 1m
             scrapeTimeout: 10s
+            bearerTokenSecret:
+              name: minio-secret
+              key: MINIO_PROMETHEUS_TOKEN
     ingress:
       app:
         className: internal
