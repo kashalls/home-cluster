@@ -38,6 +38,5 @@
       "(^|/)\\.taskfiles/.+\\.ya?ml$",
       "(^|/)kubernetes/.+\\.ya?ml$"
     ]
-  },
-  "womp": ""
+  }
 }
