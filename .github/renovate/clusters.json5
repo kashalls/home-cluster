@@ -2,20 +2,19 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "packageRules": [
     {
-      "description": "Separate PRs for main cluster",
-      "matchFileNames": [
-        "**/kubernetes/apps/fenrys/**",
-        "**/ansible/fenrys/**",
-      ],
-      "additionalBranchPrefix": "main-"
+      "description": "Separate PRs for fenrys cluster",
+      "matchFileNames": ["**/kubernetes/fenrys/**"],
+      "additionalBranchPrefix": "fenrys-"
     },
     {
       "description": "Separate PRs for storage cluster",
-      "matchFileNames": [
-        "**/kubernetes/apps/storage/**",
-        "**/ansible/storage/**",
-      ],
-      "additionalBranchPrefix": "storage-"
+      "matchFileNames": ["**/kubernetes/fran/**"],
+      "additionalBranchPrefix": "fran-"
+    },
+    {
+      "description": "Separate PRs for raspi cluster",
+      "matchFileNames": ["**/kubernetes/raspi/**"],
+      "additionalBranchPrefix": "raspi-"
     }
   ]
 }
