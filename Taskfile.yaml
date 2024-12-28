@@ -2,6 +2,9 @@
 # yaml-language-server: $schema=https://taskfile.dev/schema.json
 version: "3"
 
+set: [pipefail]
+shopt: [globstar]
+
 vars:
   KUBERNETES_DIR: "{{.ROOT_DIR}}/kubernetes"
   TALOS_DIR: "{{.ROOT_DIR}}/talos"
@@ -10,22 +13,26 @@ vars:
   CLUSTER_DIR: '{{.ROOT_DIR}}/kubernetes/{{.cluster}}'
 
 env:
-  # GOPATH: '{{.ROOT_DIR}}/.go'
   KUBECONFIG: "{{.KUBERNETES_DIR}}/kubernetes/fenrys/kubeconfig"
   SOPS_AGE_KEY_FILE: "{{.ROOT_DIR}}/age.key"
   TALOSCONFIG: '{{.CLUSTER_DIR}}/talosconfig'
-  VIRTUAL_ENV: '{{.ROOT_DIR}}/.venv'
 
 includes:
-  external-secrets: .taskfiles/ExternalSecrets/Taskfile.yaml
   flux: .taskfiles/Flux/Taskfile.yaml
   kubernetes: .taskfiles/Kubernetes/Taskfile.yaml
   rook: .taskfiles/Rook/Taskfile.yaml
   talos: .taskfiles/Talos/Taskfile.yaml
   volsync: .taskfiles/VolSync/Taskfile.yaml
-  workstation: .taskfiles/Workstation
+  workstation: .taskfiles/Workstation/Taskfile.yaml
 
 tasks:
+
   default:
+    cmd: task --list
     silent: true
-    cmd: task -l
+
+  # Ref: https://github.com/go-task/task/issues/608
+  noop:
+    internal: true
+    silent: true
+    cmd: noop() { :; }

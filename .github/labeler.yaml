@@ -21,6 +21,9 @@ area/taskfile:
 cluster/fenrys:
   - changed-files:
       - any-glob-to-any-file: "kubernetes/fenrys/**/*"
-cluster/storage:
+cluster/fran:
   - changed-files:
-      - any-glob-to-any-file: "kubernetes/storage/**/*"
+      - any-glob-to-any-file: "kubernetes/fran/**/*"
+cluster/raspi:
+  - changed-files:
+      - any-glob-to-any-file: "kubernetes/raspi/**/*"

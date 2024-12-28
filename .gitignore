@@ -12,6 +12,7 @@ Thumbs.db
 *.pub
 *.key
 *.pem
+Brewfile.lock.json
 kubeconfig
 talosconfig
 config.xml

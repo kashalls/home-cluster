@@ -13,7 +13,9 @@
 # Clusters
 - name: cluster/fenrys
   color: "ffc300"
-- name: cluster/storage
+- name: cluster/fran
+  color: "ffc300"
+- name: cluster/raspi
   color: "ffc300"
 # Renovate Types
 - name: renovate/ansible
