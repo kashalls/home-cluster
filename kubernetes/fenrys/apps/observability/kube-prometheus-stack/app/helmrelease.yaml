@@ -78,6 +78,9 @@ spec:
         pathType: Prefix
         hosts: ["prometheus.ok8.sh"]
       prometheusSpec:
+        podMetadata:
+          annotations:
+            secret.reloader.stakater.com/reload: &secret thanos-objstore-config
         scrapeInterval: 1m # Must match interval in Grafana Helm chart
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
@@ -104,6 +107,23 @@ spec:
               resources:
                 requests:
                   storage: 75Gi
+        thanos:
+          image: "quay.io/thanos/thanos:${THANOS_VERSION}"
+          version: "${THANOS_VERSION#v}"
+          objectStorageConfig:
+            existingSecret:
+              name: *secret
+              key: config
+      thanosService:
+        enabled: true
+      thanosServiceExternal:
+        enabled: true
+        type: LoadBalancer
+        annotations:
+          external-dns.alpha.kubernetes.io/hostname: thanos.ok8.sh
+        externalTrafficPolicy: Cluster
+      thanosServiceMonitor:
+        enabled: true
     nodeExporter:
       enabled: true
     prometheus-node-exporter:
