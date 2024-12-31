@@ -169,6 +169,9 @@ spec:
           gnetId: 11454
           revision: 14
           datasource: Prometheus
+        mc-monitor:
+          url: https://raw.githubusercontent.com/itzg/mc-monitor/refs/heads/master/examples/mc-monitor-prom/dashboards/mc-monitor.json
+          datasource: Prometheus
         miniflux:
           url: https://raw.githubusercontent.com/miniflux/v2/main/contrib/grafana/dashboard.json
           datasource: Prometheus
