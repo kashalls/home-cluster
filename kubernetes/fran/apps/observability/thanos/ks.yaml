@@ -3,14 +3,17 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app pocket-id
+  name: &app thanos
   namespace: flux-system
 spec:
-  targetNamespace: default
+  targetNamespace: observability
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/fran/apps/default/pocket-id/app
+  dependsOn:
+    - name: dragonfly-cluster
+    - name: external-secrets-stores
+  path: ./kubernetes/fran/apps/observability/thanos/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -18,4 +21,4 @@ spec:
   wait: false
   interval: 30m
   retryInterval: 1m
-  timeout: 5m
+  timeout: 15m
