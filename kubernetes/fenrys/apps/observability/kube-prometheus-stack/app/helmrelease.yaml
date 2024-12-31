@@ -32,27 +32,10 @@ spec:
       namespace: openebs-system
   values:
     crds:
-      enabled: true
+      enabled: false
     cleanPrometheusOperatorObjectNames: true
     alertmanager:
-      ingress:
-        enabled: true
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "internal.ok8.sh"
-        pathType: Prefix
-        ingressClassName: internal
-        hosts: ["alert-manager.ok8.sh"]
-      alertmanagerSpec:
-        replicas: 1
-        useExistingSecret: true
-        configSecret: alertmanager-secret
-        storage:
-          volumeClaimTemplate:
-            spec:
-              storageClassName: openebs-hostpath
-              resources:
-                requests:
-                  storage: 1Gi
+      enabled: false
     kubelet:
       enabled: true
     kubeApiServer:
@@ -93,8 +76,10 @@ spec:
           - auto-gomemlimit
           - memory-snapshot-on-shutdown
           - new-service-discovery-manager
-        retention: 14d
-        retentionSize: 70GB
+        retention: 2d
+        retentionSize: 50GB
+        externalLabels:
+          cluster: fenrys
         resources:
           requests:
             cpu: 100m
