@@ -1,11 +1,4 @@
 {
-  "ansible.ansible.path": ".venv/bin/ansible",
-  "ansible.python.activationScript": ".venv/bin/activate",
-  "ansible.python.interpreterPath": ".venv/bin/python3",
-  "ansible.validation.enabled": true,
-  "ansible.validation.lint.arguments": "-c ansible/.ansible-lint",
-  "ansible.validation.lint.enabled": true,
-  "ansible.validation.lint.path": ".venv/bin/ansible-lint",
   "editor.bracketPairColorization.enabled": true,
   "editor.fontFamily": "FiraCode Nerd Font",
   "editor.fontLigatures": true,
@@ -16,29 +9,37 @@
   "editor.stickyScroll.enabled": false,
   "explorer.autoReveal": false,
   "files.associations": {
-    "*.json5": "jsonc",
-    "./ansible/**/*.yaml": "ansible",
-    "./ansible/**/inventory/**/*.yaml": "yaml",
+      "**/*.json5": "jsonc"
   },
   "files.trimTrailingWhitespace": true,
   "material-icon-theme.files.associations": {
     // TODO: https://github.com/PKief/vscode-material-icon-theme/issues/330
-    "*.secret.sops.env": "lock",
-    "*.secret.sops.yaml": "lock"
+    "*.sops.env": "lock",
+    "*.sops.yaml": "lock"
   },
   "material-icon-theme.folders.associations": {
-    ".taskfiles": "utils",
-    "bootstrap": "import",
-    "charts": "kubernetes",
-    "repositories": "database",
-    "vars": "other",
-    // namespaces
-    "cert-manager": "guard",
-    "external-secrets": "keys",
-    "kube-system": "kubernetes",
-    "observability": "event",
-    "networking": "connection",
-    "rook-ceph": "dump",
+      // top level
+      ".archive": "archive",
+      // .github
+      ".github/workflows": "robot",
+      // namespaces
+      "actions-runner-system": "github",
+      "cert-manager": "guard",
+      "default": "home",
+      "digester-system": "hook",
+      "external-secrets": "secure",
+      "flux-system": "pipe",
+      "hack": "scripts",
+      "kube-system": "kubernetes",
+      "monitoring": "event",
+      "network": "connection",
+      "networking": "connection",
+      "observability": "event",
+      "rook-ceph": "base",
+      "storage": "dump",
+      "system-upgrade": "update",
+      "tools": "tools",
+      "volsync": "aws"
   },
   "sops.defaults.ageKeyFile": "age.key",
   "vs-kubernetes": {
@@ -49,7 +50,6 @@
   },
   "yaml.schemaStore.enable": true,
   "yaml.schemas": {
-    "ansible": "./ansible/**/*.yaml",
     "kubernetes": "./kubernetes/**/*.yaml"
   }
 }
