@@ -9,8 +9,8 @@ vars:
   KUBERNETES_DIR: "{{.ROOT_DIR}}/kubernetes"
   TALOS_DIR: "{{.ROOT_DIR}}/talos"
   BOOTSTRAP_DIR: "{{.ROOT_DIR}}/bootstrap"
-  CLUSTER: '{{.cluster | default "main"}}'
-  CLUSTER_DIR: '{{.ROOT_DIR}}/kubernetes/{{.cluster}}'
+  CLUSTER: '{{.CLUSTER | default "fenrys"}}'
+  CLUSTER_DIR: '{{.ROOT_DIR}}/kubernetes/{{.CLUSTER}}'
 
 env:
   KUBECONFIG: "{{.KUBERNETES_DIR}}/kubernetes/fenrys/kubeconfig"

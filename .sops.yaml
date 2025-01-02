@@ -1,7 +1,7 @@
 ---
 creation_rules:
   - # IMPORTANT: Keep this rule first
-    path_regex: talos/.+\.secret(\.sops)?\.ya?ml
+    path_regex: kubernetes/.+\.sops\.yaml.j2
     input_type: yaml
     encrypted_regex: ^(token|crt|key|id|secret|secretboxEncryptionSecret|ca)$
     key_groups:
