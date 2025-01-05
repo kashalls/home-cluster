@@ -42,7 +42,7 @@ spec:
         config:
           insecure: false
           region: us-west
-          endpoint: https://s3.outsideour.casa
+          endpoint: s3.outsideour.casa
           bucket: thanos
     additionalEndpoints:
       - dnssrv+_grpc._tcp.kube-prometheus-stack-thanos-discovery.observability.svc.cluster.local
