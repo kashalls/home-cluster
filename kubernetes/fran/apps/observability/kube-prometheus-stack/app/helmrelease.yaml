@@ -90,6 +90,8 @@ spec:
           - auto-gomemlimit
           - memory-snapshot-on-shutdown
           - new-service-discovery-manager
+        externalLabels:
+          cluster: fran
         retention: 14d
         retentionSize: 70GB
         resources:
