@@ -65,9 +65,13 @@ spec:
       version: 1.21.1
       onlineMode: true
       type: AUTO_CURSEFORGE
+      generateStructures: true
       difficulty: normal
+      spawnAnimals: true
+      spawnMonsters: true
+      spawnNPCs: true
       ops: "Kashall"
-      whitelist: "Kashall,roguedomethe12th,noonethe12th"
+      whitelist: "Kashall,roguedomethe12th,noonethe12th,theStriker01,Bad_Graphics"
       pvp: true
       motd: "\u00a7l \u00a7r                   \u00a79\u00a7lKASHMC \u00a77\u2014 \u00a74[ATM 10]\u00a7r\n\u00a7l \u00a7a  \u2620 This isn't your average Marian experience \u2620"
       worldSaveName: world
