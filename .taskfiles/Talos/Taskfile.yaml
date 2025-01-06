@@ -9,7 +9,6 @@ tasks:
     cmds:
       - sops exec-file --input-type yaml --output-type yaml {{.CLUSTER_DIR}}/talos/{{.IP}}.sops.yaml.j2 "minijinja-cli {}" | talosctl --context {{.CLUSTER}} --nodes {{.IP}} apply-config --mode={{.MODE}} --file /dev/stdin
       - talosctl --context {{.CLUSTER}} --nodes {{.IP}} health --wait-timeout=10m --server=false
-
     vars:
       MODE: '{{.MODE | default "auto"}}'
     requires:
@@ -27,7 +26,6 @@ tasks:
     cmds:
       - talosctl --context {{.CLUSTER}} --nodes {{.IP}} upgrade --image="factory.talos.dev/installer{{if eq .TALOS_SECUREBOOT "true"}}-secureboot{{end}}/{{.TALOS_SCHEMATIC_ID}}:$TALOS_VERSION" --timeout=10m
       - talosctl --context {{.CLUSTER}} --nodes {{.IP}} health --wait-timeout=10m --server=false
-
     vars:
       TALOS_SCHEMATIC_ID:
         sh: talosctl --context {{.CLUSTER}} --nodes {{.IP}} get nodeannotationspecs --output json | jq --raw-output '.spec | select(.key == "extensions.talos.dev/schematic") | .value'
