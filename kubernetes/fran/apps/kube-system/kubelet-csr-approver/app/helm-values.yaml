@@ -1,4 +1,0 @@
----
-replicas: 1
-providerRegex: ^(fran)$
-bypassDnsResolution: true
