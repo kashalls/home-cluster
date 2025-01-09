@@ -39,8 +39,6 @@ spec:
               tag: 2025.1.1@sha256:927198fc12979546cb68cf10a742255b6d5cf0f462958192182df86488ab1fe9
             env:
               TZ: America/Los_Angeles
-              POSTGRES_HOST: postgres-rw.database.svc.cluster.local
-              POSTGRES_DB: home_assistant
             envFrom:
               - secretRef:
                   name: home-assistant-secret
