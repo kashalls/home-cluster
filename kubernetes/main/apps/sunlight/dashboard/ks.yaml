@@ -13,7 +13,7 @@ spec:
   dependsOn:
     - name: nginx-internal
     - name: external-secrets-stores
-  path: ./kubernetes/fran/apps/sunlight/dashboard/app
+  path: ./kubernetes/main/apps/sunlight/dashboard/app
   prune: true
   sourceRef:
     kind: GitRepository

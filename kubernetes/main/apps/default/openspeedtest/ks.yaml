@@ -12,7 +12,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: nginx-internal
-  path: ./kubernetes/fran/apps/default/openspeedtest/app
+  path: ./kubernetes/main/apps/default/openspeedtest/app
   prune: true
   sourceRef:
     kind: GitRepository
