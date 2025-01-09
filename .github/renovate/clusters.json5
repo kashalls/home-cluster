@@ -7,11 +7,6 @@
       "additionalBranchPrefix": "fenrys-"
     },
     {
-      "description": "Separate PRs for storage cluster",
-      "matchFileNames": ["**/kubernetes/fran/**"],
-      "additionalBranchPrefix": "fran-"
-    },
-    {
       "description": "Separate PRs for raspi cluster",
       "matchFileNames": ["**/kubernetes/raspi/**"],
       "additionalBranchPrefix": "raspi-"
