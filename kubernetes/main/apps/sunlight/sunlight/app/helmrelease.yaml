@@ -18,21 +18,15 @@ spec:
   values:
     controllers:
       sunlight:
-        initContainers:
-          postgres:
-            image:
-              repository: ghcr.io/onedr0p/postgres-init
-              tag: 16.6@sha256:4b8f9ccbad38b36805723fd517c507c7510b6924dd082344996fd22ac684a2d1
-            envFrom: &envFrom
-              - secretRef:
-                  name: sunlight-secret
         containers:
           app:
             image:
               repository: ghcr.io/kashalls/sunlight
               tag: main@sha256:f5350d66d7b46b6753321181298e635da8b095483c1b746e732e323dc71683d0
             args: ["-s"]
-            envFrom: *envFrom
+            envFrom:
+              - secretRef:
+                  name: sunlight-secret
             probes:
               liveness: &probes
                 enabled: true
@@ -53,7 +47,7 @@ spec:
         controller: sunlight
         type: LoadBalancer
         annotations:
-          external-dns.alpha.kubernetes.io/hostname: sun.outsideour.casa
+          external-dns.alpha.kubernetes.io/hostname: sunlight.outsideour.casa
         ports:
           http:
             port: 8080
