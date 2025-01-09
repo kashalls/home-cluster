@@ -34,9 +34,9 @@ spec:
               tag: v1.0.3@sha256:2ee2ba2f4741a771fdf6333dce33f50a4fc739f64388966d3c7d27c07c22f18b
             args:
               - --zone-name
-              - outsideour.casa
+              - ok8.sh
               - --record-name
-              - ipv4.outsideour.casa
+              - ipv4.ok8.sh
               - --provider
               - icanhazip
             env:
@@ -87,9 +87,9 @@ spec:
       app:
         className: internal
         annotations:
-          external-dns.alpha.kubernetes.io/target: internal.outsideour.casa
+          external-dns.alpha.kubernetes.io/target: internal.ok8.sh
         hosts:
-          - host: "ddns.outsideour.casa"
+          - host: "ddns.ok8.sh"
             paths:
               - path: /
                 service:

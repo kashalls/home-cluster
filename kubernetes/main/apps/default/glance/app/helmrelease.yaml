@@ -60,9 +60,9 @@ spec:
       app:
         className: internal
         annotations:
-          # external-dns.alpha.kubernetes.io/target: external.outsideour.casa
+          # external-dns.alpha.kubernetes.io/target: external.ok8.sh
         hosts:
-          - host: &host g.outsideour.casa
+          - host: &host g.ok8.sh
             paths:
               - path: /
                 service:

@@ -84,9 +84,9 @@ spec:
       app:
         className: external
         annotations:
-          external-dns.alpha.kubernetes.io/target: external.outsideour.casa
+          external-dns.alpha.kubernetes.io/target: external.ok8.sh
         hosts:
-          - host: &host "kromgo.outsideour.casa"
+          - host: &host "kromgo.ok8.sh"
             paths:
               - path: /
                 service:

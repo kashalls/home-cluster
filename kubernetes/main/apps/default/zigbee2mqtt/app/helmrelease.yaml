@@ -58,7 +58,7 @@ spec:
               ZIGBEE2MQTT_CONFIG_EXPERIMENTAL_NEW_API: "true"
               ZIGBEE2MQTT_CONFIG_FRONTEND: "false"
               ZIGBEE2MQTT_CONFIG_FRONTEND_PORT: &port 80
-              ZIGBEE2MQTT_CONFIG_FRONTEND_URL: https://zigbee.outsideour.casa
+              ZIGBEE2MQTT_CONFIG_FRONTEND_URL: https://zigbee.ok8.sh
               ZIGBEE2MQTT_CONFIG_HOMEASSISTANT: "true"
               ZIGBEE2MQTT_CONFIG_MQTT_INCLUDE_DEVICE_INFORMATION: "true"
               ZIGBEE2MQTT_CONFIG_MQTT_KEEPALIVE: 60
@@ -108,9 +108,9 @@ spec:
       app:
         className: internal
         annotations:
-          external-dns.alpha.kubernetes.io/target: "internal.outsideour.casa"
+          external-dns.alpha.kubernetes.io/target: "internal.ok8.sh"
         hosts:
-          - host: &host "zigbee.outsideour.casa"
+          - host: &host "zigbee.ok8.sh"
             paths:
               - path: /
                 service:

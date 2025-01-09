@@ -57,10 +57,10 @@ pages:
             title: Services
             sites:
               - title: Home Assistant
-                url: https://hass.outsideour.casa
+                url: https://hass.ok8.sh
               - title: Grafana
-                url: https://grafana.outsideour.casa
+                url: https://grafana.ok8.sh
               - title: ID
-                url: https://id.outsideour.casa
+                url: https://id.ok8.sh
               - title: DynMC
-                url: https://dynmc.outsideour.casa
+                url: https://dynmc.ok8.sh

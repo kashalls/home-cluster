@@ -54,9 +54,9 @@ spec:
       app:
         className: internal
         annotations:
-          external-dns.alpha.kubernetes.io/target: internal.outsideour.casa
+          external-dns.alpha.kubernetes.io/target: internal.ok8.sh
         hosts:
-          - host: speedtest.outsideour.casa
+          - host: speedtest.ok8.sh
             paths:
               - path: /
                 service:

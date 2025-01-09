@@ -9,11 +9,11 @@ vars:
   KUBERNETES_DIR: "{{.ROOT_DIR}}/kubernetes"
   TALOS_DIR: "{{.ROOT_DIR}}/talos"
   BOOTSTRAP_DIR: "{{.ROOT_DIR}}/bootstrap"
-  CLUSTER: '{{.CLUSTER | default "fenrys"}}'
+  CLUSTER: '{{.CLUSTER | default "main"}}'
   CLUSTER_DIR: '{{.ROOT_DIR}}/kubernetes/{{.CLUSTER}}'
 
 env:
-  KUBECONFIG: "{{.KUBERNETES_DIR}}/kubernetes/fenrys/kubeconfig"
+  KUBECONFIG: "{{.KUBERNETES_DIR}}/kubernetes/main/kubeconfig"
   SOPS_AGE_KEY_FILE: "{{.ROOT_DIR}}/age.key"
   TALOSCONFIG: '{{.CLUSTER_DIR}}/talosconfig'
 
