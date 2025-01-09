@@ -1,0 +1,4 @@
+---
+replicas: 1
+providerRegex: ^(main)$
+bypassDnsResolution: true
