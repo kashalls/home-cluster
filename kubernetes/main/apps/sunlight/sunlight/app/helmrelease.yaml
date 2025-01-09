@@ -1,0 +1,59 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: sunlight-server
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.6.0
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  values:
+    controllers:
+      sunlight:
+        initContainers:
+          postgres:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16.6@sha256:4b8f9ccbad38b36805723fd517c507c7510b6924dd082344996fd22ac684a2d1
+            envFrom: &envFrom
+              - secretRef:
+                  name: sunlight-secret
+        containers:
+          app:
+            image:
+              repository: ghcr.io/kashalls/sunlight
+              tag: main@sha256:f5350d66d7b46b6753321181298e635da8b095483c1b746e732e323dc71683d0
+            args: ["-s"]
+            envFrom: *envFrom
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /healthz
+                    port: 8080
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
+    service:
+      app:
+        controller: sunlight
+        type: LoadBalancer
+        annotations:
+          external-dns.alpha.kubernetes.io/hostname: sun.outsideour.casa
+        ports:
+          http:
+            port: 8080

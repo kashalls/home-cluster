@@ -26,7 +26,7 @@ spec:
       strategy: rollback
       retries: 3
   dependsOn:
-    - name: prometheus-operator-crds
+    - name: kube-prometheus-stack-crds
       namespace: observability
     - name: openebs
       namespace: openebs-system
@@ -35,36 +35,47 @@ spec:
       enabled: false
     cleanPrometheusOperatorObjectNames: true
     alertmanager:
-      enabled: false
-    kubelet:
-      enabled: true
+      ingress:
+        enabled: true
+        ingressClassName: internal
+        hosts: ["alertmanager.ok8.sh"]
+        pathType: Prefix
+      alertmanagerSpec:
+        alertmanagerConfiguration:
+          name: alertmanager
+          global:
+            resolveTimeout: 5m
+        externalUrl: https://alertmanager.ok8.sh
+        storage:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: openebs-hostpath
+              resources:
+                requests:
+                  storage: 1Gi
     kubeApiServer:
-      enabled: true
-    kubeControllerManager:
-      enabled: true
-      endpoints: &cp
-        - 172.16.0.2
-    kubeEtcd:
-      enabled: true
-      endpoints: *cp
+      serviceMonitor:
+        selector:
+          k8s-app: kube-apiserver
     kubeScheduler:
-      enabled: true
-      endpoints: *cp
+      service:
+        selector:
+          k8s-app: kube-scheduler
+    kubeControllerManager: &kubeControllerManager
+      service:
+        selector:
+          k8s-app: kube-controller-manager
+    kubeEtcd:
+      <<: *kubeControllerManager # etcd runs on control plane nodes
     kubeProxy:
       enabled: false
     prometheus:
       ingress:
         enabled: true
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "internal.ok8.sh"
         ingressClassName: internal
         pathType: Prefix
         hosts: ["prometheus.ok8.sh"]
       prometheusSpec:
-        podMetadata:
-          annotations:
-            secret.reloader.stakater.com/reload: &secret alertmanager-secret
-        scrapeInterval: 1m # Must match interval in Grafana Helm chart
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
@@ -73,13 +84,9 @@ spec:
         enableAdminAPI: true
         walCompression: true
         enableFeatures:
-          - auto-gomemlimit
           - memory-snapshot-on-shutdown
-          - new-service-discovery-manager
-        retention: 2d
+        retention: 14d
         retentionSize: 50GB
-        externalLabels:
-          cluster: main
         resources:
           requests:
             cpu: 100m
@@ -91,26 +98,7 @@ spec:
               storageClassName: openebs-hostpath
               resources:
                 requests:
-                  storage: 75Gi
-        thanos:
-          image: "quay.io/thanos/thanos:${THANOS_VERSION}"
-          version: "${THANOS_VERSION#v}"
-          objectStorageConfig:
-            existingSecret:
-              name: *secret
-              key: thanos.yaml
-      thanosService:
-        enabled: true
-      thanosServiceExternal:
-        enabled: true
-        type: LoadBalancer
-        annotations:
-          external-dns.alpha.kubernetes.io/hostname: thanos.ok8.sh
-        externalTrafficPolicy: Cluster
-      thanosServiceMonitor:
-        enabled: true
-    nodeExporter:
-      enabled: true
+                  storage: 50Gi
     prometheus-node-exporter:
       fullnameOverride: node-exporter
       prometheus:
@@ -122,13 +110,10 @@ spec:
               replacement: $1
               sourceLabels: ["__meta_kubernetes_pod_node_name"]
               targetLabel: kubernetes_node
-    kubeStateMetrics:
-      enabled: true
     kube-state-metrics:
       fullnameOverride: kube-state-metrics
       metricLabelsAllowlist:
         - pods=[*]
-        - nodes=[*]
         - deployments=[*]
         - persistentvolumeclaims=[*]
       prometheus:
@@ -143,3 +128,24 @@ spec:
     grafana:
       enabled: false
       forceDeployDashboards: true
+    additionalPrometheusRulesMap:
+      dockerhub-rules:
+        groups:
+          - name: dockerhub
+            rules:
+              - alert: DockerhubRateLimitRisk
+                annotations:
+                  summary: Kubernetes cluster Dockerhub rate limit risk
+                expr: count(time() - container_last_seen{image=~"(docker.io).*",container!=""} < 30) > 100
+                labels:
+                  severity: critical
+      oom-rules:
+        groups:
+          - name: oom
+            rules:
+              - alert: OomKilled
+                annotations:
+                  summary: Container {{ $labels.container }} in pod {{ $labels.namespace }}/{{ $labels.pod }} has been OOMKilled {{ $value }} times in the last 10 minutes.
+                expr: (kube_pod_container_status_restarts_total - kube_pod_container_status_restarts_total offset 10m >= 1) and ignoring (reason) min_over_time(kube_pod_container_status_last_terminated_reason{reason="OOMKilled"}[10m]) == 1
+                labels:
+                  severity: critical

@@ -3,10 +3,13 @@
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: ScrapeConfig
 metadata:
-  name: airgradient
+  name: &name airgradient
   namespace: observability
 spec:
   staticConfigs:
-    - targets:
-        - 172.16.2.128:9926
+    - targets: ["172.16.2.128:9926"]
   metricsPath: /metrics
+  relabelings:
+    - action: replace
+      targetLabel: job
+      replacement: *name

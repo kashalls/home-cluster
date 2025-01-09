@@ -7,4 +7,3 @@ resources:
   - ./helmrelease.yaml
   - ./prometheusrule.yaml
   - ./scrapeconfig.yaml
-  - ./gatus.yaml
