@@ -9,7 +9,7 @@ spec:
   interval: 30m
   ref:
     branch: main
-  url: ssh://git@github.com/kashalls/home-cluster
+  url: https://github.com/kashalls/home-cluster
   ignore: |
     # exclude all
     /*
