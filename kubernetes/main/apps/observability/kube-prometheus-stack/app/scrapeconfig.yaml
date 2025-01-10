@@ -35,7 +35,7 @@ metadata:
   name: &name smartctl-exporter
 spec:
   staticConfigs:
-    - targets: ["fran.outisdeour.casa::9633"]
+    - targets: ["fran.outisdeour.casa:9633"]
   metricsPath: /metrics
   relabelings:
     - action: replace
