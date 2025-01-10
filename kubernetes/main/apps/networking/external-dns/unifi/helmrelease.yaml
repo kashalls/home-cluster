@@ -36,16 +36,11 @@ spec:
             value: *logLevel
           - name: UNIFI_HOST
             value: "https://172.16.0.1"
-          - name: UNIFI_USER
+          - name: UNIFI_API_KEY
             valueFrom:
               secretKeyRef:
                 name: &secret external-dns-unifi-secret
-                key: UNIFI_USER
-          - name: UNIFI_PASS
-            valueFrom:
-              secretKeyRef:
-                name: *secret
-                key: UNIFI_PASS
+                key: UNIFI_API_KEY
         livenessProbe:
           httpGet:
             path: /healthz
