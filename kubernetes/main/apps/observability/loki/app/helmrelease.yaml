@@ -60,7 +60,7 @@ spec:
       replicas: 1
       persistence:
         enabled: true
-        storageClass: ceph-block
+        storageClass: openebs-hostpath
         size: 50Gi
     gateway:
       replicas: 0
