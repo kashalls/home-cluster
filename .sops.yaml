@@ -1,7 +1,7 @@
 ---
 creation_rules:
-  - path_regex: kubernetes/.+\.sops\.yaml.j2
-    encrypted_regex: ^(token|crt|key|id|secret|secretboxEncryptionSecret|ca)$
+  - path_regex: kubernetes/.+\.sops\.yaml
+    encrypted_regex: ^(token|crt|key|id|secret|secretboxEncryptionSecret|ca|password)$
     mac_only_encrypted: true
     input_type: yaml
     output_type: yaml
