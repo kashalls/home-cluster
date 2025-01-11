@@ -49,11 +49,11 @@ While most of my infrastructure and workloads are self-hosted I do rely upon the
 |--------------------------------------------|----------------------------------------------------------------|----------------|
 | [1Password](https://1password.com/)        | Secrets with [External Secrets](https://external-secrets.io/)  | ~$55/yr        |
 | [Cloudflare](https://www.cloudflare.com/)  | Domains, Workers, Pages, and R2                                | ~$30/yr        |
+| [Backblaze B2](https://www.backblaze.com/cloud-storage) | Backups                              | $0.50/m
 | [GCP](https://cloud.google.com/)           | Voice interactions with Home Assistant over Google Assistant   | Free           |
 | [GitHub](https://github.com/)              | Hosting this repository and continuous integration/deployments | Free           |
 | [Let's Encrypt](https://letsencrypt.org/)  | Issuing SSL Certificates with Cert Manager                     | Free           |
 | [Migadu](https://migadu.com/)              | Email Hosting                                                  | ~$20/yr        |
-| [Pulumi Cloud](https://app.pulumi.com/)    | Resource state management                                      | Free           |
 | [Pushover](https://pushover.net/)          | Kubernetes Alerts and application notifications                | Free           |
 | [UniFi Site Manager](https://unifi.ui.com) | UniFi External Access Management                               | Free           |
 |                                            |                                                                | Total: ~$10/mo |
@@ -117,5 +117,3 @@ Thanks to all the people who donate their time to the [Home Operations](https://
 Special thanks to: [ᗪєνιη ᗷυнʟ](https://github.com/onedr0p/home-cluster), [Bᴇʀɴᴅ Sᴄʜᴏʀɢᴇʀs](https://github.com/bjw-s/k8s-gitops), and [Toboshii Nakama](https://github.com/toboshii/home-cluster) for their assistance.
 
 Check out [kubesearch.dev](https://kubesearch.dev) to see what other users are running in their kubernetes home labs!
-
-#
