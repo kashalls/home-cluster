@@ -22,6 +22,7 @@ spec:
         key: cloudflare
     - extract:
         key: volsync-restic-template
+
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/volsync.backube/replicationsource_v1alpha1.json
 apiVersion: volsync.backube/v1alpha1
@@ -36,11 +37,11 @@ spec:
     copyMethod: "${VOLSYNC_COPYMETHOD:-Snapshot}"
     pruneIntervalDays: 7
     repository: "${APP}-volsync-r2-secret"
-    volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:-csi-openebs-zfs}"
+    volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:-csi-openebs-hostpath}"
     cacheCapacity: "${VOLSYNC_CACHE_CAPACITY:-4Gi}"
     cacheStorageClassName: "${VOLSYNC_CACHE_SNAPSHOTCLASS:-openebs-hostpath}"
     cacheAccessModes: ["${VOLSYNC_CACHE_ACCESSMODES:-ReadWriteOnce}"]
-    storageClassName: "${VOLSYNC_STORAGECLASS:-openebs-zfs}"
+    storageClassName: "${VOLSYNC_STORAGECLASS:-openebs-hostpath}"
     accessModes: ["${VOLSYNC_ACCESSMODES:-ReadWriteOnce}"]
     moverSecurityContext:
       runAsUser: ${VOLSYNC_PUID:-568}
@@ -60,11 +61,11 @@ spec:
   restic:
     repository: "${APP}-volsync-r2-secret"
     copyMethod: Snapshot
-    volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:-csi-openebs-zfs}"
+    volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:-csi-openebs-hostpath}"
     cacheStorageClassName: "${VOLSYNC_CACHE_SNAPSHOTCLASS:-openebs-hostpath}"
     cacheAccessModes: ["${VOLSYNC_CACHE_ACCESSMODES:-ReadWriteOnce}"]
     cacheCapacity: "${VOLSYNC_CACHE_CAPACITY:-8Gi}"
-    storageClassName: "${VOLSYNC_STORAGECLASS:-openebs-zfs}"
+    storageClassName: "${VOLSYNC_STORAGECLASS:-openebs-hostpath}"
     accessModes: ["${VOLSYNC_ACCESSMODES:-ReadWriteOnce}"]
     capacity: "${VOLSYNC_CAPACITY}"
     # enableFileDeletion: true # Uncomment on next Volsync release
