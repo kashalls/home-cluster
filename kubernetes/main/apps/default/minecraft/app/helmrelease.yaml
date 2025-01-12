@@ -94,9 +94,9 @@ spec:
       backupMethod: tar
       destDir: &backup-dir /backups
     extraVolumes:
-#      - volumeMounts:
-#          - name: nfs
-#            mountPath: *backup-dir
+      - volumeMounts:
+          - name: nfs
+            mountPath: *backup-dir
       - volumes:
           - name: backupdir
             nfs:
