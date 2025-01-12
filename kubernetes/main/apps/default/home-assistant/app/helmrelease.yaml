@@ -80,7 +80,10 @@ spec:
           - hosts: [*host]
     persistence:
       config:
-        existingClaim: home-assistant
+        type: persistentVolumeClaim
+        size: 8Gi
+        storageClass: openebs-hostpath
+        accessMode: ReadWriteOnce
       logs:
         type: emptyDir
         globalMounts:
