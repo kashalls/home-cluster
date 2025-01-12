@@ -25,6 +25,8 @@ spec:
   dependsOn:
     - name: gha-runner-scale-set-controller
       namespace: actions-runner-system
+    - name: openebs
+      namespace: openebs-system
   valuesFrom:
     - targetPath: githubConfigSecret.github_app_id
       kind: Secret
@@ -43,15 +45,37 @@ spec:
     runnerScaleSetName: gha-runner-scale-set
     githubConfigUrl: https://github.com/kashalls/home-cluster
     minRunners: 1
-    maxRunners: 6
+    maxRunners: 3
     containerMode:
-      type: dind
+      type: kubernetes
+      kubernetesModeWorkVolumeClaim:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: openebs-hostpath
+        resources:
+          requests:
+            storage: 25Gi
     template:
       spec:
         containers:
           - name: runner
             image: ghcr.io/onedr0p/actions-runner:2.321.0@sha256:a7539dc157f3f0129f49459826576ab53a529580916bb8a09a395e61e38354c0
             command: ["/home/runner/run.sh"]
+            env:
+              - name: ACTIONS_RUNNER_REQUIRE_JOB_CONTAINER
+                value: "false"
+              - name: NODE_IP
+                valueFrom:
+                  fieldRef:
+                    fieldPath: status.hostIP
+            volumeMounts:
+              - mountPath: /var/run/secrets/talos.dev
+                name: talos
+                readOnly: true
+        serviceAccountName: actions-runner
+        volumes:
+          - name: talos
+            secret:
+              secretName: actions-runner
     controllerServiceAccount:
       name: gha-runner-scale-set-controller
       namespace: actions-runner-system
