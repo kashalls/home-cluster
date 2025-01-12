@@ -92,14 +92,18 @@ spec:
       pruneBackupsDays: 7
       excludes: "*.jar,cache,logs"
       backupMethod: tar
+      destDir: &backup-dir /backups
     extraVolumes:
+#      - volumeMounts:
+#          - name: nfs
+#            mountPath: *backup-dir
       - volumes:
-          name: backupdir
-          nfs:
-            server: fran.outsideour.casa
-            path: /mnt/loki/minecraft
-            mountOptions:
-              - nfsvers=4.2
-              - nconnect=16
-              - hard
-              - noatime
+          - name: backupdir
+            nfs:
+              server: fran.outsideour.casa
+              path: /mnt/loki/minecraft
+              mountOptions:
+                - nfsvers=4.2
+                - nconnect=16
+                - hard
+                - noatime
