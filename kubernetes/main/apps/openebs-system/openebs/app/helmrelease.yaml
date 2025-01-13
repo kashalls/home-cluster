@@ -31,7 +31,7 @@ spec:
           enabled: true
           name: openebs-hostpath
           isDefaultClass: true
-          basePath: /var/openebs/local
+          basePath: /var/mnt/extra/openebs/local
     openebs-crds:
       csi:
         volumeSnapshots:
