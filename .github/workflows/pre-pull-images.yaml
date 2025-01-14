@@ -145,16 +145,7 @@ jobs:
         shell: bash
         run: brew install siderolabs/tap/talosctl
 
-      - name: Write talosconfig
-        id: talosconfig
-        uses: timheuer/base64-to-file@v1
-        with:
-          encodedString: "${{ secrets.TALOSCONFIG }}"
-          fileName: talosconfig
-
       - name: Pre-pull Image
-        env:
-          TALOSCONFIG: "${{ steps.talosconfig.outputs.filePath }}"
         run: |
           NODE=$(talosctl config info --output json | jq --raw-output '.nodes[]' | shuf -n 1)
           talosctl -n $NODE image pull ${{ matrix.images }}
