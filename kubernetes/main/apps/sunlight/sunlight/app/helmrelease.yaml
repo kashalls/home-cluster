@@ -22,7 +22,7 @@ spec:
           app:
             image:
               repository: ghcr.io/kashalls/sunlight
-              tag: main@sha256:c426a65aa72930b59981acbceda7ec7ca61d6f23b10c20121906b64144bff257
+              tag: main@sha256:5f36bbd86b99cb255825cecc7e26a4021230db428658e9488e889f429e1c7332
             args: ["-s"]
             envFrom:
               - secretRef:
