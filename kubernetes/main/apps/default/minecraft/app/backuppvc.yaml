@@ -8,6 +8,7 @@ spec:
     storage: 50Gi
   accessModes:
     - ReadWriteMany
+  storageClassName: manual
   nfs:
     path: /mnt/loki/minecraft
     server: fran.outsideour.casa
@@ -27,3 +28,4 @@ spec:
   resources:
     requests:
       storage: 50Gi
+  storageClassName: manual
