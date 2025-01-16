@@ -54,6 +54,9 @@ spec:
         resources:
           requests:
             storage: 25Gi
+    controllerServiceAccount:
+      name: actions-runner-controller
+      namespace: actions-runner-system
     template:
       spec:
         containers:
@@ -76,6 +79,3 @@ spec:
           - name: talos
             secret:
               secretName: actions-runner
-    controllerServiceAccount:
-      name: gha-runner-scale-set-controller
-      namespace: actions-runner-system

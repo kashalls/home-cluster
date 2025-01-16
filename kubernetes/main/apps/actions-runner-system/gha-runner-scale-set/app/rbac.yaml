@@ -22,5 +22,4 @@ kind: ServiceAccount
 metadata:
   name: actions-runner
 spec:
-  roles:
-    - os:admin
+  roles: ["os:admin"]
