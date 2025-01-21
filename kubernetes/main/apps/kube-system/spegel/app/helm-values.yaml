@@ -6,10 +6,6 @@ spegel:
 service:
   registry:
     hostPort: 29999
-serviceMonitor:
-  enabled: true
-grafanaDashboard:
-  enabled: true
 # Graceful Helmfile to HelmRelease takeover
 commonLabels:
   helm.toolkit.fluxcd.io/name: spegel

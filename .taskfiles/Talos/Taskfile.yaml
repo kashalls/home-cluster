@@ -7,17 +7,16 @@ tasks:
     desc: Apply Talos config to a node [CLUSTER=main] [IP=required]
     dotenv: ["{{.CLUSTER_DIR}}/cluster.env"]
     cmds:
-      - sops exec-file --input-type yaml --output-type yaml {{.CLUSTER_DIR}}/talos/{{.IP}}.sops.yaml.j2 "minijinja-cli {}" | talosctl --context {{.CLUSTER}} --nodes {{.IP}} apply-config --mode={{.MODE}} --file /dev/stdin
+      - sops exec-file --input-type yaml --output-type yaml {{.CLUSTER_DIR}}/talos/{{.IP}}.secret.sops.yaml "minijinja-cli {}" | talosctl --insecure={{.INSECURE}} --context {{.CLUSTER}} --nodes {{.IP}} apply-config --mode={{.MODE}} --file /dev/stdin
       - talosctl --context {{.CLUSTER}} --nodes {{.IP}} health --wait-timeout=10m --server=false
     vars:
       MODE: '{{.MODE | default "auto"}}'
+      INSECURE: '{{.INSECURE | default "false"}}'
     requires:
       vars: [CLUSTER, IP]
     preconditions:
-      - talosctl --context {{.CLUSTER}} --nodes {{.IP}} get machineconfig
       - test -f {{.CLUSTER_DIR}}/cluster.env
-      - test -f {{.CLUSTER_DIR}}/talos/{{.IP}}.sops.yaml.j2
-      - test -f {{.CLUSTER_DIR}}/talosconfig
+      - test -f {{.CLUSTER_DIR}}/talos/{{.IP}}.secret.sops.yaml
       - which minijinja-cli sops talosctl
 
   upgrade-node:
@@ -38,15 +37,14 @@ tasks:
       - talosctl --context {{.CLUSTER}} --nodes {{.IP}} get machineconfig
       - talosctl --context {{.CLUSTER}} config info
       - test -f {{.CLUSTER_DIR}}/cluster.env
-      # - test -f {{.CLUSTER_DIR}}/talosconfig
       - which jq kubectl talosctl
 
   upgrade-k8s:
-    desc: Upgrade Kubernetes across the whole cluster [CLUSTER=main] [VERSION=required]
+    desc: Upgrade Kubernetes across the whole CLUSTER [CLUSTER=main] [VERSION=required]
     dotenv: ["{{.CLUSTER_DIR}}/cluster.env"]
     cmds:
       - talosctl --context {{.CLUSTER}} --nodes {{.TALOS_CONTROLLER}} upgrade-k8s --to $KUBERNETES_VERSION
-      - talosctl --context {{.CLUSTER}}health --wait-timeout=10m --server=false
+      - talosctl --context {{.CLUSTER}} health --wait-timeout=10m --server=false
 
     vars:
       TALOS_CONTROLLER:
@@ -58,7 +56,6 @@ tasks:
       - talosctl --context {{.CLUSTER}} --nodes {{.TALOS_CONTROLLER}} get machineconfig
       - talosctl --context {{.CLUSTER}} config info
       - test -f {{.CLUSTER_DIR}}/cluster.env
-      # - test -f {{.CLUSTER_DIR}}/talosconfig
       - which jq talosctl
 
   reboot-node:
@@ -75,12 +72,11 @@ tasks:
       - talosctl --context {{.CLUSTER}} --nodes {{.IP}} get machineconfig
       - talosctl --context {{.CLUSTER}} config info
       - test -f {{.CLUSTER_DIR}}/cluster.env
-      - test -f {{.CLUSTER_DIR}}/talosconfig
       - which talosctl
 
   shutdown-cluster:
-    desc: Shutdown Talos across the whole cluster [CLUSTER=main]
-    prompt: Shutdown the Talos cluster '{{.CLUSTER}}' ... continue?
+    desc: Shutdown Talos across the whole CLUSTER [CLUSTER=main]
+    prompt: Shutdown the Talos CLUSTER '{{.CLUSTER}}' ... continue?
     cmd: talosctl --context {{.CLUSTER}} shutdown --nodes {{.IP_ADDRS}} --force
     vars:
       IP_ADDRS:
@@ -90,24 +86,22 @@ tasks:
     preconditions:
       - talosctl --context {{.CLUSTER}} --nodes {{.NODES}} get machineconfig
       - talosctl --context {{.CLUSTER}} config info
-      - test -f {{.CLUSTER_DIR}}/talosconfig
       - which jq talosctl
 
   reset-node:
     desc: Reset Talos on a single node [CLUSTER=main] [IP=required]
-    prompt: Reset Talos node '{{.IP}}' on the '{{.CLUSTER}}' cluster ... continue?
+    prompt: Reset Talos node '{{.IP}}' on the '{{.CLUSTER}}' CLUSTER ... continue?
     cmd: talosctl --context {{.CLUSTER}} reset --nodes {{.IP}} --graceful=false
     requires:
       vars: [CLUSTER, IP]
     preconditions:
       - talosctl --context {{.CLUSTER}} --nodes {{.IP}} get machineconfig
       - talosctl --context {{.CLUSTER}} config info
-      - test -f {{.CLUSTER_DIR}}/talosconfig
       - which talosctl
 
   reset-cluster:
-    desc: Reset Talos across the whole cluster [CLUSTER=main]
-    prompt: Reset the Talos cluster '{{.CLUSTER}}' ... continue?
+    desc: Reset Talos across the whole CLUSTER [CLUSTER=main]
+    prompt: Reset the Talos CLUSTER '{{.CLUSTER}}' ... continue?
     cmd: talosctl --context {{.CLUSTER}} reset --nodes {{.IP_ADDRS}} --graceful=false
     vars:
       IP_ADDRS:
@@ -117,11 +111,10 @@ tasks:
     preconditions:
       - talosctl --context {{.CLUSTER}} --nodes {{.NODES}} get machineconfig
       - talosctl --context {{.CLUSTER}} config info
-      - test -f {{.CLUSTER_DIR}}/talosconfig
       - which jq talosctl
 
   kubeconfig:
-    desc: Generate the kubeconfig for a Talos cluster [CLUSTER=main]
+    desc: Generate the kubeconfig for a Talos CLUSTER [CLUSTER=main]
     cmd: talosctl kubeconfig --nodes {{.TALOS_CONTROLLER}} --force --force-context-name {{.CLUSTER}} {{.CLUSTER_DIR}}
     vars:
       TALOS_CONTROLLER:
@@ -130,11 +123,10 @@ tasks:
       vars: [CLUSTER]
     preconditions:
       - talosctl --context {{.CLUSTER}} config info
-      - test -f {{.CLUSTER_DIR}}/talosconfig
       - which jq talosctl
 
   apply-cluster:
-    desc: Apply Talos config across the whole cluster [CLUSTER=main] [MODE=default]
+    desc: Apply Talos config across the whole CLUSTER [CLUSTER=main] [MODE=default]
     cmds:
       - for: { var: IP_ADDRS }
         task: apply-node
@@ -152,7 +144,7 @@ tasks:
       - which jq talosctl
 
   upgrade-cluster:
-    desc: Upgrade Talos across the whole cluster [CLUSTER=main]
+    desc: Upgrade Talos across the whole CLUSTER [CLUSTER=main]
     cmds:
       - for: { var: IP_ADDRS }
         task: upgrade-node
@@ -184,3 +176,11 @@ tasks:
     preconditions:
       - which jq talosctl
 
+  bootstrap-apps:
+    desc: Bootstrap core apps needed for Talos
+    cmd: helmfile --quiet --kube-context {{.CLUSTER}} --file {{.CLUSTER_DIR}}/bootstrap/helmfile.yaml apply --skip-diff-on-install --suppress-diff
+    requires:
+      vars: ["CLUSTER"]
+    preconditions:
+      - talosctl --context {{.CLUSTER}} config info >/dev/null 2>&1
+      - test -f {{.CLUSTER_DIR}}/bootstrap/helmfile.yaml

@@ -7,17 +7,20 @@ bgpControlPlane:
   enabled: true
 bpf:
   masquerade: true
+  preallocateMaps: true
   tproxy: true
 cgroup:
   automount:
     enabled: false
   hostRoot: /sys/fs/cgroup
 cluster:
-  id: 3
+  id: 2
   name: raspi
-devices: enx+
+devices: en+
 enableRuntimeDeviceDetection: true
 endpointRoutes:
+  enabled: true
+externalIPs:
   enabled: true
 hubble:
   enabled: false
@@ -27,7 +30,7 @@ ipam:
   mode: kubernetes
 ipv4:
   enabled: true
-ipv4NativeRoutingCIDR: 172.32.0.0/16
+ipv4NativeRoutingCIDR: 172.28.0.0/16
 ipv6:
   enabled: false
 k8sServiceHost: 127.0.0.1
@@ -37,6 +40,7 @@ kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
 l2announcements:
   enabled: true
 loadBalancer:
+  acceleration: best-effort
   algorithm: maglev
   mode: dsr
 localRedirectPolicy: true
@@ -55,6 +59,8 @@ securityContext:
       - IPC_LOCK
       - SYS_ADMIN
       - SYS_RESOURCE
+      - PERFMON
+      - BPF
       - DAC_OVERRIDE
       - FOWNER
       - SETGID
