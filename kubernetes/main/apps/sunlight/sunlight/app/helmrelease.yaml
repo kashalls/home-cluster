@@ -21,9 +21,8 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/kashalls/sunlight
-              tag: main@sha256:ab9f35e54ce6af0fa3fef298b5405b6aba12aebc94e492c4730b46d966bb93a3
-            args: ["-s"]
+              repository: ghcr.io/kashalls/sunlight-server
+              tag: latest@sha256:38a91d470dac79c9530265840f6ac1c04dad95b3a79a2608094d07823a76ccf7
             envFrom:
               - secretRef:
                   name: sunlight-secret
