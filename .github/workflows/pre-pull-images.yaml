@@ -130,7 +130,7 @@ jobs:
   pre-pull-images:
     if: ${{ needs.extract-images.outputs.matrix != '[]' }}
     name: Pre-pull Images
-    runs-on: ["gha-runner-scale-set"]
+    runs-on: ["home-ops-runner"]
     needs: ["extract-images"]
     strategy:
       matrix:

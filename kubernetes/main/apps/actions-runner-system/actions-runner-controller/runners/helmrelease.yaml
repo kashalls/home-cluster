@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: gha-runner-scale-set
+  name: home-ops-runner
 spec:
   interval: 30m
   chart:
@@ -23,7 +23,7 @@ spec:
       strategy: rollback
       retries: 3
   dependsOn:
-    - name: gha-runner-scale-set-controller
+    - name: actions-runner-controller
       namespace: actions-runner-system
     - name: openebs
       namespace: openebs-system
@@ -41,8 +41,6 @@ spec:
       name: actions-runner-controller-auth-secret
       valuesKey: ACTION_RUNNER_CONTROLLER_GITHUB_PRIVATE_KEY
   values:
-    nameOverride: gha-runner-scale-set
-    runnerScaleSetName: gha-runner-scale-set
     githubConfigUrl: https://github.com/kashalls/home-cluster
     minRunners: 1
     maxRunners: 3
