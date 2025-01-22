@@ -46,7 +46,19 @@ spec:
         controller: sunlight
         type: LoadBalancer
         annotations:
-          external-dns.alpha.kubernetes.io/hostname: sunlight.ok8.sh
+          external-dns.alpha.kubernetes.io/hostname: sapi.ok8.sh
         ports:
           http:
             port: 8080
+    ingress:
+      app:
+        className: internal
+        annotations:
+          external-dns.alpha.kubernetes.io/target: internal.ok8.sh
+        hosts:
+          - host: "sunlight.ok8.sh"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
