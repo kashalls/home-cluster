@@ -3,6 +3,13 @@
 OUTPUT_DIR="/home/runner/.datree/crdSchemas"
 INDEX_FILE="$OUTPUT_DIR/index.html"
 
+# Check if the directory contains files
+if [[ ! -d "$OUTPUT_DIR" ]] || [[ -z "$(ls -A "$OUTPUT_DIR" | grep -v 'index.html')" ]]; then
+    echo "No CRD schema files found in $OUTPUT_DIR"
+    exit 1
+fi
+
+# Start HTML file
 cat > "$INDEX_FILE" <<EOF
 <!DOCTYPE html>
 <html lang="en">
@@ -24,13 +31,15 @@ cat > "$INDEX_FILE" <<EOF
     <ul>
 EOF
 
+# Generate file list, excluding index.html
 for file in "$OUTPUT_DIR"/*; do
-    if [[ -f "$file" ]]; then
+    if [[ -f "$file" && "$(basename "$file")" != "index.html" ]]; then
         filename=$(basename "$file")
         echo "        <li><a href=\"$filename\">$filename</a></li>" >> "$INDEX_FILE"
     fi
 done
 
+# Close HTML tags
 cat >> "$INDEX_FILE" <<EOF
     </ul>
 </body>
