@@ -3,6 +3,11 @@
 OUTPUT_DIR="/home/runner/.datree/crdSchemas"
 INDEX_FILE="$OUTPUT_DIR/index.html"
 
+if [[ ! -d "$OUTPUT_DIR" ]] || [[ -z "$(find "$OUTPUT_DIR" -type f -name "*.json")" ]]; then
+    echo "No JSON files found in $OUTPUT_DIR"
+    exit 1
+fi
+
 cat > "$INDEX_FILE" <<EOF
 <!DOCTYPE html>
 <html lang="en">
@@ -24,8 +29,15 @@ cat > "$INDEX_FILE" <<EOF
     <ul>
 EOF
 
+echo "Found JSON files:"
+find "$OUTPUT_DIR" -type f -name "*.json"
+
 while IFS= read -r file; do
+    [[ -z "$file" ]] && continue
+
     relative_path="${file#"$OUTPUT_DIR"/}"
+
+    echo "Adding to index: $relative_path"
     echo "        <li><a href=\"$relative_path\">$relative_path</a></li>" >> "$INDEX_FILE"
 done < <(find "$OUTPUT_DIR" -type f -name "*.json" | sort)
 
