@@ -21,7 +21,7 @@ spec:
               image: ghcr.io/onedr0p/kubanetics:2025.1.2@sha256:b0f4956eb1e0afdb02679a5d77e4ee4f5ff390b07923f336d10a6c257cff8f7b
               envFrom:
                 - secretRef:
-                    name: cloudflare-ddns
+                    name: cloudflare-ddns-secret
               command: ["/bin/sh", "/app/cloudflare-ddns.sh"]
               volumeMounts:
                 - name: cloudflare-ddns
