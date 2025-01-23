@@ -8,7 +8,7 @@
       - cron: "0 0 * * *" # Every day at midnight
     push:
       branches: ["main"]
-      paths: [".github/workflows/publish-schemas.yaml"]
+      paths: [".github/workflows/schemas.yaml"]
 
   jobs:
     publish:
@@ -63,6 +63,14 @@
                 https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/Utilities/crd-extractor.sh
             chmod +x $GITHUB_WORKSPACE/crd-extractor.sh
             bash $GITHUB_WORKSPACE/crd-extractor.sh
+
+        - name: Generate index.html
+          shell: bash
+          run: |
+            curl -fsSL -o $GITHUB_WORKSPACE/generate_index.sh \
+              https://raw.githubusercontent.com/kashalls/home-cluster/refs/heads/main/.github/workflows/scripts/generate_index.sh
+            chmod +x $GITHUB_WORKSPACE/generate_index.sh
+            bash $GITHUB_WORKSPACE/generate_index.sh
 
         - name: Deploy to Cloudflare Pages
           uses: cloudflare/wrangler-action@v3.13.1
