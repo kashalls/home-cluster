@@ -72,10 +72,6 @@
             chmod +x $GITHUB_WORKSPACE/generate_index.sh
             bash $GITHUB_WORKSPACE/generate_index.sh
 
-        - name: Debug CRD Schemas Directory
-          shell: bash
-          run: ls -lah /home/runner/.datree/crdSchemas
-
         - name: Deploy to Cloudflare Pages
           uses: cloudflare/wrangler-action@v3.13.1
           with:

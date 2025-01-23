@@ -29,15 +29,10 @@ cat > "$INDEX_FILE" <<EOF
     <ul>
 EOF
 
-echo "Found JSON files:"
-find "$OUTPUT_DIR" -type f -name "*.json"
-
 while IFS= read -r file; do
     [[ -z "$file" ]] && continue
 
     relative_path="${file#"$OUTPUT_DIR"/}"
-
-    echo "Adding to index: $relative_path"
     echo "        <li><a href=\"$relative_path\">$relative_path</a></li>" >> "$INDEX_FILE"
 done < <(find "$OUTPUT_DIR" -type f -name "*.json" | sort)
 
