@@ -67,7 +67,7 @@ While most of my infrastructure and workloads are self-hosted I do rely upon the
 ```mermaid
 flowchart TD
     A["The Internet"] --> B["Comcast"];
-    B -- 2.5Gb -- > C["UDM Pro"];
+    B -- 2.5Gb --> C["UDM Pro"];
     C -- 10Gb --> D["USW Pro Max 16"]
     D --> E["MS-01 Main (1 Node)"]
     D --> F["Storage (TrueNAS)"]
@@ -102,16 +102,16 @@ UniFi released a new feature update with UniFi routers that allow you to create 
 
 | Device                  | Count | OS Disk Size | Data Disk Size       | Ram  | Operating System | Purpose           |
 |-------------------------|-------|--------------|----------------------|------|------------------|-------------------|
-| UXG-Max                 | 1     | -            | -                    | -    | UniFi OS         | Router            |
-| UCK-G2-Plus             | 1     | -            | 250 GB HDD           | 3GB  | UniFi OS         | UniFi Management  |
-| US-24-G1                | 1     | -            | -                    | -    | -                | Core Switch       |
+| UDM Pro                 | 1     | -            | -                    | -    | UniFi OS         | Router            |
+| USW 16 Pro Max          | 1     | -            | -                    | -    | UniFi OS         | Switching         |
 | U6-LR                   | 1     | -            | -                    | -    | -                | Office AP         |
 | UAP-AC-Pro              | 1     | -            | -                    | -    | -                | Dining Room AP    |
 | USP-PDU-Pro             | 1     | -            | -                    | -    | -                | Rack PDU          |
 | Raspberry Pi 4          | 3     | 256GB SSD    | -                    | 8GB  | Talos            | Raspberry Cluster |
-| Lenovo ThinkCentre M900 | 6     | 256GB SSD    | 1TB NVMe (rook-ceph) | 16GB | Talos            | Kubernetes Nodes  |
+| Raspberry Pi 5          | 1     | 128GB SSD    | -                    | 8GB  | Soon™ (Talos)    | Raspberry Cluster |
+| MS-01                   | 1     | 1TB NVMe     | 2x1TB NVMe           | 32GB | Talos            | Main Cluster      |
 | Fran                    | 1     | 2x1TB SSD    | 5x8TB (raidz2)       | 64GB | Debian           | Storage Cluster   |
-| Raspberry Pi 3          | 1     | 32GB (SD)    | -                    | 4GB  | -                | Network KVM       |
+| JetKVM                  | 1     | 16GB (Flash) | -                    | -    | JetKVM           | Network KVM       |
 | APC Back-Ups 1500       | 1     | -            | -                    | -    | -                | UPS               |
 
 ---
