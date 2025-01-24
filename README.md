@@ -68,9 +68,9 @@ While most of my infrastructure and workloads are self-hosted I do rely upon the
 flowchart LR
     A[["#quot;The Internet#quot;"]] -- 2Gbps ↓ 350Mbps  ↑ --> B("UDM Pro Max");
     B -- 10Gbps ↕ --> C("USW Pro Max 16")
-    C -- 10Gbps ↕ --> D["MS-01 Main (1 Node)"]
-    C -- 10Gbps ↕ --> E["Storage (TrueNAS)"]
-    C -- 1Gbps ↕ --> F["Raspian (4 Node)"]
+    C -- 10Gbps ↕ --> D["1x MS-01 Main (Talos)"]
+    C -- 10Gbps ↕ --> E["1x Storage (TrueNAS)"]
+    C -- 1Gbps ↕ --> F["4x Raspian (Talos)"]
 ```
 
 ### Networks & Vlans
