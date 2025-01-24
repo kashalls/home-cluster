@@ -65,9 +65,9 @@ While most of my infrastructure and workloads are self-hosted I do rely upon the
 
 ### Networking Diagram
 ```mermaid
-flowchart TD
-    A["The Internet"] -- 2Gbps ↓ 350Mbps  ↑ --> B["UDM Pro Max"];
-    B -- 10Gbps ↕ --> C["USW Pro Max 16"]
+flowchart LR
+    A[["The Internet"]] -- 2Gbps ↓ 350Mbps  ↑ --> B("UDM Pro Max");
+    B -- 10Gbps ↕ --> C("USW Pro Max 16")
     C -- 10Gbps ↕ --> D["MS-01 Main (1 Node)"]
     C -- 10Gbps ↕ --> E["Storage (TrueNAS)"]
     C -- 1Gbps ↕ --> F["Raspian (4 Node)"]
