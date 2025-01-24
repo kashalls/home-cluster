@@ -86,7 +86,7 @@ flowchart LR
 
 ### 🌐 DNS
 
-UniFi released a new feature update with UniFi routers that allow you to create custom dns records to be served to the whole network. I wrote[External DNS Unifi Webhook](https://github.com/kashalls/external-dns-unifi-webhook) to allow [External DNS](https://github.com/kubernetes-sigs/external-dns/) to gather service and ingress hosts from my clusters and deploy the records without any extra local resolvers.
+UniFi released a new feature update with UniFi routers that allow you to create custom dns records to be served to the whole network. I wrote [External DNS Unifi Webhook](https://github.com/kashalls/external-dns-unifi-webhook) to allow [External DNS](https://github.com/kubernetes-sigs/external-dns/) to gather service and ingress hosts from my clusters and deploy the records to my routers local dns server without any extra local resolvers or moving parts.
 
 ---
 
