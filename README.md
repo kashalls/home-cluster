@@ -62,11 +62,27 @@ While most of my infrastructure and workloads are self-hosted I do rely upon the
 
 ## 💻 Networking
 
-<details>
-  <summary>Click to see a high-level network diagram</summary>
 
-  <img src="https://raw.githubusercontent.com/kashalls/home-cluster/main/.github/assets/network-topology.png" align="center" width="600px" alt="networking"/>
-</details>
+### Networking Diagram
+```mermaid
+flowchart TD
+    A["The Internet"] --> B["Comcast"];
+    B -- 2.5Gb -- > C["UDM Pro"];
+    C -- 10Gb --> D["USW Pro Max 16"]
+    D --> E["MS-01 Main (1 Node)"]
+    D --> F["Storage (TrueNAS)"]
+    D --> G["Raspian (4 Node)"]
+```
+
+### Networks & Vlans
+
+| Name                | VLAN | Description                                                                         |
+|---------------------|------|-------------------------------------------------------------------------------------|
+| Management          | 1    | Servers + Network Management                                                        |
+| Devices             | 2    | Wireless Devices and Workstations                                                   |
+| IoT                 | 3    | Small devices that *could* be compromised, so they don't get to talk to each other. |
+| Services            | 4    | No DHCP, Simply a network for Cluster BGP                                           |
+| "I Don't Trust You" | 86   | Non-affiliated organization issued devices (school or work devices)                 |
 
 
 ### 🌐 DNS
