@@ -26,6 +26,7 @@ resources:
   - ./longhorn.yaml
   - ./metrics-server.yaml
   - ./mongodb.yaml
+  - ./nats.yaml
   - ./node-feature-discovery.yaml
   - ./openebs.yaml
   - ./piraeus.yaml
