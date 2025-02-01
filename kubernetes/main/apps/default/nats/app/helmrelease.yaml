@@ -26,3 +26,25 @@ spec:
       retries: 3
   values:
     fullnameOverride: *name
+    extraResources:
+      - apiVersion: v1
+        kind: Service
+        metadata:
+          name: nats-external
+          namespace: default
+        annotations:
+          io.cilium/lb-ipam-ips: "auto"
+          external-dns.alpha.kubernetes.io/hostname: "nats.ok8.sh"
+        spec:
+          type: LoadBalancer
+          ports:
+          - appProtocol: tcp
+            name: nats
+            port: 4222
+            protocol: TCP
+            targetPort: nats
+          selector:
+            app.kubernetes.io/component: nats
+            app.kubernetes.io/instance: nats
+            app.kubernetes.io/name: nats
+          sessionAffinity: None
