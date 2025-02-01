@@ -31,7 +31,7 @@ spec:
         kind: Service
         metadata:
           name: nats-external
-          namespace: default
+          namespace: sunlight
           annotations:
             io.cilium/lb-ipam-ips: "auto"
             external-dns.alpha.kubernetes.io/hostname: "nats.ok8.sh"
