@@ -3,7 +3,7 @@
 version: '3'
 
 vars:
-  WORKSTATION_RESOURCES_DIR: '{{.ROOT_DIR}}/.taskfiles/workstation/resources'
+  WORKSTATION_RESOURCES_DIR: '{{.ROOT_DIR}}/.taskfiles/Workstation/resources'
 
 tasks:
 

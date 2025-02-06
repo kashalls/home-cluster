@@ -6,7 +6,7 @@ bandwidthManager:
 bgpControlPlane:
   enabled: true
 bpf:
-#  datapathMode: netkit # Talos 1.17 beta
+  datapathMode: netkit
   masquerade: true
   preallocateMaps: true
   tproxy: true
