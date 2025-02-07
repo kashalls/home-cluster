@@ -16,6 +16,9 @@ spec:
         name: bjw-s
         namespace: flux-system
   values:
+    defaultPodOptions:
+      imagePullSecrets:
+        - name: ghcr-io-secret
     controllers:
       sunlight:
         containers:
