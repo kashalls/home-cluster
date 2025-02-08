@@ -59,7 +59,7 @@ spec:
     operator:
       replicas: 1
       prometheus:
-        enabled: true
+        enabled: false
         serviceMonitor:
           enabled: false
       dashboards:
