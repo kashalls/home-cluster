@@ -6,6 +6,7 @@ bandwidthManager:
 bgpControlPlane:
   enabled: true
 bpf:
+  datapathMode: netkit
   masquerade: true
   preallocateMaps: true
   tproxy: true
@@ -16,6 +17,14 @@ cgroup:
 cluster:
   id: 2
   name: raspi
+clusterMesh:
+  useAPIServer: true
+  enableMCSAPISupport: true
+  apiserver:
+    kvstoremesh:
+      enabled: false
+    service:
+      type: LoadBalancer
 devices: en+
 enableRuntimeDeviceDetection: true
 endpointRoutes:

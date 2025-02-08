@@ -17,6 +17,16 @@ cgroup:
 cluster:
   id: 1
   name: main
+clusterMesh:
+  useAPIServer: true
+  enableMCSAPISupport: true
+  apiserver:
+    kvstoremesh:
+      enabled: false
+    service:
+      type: LoadBalancer
+  config:
+    enabled: false
 enableIPv4BIGTCP: true
 endpointRoutes:
   enabled: true
