@@ -19,12 +19,17 @@ cluster:
   name: raspi
 clusterMesh:
   useAPIServer: true
-  enableMCSAPISupport: true
   apiserver:
     kvstoremesh:
       enabled: false
     service:
       type: LoadBalancer
+      loadBalancerIP: 172.16.11.254
+  config:
+    enabled: true
+    clusters:
+      - name: main
+        ips: ["172.16.10.254"]
 devices: en+
 enableRuntimeDeviceDetection: true
 endpointRoutes:
