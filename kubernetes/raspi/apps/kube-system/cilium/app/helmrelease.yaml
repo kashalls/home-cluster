@@ -34,8 +34,12 @@ spec:
         service:
           type: LoadBalancer
           loadBalancerIP: 172.16.11.254
-        tls:
-          authMode: cluster
+        tls: &cmtls
+          auto:
+            certManagerIssuerRef:
+              group: cert-manager.io
+              kind: ClusterIssuer
+              name: cilium-ca
       config:
         enabled: true
         clusters:
@@ -44,6 +48,7 @@ spec:
             port: 2379
     hubble:
       enabled: true
+      tls: *cmtls
       metrics:
         enabled:
           - dns:query
