@@ -29,11 +29,13 @@ spec:
     clustermesh:
       useAPIServer: true
       apiserver:
+        kvstoremesh:
+          enabled: false
         service:
           type: LoadBalancer
           loadBalancerIP: 172.16.11.254
         tls:
-          authMode: cluster  
+          authMode: cluster
       config:
         enabled: true
         clusters:
