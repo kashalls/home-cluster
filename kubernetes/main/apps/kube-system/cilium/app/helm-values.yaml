@@ -20,8 +20,6 @@ cluster:
 clusterMesh:
   useAPIServer: true
   apiserver:
-    kvstoremesh:
-      enabled: false
     service:
       type: LoadBalancer
       loadBalancerIP: 172.16.10.254
