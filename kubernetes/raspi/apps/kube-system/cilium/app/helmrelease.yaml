@@ -26,6 +26,17 @@ spec:
     - kind: ConfigMap
       name: cilium-helm-values
   values:
+    clusterMesh:
+      useAPIServer: true
+      apiserver:
+        service:
+          type: LoadBalancer
+          loadBalancerIP: 172.16.11.254
+      config:
+        enabled: true
+        clusters:
+          - name: main
+            ips: ["172.16.10.254"]
     hubble:
       enabled: true
       metrics:
