@@ -84,6 +84,7 @@ spec:
       enabled: false
       serviceMonitor:
         enabled: false
-        trustCRDsExist: true
+        trustCRDsExist: false
     dashboards:
       enabled: false
+
