@@ -37,6 +37,7 @@ spec:
         clusters:
           - name: main
             ips: ["172.16.10.254"]
+            port: 2379
     hubble:
       enabled: true
       metrics:

@@ -37,6 +37,7 @@ spec:
         clusters:
           - name: raspi
             ips: ["172.16.11.254"]
+            port: 2379
     hubble:
       enabled: true
       metrics:
