@@ -32,6 +32,8 @@ spec:
         service:
           type: LoadBalancer
           loadBalancerIP: 172.16.11.254
+        tls:
+          authMode: cluster  
       config:
         enabled: true
         clusters:
