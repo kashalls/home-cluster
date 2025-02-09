@@ -26,7 +26,7 @@ spec:
     - kind: ConfigMap
       name: cilium-helm-values
   values:
-    clusterMesh:
+    clustermesh:
       useAPIServer: true
       apiserver:
         service:
