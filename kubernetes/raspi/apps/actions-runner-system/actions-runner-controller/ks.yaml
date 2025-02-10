@@ -12,7 +12,7 @@ spec:
   dependsOn:
     - name: external-secrets-stores
   interval: 30m
-  path: ./kubernetes/main/apps/actions-runner-system/actions-runner-controller/app
+  path: ./kubernetes/raspi/apps/actions-runner-system/actions-runner-controller/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -33,7 +33,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   interval: 30m
-  path: ./kubernetes/main/apps/actions-runner-system/actions-runner-controller/runners
+  path: ./kubernetes/raspi/apps/actions-runner-system/actions-runner-controller/runners
   prune: true
   sourceRef:
     kind: GitRepository
