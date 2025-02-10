@@ -73,7 +73,7 @@
             bash $GITHUB_WORKSPACE/generate_index.sh
 
         - name: Deploy to Cloudflare Pages
-          uses: cloudflare/wrangler-action@v3.13.1
+          uses: cloudflare/wrangler-action@v3.14.0
           with:
             apiToken: "${{ secrets.CLOUDFLARE_API_TOKEN }}"
             accountId: "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
