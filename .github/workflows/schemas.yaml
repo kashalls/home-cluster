@@ -30,12 +30,15 @@
           with:
             token: "${{ steps.app-token.outputs.token }}"
 
-        - name: Setup Homebrew
-          uses: Homebrew/actions/setup-homebrew@master
-
         - name: Setup Workflow Tools
           shell: bash
-          run: brew install kubernetes-cli
+          run: |
+            curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/arm64/kubectl"
+            curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/arm64/kubectl.sha256"
+            echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+            chmod +x kubectl
+            mkdir -p ~/.local/bin
+            mv ./kubectl ~/.local/bin/kubectl
 
         - name: Setup Python
           uses: actions/setup-python@v5
