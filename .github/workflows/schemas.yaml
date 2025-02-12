@@ -39,6 +39,7 @@
             chmod +x kubectl
             mkdir -p ~/.local/bin
             mv ./kubectl ~/.local/bin/kubectl
+            export PATH=$PATH:~/.local/bin
 
         - name: Setup Python
           uses: actions/setup-python@v5
