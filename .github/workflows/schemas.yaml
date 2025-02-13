@@ -30,7 +30,7 @@
           with:
             token: "${{ steps.app-token.outputs.token }}"
 
-        - name: Setup Workflow Tools
+        - name: Install Kubectl
           shell: bash
           run: |
             curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/arm64/kubectl"
