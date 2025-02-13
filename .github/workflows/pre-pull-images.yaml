@@ -76,6 +76,9 @@ jobs:
           mv ./kubectl ~/.local/bin/kubectl
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
+      - name: Install yq
+        uses: dcarbone/install-yq-action@v1
+
       - name: Checkout Default Branch
         uses: actions/checkout@v4
         with:
