@@ -78,8 +78,7 @@ jobs:
 
       - name: Install yq
         shell: bash
-        run: curl https://github.com/mikefarah/yq/releases/latest/download/yq_linux_arm64 -O /usr/bin/yq && chmod +x /usr/bin/yq
-
+        run: curl -L https://github.com/mikefarah/yq/releases/latest/download/yq_linux_arm64 -o /usr/bin/yq && chmod +x /usr/bin/yq
 
       - name: Checkout Default Branch
         uses: actions/checkout@v4
@@ -147,12 +146,9 @@ jobs:
       max-parallel: 4
       fail-fast: false
     steps:
-      - name: Setup Homebrew
-        uses: Homebrew/actions/setup-homebrew@master
-
       - name: Setup Workflow Tools
         shell: bash
-        run: brew install siderolabs/tap/talosctl
+        run: curl -L -o /usr/bin/talosctl "https://github.com/siderolabs/talos/releases/download/latest/talosctl-linux-arm64" && chmod +x /usr/bin/talosctl
 
       - name: Pre-pull Image
         run: talosctl -n $NODE_IP image pull ${{ matrix.images }}
