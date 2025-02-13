@@ -54,7 +54,7 @@ jobs:
         run: curl https://github.com/mikefarah/yq/releases/latest/download/yq_linux_arm64 -O /usr/bin/yq && chmod +x /usr/bin/yq
 
       - name: Setup Flux CLI
-        uses: fluxcd/flux2/action@709b17ce59d184427c1395bc70f496ba528d3bee
+        uses: fluxcd/flux2/action@035afd953330a058c1d3c77afde70b251f7b314f
         with:
           version: 'latest'
 
