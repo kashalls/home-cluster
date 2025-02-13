@@ -17,25 +17,6 @@ cgroup:
 cluster:
   id: 1
   name: main
-clusterMesh:
-  useAPIServer: true
-  apiserver:
-    kvstoremesh:
-      enabled: false
-    service:
-      type: LoadBalancer
-      loadBalancerIP: 172.16.10.254
-    tls:
-      auto:
-        certManagerIssuerRef:
-          group: cert-manager.io
-          kind: ClusterIssuer
-          name: cilium-ca
-  config:
-    enabled: true
-    clusters:
-      - name: raspi
-        ips: ["172.16.11.254"]
 enableIPv4BIGTCP: true
 endpointRoutes:
   enabled: true
