@@ -90,3 +90,4 @@ spec:
         trustCRDsExist: true
     dashboards:
       enabled: true
+    deez: nuts
