@@ -26,7 +26,11 @@ clusterMesh:
       type: LoadBalancer
       loadBalancerIP: 172.16.10.254
     tls:
-      authMode: cluster
+      auto:
+        certManagerIssuerRef:
+          group: cert-manager.io
+          kind: ClusterIssuer
+          name: cilium-ca
   config:
     enabled: true
     clusters:
