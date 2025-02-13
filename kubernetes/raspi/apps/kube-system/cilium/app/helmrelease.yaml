@@ -34,6 +34,7 @@ spec:
           loadBalancerIP: 172.16.11.254
         tls: &cmtls
           auto:
+            method: certmanager
             certManagerIssuerRef:
               group: cert-manager.io
               kind: ClusterIssuer
