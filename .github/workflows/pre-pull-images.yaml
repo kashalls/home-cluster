@@ -128,7 +128,7 @@ jobs:
         id: extract-images
         shell: bash
         run: |
-          images=$(grep -vf default.txt pull.txt | jq -R . | jq -s .)
+          images=$(grep -vf default.txt pull.txt | jq -R . | jq -cs .)
           echo "images=${images}" >> $GITHUB_OUTPUT
           echo "${images}"
           echo "### Images" >> $GITHUB_STEP_SUMMARY
