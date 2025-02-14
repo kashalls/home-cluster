@@ -83,4 +83,3 @@ spec:
         trustCRDsExist: true
     dashboards:
       enabled: true
-    very: stupid
