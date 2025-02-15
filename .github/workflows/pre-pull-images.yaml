@@ -147,7 +147,11 @@ jobs:
     steps:
       - name: Setup Workflow Tools
         shell: bash
-        run: curl -L -o /usr/bin/talosctl "https://github.com/siderolabs/talos/releases/download/latest/talosctl-linux-arm64" && chmod +x /usr/bin/talosctl
+        run: |
+          curl -LO https://github.com/siderolabs/talos/releases/download/latest/talosctl-linux-arm64
+          chmod +x talosctl-linux-arm64
+          mv ./talosctl-linux-arm64 ~/.local/bin/talosctl
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
       - name: Pre-pull Image
         run: talosctl -n $NODE_IP image pull ${{ matrix.images }}
