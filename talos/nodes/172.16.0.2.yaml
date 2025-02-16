@@ -1,0 +1,13 @@
+---
+machine:
+  type: controlplane
+  network:
+    hostname: fenrys
+  disks:
+    - device: /dev/disk/by-id/nvme-KINGSTON_OM8PGP41024Q-A0_50026B7382F40A20
+      partitions:
+        - mountpoint: /var/mnt/extra
+  install:
+    diskSelector:
+      serial: 2318E6D1E1A3
+    image: factory.talos.dev/installer-secureboot/f7c6a7666116fc7600224d97e8edda6c22decec1838461e179399fc3bbdfe44f:${TALOS_VERSION}
