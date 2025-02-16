@@ -11,7 +11,6 @@
     ":skipStatusChecks",
     ":timezone(America/Los_Angeles)",
     "github>kashalls/home-cluster//.github/renovate/autoMerge.json5",
-    "github>kashalls/home-cluster//.github/renovate/clusters.json5",
     "github>kashalls/home-cluster//.github/renovate/commitMessage.json5",
     "github>kashalls/home-cluster//.github/renovate/customManagers.json5",
     "github>kashalls/home-cluster//.github/renovate/grafanaDashboards.json5",

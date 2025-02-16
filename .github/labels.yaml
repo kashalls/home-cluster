@@ -10,11 +10,6 @@
   color: "0e8a16"
 - name: area/taskfile
   color: "0e8a16"
-# Clusters
-- name: cluster/main
-  color: "ffc300"
-- name: cluster/raspi
-  color: "ffc300"
 # Renovate Types
 - name: renovate/ansible
   color: "027fa0"

@@ -10,4 +10,4 @@ machine:
   install:
     diskSelector:
       serial: 2318E6D1E1A3
-    image: factory.talos.dev/installer-secureboot/f7c6a7666116fc7600224d97e8edda6c22decec1838461e179399fc3bbdfe44f:${TALOS_VERSION}
+    image: factory.talos.dev/installer-secureboot/f7c6a7666116fc7600224d97e8edda6c22decec1838461e179399fc3bbdfe44f:{{ ENV.TALOS_VERSION }}
