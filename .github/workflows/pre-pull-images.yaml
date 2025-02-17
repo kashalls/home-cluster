@@ -12,11 +12,16 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  changed-clusters:
-    name: Changed Clusters
+  extract-images:
+    name: Extract Images
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        branches: ["default", "pull"]
+      fail-fast: false
     outputs:
-      matrix: ${{ steps.changed-clusters.outputs.all_changed_and_modified_files }}
+      default: ${{ steps.extract-images.outputs.default }}
+      pull: ${{ steps.extract-images.outputs.pull }}
     steps:
       - name: Generate Token
         uses: actions/create-github-app-token@v1
@@ -29,41 +34,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: "${{ steps.app-token.outputs.token }}"
-          fetch-depth: 0
-
-      - name: Get Changed Clusters
-        id: changed-clusters
-        uses: tj-actions/changed-files@v45
-        with:
-          files: kubernetes/**
-          files_ignore: kubernetes/shared/**
-          dir_names: true
-          dir_names_max_depth: 2
-          matrix: true
-
-      - name: List All Changed Clusters
-        run: echo "${{ steps.changed-clusters.outputs.all_changed_and_modified_files }}"
-
-  extract-images:
-    name: Extract Images
-    runs-on: ubuntu-latest
-    needs: ["changed-clusters"]
-    permissions:
-      pull-requests: write
-    strategy:
-      matrix:
-        paths: ${{ fromJSON(needs.changed-clusters.outputs.matrix) }}
-      max-parallel: 4
-      fail-fast: false
-    outputs:
-      matrix: ${{ steps.extract-images.outputs.images }}
-    steps:
-      - name: Generate Token
-        uses: actions/create-github-app-token@v1
-        id: app-token
-        with:
-          app-id: "${{ secrets.BOT_APP_ID }}"
-          private-key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
+          ref: "${{ matrix.branches == 'default' && github.event.repository.default_branch || '' }}"
 
       - name: Install Kubectl
         shell: bash
@@ -76,87 +47,71 @@ jobs:
           mv ./kubectl ~/.local/bin/kubectl
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
-      - name: Install yq
-        uses: dcarbone/install-yq-action@v1
-
-      - name: Checkout Default Branch
-        uses: actions/checkout@v4
-        with:
-          token: "${{ steps.app-token.outputs.token }}"
-          ref: "${{ github.event.repository.default_branch }}"
-          path: default
-
-      - name: Checkout Pull Request Branch
-        uses: actions/checkout@v4
-        with:
-          token: "${{ steps.app-token.outputs.token }}"
-          path: pull
-
-      - name: Gather Images in Default Branch
+      - name: Gather Images
         uses: docker://ghcr.io/allenporter/flux-local:v7.0.0
         with:
           args: >-
             get cluster
-            --path /github/workspace/default/${{ matrix.paths }}/flux
+            --all-namespaces
+            --path /github/workspace/kubernetes/flux/cluster
             --enable-images
             --output yaml
-            --output-file default.yaml
+            --output-file images.yaml
 
-      - name: Gather Images in Pull Request Branch
-        uses: docker://ghcr.io/allenporter/flux-local:v7.0.0
-        with:
-          args: >-
-            get cluster
-            --path /github/workspace/pull/${{ matrix.paths }}/flux
-            --enable-images
-            --output yaml
-            --output-file pull.yaml
-
-      - name: Filter Default Branch Results
-        shell: bash
-        run: |
-          yq -r '[.. | .images? | select(. != null)] | flatten | sort | unique | .[]' \
-              default.yaml > default.txt
-
-      - name: Filter Pull Request Branch Results
-        shell: bash
-        run: |
-          yq -r '[.. | .images? | select(. != null)] | flatten | sort | unique | .[]' \
-              pull.yaml > pull.txt
-
-      - name: Compare Default and Pull Request Images
+      - name: Extract Images
         id: extract-images
-        shell: bash
         run: |
-          images=$(grep -vf default.txt pull.txt | jq -R . | jq -cs .)
+          images=$(yq --indent=0 --output-format=json \
+              '[.. | .images? | select(. != null)] | flatten | sort | unique' images.yaml \
+          )
+          echo "${{ matrix.branches }}=${images}" >> $GITHUB_OUTPUT
+
+  compare-images:
+    name: Compare Images
+    runs-on: ubuntu-latest
+    needs: ["extract-images"]
+    outputs:
+      images: ${{ steps.compare-images.outputs.images }}
+    steps:
+      - name: Compare Images
+        id: compare-images
+        run: |
+          images=$(jq --compact-output --null-input \
+              --argjson f1 '${{ needs.extract-images.outputs.default }}' \
+              --argjson f2 '${{ needs.extract-images.outputs.pull }}' \
+              '$f2 - $f1' \
+          )
           echo "images=${images}" >> $GITHUB_OUTPUT
-          echo "${images}"
-          echo "### Images" >> $GITHUB_STEP_SUMMARY
-          echo "${images}" | jq -r 'to_entries[] | "* \(.value)"' >> $GITHUB_STEP_SUMMARY
 
   pre-pull-images:
-    if: ${{ needs.extract-images.outputs.matrix != '[]' }}
+    if: ${{ needs.compare-images.outputs.images != '[]' }}
     name: Pre-pull Images
     runs-on: ["home-ops-runner"]
-    needs: ["extract-images"]
+    needs: ["compare-images"]
     strategy:
       matrix:
-        images: ${{ fromJSON(needs.extract-images.outputs.matrix) }}
+        images: ${{ fromJSON(needs.compare-images.outputs.images) }}
       max-parallel: 4
       fail-fast: false
     steps:
       - name: Setup Workflow Tools
         shell: bash
         run: |
-          curl -LO https://github.com/siderolabs/talos/releases/download/latest/talosctl-linux-arm64
-          chmod +x talosctl-linux-arm64
-          mv ./talosctl-linux-arm64 ~/.local/bin/talosctl
+          arch=$(uname -m)
+
+          case "$arch" in
+              x86_64) echo "amd64" ;;
+              aarch64) echo "arm64" ;;
+              *) echo "Unsupported architecture: $arch" && exit 1 ;;
+          esac
+          curl -L -o ./talosctl "https://github.com/siderolabs/talos/releases/download/latest/talosctl-linux-$arch"
+          chmod +x talosctl
+          mv ./talosctl ~/.local/bin/talosctl
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
       - name: Pre-pull Image
         run: talosctl -n $NODE_IP image pull ${{ matrix.images }}
 
-  # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
   pre-pull-images-success:
     if: ${{ always() }}
     needs: ["pre-pull-images"]
