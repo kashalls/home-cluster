@@ -53,7 +53,7 @@ tasks:
     requires:
       vars: ["cluster"]
     cmds:
-      - flux --context {{.cluster}} reconcile -n flux-system kustomization home- --with-source
+      - flux --context {{.cluster}} reconcile -n flux-system kustomization home-kubernetes --with-source
 
   hr-restart:
     desc: Restart all failed Helm Releases
