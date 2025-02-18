@@ -106,6 +106,7 @@ jobs:
           esac
           curl -L -o ./talosctl "https://github.com/siderolabs/talos/releases/download/latest/talosctl-linux-$arch"
           chmod +x talosctl
+          mkdir -p ~/.local/bin
           mv ./talosctl ~/.local/bin/talosctl
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
