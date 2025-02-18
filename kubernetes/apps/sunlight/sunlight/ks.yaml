@@ -17,6 +17,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
+    namespace: flux-system
   targetNamespace: *namespace
   wait: false
   interval: 30m
