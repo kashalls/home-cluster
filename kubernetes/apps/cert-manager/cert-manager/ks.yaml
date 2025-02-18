@@ -34,7 +34,9 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: cert-manager
+      namespace: cert-manager
     - name: external-secrets-stores
+      namespace: external-secrets
   path: ./kubernetes/apps/cert-manager/cert-manager/issuers
   prune: true
   sourceRef:

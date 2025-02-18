@@ -34,7 +34,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: system-upgrade
-      namespace: &namespace kube-system
+      namespace: kube-system
   interval: 30m
   path: ./kubernetes/apps/kube-system/system-upgrade/plans
   postBuild:

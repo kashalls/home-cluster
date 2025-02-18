@@ -12,9 +12,11 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: node-feature-discovery
+      namespace: kube-system
     - name: mosquitto
       namespace: default
     - name: external-secrets-stores
+      namespace: external-secrets
   path: ./kubernetes/apps/default/rtlamr2mqtt/app
   prune: true
   sourceRef:
