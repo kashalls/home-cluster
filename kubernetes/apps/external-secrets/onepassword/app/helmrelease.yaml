@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: onepassword-connect
+  name: onepassword
 spec:
   interval: 30m
   chart:
@@ -24,7 +24,7 @@ spec:
       retries: 3
   values:
     controllers:
-      onepassword-connect:
+      onepassword:
         strategy: RollingUpdate
         annotations:
           reloader.stakater.com/auto: "true"
@@ -115,7 +115,7 @@ spec:
             fsGroupChangePolicy: OnRootMismatch
     service:
       api:
-        controller: onepassword-connect
+        controller: onepassword
         ports:
           http:
             port: *apiPort
