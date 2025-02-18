@@ -3,46 +3,43 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app cert-manager
-  namespace: &namespace cert-manager
+  name: &app onepassword
+  namespace: &namespace external-secrets
 spec:
-  targetNamespace: *namespace
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/apps/cert-manager/cert-manager/app
+  interval: 30m
+  path: ./kubernetes/apps/external-secrets/onepassword/app
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-kubernetes
+    name: flux-system
     namespace: flux-system
-  wait: true
-  interval: 30m
-  retryInterval: 1m
+  targetNamespace: *namespace
   timeout: 5m
+  wait: true
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app cert-manager-issuers
-  namespace: &namespace cert-manager
+  name: &app onepassword-store
+  namespace: &namespace external-secrets
 spec:
-  targetNamespace: *namespace
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: cert-manager
-      namespace: cert-manager
-    - name: onepassword-store
+    - name: onepassword
       namespace: external-secrets
-  path: ./kubernetes/apps/cert-manager/cert-manager/issuers
+  interval: 30m
+  path: ./kubernetes/apps/external-secrets/onepassword/store
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-kubernetes
+    name: flux-system
     namespace: flux-system
-  interval: 30m
-  retryInterval: 1m
+  targetNamespace: *namespace
   timeout: 5m
+  wait: true

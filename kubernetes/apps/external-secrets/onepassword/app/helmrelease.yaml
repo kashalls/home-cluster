@@ -119,20 +119,6 @@ spec:
         ports:
           http:
             port: *apiPort
-    ingress:
-      api:
-        className: internal
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "internal.ok8.sh"
-        hosts:
-          - host: &host "onepassword-connect.ok8.sh"
-            paths:
-              - path: /
-                service:
-                  identifier: api
-                  port: http
-        tls:
-          - hosts: [*host]
     persistence:
       config:
         type: emptyDir
