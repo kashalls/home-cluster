@@ -10,6 +10,7 @@ resources:
   - ./cilium.yaml
   - ./cloudnative-pg.yaml
   - ./coder.yaml
+  - ./controlplaneio.yaml
   - ./coredns.yaml
   - ./democratic-csi.yaml
   - ./descheduler.yaml
