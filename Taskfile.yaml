@@ -17,6 +17,7 @@ env:
   TALOSCONFIG: '{{.CLUSTER_DIR}}/talosconfig'
 
 includes:
+  bootstrap: .taskfiles/Bootstrap/Taskfile.yaml
   flux: .taskfiles/Flux/Taskfile.yaml
   kubernetes: .taskfiles/Kubernetes/Taskfile.yaml
   rook: .taskfiles/Rook/Taskfile.yaml

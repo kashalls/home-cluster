@@ -1,0 +1,42 @@
+---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: "3"
+
+vars:
+  controller:
+    sh: talosctl config info --output json | jq --exit-status --raw-output '.endpoints[]' | shuf -n 1
+
+tasks:
+  default:
+    desc: Bootstraps cluster dependencies
+    prompt: Bootstrap cluster required dependencies?
+    cmds:
+      - task: kubeconfig
+      - task: resources
+      - task: helmfile
+    preconditions:
+      - test -f {{.ROOT_DIR}}/talosconfig
+      - talosctl config info
+      - op user get --me
+
+  kubeconfig:
+    desc: Fetches a new kubeconfig from a controller
+    cmd: talosctl kubeconfig --nodes {{.controller}} --force --force-context-name main "$(basename "${KUBECONFIG}")"
+    preconditions:
+      - test -f {{.ROOT_DIR}}/talosconfig
+      - talosctl config info
+
+  resources:
+    desc: Creates required secrets for cluster
+    cmd: minijinja-cli "{{.ROOT_DIR}}/bootstrap/secrets.yaml.tpl" | op.exe inject | kubectl apply -f -
+    preconditions:
+      - test -f {{.ROOT_DIR}}/kubeconfig
+      - test -f {{.ROOT_DIR}}/bootstrap/secrets.yaml.tpl
+      - op user get --me | read -r _ && echo "true" || echo "false"
+
+  helmfile:
+    desc: Applies bootstrap helmfile
+    cmd: helmfile --file "{{.ROOT_DIR}}/bootstrap/helmfile.yaml"
+    preconditions:
+      - test -f {{.ROOT_DIR}}/bootstrap/helmfile.yaml
+      - helm diff version

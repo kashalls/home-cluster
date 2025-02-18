@@ -80,16 +80,6 @@ tasks:
       - talosctl config info
       - which jq talosctl
 
-  kubeconfig:
-    desc: Generate the kubeconfig for a Talos cluster
-    cmd: talosctl kubeconfig --nodes {{.TALOS_CONTROLLER}} --force {{.CLUSTER_DIR}}
-    vars:
-      TALOS_CONTROLLER:
-        sh: talosctl config info --output json | jq --raw-output '.endpoints[]' | shuf -n 1
-    preconditions:
-      - talosctl config info
-      - which jq talosctl
-
   apply-cluster:
     desc: Apply Talos config across the whole cluster [MODE=default]
     cmds:
@@ -131,10 +121,3 @@ tasks:
         sh: talosctl config info --output json | jq --join-output '[.nodes[]] | join(" ")'
     preconditions:
       - which jq talosctl
-
-  bootstrap-apps:
-    desc: Bootstrap core apps needed for Talos
-    cmd: helmfile --quiet --file {{.CLUSTER_DIR}}/bootstrap/helmfile.yaml apply --skip-diff-on-install --suppress-diff
-    preconditions:
-      - talosctl config info >/dev/null 2>&1
-      - test -f {{.CLUSTER_DIR}}/bootstrap/helmfile.yaml
