@@ -4,9 +4,9 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app azeroth-mysql
-  namespace: flux-system
+  namespace: &namespace default
 spec:
-  targetNamespace: game-servers
+  targetNamespace: *namespace
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -25,9 +25,9 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app azeroth-auth
-  namespace: flux-system
+  namespace: &namespace default
 spec:
-  targetNamespace: game-servers
+  targetNamespace: *namespace
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -38,6 +38,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
+    namespace: flux-system
   wait: true
   interval: 30m
   retryInterval: 1m
@@ -48,9 +49,9 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app azeroth-world
-  namespace: flux-system
+  namespace: &namespace default
 spec:
-  targetNamespace: game-servers
+  targetNamespace: *namespace
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -61,6 +62,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
+    namespace: flux-system
   wait: true
   interval: 30m
   retryInterval: 1m
@@ -71,9 +73,9 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app azeroth-data-import
-  namespace: flux-system
+  namespace: &namespace default
 spec:
-  targetNamespace: game-servers
+  targetNamespace: *namespace
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -84,6 +86,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
+    namespace: flux-system
   wait: true
   interval: 30m
   retryInterval: 1m
