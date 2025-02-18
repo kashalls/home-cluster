@@ -11,7 +11,9 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: nginx-internal
+      namespace: networking
     - name: external-secrets-stores
+      namespace: external-secrets
   path: ./kubernetes/apps/sunlight/sunlight/app
   prune: true
   sourceRef:
