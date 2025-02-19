@@ -1,85 +1,71 @@
 ---
-  # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
-  name: "Schemas"
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: "Schemas"
 
-  on:
-    workflow_dispatch:
-    schedule:
-      - cron: "0 0 * * *" # Every day at midnight
-    push:
-      branches: ["main"]
-      paths: [".github/workflows/schemas.yaml", ".github/workflow/scripts/generate_index.sh"]
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *" # Every day at midnight
+  push:
+    branches: ["main"]
+    paths: [".github/workflows/schemas.yaml"]
 
-  jobs:
-    publish:
-      name: Schemas
-      runs-on: ["home-ops-runner"]
-      permissions:
-        contents: read
-        packages: write
-      steps:
-        - name: Generate Token
-          uses: actions/create-github-app-token@v1
-          id: app-token
-          with:
-            app-id: "${{ secrets.BOT_APP_ID }}"
-            private-key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
+jobs:
+  publish:
+    name: Schemas
+    runs-on: ["home-ops-runner"]
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Generate Token
+        uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: "${{ secrets.BOT_APP_ID }}"
+          private-key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
 
-        - name: Checkout
-          uses: actions/checkout@v4
-          with:
-            token: "${{ steps.app-token.outputs.token }}"
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: "${{ steps.app-token.outputs.token }}"
 
-        - name: Install Kubectl
-          shell: bash
-          run: |
-            curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/arm64/kubectl"
-            curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/arm64/kubectl.sha256"
-            echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
-            chmod +x kubectl
-            mkdir -p ~/.local/bin
-            mv ./kubectl ~/.local/bin/kubectl
-            echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - name: Setup Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
 
-        - name: Setup Python
-          uses: actions/setup-python@v5
-          with:
-            python-version: 3.x
+      - name: Setup Workflow Tools
+        run: brew install kubectl uv
 
-        - name: Setup Node
-          uses: actions/setup-node@v4
-          with:
-            node-version: 22.x
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.13.x
 
-        - name: Write kubeconfig
-          id: kubeconfig
-          uses: timheuer/base64-to-file@v1
-          with:
-            encodedString: "${{ secrets.KUBECONFIG }}"
-            fileName: kubeconfig
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
 
-        - name: Download and run crd-extractor
-          env:
-            KUBECONFIG: "${{ steps.kubeconfig.outputs.filePath }}"
-          shell: bash
-          run: |
-            curl -fsSL -o $GITHUB_WORKSPACE/crd-extractor.sh \
-                https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/Utilities/crd-extractor.sh
-            chmod +x $GITHUB_WORKSPACE/crd-extractor.sh
-            bash $GITHUB_WORKSPACE/crd-extractor.sh
+      - name: Download and run crd-extractor
+        shell: bash
+        run: |
+          curl -fsSL -o $GITHUB_WORKSPACE/crd-extractor.sh \
+              https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/Utilities/crd-extractor.sh
+          chmod +x $GITHUB_WORKSPACE/crd-extractor.sh
+          bash $GITHUB_WORKSPACE/crd-extractor.sh
 
-        - name: Generate index.html
-          shell: bash
-          run: |
-            curl -fsSL -o $GITHUB_WORKSPACE/generate_index.sh \
-              https://raw.githubusercontent.com/kashalls/home-cluster/refs/heads/main/.github/workflows/scripts/generate_index.sh
-            chmod +x $GITHUB_WORKSPACE/generate_index.sh
-            bash $GITHUB_WORKSPACE/generate_index.sh
+      - name: Generate index.html
+        shell: bash
+        run: |
+          curl -fsSL -o $GITHUB_WORKSPACE/generate_index.sh \
+            https://raw.githubusercontent.com/kashalls/home-cluster/refs/heads/main/.github/workflows/scripts/generate_index.sh
+          chmod +x $GITHUB_WORKSPACE/generate_index.sh
+          bash $GITHUB_WORKSPACE/generate_index.sh
 
-        - name: Deploy to Cloudflare Pages
-          uses: cloudflare/wrangler-action@v3.14.0
-          with:
-            apiToken: "${{ secrets.CLOUDFLARE_API_TOKEN }}"
-            accountId: "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
-            workingDirectory: /home/runner/.datree/crdSchemas
-            command: pages deploy --project-name=kubernetes-schemas --branch main .
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3.14.0
+        with:
+          apiToken: "${{ secrets.CLOUDFLARE_API_TOKEN }}"
+          accountId: "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
+          workingDirectory: /home/runner/.datree/crdSchemas
+          command: pages deploy --project-name=kubernetes-schemas --branch main .
