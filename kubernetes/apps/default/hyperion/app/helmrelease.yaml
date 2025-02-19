@@ -42,7 +42,7 @@ spec:
             RUST_LOG: info
           securityContext:
             allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
+            readOnlyRootFilesystem: false
             capabilities: { drop: ["ALL"] }
         containers:
           proxy:
