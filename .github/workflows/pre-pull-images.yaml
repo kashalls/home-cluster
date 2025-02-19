@@ -101,7 +101,7 @@ jobs:
         run: brew install siderolabs/tap/talosctl
 
       - name: Pre-pull Image
-        run: talosctl --nodes $NODE image pull ${{ matrix.images }}
+        run: talosctl image pull --nodes $NODE_IP ${{ matrix.images }}
 
   pre-pull-images-success:
     if: ${{ always() }}
