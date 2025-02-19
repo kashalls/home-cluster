@@ -27,8 +27,6 @@ spec:
       namespace: default
     - name: openebs
       namespace: openebs-system
-    - name: volsync
-      namespace: volsync-system
   values:
     controllers:
       zigbee2mqtt:
@@ -67,6 +65,8 @@ spec:
               ZIGBEE2MQTT_CONFIG_MQTT_VERSION: 5
               ZIGBEE2MQTT_CONFIG_PERMIT_JOIN: "false"
               ZIGBEE2MQTT_CONFIG_SERIAL_ADAPTER: "zstack"
+              ZIGBEE2MQTT_CONFIG_SERIAL_BAUDRATE: 115200
+              ZIGBEE2MQTT_CONFIG_SERIAL_DISABLE_LED: "false"
               ZIGBEE2MQTT_CONFIG_SERIAL_PORT: tcp://172.16.2.42:6638
             envFrom:
               - secretRef:
@@ -115,8 +115,6 @@ spec:
                 service:
                   identifier: app
                   port: http
-        tls:
-          - hosts: [*host]
     persistence:
       data:
         enabled: true
