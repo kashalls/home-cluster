@@ -26,50 +26,45 @@ spec:
     - name: openebs
       namespace: openebs-system
   values:
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 65534
+        runAsGroup: 65534
+        runAsNonRoot: true
+        fsGroup: 65534
+        fsGroupChangePolicy: OnRootMismatch
     controllers:
       hyperion:
         annotations:
           reloader.stakater.com/auto: "true"
+        defaultContainerOptions:
+          env:
+            RUST_LOG: info
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }
         containers:
           proxy:
             image:
               repository: ghcr.io/hyperion-mc/hyperion/hyperion-proxy
               tag: latest
             command: ["--server", "hyperion-tag:35565", "0.0.0.0:25565"]
-            env:
-              RUST_LOG: info
             probes:
               liveness:
                 enabled: false
               readiness:
                 enabled: false
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
           tag:
             image:
               repository: ghcr.io/hyperion-mc/hyperion/tag
               tag: latest
             command: []
-            env:
-              RUST_LOG: info
             probes:
               liveness:
                 enabled: false
               readiness:
                 enabled: false
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
-        pod:
-          securityContext:
-            runAsUser: 65534
-            runAsGroup: 65534
-            runAsNonRoot: true
-            fsGroup: 65534
-            fsGroupChangePolicy: OnRootMismatch
     service:
       proxy:
         controller: hyperion
