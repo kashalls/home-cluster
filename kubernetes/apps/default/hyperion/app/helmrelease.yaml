@@ -34,7 +34,7 @@ spec:
           proxy:
             image:
               repository: ghcr.io/hyperion-mc/hyperion/hyperion-proxy
-              tag: latest@sha256:eab9b4f603dc0ff8741a6fb620c7b49e97495c5673a6c3866f5d7f4281e4f216
+              tag: latest
             command: ["--server", "hyperion-tag:35565", "0.0.0.0:25565"]
             env:
               RUST_LOG: info
@@ -50,7 +50,7 @@ spec:
           tag:
             image:
               repository: ghcr.io/hyperion-mc/hyperion/tag
-              tag: latest@sha256:eab9b4f603dc0ff8741a6fb620c7b49e97495c5673a6c3866f5d7f4281e4f216
+              tag: latest
             command: []
             env:
               RUST_LOG: info
