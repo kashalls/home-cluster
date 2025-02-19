@@ -23,7 +23,7 @@ spec:
     resources:
       requests:
         cpu: 6000m
-        memory: 10240Mi
+        memory: &memory-limit10G
     livenessProbe:
       initialDelaySeconds: 0
     readinessProbe:
@@ -35,6 +35,8 @@ spec:
       ENABLE_ROLLING_LOGS: true
       ALLOW_FLIGHT: true
       DUMP_SERVER_PROPERTIES: true
+      INIT_MEMORY: 1G
+      MAX_MEMORY: *memory-limit
     persistence:
       storageClass: openebs-hostpath
       dataDir:
@@ -77,7 +79,6 @@ spec:
       worldSaveName: world
       viewDistance: 10
       # forceReDownload: true
-      memory: "10G"
       jvmXXOpts: "-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1"
       overrideServerProperties: true
       enableCommandBlock: true
