@@ -19,51 +19,58 @@
 
 ## What is this?
 
-This is the repository I use to version control my kubernetes clusters I deploy and maintain at home. I currently use [Talos](https://www.talos.dev/) to provide a secure, minimal and immutable environment for Kubernetes. Previous iterations of this repository relied on Debian-based Operating Systems which can lead unwanted changes in the base system.
+This is the repository I use to version control my kubernetes cluster I deploy and maintain at home. I currently use [Talos](https://www.talos.dev/) to provide a secure, minimal and immutable environment for Kubernetes. Previous iterations of this repository relied on Debian-based Operating Systems which can lead unwanted changes in the base system.
 
 ## How did you do this?
 
 Thanks to [onedr0p](https://github.com/onedr0p), there is the [cluster template](https://github.com/onedr0p/flux-cluster-template) that allows you to easily get started with your own kubernetes cluster at home. You don't need to have multiple computers or a fancy setup to get one working.
 
-If you're interested, you can also join the community [Discord](https://discord.com): [Home Operations](https://discord.gg/home-operations). Several people are involved daily and it makes for some interesting conversations.
+If you're interested, you can also join the community [Home Operations](https://discord.gg/home-operations). Several people are involved daily and it makes for some interesting conversations.
 
 ### Directory Helper
 
 This repository uses the following layout for [Kubernetes](./kubernetes/).
 
 ```sh
+📁 bootstrap
+├── 📝 helmfile.yaml # Helmreleases required to run bootstrap flux.
+└── 📝 secrets.yaml.tpl # Secrets required to bootstrap flux.
 📁 kubernetes
-└── 📁 {cluster}
-   ├── 📁 apps # Per-cluster application-specific configurations.
-   ├── 📁 bootstrap # Flux & Talos configurations for setting up the cluster.
-   ├── 📁 flux # Flux configuration, application repositories and more.
-   ├── 📝 kubeconfig # Kubernetes Certificate
-   └── 📝 talosconfig # Talos Certificate
+├── 📁 apps # Per-cluster application-specific configurations.
+├── 📁 components # Flux & Talos configurations for setting up the cluster.
+└── 📁 flux # Flux configuration, application repositories and more.
+📁 talos
+├── 📁 nodes # Override configurations for each individual node.
+├── 📝 machineconfig.yaml.j2 # Base configuration for all nodes.
+└── 📝 talos.env # Kubernetes and Talos Version Variables
+📁 unifi # Configuration files for UniFi
+📝 kubeconfig
+📝 talosconfig
 ```
 
 ## ☁️ Cloud Dependencies
 
 While most of my infrastructure and workloads are self-hosted I do rely upon the cloud for certain key parts of my setup. This saves me from having to worry about two things. (1) Dealing with chicken/egg scenarios and (2) services I critically need whether my cluster is online or not.
 
-| Service                                    | Use                                                            | Cost           |
-|--------------------------------------------|----------------------------------------------------------------|----------------|
-| [1Password](https://1password.com/)        | Secrets with [External Secrets](https://external-secrets.io/)  | ~$55/yr        |
-| [Cloudflare](https://www.cloudflare.com/)  | Domains, Workers, Pages, and R2                                | ~$30/yr        |
-| [Backblaze B2](https://www.backblaze.com/cloud-storage) | Backups                              | $0.50/m
-| [GCP](https://cloud.google.com/)           | Voice interactions with Home Assistant over Google Assistant   | Free           |
-| [GitHub](https://github.com/)              | Hosting this repository and continuous integration/deployments | Free           |
-| [Let's Encrypt](https://letsencrypt.org/)  | Issuing SSL Certificates with Cert Manager                     | Free           |
-| [Migadu](https://migadu.com/)              | Email Hosting                                                  | ~$20/yr        |
-| [Pushover](https://pushover.net/)          | Kubernetes Alerts and application notifications                | Free           |
-| [UniFi Site Manager](https://unifi.ui.com) | UniFi External Access Management                               | Free           |
-|                                            |                                                                | Total: ~$10/mo |
----
+| Service                                                 | Use                                                            | Cost           |
+|---------------------------------------------------------|----------------------------------------------------------------|----------------|
+| [1Password](https://1password.com/)                     | Secrets with [External Secrets](https://external-secrets.io/)  | ~$55/yr        |
+| [Cloudflare](https://www.cloudflare.com/)               | Domains, Workers, Pages, and R2                                | ~$30/yr        |
+| [Backblaze B2](https://www.backblaze.com/cloud-storage) | Backups                                                        | $0.50/m        |
+| [GCP](https://cloud.google.com/)                        | Voice interactions with Home Assistant over Google Assistant   | Free           |
+| [GitHub](https://github.com/)                           | Hosting this repository and continuous integration/deployments | Free           |
+| [Let's Encrypt](https://letsencrypt.org/)               | Issuing SSL Certificates with Cert Manager                     | Free           |
+| [Migadu](https://migadu.com/)                           | Email Hosting                                                  | ~$20/yr        |
+| [Pushover](https://pushover.net/)                       | Kubernetes Alerts and application notifications                | Free           |
+| [UniFi Site Manager](https://unifi.ui.com)              | UniFi External Access Management                               | Free           |
+|                                                         |                                                                | Total: ~$10/mo |
 
+---
 
 ## 💻 Networking
 
-
 ### Networking Diagram
+
 ```mermaid
 flowchart LR
     A[["#quot;The Internet#quot;"]] -- 2Gbps ↓ 350Mbps  ↑ --> B("UDM Pro Max");
@@ -82,7 +89,6 @@ flowchart LR
 | IoT                 | 3    | Small devices that *could* be compromised, so they don't get to talk to each other. |
 | Services            | 4    | No DHCP, Simply a network for Cluster BGP                                           |
 | "I Don't Trust You" | 86   | Non-affiliated organization issued devices (school or work devices)                 |
-
 
 ### 🌐 DNS
 
