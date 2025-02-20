@@ -79,3 +79,13 @@ spec:
         ports:
           tag:
             port: 35565
+    persistence:
+      config-file:
+        type: configMap
+        name: hyperion-tag-config
+        advancedMounts:
+          hyperion:
+            tag:
+              - path: /run/config.toml
+                subPath: config.toml
+                readOnly: true
