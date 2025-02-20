@@ -41,9 +41,9 @@ spec:
           env:
             RUST_LOG: info
           securityContext:
-            allowPrivilegeEscalation: false
+            allowPrivilegeEscalation: true
             readOnlyRootFilesystem: false
-            capabilities: { drop: ["ALL"] }
+            #capabilities: { drop: ["ALL"] }
         containers:
           proxy:
             image:
