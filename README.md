@@ -77,7 +77,7 @@ flowchart LR
     B -- 10Gbps ↕ --> C("USW Pro Max 16")
     C -- 10Gbps ↕ --> D["1x MS-01 Main (Talos)"]
     C -- 10Gbps ↕ --> E["1x Storage (TrueNAS)"]
-    C -- 1Gbps ↕ --> F["4x Raspian (Talos)"]
+    C -- 1Gbps ↕ --> F["4x Rasbian (Talos)"]
 ```
 
 ### Networks & Vlans
