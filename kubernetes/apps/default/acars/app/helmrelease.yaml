@@ -91,7 +91,7 @@ spec:
                 memory: 64Mi
               limits:
                 memory: 64Mi
-          acarshub:
+          acars-hub:
             image:
               repository: ghcr.io/sdr-enthusiasts/docker-acarshub
               tag: v3.8.0Build1379_nohealthcheck
