@@ -1,0 +1,158 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app acars
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.7.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    controllers:
+      acars:
+        strategy: RollingUpdate
+        annotations:
+          reloader.stakater.com/auto: "true"
+        pod:
+          nodeSelector:
+            rtlamr.feature.node.kubernetes.io/rtlamr: "true"
+        containers:
+          acars-decoder:
+            image:
+              repository: ghcr.io/sdr-enthusiasts/docker-acarsdec
+              tag: latest-build-412
+            env:
+              FEED_ID: KASHUWU-ACARS-1
+              TZ: Etc/UTC
+              SOAPYSDR: driver=rtlsdr
+              FREQUENCIES: "130.025;130.450;131.550;131.725"
+              # Enabling all frequencies to determine which are actually used
+              # RTL-SDR can only scan 2MHz range
+              # See https://app.airframes.io/about
+              # FREQUENCIES: >-
+              #   130.025;130.425;130.450;130.825;130.850;131.125;131.425;
+              #   131.450;131.475;131.525;131.550;131.725;131.825;131.850
+              OUTPUT_SERVER: acars-acarsrouter
+              OUTPUT_SERVER_PORT: "5550"
+              OUTPUT_SERVER_MODE: tcp
+            securityContext:
+              privileged: true
+            resources:
+              requests:
+                cpu: 150m
+                memory: 128Mi
+              limits:
+                memory: 256Mi
+          acars-router:
+            image:
+              repository: ghcr.io/sdr-enthusiasts/acars_router
+              tag: 1.3.1_linux_amd64
+            env:
+              TZ: Etc/UTC
+              AR_RECV_ZMQ_VDLM2: acars-acarshub:45555
+            envFrom:
+              - secretRef:
+                  name: acars-secret
+            resources:
+              requests:
+                cpu: 10m
+                memory: 128Mi
+              limits:
+                memory: 256Mi
+          acars-annotator:
+            image:
+              repository: ghcr.io/tyzbit/acars-annotator
+              tag: latest
+            env:
+              ACARSHUB_HOST: acars-acarshub
+              ACARSHUB_PORT: 15550
+              LOGLEVEL: debug
+            envFrom:
+              - secretRef:
+                  name: acars-annotator
+            resources:
+              requests:
+                cpu: 10m
+                memory: 64Mi
+              limits:
+                memory: 64Mi
+          acarshub:
+            image:
+              repository: ghcr.io/sdr-enthusiasts/docker-acarshub
+              tag: v3.8.0Build1379_nohealthcheck
+            env:
+              TZ: Etc/UTC
+              ENABLE_ADSB: "false"
+              ENABLE_ACARS: external
+              # ENABLE_VDLM: external
+              QUIET_MESSAGES: "false" # This logs the messages themselves
+            resources:
+              requests:
+                cpu: 10m
+                memory: 128Mi
+              limits:
+                memory: 512Mi
+    service:
+      acars-router:
+        controller: acars
+        ports:
+          router:
+            port: 5550
+      acars-hub:
+        controller: acars
+        ports:
+          http:
+            port: 80
+          acarsinput:
+            port: 5550
+            protocol: UDP
+          vdslinput:
+            port: 5555
+            protocol: UDP
+          acarsoutput:
+            port: 15550
+          vdsloutput:
+            port: 15555
+    ingress:
+      acars-hub:
+        className: internal
+        hosts:
+          - host: acars.ok8.sh
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: acars-hub
+                  port: 80
+    persistence:
+      usb:
+        type: hostPath
+        hostPath: /dev/bus/usb
+        advancedMounts:
+          acars:
+            acars-decoder:
+              - path: /dev/bus/usb
+      acars-hub:
+        type: persistentVolumeClaim
+        storageClass: openebs-hostpath
+        size: 2G
+        accessMode: ReadWriteOnce
+        advancedMounts:
+          acars:
+            acars-hub:
+              - path: /run/acars
