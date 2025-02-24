@@ -24,7 +24,7 @@ spec:
       retries: 3
   values:
     controllers:
-      acars:
+      acars-decoder:
         annotations:
           reloader.stakater.com/auto: "true"
         pod:
@@ -57,6 +57,10 @@ spec:
                 memory: 128Mi
               limits:
                 memory: 256Mi
+      acars-router:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
           acars-router:
             image:
               repository: ghcr.io/sdr-enthusiasts/acars_router
@@ -73,6 +77,8 @@ spec:
                 memory: 128Mi
               limits:
                 memory: 256Mi
+      acars-hub:
+        containers:
           acars-hub:
             image:
               repository: ghcr.io/sdr-enthusiasts/docker-acarshub
@@ -91,12 +97,12 @@ spec:
                 memory: 512Mi
     service:
       acars-router:
-        controller: acars
+        controller: acars-router
         ports:
           router:
             port: 5550
       acars-hub:
-        controller: acars
+        controller: acars-hub
         ports:
           http:
             port: 80
@@ -126,7 +132,7 @@ spec:
         type: hostPath
         hostPath: /dev/bus/usb
         advancedMounts:
-          acars:
+          acars-decoder:
             acars-decoder:
               - path: /dev/bus/usb
       acars-hub:
@@ -135,6 +141,6 @@ spec:
         size: 2G
         accessMode: ReadWriteOnce
         advancedMounts:
-          acars:
+          acars-hub:
             acars-hub:
               - path: /run/acars
