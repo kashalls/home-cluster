@@ -73,23 +73,6 @@ spec:
                 memory: 128Mi
               limits:
                 memory: 256Mi
-          acars-annotator:
-            image:
-              repository: ghcr.io/tyzbit/acars-annotator
-              tag: latest
-            env:
-              ACARSHUB_HOST: acars-acars-hub
-              ACARSHUB_PORT: 15550
-              LOGLEVEL: debug
-            envFrom:
-              - secretRef:
-                  name: acars-annotator
-            resources:
-              requests:
-                cpu: 10m
-                memory: 64Mi
-              limits:
-                memory: 64Mi
           acars-hub:
             image:
               repository: ghcr.io/sdr-enthusiasts/docker-acarshub
