@@ -10,6 +10,9 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  dependsOn:
+    - name: onepassword-store
+      namespace: external-secrets
   path: ./kubernetes/apps/default/acars/app
   prune: true
   sourceRef:
