@@ -25,7 +25,6 @@ spec:
   values:
     controllers:
       acars:
-        strategy: RollingUpdate
         annotations:
           reloader.stakater.com/auto: "true"
         pod:
@@ -47,7 +46,7 @@ spec:
               # FREQUENCIES: >-
               #   130.025;130.425;130.450;130.825;130.850;131.125;131.425;
               #   131.450;131.475;131.525;131.550;131.725;131.825;131.850
-              OUTPUT_SERVER: acars-acarsrouter
+              OUTPUT_SERVER: acars-acars-router
               OUTPUT_SERVER_PORT: "5550"
               OUTPUT_SERVER_MODE: tcp
             securityContext:
@@ -64,7 +63,7 @@ spec:
               tag: 1.3.1_linux_amd64
             env:
               TZ: Etc/UTC
-              AR_RECV_ZMQ_VDLM2: acars-acarshub:45555
+              AR_RECV_ZMQ_VDLM2: acars-acars-hub:45555
             envFrom:
               - secretRef:
                   name: acars-secret
@@ -79,7 +78,7 @@ spec:
               repository: ghcr.io/tyzbit/acars-annotator
               tag: latest
             env:
-              ACARSHUB_HOST: acars-acarshub
+              ACARSHUB_HOST: acars-acars-hub
               ACARSHUB_PORT: 15550
               LOGLEVEL: debug
             envFrom:
