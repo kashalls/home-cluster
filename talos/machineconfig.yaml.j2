@@ -108,6 +108,8 @@ machine:
     rules:
       - ACTION=="add", SUBSYSTEM=="thunderbolt", ATTR{authorized}=="0", ATTR{authorized}="1" # Thunderbolt
       - SUBSYSTEM=="drm", KERNEL=="renderD*", GROUP="44", MODE="0660" # Intel GPU
+      - SUBSYSTEM=="usb", ATTR{idVendor}=="0bda", ATTR{idProduct}=="2838", ATTR{serial}=="00000001", SYMLINK+="rtl-sdr-1"
+      - SUBSYSTEM=="usb", ATTR{idVendor}=="0bda", ATTR{idProduct}=="2832", ATTR{serial}=="00001000", SYMLINK+="flighaware-1090"
 cluster:
   allowSchedulingOnControlPlanes: true
   controlPlane:
