@@ -38,7 +38,7 @@ spec:
             env:
               FEED_ID: KASHUWU-ACARS-1
               TZ: Etc/UTC
-              SOAPYSDR: driver=rtlsdr
+              SOAPYSDR: driver=rtlsdr,serial=00000001
               FREQUENCIES: "130.025;130.450;131.550;131.725"
               # Enabling all frequencies to determine which are actually used
               # RTL-SDR can only scan 2MHz range
