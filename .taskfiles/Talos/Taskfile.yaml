@@ -33,7 +33,7 @@ tasks:
       TALOS_SECUREBOOT:
         sh: talosctl --nodes {{.IP}} get securitystate --output=jsonpath='{.spec.secureBoot}'
     requires:
-      vars: [ IP]
+      vars: [IP]
     preconditions:
       - curl -fsSL -o /dev/null --fail https://github.com/siderolabs/talos/releases/tag/$TALOS_VERSION
       - talosctl --nodes {{.IP}} get machineconfig
