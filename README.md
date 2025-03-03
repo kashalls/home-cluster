@@ -112,8 +112,6 @@ UniFi released a new feature update with UniFi routers that allow you to create 
 | U6-LR                   | 1     | -            | -                    | -    | -                | Office AP         |
 | UAP-AC-Pro              | 1     | -            | -                    | -    | -                | Dining Room AP    |
 | USP-PDU-Pro             | 1     | -            | -                    | -    | -                | Rack PDU          |
-| Raspberry Pi 4          | 3     | 256GB SSD    | -                    | 8GB  | Talos            | Raspberry Cluster |
-| Raspberry Pi 5          | 1     | 128GB SSD    | -                    | 8GB  | Soon™ (Talos)    | Raspberry Cluster |
 | MS-01                   | 1     | 1TB NVMe     | 2x1TB NVMe           | 32GB | Talos            | Main Cluster      |
 | Fran                    | 1     | 2x1TB SSD    | 5x8TB (raidz2)       | 64GB | Debian           | Storage Cluster   |
 | JetKVM                  | 1     | 16GB (Flash) | -                    | -    | JetKVM           | Network KVM       |
