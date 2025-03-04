@@ -48,7 +48,7 @@ jobs:
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
       - name: Gather Images
-        uses: docker://ghcr.io/allenporter/flux-local:v7.1.0
+        uses: docker://ghcr.io/allenporter/flux-local:v7.2.0
         with:
           args: >-
             get cluster
