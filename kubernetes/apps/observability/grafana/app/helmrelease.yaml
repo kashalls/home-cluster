@@ -91,7 +91,7 @@ spec:
     dashboards:
       default:
         cert-manager:
-          url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
+          url: https://raw.githubusercontent.com/kashalls/home-cluster/refs/heads/main/kubernetes/apps/observability/grafana/app/dashboards/cert-manager.json
           datasource: Prometheus
         cloudflared:
           # renovate: depName="Cloudflare Tunnels (cloudflared)"
