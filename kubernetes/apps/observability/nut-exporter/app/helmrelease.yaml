@@ -58,7 +58,7 @@ spec:
     serviceMonitor:
       app:
         enabled: true
-        serviceName: nut-exporter-server
+        serviceName: *app
         endpoints:
           - interval: 30s
             path: /ups_metrics
