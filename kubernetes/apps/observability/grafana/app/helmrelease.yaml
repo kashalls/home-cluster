@@ -168,6 +168,9 @@ spec:
         node-feature-discovery:
           url: https://raw.githubusercontent.com/kubernetes-sigs/node-feature-discovery/master/examples/grafana-dashboard.json
           datasource: Prometheus
+        nut-exporter:
+          url: https://raw.githubusercontent.com/DRuggeri/nut_exporter/refs/heads/master/dashboard/dashboard.json
+          datasource: Prometheus
         prometheus:
           # renovate: depName="Prometheus"
           gnetId: 19105
@@ -200,7 +203,7 @@ spec:
           revision: 9
           datasource: Prometheus
         unifi-pdu:
-          url: "https://raw.githubusercontent.com/kashalls/home-cluster/refs/heads/main/kubernetes/apps/observability/grafana/app/dashboards/UniFi-Poller_PDU Insights - Prometheus.json"
+          url: "https://raw.githubusercontent.com/kashalls/home-cluster/refs/heads/main/kubernetes/apps/observability/grafana/app/dashboards/unifi-pdu-test.json"
           datasource: Prometheus
         volsync:
           # renovate: depName="VolSync Dashboard"
