@@ -5,7 +5,6 @@ kind: Kustomization
 resources:
   - ./authentik.yaml
   - ./backube.yaml
-  - ./bitnami.yaml
   - ./bjw-s.yaml
   - ./cilium.yaml
   - ./cloudnative-pg.yaml
@@ -17,14 +16,11 @@ resources:
   - ./external-dns.yaml
   - ./external-secrets.yaml
   - ./grafana.yaml
-  - ./hajimari.yaml
+  - ./immich.yaml
   - ./ingress-nginx.yaml
   - ./intel.yaml
   - ./itzg.yaml
-  - ./jameswynn.yaml
-  - ./jenkinsci.yaml
   - ./jetstack.yaml
-  - ./longhorn.yaml
   - ./metrics-server.yaml
   - ./mongodb.yaml
   - ./nats.yaml
@@ -36,4 +32,3 @@ resources:
   - ./rook-ceph.yaml
   - ./stakater.yaml
   - ./stevehipwell.yaml
-  - ./tofu-controller.yaml

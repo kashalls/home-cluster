@@ -64,7 +64,7 @@
       }
     ]
   },
-  "description": "UniFi Poller v2.0.1 Displays detailed information for network switches in a UniFi network using Prometheus.",
+  "description": "UniFi Poller v2.0.1 Displays detailed information for PDU's in a UniFi network using Prometheus.",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
