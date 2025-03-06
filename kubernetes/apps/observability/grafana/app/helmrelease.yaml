@@ -204,7 +204,7 @@ spec:
           revision: 9
           datasource: Prometheus
         unifi-pdu:
-          url: https://raw.githubusercontent.com/kashalls/home-cluster/refs/heads/main/kubernetes/apps/observability/grafana/app/dashboards/unifi-pdu-test.json"
+          url: https://raw.githubusercontent.com/kashalls/home-cluster/refs/heads/main/kubernetes/apps/observability/grafana/app/dashboards/unifi-pdu-test.json
           datasource:
             - { name: DS_PROMETHEUS, value: Prometheus }
         volsync:
