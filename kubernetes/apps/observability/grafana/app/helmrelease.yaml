@@ -148,6 +148,7 @@ spec:
           gnetId: 11454
           revision: 14
           datasource: Prometheus
+        # itzg
         minecraft-monitor:
           url: https://raw.githubusercontent.com/kashalls/home-cluster/refs/heads/main/kubernetes/apps/observability/grafana/app/dashboards/minecraft-exporter.json
           datasource:
