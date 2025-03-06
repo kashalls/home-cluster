@@ -1,0 +1,65 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &name minecraft-exporter
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.7.2
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    fullnameOverride: *name
+    controllers:
+      minecraft-exporter:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: itzg/mc-monitor
+              tag: 0.15.3@sha256:bde5a8b9ef2f121517d0ca885dabc928cdbe84c895a6133a6e7af62841928d9c
+            args: ["export-for-prometheus"]
+            env:
+              TZ: "America/Los_Angeles"
+            envFrom:
+              - secretRef:
+                  name: minecraft-exporter-secret
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 10m
+                memory: 50Mi
+              limits:
+                memory: 100Mi
+    service:
+      app:
+        controller: *name
+        ports:
+          http:
+            port: 8080
+    serviceMonitor:
+      metrics:
+        enabled: true
+        serviceName: *name
+        endpoints:
+          - port: http
+            scheme: http
+            path: /metrics
+            interval: 5m
+            scrapeTimeout: 2m
