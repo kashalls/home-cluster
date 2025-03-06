@@ -150,7 +150,8 @@ spec:
           datasource: Prometheus
         mc-monitor:
           url: https://raw.githubusercontent.com/itzg/mc-monitor/refs/heads/master/examples/mc-monitor-prom/dashboards/mc-monitor.json
-          datasource: Prometheus
+          datasource:
+            - { name: DS_PROMETHEUS, value: Prometheus }
         miniflux:
           url: https://raw.githubusercontent.com/miniflux/v2/main/contrib/grafana/dashboard.json
           datasource: Prometheus
