@@ -149,9 +149,8 @@ spec:
           revision: 14
           datasource: Prometheus
         mc-monitor:
-          url: https://raw.githubusercontent.com/itzg/mc-monitor/refs/heads/master/examples/mc-monitor-prom/dashboards/mc-monitor.json
-          datasource:
-            - { name: DS_PROMETHEUS, value: Prometheus }
+          url: https://raw.githubusercontent.com/kashalls/home-cluster/refs/heads/main/kubernetes/apps/observability/grafana/app/dashboards/minecraft-exporter.json
+          datasource: Prometheus
         miniflux:
           url: https://raw.githubusercontent.com/miniflux/v2/main/contrib/grafana/dashboard.json
           datasource: Prometheus
@@ -205,7 +204,7 @@ spec:
           revision: 9
           datasource: Prometheus
         unifi-pdu:
-          url: "https://raw.githubusercontent.com/kashalls/home-cluster/refs/heads/main/kubernetes/apps/observability/grafana/app/dashboards/unifi-pdu-test.json"
+          url: https://raw.githubusercontent.com/kashalls/home-cluster/refs/heads/main/kubernetes/apps/observability/grafana/app/dashboards/unifi-pdu-test.json"
           datasource:
             - { name: DS_PROMETHEUS, value: Prometheus }
         volsync:
