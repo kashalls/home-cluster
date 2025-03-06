@@ -28,7 +28,7 @@
   "panels": [
     {
       "datasource": {
-        "uid": "$datasource"
+        "uid": "Prometheus"
       },
       "description": "",
       "fieldConfig": {
@@ -98,7 +98,7 @@
         {
           "datasource": {
 
-            "uid": "$datasource"
+            "uid": "Prometheus"
           },
           "exemplar": true,
           "expr": "minecraft_status_healthy{server_host=\"$server\",server_version=~\".+\"}",
@@ -112,7 +112,7 @@
     },
     {
       "datasource": {
-        "uid": "$datasource"
+        "uid": "Prometheus"
       },
       "description": "",
       "fieldConfig": {
@@ -213,7 +213,7 @@
         {
           "datasource": {
 
-            "uid": "$datasource"
+            "uid": "Prometheus"
           },
           "exemplar": true,
           "expr": "minecraft_status_players_online_count{server_host=\"$server\"}",
@@ -224,7 +224,7 @@
         {
           "datasource": {
 
-            "uid": "$datasource"
+            "uid": "Prometheus"
           },
           "exemplar": true,
           "expr": "minecraft_status_players_max_count{server_host=\"$server\"}",
@@ -239,7 +239,7 @@
     },
     {
       "datasource": {
-        "uid": "$datasource"
+        "uid": "Prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -313,7 +313,7 @@
         {
           "datasource": {
 
-            "uid": "$datasource"
+            "uid": "Prometheus"
           },
           "exemplar": true,
           "expr": "rate(container_cpu_user_seconds_total{container_label_com_docker_compose_service=\"$server\"}[$__rate_interval])",
@@ -328,7 +328,7 @@
     },
     {
       "datasource": {
-        "uid": "$datasource"
+        "uid": "Prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -401,7 +401,7 @@
       "targets": [
         {
           "datasource": {
-            "uid": "$datasource"
+            "uid": "Prometheus"
           },
           "exemplar": true,
           "expr": "container_memory_usage_bytes{container_label_com_docker_compose_service=\"$server\"}",
@@ -428,7 +428,7 @@
           "value": "mc"
         },
         "datasource": {
-          "uid": "$datasource"
+          "uid": "Prometheus"
         },
         "definition": "label_values(server_host)",
         "hide": 0,

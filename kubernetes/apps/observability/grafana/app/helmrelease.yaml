@@ -148,9 +148,10 @@ spec:
           gnetId: 11454
           revision: 14
           datasource: Prometheus
-        mc-monitor:
+        minecraft-monitor:
           url: https://raw.githubusercontent.com/kashalls/home-cluster/refs/heads/main/kubernetes/apps/observability/grafana/app/dashboards/minecraft-exporter.json
-          datasource: Prometheus
+          datasource:
+            - { name: DS_PROMETHEUS, value: Prometheus }
         miniflux:
           url: https://raw.githubusercontent.com/miniflux/v2/main/contrib/grafana/dashboard.json
           datasource: Prometheus
