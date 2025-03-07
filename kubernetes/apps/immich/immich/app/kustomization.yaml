@@ -6,4 +6,5 @@ resources:
   - ./photos.yaml
   - ./ml-cache.yaml
   - ./volsync.yaml
+  - ./postgres.yaml
   - ./helmrelease.yaml

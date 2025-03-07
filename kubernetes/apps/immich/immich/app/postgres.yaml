@@ -1,0 +1,56 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: immich-db
+spec:
+  instances: 1
+  imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:14.11-v0.2.1
+  enableSuperuserAccess: true
+  primaryUpdateMethod: switchover
+  postgresql:
+    shared_preload_libraries:
+      - "vectors.so"
+  storage:
+    storageClass: openebs-hostpath
+    size: 20Gi
+  monitoring:
+    enablePodMonitor: true
+  managed:
+    roles:
+      - name: immich
+        superuser: true
+        login: true
+  backup:
+    retentionPolicy: "14d"
+    barmanObjectStore:
+      destinationPath: s3://kashs-cnpg-backups
+      endpointURL: https://s3.us-west-004.backblazeb2.com
+      wal:
+        compression: bzip2
+      s3Credentials:
+        accessKeyId:
+          name: immich-backup-secret
+          key: AWS_ACCESS_KEY_ID
+        secretAccessKey:
+          name: immich-backup-secret
+          key: AWS_SECRET_ACCESS_KEY
+  bootstrap:
+    initdb:
+      database: immich
+      owner: immich
+      secret:
+        name: immich-postgres-user
+      postInitSQL:
+        - CREATE EXTENSION IF NOT EXISTS "vectors";
+        - CREATE EXTENSION IF NOT EXISTS "cube" CASCADE;
+        - CREATE EXTENSION IF NOT EXISTS "earthdistance" CASCADE;
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: daily-backup
+  namespace: database
+spec:
+  schedule: "@daily"
+  cluster:
+    name: app-db
