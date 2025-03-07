@@ -18,7 +18,7 @@ spec:
       retries: 3
   values:
     postgres:
-      enabled: true
+      enabled: false
     redis:
       enabled: true
     immich:
@@ -30,6 +30,22 @@ spec:
     env:
       LOG_LEVEL: verbose
       TZ: America/Los_Angeles
+      DB_HOSTNAME:
+        valueFrom:
+          secretKeyRef:
+            name: immich-db-superuser
+            key: host
+      DB_USERNAME:
+        valueFrom:
+          secretKeyRef:
+            name: immich-db-superuser
+            key: username
+      DB_PASSWORD:
+        valueFrom:
+          secretKeyRef:
+            name: immich-db-superuser
+            key: password
+      DB_DATABASE_NAME: "immich"
     image:
       # renovate: datasource=github-releases depName=immich-app/immich
       tag: "v1.129.0"
