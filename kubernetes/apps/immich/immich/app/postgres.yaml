@@ -22,7 +22,7 @@ spec:
         superuser: true
         login: true
   backup:
-    retentionPolicy: "14d"
+    retentionPolicy: "10d"
     barmanObjectStore:
       destinationPath: s3://kashs-cnpg-backups
       endpointURL: https://s3.us-west-004.backblazeb2.com
