@@ -19,7 +19,7 @@ tasks:
       - test -f {{.TALOS_DIR}}/machineconfig.yaml.j2
       - test -f {{.TALOS_DIR}}/nodes/{{.IP}}.yaml
       - test -f {{.TALOS_DIR}}/talosconfig
-      - which minijinja-cli sops talosctl
+      - which minijinja-cli talosctl
 
   upgrade-node:
     desc: Upgrade Talos on a single node [IP=required]

@@ -12,11 +12,6 @@
       "**/*.json5": "jsonc"
   },
   "files.trimTrailingWhitespace": true,
-  "material-icon-theme.files.associations": {
-    // TODO: https://github.com/PKief/vscode-material-icon-theme/issues/330
-    "*.sops.env": "lock",
-    "*.sops.yaml": "lock"
-  },
   "material-icon-theme.folders.associations": {
       // top level
       ".archive": "archive",
@@ -41,7 +36,6 @@
       "tools": "tools",
       "volsync": "aws"
   },
-  "sops.defaults.ageKeyFile": "age.key",
   "vs-kubernetes": {
     "vs-kubernetes.kubeconfig": "./kubeconfig",
     "vs-kubernetes.knownKubeconfigs": [
