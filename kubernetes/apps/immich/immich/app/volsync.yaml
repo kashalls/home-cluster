@@ -32,6 +32,9 @@ spec:
     creationPolicy: Owner
     template:
       engineVersion: v2
+      metadata:
+        labels:
+          cnpg.io/reload: "true"
       data:
         RESTIC_REPOSITORY: "s3:https://{{ .ENDPOINT }}/kashs-immich"
         RESTIC_PASSWORD: "{{ .RESTIC_PASSWORD }}"
