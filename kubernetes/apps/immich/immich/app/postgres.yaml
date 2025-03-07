@@ -4,7 +4,7 @@ kind: Cluster
 metadata:
   name: immich-db
 spec:
-  instances: 1
+  instances: 3
   imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:14.11-v0.2.1
   enableSuperuserAccess: true
   primaryUpdateMethod: switchover
@@ -22,7 +22,7 @@ spec:
         superuser: true
         login: true
   backup:
-    retentionPolicy: "10d"
+    retentionPolicy: "14d"
     barmanObjectStore:
       destinationPath: s3://kashs-cnpg-backups
       endpointURL: https://s3.us-west-004.backblazeb2.com
