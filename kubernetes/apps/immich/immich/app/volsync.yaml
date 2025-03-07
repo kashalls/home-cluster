@@ -33,10 +33,10 @@ spec:
     template:
       engineVersion: v2
       data:
-        RESTIC_REPOSITORY: "{{ .username }}"
-        RESTIC_PASSWORD: "{{ .password }}"
-        AWS_ACCESS_KEY_ID: ""
-        AWS_SECRET_ACCESS_KEY: ""
+        RESTIC_REPOSITORY: "s3:https://{{ .ENDPOINT }}/kashs-immich"
+        RESTIC_PASSWORD: "{{ .RESTIC_PASSWORD }}"
+        AWS_ACCESS_KEY_ID: "{{ .B2_APPLICATION_ID }}"
+        AWS_SECRET_ACCESS_KEY: "{{ .B2_APPLICATION_KEY }}"
   dataFrom:
     - extract:
-        key: mosquitto
+        key: backblaze-immich
