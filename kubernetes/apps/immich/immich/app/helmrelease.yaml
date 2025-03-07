@@ -12,7 +12,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: immich-charts
-        namespace: immich
+        namespace: flux-system
   upgrade:
     remediation:
       retries: 3
