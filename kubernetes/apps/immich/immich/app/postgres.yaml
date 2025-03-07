@@ -34,7 +34,7 @@ spec:
           key: AWS_ACCESS_KEY_ID
         secretAccessKey:
           name: immich-backup-secret
-          key: AWS_SECRET_ACCESS_KE
+          key: AWS_SECRET_ACCESS_KEY
   bootstrap:
     initdb:
       database: immich
