@@ -4,7 +4,7 @@ kind: Cluster
 metadata:
   name: immich-db
 spec:
-  instances: 3
+  instances: 1
   imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:14.11-v0.2.1
   enableSuperuserAccess: true
   primaryUpdateMethod: switchover
