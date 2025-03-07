@@ -1,0 +1,60 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: immich
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: immich
+      version: 0.9.1
+      sourceRef:
+        kind: HelmRepository
+        name: immich-charts
+        namespace: immich
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    postgres:
+      enabled: true
+    redis:
+      enabled: true
+    immich:
+      metrics:
+        enabled: true
+      persistence:
+        library:
+          existingClaim: immich-photos
+    env:
+      LOG_LEVEL: verbose
+      TZ: America/Los_Angeles
+    image:
+      # renovate: datasource=github-releases depName=immich-app/immich
+      tag: "v1.129.0"
+    server:
+      resources:
+        requests:
+          cpu: 1500m
+          memory: 2048M
+      ingress:
+        main:
+          enabled: true
+          annotations:
+            kubernetes.io/ingress.class: internal
+            nginx.ingress.kubernetes.io/proxy-body-size: "0"
+          hosts:
+            - host: "photos.ok8.sh"
+              paths:
+                - path: /
+                  pathType: Prefix
+    machine-learning:
+      resources:
+        requests:
+          cpu: 500m
+          memory: 4096M
+      persistence:
+        cache:
+          type: pvc
+          existingClaim: immich-ml-cache

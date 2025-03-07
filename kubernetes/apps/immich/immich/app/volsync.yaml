@@ -1,0 +1,42 @@
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: immich
+spec:
+  sourcePVC: immich-photos
+  trigger:
+    schedule: 0 23 * * *
+  restic:
+    pruneIntervalDays: 14
+    repository: immich-restic-secret
+    retain:
+      daily: 2
+      weekly: 1
+      monthly: 2
+    copyMethod: Direct
+    cacheStorageClassName: openebs-hostpath
+    cacheAccessModes: ["ReadWriteOnce"]
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/external-secrets.io/externalsecret_v1beta1.json
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: immich
+spec:
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: onepassword-connect
+  target:
+    name: immich-backup-secret
+    creationPolicy: Owner
+    template:
+      engineVersion: v2
+      data:
+        RESTIC_REPOSITORY: "{{ .username }}"
+        RESTIC_PASSWORD: "{{ .password }}"
+        AWS_ACCESS_KEY_ID: ""
+        AWS_SECRET_ACCESS_KEY: ""
+  dataFrom:
+    - extract:
+        key: mosquitto
