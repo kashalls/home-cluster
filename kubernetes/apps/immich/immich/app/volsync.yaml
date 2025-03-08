@@ -9,6 +9,7 @@ spec:
     schedule: 0 23 * * *
   restic:
     pruneIntervalDays: 14
+    capacity: 64G
     repository: immich-restic-secret
     retain:
       daily: 2
@@ -16,7 +17,6 @@ spec:
       monthly: 2
     copyMethod: Direct
     cacheStorageClassName: openebs-hostpath
-    cacheAccessModes: ["ReadWriteOnce"]
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/external-secrets.io/externalsecret_v1beta1.json
 apiVersion: external-secrets.io/v1beta1
