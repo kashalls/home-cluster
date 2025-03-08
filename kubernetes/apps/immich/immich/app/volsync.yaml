@@ -43,3 +43,4 @@ spec:
       monthly: 2
     copyMethod: Direct
     cacheStorageClassName: openebs-hostpath
+    cacheAccessModes: ["ReadWriteOnce"]
