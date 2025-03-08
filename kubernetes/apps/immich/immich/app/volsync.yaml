@@ -1,23 +1,4 @@
 ---
-apiVersion: volsync.backube/v1alpha1
-kind: ReplicationSource
-metadata:
-  name: immich
-spec:
-  sourcePVC: immich-photos
-  trigger:
-    schedule: 0 23 * * *
-  restic:
-    pruneIntervalDays: 14
-    capacity: 64G
-    repository: immich-restic-secret
-    retain:
-      daily: 2
-      weekly: 1
-      monthly: 2
-    copyMethod: Direct
-    cacheStorageClassName: openebs-hostpath
----
 # yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/external-secrets.io/externalsecret_v1beta1.json
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
@@ -43,3 +24,22 @@ spec:
   dataFrom:
     - extract:
         key: backblaze-immich
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: immich
+spec:
+  sourcePVC: immich-photos
+  trigger:
+    schedule: 0 23 * * *
+  restic:
+    pruneIntervalDays: 14
+    capacity: 64G
+    repository: immich-backup-secret
+    retain:
+      daily: 2
+      weekly: 1
+      monthly: 2
+    copyMethod: Direct
+    cacheStorageClassName: openebs-hostpath
