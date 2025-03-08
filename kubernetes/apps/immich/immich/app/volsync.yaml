@@ -35,12 +35,12 @@ spec:
     schedule: 0 23 * * *
   restic:
     pruneIntervalDays: 14
-    capacity: 64Gi
     repository: immich-backup-secret
     retain:
       daily: 2
       weekly: 1
       monthly: 2
     copyMethod: Direct
+    cacheCapacity: 64Gi
     cacheStorageClassName: openebs-hostpath
     cacheAccessModes: ["ReadWriteOnce"]
