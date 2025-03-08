@@ -35,7 +35,7 @@ spec:
     schedule: 0 23 * * *
   restic:
     pruneIntervalDays: 14
-    capacity: 64G
+    capacity: 64Gi
     repository: immich-backup-secret
     retain:
       daily: 2
