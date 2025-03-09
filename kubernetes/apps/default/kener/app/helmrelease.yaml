@@ -33,7 +33,7 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/rajnandan1/kener:3.2.2
+              repository: ghcr.io/rajnandan1/kener
               tag: 3.2.2@sha256:eac0544ee81c2fdd3690a2c78c8e34497265cfc5b269e982f1d86aa78eb95794
             env:
               TZ: America/Los_Angeles
