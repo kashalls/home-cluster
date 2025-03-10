@@ -24,9 +24,7 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  dependsOn:
-    - name: node-feature-discovery
-      namespace: kube-system
   values:
-    controllerExtraArgs: |
-      - --devices=gpu
+    manager:
+      devices:
+        gpu: true
