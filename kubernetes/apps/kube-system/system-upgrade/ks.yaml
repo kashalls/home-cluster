@@ -1,4 +1,14 @@
 ---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: kube-system
+configMapGenerator:
+  - name: system-upgrade-plan-versions
+    env: ../../../../talos/talos.env
+generatorOptions:
+  disableNameSuffixHash: true
+---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
