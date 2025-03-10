@@ -9,8 +9,6 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  components:
-    - ../../../../components/system-upgrade
   interval: 30m
   path: ./kubernetes/apps/kube-system/system-upgrade/app
   prune: true
