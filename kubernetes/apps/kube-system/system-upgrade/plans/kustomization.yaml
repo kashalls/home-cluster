@@ -7,6 +7,6 @@ resources:
   - ./talos.yaml
 configMapGenerator:
   - name: system-upgrade-plan-versions
-    env: ../../../talos.env
+    env: ../../../../../talos/talos.env
 generatorOptions:
   disableNameSuffixHash: true
