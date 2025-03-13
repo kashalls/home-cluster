@@ -25,7 +25,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app cilium-config
+  name: &app cilium-gateway
   namespace: &namespace kube-system
 spec:
   targetNamespace: *namespace
@@ -33,9 +33,9 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: cilium
-      namespace: kube-system
-  path: ./kubernetes/apps/kube-system/cilium/config
+    - name: cert-manager
+      namespace: cert-manager
+  path: ./kubernetes/apps/kube-system/cilium/gateway
   prune: true
   sourceRef:
     kind: GitRepository
