@@ -34,7 +34,7 @@ spec:
           app:
             image:
               repository: ghcr.io/rajnandan1/kener
-              tag: 3.2.2@sha256:eac0544ee81c2fdd3690a2c78c8e34497265cfc5b269e982f1d86aa78eb95794
+              tag: 3.2.4@sha256:ec02749b2f880b40527c3e2dd9dd65680a0bcd5a1bc7934453fdda0673fa2de8
             env:
               TZ: America/Los_Angeles
               ORIGIN: "https://kener.ok8.sh"
