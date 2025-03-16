@@ -14,7 +14,7 @@ spec:
       - dns01:
           cloudflare:
             apiTokenSecretRef:
-              name: cloudflare-secret
+              name: cloudflare-issuer-secret
               key: CLOUDFLARE_API_TOKEN
 ---
 # yaml-language-server: https://kubernetes-schemas.ok8.sh/cert-manager.io/clusterissuer_v1.json
@@ -32,5 +32,5 @@ spec:
       - dns01:
           cloudflare:
             apiTokenSecretRef:
-              name: cloudflare-secret
+              name: cloudflare-issuer-secret
               key: CLOUDFLARE_API_TOKEN
