@@ -3,17 +3,12 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: home-ops-runner
+  name: &name home-ops-runner
 spec:
   interval: 30m
-  chart:
-    spec:
-      chart: gha-runner-scale-set
-      version: 0.10.1
-      sourceRef:
-        kind: HelmRepository
-        name: actions-runner-controller
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: gha-runner-scale-set
   install:
     remediation:
       retries: 3
@@ -27,21 +22,9 @@ spec:
       namespace: actions-runner-system
     - name: openebs
       namespace: openebs-system
-  valuesFrom:
-    - targetPath: githubConfigSecret.github_app_id
-      kind: Secret
-      name: actions-runner-controller-auth-secret
-      valuesKey: ACTION_RUNNER_CONTROLLER_GITHUB_APP_ID
-    - targetPath: githubConfigSecret.github_app_installation_id
-      kind: Secret
-      name: actions-runner-controller-auth-secret
-      valuesKey: ACTION_RUNNER_CONTROLLER_GITHUB_INSTALLATION_ID
-    - targetPath: githubConfigSecret.github_app_private_key
-      kind: Secret
-      name: actions-runner-controller-auth-secret
-      valuesKey: ACTION_RUNNER_CONTROLLER_GITHUB_PRIVATE_KEY
   values:
     githubConfigUrl: https://github.com/kashalls/home-cluster
+    githubConfigSecret: home-ops-runner-secret
     minRunners: 1
     maxRunners: 3
     containerMode:
@@ -59,7 +42,7 @@ spec:
       spec:
         containers:
           - name: runner
-            image: ghcr.io/joryirving/actions-runner:2.322@sha256:0250db3de1f56447b4d3e3a9a4ad9ef79b09562f48ff401a5ec0da4150c54f9f
+            image: ghcr.io/onedr0p/actions-runner:2.322.0@sha256:9db27092b7caab08b1dc08d5e639a3340f6e0d6ae2f91aaf93e740bd28ad9306
             command: ["/home/runner/run.sh"]
             env:
               - name: ACTIONS_RUNNER_REQUIRE_JOB_CONTAINER
@@ -72,8 +55,8 @@ spec:
               - mountPath: /var/run/secrets/talos.dev
                 name: talos
                 readOnly: true
-        serviceAccountName: actions-runner
+        serviceAccountName: *name
         volumes:
           - name: talos
             secret:
-              secretName: actions-runner
+              secretName: *name
