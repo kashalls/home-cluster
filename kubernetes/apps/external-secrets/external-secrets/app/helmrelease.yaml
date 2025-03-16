@@ -1,19 +1,14 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/helm.toolkit.fluxcd.io/helmrelease_v2.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: external-secrets
 spec:
   interval: 30m
-  chart:
-    spec:
-      chart: external-secrets
-      version: 0.14.4
-      sourceRef:
-        kind: HelmRepository
-        name: external-secrets
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: external-secrets
   install:
     remediation:
       retries: 3

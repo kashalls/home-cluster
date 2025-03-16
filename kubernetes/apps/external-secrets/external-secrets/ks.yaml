@@ -6,10 +6,19 @@ metadata:
   name: &app external-secrets
   namespace: &namespace external-secrets
 spec:
-  targetNamespace: *namespace
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
+      name: *app
+      namespace: *namespace
+  healthCheckExprs:
+    - apiVersion: external-secrets.io/v1beta1
+      kind: ClusterSecretStore
+      failed: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'False')
+      current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True')
   path: ./kubernetes/apps/external-secrets/external-secrets/app
   prune: true
   sourceRef:
@@ -19,4 +28,5 @@ spec:
   wait: true
   interval: 30m
   retryInterval: 1m
+  targetNamespace: *namespace
   timeout: 5m

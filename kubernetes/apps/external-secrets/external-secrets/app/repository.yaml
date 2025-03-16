@@ -3,12 +3,14 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: OCIRepository
 metadata:
-  name: gha-runner-scale-set-controller
+  name: external-secrets
 spec:
   interval: 1h
   layerSelector:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 0.10.1
-  url: oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set-controller
+    tag: 0.14.4
+  url: oci://ghcr.io/external-secrets/charts/external-secrets
+  verify:
+    provider: cosign
