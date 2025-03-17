@@ -35,11 +35,14 @@ spec:
       enabled: false
     cleanPrometheusOperatorObjectNames: true
     alertmanager:
-      ingress:
-        enabled: true
-        ingressClassName: internal
-        hosts: ["alertmanager.ok8.sh"]
-        pathType: Prefix
+      route:
+        main:
+          enabled: true
+          hostnames: ["alertmanager.ok8.sh"]
+          parentRefs:
+            - name: internal
+              namespace: kube-system
+              sectionName: https
       alertmanagerSpec:
         alertmanagerConfiguration:
           name: alertmanager
@@ -70,11 +73,14 @@ spec:
     kubeProxy:
       enabled: false
     prometheus:
-      ingress:
-        enabled: true
-        ingressClassName: internal
-        pathType: Prefix
-        hosts: ["prometheus.ok8.sh"]
+      route:
+        main:
+          enabled: true
+          hostnames: ["prometheus.ok8.sh"]
+          parentRefs:
+            - name: internal
+              namespace: kube-system
+              sectionName: https
       prometheusSpec:
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false

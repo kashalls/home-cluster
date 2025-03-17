@@ -50,12 +50,6 @@ spec:
       ui:
         enabled: true
         rollOutPods: true
-        ingress:
-          enabled: true
-          className: internal
-          annotations:
-            external-dns.alpha.kubernetes.io/target: "internal.ok8.sh"
-          hosts: ["hubble.ok8.sh"]
     operator:
       replicas: 1
       prometheus:
