@@ -24,10 +24,6 @@ hubble:
   enabled: false
 envoy:
   rollOutPods: true
-gatewayAPI:
-  enabled: true
-  enableAlpn: true
-  xffNumTrustedHops: 1
 ipam:
   mode: kubernetes
 ipv4NativeRoutingCIDR: 172.28.0.0/14
