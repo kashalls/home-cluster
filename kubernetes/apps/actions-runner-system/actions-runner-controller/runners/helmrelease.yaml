@@ -22,6 +22,8 @@ spec:
       namespace: actions-runner-system
     - name: openebs
       namespace: openebs-system
+    - name: onepassword-store
+      namespace: external-secrets
   values:
     githubConfigUrl: https://github.com/kashalls/home-cluster
     githubConfigSecret: home-ops-runner-secret
