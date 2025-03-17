@@ -66,6 +66,7 @@ spec:
           rules:
             - backendRefs:
                 - name: immich-server
+                  namespace: immich
                   port: *port
     machine-learning:
       resources:
