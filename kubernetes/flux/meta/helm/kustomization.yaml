@@ -17,6 +17,7 @@ resources:
   - ./external-secrets.yaml
   - ./grafana.yaml
   - ./immich.yaml
+  - ./ingress-nginx.yaml
   - ./intel.yaml
   - ./itzg.yaml
   - ./jetstack.yaml

@@ -57,13 +57,14 @@ spec:
           initialDelaySeconds: 10
           timeoutSeconds: 5
     extraArgs:
+      - --ignore-ingress-tls-spec
       - --managed-record-types=A
       - --managed-record-types=AAAA
       - --managed-record-types=CNAME
       - --managed-record-types=SRV
     triggerLoopOnEvent: true
     policy: sync
-    sources: ["gateway-httproute", "service"]
+    sources: ["gateway-httproute", "service", "ingress"]
     txtOwnerId: main
     txtPrefix: k8s.main.
     domainFilters: ["ok8.sh"]
