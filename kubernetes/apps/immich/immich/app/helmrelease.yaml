@@ -55,18 +55,6 @@ spec:
         requests:
           cpu: 1500m
           memory: 2048M
-      route:
-        main:
-          enabled: true
-          hostnames: ["{{ .Release.Name }}.ok8.sh"]
-          parentRefs:
-            - name: internal
-              namespace: kube-system
-              sectionName: https
-          rules:
-            - backendRefs:
-                - name: immich-server
-                  port: *port
     machine-learning:
       resources:
         requests:

@@ -8,3 +8,4 @@ resources:
   - ./volsync.yaml
   - ./postgres.yaml
   - ./helmrelease.yaml
+  - ./httproute.yaml
