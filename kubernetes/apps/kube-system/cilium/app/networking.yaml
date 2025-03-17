@@ -70,4 +70,4 @@ spec:
   allowFirstLastIPs: "No"
   blocks:
     - cidr: 172.16.10.0/24
-    - cidr: ::ffff:192.168.42.0/112 # IPv4-mapped IPv6
+    - cidr: ::ffff:172.16.10.0/112 # IPv4-mapped IPv6
