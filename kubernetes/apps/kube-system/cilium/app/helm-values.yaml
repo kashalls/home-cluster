@@ -55,6 +55,7 @@ securityContext:
       - NET_ADMIN
       - NET_RAW
       - IPC_LOCK
+      - SYS_MODULE
       - SYS_ADMIN
       - SYS_RESOURCE
       - PERFMON
