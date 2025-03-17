@@ -30,7 +30,7 @@ gatewayAPI:
   enabled: true
   enableAlpn: true
   gatewayClass:
-    create: true
+    create: "true"
   xffNumTrustedHops: 1
 ipam:
   mode: kubernetes
