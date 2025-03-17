@@ -102,10 +102,10 @@ spec:
           router:
             port: 5550
       acars-hub:
-        controller: acars-hub
+        controller: &app acars-hub
         ports:
           http:
-            port: 80
+            port: &port 80
           acarsinput:
             port: 5550
             protocol: UDP
@@ -116,9 +116,21 @@ spec:
             port: 15550
           vdsloutput:
             port: 15555
+    route:
+      acars-hub:
+        hostnames: ["{{ .Release.Name }}.ok8.sh"]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
     ingress:
       acars-hub:
         className: internal
+        enabled: false
         hosts:
           - host: acars.ok8.sh
             paths:
