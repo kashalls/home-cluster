@@ -60,6 +60,7 @@ spec:
         type: LoadBalancer
         annotations:
           external-dns.alpha.kubernetes.io/target: "azwo.ok8.sh"
+          lbipam.cilium.io/ips: 172.16.10.20, ::ffff:172.16.10.20
         ports:
           worldserver:
             port: 8085

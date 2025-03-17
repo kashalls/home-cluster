@@ -73,6 +73,7 @@ spec:
         type: LoadBalancer
         annotations:
           external-dns.alpha.kubernetes.io/hostname: mosquitto.ok8.sh
+          lbipam.cilium.io/ips: 172.16.10.5, ::ffff:172.16.10.5
         ports:
           http:
             port: 1883
