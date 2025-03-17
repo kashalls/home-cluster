@@ -30,6 +30,7 @@ spec:
     env:
       LOG_LEVEL: verbose
       TZ: America/Los_Angeles
+      IMMICH_PORT: &port 2283 # Default Port
       DB_HOSTNAME:
         valueFrom:
           secretKeyRef:
@@ -62,6 +63,10 @@ spec:
             - name: internal
               namespace: kube-system
               sectionName: https
+          rules:
+            - backendRefs:
+                - name: immich-server
+                  port: *port
     machine-learning:
       resources:
         requests:
