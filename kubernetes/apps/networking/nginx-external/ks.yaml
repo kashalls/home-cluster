@@ -10,9 +10,6 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  dependsOn:
-    - name: certificates
-      namespace: networking
   path: ./kubernetes/apps/networking/nginx-external/app
   prune: true
   sourceRef:
