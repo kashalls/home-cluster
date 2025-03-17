@@ -24,6 +24,14 @@ spec:
       retries: 3
   values:
     fullnameOverride: blackbox-exporter
+    ingress:
+      enabled: true
+      className: internal
+      hosts:
+        - host: blackbox-exporter.ok8.sh
+          paths:
+            - path: /
+              pathType: Prefix
     securityContext:
       readOnlyRootFilesystem: true
       allowPrivilegeEscalation: false

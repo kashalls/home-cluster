@@ -238,14 +238,10 @@ spec:
       - vonage-status-panel
     serviceMonitor:
       enabled: true
-    route:
-      main:
-        enabled: true
-        hostnames: ["{{ .Release.Name }}.ok8.sh"]
-        parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
+    ingress:
+      enabled: true
+      ingressClassName: internal
+      hosts: ["grafana.ok8.sh"]
     persistence:
       enabled: false
     testFramework:

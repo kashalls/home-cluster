@@ -127,6 +127,18 @@ spec:
           - backendRefs:
               - name: *app
                 port: *port
+    ingress:
+      acars-hub:
+        className: internal
+        enabled: false
+        hosts:
+          - host: acars.ok8.sh
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: acars-hub
+                  port: 80
     persistence:
       usb:
         type: hostPath

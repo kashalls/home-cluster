@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app home-assistant
+  name: home-assistant
 spec:
   interval: 30m
   chart:
@@ -63,18 +63,21 @@ spec:
         controller: home-assistant
         ports:
           http:
-            port: &port 8123
-    route:
+            port: 8123
+    ingress:
       app:
-        hostnames: ["{{ .Release.Name }}.ok8.sh", "hass.ok8.sh"]
-        parentRefs:
-          - name: external
-            namespace: kube-system
-            sectionName: https
-        rules:
-          - backendRefs:
-              - name: *app
-                port: *port
+        className: external
+        annotations:
+          external-dns.alpha.kubernetes.io/target: external.ok8.sh
+        hosts:
+          - host: &host hass.ok8.sh
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - hosts: [*host]
     persistence:
       config:
         type: persistentVolumeClaim

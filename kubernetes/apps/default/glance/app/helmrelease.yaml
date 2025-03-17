@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app glance
+  name: glance
 spec:
   interval: 30m
   chart:
@@ -55,18 +55,21 @@ spec:
         controller: glance
         ports:
           http:
-            port: &port 8080
-    route:
+            port: 8080
+    ingress:
       app:
-        hostnames: ["{{ .Release.Name }}.ok8.sh", "g.ok8.sh"]
-        parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
-        rules:
-          - backendRefs:
-              - name: *app
-                port: *port
+        className: internal
+        annotations:
+          # external-dns.alpha.kubernetes.io/target: external.ok8.sh
+        hosts:
+          - host: &host g.ok8.sh
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - hosts: [*host]
     persistence:
       config-file:
         type: configMap
