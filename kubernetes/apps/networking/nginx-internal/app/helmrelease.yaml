@@ -70,7 +70,7 @@ spec:
           namespaceSelector:
             any: true
       extraArgs:
-        default-ssl-certificate: "networking/ok8-sh-tls"
+        default-ssl-certificate: "cert-manager/ok8-sh-tls"
       resources:
         requests:
           cpu: 100m

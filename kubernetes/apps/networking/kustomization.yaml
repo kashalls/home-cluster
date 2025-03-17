@@ -7,4 +7,5 @@ resources:
   #- ./certificates/ks.yaml
   - ./cloudflared/ks.yaml
   - ./external-dns/ks.yaml
-  #- ./nginx/ks.yaml
+  - ./nginx-external/ks.yaml
+  - ./nginx-internal/ks.yaml

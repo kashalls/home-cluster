@@ -73,7 +73,7 @@ spec:
           namespaceSelector:
             any: true
       extraArgs:
-        default-ssl-certificate: "networking/ok8-sh-tls"
+        default-ssl-certificate: "cert-manager/ok8-sh-tls"
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: kubernetes.io/hostname
@@ -87,7 +87,7 @@ spec:
           cpu: 100m
           memory: 250Mi
         limits:
-          memory: 1G
+          memory: 500Mi
     defaultBackend:
       enabled: false
   valuesFrom:
