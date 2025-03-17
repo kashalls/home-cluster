@@ -11,7 +11,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: cert-manager-issuers
+    - name: cert-manager
       namespace: cert-manager
   path: ./kubernetes/apps/networking/certificates/app
   prune: false
