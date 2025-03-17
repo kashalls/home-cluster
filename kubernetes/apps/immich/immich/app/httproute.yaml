@@ -13,7 +13,6 @@ spec:
   rules:
     - backendRefs:
         - name: immich-server
-          namespace: flux-system
           port: 2283
       matches:
         - path:
