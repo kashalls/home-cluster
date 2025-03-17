@@ -56,7 +56,6 @@ spec:
           memory: 2048M
       route:
         main:
-          enabled: true
           hostnames: ["{{ .Release.Name }}.ok8.sh"]
           parentRefs:
             - name: internal
