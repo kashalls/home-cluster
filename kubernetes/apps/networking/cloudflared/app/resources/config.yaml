@@ -4,7 +4,7 @@ originRequest:
 
 ingress:
   - hostname: "ok8.sh"
-    service: &svc https://cilium-gateway-external.kube-system.svc.cluster.local
+    service: https://cilium-gateway-external.kube-system.svc.cluster.local:443
   - hostname: "*.ok8.sh"
-    service: *svc
+    service: https://cilium-gateway-external.kube-system.svc.cluster.local:443
   - service: http_status:404
