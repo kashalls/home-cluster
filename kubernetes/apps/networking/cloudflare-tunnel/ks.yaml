@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app cloudflared
+  name: &app cloudflare-tunnel
   namespace: &namespace networking
   labels:
     substitution.flux.home.arpa/enabled: "true"
@@ -17,7 +17,7 @@ spec:
       namespace: networking
     - name: onepassword-store
       namespace: external-secrets
-  path: ./kubernetes/apps/networking/cloudflared/app
+  path: ./kubernetes/apps/networking/cloudflare-tunnel/app
   prune: false
   sourceRef:
     kind: GitRepository
