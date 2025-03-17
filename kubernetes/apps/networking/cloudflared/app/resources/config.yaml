@@ -7,8 +7,4 @@ ingress:
     service: &svc https://cilium-gateway-external.kube-system.svc.cluster.local
   - hostname: "*.ok8.sh"
     service: *svc
-#  - hostname: "ok8.sh"
-#    service: https://nginx-external-controller.networking.svc.cluster.local:443
-#  - hostname: "*.ok8.sh"
-#    service: https://nginx-external-controller.networking.svc.cluster.local:443
   - service: http_status:404

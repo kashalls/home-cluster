@@ -47,10 +47,8 @@ spec:
       - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
       - --crd-source-kind=DNSEndpoint
       - --gateway-name=external
-      - --ignore-ingress-tls-spec
-      - --ingress-class=external
     policy: sync
-    sources: ["crd", "ingress", "gateway-httproute"]
+    sources: ["crd", "gateway-httproute"]
     txtPrefix: k8s.
     txtOwnerId: main
     domainFilters: ["ok8.sh"]
