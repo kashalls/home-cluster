@@ -10,9 +10,6 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  dependsOn:
-    - name: nginx-internal
-      namespace: networking
   path: ./kubernetes/apps/default/openspeedtest/app
   prune: true
   sourceRef:
