@@ -27,6 +27,8 @@ envoy:
 gatewayAPI:
   enabled: true
   enableAlpn: true
+  hostNetwork:
+    enabled: true
   gatewayClass:
     create: "true"
   xffNumTrustedHops: 1
