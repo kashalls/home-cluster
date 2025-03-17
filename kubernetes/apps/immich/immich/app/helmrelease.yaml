@@ -30,7 +30,6 @@ spec:
     env:
       LOG_LEVEL: verbose
       TZ: America/Los_Angeles
-      IMMICH_PORT: &port 2283 # Default Port
       DB_HOSTNAME:
         valueFrom:
           secretKeyRef:
