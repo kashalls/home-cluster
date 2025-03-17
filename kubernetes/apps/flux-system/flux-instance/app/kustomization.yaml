@@ -8,7 +8,7 @@ resources:
   - ./helmrelease.yaml
   - ./prometheusrule.yaml
   - ./ingress.yaml
-  - ./reciever.yaml
+  - ./receiver.yaml
 configMapGenerator:
   - name: flux-instance-helm-values
     files:
