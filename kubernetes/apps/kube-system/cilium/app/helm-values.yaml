@@ -29,6 +29,8 @@ envoy:
 gatewayAPI:
   enabled: true
   enableAlpn: true
+  gatewayClass:
+    create: true
   xffNumTrustedHops: 1
 ipam:
   mode: kubernetes
