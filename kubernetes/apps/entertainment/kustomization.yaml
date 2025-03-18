@@ -7,4 +7,4 @@ resources:
   - ./namespace.yaml
   # Flux-Kustomizations
   - ./plex/ks.yaml
-  - ./qbittorent/ks.yaml
+  - ./qbittorrent/ks.yaml
