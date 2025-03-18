@@ -23,7 +23,7 @@ spec:
         AWS_SECRET_ACCESS_KEY: "{{ .B2_APPLICATION_KEY }}"
   dataFrom:
     - extract:
-        key: backblaze-plex
+        key: backblaze-immich
 ---
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
