@@ -116,7 +116,7 @@ spec:
       media:
         type: nfs
         server: fran.outsideour.casa
-        path: /mnt/loki/media/plex
+        path: /mnt/loki/Multimedia
         globalMounts:
           - path: /media
             readOnly: true
