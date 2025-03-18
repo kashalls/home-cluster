@@ -1,0 +1,125 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app plex
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+    namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    controllers:
+      plex:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/home-operations/plex
+              tag: 1.41.5.9522@sha256:1c35e44828531320f4fccd980da5a3d0da08a438f1c89841d8be97cfefe66e63
+            env:
+              TZ: America/Los_Angeles
+              PLEX_ADVERTISE_URL: https://plex.devbu.io:443,http://172.16.10.9:32400
+              PLEX_NO_AUTH_NETWORKS: 172.16.0.0/24,172.16.1.0/24
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /identity
+                    port: &port 32400
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 10
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 100m
+              limits:
+                gpu.intel.com/i915: 1
+                memory: 16Gi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+        supplementalGroups: [44]
+    service:
+      app:
+        controller: plex
+        type: LoadBalancer
+        annotations:
+          lbipam.cilium.io/ips: 172.16.10.9
+        ports:
+          http:
+            port: 32400
+    ingress:
+      app:
+        annotations:
+          nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+          nginx.ingress.kubernetes.io/server-snippet: |
+            location ~ ^/library/streams {
+              proxy_set_header        Range "";
+              proxy_pass              http://plex.entertainment.svc.cluster.local:32400;
+              proxy_http_version      1.1;
+            }
+        className: external
+        hosts:
+          - host: "{{ .Release.Name }}.ok8.sh"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+    persistence:
+      config:
+        type: persistentVolumeClaim
+        storageClass: openebs-hostpath
+        accessMode: ReadWriteOnce
+        size: 25Gi
+      config-cache:
+        type: persistentVolumeClaim
+        storageClass: openebs-hostpath
+        accessMode: "ReadWriteOnce"
+        size: 100Gi
+        globalMounts:
+          - path: /config/Library/Application Support/Plex Media Server/Cache
+      config-logs:
+        type: emptyDir
+        globalMounts:
+          - path: /config/Library/Application Support/Plex Media Server/Logs
+      transcode:
+        type: emptyDir
+      media:
+        type: nfs
+        server: fran.outsideour.casa
+        path: /mnt/loki/media/plex
+        globalMounts:
+          - path: /media
+            readOnly: true
+      tmp:
+        type: emptyDir
