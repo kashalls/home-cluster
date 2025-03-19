@@ -42,7 +42,7 @@ spec:
                   name: qbittorrent-secret
             probes:
               liveness: &probes
-                enabled: false
+                enabled: true
                 custom: true
                 spec:
                   httpGet:
