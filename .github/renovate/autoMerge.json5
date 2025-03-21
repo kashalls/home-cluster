@@ -14,7 +14,7 @@
       ],
       "matchPackagePatterns": [
         "ghcr.io/bjw-s",
-        "ghcr.io/onedr0p",
+        "ghcr.io/home-operations",
         "ghcr.io/kashalls"
       ]
     },
