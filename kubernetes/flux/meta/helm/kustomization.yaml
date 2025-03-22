@@ -20,7 +20,6 @@ resources:
   - ./ingress-nginx.yaml
   - ./intel.yaml
   - ./itzg.yaml
-  - ./jetstack.yaml
   - ./metrics-server.yaml
   - ./mongodb.yaml
   - ./nats.yaml
