@@ -29,8 +29,8 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/buroa/irqbalance
-              tag: 1.9.4@sha256:1ae0230786206ea35e6ee3f9d170b0b47e15ecfb0c001af8d2744a312a4432fc
+              repository: ghcr.io/home-operations/irqbalance
+              tag: 1.9.4@sha256:d3c5a0221dc688593e78b14e10beb971d9717cc9381d4b1e065b8982f424fadb
             env:
               IRQBALANCE_BANNED_CPULIST: 12-19 # 12-19 are E-cores
             resources:
