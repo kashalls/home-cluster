@@ -3,10 +3,10 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: unifi-dns-rules
+  name: external-dns-rules
 spec:
   groups:
-    - name: unifi-dns.rules
+    - name: external-dns.rules
       rules:
         - alert: ExternalDNSApplyChangesError
           expr: external_dns_webhook_provider_applychanges_errors_total > 0
