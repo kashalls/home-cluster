@@ -1,0 +1,46 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/external-secrets.io/externalsecret_v1beta1.json
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: autobrr
+spec:
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: onepassword-connect
+  target:
+    name: autobrr-backup-secret
+    creationPolicy: Owner
+    template:
+      engineVersion: v2
+      metadata:
+        labels:
+          cnpg.io/reload: "true"
+      data:
+        RESTIC_REPOSITORY: "s3:https://{{ .ENDPOINT }}/kashs-volsync/autobrr"
+        RESTIC_PASSWORD: "{{ .RESTIC_PASSWORD }}"
+        AWS_ACCESS_KEY_ID: "{{ .B2_APPLICATION_ID }}"
+        AWS_SECRET_ACCESS_KEY: "{{ .B2_APPLICATION_KEY }}"
+  dataFrom:
+    - extract:
+        key: backblaze-immich
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: autobrr
+spec:
+  sourcePVC: autobrr
+  trigger:
+    schedule: 0 23 * * *
+  restic:
+    pruneIntervalDays: 14
+    repository: autobrr-backup-secret
+    retain:
+      daily: 2
+      weekly: 1
+      monthly: 2
+    copyMethod: Direct
+    cacheCapacity: 5Gi
+    cacheStorageClassName: openebs-hostpath
+    cacheAccessModes: ["ReadWriteOnce"]
