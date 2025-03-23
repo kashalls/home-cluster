@@ -64,12 +64,9 @@ spec:
             port: http-webhook
           initialDelaySeconds: 10
           timeoutSeconds: 5
+    managedRecordTypes: ["A", "AAAA", "CNAME", "SRV"]
     extraArgs:
       - --ignore-ingress-tls-spec
-      - --managed-record-types=A
-      - --managed-record-types=AAAA
-      - --managed-record-types=CNAME
-      - --managed-record-types=SRV
     policy: sync
     sources: ["ingress", "service"]
     txtOwnerId: main
