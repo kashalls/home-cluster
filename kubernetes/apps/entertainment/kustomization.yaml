@@ -6,5 +6,6 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
+  - ./autobrr/ks.yaml
   - ./plex/ks.yaml
   - ./qbittorrent/ks.yaml
