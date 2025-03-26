@@ -32,4 +32,4 @@ spec:
       tls:
         certificateRefs:
           - kind: Secret
-            name: devbu-io-tls
+            name: ok8-sh-tls
