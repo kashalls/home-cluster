@@ -50,35 +50,21 @@ spec:
       external-dns.alpha.kubernetes.io/hostname: mc.ok8.sh
     servicePort: 25565
     minecraftServer:
-      autoCurseForge:
-        apiKey:
-          existingSecret: *secret
-        slug: all-the-mods-10
-        excludeMods:
-          - sodium
-          - sodium-extra
-          - reeses-sodium-options
-      modUrls:
-        - https://mediafilez.forgecdn.net/files/5662/294/CarbonConfig-Neoforge-1.21-1.2.9.2.jar
-        - https://mediafilez.forgecdn.net/files/5632/200/Chunk-Pregenerator-Neoforge-1.21-4.4.5.jar
-        - https://mediafilez.forgecdn.net/files/5759/669/spark-1.10.109-forge.jar
-        - https://mediafilez.forgecdn.net/files/5915/934/Prometheus-Exporter-1.19.4-fabric-1.2.1.jar
       eula: true
-      version: 1.21.1
+      version: 1.21.5
       onlineMode: true
-      type: AUTO_CURSEFORGE
+      type: PAPER
       generateStructures: true
       difficulty: normal
       spawnAnimals: true
       spawnMonsters: true
       spawnNPCs: true
       ops: "Kashall"
-      whitelist: "Kashall,roguedomethe12th,noonethe12th,theStriker01,Bad_Graphics"
+      whitelist: "Kashall,roguedomethe12th,noonethe12th,theStriker01,Bad_Graphics,Direwaven,MarianKnight"
       pvp: true
-      motd: "\u00a7l \u00a7r                   \u00a79\u00a7lKASHMC \u00a77\u2014 \u00a74[ATM 10]\u00a7r\n\u00a7l \u00a7a  \u2620 This isn't your average Marian experience \u2620"
+      motd: "\u00a7l \u00a7r                   \u00a79\u00a7lKASHMC \u00a77\u2014 \u00a74[Private]\u00a7r\n\u00a7l \u00a7a  \u2620 This isn't your average Marian experience \u2620"
       worldSaveName: world
       viewDistance: 10
-      # forceReDownload: true
       jvmXXOpts: "-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1"
       overrideServerProperties: true
       enableCommandBlock: true
