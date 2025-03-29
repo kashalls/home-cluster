@@ -9,7 +9,7 @@ resources:
   - ./acars/ks.yaml
   - ./glance/ks.yaml
   - ./home-assistant/ks.yaml
-  #- ./minecraft/ks.yaml
+  - ./minecraft/ks.yaml
   - ./mosquitto/ks.yaml
   - ./openspeedtest/ks.yaml
   #- ./rtlamr2mqtt/ks.yaml
