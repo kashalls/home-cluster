@@ -53,7 +53,7 @@ spec:
       eula: true
       version: 1.21.5
       onlineMode: true
-      type: PAPER
+      type: VANILLA
       generateStructures: true
       difficulty: normal
       spawnAnimals: true
