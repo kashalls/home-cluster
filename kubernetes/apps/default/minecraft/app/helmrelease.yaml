@@ -32,6 +32,7 @@ spec:
       enabled: true
     extraEnv:
       TZ: "America/Los_Angeles"
+      KEEP_INVENTORY: true
       ENABLE_ROLLING_LOGS: true
       ALLOW_FLIGHT: true
       DUMP_SERVER_PROPERTIES: true
