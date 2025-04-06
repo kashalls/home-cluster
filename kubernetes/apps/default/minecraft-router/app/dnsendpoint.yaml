@@ -7,7 +7,7 @@ metadata:
 spec:
   endpoints:
     - dnsName: *.mc.ok8.sh
-      recordType: SRV
+      recordType: CNAME
       targets: ["ipv4.ok8.sh"]
       providerSpecific:
         - name: external-dns.alpha.kubernetes.io/cloudflare-proxied
