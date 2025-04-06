@@ -6,7 +6,7 @@ metadata:
   name: minecraft
 spec:
   endpoints:
-    - dnsName: *.mc.ok8.sh
+    - dnsName: "*.mc.ok8.sh"
       recordType: CNAME
       targets: ["ipv4.ok8.sh"]
       providerSpecific:
