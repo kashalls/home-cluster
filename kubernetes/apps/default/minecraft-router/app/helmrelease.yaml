@@ -41,8 +41,8 @@ spec:
         type: LoadBalancer
         port: 25565
         annotations:
-          lbipam.cilium.io/ips: "172.16.10.4"
-          external-dns.alpha.kubernetes.io/hostname: 'vanilla.mc.ok8.sh'
+          lbipam.cilium.io/ips: 172.16.10.4
+          external-dns.alpha.kubernetes.io/hostname: vanilla.mc.ok8.sh
           external-dns.alpha.kubernetes.io/target: ipv4.ok8.sh
       api:
         type: ClusterIP
@@ -60,6 +60,7 @@ spec:
       autoScaleUp:
         enabled: false
       connectionRateLimit: 10
+      defaultServer: minecraft-void:25565
       metrics:
         # Backend to use for metrics exposure/publishing: discard,expvar,influxdb (env METRICS_BACKEND)
         backend: expvar
