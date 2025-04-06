@@ -11,6 +11,7 @@ resources:
   - ./home-assistant/ks.yaml
   - ./minecraft/ks.yaml
   - ./minecraft-router/ks.yaml
+  - ./minecraft-void/ks.yaml
   - ./mosquitto/ks.yaml
   - ./openspeedtest/ks.yaml
   #- ./rtlamr2mqtt/ks.yaml

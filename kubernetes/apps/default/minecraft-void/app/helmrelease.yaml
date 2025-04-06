@@ -1,0 +1,76 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/source.toolkit.fluxcd.io/ocirepository_v1beta2.json
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: itzg-minecraft-void
+spec:
+  interval: 1h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 4.26.1
+  url: oci://ghcr.io/itzg/minecraft-server-charts/minecraft
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app minecraft-void
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: itzg-minecraft
+  interval: 30m
+  values:
+    image:
+      repository: ghcr.io/itzg/minecraft-server
+      tag: 2025.4.0-java21
+    resources:
+      requests:
+        cpu: 1
+        memory: &memory-limit 2G
+    livenessProbe:
+      initialDelaySeconds: 0
+    readinessProbe:
+      initialDelaySeconds: 0
+    startupProbe:
+      enabled: true
+    extraEnv:
+      TZ: "America/Los_Angeles"
+      KEEP_INVENTORY: false
+      ENABLE_ROLLING_LOGS: true
+      ALLOW_FLIGHT: false
+      DUMP_SERVER_PROPERTIES: false
+      INIT_MEMORY: 1G
+      MAX_MEMORY: *memory-limit
+    persistence:
+      storageClass: openebs-hostpath
+      dataDir:
+        enabled: false
+        Size: 128G
+    serviceAnnotations:
+      mc-router.itzg.me/externalServerName: void.mc.ok8.sh
+    servicePort: 25565
+    minecraftServer:
+      eula: true
+      version: 1.21.5
+      onlineMode: true
+      type: VANILLA
+      generateStructures: false
+      difficulty: peaceful
+      spawnAnimals: false
+      spawnMonsters: false
+      spawnNPCs: false
+      whitelist: "Kashall,roguedomethe12th,noonethe12th,theStriker01,Bad_Graphics,Direwaven,MarianKnight"
+      pvp: false
+      levelType: CUSTOMIZED
+      generatorSettings: >-
+        { "layers": [ { "block": "minecraft:air", "height": 1 }], "biome": "minecraft": "the_void" }
+      motd: "\u00a7l \u00a7r                   \u00a79\u00a7lKASHMC \u00a77\u2014 \u00a74[Private]\u00a7r\n\u00a7l \u00a7a  \u2620 Welcome to The Void! \u2620"
+      worldSaveName: world
+      viewDistance: 1
+      jvmXXOpts: "-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1"
+      overrideServerProperties: true
+      serviceType: ClusterIP
