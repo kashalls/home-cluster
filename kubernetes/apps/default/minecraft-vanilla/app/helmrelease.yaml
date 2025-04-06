@@ -80,7 +80,7 @@ spec:
         enabled: true
         serviceType: LoadBalancer
         existingSecret: *secret
-      serviceType: LoadBalancer
+      serviceType: ClusterIP
     mcbackup:
       enabled: true
       backupInterval: 24h
