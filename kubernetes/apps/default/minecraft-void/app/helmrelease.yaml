@@ -45,11 +45,6 @@ spec:
       DUMP_SERVER_PROPERTIES: false
       INIT_MEMORY: 1G
       MAX_MEMORY: *memory-limit
-    persistence:
-      storageClass: openebs-hostpath
-      dataDir:
-        enabled: false
-        Size: 128G
     serviceAnnotations:
       mc-router.itzg.me/externalServerName: void.mc.ok8.sh
     servicePort: 25565
@@ -63,7 +58,6 @@ spec:
       spawnAnimals: false
       spawnMonsters: false
       spawnNPCs: false
-      whitelist: "Kashall,roguedomethe12th,noonethe12th,theStriker01,Bad_Graphics,Direwaven,MarianKnight"
       pvp: false
       levelType: CUSTOMIZED
       generatorSettings: >-
