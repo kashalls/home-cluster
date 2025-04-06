@@ -26,7 +26,7 @@ spec:
   values:
     fullnameOverride: *app
     replicaCount: 1
-    image:
+      # image:
       ## mc-router is not published to ghcr.io: https://github.com/itzg/mc-router/issues/379
       # repository: ghcr.io/itzg/mc-router
       # tag: 1.2.5
