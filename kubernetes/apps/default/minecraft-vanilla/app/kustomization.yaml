@@ -6,4 +6,3 @@ resources:
   - ./externalsecret.yaml
   - ./backuppvc.yaml
   - ./helmrelease.yaml
-  - ./dnsendpoint.yaml
