@@ -67,7 +67,15 @@ spec:
       pvp: false
       levelType: CUSTOMIZED
       generatorSettings: >-
-        { "layers": [ { "block": "minecraft:air", "height": 1 }], "biome": "minecraft": "the_void" }
+          {
+            "layers": [
+              {
+                "block": "minecraft:air",
+                "height": 1
+              }
+            ],
+            "biome": "minecraft:the_void"
+          }
       motd: "\u00a7l \u00a7r                   \u00a79\u00a7lKASHMC \u00a77\u2014 \u00a74[Private]\u00a7r\n\u00a7l \u00a7a  \u2620 Welcome to The Void! \u2620"
       worldSaveName: world
       viewDistance: 1
