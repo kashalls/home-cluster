@@ -1,0 +1,65 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: itzg-router
+  namespace: default
+spec:
+  interval: 2h
+  url: https://itzg.github.io/minecraft-server-charts/
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app minecraft-router
+spec:
+  chart:
+    spec:
+      chart: mc-router
+      version: 4.26.1
+      sourceRef:
+        kind: HelmRepository
+        name: itzg-router
+        namespace: default
+  interval: 30m
+  values:
+    fullnameOverride: *app
+    replicaCount: 1
+    image:
+      repository: itzg/mc-router
+      tag: 2025.4.0-java21
+    securityContext:
+      capabilities:
+        drop: ["ALL"]
+      readOnlyRootFilesystem: true
+      runAsNonRoot: true
+      runAsUser: 1000
+    services:
+      minecraft:
+        type: LoadBalancer
+        port: 25565
+        annotations:
+          lbipam.cilium.io/ips: "172.16.10.4"
+          external-dns.alpha.kubernetes.io/hostname: '*.mc.ok8.sh'
+          external-dns.alpha.kubernetes.io/target: ipv4.ok8.sh
+      extraServiceSpec:
+        externalTrafficPolicy: Local
+    resources:
+      requests:
+        cpu: 1
+        memory: 128Mi
+      limits:
+        cpu: 1
+        memory: 256Mi
+    minecraftRouter:
+      autoScaleUp:
+        enabled: false
+      connectionRateLimit: 10
+      metrics:
+        # Backend to use for metrics exposure/publishing: discard,expvar,influxdb (env METRICS_BACKEND)
+        backend: expvar
+      simplifySrv: false
+      useProxyProtocol: false
+
+

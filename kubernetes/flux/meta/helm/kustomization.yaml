@@ -18,7 +18,6 @@ resources:
   - ./immich.yaml
   - ./ingress-nginx.yaml
   - ./intel.yaml
-  - ./itzg.yaml
   - ./metrics-server.yaml
   - ./mongodb.yaml
   - ./nats.yaml

@@ -1,4 +1,13 @@
 ---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: itzg-minecraft
+  namespace: default
+spec:
+  interval: 2h
+  url: https://itzg.github.io/minecraft-server-charts/
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/helm.toolkit.fluxcd.io/helmrelease_v2.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -11,8 +20,8 @@ spec:
       version: 4.26.1
       sourceRef:
         kind: HelmRepository
-        name: itzg
-        namespace: flux-system
+        name: itzg-minecraft
+        namespace: default
   interval: 30m
   values:
     deploymentAnnotations:
@@ -46,6 +55,7 @@ spec:
     rconServiceAnnotations:
       lbipam.cilium.io/sharing-key: *app
     serviceAnnotations:
+      mc-router.itzg.me/externalServerName: vanilla.mc.ok8.sh
       lbipam.cilium.io/sharing-key: *app
       lbipam.cilium.io/ips: "172.16.10.4"
       external-dns.alpha.kubernetes.io/hostname: mc.ok8.sh
