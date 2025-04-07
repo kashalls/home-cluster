@@ -41,7 +41,7 @@ spec:
         type: LoadBalancer
         port: 25565
         annotations:
-          lbipam.cilium.io/ips: 172.16.10.4
+          lbipam.cilium.io/ips: 172.16.0.10
           # external-dns.alpha.kubernetes.io/hostname: vanilla.mc.ok8.sh,void.mc.ok8.sh
     resources:
       requests:
