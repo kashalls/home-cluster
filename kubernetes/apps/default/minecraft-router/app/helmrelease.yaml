@@ -59,10 +59,11 @@ spec:
       autoScaleUp:
         enabled: false
       connectionRateLimit: 10
-      defaultServer: minecraft-void:25565
+      defaultServer:
+        host: minecraft-void
+        port: 25565
       metrics:
         # Backend to use for metrics exposure/publishing: discard,expvar,influxdb (env METRICS_BACKEND)
         backend: expvar
       simplifySrv: false
       useProxyProtocol: false
-#
