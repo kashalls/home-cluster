@@ -5,3 +5,4 @@ kind: Kustomization
 resources:
   - ./dnsendpoint.yaml
   - ./helmrelease.yaml
+  - ./servicemonitor.yaml
