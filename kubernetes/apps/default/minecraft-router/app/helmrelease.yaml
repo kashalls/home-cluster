@@ -46,8 +46,6 @@ spec:
       api:
         type: ClusterIP
         port: 8080
-      extraServiceSpec:
-        externalTrafficPolicy: Local
     resources:
       requests:
         cpu: 1
