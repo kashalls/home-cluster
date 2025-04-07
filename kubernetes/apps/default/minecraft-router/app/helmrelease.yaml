@@ -10,7 +10,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 1.2.5
+    tag: 1.2.6
   url: oci://ghcr.io/itzg/minecraft-server-charts/mc-router
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/helm.toolkit.fluxcd.io/helmrelease_v2.json
@@ -58,7 +58,7 @@ spec:
         host: minecraft-void.default.svc.cluster.local
         port: 25565
       metrics:
-        # Backend to use for metrics exposure/publishing: discard,expvar,influxdb (env METRICS_BACKEND)
-        backend: expvar
+        # Backend to use for metrics exposure/publishing: discard,expvar,influxdb,prometheus (env METRICS_BACKEND)
+        backend: prometheus
       simplifySrv: false
       useProxyProtocol: false
