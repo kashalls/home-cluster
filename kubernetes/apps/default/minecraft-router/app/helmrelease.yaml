@@ -43,9 +43,6 @@ spec:
         annotations:
           lbipam.cilium.io/ips: 172.16.10.4
           # external-dns.alpha.kubernetes.io/hostname: vanilla.mc.ok8.sh,void.mc.ok8.sh
-      api:
-        type: ClusterIP
-        port: 8080
     resources:
       requests:
         cpu: 1
@@ -58,7 +55,7 @@ spec:
         enabled: false
       connectionRateLimit: 10
       defaultServer:
-        host: minecraft-void
+        host: minecraft-void.default.svc.cluster.local
         port: 25565
       metrics:
         # Backend to use for metrics exposure/publishing: discard,expvar,influxdb (env METRICS_BACKEND)
