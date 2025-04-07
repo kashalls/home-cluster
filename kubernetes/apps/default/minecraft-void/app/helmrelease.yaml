@@ -59,7 +59,7 @@ spec:
       spawnMonsters: false
       spawnNPCs: false
       pvp: false
-      levelType: CUSTOMIZED
+      levelType: FLAT
       generatorSettings: >-
           {
             "layers": [
