@@ -58,7 +58,7 @@ spec:
         host: minecraft-void.default.svc.cluster.local
         port: 25565
       metrics:
-        # Backend to use for metrics exposure/publishing: discard,expvar,influxdb (env METRICS_BACKEND)
-        backend: expvar
+        # Backend to use for metrics exposure/publishing: discard,expvar,influxdb,prometheus (env METRICS_BACKEND)
+        backend: prometheus
       simplifySrv: false
       useProxyProtocol: false
