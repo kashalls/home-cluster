@@ -48,10 +48,7 @@ spec:
       INIT_MEMORY: 1G
       MAX_MEMORY: *memory-limit
     persistence:
-      storageClass: openebs-hostpath
-      dataDir:
-        enabled: true
-        Size: 128G
+      existingClaim: minecraft-vanilla-datadir
     rconServiceAnnotations:
       lbipam.cilium.io/ips: "172.16.10.5"
     serviceAnnotations:
