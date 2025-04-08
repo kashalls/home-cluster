@@ -37,6 +37,9 @@ spec:
       runAsNonRoot: true
       runAsUser: 1000
     services:
+      api:
+        type: ClusterIP
+        port: 8080
       minecraft:
         type: LoadBalancer
         port: 25565
