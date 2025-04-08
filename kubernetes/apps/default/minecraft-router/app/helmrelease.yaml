@@ -38,13 +38,16 @@ spec:
       runAsUser: 1000
     services:
       api:
-        type: ClusterIP
+        type: LoadBalancer
         port: 8080
+        annotations:
+          lbipam.cilium.io/sharing-key: *app
       minecraft:
         type: LoadBalancer
         port: 25565
         annotations:
           lbipam.cilium.io/ips: 172.16.0.20
+          lbipam.cilium.io/sharing-key: *app
           # external-dns.alpha.kubernetes.io/hostname: vanilla.mc.ok8.sh,void.mc.ok8.sh
     resources:
       requests:
