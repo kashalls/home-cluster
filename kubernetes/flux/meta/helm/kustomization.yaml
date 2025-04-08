@@ -17,7 +17,6 @@ resources:
   - ./grafana.yaml
   - ./immich.yaml
   - ./ingress-nginx.yaml
-  - ./intel.yaml
   - ./metrics-server.yaml
   - ./mongodb.yaml
   - ./nats.yaml
