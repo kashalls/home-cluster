@@ -21,7 +21,7 @@ metadata:
 spec:
   chartRef:
     kind: OCIRepository
-    name: itzg-minecraft
+    name: itzg-minecraft-void
   interval: 30m
   values:
     image:
