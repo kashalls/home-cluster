@@ -48,6 +48,7 @@ spec:
         type: LoadBalancer
         port: 8080
         annotations:
+          lbipam.cilium.io/ips: 172.16.0.20
           lbipam.cilium.io/sharing-key: *app
     resources:
       requests:
