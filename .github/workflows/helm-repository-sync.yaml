@@ -53,7 +53,7 @@ jobs:
         uses: dcarbone/install-yq-action@v1
 
       - name: Setup Flux CLI
-        uses: fluxcd/flux2/action@09af0becc535746ac1d06206fbf9539a8d9bc624
+        uses: fluxcd/flux2/action@c436708a13c1cfe00dd2453dd5a2f2a2c7c8f9aa
         with:
           version: 'latest'
 
