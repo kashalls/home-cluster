@@ -63,7 +63,18 @@ spec:
         controller: home-assistant
         ports:
           http:
-            port: 8123
+            port: &port 8123
+    route:
+      app:
+        hostnames: ["{{ .Release.Name }}.ok8.sh", "hass.ok8.sh"]
+        parentRefs:
+          - name: external
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
     ingress:
       app:
         className: external

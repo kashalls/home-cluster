@@ -49,7 +49,18 @@ spec:
         controller: openspeedtest
         ports:
           http:
-            port: 3000
+            port: &port 3000
+    route:
+      app:
+        hostnames: ["{{ .Release.Name }}.ok8.sh", "ost.ok8.sh"]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
     ingress:
       app:
         className: internal

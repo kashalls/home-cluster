@@ -70,5 +70,4 @@ spec:
   allowFirstLastIPs: "Yes"
   blocks:
     - start: 172.16.0.10
-      stop: 172.16.0.40
-    - cidr: 172.16.10.0/24
+      stop: 172.16.0.50

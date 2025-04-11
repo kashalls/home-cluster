@@ -55,7 +55,18 @@ spec:
         controller: glance
         ports:
           http:
-            port: 8080
+            port: &port 8080
+    route:
+      app:
+        hostnames: ["{{ .Release.Name }}.ok8.sh", "g.ok8.sh"]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
     ingress:
       app:
         className: internal

@@ -52,8 +52,6 @@ spec:
       dataDir:
         enabled: true
         Size: 128G
-    rconServiceAnnotations:
-      lbipam.cilium.io/ips: "172.16.10.5"
     serviceAnnotations:
       mc-router.itzg.me/externalServerName: vanilla.mc.ok8.sh
     servicePort: 25565

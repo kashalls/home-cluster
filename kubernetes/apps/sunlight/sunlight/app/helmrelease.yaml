@@ -50,7 +50,7 @@ spec:
         type: LoadBalancer
         annotations:
           external-dns.alpha.kubernetes.io/hostname: sapi.ok8.sh
-          lbipam.cilium.io/ips: 172.16.10.10
+          lbipam.cilium.io/ips: 172.16.0.13
         ports:
           http:
             port: 8080

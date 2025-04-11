@@ -56,7 +56,7 @@ spec:
         type: LoadBalancer
         annotations:
           external-dns.alpha.kubernetes.io/target: "azau.ok8.sh"
-          lbipam.cilium.io/ips: 172.16.10.22
+          lbipam.cilium.io/ips: 172.16.0.40
         ports:
           authserver:
             port: 3724
