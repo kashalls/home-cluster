@@ -105,7 +105,7 @@ spec:
         controller: acars-hub
         ports:
           http:
-            port: 80
+            port: &port 80
           acarsinput:
             port: 5550
             protocol: UDP
