@@ -63,18 +63,6 @@ spec:
         requests:
           cpu: 1500m
           memory: 2048M
-      ingress:
-        main:
-          enabled: true
-          ingressClassName: internal
-          annotations:
-            kubernetes.io/ingress.class: nginx
-            nginx.ingress.kubernetes.io/proxy-body-size: "0"
-          hosts:
-            - host: "photos.ok8.sh"
-              paths:
-                - path: /
-                  pathType: Prefix
     machine-learning:
       resources:
         requests:

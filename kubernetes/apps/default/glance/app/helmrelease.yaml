@@ -67,20 +67,6 @@ spec:
           - backendRefs:
               - name: *app
                 port: *port
-    ingress:
-      app:
-        className: internal
-        annotations:
-          # external-dns.alpha.kubernetes.io/target: external.ok8.sh
-        hosts:
-          - host: &host g.ok8.sh
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
-        tls:
-          - hosts: [*host]
     persistence:
       config-file:
         type: configMap

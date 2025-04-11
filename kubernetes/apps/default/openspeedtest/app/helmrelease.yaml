@@ -61,15 +61,3 @@ spec:
           - backendRefs:
               - name: *app
                 port: *port
-    ingress:
-      app:
-        className: internal
-        annotations:
-          external-dns.alpha.kubernetes.io/target: internal.ok8.sh
-        hosts:
-          - host: speedtest.ok8.sh
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http

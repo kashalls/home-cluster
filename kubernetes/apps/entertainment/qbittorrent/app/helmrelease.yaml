@@ -88,16 +88,17 @@ spec:
             enabled: true
             port: *torrentPort
             protocol: TCP
-    ingress:
+    route:
       app:
-        className: internal
-        hosts:
-          - host: qb.ok8.sh
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
+        hostnames: ["{{ .Release.Name }}.ok8.sh", "qb.ok8.sh"]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
     persistence:
       config:
         type: persistentVolumeClaim
