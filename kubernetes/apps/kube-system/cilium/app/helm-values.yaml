@@ -10,6 +10,7 @@ bpf:
   masquerade: true
   preallocateMaps: true
   # tproxy: true # Incompaitable with gateway
+bpfClockProbe: true
 cgroup:
   automount:
     enabled: false
