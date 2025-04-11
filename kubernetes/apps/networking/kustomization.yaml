@@ -8,6 +8,6 @@ resources:
   # Flux-Kustomizations
   - ./cloudflare-dns/ks.yaml
   - ./cloudflare-tunnel/ks.yaml
-  - ./nginx-external/ks.yaml
-  - ./nginx-internal/ks.yaml
+  #- ./nginx-external/ks.yaml
+  #- ./nginx-internal/ks.yaml
   - ./unifi-dns/ks.yaml
