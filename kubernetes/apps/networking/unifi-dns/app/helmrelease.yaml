@@ -12,8 +12,6 @@ spec:
   ref:
     tag: 1.15.2
   url: oci://ghcr.io/home-operations/charts-mirror/external-dns
-  verify:
-    provider: cosign
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/helm.toolkit.fluxcd.io/helmrelease_v2.json
 apiVersion: helm.toolkit.fluxcd.io/v2
@@ -26,12 +24,13 @@ spec:
     kind: OCIRepository
     name: unifi-dns
   install:
+    disableSchemaValidation: true # Ref: https://github.com/kubernetes-sigs/external-dns/issues/5206
     remediation:
-      retries: 3
+      retries: -1
   upgrade:
     cleanupOnFail: true
+    disableSchemaValidation: true # Ref: https://github.com/kubernetes-sigs/external-dns/issues/5206
     remediation:
-      strategy: rollback
       retries: 3
   values:
     fullnameOverride: *app
@@ -64,13 +63,10 @@ spec:
             port: http-webhook
           initialDelaySeconds: 10
           timeoutSeconds: 5
-    managedRecordTypes: ["A", "AAAA", "CNAME", "SRV"]
-    extraArgs:
-      - --ignore-ingress-tls-spec
     policy: sync
-    sources: ["ingress", "service"]
-    txtOwnerId: main
-    txtPrefix: k8s.main.
+    sources: ["gateway-httproute", "service"]
+    txtOwnerId: default
+    txtPrefix: k8s.
     domainFilters: ["ok8.sh"]
     serviceMonitor:
       enabled: true
