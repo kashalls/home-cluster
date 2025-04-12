@@ -7,16 +7,21 @@ on:
     inputs:
       dryRun:
         description: Dry Run
-        default: "false"
-        required: false
+        type: boolean
+        default: false
+        required: true
       logLevel:
         description: Log Level
+        type: choice
         default: debug
-        required: false
+        options:
+          - debug
+          - info
+        required: true
       version:
         description: Renovate version
         default: latest
-        required: false
+        required: true
   schedule:
     - cron: "0 * * * *" # Every hour
   push:
@@ -28,16 +33,6 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
   cancel-in-progress: true
-
-env:
-  LOG_LEVEL: "${{ inputs.logLevel || 'debug' }}"
-  RENOVATE_AUTODISCOVER: true
-  RENOVATE_AUTODISCOVER_FILTER: "${{ github.repository }}"
-  RENOVATE_DRY_RUN: "${{ inputs.dryRun == true }}"
-  RENOVATE_INTERNAL_CHECKS_FILTER: strict
-  RENOVATE_PLATFORM: github
-  RENOVATE_PLATFORM_COMMIT: true
-  WORKFLOW_RENOVATE_VERSION: "${{ inputs.version || 'latest' }}"
 
 jobs:
   renovate:
@@ -64,6 +59,13 @@ jobs:
         with:
           configurationFile: .github/renovate.json5
           token: "${{ steps.app-token.outputs.token }}"
-          renovate-version: "${{ env.WORKFLOW_RENOVATE_VERSION }}"
+          renovate-version: "${{ inputs.version || 'latest' }}"
         env:
+          LOG_LEVEL: "${{ inputs.logLevel || 'debug' }}"
+          RENOVATE_AUTODISCOVER: true
+          RENOVATE_AUTODISCOVER_FILTER: "${{ github.repository }}"
+          RENOVATE_DRY_RUN: "${{ inputs.dryRun == true }}"
+          RENOVATE_INTERNAL_CHECKS_FILTER: strict
+          RENOVATE_PLATFORM: github
+          RENOVATE_PLATFORM_COMMIT: true
           RENOVATE_HOST_RULES: "[{\"matchHost\": \"ghcr.io\",\"username\": \"${{ github.actor }}\",\"password\": \"${{ secrets.GITHUB_TOKEN }}\", \"hostType\": \"docker\"}]"
