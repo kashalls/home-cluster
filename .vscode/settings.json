@@ -9,32 +9,32 @@
   "editor.stickyScroll.enabled": false,
   "explorer.autoReveal": false,
   "files.associations": {
-      "**/*.json5": "jsonc"
+    "**/*.json5": "json5"
   },
   "files.trimTrailingWhitespace": true,
   "material-icon-theme.folders.associations": {
-      // top level
-      ".archive": "archive",
-      // .github
-      ".github/workflows": "robot",
-      // namespaces
-      "actions-runner-system": "github",
-      "cert-manager": "guard",
-      "default": "home",
-      "digester-system": "hook",
-      "external-secrets": "secure",
-      "flux-system": "pipe",
-      "hack": "scripts",
-      "kube-system": "kubernetes",
-      "monitoring": "event",
-      "network": "connection",
-      "networking": "connection",
-      "observability": "event",
-      "rook-ceph": "base",
-      "storage": "dump",
-      "system-upgrade": "update",
-      "tools": "tools",
-      "volsync": "aws"
+    // top level
+    ".archive": "archive",
+    // .github
+    ".github/workflows": "robot",
+    // namespaces
+    "actions-runner-system": "github",
+    "cert-manager": "guard",
+    "default": "home",
+    "digester-system": "hook",
+    "external-secrets": "secure",
+    "flux-system": "pipe",
+    "hack": "scripts",
+    "kube-system": "kubernetes",
+    "monitoring": "event",
+    "network": "connection",
+    "networking": "connection",
+    "observability": "event",
+    "rook-ceph": "base",
+    "storage": "dump",
+    "system-upgrade": "update",
+    "tools": "tools",
+    "volsync": "aws"
   },
   "vs-kubernetes": {
     "vs-kubernetes.kubeconfig": "./kubeconfig",

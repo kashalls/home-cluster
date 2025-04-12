@@ -1,47 +1,45 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "packageRules": [
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  packageRules: [
     {
-      "description": "Auto merge container digests",
-      "matchDatasources": [
-        "docker"
-      ],
-      "automerge": true,
-      "ignoreTests": true,
-      "automergeType": "branch",
-      "matchUpdateTypes": [
-        "digest"
-      ],
-      "matchPackagePatterns": [
+      description: "Auto merge container digests",
+      matchDatasources: ["docker"],
+      automerge: true,
+      ignoreTests: true,
+      automergeType: "branch",
+      matchUpdateTypes: ["digest"],
+      matchPackagePatterns: [
         "ghcr.io/bjw-s",
         "ghcr.io/home-operations",
-        "ghcr.io/kashalls"
-      ]
+        "ghcr.io/kashalls",
+      ],
     },
     {
-      "description": "Auto merge GitHub Actions",
-      "matchManagers": [
-        "github-actions"
-      ],
-      "matchDatasources": [
-        "github-tags"
-      ],
-      "automerge": true,
-      "ignoreTests": true,
-      "automergeType": "branch",
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ]
+      description: "Auto-merge OCI Charts",
+      matchDatasources: ["docker"],
+      automerge: true,
+      automergeType: "pr",
+      matchUpdateTypes: ["minor", "patch"],
+      matchPackageNames: ["/kube-prometheus-stack/"],
+      ignoreTests: false,
     },
     {
-      "description": "Auto-merge Helm Releases",
-      "matchDatasources": ["helm", "docker"],
-      "automerge": true,
-      "automergeType": "pr",
-      "matchUpdateTypes": ["minor", "patch"],
-      "matchPackageNames": ["/kube-prometheus-stack/"],
-      "ignoreTests": false
-    }
-  ]
+      description: "Auto merge GitHub Actions",
+      matchManagers: ["github-actions"],
+      matchDatasources: ["github-tags"],
+      automerge: true,
+      ignoreTests: true,
+      automergeType: "branch",
+      matchUpdateTypes: ["minor", "patch"],
+    },
+    {
+      description: "Auto-merge Helm Releases",
+      matchDatasources: ["helm", "docker"],
+      automerge: true,
+      automergeType: "pr",
+      matchUpdateTypes: ["minor", "patch"],
+      matchPackageNames: ["/kube-prometheus-stack/"],
+      ignoreTests: false,
+    },
+  ],
 }
