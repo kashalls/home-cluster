@@ -5,7 +5,7 @@ kind: HTTPRoute
 metadata:
   name: immich-server
 spec:
-  hostnames: ["immich.ok8.sh"]
+  hostnames: ["immich.ok8.sh", "photos.ok8.sh"]
   parentRefs:
     - name: internal
       namespace: kube-system
