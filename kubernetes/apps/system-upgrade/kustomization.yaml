@@ -6,6 +6,7 @@ namespace: system-upgrade
 resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
+  - ./app-template.yaml
   # Flux-Kustomizations
   - ./system-upgrade-controller/ks.yaml
 configMapGenerator:
