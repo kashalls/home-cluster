@@ -5,9 +5,8 @@ kind: Kustomization
 resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
+  - ./app-template.yaml
   # Flux-Kustomizations
   - ./cloudflare-dns/ks.yaml
   - ./cloudflare-tunnel/ks.yaml
-  #- ./nginx-external/ks.yaml
-  #- ./nginx-internal/ks.yaml
   - ./unifi-dns/ks.yaml
