@@ -19,10 +19,10 @@ kind: HelmRelease
 metadata:
   name: &app minecraft-router
 spec:
+  interval: 1h
   chartRef:
     kind: OCIRepository
     name: itzg-router
-  interval: 30m
   values:
     fullnameOverride: *app
     replicaCount: 1

@@ -19,10 +19,10 @@ kind: HelmRelease
 metadata:
   name: &app minecraft-void
 spec:
+  interval: 1h
   chartRef:
     kind: OCIRepository
     name: itzg-minecraft-void
-  interval: 30m
   values:
     image:
       repository: ghcr.io/itzg/minecraft-server

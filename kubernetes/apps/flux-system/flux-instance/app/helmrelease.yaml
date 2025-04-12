@@ -19,7 +19,7 @@ kind: HelmRelease
 metadata:
   name: &name flux-instance
 spec:
-  interval: 30m
+  interval: 1h
   chartRef:
     kind: OCIRepository
     name: *name

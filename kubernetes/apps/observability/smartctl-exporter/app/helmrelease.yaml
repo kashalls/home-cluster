@@ -20,7 +20,7 @@ metadata:
   name: &app smartctl-exporter
   namespace: observability
 spec:
-  interval: 30m
+  interval: 1h
   chartRef:
     kind: OCIRepository
     name: smartctl-exporter

@@ -19,10 +19,10 @@ kind: HelmRelease
 metadata:
   name: &app minecraft-vanilla
 spec:
+  interval: 1h
   chartRef:
     kind: OCIRepository
     name: itzg-minecraft-vanilla
-  interval: 30m
   values:
     deploymentAnnotations:
       secret.reloader.stakater.com/reload: &secret minecraft-vanilla
