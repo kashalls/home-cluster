@@ -35,9 +35,9 @@ spec:
             resources:
               requests:
                 cpu: 20m
-                memory: 256M
+                memory: 256Mi
               limits:
-                memory: 512G
+                memory: 512Mi
     service:
       app:
         controller: openspeedtest
