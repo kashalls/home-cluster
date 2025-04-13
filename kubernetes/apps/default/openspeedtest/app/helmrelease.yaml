@@ -34,10 +34,10 @@ spec:
                 enabled: false
             resources:
               requests:
-                cpu: 400m
-                memory: 512M
+                cpu: 20m
+                memory: 256M
               limits:
-                memory: 2G
+                memory: 512G
     service:
       app:
         controller: openspeedtest

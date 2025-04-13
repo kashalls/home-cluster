@@ -31,8 +31,8 @@ spec:
       tag: 2025.4.0-java21
     resources:
       requests:
-        cpu: 6000m
-        memory: &memory-limit 10G
+        cpu: 500m
+        memory: &memory-limit 4G
     livenessProbe:
       initialDelaySeconds: 0
     readinessProbe:
