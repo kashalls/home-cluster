@@ -48,10 +48,11 @@ spec:
               privileged: true
             resources:
               requests:
-                cpu: 150m
-                memory: 128Mi
+                cpu: 100m
+                memory: 64Mi
               limits:
-                memory: 256Mi
+                cpu: 125m
+                memory: 128Mi
       acars-router:
         annotations:
           reloader.stakater.com/auto: "true"
