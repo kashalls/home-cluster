@@ -48,10 +48,10 @@ spec:
               privileged: true
             resources:
               requests:
-                cpu: 100m
+                cpu: 150m
                 memory: 64Mi
               limits:
-                cpu: 125m
+                cpu: 200m
                 memory: 128Mi
       acars-router:
         annotations:
