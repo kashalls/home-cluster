@@ -36,7 +36,3 @@ spec:
     manager:
       devices:
         gpu: true
-    resources:
-      requests:
-        memory: 120Mi
-# https://github.com/intel/helm-charts/blob/main/charts/device-plugin-operator/values.yaml

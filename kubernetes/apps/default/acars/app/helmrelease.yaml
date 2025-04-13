@@ -70,9 +70,9 @@ spec:
             resources:
               requests:
                 cpu: 10m
-                memory: 128Mi
+                memory: 64Mi
               limits:
-                memory: 256Mi
+                memory: 96Mi
       acars-hub:
         containers:
           acars-hub:
@@ -87,10 +87,10 @@ spec:
               QUIET_MESSAGES: "false" # This logs the messages themselves
             resources:
               requests:
-                cpu: 10m
-                memory: 128Mi
+                cpu: 300m
+                memory: 192Mi
               limits:
-                memory: 512Mi
+                memory: 256Mi
     service:
       acars-router:
         controller: acars-router
