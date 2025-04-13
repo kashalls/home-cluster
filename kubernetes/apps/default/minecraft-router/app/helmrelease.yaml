@@ -52,11 +52,11 @@ spec:
           lbipam.cilium.io/sharing-key: *app
     resources:
       requests:
-        cpu: 1
-        memory: 128Mi
+        cpu: 350m
+        memory: 64Mi
       limits:
-        cpu: 1
-        memory: 256Mi
+        cpu: 500m
+        memory: 96Mi
     minecraftRouter:
       autoScaleUp:
         enabled: false
