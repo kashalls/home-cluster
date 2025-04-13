@@ -38,5 +38,5 @@ spec:
         gpu: true
     resources:
       limits:
-        cpu: 200m
+        cpu: 500m
 # https://github.com/intel/helm-charts/blob/main/charts/device-plugin-operator/values.yaml
