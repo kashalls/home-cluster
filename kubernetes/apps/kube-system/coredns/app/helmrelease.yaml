@@ -1,12 +1,17 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/source.toolkit.fluxcd.io/helmrepository_v1beta2.json
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/source.toolkit.fluxcd.io/ocirepository_v1beta2.json
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
 metadata:
   name: coredns
 spec:
-  interval: 1h
-  url: https://coredns.github.io/helm
+  interval: 5m
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 1.39.2
+  url: oci://ghcr.io/coredns/charts/coredns
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/helm.toolkit.fluxcd.io/helmrelease_v2.json
 apiVersion: helm.toolkit.fluxcd.io/v2
@@ -15,13 +20,9 @@ metadata:
   name: coredns
 spec:
   interval: 1h
-  chart:
-    spec:
-      chart: coredns
-      version: 1.39.2
-      sourceRef:
-        kind: HelmRepository
-        name: coredns
+  chartRef:
+    kind: OCIRepository
+    name: coredns
   install:
     remediation:
       retries: 3
