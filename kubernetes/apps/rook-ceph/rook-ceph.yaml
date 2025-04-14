@@ -4,6 +4,7 @@ apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: OCIRepository
 metadata:
   name: rook-ceph
+  namespace: rook-ceph
 spec:
   interval: 5m
   layerSelector:
