@@ -26,7 +26,7 @@ spec:
           app:
             image:
               repository: glanceapp/glance
-              tag: v0.7.10@sha256:65b20e4405611abca17a70f6c3c7b8fdb3ce6ff0179a32c35dd84d77db624db7
+              tag: v0.7.12@sha256:078ab2c1cbb0d09fb2445a193bf430224638461e12f4adde105f839a0a26a51f
             env:
               TZ: America/Los_Angeles
             securityContext:
