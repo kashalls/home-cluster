@@ -49,6 +49,7 @@ spec:
     service:
       app:
         controller: bitfocus
+        type: LoadBalancer
         ports:
           http:
             port: &port 8000
