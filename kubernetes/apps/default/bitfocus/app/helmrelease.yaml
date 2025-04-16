@@ -54,9 +54,9 @@ spec:
           http:
             port: &port 8000
           satelite-api:
-            port: 11622
+            port: 16622
           satelite-api2:
-            port: 11623
+            port: 16623
           websocket:
             port: 28492
     route:
