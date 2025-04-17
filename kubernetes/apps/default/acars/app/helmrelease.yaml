@@ -121,7 +121,7 @@ spec:
             sectionName: https
         rules:
           - backendRefs:
-              - name: *app
+              - name: acars-router
                 port: *port
     persistence:
       usb:
