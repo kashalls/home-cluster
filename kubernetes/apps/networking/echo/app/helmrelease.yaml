@@ -76,7 +76,7 @@ spec:
       app:
         hostnames: ["{{ .Release.Name }}.ok8.sh"]
         parentRefs:
-          - name: external
+          - name: internal
             namespace: kube-system
             sectionName: https
         rules:
