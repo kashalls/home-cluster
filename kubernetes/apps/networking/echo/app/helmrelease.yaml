@@ -61,6 +61,9 @@ spec:
     service:
       app:
         controller: echo
+        type: LoadBalancer
+        annotations:
+          lbipam.cilium.io/ips: 10.69.0.10
         ports:
           http:
             port: *port
