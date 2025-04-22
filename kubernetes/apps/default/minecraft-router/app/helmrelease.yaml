@@ -28,7 +28,7 @@ spec:
     replicaCount: 1
     image:
       repository: ghcr.io/itzg/mc-router
-      tag: 1.26.2@sha256:0686b45eabf991178c5b461ff4712ce72f8e3888a2a2daa343cadfc14aa7f19c
+      tag: 1.27.0@sha256:88306246ffa2ab293a35f01e650826a798fca0851cdd85e4a6de62f062e0b2ad
     securityContext:
       capabilities:
         drop: ["ALL"]
