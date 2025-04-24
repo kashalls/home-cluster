@@ -71,7 +71,7 @@ spec:
           unifi-webhook:
             image:
               repository: ghcr.io/kashalls/minecraft-router-sidehook-unifi
-              tag: main@sha256:e4d1699cc5efece8ccc47feba15fed9dff18e8cd5a05d77ddd5483971856e658
+              tag: main@sha256:3bf0265a7671f005ab0d424a8f943da6d7c91d975a57e361c8a60c957a2d26cd
             env:
               UNIFI_HOST: "https://172.16.0.1"
               SERVER_PORT: &unifi-port 8083
