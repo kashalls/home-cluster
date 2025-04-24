@@ -57,7 +57,7 @@ spec:
       DB_DATABASE_NAME: "immich"
     image:
       # renovate: datasource=github-releases depName=immich-app/immich
-      tag: v1.131.3
+      tag: v1.132.1
     server:
       resources:
         requests:
