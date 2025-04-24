@@ -63,8 +63,8 @@ spec:
               repository: ghcr.io/kashalls/minecraft-router-sidehook-discord
               tag: main@sha256:9fd8ceeea90ce7f68ec7ace3989d5166b7d25d4e8d38290d5849348293cee47d
             env:
-              SERVER_PORT: &discord-port 8080
-              HEALTH_PORT: &discord-health-port 8081
+              SERVER_PORT: &discord-port 8081
+              HEALTH_PORT: &discord-health-port 8082
             envFrom:
               - secretRef:
                   name: minecraft-router-secret
@@ -74,8 +74,8 @@ spec:
               tag: main@sha256:e4d1699cc5efece8ccc47feba15fed9dff18e8cd5a05d77ddd5483971856e658
             env:
               UNIFI_HOST: "https://172.16.0.1"
-              SERVER_PORT: &unifi-port 8081
-              HEALTH_PORT: &unifi-health-port 8083
+              SERVER_PORT: &unifi-port 8083
+              HEALTH_PORT: &unifi-health-port 8084
             envFrom:
               - secretRef:
                   name: minecraft-router-secret
