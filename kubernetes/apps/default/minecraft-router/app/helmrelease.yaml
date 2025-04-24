@@ -1,19 +1,5 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/source.toolkit.fluxcd.io/ocirepository_v1beta2.json
-apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: OCIRepository
-metadata:
-  name: itzg-router
-spec:
-  interval: 5m
-  layerSelector:
-    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
-    operation: copy
-  ref:
-    tag: 1.3.0
-  url: oci://ghcr.io/itzg/minecraft-server-charts/mc-router
----
-# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/helm.toolkit.fluxcd.io/helmrelease_v2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -22,49 +8,136 @@ spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: itzg-router
+    name: app-template
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
   values:
-    fullnameOverride: *app
-    replicaCount: 1
-    image:
-      repository: ghcr.io/itzg/mc-router
-      tag: 1.27.0@sha256:88306246ffa2ab293a35f01e650826a798fca0851cdd85e4a6de62f062e0b2ad
-    securityContext:
-      capabilities:
-        drop: ["ALL"]
-      readOnlyRootFilesystem: true
-      runAsNonRoot: true
-      runAsUser: 1000
-    services:
-      minecraft:
-        type: LoadBalancer
-        port: 25565
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          minecraft-router:
+            image:
+              repository: ghcr.io/itzg/mc-router
+              tag: 1.26.2@sha256:0686b45eabf991178c5b461ff4712ce72f8e3888a2a2daa343cadfc14aa7f19c
+            env:
+              TZ: America/Los_Angeles
+              IN_KUBE_CLUSTER: "true"
+              API_BINDING: ":8080"
+              PORT: &port 25565
+              AUTO_SCALE_UP: false
+              CONNECTION_RATE_LIMIT: 10
+              DEFAULT: minecraft-void.default.svc.cluster.local:25565
+              METRICS_BACKEND: prometheus
+              SIMPLIFY_SRV: false
+              USE_PROXY_PROTOCOL: false
+            envFrom:
+              - secretRef:
+                  name: home-assistant-secret
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 350m
+                memory: 64Mi
+              limits:
+                cpu: 500m
+                memory: 96Mi
+          discord-webhook:
+            image:
+              repository: ghcr.io/kashalls/minecraft-router-sidehook-discord
+              tag: main@sha256:9fd8ceeea90ce7f68ec7ace3989d5166b7d25d4e8d38290d5849348293cee47d
+            env:
+              SERVER_PORT: &discord-port 8080
+              HEALTH_PORT: &discord-health-port 8081
+            envFrom:
+              - secretRef:
+                  name: minecraft-router-secret
+          unifi-webhook:
+            image:
+              repository: ghcr.io/kashalls/minecraft-router-sidehook-unifi
+              tag: main@sha256:e4d1699cc5efece8ccc47feba15fed9dff18e8cd5a05d77ddd5483971856e658
+            env:
+              UNIFI_HOST: "https://172.16.0.1"
+              SERVER_PORT: &unifi-port 8081
+              HEALTH_PORT: &unifi-health-port 8083
+            envFrom:
+              - secretRef:
+                  name: minecraft-router-secret
+        pod:
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            runAsNonRoot: true
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
+    service:
+      minecraft-router:
         annotations:
           lbipam.cilium.io/ips: 172.16.0.20
-          lbipam.cilium.io/sharing-key: *app
-          # external-dns.alpha.kubernetes.io/hostname: vanilla.mc.ok8.sh,void.mc.ok8.sh
-      api:
         type: LoadBalancer
-        port: 8080
-        annotations:
-          lbipam.cilium.io/ips: 172.16.0.20
-          lbipam.cilium.io/sharing-key: *app
-    resources:
-      requests:
-        cpu: 350m
-        memory: 64Mi
-      limits:
-        cpu: 500m
-        memory: 96Mi
-    minecraftRouter:
-      autoScaleUp:
-        enabled: false
-      connectionRateLimit: 10
-      defaultServer:
-        host: minecraft-void.default.svc.cluster.local
-        port: 25565
-      metrics:
-        # Backend to use for metrics exposure/publishing: discard,expvar,influxdb,prometheus (env METRICS_BACKEND)
-        backend: prometheus
-      simplifySrv: false
-      useProxyProtocol: false
+        controller: main
+        ports:
+          java:
+            port: *port
+          api:
+            port: 8080
+      discord-webhook:
+        controller: main
+        ports:
+          discord:
+            port: *discord-port
+          metrics:
+            port: *discord-health-port
+      unifi-webhook:
+        controller: main
+        ports:
+          unifi:
+            port: *unifi-port
+          metrics:
+            port: *unifi-health-port
+    serviceMonitor:
+      minecraft-router:
+        serviceName: minecraft-router
+        endpoints:
+          - port: api
+            scheme: http
+            path: /metrics
+            interval: 1m
+            scrapeTimeout: 30s
+      discord-webhook:
+        serviceName: discord-webhook
+        endpoints:
+          - port: discord
+            scheme: http
+            path: /metrics
+            interval: 1m
+            scrapeTimeout: 30s
+      unifi-webhook:
+        serviceName: unifi-webhook
+        endpoints:
+          - port: unifi
+            scheme: http
+            path: /metrics
+            interval: 1m
+            scrapeTimeout: 30s
+    route:
+      app:
+        hostnames: ["drama.ok8.sh"]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: unifi-webhook
+                port: *unifi-port
