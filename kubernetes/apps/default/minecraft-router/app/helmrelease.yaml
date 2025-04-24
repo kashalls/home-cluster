@@ -18,6 +18,15 @@ spec:
       strategy: rollback
       retries: 3
   values:
+    serviceAccount:
+      create: true
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
     controllers:
       main:
         annotations:
@@ -38,9 +47,6 @@ spec:
               METRICS_BACKEND: prometheus
               SIMPLIFY_SRV: false
               USE_PROXY_PROTOCOL: false
-            envFrom:
-              - secretRef:
-                  name: home-assistant-secret
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -73,13 +79,6 @@ spec:
             envFrom:
               - secretRef:
                   name: minecraft-router-secret
-        pod:
-          securityContext:
-            runAsUser: 1000
-            runAsGroup: 1000
-            runAsNonRoot: true
-            fsGroup: 1000
-            fsGroupChangePolicy: OnRootMismatch
     service:
       minecraft-router:
         annotations:
