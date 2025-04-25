@@ -47,7 +47,7 @@ spec:
               METRICS_BACKEND: prometheus
               SIMPLIFY_SRV: false
               USE_PROXY_PROTOCOL: false
-              WEBHOOK_URL: "http://localhost:8081" # Containers in the same pod share the same network namespace
+              WEBHOOK_URL: "http://localhost:8081/webhook" # Containers in the same pod share the same network namespace
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
