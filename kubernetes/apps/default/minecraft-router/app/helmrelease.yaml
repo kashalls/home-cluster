@@ -47,7 +47,7 @@ spec:
               METRICS_BACKEND: prometheus
               SIMPLIFY_SRV: false
               USE_PROXY_PROTOCOL: false
-              WEBHOOK_URL: "http://discord-webhook:8081"
+              WEBHOOK_URL: "http://minecraft-router-discord-webhook:8081"
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
