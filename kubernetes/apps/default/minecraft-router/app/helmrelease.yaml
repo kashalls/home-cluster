@@ -62,7 +62,7 @@ spec:
           discord-webhook:
             image:
               repository: ghcr.io/kashalls/minecraft-router-sidehook-discord
-              tag: main@sha256:9929bc881a111738dbc3b79bb24e76877a37f013b006e387600385badc258fa4
+              tag: main@sha256:af50dddffe654310432065eaf16e0967457eb516611ebd9975fcf2a3c8d4665d
             env:
               SERVER_PORT: &discord-port 8081
               HEALTH_PORT: &discord-health-port 8082
