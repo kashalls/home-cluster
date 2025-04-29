@@ -61,9 +61,6 @@ spec:
     service:
       app:
         controller: echo
-        type: LoadBalancer
-        annotations:
-          lbipam.cilium.io/ips: 10.69.0.10
         ports:
           http:
             port: *port
@@ -76,7 +73,7 @@ spec:
       app:
         hostnames: ["{{ .Release.Name }}.ok8.sh"]
         parentRefs:
-          - name: internal
+          - name: external
             namespace: kube-system
             sectionName: https
         rules:
