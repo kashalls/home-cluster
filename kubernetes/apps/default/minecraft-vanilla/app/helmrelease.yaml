@@ -28,7 +28,7 @@ spec:
       secret.reloader.stakater.com/reload: &secret minecraft-vanilla
     image:
       repository: ghcr.io/itzg/minecraft-server
-      tag: 2025.4.0-java21
+      tag: 2025.4.2-java21
     resources:
       requests:
         cpu: 500m
