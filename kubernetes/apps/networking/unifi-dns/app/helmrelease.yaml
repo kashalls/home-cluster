@@ -37,7 +37,7 @@ spec:
     logLevel: &logLevel debug
     image:
       repository: ghcr.io/kashalls/external-dns/external-dns
-      tag: v0.16.1-122-gd587756d-dirty@sha256:c88735b4ff6274cd0adfd9217a8dfe6d05ce98b618b284a03356d72f0908371d
+      tag: v0.16.1-125-g11ca7839-dirty@sha256:8316a6a3e7340ce608c34154e9ef6b8d667689b36f62128271d7b8afcb3f57db
     provider:
       name: webhook
       webhook:
