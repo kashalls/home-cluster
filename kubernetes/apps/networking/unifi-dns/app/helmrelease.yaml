@@ -35,6 +35,9 @@ spec:
   values:
     fullnameOverride: *app
     logLevel: &logLevel debug
+    image:
+      repository: ghcr.io/kashalls/external-dns/external-dns
+      tag: v0.16.1-122-gd587756d-dirty@sha256:c88735b4ff6274cd0adfd9217a8dfe6d05ce98b618b284a03356d72f0908371d
     provider:
       name: webhook
       webhook:
