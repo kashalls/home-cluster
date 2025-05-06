@@ -83,7 +83,7 @@ spec:
     service:
       minecraft-router:
         annotations:
-          lbipam.cilium.io/ips: 172.16.0.20
+          lbipam.cilium.io/ips: 172.16.0.40
         type: LoadBalancer
         controller: main
         ports:

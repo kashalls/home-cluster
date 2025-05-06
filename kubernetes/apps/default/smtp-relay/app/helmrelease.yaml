@@ -68,7 +68,7 @@ spec:
         type: LoadBalancer
         annotations:
           external-dns.alpha.kubernetes.io/target: "smtp.ok8.sh"
-          lbipam.cilium.io/ips: 172.16.0.25
+          lbipam.cilium.io/ips: 172.16.0.45
         ports:
           http:
             primary: true
