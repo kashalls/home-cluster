@@ -7,11 +7,14 @@ tasks:
     desc: Apply Talos config to a node [IP=required]
     dotenv: ["{{.TALOS_DIR}}/talos.env"]
     cmd: >
-      yq ea '. as $item ireduce ({}; . * $item )' {{.TALOS_DIR}}/machineconfig.yaml.j2 {{.TALOS_DIR}}/nodes/{{.IP}}.yaml |
-      minijinja-cli -D - | op inject | talosctl --insecure={{.INSECURE}} --nodes {{.IP}} apply-config --mode {{.MODE}} --file /dev/stdin
+      minijinja-cli {{.TALOS_DIR}}/machineconfig.yaml.j2 | op inject \
+        | talosctl --nodes {{.IP}} apply-config \
+          --mode {{.MODE}} \
+          --config-patch @{{.TALOS_DIR}}/nodes/{{.IP}}.yaml \
+          --file /dev/stdin {{if .INSECURE}}--insecure{{end}}
     vars:
       MODE: '{{.MODE | default "auto"}}'
-      INSECURE: '{{.INSECURE | default "false"}}'
+      INSECURE: '{{.INSECURE }}'
     requires:
       vars: [IP]
     preconditions:

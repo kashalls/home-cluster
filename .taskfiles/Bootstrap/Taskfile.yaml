@@ -1,42 +1,52 @@
 ---
-# yaml-language-server: $schema=https://taskfile.dev/schema.json
 version: "3"
 
-vars:
-  controller:
-    sh: talosctl config info --output json | jq --exit-status --raw-output '.endpoints[]' | shuf -n 1
-
 tasks:
-  default:
-    desc: Bootstraps cluster dependencies
-    prompt: Bootstrap cluster required dependencies?
+  talos:
+    desc: Bootstrap Talos
+    prompt: Bootstrap Talos ...?
     cmds:
-      - task: kubeconfig
-      - task: resources
-      - task: helmfile
+      - until talosctl --nodes {{.RANDOM_CONTROLLER}} bootstrap; do sleep 5; done
+      - talosctl kubeconfig --nodes {{.RANDOM_CONTROLLER}} --force {{.KUBERNETES_DIR}}
+    vars:
+      RANDOM_CONTROLLER:
+        sh: talosctl config info --output json | jq --raw-output '.endpoints[]' | shuf -n 1
     preconditions:
-      - test -f {{.ROOT_DIR}}/talosconfig
       - talosctl config info
+      - talosctl --nodes {{.RANDOM_CONTROLLER}} get machineconfig
+      - which jq talosctl
+
+  apps:
+    desc: Bootstrap Kubernetes Apps [ROOK_DISK=required]
+    prompt: Bootstrap Kubernetes Apps ...?
+    cmds:
+      - kubectl config set-cluster {{.CONTEXT}} --server https://{{.RANDOM_CONTROLLER}}:6443
+      - defer: talosctl kubeconfig --nodes {{.RANDOM_CONTROLLER}} --force {{.KUBERNETES_DIR}}
+      #- until kubectl wait nodes --for=condition=Ready=False --all --timeout=10m; do sleep 5; done
+      - for: { var: BLOCK_DEVICES }
+        cmd: talosctl --nodes {{.KEY}} wipe disk {{.ITEM}}
+      - op inject --in-file {{.BOOTSTRAP_DIR}}/secrets.yaml.tpl | kubectl apply --server-side --filename -
+      - helmfile --file {{.BOOTSTRAP_DIR}}/helmfile.yaml apply --skip-diff-on-install --suppress-diff
+    requires:
+      vars: [ROOK_DISK]
+    vars:
+      BLOCK_DEVICES_FILTER: |-
+        map(select(.spec.model == "{{.ROOK_DISK}}"))
+          | group_by(.node)
+          | map({ (.[0].node): (map(.metadata.id) | join(" ")) })
+          | add
+      BLOCK_DEVICES_RESPONSE:
+        sh: talosctl get disks --output json | jq --compact-output --slurp '{{.BLOCK_DEVICES_FILTER}}'
+      BLOCK_DEVICES:
+        ref: fromJson .BLOCK_DEVICES_RESPONSE
+      CONTEXT:
+        sh: talosctl config info --output json | jq --raw-output '.context'
+      RANDOM_CONTROLLER:
+        sh: talosctl config info --output json | jq --raw-output '.endpoints[]' | shuf -n 1
+    preconditions:
       - op user get --me
-
-  kubeconfig:
-    desc: Fetches a new kubeconfig from a controller
-    cmd: talosctl kubeconfig --nodes {{.controller}} --force --force-context-name main "$(basename "${KUBECONFIG}")"
-    preconditions:
-      - test -f {{.ROOT_DIR}}/talosconfig
       - talosctl config info
-
-  resources:
-    desc: Creates required secrets for cluster
-    cmd: minijinja-cli "{{.ROOT_DIR}}/bootstrap/secrets.yaml.tpl" | op.exe inject | kubectl apply -f -
-    preconditions:
-      - test -f {{.ROOT_DIR}}/kubeconfig
-      - test -f {{.ROOT_DIR}}/bootstrap/secrets.yaml.tpl
-      - op user get --me | read -r _ && echo "true" || echo "false"
-
-  helmfile:
-    desc: Applies bootstrap helmfile
-    cmd: helmfile --file "{{.ROOT_DIR}}/bootstrap/helmfile.yaml"
-    preconditions:
-      - test -f {{.ROOT_DIR}}/bootstrap/helmfile.yaml
-      - helm diff version
+      - talosctl --nodes {{.RANDOM_CONTROLLER}} get machineconfig
+      - test -f {{.BOOTSTRAP_DIR}}/helmfile.yaml
+      - test -f {{.BOOTSTRAP_DIR}}/secrets.yaml.tpl
+      - which helmfile jq kubectl op talosctl

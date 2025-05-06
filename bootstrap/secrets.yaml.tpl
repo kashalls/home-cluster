@@ -1,5 +1,12 @@
 ---
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: external-secrets
+  labels:
+    kustomize.toolkit.fluxcd.io/prune: disabled
+---
+apiVersion: v1
 kind: Secret
 metadata:
   name: onepassword-secret

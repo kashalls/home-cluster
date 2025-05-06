@@ -1,9 +1,0 @@
----
-apiVersion: v1alpha1
-kind: ExtensionServiceConfig
-name: nut-client
-configFiles:
-  - content: |-
-      MONITOR 172.16.0.3 1 upsmon "op://Kubernetes/nut/NUT_PASSWORD" secondary
-      SHUTDOWNCMD "/sbin/poweroff"
-    mountPath: /usr/local/etc/nut/upsmon.conf

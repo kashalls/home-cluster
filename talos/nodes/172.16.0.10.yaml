@@ -1,0 +1,19 @@
+---
+machine:
+  type: controlplane
+  install:
+    diskSelector:
+      serial: 2318E6D1E1A3
+  network:
+    hostname: fenrys
+    interfaces:
+      - deviceSelector: { busPath: 0-1.0 } # Maomao
+        dhcp: false
+        mtu: 65520
+        addresses: [169.254.254.10/32]
+        routes: [{ network: 169.254.254.11/32, metric: 2048 }]
+      - deviceSelector: { busPath: 1-1.0 } # Shylily
+        dhcp: false
+        mtu: 65520
+        addresses: [169.254.254.10/32]
+        routes: [{ network: 169.254.254.12/32, metric: 2048 }]

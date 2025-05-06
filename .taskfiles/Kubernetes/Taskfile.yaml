@@ -91,3 +91,13 @@ tasks:
         until kubectl -n {{.NS}} wait {{.TYPE}}/{{.NAME}} --for condition=complete --timeout=2s; do
           echo "{{.NAME}} is still running, logs:" && kubectl -n {{.NS}} logs {{.TYPE}}/{{.NAME}} --since 2s -f || true;
         done
+
+  privileged:
+    desc: Run a privileged pod
+    cmd: |
+      kubectl run privileged-{{.node}} -i --rm --image=null \
+        --overrides="$(yq {{.ROOT_DIR}}/.taskfiles/Kubernetes/template/privileged-pod.tmpl.yaml -o=json | envsubst)"
+    env:
+      node: "{{.node}}"
+    preconditions:
+      - test -f {{.ROOT_DIR}}/.taskfiles/Kubernetes/template/privileged-pod.tmpl.yaml

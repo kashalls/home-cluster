@@ -19,26 +19,6 @@ machine:
         options: ["bind", "rshared", "rw"]
     nodeIP:
       validSubnets: ["172.16.0.0/24"]
-  network:
-    interfaces:
-      - dhcp: true
-        deviceSelector:
-          hardwareAddr: 58:47:ca:76:19:*
-        mtu: 9000
-  install:
-    extraKernelArgs:
-      # No predict interface
-      - net.ifnames=0
-      # PCI Passthrough
-      - intel_iommu=on
-      - iommu=pt
-      # Less security, faster puter
-      - apparmor=0
-      - init_on_alloc=0
-      - init_on_free=0
-      - mitigations=off
-      - security=none
-      - talos.auditd.disabled=1
   features:
     rbac: true
     stableHostname: true
@@ -70,6 +50,24 @@ machine:
       permissions: 420
       path: /etc/nfsmount.conf
       op: overwrite
+  network:
+    interfaces:
+      - dhcp: true
+        deviceSelector:
+          hardwareAddr: 58:47:ca:*
+          physical: true
+        mtu: 9000
+        vip:
+          ip: 172.16.0.2
+    nameservers: ["172.16.0.1"]
+    disableSearchDomain: true
+  install:
+    image: factory.talos.dev/metal-installer/4d60fbb3386142154b1ed3fb175b8c1de32095329620fa92c27452ea5b720038:{{ ENV.TALOS_VERSION }}
+  kernel:
+    modules:
+      - name: nbd
+      - name: thunderbolt
+      - name: thunderbolt_net
   sysctls:
     fs.inotify.max_user_watches: 1048576 # Watchdog
     fs.inotify.max_user_instances: 8192 # Watchdog
@@ -110,7 +108,6 @@ machine:
       - ACTION=="add", SUBSYSTEM=="thunderbolt", ATTR{authorized}=="0", ATTR{authorized}="1" # Thunderbolt
       - SUBSYSTEM=="drm", KERNEL=="renderD*", GROUP="44", MODE="0660" # Intel GPU
       - SUBSYSTEM=="usb", ATTR{idVendor}=="0bda", ATTR{idProduct}=="2838", ATTR{serial}=="00000001", SYMLINK+="rtl-sdr-1"
-      - SUBSYSTEM=="usb", ATTR{idVendor}=="0bda", ATTR{idProduct}=="2832", ATTR{serial}=="00001000", SYMLINK+="flighaware-1090"
 cluster:
   allowSchedulingOnControlPlanes: true
   controlPlane:
@@ -162,3 +159,31 @@ cluster:
       key: op://Kubernetes/talos/CERTS_ETCD_KEY
     extraArgs:
       listen-metrics-urls: http://0.0.0.0:2381
+  extraManifests:
+    - # renovate: datasource=github-releases depName=kubernetes-sigs/gateway-api
+      https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.3.0/experimental-install.yaml
+    - # renovate: datasource=github-releases depName=prometheus-operator/prometheus-operator
+      https://github.com/prometheus-operator/prometheus-operator/releases/download/v0.82.1/stripped-down-crds.yaml
+---
+apiVersion: v1alpha1
+kind: EthernetConfig
+name: enp2s0f0np0
+rings:
+  rx: 8160
+  tx: 8160
+---
+apiVersion: v1alpha1
+kind: EthernetConfig
+name: enp2s0f1np1
+rings:
+  rx: 8160
+  tx: 8160
+---
+apiVersion: v1alpha1
+kind: ExtensionServiceConfig
+name: nut-client
+configFiles:
+  - content: |-
+      MONITOR 172.16.0.20 1 upsmon "op://Kubernetes/nut/NUT_PASSWORD" secondary
+      SHUTDOWNCMD "/sbin/poweroff"
+    mountPath: /usr/local/etc/nut/upsmon.conf
