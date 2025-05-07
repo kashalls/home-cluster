@@ -19,6 +19,6 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: cloudflare-tunnel-id-secret
-  namespace: network
+  namespace: networking
 stringData:
   CLOUDFLARE_TUNNEL_ID: op://Kubernetes/cloudflare/CLOUDFLARE_TUNNEL_ID
