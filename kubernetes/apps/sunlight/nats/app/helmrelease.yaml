@@ -41,7 +41,6 @@ spec:
           name: nats-external
           namespace: sunlight
           annotations:
-            lbipam.cilium.io/ips: 50
             external-dns.alpha.kubernetes.io/hostname: "nats.ok8.sh"
         spec:
           type: LoadBalancer
