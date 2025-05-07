@@ -41,7 +41,6 @@ spec:
         type: LoadBalancer
         annotations:
           external-dns.alpha.kubernetes.io/target: "azql.ok8.sh"
-          lbipam.cilium.io/ips: 172.16.0.41
         ports:
           mysql:
             port: 3306
