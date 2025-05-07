@@ -6,3 +6,10 @@ resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
   - ./prometheusrule.yaml
+  - ./clusterissuer.yaml
+configMapGenerator:
+  - name: cert-manager-values
+    files:
+      - values.yaml=./helm/values.yaml
+configurations:
+  - ./helm/kustomizeconfig.yaml

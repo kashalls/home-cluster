@@ -31,6 +31,14 @@ releases:
     values: ["../kubernetes/apps/kube-system/spegel/app/helm/values.yaml"]
     needs: ["kube-system/coredns"]
 
+  - name: cert-manager
+    namespace: cert-manager
+    chart: oci://quay.io/jetstack/charts/cert-manager
+    version: v1.17.2
+    values:
+      ["../kubernetes/apps/cert-manager/cert-manager/app/helm/values.yaml"]
+    needs: ["kube-system/spegel"]
+
   - name: flux-operator
     namespace: flux-system
     chart: oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator
