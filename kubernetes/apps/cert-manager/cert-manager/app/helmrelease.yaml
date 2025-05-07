@@ -42,4 +42,3 @@ spec:
       enabled: true
       servicemonitor:
         enabled: true
-    #
