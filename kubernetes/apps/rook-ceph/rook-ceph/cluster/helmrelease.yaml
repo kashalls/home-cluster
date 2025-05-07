@@ -73,7 +73,7 @@ spec:
       storage:
         useAllNodes: true
         useAllDevices: false
-        devicePathFilter: /dev/disk/by-id/nvme-SAMSUNG_MZQL23T8HCLS-00A07_.*
+        devicePathFilter: /dev/disk/by-id/nvme-CT1000P3SSD8.*
         config:
           osdsPerDevice: 1
     cephBlockPools:
