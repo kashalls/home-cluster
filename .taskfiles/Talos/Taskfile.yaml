@@ -25,24 +25,21 @@ tasks:
       - which minijinja-cli talosctl
 
   upgrade-node:
-    desc: Upgrade Talos on a single node [IP=required]
-    dotenv: ["{{.TALOS_DIR}}/talos.env"]
-    cmds:
-      - talosctl --nodes {{.IP}} upgrade --image="factory.talos.dev/installer{{if eq .TALOS_SECUREBOOT "true"}}-secureboot{{end}}/{{.TALOS_SCHEMATIC_ID}}:$TALOS_VERSION" --timeout=10m
-      - talosctl --nodes {{.IP}} health --wait-timeout=10m --server=false
+    desc: Upgrade Talos on a single node [NODE=required]
+    cmd: talosctl --nodes {{.NODE}} upgrade --image={{.TALOS_IMAGE}} --timeout=10m
     vars:
-      TALOS_SCHEMATIC_ID:
-        sh: talosctl --nodes {{.IP}} get nodeannotationspecs --output json | jq --raw-output '.spec | select(.key == "extensions.talos.dev/schematic") | .value'
-      TALOS_SECUREBOOT:
-        sh: talosctl --nodes {{.IP}} get securitystate --output=jsonpath='{.spec.secureBoot}'
+      MACHINE_TYPE:
+        sh: talosctl --nodes {{.NODE}} get machinetypes --output=jsonpath='{.spec}'
+      TALOS_IMAGE:
+        sh: |-
+          talosctl --nodes {{.NODE}} get machineconfig --output=jsonpath='{.spec}' \
+            | yq '.machine.install.image | select(. != null)'
     requires:
-      vars: [IP]
+      vars: [NODE]
     preconditions:
-      - curl -fsSL -o /dev/null --fail https://github.com/siderolabs/talos/releases/tag/$TALOS_VERSION
-      - talosctl --nodes {{.IP}} get machineconfig
       - talosctl config info
-      - test -f {{.TALOS_DIR}}/talos.env
-      - which jq kubectl talosctl
+      - talosctl --nodes {{.NODE}} get machineconfig
+      - which minijinja-cli talosctl yq
 
   upgrade-k8s:
     desc: Upgrade Kubernetes across the whole cluster [VERSION=required]
