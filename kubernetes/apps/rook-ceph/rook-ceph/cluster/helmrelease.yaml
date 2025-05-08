@@ -73,7 +73,7 @@ spec:
       storage:
         useAllNodes: true
         useAllDevices: false
-        devicePathFilter: /dev/disk/by-id/nvme-CT1000P3SSD8.*
+        devicePathFilter: /dev/nvme0n1
         config:
           osdsPerDevice: "1"
     cephBlockPools:
