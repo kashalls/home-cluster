@@ -3,22 +3,10 @@ version: v1alpha1
 debug: false
 persist: true
 machine:
-  token: op://Kubernetes/talos/TRUSTDINFO_TOKEN
   ca:
     crt: op://Kubernetes/talos/CERTS_OS_CRT
     key: op://Kubernetes/talos/CERTS_OS_KEY
   certSANs: ["127.0.0.1", "172.16.0.2"]
-  kubelet:
-    defaultRuntimeSeccompProfileEnabled: true
-    disableManifestsDirectory: true
-    image: ghcr.io/siderolabs/kubelet:{{ ENV.KUBERNETES_VERSION }}
-    extraMounts:
-      - destination: /var/mnt/extra
-        type: bind
-        source: /var/mnt/extra
-        options: ["bind", "rshared", "rw"]
-    nodeIP:
-      validSubnets: ["172.16.0.0/24"]
   features:
     rbac: true
     stableHostname: true
@@ -50,6 +38,24 @@ machine:
       permissions: 420
       path: /etc/nfsmount.conf
       op: overwrite
+  install:
+    image: factory.talos.dev/metal-installer/4d60fbb3386142154b1ed3fb175b8c1de32095329620fa92c27452ea5b720038:{{ ENV.TALOS_VERSION }}
+  kernel:
+    modules:
+      - name: nbd
+      - name: thunderbolt
+      - name: thunderbolt_net
+  kubelet:
+    defaultRuntimeSeccompProfileEnabled: true
+    disableManifestsDirectory: true
+    image: ghcr.io/siderolabs/kubelet:{{ ENV.KUBERNETES_VERSION }}
+    extraMounts:
+      - destination: /var/mnt/extra
+        type: bind
+        source: /var/mnt/extra
+        options: ["bind", "rshared", "rw"]
+    nodeIP:
+      validSubnets: ["172.16.0.0/24"]
   network:
     interfaces:
       - dhcp: true
@@ -61,13 +67,7 @@ machine:
           ip: 172.16.0.2
     nameservers: ["172.16.0.1"]
     disableSearchDomain: true
-  install:
-    image: factory.talos.dev/metal-installer/4d60fbb3386142154b1ed3fb175b8c1de32095329620fa92c27452ea5b720038:{{ ENV.TALOS_VERSION }}
-  kernel:
-    modules:
-      - name: nbd
-      - name: thunderbolt
-      - name: thunderbolt_net
+  token: op://Kubernetes/talos/TRUSTDINFO_TOKEN
   sysctls:
     fs.inotify.max_user_watches: 1048576 # Watchdog
     fs.inotify.max_user_instances: 8192 # Watchdog
@@ -110,17 +110,9 @@ machine:
       - SUBSYSTEM=="usb", ATTR{idVendor}=="0bda", ATTR{idProduct}=="2838", ATTR{serial}=="00000001", SYMLINK+="rtl-sdr-1"
 cluster:
   allowSchedulingOnControlPlanes: true
-  controlPlane:
-    endpoint: https://172.16.0.2:6443
-  clusterName: main
-  network:
-    cni:
-      name: none
-    dnsDomain: cluster.local
-    podSubnets: ["172.30.0.0/16"]
-    serviceSubnets: ["172.31.0.0/16"]
-  coreDNS:
-    disabled: true
+  aggregatorCA:
+    crt: op://Kubernetes/talos/CERTS_K8SAGGREGATOR_CRT
+    key: op://Kubernetes/talos/CERTS_K8SAGGREGATOR_KEY
   apiServer:
     image: registry.k8s.io/kube-apiserver:{{ ENV.KUBERNETES_VERSION }}
     certSANs: ["127.0.0.1", "172.16.0.2"]
@@ -130,28 +122,18 @@ cluster:
       kind: Policy
       rules:
         - level: Metadata
+  ca:
+    crt: op://Kubernetes/talos/CERTS_K8S_CRT
+    key: op://Kubernetes/talos/CERTS_K8S_KEY
+  controlPlane:
+    endpoint: https://172.16.0.2:6443
   controllerManager:
     image: registry.k8s.io/kube-controller-manager:{{ ENV.KUBERNETES_VERSION }}
     extraArgs:
       bind-address: 0.0.0.0
-  proxy:
+  coreDNS:
     disabled: true
-  scheduler:
-    image: registry.k8s.io/kube-scheduler:{{ ENV.KUBERNETES_VERSION }}
-    extraArgs:
-      bind-address: 0.0.0.0
-  id: op://Kubernetes/talos/CLUSTER_ID
-  secret: op://Kubernetes/talos/CLUSTER_SECRET
-  token: op://Kubernetes/talos/SECRETS_BOOTSTRAPTOKEN
-  secretboxEncryptionSecret: op://Kubernetes/talos/SECRETS_ENCRYPTIONSECRET
-  ca:
-    crt: op://Kubernetes/talos/CERTS_K8S_CRT
-    key: op://Kubernetes/talos/CERTS_K8S_KEY
-  aggregatorCA:
-    crt: op://Kubernetes/talos/CERTS_K8SAGGREGATOR_CRT
-    key: op://Kubernetes/talos/CERTS_K8SAGGREGATOR_KEY
-  serviceAccount:
-    key: op://Kubernetes/talos/CERTS_KUBERNETES_SERVICEACCOUNT_KEY
+  clusterName: main
   etcd:
     advertisedSubnets: ["172.16.0.0/24"]
     ca:
@@ -164,6 +146,41 @@ cluster:
       https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.3.0/experimental-install.yaml
     - # renovate: datasource=github-releases depName=prometheus-operator/prometheus-operator
       https://github.com/prometheus-operator/prometheus-operator/releases/download/v0.82.1/stripped-down-crds.yaml
+  id: op://Kubernetes/talos/CLUSTER_ID
+  network:
+    cni:
+      name: none
+    dnsDomain: cluster.local
+    podSubnets: ["172.30.0.0/16"]
+    serviceSubnets: ["172.31.0.0/16"]
+  proxy:
+    disabled: true
+  scheduler:
+    image: registry.k8s.io/kube-scheduler:{{ ENV.KUBERNETES_VERSION }}
+    extraArgs:
+      bind-address: 0.0.0.0
+    config:
+      apiVersion: kubescheduler.config.k8s.io/v1
+      kind: KubeSchedulerConfiguration
+      profiles:
+        - schedulerName: default-scheduler
+          plugins:
+            score:
+              disabled:
+                - name: ImageLocality
+          pluginConfig:
+            - name: PodTopologySpread
+              args:
+                defaultingType: List
+                defaultConstraints:
+                  - maxSkew: 1
+                    topologyKey: kubernetes.io/hostname
+                    whenUnsatisfiable: ScheduleAnyway
+  secret: op://Kubernetes/talos/CLUSTER_SECRET
+  secretboxEncryptionSecret: op://Kubernetes/talos/SECRETS_ENCRYPTIONSECRET
+  serviceAccount:
+    key: op://Kubernetes/talos/CERTS_KUBERNETES_SERVICEACCOUNT_KEY
+  token: op://Kubernetes/talos/SECRETS_BOOTSTRAPTOKEN
 ---
 apiVersion: v1alpha1
 kind: EthernetConfig
