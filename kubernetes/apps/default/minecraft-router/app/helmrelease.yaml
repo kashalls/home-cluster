@@ -35,7 +35,7 @@ spec:
           minecraft-router:
             image:
               repository: ghcr.io/itzg/mc-router
-              tag: 1.29.0@sha256:18c1ad4dca67f02d7dc5d77162d5fd64d4a3ba9c350f3b723468966b78c2d565
+              tag: 1.30.0@sha256:dea6b1bd0723bea0c0db5963020bc97d1c86aa44b1c5c2df9fb630de817d276e
             env:
               TZ: America/Los_Angeles
               IN_KUBE_CLUSTER: "true"
