@@ -106,7 +106,7 @@ spec:
       media:
         type: nfs
         server: fran.outsideour.casa
-        path: /mnt/loki/Multimedia
+        path: /mnt/user/Multimedia
         globalMounts:
           - path: /media/Downloads/qbittorrent
             subPath: Downloads/qbittorrent
