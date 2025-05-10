@@ -26,8 +26,6 @@ spec:
     barmanObjectStore: &barmanObjectStore
       destinationPath: s3://kashs-cnpg-backups
       endpointURL: https://s3.us-west-004.backblazeb2.com
-      # Note: serverName version needs to be inclemented
-      # when recovering from an existing cnpg cluster
       serverName: &currentCluster immich-v2
       wal:
         compression: bzip2
