@@ -9,7 +9,7 @@ spec:
   accessModes: ["ReadWriteMany"]
   storageClassName: manual
   nfs:
-    path: /mnt/loki/media/photos
+    path: /mnt/loki/immich
     server: fran.outsideour.casa
     mountOptions:
       - nfsvers=4.2

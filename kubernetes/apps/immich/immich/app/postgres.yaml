@@ -12,7 +12,7 @@ spec:
     shared_preload_libraries:
       - "vectors.so"
   storage:
-    storageClass: openebs-hostpath
+    storageClass: ceph-block
     size: 20Gi
   monitoring:
     enablePodMonitor: true
