@@ -26,7 +26,7 @@ spec:
     barmanObjectStore: &barmanObjectStore
       destinationPath: s3://kashs-cnpg-backups
       endpointURL: https://s3.us-west-004.backblazeb2.com
-      serverName: &currentCluster immich-v2
+      serverName: &currentCluster immich-v1
       wal:
         compression: bzip2
       s3Credentials:
@@ -37,30 +37,29 @@ spec:
           name: immich-backup-secret
           key: AWS_SECRET_ACCESS_KEY
   bootstrap:
-    recovery:
-      source: &previousCluster immich-db
-    #initdb:
-    #  database: immich
-    #  owner: immich
-    #  secret:
-    #    name: immich-postgres-user
-    #  postInitSQL:
-    #    - CREATE EXTENSION IF NOT EXISTS "vectors";
-    #    - CREATE EXTENSION IF NOT EXISTS "cube" CASCADE;
-    #    - CREATE EXTENSION IF NOT EXISTS "earthdistance" CASCADE;
+    #recovery:
+    #  source: &previousCluster immich-db
+    initdb:
+      database: immich
+      owner: immich
+      secret:
+        name: immich-postgres-user
+      postInitSQL:
+        - CREATE EXTENSION IF NOT EXISTS "vectors";
+        - CREATE EXTENSION IF NOT EXISTS "cube" CASCADE;
+        - CREATE EXTENSION IF NOT EXISTS "earthdistance" CASCADE;
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
-  externalClusters:
-    - name: *previousCluster
-      barmanObjectStore:
-        <<: *barmanObjectStore
-        serverName: *previousCluster
+  #externalClusters:
+  #  - name: *previousCluster
+  #    barmanObjectStore:
+  #      <<: *barmanObjectStore
+  #      serverName: *previousCluster
 ---
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
 metadata:
-  name: daily-backup
-  namespace: database
+  name: immich-db-daily-backup
 spec:
   schedule: "@daily"
   cluster:
-    name: app-db
+    name: immich-db
