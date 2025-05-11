@@ -48,7 +48,7 @@ spec:
       INIT_MEMORY: 1G
       MAX_MEMORY: *memory-limit
     persistence:
-      storageClass: openebs-hostpath
+      storageClass: ceph-block
       dataDir:
         enabled: true
         Size: 128G
