@@ -35,15 +35,12 @@ spec:
   values:
     fullnameOverride: *app
     logLevel: &logLevel debug
-    image:
-      repository: ghcr.io/kashalls/external-dns/external-dns
-      tag: v0.16.1-125-g11ca7839-dirty@sha256:8316a6a3e7340ce608c34154e9ef6b8d667689b36f62128271d7b8afcb3f57db
     provider:
       name: webhook
       webhook:
         image:
           repository: ghcr.io/kashalls/external-dns-unifi-webhook
-          tag: pr-113@sha256:e0f839b797f58db21af3fe17e73ddda7aa7a88e8e754bfe950920bb4f4693c1c
+          tag: v0.5.2@sha256:e1eef62e8d9f1966def6f2efc89ff42bcaba1060b0c2957d9cab57a11c900d5c
         env:
           - name: LOG_LEVEL
             value: *logLevel
