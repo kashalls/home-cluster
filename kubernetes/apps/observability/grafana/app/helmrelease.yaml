@@ -102,12 +102,33 @@ spec:
         cert-manager:
           url: https://raw.githubusercontent.com/kashalls/home-cluster/refs/heads/main/kubernetes/apps/observability/grafana/app/dashboards/cert-manager.json
           datasource: Prometheus
+        ceph-cluster:
+          # renovate: depName="Ceph Cluster"
+          gnetId: 2842
+          revision: 18
+          datasource: Prometheus
+        ceph-osd:
+          # renovate: depName="Ceph - OSD (Single)"
+          gnetId: 5336
+          revision: 9
+          datasource: Prometheus
+        ceph-pools:
+          # renovate: depName="Ceph - Pools"
+          gnetId: 5342
+          revision: 9
+          datasource: Prometheus
         cloudflared:
           # renovate: depName="Cloudflare Tunnels (cloudflared)"
           gnetId: 17457
           revision: 6
           datasource:
             - { name: DS_PROMETHEUS, value: Prometheus }
+        envoy:
+          # renovate: depName="Envoy Proxy Monitoring gRPC"
+          gnetId: 23239
+          revision: 1
+          datasource:
+            - { name: DS_AFRANET_PROMETHEUS, value: Prometheus }
         external-dns:
           # renovate: depName="External-dns"
           gnetId: 15038
@@ -162,15 +183,6 @@ spec:
           url: https://raw.githubusercontent.com/kashalls/home-cluster/refs/heads/main/kubernetes/apps/observability/grafana/app/dashboards/minecraft-exporter.json
           datasource:
             - { name: DS_PROMETHEUS, value: Prometheus }
-        miniflux:
-          url: https://raw.githubusercontent.com/miniflux/v2/main/contrib/grafana/dashboard.json
-          datasource: Prometheus
-        nginx:
-          url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/nginx.json
-          datasource: Prometheus
-        nginx-request-handling-performance:
-          url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/request-handling-performance.json
-          datasource: Prometheus
         node-exporter-full:
           # renovate: depName="Node Exporter Full"
           gnetId: 1860
