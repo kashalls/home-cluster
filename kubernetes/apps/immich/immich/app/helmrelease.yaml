@@ -30,6 +30,11 @@ spec:
       enabled: false
     redis:
       enabled: true
+      master:
+        # This is bad practice, why bitnami does this?
+        # https://github.com/bitnami/charts/blob/main/bitnami/redis/values.yaml#L317C3-L317C18
+        # https://github.com/bitnami/charts/blob/main/bitnami/common/templates/_resources.tpl#L15
+        resourcesPreset: "micro"
     immich:
       metrics:
         enabled: true
