@@ -7,6 +7,8 @@ machine:
   network:
     hostname: shylily
     interfaces:
+      - deviceSelector: { busPath: 0000:57:00.0 } # Intel IPMI
+        ignore: true
       - deviceSelector: { busPath: 0-1.0 } # MaoMao
         dhcp: false
         mtu: 65520

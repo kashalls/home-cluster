@@ -58,6 +58,8 @@ machine:
       validSubnets: ["172.16.0.0/24"]
   network:
     interfaces:
+      - deviceSelector: { busPath: 0000:59:00.0 } # Intel IPMI
+        ignore: true
       - dhcp: true
         deviceSelector:
           hardwareAddr: 58:47:ca:*
