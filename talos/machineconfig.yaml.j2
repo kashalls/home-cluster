@@ -39,7 +39,7 @@ machine:
       path: /etc/nfsmount.conf
       op: overwrite
   install:
-    image: factory.talos.dev/metal-installer/4d60fbb3386142154b1ed3fb175b8c1de32095329620fa92c27452ea5b720038:{{ ENV.TALOS_VERSION }}
+    image: factory.talos.dev/metal-installer/f5b4219136c4be042f25ee55c87d3b45d639e671e58c4c95a227204883e2114b:{{ ENV.TALOS_VERSION }}
   kernel:
     modules:
       - name: nbd
@@ -57,18 +57,6 @@ machine:
     nodeIP:
       validSubnets: ["172.16.0.0/24"]
   network:
-    interfaces:
-      - deviceSelector: { busPath: 0000:59:00.0 } # Intel IPMI
-        ignore: true
-      - deviceSelector: { busPath: 0000:58:00.0 } # Intel IPMI
-        ignore: true
-      - dhcp: true
-        deviceSelector:
-          hardwareAddr: 58:47:ca:*
-          physical: true
-        mtu: 9000
-        vip:
-          ip: 172.16.0.2
     nameservers: ["172.16.0.1"]
     disableSearchDomain: true
   token: op://Kubernetes/talos/TRUSTDINFO_TOKEN
@@ -205,6 +193,6 @@ kind: ExtensionServiceConfig
 name: nut-client
 configFiles:
   - content: |-
-      MONITOR 172.16.0.20 1 upsmon "op://Kubernetes/nut/NUT_PASSWORD" secondary
+      MONITOR 172.16.0.3 1 slaveuser "op://Kubernetes/nut/NUT_PASSWORD" slave
       SHUTDOWNCMD "/sbin/poweroff"
     mountPath: /usr/local/etc/nut/upsmon.conf

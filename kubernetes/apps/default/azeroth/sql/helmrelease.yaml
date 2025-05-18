@@ -47,7 +47,7 @@ spec:
     persistence:
       data:
         type: persistentVolumeClaim
-        storageClass: openebs-hostpath
+        storageClass: ceph-block
         accessMode: ReadWriteOnce
         size: 10G
         globalMounts:

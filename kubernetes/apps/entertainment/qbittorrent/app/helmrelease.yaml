@@ -102,7 +102,7 @@ spec:
         type: persistentVolumeClaim
         accessMode: ReadWriteOnce
         size: 2Gi
-        storageClass: openebs-hostpath
+        storageClass: ceph-block
       media:
         type: nfs
         server: fran.outsideour.casa

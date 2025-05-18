@@ -133,7 +133,7 @@ spec:
               - path: /dev/bus/usb
       acars-hub:
         type: persistentVolumeClaim
-        storageClass: openebs-hostpath
+        storageClass: ceph-block
         size: 2G
         accessMode: ReadWriteOnce
         advancedMounts:

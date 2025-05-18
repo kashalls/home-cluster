@@ -96,7 +96,7 @@ spec:
         type: persistentVolumeClaim
         accessMode: ReadWriteOnce
         size: 5G
-        storageClass: openebs-hostpath
+        storageClass: ceph-block
       config-log:
         type: emptyDir
         globalMounts:

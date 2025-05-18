@@ -77,7 +77,7 @@ spec:
       config:
         type: persistentVolumeClaim
         size: 8Gi
-        storageClass: openebs-hostpath
+        storageClass: ceph-block
         accessMode: ReadWriteOnce
       logs:
         type: emptyDir
