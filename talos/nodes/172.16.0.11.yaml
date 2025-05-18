@@ -7,8 +7,6 @@ machine:
   network:
     hostname: maomao
     interfaces:
-      - deviceSelector: { busPath: "0000:57:00.0" } # Intel IPMI
-        ignore: true
       - deviceSelector: { busPath: 1-1.0 } # Fenrys
         dhcp: false
         mtu: 65520

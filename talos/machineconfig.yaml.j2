@@ -60,6 +60,8 @@ machine:
     interfaces:
       - deviceSelector: { busPath: 0000:59:00.0 } # Intel IPMI
         ignore: true
+      - deviceSelector: { busPath: 0000:58:00.0 } # Intel IPMI
+        ignore: true
       - dhcp: true
         deviceSelector:
           hardwareAddr: 58:47:ca:*
