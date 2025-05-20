@@ -38,7 +38,7 @@ spec:
       name: nfs-slow
       parameters:
         server: fran.outsideour.casa
-        share: /mnt/user/kubernetes
+        share: /mnt/loki/kubernetes
       mountOptions:
         - nfsvers=4.2
         - nconnect=16

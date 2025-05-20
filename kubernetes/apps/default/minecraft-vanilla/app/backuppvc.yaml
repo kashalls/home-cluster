@@ -10,7 +10,7 @@ spec:
     - ReadWriteMany
   storageClassName: manual
   nfs:
-    path: /mnt/user/minecraft
+    path: /mnt/loki/minecraft
     server: fran.outsideour.casa
     mountOptions:
       - nfsvers=4.2

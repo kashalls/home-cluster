@@ -99,7 +99,7 @@ spec:
                 name: "repository",
                 nfs: Object.spec.template.spec.volumes.nfs{
                   server: "fran.outsideour.casa",
-                  path: "/mnt/user/Volsync"
+                  path: "/mnt/loki/Volsync"
                 }
               }
             }
