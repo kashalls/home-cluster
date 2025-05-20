@@ -9,13 +9,20 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../components/volsync
   dependsOn:
     - name: intel-device-plugin-gpu
       namespace: kube-system
-    - name: openebs
-      namespace: openebs-system
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   interval: 1h
   path: ./kubernetes/apps/entertainment/plex/app
+  postBuild:
+    substitute:
+      APP: *app
+      VOLSYNC_CACHE_CAPACITY: 25Gi
+      VOLSYNC_CAPACITY: 50Gi
   prune: true
   retryInterval: 2m
   sourceRef:
