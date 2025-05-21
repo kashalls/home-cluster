@@ -3,7 +3,7 @@ machine:
   type: controlplane
   install:
     diskSelector:
-      serial: 2318E6D1809D
+      serial: 2318E6D1804C
   network:
     hostname: maomao
     interfaces:

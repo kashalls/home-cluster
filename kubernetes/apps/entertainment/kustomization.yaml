@@ -7,6 +7,6 @@ resources:
   - ./namespace.yaml
   - ./app-template.yaml
   # Flux-Kustomizations
-  #- ./autobrr/ks.yaml
+  - ./autobrr/ks.yaml
   - ./plex/ks.yaml
-  #- ./qbittorrent/ks.yaml
+  - ./qbittorrent/ks.yaml

@@ -99,10 +99,7 @@ spec:
                 port: *port
     persistence:
       config:
-        type: persistentVolumeClaim
-        accessMode: ReadWriteOnce
-        size: 2Gi
-        storageClass: ceph-block
+        existingClaim: qbittorrent
       media:
         type: nfs
         server: fran.outsideour.casa

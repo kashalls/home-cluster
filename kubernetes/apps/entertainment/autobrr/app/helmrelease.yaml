@@ -93,10 +93,7 @@ spec:
                 port: *port
     persistence:
       config:
-        type: persistentVolumeClaim
-        accessMode: ReadWriteOnce
-        size: 5G
-        storageClass: ceph-block
+        existingClaim: autobrr
       config-log:
         type: emptyDir
         globalMounts:
