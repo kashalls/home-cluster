@@ -104,7 +104,7 @@ spec:
             csi.storage.k8s.io/fstype: ext4
     cephBlockPoolsVolumeSnapshotClass:
       enabled: true
-      name: csi-ceph-block
+      name: csi-ceph-blockpool
       isDefault: false
       deletionPolicy: Delete
     cephFileSystems: []
