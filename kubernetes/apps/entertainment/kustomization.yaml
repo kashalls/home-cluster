@@ -8,5 +8,11 @@ resources:
   - ./app-template.yaml
   # Flux-Kustomizations
   - ./autobrr/ks.yaml
+  - ./bazarr/ks.yaml
+  - ./jellyseer/ks.yaml
+  - ./pinchflat/ks.yaml
+  - ./prowlarr/ks.yaml
   - ./plex/ks.yaml
   - ./qbittorrent/ks.yaml
+  - ./sonarr/ks.yaml
+  - ./tautulli/ks.yaml
