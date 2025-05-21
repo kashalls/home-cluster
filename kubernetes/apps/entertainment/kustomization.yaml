@@ -11,7 +11,7 @@ resources:
   # Flux-Kustomizations
   - ./autobrr/ks.yaml
   - ./bazarr/ks.yaml
-  - ./jellyseer/ks.yaml
+  - ./jellyseerr/ks.yaml
   - ./pinchflat/ks.yaml
   - ./prowlarr/ks.yaml
   - ./plex/ks.yaml
