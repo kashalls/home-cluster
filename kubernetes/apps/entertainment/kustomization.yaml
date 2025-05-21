@@ -2,10 +2,12 @@
 # yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: entertainment
+components:
+  - ../../components/common
 resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
-  - ./app-template.yaml
   # Flux-Kustomizations
   - ./autobrr/ks.yaml
   - ./bazarr/ks.yaml
