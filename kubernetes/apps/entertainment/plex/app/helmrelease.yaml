@@ -102,10 +102,7 @@ spec:
       config:
         existingClaim: plex
       config-cache:
-        type: persistentVolumeClaim
-        storageClass: ceph-block
-        accessMode: "ReadWriteOnce"
-        size: 100Gi
+        existingClaim: plex-cache
         globalMounts:
           - path: /config/Library/Application Support/Plex Media Server/Cache
       config-logs:
