@@ -87,8 +87,8 @@ spec:
           - path: /etc/yt-dlp
       media:
         type: nfs
-        server: expanse.internal
-        path: /mnt/eros/Media
+        server: fran.outsideour.casa
+        path: /mnt/loki/Media
         advancedMounts:
           pinchflat:
             app:
