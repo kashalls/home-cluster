@@ -88,7 +88,7 @@ spec:
       media:
         type: nfs
         server: fran.outsideour.casa
-        path: /mnt/loki/Media
+        path: /mnt/loki/Multimedia
         globalMounts:
           - path: /media
       tmp:
