@@ -5,12 +5,12 @@ metadata:
   name: immich-db
 spec:
   instances: 3
-  imageName: ghcr.io/tensorchord/vchord-postgres:pg17-v0.3.0
+  imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:16.9
   enableSuperuserAccess: true
   primaryUpdateMethod: switchover
   postgresql:
     shared_preload_libraries:
-      - "vchord.so"
+      - "vector.so"
   storage:
     storageClass: ceph-block
     size: 20Gi
