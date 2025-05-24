@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app pinchflat
+  name: &app sabnzbd
   namespace: &namespace entertainment
 spec:
   commonMetadata:
@@ -15,11 +15,12 @@ spec:
     - name: rook-ceph-cluster
       namespace: rook-ceph
   interval: 1h
-  path: ./kubernetes/apps/entertainment/pinchflat/app
+  path: ./kubernetes/apps/entertainment/sabnzbd/app
   postBuild:
     substitute:
       APP: *app
-      VOLSYNC_CAPACITY: 5Gi
+      GATUS_SUBDOMAIN: sab
+      VOLSYNC_CAPACITY: 1Gi
   prune: true
   retryInterval: 2m
   sourceRef:
