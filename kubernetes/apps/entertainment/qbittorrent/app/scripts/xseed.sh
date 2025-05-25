@@ -19,6 +19,7 @@ response=$(curl \
 
 if [[ "${response}" != "204" ]]; then
   printf "Failed to search cross-seed for '%s'\n" "${SEARCH_PATH}"
+  printf "HTTP response code: %s\n" "${response}"
   exit 1
 fi
 
