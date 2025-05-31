@@ -26,6 +26,8 @@ spec:
   values:
     deploymentAnnotations:
       secret.reloader.stakater.com/reload: &secret minecraft-vanilla
+    podLabels:
+      ok8.sh/dashboard: true
     image:
       repository: ghcr.io/itzg/minecraft-server
       tag: 2025.5.0-java21
