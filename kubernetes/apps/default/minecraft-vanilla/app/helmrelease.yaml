@@ -27,7 +27,8 @@ spec:
     deploymentAnnotations:
       secret.reloader.stakater.com/reload: &secret minecraft-vanilla
     podLabels:
-      ok8.sh/dashboard: true
+      dashboard.ok8.sh/enabled: true
+      dashboard.ok8.sh/name: "Vanilla"
     image:
       repository: ghcr.io/itzg/minecraft-server
       tag: 2025.5.0-java21
