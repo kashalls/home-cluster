@@ -31,7 +31,7 @@ spec:
       dashboard.ok8.sh/name: "Vanilla"
     image:
       repository: ghcr.io/itzg/minecraft-server
-      tag: 2025.5.0-java21
+      tag: 2025.5.1-java21
     resources:
       requests:
         cpu: 500m
