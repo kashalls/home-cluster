@@ -37,7 +37,7 @@ spec:
           app:
             image:
               repository: ghcr.io/home-operations/radarr
-              tag: 5.24.0.10006@sha256:3c28f896612a35dde6473cd0a8c7f39a6acc07de5f3df6e4854bbe456b75d4ae
+              tag: 5.26.0.10051@sha256:9a9bbec11725e485a2cd0fb1bd199ec0c358aa7b09c81ae712c2cfb9d555fde5
             env:
               RADARR__APP__INSTANCENAME: Radarr
               RADARR__APP__THEME: dark
