@@ -1,0 +1,57 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/monitoring.giantswarm.io/silence_v1alpha1.json
+apiVersion: monitoring.giantswarm.io/v1alpha1
+kind: Silence
+metadata:
+  name: ceph-node-nfsmount-diskspace-warning
+spec:
+  matchers:
+    - name: alertname
+      value: CephNodeDiskspaceWarning
+      isRegex: false
+    - name: mountpoint
+      value: /etc/nfsmount.conf
+      isRegex: false
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/monitoring.giantswarm.io/silence_v1alpha1.json
+apiVersion: monitoring.giantswarm.io/v1alpha1
+kind: Silence
+metadata:
+  name: ceph-node-local-diskspace-warning
+spec:
+  matchers:
+    - name: alertname
+      value: CephNodeDiskspaceWarning
+      isRegex: false
+    - name: device
+      value: /dev/nvme.*
+      isRegex: true
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/monitoring.giantswarm.io/silence_v1alpha1.json
+# This container has a fixed cpu and memory limit, that can't be changed without modifying the source code of the operator. Which sucks.
+apiVersion: monitoring.giantswarm.io/v1alpha1
+kind: Silence
+metadata:
+  name: intel-gpu-plugin-cpu-throttling
+spec:
+  matchers:
+    - name: container
+      value: intel-gpu-plugin
+      isRegex: false
+    - name: pod
+      value: intel-gpu-plugin-i915.*
+      isRegex: true
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/monitoring.giantswarm.io/silence_v1alpha1.json
+apiVersion: monitoring.giantswarm.io/v1alpha1
+kind: Silence
+metadata:
+  name: nas-memory-high-utilization
+spec:
+  matchers:
+    - name: alertname
+      value: NodeMemoryHighUtilization
+      isRegex: false
+    - name: instance
+      value: fran.outsideour.casa:9100
+      isRegex: false
