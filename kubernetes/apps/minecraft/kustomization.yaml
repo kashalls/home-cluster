@@ -6,4 +6,5 @@ namespace: minecraft
 components:
   - ../../components/common
 resources:
+  - ./namespace.yaml
   - ./vanilla/ks.yaml
