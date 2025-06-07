@@ -81,13 +81,3 @@ spec:
         serviceType: LoadBalancer
         existingSecret: *secret
       serviceType: LoadBalancer
-    mcbackup:
-      enabled: true
-      backupInterval: 24h
-      pruneBackupsDays: 7
-      excludes: "*.jar,cache,logs"
-      backupMethod: tar
-      persistence:
-        backupDir:
-          enabled: true
-          existingClaim: minecraft-backup-pvc
