@@ -6,6 +6,6 @@ metadata:
   name: github-status
 spec:
   type: github
-  address: https://github.com/onedr0p/home-ops
+  address: https://github.com/kashalls/home-cluster
   secretRef:
     name: github-status-token-secret
