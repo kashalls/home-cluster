@@ -51,10 +51,9 @@ spec:
       INIT_MEMORY: 1G
       MAX_MEMORY: *memory-limit
     persistence:
-      storageClass: ceph-block
       dataDir:
+        existingClaim: minecraft-vanilla
         enabled: true
-        Size: 128G
     serviceAnnotations:
       mc-router.itzg.me/externalServerName: vanilla.mc.ok8.sh
     servicePort: 25565
