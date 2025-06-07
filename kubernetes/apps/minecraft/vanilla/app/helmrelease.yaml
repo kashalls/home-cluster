@@ -3,7 +3,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: itzg-minecraft-vanilla
+  name: itzg-vanilla
 spec:
   interval: 5m
   layerSelector:
@@ -22,7 +22,7 @@ spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: itzg-minecraft-vanilla
+    name: itzg-vanilla
   values:
     deploymentAnnotations:
       secret.reloader.stakater.com/reload: &secret minecraft-vanilla
