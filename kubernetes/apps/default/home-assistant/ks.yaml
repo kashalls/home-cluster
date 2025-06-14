@@ -13,7 +13,16 @@ spec:
   dependsOn:
     - name: onepassword-store
       namespace: external-secrets
+    - name: mosquitto
+      namespace: default
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   path: ./kubernetes/apps/default/home-assistant/app
+  postBuild:
+    substitute:
+      APP: *app
+      GATUS_SUBDOMAIN: hass
+      VOLSYNC_CAPACITY: 5Gi
   prune: true
   sourceRef:
     kind: GitRepository
@@ -23,8 +32,3 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
-  postBuild:
-    substitute:
-      APP: *app
-      GATUS_SUBDOMAIN: hass
-      VOLSYNC_CAPACITY: 5Gi

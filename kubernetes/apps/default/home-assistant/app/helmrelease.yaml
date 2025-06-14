@@ -17,11 +17,6 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  dependsOn:
-    - name: openebs
-      namespace: openebs-system
-    - name: volsync
-      namespace: volsync-system
   values:
     controllers:
       home-assistant:
@@ -76,17 +71,21 @@ spec:
                 port: *port
     persistence:
       config:
-        type: persistentVolumeClaim
-        size: 8Gi
-        storageClass: ceph-block
-        accessMode: ReadWriteOnce
-      logs:
-        type: emptyDir
+        existingClaim: home-assistant
         globalMounts:
-          - path: /config/logs
-      tts:
-        type: emptyDir
+          - path: /config
+      config-cache:
+        existingClaim: home-assistant-cache
         globalMounts:
-          - path: /config/tts
-      tmp:
+          - path: /config/.venv
+      tmpfs:
         type: emptyDir
+        advancedMounts:
+          home-assistant:
+            app:
+              - path: /config/logs
+                subPath: logs
+              - path: /config/tts
+                subPath: tts
+              - path: /tmp
+                subPath: tmp
