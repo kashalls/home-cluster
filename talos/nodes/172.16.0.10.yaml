@@ -16,12 +16,12 @@ machine:
         mtu: 9000
         vip:
           ip: 172.16.0.2
-      - deviceSelector: { busPath: 0-1.0 } # Maomao
+      - deviceSelector: { busPath: 1-1.0 } # Maomao
         dhcp: false
         mtu: 65520
         addresses: [169.254.254.10/32]
         routes: [{ network: 169.254.254.11/32, metric: 2048 }]
-      - deviceSelector: { busPath: 1-1.0 } # Shylily
+      - deviceSelector: { busPath: 0-1.0 } # Shylily
         dhcp: false
         mtu: 65520
         addresses: [169.254.254.10/32]
