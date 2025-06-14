@@ -7,4 +7,6 @@ components:
   - ../../components/common
 resources:
   - ./namespace.yaml
+  - ./router/ks.yaml
   - ./vanilla/ks.yaml
+  - ./void/ks.yaml
