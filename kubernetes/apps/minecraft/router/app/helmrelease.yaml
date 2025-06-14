@@ -19,7 +19,8 @@ spec:
       retries: 3
   values:
     serviceAccount:
-      create: true
+      main:
+        enabled: true
     defaultPodOptions:
       securityContext:
         runAsUser: 1000
@@ -80,6 +81,8 @@ spec:
             envFrom:
               - secretRef:
                   name: minecraft-router-secret
+        serviceAccount:
+          identifier: main
     service:
       minecraft-router:
         annotations:
