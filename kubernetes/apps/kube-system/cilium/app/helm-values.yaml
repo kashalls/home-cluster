@@ -18,12 +18,19 @@ cgroup:
 cluster:
   id: 1
   name: main
+devices:
+  - enp2s0f0np0
+  - enx023cb6b8ce73
+  - enx0244140bb17e
+  - enx022d2d8997bf
+  - enx02d116caf157
+  - enx022426da237a
+  - enx02efd036dff2
 enableIPv4BIGTCP: true
 endpointRoutes:
   enabled: true
 envoy:
   rollOutPods: true
-forceDeviceDetection: true
 gatewayAPI:
   enabled: true
   enableAlpn: true
