@@ -23,6 +23,7 @@ endpointRoutes:
   enabled: true
 envoy:
   rollOutPods: true
+forceDeviceDetection: true
 gatewayAPI:
   enabled: true
   enableAlpn: true
