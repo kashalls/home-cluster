@@ -47,7 +47,6 @@ spec:
       KEEP_INVENTORY: true
       ENABLE_ROLLING_LOGS: true
       ALLOW_FLIGHT: true
-      DUMP_SERVER_PROPERTIES: true
       INIT_MEMORY: 1G
       MAX_MEMORY: *memory-limit
     persistence:

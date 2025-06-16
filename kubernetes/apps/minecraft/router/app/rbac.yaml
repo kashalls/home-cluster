@@ -22,4 +22,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: minecraft-router
-    namespace: default
+    namespace: minecraft
