@@ -59,9 +59,9 @@ spec:
     servicePort: 25565
     minecraftServer:
       eula: true
-      version: 1.21.5
+      version: 1.21.4
       onlineMode: true
-      type: VANILLA
+      type: PAPER
       generateStructures: true
       difficulty: normal
       spawnAnimals: true
