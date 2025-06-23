@@ -1,6 +1,6 @@
 ---
 fullnameOverride: coredns
-replicaCount: 1
+replicaCount: 3
 k8sAppLabelOverride: kube-dns
 serviceAccount:
   create: true
