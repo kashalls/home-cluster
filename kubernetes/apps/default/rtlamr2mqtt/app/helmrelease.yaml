@@ -31,7 +31,7 @@ spec:
           app:
             image:
               repository: docker.io/allangood/rtlamr2mqtt
-              tag: 2025.6.5@sha256:15091b35d0bfbd4bfec2c41ced5ef66fcb07bc5e8d0bf6a05fdf95aedcd89493
+              tag: 2025.6.6@sha256:9458419acca5f95d438b3a04f10291d19c37244e16c0286ee2033eb4465ad0a0
             securityContext:
               privileged: true
             resources:
