@@ -98,7 +98,7 @@ spec:
         enableFeatures:
           - memory-snapshot-on-shutdown
         retention: 14d
-        retentionSize: 50GB
+        retentionSize: 100GB
         resources:
           requests:
             cpu: 100m
@@ -110,7 +110,7 @@ spec:
               storageClassName: ceph-block
               resources:
                 requests:
-                  storage: 50Gi
+                  storage: 100Gi
     prometheus-node-exporter:
       fullnameOverride: node-exporter
       prometheus:
