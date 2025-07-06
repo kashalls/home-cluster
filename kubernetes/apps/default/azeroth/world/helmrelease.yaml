@@ -55,6 +55,7 @@ spec:
         type: LoadBalancer
         annotations:
           external-dns.alpha.kubernetes.io/target: "azwo.ok8.sh"
+          lbipam.cilium.io/sharing-key: azeroth
         ports:
           worldserver:
             port: 8085

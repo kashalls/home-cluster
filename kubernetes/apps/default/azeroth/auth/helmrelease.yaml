@@ -51,6 +51,8 @@ spec:
         type: LoadBalancer
         annotations:
           external-dns.alpha.kubernetes.io/target: "azau.ok8.sh"
+          lbipam.cilium.io/ips: 172.16.0.48
+          lbipam.cilium.io/sharing-key: azeroth
         ports:
           authserver:
             port: 3724

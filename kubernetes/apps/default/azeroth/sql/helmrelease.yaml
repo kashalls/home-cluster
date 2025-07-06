@@ -41,6 +41,7 @@ spec:
         type: LoadBalancer
         annotations:
           external-dns.alpha.kubernetes.io/target: "azql.ok8.sh"
+          lbipam.cilium.io/sharing-key: azeroth
         ports:
           mysql:
             port: 3306
