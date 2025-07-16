@@ -30,9 +30,6 @@ spec:
     cleanupOnFail: true
     remediation:
       retries: 3
-  dependsOn:
-    - name: openebs
-      namespace: openebs-system
   values:
     crds:
       enabled: true
@@ -98,12 +95,12 @@ spec:
         enableFeatures:
           - memory-snapshot-on-shutdown
         retention: 14d
-        retentionSize: 100GB
+        retentionSize: 80GB
         resources:
           requests:
-            cpu: 100m
+            cpu: 250m
           limits:
-            memory: 1500Mi
+            memory: 2048Mi
         storageSpec:
           volumeClaimTemplate:
             spec:
@@ -126,6 +123,7 @@ spec:
       fullnameOverride: kube-state-metrics
       metricLabelsAllowlist:
         - pods=[*]
+        - nodes=[*]
         - deployments=[*]
         - persistentvolumeclaims=[*]
       prometheus:
