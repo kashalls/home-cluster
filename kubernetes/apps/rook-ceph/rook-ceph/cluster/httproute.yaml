@@ -3,7 +3,7 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: rook-ceph-dashboard
+  name: rook-ceph-dashboard-special
   annotations:
     external-dns.alpha.kubernetes.io/hostname: rook1.ok8.sh
 spec:
