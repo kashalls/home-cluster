@@ -15,3 +15,7 @@ spec:
         - name: rook-ceph-mgr-dashboard
           namespace: rook-ceph
           port: 7000
+      matches:
+      - path:
+          type: PathPrefix
+          value: /
