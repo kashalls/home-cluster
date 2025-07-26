@@ -6,5 +6,5 @@ namespace: database
 components:
   - ../../components/common
 resources:
-  - ./mongo/ks.yaml
+  - ./mongodb/ks.yaml
   - ./postgres/ks.yaml
