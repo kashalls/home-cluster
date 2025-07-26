@@ -75,6 +75,26 @@ spec:
       jvmXXOpts: "-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1"
       overrideServerProperties: true
       enableCommandBlock: true
+      spigetResources: 83557,81534,83767,64346,57242
+      # https://www.spigotmc.org/resources/bluemap.83557/
+      # https://www.spigotmc.org/resources/chunky.81534/
+      # https://www.spigotmc.org/resources/huskhomes-1-16-1-20-set-homes-warps-spawn-tp-and-tpa-public-homes-works-cross-server.83767/
+      # https://www.spigotmc.org/resources/thizzyz-tree-feller.64346/
+      # https://www.spigotmc.org/resources/clicksort.27021/
+      # https://www.spigotmc.org/resources/spark.57242/
+      # https://www.spigotmc.org/resources/item-effects.91208/
+      pluginUrls:
+        - https://mediafilez.forgecdn.net/files/5502/330/dead-chest-4.21.1.jar
+        - https://github.com/sladkoff/minecraft-prometheus-exporter/releases/download/v3.1.0/minecraft-prometheus-exporter-3.1.0.jar
+        - https://mediafilez.forgecdn.net/files/4301/100/YetAnotherHarvest-1.1.jar
+        - https://snapshot.discordsrv.com/discordsrv.jar
+        # https://get.discordsrv.com/discordserv.jar # Release version
+        # https://mediafilez.forgecdn.net/files/5382/326/spawner-silk-5.7.0.jar
+        # https://dev.bukkit.org/projects/customcrafting-advanced-custom-recipes
+        # https://dev.bukkit.org/projects/dead-chest
+        # https://dev.bukkit.org/projects/spawnersilk
+        # https://dev.bukkit.org/projects/wolfyutilities
+        # https://dev.bukkit.org/projects/yetanotherharvest
       rcon:
         enabled: true
         serviceType: LoadBalancer
