@@ -55,3 +55,15 @@ spec:
     - name: instance
       value: fran.outsideour.casa:9100
       isRegex: false
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/monitoring.giantswarm.io/silence_v1alpha1.json
+apiVersion: monitoring.giantswarm.io/v1alpha1
+kind: Silence
+metadata:
+  name: ceph-node-network-packet-errors
+spec:
+  matchers:
+    - name: alertname
+      value: CephNodeNetworkPacketErrors
+    - name: device
+      value: enx.*
