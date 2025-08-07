@@ -18,7 +18,7 @@ spec:
   chart:
     spec:
       chart: moco
-      version: 0.16.0
+      version: 0.18.0
       sourceRef:
         kind: HelmRepository
         name: moco
