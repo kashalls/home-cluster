@@ -33,7 +33,7 @@ spec:
   values:
     image:
       repository: ghcr.io/cybozu-go/moco
-      tag: 0.26.0
+      tag: 0.28.0
     resources:
       requests:
         cpu: 100m
