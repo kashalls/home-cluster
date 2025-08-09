@@ -68,7 +68,7 @@ spec:
           - path: /w
       secret-file:
         type: secret
-        name: copyparty-config
+        name: copyparty-secret
         globalMounts:
           - path: /etc/copyparty/config.conf
             subPath: config.conf
