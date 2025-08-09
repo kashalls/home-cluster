@@ -26,7 +26,7 @@ spec:
           app:
             image:
               repository: ghcr.io/home-operations/plex
-              tag: 1.41.9.9961@sha256:6c86319bb3275135f5da5aec71b45e48305669ecbceee0f88d335bebf0d0f218
+              tag: 1.42.1.10054@sha256:d361aef8d6e1072cf18c0d54ded39f5e7f5fcc0f9084e6e427fb5373dbf12edb
             env:
               TZ: America/Los_Angeles
               PLEX_ADVERTISE_URL: https://plex.ok8.sh:443,http://172.16.0.49:32400
