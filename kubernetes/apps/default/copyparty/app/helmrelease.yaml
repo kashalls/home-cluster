@@ -66,3 +66,10 @@ spec:
         path: /mnt/loki/copyparty
         globalMounts:
           - path: /w
+      secret-file:
+        type: secret
+        name: copyparty-config
+        globalMounts:
+          - path: /etc/copyparty/config.conf
+            subPath: config.conf
+            readOnly: true
