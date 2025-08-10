@@ -8,6 +8,7 @@ spec:
   jobConfig:
     bucketConfig:
       bucketName: kashall-mysql
+      region: us-west-004
       endpointURL: https://s3.us-west-004.backblazeb2.com
       usePathStyle: true
     envFrom:
