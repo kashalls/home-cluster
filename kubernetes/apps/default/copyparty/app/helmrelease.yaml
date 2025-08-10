@@ -56,10 +56,10 @@ spec:
               - name: *app
                 port: *port
     persistence:
-      config:
-        existingClaim: copyparty
-        globalMounts:
-          - path: /cfg
+      #config:
+      #  existingClaim: copyparty
+      #  globalMounts:
+      #    - path: /cfg
       share:
         type: nfs
         server: fran.outsideour.casa
