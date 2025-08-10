@@ -70,6 +70,6 @@ spec:
         type: secret
         name: copyparty-secret
         globalMounts:
-          - path: /etc/copyparty/config.conf
+          - path: /cfg/config.conf
             subPath: config.conf
             readOnly: true
