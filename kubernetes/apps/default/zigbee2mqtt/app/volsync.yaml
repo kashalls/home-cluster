@@ -3,14 +3,14 @@
 apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
-  name: zigbee2mqtt-volsync
+  name: zigbee2mqtt-volsync-old
   namespace: default
 spec:
   secretStoreRef:
     kind: ClusterSecretStore
     name: onepassword-connect
   target:
-    name: zigbee2mqtt-volsync-secret
+    name: zigbee2mqtt-volsync-secret-old
     creationPolicy: Owner
     template:
       engineVersion: v2
@@ -35,7 +35,7 @@ spec:
     schedule: "0 7 * * *"
   restic:
     pruneIntervalDays: 7
-    repository: zigbee2mqtt-volsync-secret
+    repository: zigbee2mqtt-volsync-secret-old
     retain:
       daily: 2
       weekly: 1
