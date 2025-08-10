@@ -13,7 +13,7 @@ spec:
     envFrom:
       - secretRef:
           name: mysql-backup-secret
-    serviceAccountName: backup-owner
+    serviceAccountName: moco-mysql
     workVolume:
       ephemeral:
         volumeClaimTemplate:
