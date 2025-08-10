@@ -105,10 +105,4 @@ spec:
                 port: *port
     persistence:
       data:
-        enabled: true
-        type: persistentVolumeClaim
-        size: 1Gi
-        storageClass: openebs-hostpath
-        accessMode: ReadWriteOnce
-        globalMounts:
-          - path: /data
+        existingClaim: *app
