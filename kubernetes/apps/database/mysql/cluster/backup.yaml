@@ -22,7 +22,7 @@ spec:
               type: mysql-backup-vol
           spec:
             accessModes: ["ReadWriteOnce"]
-            storageClassName: "local-hostpath"
+            storageClassName: openebs-hostpath
             resources:
               requests:
                 storage: 2Gi
