@@ -27,7 +27,7 @@ spec:
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-  name: zigbee2mqtt
+  name: zigbee2mqtt-old
   namespace: default
 spec:
   sourcePVC: zigbee2mqtt-data
