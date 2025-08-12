@@ -56,7 +56,7 @@ spec:
               ZIGBEE2MQTT_CONFIG_SERIAL_ADAPTER: "zstack"
               ZIGBEE2MQTT_CONFIG_SERIAL_BAUDRATE: 115200
               ZIGBEE2MQTT_CONFIG_SERIAL_DISABLE_LED: "false"
-              ZIGBEE2MQTT_CONFIG_SERIAL_PORT: tcp://172.16.2.42:6638
+              ZIGBEE2MQTT_CONFIG_SERIAL_PORT: tcp://zigbee-controller.outsideour.casa:6638
             envFrom:
               - secretRef:
                   name: zigbee2mqtt-secret
