@@ -48,7 +48,6 @@ spec:
               METRICS_BACKEND: prometheus
               SIMPLIFY_SRV: false
               USE_PROXY_PROTOCOL: false
-              # WEBHOOK_URL: "http://localhost:8081/webhook" # Containers in the same pod share the same network namespace
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -60,27 +59,6 @@ spec:
               limits:
                 cpu: 500m
                 memory: 96Mi
-          discord-webhook:
-            image:
-              repository: ghcr.io/kashalls/minecraft-router-sidehook-discord
-              tag: main@sha256:2559f94cef226b8a5dde0bc130c5964c85027225bd159a9974a0ec4fe7002818
-            env:
-              SERVER_PORT: &discord-port 8081
-              HEALTH_PORT: &discord-health-port 8082
-            envFrom:
-              - secretRef:
-                  name: minecraft-router-secret
-          unifi-webhook:
-            image:
-              repository: ghcr.io/kashalls/minecraft-router-sidehook-unifi
-              tag: main@sha256:8bacf3a4dc6616dbb515ffca691cacae1696203ecaac3e2c620ad5016d61c154
-            env:
-              UNIFI_HOST: "https://172.16.0.1"
-              SERVER_PORT: &unifi-port 8083
-              HEALTH_PORT: &unifi-health-port 8084
-            envFrom:
-              - secretRef:
-                  name: minecraft-router-secret
         serviceAccount:
           identifier: main
     service:
@@ -94,20 +72,6 @@ spec:
             port: *port
           api:
             port: 8080
-      discord-webhook:
-        controller: main
-        ports:
-          discord:
-            port: *discord-port
-          metrics:
-            port: *discord-health-port
-      unifi-webhook:
-        controller: main
-        ports:
-          unifi:
-            port: *unifi-port
-          metrics:
-            port: *unifi-health-port
     serviceMonitor:
       minecraft-router:
         serviceName: minecraft-router
@@ -117,30 +81,3 @@ spec:
             path: /metrics
             interval: 1m
             scrapeTimeout: 30s
-      discord-webhook:
-        serviceName: discord-webhook
-        endpoints:
-          - port: discord
-            scheme: http
-            path: /metrics
-            interval: 1m
-            scrapeTimeout: 30s
-      unifi-webhook:
-        serviceName: unifi-webhook
-        endpoints:
-          - port: unifi
-            scheme: http
-            path: /metrics
-            interval: 1m
-            scrapeTimeout: 30s
-    route:
-      app:
-        hostnames: ["drama.ok8.sh"]
-        parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
-        rules:
-          - backendRefs:
-              - name: unifi-webhook
-                port: *unifi-port
