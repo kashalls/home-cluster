@@ -37,6 +37,8 @@ spec:
     config:
       promExporter:
         enabled: true
+        podMonitor:
+          enabled: true
       websocket:
         enabled: true
     service:
