@@ -35,31 +35,6 @@ spec:
   values:
     fullnameOverride: *name
     extraResources:
-      - apiVersion: v1
-        kind: Service
-        metadata:
-          name: nats-external
-          namespace: sunlight
-          annotations:
-            external-dns.alpha.kubernetes.io/hostname: "nats.ok8.sh"
-        spec:
-          type: LoadBalancer
-          ports:
-            - appProtocol: tcp
-              name: nats
-              port: 4222
-              protocol: TCP
-              targetPort: nats
-            - appProtocol: tcp
-              name: websocket
-              port: 8080
-              protocol: TCP
-              targetPort: websocket
-          selector:
-            app.kubernetes.io/component: nats
-            app.kubernetes.io/instance: nats
-            app.kubernetes.io/name: nats
-          sessionAffinity: None
       - apiVersion: gateway.networking.k8s.io/v1
         kind: HTTPRoute
         metadata:
