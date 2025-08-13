@@ -55,5 +55,6 @@ spec:
             app.kubernetes.io/instance: nats
             app.kubernetes.io/name: nats
           sessionAffinity: None
-    websocket:
-      enabled: true
+    config:
+      websocket:
+        enabled: true
