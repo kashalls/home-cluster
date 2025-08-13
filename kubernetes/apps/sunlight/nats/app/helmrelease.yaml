@@ -34,6 +34,18 @@ spec:
       retries: 3
   values:
     fullnameOverride: *name
+    config:
+      promExporter:
+        enabled: true
+      websocket:
+        enabled: true
+    service:
+      merge:
+        metadata:
+          annotations:
+            external-dns.alpha.kubernetes.io/target: "nats-direct.ok8.sh"
+        spec:
+          type: LoadBalancer
     extraResources:
       - apiVersion: gateway.networking.k8s.io/v1
         kind: HTTPRoute
@@ -69,20 +81,3 @@ spec:
                 - name: nats
                   namespace: sunlight
                   port: 4222
-    config:
-      promExporter:
-        enabled: true
-      nats:
-        tls:
-          enabled: true
-          verify: false
-          secretName: ok8-sh-tls
-      websocket:
-        enabled: true
-    service:
-      merge:
-        metadata:
-          annotations:
-            external-dns.alpha.kubernetes.io/target: "nats-direct.ok8.sh"
-        spec:
-          type: LoadBalancer
