@@ -39,6 +39,13 @@ spec:
         enabled: true
         podMonitor:
           enabled: true
+      cluster:
+        enabled: true
+      jetstream:
+        enabled: true
+        filestore:
+          pvc:
+            storageClassName: openebs-hostpath
       websocket:
         enabled: true
     service:
