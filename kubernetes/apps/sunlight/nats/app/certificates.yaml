@@ -20,8 +20,6 @@ spec:
   commonName: nats-ca
   usages:
     - cert sign
-  organization:
-    - Kashall
   isCA: true
 ---
 apiVersion: cert-manager.io/v1
@@ -47,8 +45,6 @@ spec:
     - signing
     - key encipherment
     - server auth
-  organization:
-    - Kashall
   commonName: nats.sunlight.svc.cluster.local
   dnsNames:
     - nats.sunlight.svc
@@ -69,8 +65,6 @@ spec:
     - key encipherment
     - server auth
     - client auth
-  organization:
-    - Kashall
   commonName: "*.nats.sunlight.svc.cluster.local"
   dnsNames:
     - "*.nats.sunlight.svc"
