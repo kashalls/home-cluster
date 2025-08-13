@@ -80,5 +80,7 @@ spec:
         enabled: true
     service:
       merge:
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "nats-direct.ok8.sh"
         spec:
           type: LoadBalancer
