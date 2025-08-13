@@ -75,6 +75,7 @@ spec:
       nats:
         tls:
           enabled: true
+          verify: false
           secretName: ok8-sh-tls
       websocket:
         enabled: true
