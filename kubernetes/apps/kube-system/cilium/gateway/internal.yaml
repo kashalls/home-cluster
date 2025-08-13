@@ -33,12 +33,3 @@ spec:
         certificateRefs:
           - kind: Secret
             name: ok8-sh-tls
-    - name: nats
-      protocol: TLS
-      port: 4222
-      hostname: "nats.ok8.sh"
-      allowedRoutes:
-        namespaces:
-          from: All
-      tls:
-        mode: Passthrough
