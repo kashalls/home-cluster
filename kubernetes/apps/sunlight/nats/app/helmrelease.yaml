@@ -34,9 +34,6 @@ spec:
       retries: 3
   values:
     fullnameOverride: *name
-    nats:
-      tls:
-        allowNonTLS: true
     tlsCA:
       enabled: true
       secretName: nats-ca
@@ -48,6 +45,7 @@ spec:
       nats:
         tls:
           enabled: true
+          allowNonTLS: true
           secretName: nats-server-tls
       websocket:
         enabled: true
