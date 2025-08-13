@@ -34,27 +34,13 @@ spec:
       retries: 3
   values:
     fullnameOverride: *name
-    tlsCA:
-      enabled: true
-      secretName: nats-ca
     config:
       promExporter:
         enabled: true
         podMonitor:
           enabled: true
-      nats:
-        tls:
-          enabled: true
-          allow_non_tls: true
-          allowNonTLS: true
-          secretName: nats-server-tls
       websocket:
         enabled: true
-        tls:
-          enabled: true
-          allow_non_tls: true
-          allowNonTLS: true
-          secretName: nats-server-tls
     service:
       merge:
         metadata:
@@ -82,18 +68,4 @@ spec:
                 - path:
                     type: PathPrefix
                     value: /
-      - apiVersion: gateway.networking.k8s.io/v1alpha2
-        kind: TLSRoute
-        metadata:
-          name: nats
-          namespace: sunlight
-        spec:
-          parentRefs:
-            - name: internal
-              namespace: kube-system
-              sectionName: nats
-          rules:
-            - backendRefs:
-                - name: nats
-                  namespace: sunlight
-                  port: 4222
+
