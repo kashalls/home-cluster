@@ -33,3 +33,10 @@ spec:
         certificateRefs:
           - kind: Secret
             name: ok8-sh-tls
+    - name: nats-tcp
+      protocol: TCP
+      hostname: "nats.ok8.sh"
+      port: 4222
+      allowedRoutes:
+        namespaces:
+          from: All
