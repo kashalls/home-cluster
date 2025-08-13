@@ -34,11 +34,18 @@ spec:
       retries: 3
   values:
     fullnameOverride: *name
+    tlsCA:
+      enabled: true
+      secretName: nats-ca
     config:
       promExporter:
         enabled: true
         podMonitor:
           enabled: true
+      nats:
+        tls:
+          enabled: true
+          secretName: nats-server-tls
       websocket:
         enabled: true
     service:

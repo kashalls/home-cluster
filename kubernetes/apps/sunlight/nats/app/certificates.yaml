@@ -1,0 +1,76 @@
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: selfsigning
+spec:
+  selfSigned: {}
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: nats-ca
+spec:
+  secretName: nats-ca
+  duration: 8736h # 1 year
+  renewBefore: 240h # 10 days
+  issuerRef:
+    name: selfsigning
+    kind: ClusterIssuer
+  commonName: nats-ca
+  usages:
+    - cert sign
+  organization:
+    - Kashall
+  isCA: true
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: Issuer
+metadata:
+  name: nats-ca
+spec:
+  ca:
+    secretName: nats-ca
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: nats-server-tls
+spec:
+  secretName: nats-server-tls
+  duration: 2160h # 90 days
+  renewBefore: 240h # 10 days
+  issuerRef:
+    name: nats-ca
+    kind: Issuer
+  usages:
+    - signing
+    - key encipherment
+    - server auth
+  organization:
+    - Kashall
+  commonName: nats.sunlight.svc.cluster.local
+  dnsNames:
+    - nats.sunlight.svc
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: nats-routes-tls
+spec:
+  secretName: nats-routes-tls
+  duration: 2160h # 90 days
+  renewBefore: 240h # 10 days
+  issuerRef:
+    name: nats-ca
+    kind: Issuer
+  usages:
+    - signing
+    - key encipherment
+    - server auth
+    - client auth
+  organization:
+    - Kashall
+  commonName: "*.nats.sunlight.svc.cluster.local"
+  dnsNames:
+    - "*.nats.sunlight.svc"
