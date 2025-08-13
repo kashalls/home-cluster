@@ -49,6 +49,10 @@ spec:
           secretName: nats-server-tls
       websocket:
         enabled: true
+        tls:
+          enabled: true
+          allowNonTLS: true
+          secretName: nats-server-tls
     service:
       merge:
         metadata:
