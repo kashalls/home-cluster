@@ -51,7 +51,7 @@ spec:
               protocol: TCP
               targetPort: nats
             - appProtocol: tcp
-              name: nats
+              name: websocket
               port: 8080
               protocol: TCP
               targetPort: websocket
