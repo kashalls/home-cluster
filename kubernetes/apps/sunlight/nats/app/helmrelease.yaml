@@ -55,21 +55,27 @@ spec:
                     type: PathPrefix
                     value: /
       - apiVersion: gateway.networking.k8s.io/v1alpha2
-        kind: TCPRoute
+        kind: TLSRoute
         metadata:
-          name: nats-tcp
+          name: nats
           namespace: sunlight
         spec:
           parentRefs:
             - name: internal
               namespace: kube-system
-              sectionName: nats-tcp
+              sectionName: nats
           rules:
             - backendRefs:
                 - name: nats
                   namespace: sunlight
                   port: 4222
     config:
+      promExporter:
+        enabled: true
+      nats:
+        tls:
+          enabled: true
+          secretName: ok8-sh-tls
       websocket:
         enabled: true
     service:
