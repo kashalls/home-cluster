@@ -60,6 +60,25 @@ spec:
             app.kubernetes.io/instance: nats
             app.kubernetes.io/name: nats
           sessionAffinity: None
+      - apiVersion: gateway.networking.k8s.io/v1
+        kind: HTTPRoute
+        metadata:
+          name: nats-websocket
+        spec:
+          hostnames: ["nats.ok8.sh"]
+          parentRefs:
+            - name: internal
+              namespace: kube-system
+              sectionName: https
+          rules:
+            - backendRefs:
+                - name: nats
+                  namespace: sunlight
+                  port: 8080
+              matches:
+                - path:
+                    type: PathPrefix
+                    value: /
     config:
       websocket:
         enabled: true
