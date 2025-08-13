@@ -82,3 +82,7 @@ spec:
     config:
       websocket:
         enabled: true
+    service:
+      merge:
+        spec:
+          type: LoadBalancer
