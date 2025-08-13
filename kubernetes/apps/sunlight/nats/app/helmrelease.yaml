@@ -45,12 +45,14 @@ spec:
       nats:
         tls:
           enabled: true
+          allow_non_tls: true
           allowNonTLS: true
           secretName: nats-server-tls
       websocket:
         enabled: true
         tls:
           enabled: true
+          allow_non_tls: true
           allowNonTLS: true
           secretName: nats-server-tls
     service:
