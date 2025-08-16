@@ -33,7 +33,7 @@ spec:
       retries: 3
   values:
     runnerScaleSetName: amd64
-    githubConfigUrl: https://github.com/kashalls/home-cluster
+    githubConfigUrl: https://github.com/waifulabs
     githubConfigSecret: waifulabs-runner-secret
     minRunners: 1
     maxRunners: 3
