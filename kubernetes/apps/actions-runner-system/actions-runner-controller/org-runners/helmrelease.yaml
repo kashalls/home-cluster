@@ -45,6 +45,8 @@ spec:
         resources:
           requests:
             storage: 25Gi
+    annotations:
+      reloader.stakater.com/auto: "true"
     controllerServiceAccount:
       name: actions-runner-controller
       namespace: actions-runner-system
