@@ -52,3 +52,31 @@ spec:
   targetNamespace: *namespace
   timeout: 5m
   wait: false
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app actions-runner-controller-runners2
+  namespace: &namespace actions-runner-system
+spec:
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  dependsOn:
+    - name: actions-runner-controller
+      namespace: *namespace
+    - name: onepassword-store
+      namespace: external-secrets
+    - name: openebs
+      namespace: openebs-system
+  interval: 30m
+  path: ./kubernetes/apps/actions-runner-system/actions-runner-controller/org-runners
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: home-kubernetes
+    namespace: flux-system
+  targetNamespace: *namespace
+  timeout: 5m
+  wait: false
