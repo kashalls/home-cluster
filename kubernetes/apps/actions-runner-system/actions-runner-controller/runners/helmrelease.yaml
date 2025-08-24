@@ -18,7 +18,7 @@ spec:
       strategy: rollback
       retries: 3
   values:
-    githubConfigUrl: https://github.com/kashalls/home-cluster
+    githubConfigUrl: https://github.com/waifulabs
     githubConfigSecret: home-ops-runner-secret
     minRunners: 1
     maxRunners: 3
