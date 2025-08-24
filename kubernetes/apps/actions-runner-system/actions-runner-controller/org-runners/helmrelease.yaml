@@ -17,7 +17,7 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &name waifulabs-runner
+  name: &name home-ops-runner
 spec:
   interval: 1h
   chartRef:
