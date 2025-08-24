@@ -16,7 +16,7 @@ env:
 jobs:
   publish:
     name: Schemas
-    runs-on: home-ops-runner
+    runs-on: waifulabs-amd64
     permissions:
       contents: read
       packages: write
