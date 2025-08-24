@@ -2,24 +2,24 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: home-ops-runner
+  name: waifulabs-runner
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: home-ops-runner
+  name: waifulabs-runner
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: cluster-admin
 subjects:
   - kind: ServiceAccount
-    name: home-ops-runner
+    name: waifulabs-runner
     namespace: actions-runner-system
 ---
 apiVersion: talos.dev/v1alpha1
 kind: ServiceAccount
 metadata:
-  name: home-ops-runner
+  name: waifulabs-runner
 spec:
   roles: ["os:admin"]
