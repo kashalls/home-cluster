@@ -42,7 +42,7 @@ spec:
     minecraftProxy:
       type: VELOCITY
       onlineMode: true
-      velocityVersion: 3.4.0
+      velocityVersion: 1.21.8
       memory: *memory
       plugins:
         - https://hangarcdn.papermc.io/plugins/ViaVersion/ViaVersion/versions/5.4.2/PAPER/ViaVersion-5.4.2.jar
