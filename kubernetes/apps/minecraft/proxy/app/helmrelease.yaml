@@ -24,6 +24,7 @@ spec:
     kind: OCIRepository
     name: minecraft-proxy
   values:
+    nameOverride: *app
     image:
       repository: ghcr.io/itzg/mc-proxy
       tag: 2025.6.0
