@@ -30,7 +30,7 @@ spec:
       tag: 2025.6.0
     resources:
       requests:
-        memory: &memory 512Mi
+        memory: 512Mi
         cpu: 500m
     podSecurityContext:
       runAsUser: 568
@@ -43,7 +43,7 @@ spec:
       type: VELOCITY
       onlineMode: true
       velocityVersion: 3.1.1
-      memory: *memory
+      memory: 512M
       plugins:
         - https://hangarcdn.papermc.io/plugins/ViaVersion/ViaVersion/versions/5.4.2/PAPER/ViaVersion-5.4.2.jar
         - https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.4.2/PAPER/ViaBackwards-5.4.2.jar
