@@ -54,24 +54,24 @@ spec:
         enabled: false
         existingSecret: *app
     extraVolumes:
-      volumes:
-        - name: velocity-forwarding-secret
-          secret:
-            secretName: *app
-            items:
-              - key: velocity-forwarding-secret
-                path: forwarding.secret
-        - name: &config velocity-config
-          secret:
-            secretName: *app
-            items:
-              - key: velocity.toml
-                path: velocity.toml
-      volumeMounts:
-        - name: velocity-forwarding-secret
-          mountPath: /server/forwarding.secret
-          subPath: forwarding.secret
-          readOnly: true
-        - name: *config
-          mountPath: /server/velocity.toml
-          subPath: velocity.toml
+      - volumes:
+          - name: velocity-forwarding-secret
+            secret:
+              secretName: *app
+              items:
+                - key: velocity-forwarding-secret
+                  path: forwarding.secret
+          - name: &config velocity-config
+            secret:
+              secretName: *app
+              items:
+                - key: velocity.toml
+                  path: velocity.toml
+        volumeMounts:
+          - name: velocity-forwarding-secret
+            mountPath: /server/forwarding.secret
+            subPath: forwarding.secret
+            readOnly: true
+          - name: *config
+            mountPath: /server/velocity.toml
+            subPath: velocity.toml
