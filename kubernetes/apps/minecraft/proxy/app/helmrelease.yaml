@@ -51,7 +51,3 @@ spec:
       rcon:
         enabled: false
         existingSecret: minecraft-proxy
-    persistence:
-      dataDir:
-        enabled: true
-        existingClaim: *app

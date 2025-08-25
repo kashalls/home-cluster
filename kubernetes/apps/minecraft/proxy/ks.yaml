@@ -10,19 +10,12 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  components:
-    - ../../../../components/volsync
   dependsOn:
     - name: external-secrets
       namespace: external-secrets
     - name: rook-ceph-cluster
       namespace: rook-ceph
   path: ./kubernetes/apps/minecraft/proxy/app
-  postBuild:
-    substitute:
-      APP: *app
-      VOLSYNC_CACHE_CAPACITY: 5Gi
-      VOLSYNC_CAPACITY: 5Gi
   prune: true
   sourceRef:
     kind: GitRepository
