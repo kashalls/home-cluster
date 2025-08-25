@@ -52,7 +52,7 @@ spec:
         - https://github.com/Cubxity/UnifiedMetrics/releases/download/v0.3.8/unifiedmetrics-platform-velocity-0.3.8.jar
       rcon:
         enabled: false
-        existingSecret: *secret-name
+        existingSecret: *app
     extraVolumes:
       volumes:
         - name: velocity-forwarding-secret
