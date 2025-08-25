@@ -25,8 +25,8 @@ spec:
     name: minecraft-proxy
   values:
     image:
-      repository: itzg/bungeecord
-      tag:
+      repository: ghcr.io/itzg/mc-proxy
+      tag: 2025.6.0
     resources:
       requests:
         memory: &memory 512Mi
