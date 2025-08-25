@@ -40,6 +40,8 @@ spec:
               tag: 2025.6.0
             env:
               TZ: America/Los_Angeles
+              UID: "1000"
+              GID: "1000"
               TYPE: "VELOCITY"
               VELOCITY_VERSION: "3.4.0-SNAPSHOT"
               PLUGINS: "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaVersion/versions/5.4.2/PAPER/ViaVersion-5.4.2.jar,https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.4.2/PAPER/ViaBackwards-5.4.2.jar,https://github.com/Cubxity/UnifiedMetrics/releases/download/v0.3.8/unifiedmetrics-platform-velocity-0.3.8.jar"
@@ -54,13 +56,26 @@ spec:
               capabilities: { drop: ["ALL"] }
             resources:
               requests:
-                cpu: 350m
-                memory: 64Mi
-              limits:
                 cpu: 500m
-                memory: 96Mi
-        serviceAccount:
-          identifier: main
+                memory: 512Mi
+              limits:
+                cpu: 1500m
+                memory: 2048Mi
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  tcpSocket:
+                    port: 25575
+                  initialDelaySeconds:
+                  periodSeconds:
+                  failureThreshold:
+                  successThreshold:
+                  timeoutSeconds: 0
+              readiness: *probes
+              startup:
+                enabled: false
     service:
       minecraft-proxy:
         controller: main
