@@ -51,3 +51,25 @@ spec:
       rcon:
         enabled: false
         existingSecret: minecraft-proxy
+    extraVolumes:
+      volumes:
+        - name: velocity-forwarding-secret
+          secret:
+            secretName: minecraft-proxy
+            items:
+              - key: velocity-forwarding-secret
+                path: forwarding.secret
+        - name: &config velocity-config
+          secret:
+            secretName: minecraft-proxy
+            items:
+              - key: velocity.toml
+                path: velocity.toml
+      volumeMounts:
+        - name: velocity-forwarding-secret
+          mountPath: /server/forwarding.secret
+          subPath: forwarding.secret
+          readOnly: true
+        - name: *config
+          mountPath: /server/velocity.toml
+          subPath: velocity.toml
