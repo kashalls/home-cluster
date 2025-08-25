@@ -1,77 +1,93 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/source.toolkit.fluxcd.io/ocirepository_v1.json
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: OCIRepository
-metadata:
-  name: minecraft-proxy
-spec:
-  interval: 5m
-  layerSelector:
-    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
-    operation: copy
-  ref:
-    tag: 3.9.0
-  url: oci://ghcr.io/itzg/minecraft-server-charts/minecraft-proxy
----
-# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/helm.toolkit.fluxcd.io/helmrelease_v2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app minecraft-proxy
+  name: &app velocity
 spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: minecraft-proxy
+    name: app-template
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
   values:
-    nameOverride: *app
-    image:
-      repository: ghcr.io/itzg/mc-proxy
-      tag: 2025.6.0
-    resources:
-      requests:
-        memory: 512Mi
-        cpu: 500m
-    podAnnotations:
-      secret.reloader.stakater.com/reload: *app
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      runAsNonRoot: true
-      fsGroup: 568
-      seccompProfile:
-        type: RuntimeDefault
-    minecraftProxy:
-      type: VELOCITY
-      onlineMode: true
-      velocityVersion: 3.4.0-SNAPSHOT
-      memory: 512M
-      plugins:
-        - https://hangarcdn.papermc.io/plugins/ViaVersion/ViaVersion/versions/5.4.2/PAPER/ViaVersion-5.4.2.jar
-        - https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.4.2/PAPER/ViaBackwards-5.4.2.jar
-        - https://github.com/Cubxity/UnifiedMetrics/releases/download/v0.3.8/unifiedmetrics-platform-velocity-0.3.8.jar
-      rcon:
-        enabled: false
-        existingSecret: *app
-    extraVolumes:
-      - volumes:
-          - name: velocity-forwarding-secret
-            secret:
-              secretName: *app
-              items:
-                - key: velocity-forwarding-secret
-                  path: forwarding.secret
-          - name: &config velocity-config
-            secret:
-              secretName: *app
-              items:
-                - key: velocity.toml
-                  path: velocity.toml
-        volumeMounts:
-          - name: velocity-forwarding-secret
-            mountPath: /server/forwarding.secret
-            subPath: forwarding.secret
-            readOnly: true
-          - name: *config
-            mountPath: /server/velocity.toml
+    serviceAccount:
+      main:
+        enabled: true
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    controllers:
+      main:
+        annotations:
+          secret.reloader.stakater.com/reload: *app
+          configmap.reloader.stakater.com/reload: &vconfig "velocity-config"
+        containers:
+          minecraft-proxy:
+            image:
+              repository: ghcr.io/itzg/mc-proxy
+              tag: 2025.6.0
+            env:
+              TZ: America/Los_Angeles
+              TYPE: "VELOCITY"
+              VELOCITY_VERSION: "3.4.0-SNAPSHOT"
+              PLUGINS: "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaVersion/versions/5.4.2/PAPER/ViaVersion-5.4.2.jar,https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.4.2/PAPER/ViaBackwards-5.4.2.jar,https://github.com/Cubxity/UnifiedMetrics/releases/download/v0.3.8/unifiedmetrics-platform-velocity-0.3.8.jar"
+              MEMORY: 512M
+              ENABLE_RCON: "true"
+            envFrom:
+              - secretRef:
+                  name: *app
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 350m
+                memory: 64Mi
+              limits:
+                cpu: 500m
+                memory: 96Mi
+        serviceAccount:
+          identifier: main
+    service:
+      minecraft-proxy:
+        controller: main
+        ports:
+          java:
+            port: 25577
+          rcon:
+            port: 25575
+    serviceMonitor:
+      minecraft-proxy:
+        serviceName: minecraft-router
+        endpoints:
+          - port: api
+            scheme: http
+            path: /metrics
+            interval: 1m
+            scrapeTimeout: 30s
+    persistence:
+      config:
+        type: configMap
+        name: *vconfig
+        globalMounts:
+          - path: /server/velocity.toml
             subPath: velocity.toml
+      forwarding-secret:
+        type: secret
+        name: *app
+        globalMounts:
+          - path: /server/forwarding.secret
+            subPath: velocity-forwarding-secret
