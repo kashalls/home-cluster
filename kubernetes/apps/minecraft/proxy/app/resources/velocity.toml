@@ -110,7 +110,7 @@ read-timeout = 30000
 haproxy-protocol = false
 
 # Enables TCP fast open support on the proxy. Requires the proxy to run on Linux.
-tcp-fast-open = false
+tcp-fast-open = true
 
 # Enables BungeeCord plugin messaging channel support on Velocity.
 bungee-plugin-message-channel = true
