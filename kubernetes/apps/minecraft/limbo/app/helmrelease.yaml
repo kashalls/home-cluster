@@ -38,9 +38,6 @@ spec:
               TYPE: "LIMBO"
               LIMBO_BUILD: "LATEST"
               MEMORY: 512M
-            envFrom:
-              - secretRef:
-                  name: *app
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
