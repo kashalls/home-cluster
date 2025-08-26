@@ -75,3 +75,9 @@ spec:
         type: emptyDir
       server:
         type: emptyDir
+      config:
+        type: secret
+        name: limbo-secret
+        globalMounts:
+          - path: /server/server.properties
+            subPath: server.properties
