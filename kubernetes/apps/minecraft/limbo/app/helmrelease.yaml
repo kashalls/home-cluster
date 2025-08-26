@@ -80,5 +80,5 @@ spec:
         type: secret
         name: limbo-secret
         globalMounts:
-          - path: /server/server.properties
+          - path: /data/server.properties
             subPath: server.properties
