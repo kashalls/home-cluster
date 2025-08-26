@@ -37,6 +37,7 @@ spec:
               EULA: "TRUE"
               TYPE: "LIMBO"
               LIMBO_BUILD: "LATEST"
+              PLUGINS: "https://ci.loohpjames.com/job/ViaLimbo/lastSuccessfulBuild/artifact/target/ViaLimbo-1.1.2.jar"
               MEMORY: 512M
             securityContext:
               allowPrivilegeEscalation: false
