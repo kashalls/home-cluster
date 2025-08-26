@@ -75,7 +75,7 @@ spec:
     persistence:
       tmp:
         type: emptyDir
-      server:
+      data:
         type: emptyDir
       config:
         type: secret
@@ -83,3 +83,4 @@ spec:
         globalMounts:
           - path: /data/server.properties
             subPath: server.properties
+            readOnly: true
