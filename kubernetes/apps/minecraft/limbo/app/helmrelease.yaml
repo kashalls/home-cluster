@@ -27,6 +27,8 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
     controllers:
       main:
+        annotations:
+          secret.reloader.stakater.com/reload: "limbo-secret"
         containers:
           limbo:
             image:
@@ -37,9 +39,11 @@ spec:
               EULA: "TRUE"
               TYPE: "LIMBO"
               LIMBO_BUILD: "LATEST"
-              OVERRIDE_SERVER_PROPERTIES: "false"
               PLUGINS: "https://ci.loohpjames.com/job/ViaLimbo/lastSuccessfulBuild/artifact/target/ViaLimbo-1.1.2.jar"
               MEMORY: 512M
+            envFrom:
+              - secretRef:
+                  name: limbo-secret
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -70,17 +74,5 @@ spec:
       limbo:
         controller: main
         ports:
-          java:
+          limbo:
             port: 25565
-    persistence:
-      tmp:
-        type: emptyDir
-      data:
-        type: emptyDir
-      config:
-        type: secret
-        name: limbo-secret
-        globalMounts:
-          - path: /data/server.properties
-            subPath: server.properties
-            readOnly: true
