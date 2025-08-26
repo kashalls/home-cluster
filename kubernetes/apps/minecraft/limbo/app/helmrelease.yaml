@@ -1,19 +1,5 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/source.toolkit.fluxcd.io/ocirepository_v1.json
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: OCIRepository
-metadata:
-  name: itzg-limbo
-spec:
-  interval: 5m
-  layerSelector:
-    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
-    operation: copy
-  ref:
-    tag: 4.26.4
-  url: oci://ghcr.io/itzg/minecraft-server-charts/minecraft
----
-# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/helm.toolkit.fluxcd.io/helmrelease_v2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -22,34 +8,73 @@ spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: itzg-limbo
+    name: app-template
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
   values:
-    image:
-      repository: ghcr.io/itzg/minecraft-server
-      tag: 2025.8.1-java21
-    resources:
-      requests:
-        cpu: 1
-        memory: &memory-limit 2G
-    livenessProbe:
-      initialDelaySeconds: 0
-    readinessProbe:
-      initialDelaySeconds: 0
-    startupProbe:
-      enabled: true
-    extraEnv:
-      TZ: "America/Los_Angeles"
-      INIT_MEMORY: 1G
-      MAX_MEMORY: *memory-limit
-    serviceAnnotations:
-      mc-router.itzg.me/externalServerName: limbo.mc.ok8.sh
-    servicePort: 25565
-    minecraftServer:
-      eula: true
-      version: 1.21.5
-      spigotDownloadUrl: https://ci.loohpjames.com/job/Limbo/lastStableBuild/artifact/target/Limbo-0.7.15-ALPHA-1.21.8.jar
-      onlineMode: true
-      type: SPIGOT
-      jvmXXOpts: "-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1"
-      overrideServerProperties: false
-      serviceType: ClusterIP
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    controllers:
+      main:
+        containers:
+          limbo:
+            image:
+              repository: ghcr.io/itzg/minecraft-server
+              tag: 2025.8.1@sha256:92681e6745391ed80c7e59ebe9ba9956e787178b9e52c34e734e998bc80a8649
+            env:
+              TZ: America/Los_Angeles
+              EULA: "TRUE"
+              TYPE: "LIMBO"
+              LIMBO_BUILD: "LATEST"
+              MEMORY: 512M
+            envFrom:
+              - secretRef:
+                  name: *app
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 500m
+                memory: 512Mi
+              limits:
+                cpu: 1500m
+                memory: 2048Mi
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  tcpSocket:
+                    port: 25565
+                  initialDelaySeconds: 30
+                  periodSeconds: 5
+                  failureThreshold: 10
+                  successThreshold: 1
+                  timeoutSeconds: 1
+              readiness: *probes
+              startup:
+                enabled: false
+    service:
+      limbo:
+        controller: main
+        ports:
+          java:
+            port: 25565
+    persistence:
+      tmp:
+        type: emptyDir
+      server:
+        type: emptyDir
