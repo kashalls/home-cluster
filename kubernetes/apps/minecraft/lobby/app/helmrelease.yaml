@@ -47,9 +47,6 @@ spec:
       INIT_MEMORY: 1G
       MAX_MEMORY: *memory-limit
       SYNC_SKIP_NEWER_IN_DESTINATION: false
-    envFrom:
-      - secretRef:
-          name: lobby-secret
     serviceAnnotations:
       mc-router.itzg.me/externalServerName: lobby.mc.ok8.sh
     servicePort: 25565
