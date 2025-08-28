@@ -46,6 +46,7 @@ spec:
       DUMP_SERVER_PROPERTIES: false
       INIT_MEMORY: 1G
       MAX_MEMORY: *memory-limit
+      SYNC_SKIP_NEWER_IN_DESTINATION: false
     envFrom:
       - secretRef:
           name: lobby-secret
