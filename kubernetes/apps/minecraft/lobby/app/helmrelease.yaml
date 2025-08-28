@@ -84,3 +84,12 @@ spec:
       dataDir:
         enabled: true
         existingClaim: *app
+    extraVolumes:
+      - volumeMounts:
+          - name: lobby-secret
+            mountPath: /config/paper-global.yml
+            subpath: paper-global.yml
+        volumes:
+          - name: lobby-secret
+            secret:
+              secretName: lobby-secret
