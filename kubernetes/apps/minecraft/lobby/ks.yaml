@@ -12,7 +12,7 @@ spec:
       app.kubernetes.io/name: *app
   components:
     - ../../../../components/volsync
-  path: ./kubernetes/apps/minecraft/router/app
+  path: ./kubernetes/apps/minecraft/lobby/app
   postBuild:
     substitute:
       APP: *app
