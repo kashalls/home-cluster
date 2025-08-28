@@ -230,6 +230,11 @@ spec:
           url: https://raw.githubusercontent.com/kashalls/home-cluster/refs/heads/main/kubernetes/apps/observability/grafana/app/dashboards/unifi-pdu-test.json
           datasource:
             - { name: DS_PROMETHEUS, value: Prometheus }
+        unifiedmetrics:
+          # renovate: depName="UnifiedMetrics 0.3.x / Prometheus"
+          gnetId: 14756
+          revision: 11
+          datasource: Prometheus
         volsync:
           # renovate: depName="VolSync Dashboard"
           gnetId: 21356
