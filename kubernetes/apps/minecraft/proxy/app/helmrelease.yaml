@@ -64,7 +64,7 @@ spec:
                 custom: true
                 spec:
                   tcpSocket:
-                    port: 25575
+                    port: &port 25565
                   initialDelaySeconds: 30
                   periodSeconds: 5
                   failureThreshold: 10
@@ -76,16 +76,20 @@ spec:
     service:
       minecraft-proxy:
         controller: main
+        annotations:
+          mc-router.itzg.me/externalServerName: vanilla.mc.ok8.sh
         ports:
           java:
-            port: 25577
+            port: *port
           rcon:
             port: 25575
+          metrics:
+            port: 9100
     serviceMonitor:
       minecraft-proxy:
         serviceName: minecraft-router
         endpoints:
-          - port: api
+          - port: metrics
             scheme: http
             path: /metrics
             interval: 1m
