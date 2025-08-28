@@ -77,7 +77,7 @@ spec:
       minecraft-proxy:
         controller: main
         annotations:
-          mc-router.itzg.me/externalServerName: vanilla.mc.ok8.sh
+          mc-router.itzg.me/externalServerName: mc.ok8.sh
         ports:
           java:
             port: *port
