@@ -41,7 +41,9 @@ spec:
               GID: "1000"
               TYPE: "VELOCITY"
               VELOCITY_VERSION: "3.4.0-SNAPSHOT"
-              PLUGINS: "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaVersion/versions/5.4.2/PAPER/ViaVersion-5.4.2.jar,https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.4.2/PAPER/ViaBackwards-5.4.2.jar,https://github.com/Cubxity/UnifiedMetrics/releases/download/v0.3.8/unifiedmetrics-platform-velocity-0.3.8.jar,https://github.com/AkselGlyholt/velocity-limbo-handler/releases/download/v1.6.0/velocity-limbo-handler-1.6.0.jar"
+              PLUGINS: |
+                https://hangarcdn.papermc.io/plugins/ViaVersion/ViaVersion/versions/5.4.2/PAPER/ViaVersion-5.4.2.jar,https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.4.2/PAPER/ViaBackwards-5.4.2.jar,https://github.com/Cubxity/UnifiedMetrics/releases/download/v0.3.8/unifiedmetrics-platform-velocity-0.3.8.jar,https://github.com/AkselGlyholt/velocity-limbo-handler/releases/download/v1.6.0/velocity-limbo-handler-1.6.0.jar
+                https://cdn.modrinth.com/data/mGVcEBwo/versions/uw9grO7J/simplewhitelist-velocity-2.0.0.jar
               MEMORY: 512M
               ENABLE_RCON: "true"
             envFrom:
