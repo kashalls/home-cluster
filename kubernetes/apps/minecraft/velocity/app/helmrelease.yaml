@@ -118,7 +118,7 @@ spec:
         name: *app
         globalMounts:
           - path: /config/forwarding.secret
-            subPath: velocity-forwarding-secret
+            subPath: forwarding.secret
       rcon:
         type: secret
         name: *app
