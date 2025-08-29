@@ -106,23 +106,22 @@ spec:
       tmp:
         type: emptyDir
       server:
-        type: persistentVolumeClaim
-        existingClaim: *app
+        type: emptyDir
       config:
         type: configMap
         name: *vconfig
         globalMounts:
-          - path: /server/velocity.toml
+          - path: /config/velocity.toml
             subPath: velocity.toml
       forwarding-secret:
         type: secret
         name: *app
         globalMounts:
-          - path: /server/forwarding.secret
+          - path: /config/forwarding.secret
             subPath: velocity-forwarding-secret
       rcon:
         type: secret
         name: *app
         globalMounts:
-          - path: /server/plugins/velocityrcon/rcon.toml
+          - path: /config/plugins/velocityrcon/rcon.toml
             subPath: rcon.toml
