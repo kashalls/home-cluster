@@ -47,6 +47,7 @@ spec:
       MAX_MEMORY: *memory-limit
     serviceAnnotations:
       mc-router.itzg.me/externalServerName: void.mc.ok8.sh
+      mc-router.itzg.me/defaultServer: "true"
     servicePort: 25565
     minecraftServer:
       eula: true

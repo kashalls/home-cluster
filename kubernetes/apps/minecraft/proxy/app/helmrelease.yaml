@@ -78,6 +78,8 @@ spec:
         controller: main
         annotations:
           mc-router.itzg.me/externalServerName: mc.ok8.sh
+          lbipam.cilium.io/ips: 172.16.0.40
+        type: LoadBalancer
         ports:
           java:
             port: *port
