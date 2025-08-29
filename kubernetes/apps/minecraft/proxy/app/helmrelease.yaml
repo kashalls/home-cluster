@@ -118,4 +118,10 @@ spec:
         name: *app
         globalMounts:
           - path: /server/forwarding.secret
-            subPath: velocity-forwarding-secret
+            subPath: forwarding.secret
+      rcon:
+        type: secret
+        name: *app
+        globalMounts:
+          - path: /server/plugins/velocityrcon/rcon.toml
+            subPath: rcon.toml
