@@ -40,14 +40,15 @@ spec:
       enabled: true
     extraEnv:
       TZ: "America/Los_Angeles"
-      KEEP_INVENTORY: false
-      ENABLE_ROLLING_LOGS: true
-      ALLOW_FLIGHT: false
-      ALLOW_NETHER: false
-      DUMP_SERVER_PROPERTIES: false
-      INIT_MEMORY: 1G
+      KEEP_INVENTORY: "false"
+      ENABLE_ROLLING_LOGS: "true"
+      ALLOW_FLIGHT: "false"
+      ALLOW_NETHER: "false"
+      DUMP_SERVER_PROPERTIES: "false"
+      INIT_MEMORY: "1G"
       MAX_MEMORY: *memory-limit
-      SYNC_SKIP_NEWER_IN_DESTINATION: false
+      SYNC_SKIP_NEWER_IN_DESTINATION: "false"
+      DEBUG: "true"
     serviceAnnotations:
       mc-router.itzg.me/externalServerName: lobby.mc.ok8.sh
     servicePort: 25565
