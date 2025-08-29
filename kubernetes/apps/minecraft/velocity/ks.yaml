@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app proxy
+  name: &app velocity
   namespace: &namespace minecraft
 spec:
   targetNamespace: *namespace
@@ -17,7 +17,7 @@ spec:
       namespace: rook-ceph
   components:
     - ../../../../components/volsync
-  path: ./kubernetes/apps/minecraft/proxy/app
+  path: ./kubernetes/apps/minecraft/velocity/app
   postBuild:
     substitute:
       APP: *app
