@@ -77,7 +77,7 @@ enable-player-address-logging = true
 [servers]
 # Configure your servers here. Each key represents the server's name, and the value
 # represents the IP address of the server to connect to.
-lobby = "lobby-minecraft.minecraft.svc.cluster.local:25565"
+lobby = "lobby.minecraft.svc.cluster.local:25565"
 limbo = "limbo.minecraft.svc.cluster.local:25565"
 
 # In what order we should try servers when a player logs in or is kicked from a server.
