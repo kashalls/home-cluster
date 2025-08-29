@@ -106,7 +106,8 @@ spec:
       tmp:
         type: emptyDir
       server:
-        type: emptyDir
+        type: persistentVolumeClaim
+        existingClaim: *app
       config:
         type: configMap
         name: *vconfig
@@ -118,7 +119,7 @@ spec:
         name: *app
         globalMounts:
           - path: /server/forwarding.secret
-            subPath: forwarding.secret
+            subPath: velocity-forwarding-secret
       rcon:
         type: secret
         name: *app
