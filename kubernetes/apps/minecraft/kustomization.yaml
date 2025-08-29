@@ -10,6 +10,6 @@ resources:
   - ./limbo/ks.yaml
   - ./lobby/ks.yaml
   - ./proxy/ks.yaml
-  - ./router/ks.yaml
+  #- ./router/ks.yaml
   - ./vanilla/ks.yaml
   - ./void/ks.yaml
