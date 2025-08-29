@@ -24,6 +24,7 @@ spec:
     kind: OCIRepository
     name: lobby
   values:
+    nameOverride: *app
     image:
       repository: ghcr.io/itzg/minecraft-server
       tag: 2025.8.1-java21

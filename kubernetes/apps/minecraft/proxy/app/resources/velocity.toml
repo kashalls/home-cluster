@@ -77,7 +77,7 @@ enable-player-address-logging = true
 [servers]
 # Configure your servers here. Each key represents the server's name, and the value
 # represents the IP address of the server to connect to.
-lobby = "127.0.0.1:30066"
+lobby = "lobby-minecraft.minecraft.svc.cluster.local:25565"
 limbo = "limbo.minecraft.svc.cluster.local:25565"
 
 # In what order we should try servers when a player logs in or is kicked from a server.
@@ -142,7 +142,7 @@ accepts-transfers = false
 # with a lot of incoming connections, and provide better CPU utilization than the existing
 # strategy of having a single thread accepting connections and distributing them to worker
 # threads. Disabled by default. Requires Linux or macOS.
-enable-reuse-port = false
+enable-reuse-port = true
 
 # How fast (in milliseconds) are clients allowed to send commands after the last command
 # By default this is 50ms (20 commands per second)
@@ -167,13 +167,13 @@ kick-after-rate-limited-tab-completes = 0
 
 [query]
 # Whether to enable responding to GameSpy 4 query responses or not.
-enabled = false
+enabled = true
 
 # If query is enabled, on what port should the query protocol listen on?
 port = 25565
 
 # This is the map name that is reported to the query services.
-map = "Velocity"
+map = "KashMC"
 
 # Whether plugins should be shown in query response by default or not
 show-plugins = false
