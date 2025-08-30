@@ -125,7 +125,7 @@ spec:
           - path: /config/velocity.toml
             subPath: velocity.toml
           - path: /config/plugins/simplewhitelist/config.yml
-            subPath: config.yml
+            subPath: simplewhitelist.yml
       secret:
         type: secret
         name: *app
