@@ -140,4 +140,6 @@ spec:
             subPath: forwarding.secret
           - path: /config/plugins/velocircon/rcon.yml
             subPath: rcon-config.yml
+          - path: /config/plugins/discord/config.toml
+            subPath: discord-config.toml
 
