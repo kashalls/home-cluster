@@ -10,6 +10,6 @@ configMapGenerator:
   - name: velocity-config
     files:
       - velocity.toml=./resources/velocity.toml
-      - simplewhitelist.yml=./resources/simplewhitelist.toml
+      - simplewhitelist.yml=./resources/simplewhitelist.yml
 generatorOptions:
   disableNameSuffixHash: true
