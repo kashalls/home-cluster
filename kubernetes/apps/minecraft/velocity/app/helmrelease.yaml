@@ -47,6 +47,9 @@ spec:
                 https://github.com/AkselGlyholt/velocity-limbo-handler/releases/download/v1.6.0/velocity-limbo-handler-1.6.0.jar
                 https://cdn.modrinth.com/data/mGVcEBwo/versions/uw9grO7J/simplewhitelist-velocity-2.0.0.jar
                 https://cdn.modrinth.com/data/KkmSfl3v/versions/LsmNou60/Velocircon-1.0.2.jar
+                https://cdn.modrinth.com/data/Gpn18C8b/versions/ROhWZCMQ/VelocityDiscord-1.9.0.jar
+                https://github.com/unilock/YepLib/releases/download/2.3.0/yeplib-2.3.0.jar
+                https://cdn.modrinth.com/data/dfWKHnn4/versions/EjvGsLkv/dclink-velocity-1.2.0.jar
               MEMORY: 512M
             envFrom:
               - secretRef:
