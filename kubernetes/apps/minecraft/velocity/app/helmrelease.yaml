@@ -119,15 +119,14 @@ spec:
         globalMounts:
           - path: /config/velocity.toml
             subPath: velocity.toml
-      forwarding-secret:
+          - path: /config/plugins/simplewhitelist/config.yml
+            subPath: config.yml
+      secret:
         type: secret
         name: *app
         globalMounts:
           - path: /config/forwarding.secret
             subPath: forwarding.secret
-      rcon:
-        type: secret
-        name: *app
-        globalMounts:
           - path: /config/plugins/velocityrcon/rcon.toml
             subPath: rcon.toml
+

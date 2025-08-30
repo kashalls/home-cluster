@@ -2,10 +2,10 @@ enabled: true
 caseSensitive: false
 messages:
   noPermission: "<red>You are missing some permissions.</red>"
-  invalidArguments: "<red>Invalid arguments!</red>"
-  needPlayer: "<red>Player's name is needed!</red>"
+  invalidArguments: "<red>Invalid argument specified.</red>"
+  needPlayer: "<red>Please provide the player's name.</red>"
   alreadyWhitelisted: "<red><name> is already whitelisted!</red>"
-  notInWhitelist: "<red>You are not in simple whitelist!</red>"
+  notInWhitelist: "<red>You have not been whitelisted.</red>"
   empty: "Empty"
 commandMessages:
   add: "<green><name> added to whitelist!</green>"
