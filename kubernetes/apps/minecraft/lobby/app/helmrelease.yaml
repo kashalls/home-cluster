@@ -87,8 +87,7 @@ spec:
     extraVolumes:
       - volumeMounts:
           - name: lobby-secret
-            mountPath: /config/paper-global.yml
-            subpath: paper-global.yml
+            mountPath: /config
         volumes:
           - name: lobby-secret
             secret:
