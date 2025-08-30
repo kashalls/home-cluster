@@ -88,10 +88,16 @@ spec:
         ports:
           java:
             port: *port
-          rcon:
-            port: 25575
           metrics:
             port: 9100
+      rcon:
+        controller: main
+        annotations:
+          lbipam.cilium.io/ips: 172.16.0.42
+          lbipam.cilium.io/sharing-key: rcon
+        ports:
+          rcon:
+            port: 25575
     serviceMonitor:
       minecraft-proxy:
         serviceName: minecraft-router
@@ -108,7 +114,7 @@ spec:
         type: emptyDir
       config:
         type: configMap
-        name: "velocity-config"
+        name: velocity-config
         globalMounts:
           - path: /config/velocity.toml
             subPath: velocity.toml
