@@ -79,7 +79,7 @@ spec:
               startup:
                 enabled: false
     service:
-      minecraft-proxy:
+      proxy:
         controller: main
         annotations:
           mc-router.itzg.me/externalServerName: mc.ok8.sh
