@@ -100,7 +100,13 @@ spec:
           - name: *app
             mountPath: /config
             subPath: paper-global.yml
+          - name: survival-config
+            mountPath: /config/plugins/BlueMap/core.conf
+            subPath: core.conf
         volumes:
           - name: *app
             secret:
               secretName: *app
+          - name: survival-config
+            secret:
+              secretName: survival-config
