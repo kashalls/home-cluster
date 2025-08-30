@@ -108,5 +108,5 @@ spec:
             secret:
               secretName: *app
           - name: survival-config
-            secret:
-              secretName: survival-config
+            configMap:
+              name: survival-config
