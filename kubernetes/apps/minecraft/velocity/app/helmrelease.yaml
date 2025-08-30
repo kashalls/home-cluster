@@ -48,7 +48,6 @@ spec:
                 https://cdn.modrinth.com/data/mGVcEBwo/versions/uw9grO7J/simplewhitelist-velocity-2.0.0.jar
                 https://cdn.modrinth.com/data/KkmSfl3v/versions/LsmNou60/Velocircon-1.0.2.jar
               MEMORY: 512M
-              ENABLE_RCON: "true"
             envFrom:
               - secretRef:
                   name: *app
