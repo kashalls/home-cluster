@@ -113,6 +113,11 @@ spec:
         type: emptyDir
       server:
         type: emptyDir
+      whitelist:
+        type: persistentVolumeClaim
+        existingClaim: *app
+        globalMounts:
+          - path: /server/plugins/simplewhitelis
       config:
         type: configMap
         name: velocity-config
@@ -129,9 +134,4 @@ spec:
             subPath: forwarding.secret
           - path: /config/plugins/velocityrcon/rcon.toml
             subPath: rcon.toml
-      whitelist:
-        type: persistentVolumeClaim
-        existingClaim: *app
-        globalMounts:
-          - path: /server/plugins/simplewhitelist
 
