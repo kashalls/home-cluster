@@ -95,6 +95,7 @@ spec:
         annotations:
           lbipam.cilium.io/ips: 172.16.0.42
           lbipam.cilium.io/sharing-key: rcon
+        type: LoadBalancer
         ports:
           rcon:
             port: 25575
