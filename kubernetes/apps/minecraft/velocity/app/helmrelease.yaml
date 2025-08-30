@@ -113,11 +113,15 @@ spec:
         type: emptyDir
       server:
         type: emptyDir
+      plugins:
+        type: emptyDir
+        globalMounts:
+          - path: /server/plugins
       whitelist:
         type: persistentVolumeClaim
         existingClaim: *app
         globalMounts:
-          - path: /server/plugins/simplewhitelis
+          - path: /server/plugins/simplewhitelist
       config:
         type: configMap
         name: velocity-config
