@@ -135,6 +135,6 @@ spec:
         globalMounts:
           - path: /config/forwarding.secret
             subPath: forwarding.secret
-          - path: /config/plugins/velocircon/config.yml
+          - path: /config/plugins/velocircon/rcon.yml
             subPath: rcon-config.yml
 
