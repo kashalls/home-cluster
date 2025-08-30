@@ -10,3 +10,4 @@ Brewfile.lock.json
 Thumbs.db
 kubeconfig
 talosconfig
+.rcon-cli.yaml
