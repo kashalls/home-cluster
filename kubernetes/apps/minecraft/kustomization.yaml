@@ -10,4 +10,4 @@ resources:
   - ./limbo/ks.yaml
   - ./lobby/ks.yaml
   - ./velocity/ks.yaml
-  - ./vanilla/ks.yaml
+  - ./survival/ks.yaml

@@ -3,7 +3,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: itzg-vanilla
+  name: survival
 spec:
   interval: 5m
   layerSelector:
@@ -17,7 +17,7 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app minecraft-vanilla
+  name: &app survival
 spec:
   interval: 1h
   chartRef:
@@ -25,10 +25,7 @@ spec:
     name: itzg-vanilla
   values:
     deploymentAnnotations:
-      secret.reloader.stakater.com/reload: &secret minecraft-vanilla
-    podLabels:
-      dashboard.ok8.sh/enabled: true
-      dashboard.ok8.sh/name: "Vanilla"
+      secret.reloader.stakater.com/reload: *app
     image:
       repository: ghcr.io/itzg/minecraft-server
       tag: 2025.8.1-java21
@@ -49,17 +46,10 @@ spec:
       ALLOW_FLIGHT: true
       INIT_MEMORY: 1G
       MAX_MEMORY: *memory-limit
-    persistence:
-      dataDir:
-        existingClaim: minecraft-vanilla
-        enabled: true
-    serviceAnnotations:
-      mc-router.itzg.me/externalServerName: vanilla.mc.ok8.sh
-    servicePort: 25565
     minecraftServer:
       eula: true
-      version: 1.21.4
-      onlineMode: true
+      version: 1.21.8
+      onlineMode: false
       type: PAPER
       generateStructures: true
       difficulty: normal
@@ -67,7 +57,6 @@ spec:
       spawnMonsters: true
       spawnNPCs: true
       ops: "Kashall"
-      whitelist: "Kashall,roguedomethe12th,noonethe12th,theStriker01,Bad_Graphics,Direwaven,MarianKnight"
       pvp: true
       motd: "\u00a7l \u00a7r                   \u00a79\u00a7lKASHMC \u00a77\u2014 \u00a74[Private]\u00a7r\n\u00a7l \u00a7a  \u2620 This isn't your average Marian experience \u2620"
       worldSaveName: world
@@ -95,6 +84,23 @@ spec:
         # https://dev.bukkit.org/projects/yetanotherharvest
       rcon:
         enabled: true
+        port: 25577
+        existingSecret: *app
         serviceType: LoadBalancer
-        existingSecret: *secret
-      serviceType: LoadBalancer
+        externalTrafficPolicy: Cluster
+    rconServiceAnnotations:
+      lbipam.cilium.io/ips: 172.16.0.42
+      lbipam.cilium.io/sharing-key: rcon
+    persistence:
+      dataDir:
+        enabled: true
+        existingClaim: *app
+    extraVolumes:
+      - volumeMounts:
+          - name: *app
+            mountPath: /config
+            subPath: paper-global.yml
+        volumes:
+          - name: *app
+            secret:
+              secretName: *app
