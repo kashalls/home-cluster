@@ -84,6 +84,7 @@ spec:
         port: 25576
         existingSecret: lobby-secret
         serviceType: LoadBalancer
+        externalTrafficPolicy: Cluster
     rconServiceAnnotations:
       lbipam.cilium.io/ips: 172.16.0.42
       lbipam.cilium.io/sharing-key: rcon
